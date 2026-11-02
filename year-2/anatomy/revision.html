@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
@@ -10,1373 +10,1376 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0c10;
-    --bg2: #0f1218;
-    --bg3: #141820;
-    --card: #13171f;
-    --card2: #1a1f2a;
-    --border: #1e2535;
-    --border2: #2a3248;
-    --text: #e2e8f0;
-    --muted: #8892a4;
-    --dim: #4a5568;
-    --blue: #3b82f6;
-    --blue2: #1d4ed8;
-    --cyan: #06b6d4;
-    --green: #10b981;
-    --yellow: #f59e0b;
-    --red: #ef4444;
-    --purple: #8b5cf6;
-    --pink: #ec4899;
-    --orange: #f97316;
-    --glow-blue: 0 0 20px rgba(59,130,246,0.25);
-    --glow-cyan: 0 0 20px rgba(6,182,212,0.2);
-    --glow-green: 0 0 20px rgba(16,185,129,0.2);
+    --bg:linear-gradient(160deg, #f1e3cf 0%, #e8d2b5 45%, #dcc19c 100%);
+    --bg2:linear-gradient(135deg, #f5ecdd 0%, #e6d3b8 100%);
+    --bg3:linear-gradient(135deg, #f9f2e8 0%, #e9d8c1 100%);
+    --card:linear-gradient(135deg, #f9f2e7 0%, #e9d8c0 100%);
+    --card2:linear-gradient(135deg, #fbf5ec 0%, #ebdac4 100%);
+    --border:rgba(89,9,7,0.178);
+    --border2:rgba(89,9,7,0.214);
+    --text:#590907;
+    --muted:#5f6156;
+    --dim:#989a8d;
+    --blue:#590907;
+    --blue2:#590907;
+    --cyan:#5b6356;
+    --green:#4d5a34;
+    --yellow:#8a3b12;
+    --red:#9b2a1f;
+    --purple:#590907;
+    --pink:#8e2f45;
+    --orange:#8a3b12;
+    --glow-blue:0 0 20px rgba(89,9,7,0.15);
+    --glow-cyan:0 0 20px rgba(91,99,86,0.12);
+    --glow-green:0 0 20px rgba(77,90,52,0.12);
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
 
   body {
-    font-family: 'Cairo', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    overflow-x: hidden;
+    font-family:'Cairo', sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
   }
 
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:linear-gradient(rgba(89,9,7,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(89,9,7,0.04) 1px, transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none;
+    z-index:0;
   }
 
   body::after {
-    content: '';
-    position: fixed;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    height: 400px;
-    background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+    content:'';
+    position:fixed;
+    top:-200px;
+    left:50%;
+    transform:translateX(-50%);
+    width:800px;
+    height:400px;
+    background:radial-gradient(ellipse, rgba(89,9,7,0.08) 0%, transparent 70%);
+    pointer-events:none;
+    z-index:0;
   }
 
   /* === PROGRESS BAR === */
   .progress-bar-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 200;
-    height: 4px;
-    background: var(--bg3);
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:200;
+    height:4px;
+    background:var(--bg3);
   }
   .progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green));
-    background-size: 200% 100%;
-    animation: gradientShift 3s ease infinite;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 0%;
-    border-radius: 0 2px 2px 0;
+    height:100%;
+    background:linear-gradient(90deg, var(--blue), var(--cyan), var(--green));
+    background-size:200% 100%;
+    animation:gradientShift 3s ease infinite;
+    transition:width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width:0%;
+    border-radius:0 2px 2px 0;
   }
   @keyframes gradientShift {
-    0%,100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    0%,100% { background-position:0% 50%; }
+    50% { background-position:100% 50%; }
   }
   .progress-badge {
-    position: fixed;
-    top: 10px;
-    right: 20px;
-    z-index: 201;
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--cyan);
-    font-family: 'JetBrains Mono', monospace;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s;
-    cursor: default;
+    position:fixed;
+    top:10px;
+    right:20px;
+    z-index:201;
+    background:var(--card);
+    border:1px solid var(--border2);
+    border-radius:20px;
+    padding:5px 14px;
+    font-size:11px;
+    font-weight:700;
+    color:var(--cyan);
+    font-family:'JetBrains Mono', monospace;
+    backdrop-filter:blur(10px);
+    transition:all 0.3s;
+    cursor:default;
   }
-  .progress-badge:hover { border-color: var(--cyan); }
+  .progress-badge:hover { border-color:var(--cyan); }
 
   /* === BACK BUTTON === */
   .back-btn {
-    position: fixed;
-    top: 10px;
-    left: 20px;
-    z-index: 201;
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 10px;
-    padding: 6px 14px;
-    font-size: 13px;
-    color: var(--muted);
-    text-decoration: none;
-    font-family: 'Cairo', sans-serif;
-    font-weight: 600;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    backdrop-filter: blur(10px);
+    position:fixed;
+    top:10px;
+    left:20px;
+    z-index:201;
+    background:var(--card);
+    border:1px solid var(--border2);
+    border-radius:10px;
+    padding:6px 14px;
+    font-size:13px;
+    color:var(--muted);
+    text-decoration:none;
+    font-family:'Cairo', sans-serif;
+    font-weight:600;
+    transition:all 0.3s;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    backdrop-filter:blur(10px);
   }
-  .back-btn:hover { color: var(--text); border-color: var(--blue); background: var(--card2); }
+  .back-btn:hover { color:var(--text); border-color:var(--blue); background:var(--card2); }
 
   /* === FLOATING BUTTONS === */
   .fab-group {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 150;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-end;
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    z-index:150;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:flex-end;
   }
   .fab {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    border: 1px solid var(--border2);
-    background: var(--card);
-    color: var(--muted);
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    border:1px solid var(--border2);
+    background:var(--card);
+    color:var(--muted);
+    font-size:20px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all 0.3s;
+    backdrop-filter:blur(10px);
+    box-shadow:0 4px 20px rgba(89,9,7,0.105);
   }
-  .fab:hover { color: var(--text); border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
-  .fab.active { background: rgba(59,130,246,0.15); border-color: var(--blue); color: var(--blue); }
+  .fab:hover { color:var(--text); border-color:var(--blue); transform:translateY(-2px); box-shadow:0 8px 30px rgba(89,9,7,0.14); }
+  .fab.active { background:rgba(89,9,7,0.15); border-color:var(--blue); color:var(--blue); }
 
   header {
-    position: relative;
-    z-index: 10;
-    padding: 60px 0 40px;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(59,130,246,0.06) 0%, transparent 100%);
+    position:relative;
+    z-index:10;
+    padding:60px 0 40px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg, rgba(89,9,7,0.06) 0%, transparent 100%);
   }
 
   .header-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(59,130,246,0.1);
-    border: 1px solid rgba(59,130,246,0.3);
-    color: var(--blue);
-    padding: 6px 18px;
-    border-radius: 100px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    animation: fadeDown 0.6s ease both;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(89,9,7,0.1);
+    border:1px solid rgba(89,9,7,0.3);
+    color:var(--blue);
+    padding:6px 18px;
+    border-radius:100px;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+    animation:fadeDown 0.6s ease both;
   }
 
   .header-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--blue);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
+    content:'';
+    width:6px; height:6px;
+    background:var(--blue);
+    border-radius:50%;
+    animation:pulse 2s infinite;
   }
 
   @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
+    0%, 100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.5; transform:scale(0.8); }
   }
 
   h1 {
-    font-size: clamp(28px, 5vw, 48px);
-    font-weight: 900;
-    letter-spacing: -1px;
-    line-height: 1.2;
-    animation: fadeDown 0.6s 0.1s ease both;
-    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size:clamp(28px, 5vw, 48px);
+    font-weight:900;
+    letter-spacing:-1px;
+    line-height:1.2;
+    animation:fadeDown 0.6s 0.1s ease both;
+    background:linear-gradient(120deg,#590907 0%,#8c2a1d 50%,#6b6e5f 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
   }
 
   .subtitle {
-    color: var(--muted);
-    margin-top: 10px;
-    font-size: 14px;
-    animation: fadeDown 0.6s 0.2s ease both;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 1px;
+    color:var(--muted);
+    margin-top:10px;
+    font-size:14px;
+    animation:fadeDown 0.6s 0.2s ease both;
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:1px;
   }
 
   .stats-bar {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    animation: fadeDown 0.6s 0.3s ease both;
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-top:30px;
+    flex-wrap:wrap;
+    animation:fadeDown 0.6s 0.3s ease both;
   }
 
-  .stat { text-align: center; }
+  .stat { text-align:center; }
 
   .stat-num {
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--blue);
-    font-family: 'JetBrains Mono', monospace;
+    font-size:28px;
+    font-weight:900;
+    color:var(--blue);
+    font-family:'JetBrains Mono', monospace;
   }
 
   .stat-label {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 2px;
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-top:2px;
   }
 
   /* NAV */
   .nav {
-    position: sticky;
-    top: 4px;
-    z-index: 100;
-    background: rgba(10,12,16,0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 20px;
-    display: flex;
-    gap: 4px;
-    justify-content: center;
-    overflow-x: auto;
-    scrollbar-width: none;
+    position:sticky;
+    top:4px;
+    z-index:100;
+    background:linear-gradient(135deg, rgba(251,244,234,0.94) 0%, rgba(236,220,198,0.94) 100%);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:0 20px;
+    display:flex;
+    gap:4px;
+    justify-content:center;
+    overflow-x:auto;
+    scrollbar-width:none;
   }
 
-  .nav::-webkit-scrollbar { display: none; }
+  .nav::-webkit-scrollbar { display:none; }
 
   .nav-btn {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'Cairo', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 14px 14px;
-    cursor: pointer;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s;
-    position: relative;
+    background:none;
+    border:none;
+    color:var(--muted);
+    font-family:'Cairo', sans-serif;
+    font-size:12px;
+    font-weight:600;
+    padding:14px 14px;
+    cursor:pointer;
+    white-space:nowrap;
+    border-bottom:2px solid transparent;
+    transition:all 0.3s;
+    position:relative;
   }
 
-  .nav-btn:hover { color: var(--text); }
+  .nav-btn:hover { color:var(--text); }
   .nav-btn.active {
-    color: var(--blue);
-    border-bottom-color: var(--blue);
-    text-shadow: 0 0 20px rgba(59,130,246,0.4);
+    color:var(--blue);
+    border-bottom-color:var(--blue);
+    text-shadow:0 0 20px rgba(89,9,7,0.24);
   }
   .nav-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 20%;
-    right: 20%;
-    height: 2px;
-    background: var(--blue);
-    box-shadow: 0 0 10px var(--blue), 0 0 20px rgba(59,130,246,0.3);
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:20%;
+    right:20%;
+    height:2px;
+    background:var(--blue);
+    box-shadow:0 0 10px var(--blue), 0 0 20px rgba(89,9,7,0.18);
   }
 
   /* Special nav buttons */
   .nav-btn.special {
-    color: var(--cyan);
-    font-weight: 700;
+    color:var(--cyan);
+    font-weight:700;
   }
-  .nav-btn.special:hover { color: #67e8f9; }
+  .nav-btn.special:hover { color:#5b6356; }
 
   main {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
+    position:relative;
+    z-index:1;
+    max-width:1100px;
+    margin:0 auto;
+    padding:40px 20px 80px;
   }
 
-  .section { display: none; animation: fadeIn 0.4s ease; }
-  .section.active { display: block; }
+  .section { display:none; animation:fadeIn 0.4s ease; }
+  .section.active { display:block; }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity:0; transform:translateY(10px); }
+    to { opacity:1; transform:translateY(0); }
   }
 
   @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity:0; transform:translateY(-15px); }
+    to { opacity:1; transform:translateY(0); }
   }
 
   /* SECTION HEADERS */
   .sec-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 28px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 52px;
-    background: var(--bg);
-    z-index: 10;
-    padding-top: 12px;
-    margin-top: -12px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:28px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:52px;
+    background:var(--bg);
+    z-index:10;
+    padding-top:12px;
+    margin-top:-12px;
   }
 
   .sec-icon {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
+    width:42px; height:42px;
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px;
+    flex-shrink:0;
   }
 
-  .ic-blue { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); }
-  .ic-cyan { background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.3); }
-  .ic-green { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); }
-  .ic-yellow { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); }
-  .ic-red { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); }
-  .ic-purple { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); }
-  .ic-orange { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3); }
-  .ic-pink { background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); }
+  .ic-blue { background:rgba(89,9,7,0.15); border:1px solid rgba(89,9,7,0.3); }
+  .ic-cyan { background:rgba(91,99,86,0.15); border:1px solid rgba(91,99,86,0.3); }
+  .ic-green { background:rgba(77,90,52,0.15); border:1px solid rgba(77,90,52,0.3); }
+  .ic-yellow { background:rgba(138,59,18,0.15); border:1px solid rgba(138,59,18,0.3); }
+  .ic-red { background:rgba(155,42,31,0.15); border:1px solid rgba(155,42,31,0.3); }
+  .ic-purple { background:rgba(89,9,7,0.15); border:1px solid rgba(89,9,7,0.3); }
+  .ic-orange { background:rgba(138,59,18,0.15); border:1px solid rgba(138,59,18,0.3); }
+  .ic-pink { background:rgba(142,47,69,0.15); border:1px solid rgba(142,47,69,0.3); }
 
   .sec-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text);
-    flex: 1;
+    font-size:20px;
+    font-weight:700;
+    color:var(--text);
+    flex:1;
   }
 
   /* Section complete button */
   .sec-complete-btn {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--muted);
-    cursor: pointer;
-    font-family: 'Cairo', sans-serif;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    flex-shrink: 0;
+    background:var(--bg3);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:6px 14px;
+    font-size:11px;
+    font-weight:700;
+    color:var(--muted);
+    cursor:pointer;
+    font-family:'Cairo', sans-serif;
+    transition:all 0.3s;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+    flex-shrink:0;
   }
-  .sec-complete-btn:hover { border-color: var(--green); color: var(--green); }
+  .sec-complete-btn:hover { border-color:var(--green); color:var(--green); }
   .sec-complete-btn.completed {
-    background: rgba(16,185,129,0.12);
-    border-color: rgba(16,185,129,0.4);
-    color: var(--green);
+    background:rgba(77,90,52,0.12);
+    border-color:rgba(77,90,52,0.4);
+    color:var(--green);
   }
 
   /* CONTENT CARDS */
   .content-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px 24px;
-    margin-bottom: 16px;
-    transition: all 0.3s ease;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:22px 24px;
+    margin-bottom:16px;
+    transition:all 0.3s ease;
   }
 
   .content-card:hover {
-    border-color: var(--border2);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    border-color:var(--border2);
+    transform:translateY(-2px);
+    box-shadow:0 8px 30px rgba(89,9,7,0.07);
   }
 
   .subsection-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--cyan);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size:14px;
+    font-weight:700;
+    color:var(--cyan);
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
   }
 
   .subsection-title::before {
-    content: '';
-    width: 3px;
-    height: 14px;
-    background: var(--cyan);
-    border-radius: 2px;
+    content:'';
+    width:3px;
+    height:14px;
+    background:var(--cyan);
+    border-radius:2px;
   }
 
   .info-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
   }
 
   .info-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--text);
-    line-height: 1.6;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    font-size:14px;
+    color:var(--text);
+    line-height:1.6;
   }
 
   .info-list li::before {
-    content: '▸';
-    color: var(--blue);
-    flex-shrink: 0;
-    margin-top: 1px;
-    font-size: 12px;
+    content:'▸';
+    color:var(--blue);
+    flex-shrink:0;
+    margin-top:1px;
+    font-size:12px;
   }
 
-  .info-list.numbered { counter-reset: item; }
+  .info-list.numbered { counter-reset:item; }
   .info-list.numbered li::before {
-    counter-increment: item;
-    content: counter(item) '.';
-    color: var(--yellow);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    min-width: 18px;
+    counter-increment:item;
+    content:counter(item) '.';
+    color:var(--yellow);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    font-weight:700;
+    min-width:18px;
   }
 
   /* TABLES */
   .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    margin-top: 6px;
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
+    margin-top:6px;
   }
 
   .data-table th {
-    background: rgba(59,130,246,0.12);
-    color: var(--blue);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 11px;
-    padding: 10px 14px;
-    text-align: left;
-    border-bottom: 1px solid var(--border2);
+    background:rgba(89,9,7,0.12);
+    color:var(--blue);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    font-size:11px;
+    padding:10px 14px;
+    text-align:left;
+    border-bottom:1px solid var(--border2);
   }
 
   .data-table td {
-    padding: 11px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-    vertical-align: top;
-    line-height: 1.6;
-    transition: background 0.2s;
+    padding:11px 14px;
+    border-bottom:1px solid var(--border);
+    color:var(--text);
+    vertical-align:top;
+    line-height:1.6;
+    transition:background 0.2s;
   }
 
-  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:last-child td { border-bottom:none; }
 
   .data-table tr:hover td {
-    background: rgba(59,130,246,0.04);
+    background:rgba(89,9,7,0.04);
   }
 
   .data-table td:first-child {
-    font-weight: 700;
-    color: var(--cyan);
-    white-space: nowrap;
+    font-weight:700;
+    color:var(--cyan);
+    white-space:nowrap;
   }
 
   /* COMPARE TABLE */
   .compare-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
+    width:100%;
+    border-collapse:collapse;
+    font-size:13px;
   }
 
   .compare-table th {
-    padding: 12px 16px;
-    font-weight: 700;
-    font-size: 13px;
-    text-align: center;
+    padding:12px 16px;
+    font-weight:700;
+    font-size:13px;
+    text-align:center;
   }
 
-  .compare-table th:first-child { text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase; }
-  .compare-table th:nth-child(2) { color: var(--blue); background: rgba(59,130,246,0.08); border-bottom: 2px solid var(--blue); }
-  .compare-table th:nth-child(3) { color: var(--green); background: rgba(16,185,129,0.08); border-bottom: 2px solid var(--green); }
+  .compare-table th:first-child { text-align:left; color:var(--muted); font-size:11px; text-transform:uppercase; }
+  .compare-table th:nth-child(2) { color:var(--blue); background:rgba(89,9,7,0.08); border-bottom:2px solid var(--blue); }
+  .compare-table th:nth-child(3) { color:var(--green); background:rgba(77,90,52,0.08); border-bottom:2px solid var(--green); }
 
   .compare-table td {
-    padding: 11px 16px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-    line-height: 1.6;
-    font-size: 13px;
-    transition: background 0.2s;
+    padding:11px 16px;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+    line-height:1.6;
+    font-size:13px;
+    transition:background 0.2s;
   }
 
   .compare-table td:first-child {
-    font-weight: 700;
-    color: var(--yellow);
-    font-size: 12px;
-    white-space: nowrap;
+    font-weight:700;
+    color:var(--yellow);
+    font-size:12px;
+    white-space:nowrap;
   }
 
-  .compare-table td:nth-child(2) { background: rgba(59,130,246,0.04); }
-  .compare-table td:nth-child(3) { background: rgba(16,185,129,0.04); }
+  .compare-table td:nth-child(2) { background:rgba(89,9,7,0.04); }
+  .compare-table td:nth-child(3) { background:rgba(77,90,52,0.04); }
 
-  .compare-table tr:last-child td { border-bottom: none; }
-  .compare-table tr:hover td { filter: brightness(1.15); }
+  .compare-table tr:last-child td { border-bottom:none; }
+  .compare-table tr:hover td { filter:brightness(1.15); }
 
   /* HIGHLIGHT BOXES */
   .highlight-box {
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin-bottom: 12px;
-    font-size: 13px;
-    line-height: 1.7;
-    transition: transform 0.2s;
+    border-radius:8px;
+    padding:14px 18px;
+    margin-bottom:12px;
+    font-size:13px;
+    line-height:1.7;
+    transition:transform 0.2s;
   }
-  .highlight-box:hover { transform: translateX(4px); }
+  .highlight-box:hover { transform:translateX(4px); }
 
   .highlight-box.blue {
-    background: rgba(59,130,246,0.08);
-    border: 1px solid rgba(59,130,246,0.25);
-    border-left: 3px solid var(--blue);
+    background:rgba(89,9,7,0.08);
+    border:1px solid rgba(89,9,7,0.25);
+    border-left:3px solid var(--blue);
   }
 
   .highlight-box.cyan {
-    background: rgba(6,182,212,0.08);
-    border: 1px solid rgba(6,182,212,0.25);
-    border-left: 3px solid var(--cyan);
+    background:rgba(91,99,86,0.08);
+    border:1px solid rgba(91,99,86,0.25);
+    border-left:3px solid var(--cyan);
   }
 
   .highlight-box.green {
-    background: rgba(16,185,129,0.08);
-    border: 1px solid rgba(16,185,129,0.25);
-    border-left: 3px solid var(--green);
+    background:rgba(77,90,52,0.08);
+    border:1px solid rgba(77,90,52,0.25);
+    border-left:3px solid var(--green);
   }
 
   .highlight-box.yellow {
-    background: rgba(245,158,11,0.08);
-    border: 1px solid rgba(245,158,11,0.25);
-    border-left: 3px solid var(--yellow);
+    background:rgba(138,59,18,0.08);
+    border:1px solid rgba(138,59,18,0.25);
+    border-left:3px solid var(--yellow);
   }
 
   .highlight-box.purple {
-    background: rgba(139,92,246,0.08);
-    border: 1px solid rgba(139,92,246,0.25);
-    border-left: 3px solid var(--purple);
+    background:rgba(89,9,7,0.08);
+    border:1px solid rgba(89,9,7,0.25);
+    border-left:3px solid var(--purple);
   }
 
   .hb-title {
-    font-weight: 700;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
+    font-weight:700;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:8px;
   }
 
-  .blue .hb-title { color: var(--blue); }
-  .cyan .hb-title { color: var(--cyan); }
-  .green .hb-title { color: var(--green); }
-  .yellow .hb-title { color: var(--yellow); }
-  .purple .hb-title { color: var(--purple); }
+  .blue .hb-title { color:var(--blue); }
+  .cyan .hb-title { color:var(--cyan); }
+  .green .hb-title { color:var(--green); }
+  .yellow .hb-title { color:var(--yellow); }
+  .purple .hb-title { color:var(--purple); }
 
   /* GRID LAYOUT */
   .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-bottom:16px;
   }
 
-  @media (max-width: 600px) {
-    .two-col { grid-template-columns: 1fr; }
-    .compare-table td:first-child { white-space: normal; }
-    .data-table td:first-child { white-space: normal; }
+  @media (max-width:600px) {
+    .two-col { grid-template-columns:1fr; }
+    .compare-table td:first-child { white-space:normal; }
+    .data-table td:first-child { white-space:normal; }
   }
 
   /* CONDUCTION SYSTEM */
   .conduction-chain {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    position:relative;
   }
 
   .conduction-step {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 14px 16px;
-    border-radius: 8px;
-    transition: all 0.3s;
-    position: relative;
+    display:flex;
+    align-items:flex-start;
+    gap:16px;
+    padding:14px 16px;
+    border-radius:8px;
+    transition:all 0.3s;
+    position:relative;
   }
 
-  .conduction-step:hover { background: rgba(255,255,255,0.03); transform: translateX(4px); }
+  .conduction-step:hover { background:rgba(255,250,242,0.41); transform:translateX(4px); }
 
   .c-num {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 13px;
-    flex-shrink: 0;
-    margin-top: 2px;
+    width:32px; height:32px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:700;
+    font-size:13px;
+    flex-shrink:0;
+    margin-top:2px;
   }
 
-  .c-num.blue { background: rgba(59,130,246,0.2); color: var(--blue); border: 1px solid rgba(59,130,246,0.4); }
-  .c-num.cyan { background: rgba(6,182,212,0.2); color: var(--cyan); border: 1px solid rgba(6,182,212,0.4); }
-  .c-num.green { background: rgba(16,185,129,0.2); color: var(--green); border: 1px solid rgba(16,185,129,0.4); }
-  .c-num.yellow { background: rgba(245,158,11,0.2); color: var(--yellow); border: 1px solid rgba(245,158,11,0.4); }
-  .c-num.purple { background: rgba(139,92,246,0.2); color: var(--purple); border: 1px solid rgba(139,92,246,0.4); }
+  .c-num.blue { background:rgba(89,9,7,0.2); color:var(--blue); border:1px solid rgba(89,9,7,0.4); }
+  .c-num.cyan { background:rgba(91,99,86,0.2); color:var(--cyan); border:1px solid rgba(91,99,86,0.4); }
+  .c-num.green { background:rgba(77,90,52,0.2); color:var(--green); border:1px solid rgba(77,90,52,0.4); }
+  .c-num.yellow { background:rgba(138,59,18,0.2); color:var(--yellow); border:1px solid rgba(138,59,18,0.4); }
+  .c-num.purple { background:rgba(89,9,7,0.2); color:var(--purple); border:1px solid rgba(89,9,7,0.4); }
 
   .c-connector {
-    width: 1px;
-    height: 20px;
-    background: var(--border2);
-    margin-left: 31px;
+    width:1px;
+    height:20px;
+    background:var(--border2);
+    margin-left:31px;
   }
 
   .c-label {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 4px;
+    font-size:14px;
+    font-weight:700;
+    color:var(--text);
+    margin-bottom:4px;
   }
 
   .c-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.6;
   }
 
   /* VEINS LIST */
   .vein-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 4px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:4px;
   }
 
   .vein-tag {
-    background: rgba(239,68,68,0.1);
-    border: 1px solid rgba(239,68,68,0.25);
-    color: #fca5a5;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: transform 0.2s;
+    background:rgba(155,42,31,0.1);
+    border:1px solid rgba(155,42,31,0.25);
+    color:#9b2a1f;
+    font-size:12px;
+    padding:4px 12px;
+    border-radius:6px;
+    font-weight:600;
+    transition:transform 0.2s;
   }
-  .vein-tag:hover { transform: scale(1.05); }
+  .vein-tag:hover { transform:scale(1.05); }
 
   .artery-tag {
-    background: rgba(249,115,22,0.1);
-    border: 1px solid rgba(249,115,22,0.25);
-    color: #fdba74;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: transform 0.2s;
+    background:rgba(138,59,18,0.1);
+    border:1px solid rgba(138,59,18,0.25);
+    color:#8a3b12;
+    font-size:12px;
+    padding:4px 12px;
+    border-radius:6px;
+    font-weight:600;
+    transition:transform 0.2s;
   }
-  .artery-tag:hover { transform: scale(1.05); }
+  .artery-tag:hover { transform:scale(1.05); }
 
   .nerve-tag {
-    background: rgba(139,92,246,0.1);
-    border: 1px solid rgba(139,92,246,0.25);
-    color: #c4b5fd;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: transform 0.2s;
+    background:rgba(89,9,7,0.1);
+    border:1px solid rgba(89,9,7,0.25);
+    color:#590907;
+    font-size:12px;
+    padding:4px 12px;
+    border-radius:6px;
+    font-weight:600;
+    transition:transform 0.2s;
   }
-  .nerve-tag:hover { transform: scale(1.05); }
+  .nerve-tag:hover { transform:scale(1.05); }
 
   .tube-tag {
-    background: rgba(6,182,212,0.1);
-    border: 1px solid rgba(6,182,212,0.25);
-    color: #67e8f9;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: transform 0.2s;
+    background:rgba(91,99,86,0.1);
+    border:1px solid rgba(91,99,86,0.25);
+    color:#5b6356;
+    font-size:12px;
+    padding:4px 12px;
+    border-radius:6px;
+    font-weight:600;
+    transition:transform 0.2s;
   }
-  .tube-tag:hover { transform: scale(1.05); }
+  .tube-tag:hover { transform:scale(1.05); }
 
   .lymph-tag {
-    background: rgba(16,185,129,0.1);
-    border: 1px solid rgba(16,185,129,0.25);
-    color: #6ee7b7;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: transform 0.2s;
+    background:rgba(77,90,52,0.1);
+    border:1px solid rgba(77,90,52,0.25);
+    color:#4d5a34;
+    font-size:12px;
+    padding:4px 12px;
+    border-radius:6px;
+    font-weight:600;
+    transition:transform 0.2s;
   }
-  .lymph-tag:hover { transform: scale(1.05); }
+  .lymph-tag:hover { transform:scale(1.05); }
 
   /* MUSCLE TABLE */
-  .muscle-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .muscle-table { width:100%; border-collapse:collapse; font-size:12.5px; }
   .muscle-table th {
-    background: rgba(245,158,11,0.1);
-    color: var(--yellow);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 10px 12px;
-    border-bottom: 1px solid rgba(245,158,11,0.2);
-    text-align: left;
+    background:rgba(138,59,18,0.1);
+    color:var(--yellow);
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    padding:10px 12px;
+    border-bottom:1px solid rgba(138,59,18,0.2);
+    text-align:left;
   }
   .muscle-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-    line-height: 1.6;
-    color: var(--text);
-    transition: background 0.2s;
+    padding:10px 12px;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+    line-height:1.6;
+    color:var(--text);
+    transition:background 0.2s;
   }
-  .muscle-table tr:last-child td { border-bottom: none; }
-  .muscle-table tr:hover td { background: rgba(245,158,11,0.04); }
+  .muscle-table tr:last-child td { border-bottom:none; }
+  .muscle-table tr:hover td { background:rgba(138,59,18,0.04); }
   .muscle-table td:first-child {
-    font-weight: 700;
-    color: var(--orange);
-    white-space: nowrap;
+    font-weight:700;
+    color:var(--orange);
+    white-space:nowrap;
   }
 
   /* WALLS */
-  .wall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  @media(max-width:600px){ .wall-grid { grid-template-columns: 1fr; } }
+  .wall-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:600px){ .wall-grid { grid-template-columns:1fr; } }
 
   .wall-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-    transition: all 0.3s;
+    background:var(--bg3);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:16px;
+    transition:all 0.3s;
   }
-  .wall-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .wall-card:hover { border-color:var(--border2); transform:translateY(-2px); }
 
   .wall-title {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:10px;
   }
 
-  .wall-card.ant .wall-title { color: var(--blue); border-bottom: 1px solid rgba(59,130,246,0.2); padding-bottom: 8px; }
-  .wall-card.post .wall-title { color: var(--green); border-bottom: 1px solid rgba(16,185,129,0.2); padding-bottom: 8px; }
-  .wall-card.sup .wall-title { color: var(--yellow); border-bottom: 1px solid rgba(245,158,11,0.2); padding-bottom: 8px; }
-  .wall-card.inf .wall-title { color: var(--red); border-bottom: 1px solid rgba(239,68,68,0.2); padding-bottom: 8px; }
+  .wall-card.ant .wall-title { color:var(--blue); border-bottom:1px solid rgba(89,9,7,0.2); padding-bottom:8px; }
+  .wall-card.post .wall-title { color:var(--green); border-bottom:1px solid rgba(77,90,52,0.2); padding-bottom:8px; }
+  .wall-card.sup .wall-title { color:var(--yellow); border-bottom:1px solid rgba(138,59,18,0.2); padding-bottom:8px; }
+  .wall-card.inf .wall-title { color:var(--red); border-bottom:1px solid rgba(155,42,31,0.2); padding-bottom:8px; }
 
-  .wall-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .wall-items { list-style:none; display:flex; flex-direction:column; gap:6px; }
   .wall-items li {
-    font-size: 12.5px;
-    color: var(--muted);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    line-height: 1.5;
+    font-size:12.5px;
+    color:var(--muted);
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+    line-height:1.5;
   }
-  .wall-items li::before { content: '–'; flex-shrink: 0; color: var(--dim); }
+  .wall-items li::before { content:'–'; flex-shrink:0; color:var(--dim); }
 
   /* BILIARY */
   .biliary-chain {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0;
-    margin: 16px 0;
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:0;
+    margin:16px 0;
   }
   .bil-node {
-    background: rgba(6,182,212,0.1);
-    border: 1px solid rgba(6,182,212,0.3);
-    color: var(--cyan);
-    font-size: 12px;
-    font-weight: 700;
-    padding: 8px 14px;
-    border-radius: 6px;
-    white-space: nowrap;
-    transition: transform 0.2s;
+    background:rgba(91,99,86,0.1);
+    border:1px solid rgba(91,99,86,0.3);
+    color:var(--cyan);
+    font-size:12px;
+    font-weight:700;
+    padding:8px 14px;
+    border-radius:6px;
+    white-space:nowrap;
+    transition:transform 0.2s;
   }
-  .bil-node:hover { transform: scale(1.05); }
+  .bil-node:hover { transform:scale(1.05); }
   .bil-arrow {
-    color: var(--dim);
-    font-size: 16px;
-    padding: 0 6px;
+    color:var(--dim);
+    font-size:16px;
+    padding:0 6px;
   }
 
   /* SEARCH */
   .search-wrap {
-    margin-bottom: 28px;
-    position: relative;
+    margin-bottom:28px;
+    position:relative;
   }
   .search-input {
-    width: 100%;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: 'Cairo', sans-serif;
-    font-size: 14px;
-    padding: 12px 16px 12px 44px;
-    outline: none;
-    transition: all 0.3s;
+    width:100%;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    color:var(--text);
+    font-family:'Cairo', sans-serif;
+    font-size:14px;
+    padding:12px 16px 12px 44px;
+    outline:none;
+    transition:all 0.3s;
   }
-  .search-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
-  .search-input::placeholder { color: var(--dim); }
+  .search-input:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(89,9,7,0.06); }
+  .search-input::placeholder { color:var(--dim); }
   .search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--dim);
-    font-size: 16px;
-    pointer-events: none;
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--dim);
+    font-size:16px;
+    pointer-events:none;
   }
   .search-results-info {
-    margin-top: 8px;
-    font-size: 12px;
-    color: var(--muted);
-    display: none;
+    margin-top:8px;
+    font-size:12px;
+    color:var(--muted);
+    display:none;
   }
-  .search-results-info span { color: var(--cyan); font-weight: 700; }
+  .search-results-info span { color:var(--cyan); font-weight:700; }
 
   /* SEARCH HIGHLIGHT */
   mark.search-hl {
-    background: rgba(59,130,246,0.3);
-    color: #fff;
-    padding: 1px 4px;
-    border-radius: 3px;
-    box-shadow: 0 0 8px rgba(59,130,246,0.4);
+    background:rgba(89,9,7,0.3);
+    color:#2a0504;
+    padding:1px 4px;
+    border-radius:3px;
+    box-shadow:0 0 8px rgba(89,9,7,0.24);
   }
 
   /* BADGE */
   .badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-left: 8px;
-    vertical-align: middle;
+    display:inline-block;
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+    padding:2px 8px;
+    border-radius:4px;
+    margin-left:8px;
+    vertical-align:middle;
   }
-  .badge-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
-  .badge-yellow { background: rgba(245,158,11,0.15); color: var(--yellow); }
-  .badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+  .badge-blue { background:rgba(89,9,7,0.15); color:var(--blue); }
+  .badge-yellow { background:rgba(138,59,18,0.15); color:var(--yellow); }
+  .badge-red { background:rgba(155,42,31,0.15); color:var(--red); }
 
-  .topic-group { margin-bottom: 40px; }
+  .topic-group { margin-bottom:40px; }
 
   .note-box {
-    border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 13px;
-    line-height: 1.7;
-    margin-top: 12px;
+    border-radius:8px;
+    padding:12px 16px;
+    font-size:13px;
+    line-height:1.7;
+    margin-top:12px;
   }
   .note-box.yellow {
-    background: rgba(245,158,11,0.08);
-    border: 1px solid rgba(245,158,11,0.25);
-    color: #fde68a;
+    background:rgba(138,59,18,0.08);
+    border:1px solid rgba(138,59,18,0.25);
+    color:#8a6326;
   }
   .note-box.red {
-    background: rgba(239,68,68,0.08);
-    border: 1px solid rgba(239,68,68,0.25);
-    color: #fca5a5;
+    background:rgba(155,42,31,0.08);
+    border:1px solid rgba(155,42,31,0.25);
+    color:#9b2a1f;
   }
 
   /* === FLASHCARD MODE === */
   .flashcard-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 300;
-    background: rgba(10,12,16,0.97);
-    backdrop-filter: blur(20px);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    position:fixed;
+    inset:0;
+    z-index:300;
+    background:linear-gradient(135deg, rgba(251,244,234,0.94) 0%, rgba(236,220,198,0.94) 100%);
+    backdrop-filter:blur(20px);
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
   }
-  .flashcard-overlay.active { display: flex; }
+  .flashcard-overlay.active { display:flex; }
 
   .flashcard-header {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
+    position:absolute;
+    top:20px;
+    left:0;
+    right:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
   }
   .flashcard-counter {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    color: var(--muted);
+    font-family:'JetBrains Mono', monospace;
+    font-size:14px;
+    color:var(--muted);
   }
   .flashcard-close {
-    position: absolute;
-    right: 24px;
-    top: 0;
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
+    position:absolute;
+    right:24px;
+    top:0;
+    background:var(--card);
+    border:1px solid var(--border);
+    color:var(--muted);
+    width:40px;
+    height:40px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all 0.3s;
   }
-  .flashcard-close:hover { color: var(--red); border-color: var(--red); }
+  .flashcard-close:hover { color:var(--red); border-color:var(--red); }
 
   .flashcard-scene {
-    width: 100%;
-    max-width: 520px;
-    height: 320px;
-    perspective: 1000px;
-    cursor: pointer;
+    width:100%;
+    max-width:520px;
+    height:320px;
+    perspective:1000px;
+    cursor:pointer;
   }
   .flashcard-card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
+    width:100%;
+    height:100%;
+    position:relative;
+    transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style:preserve-3d;
   }
-  .flashcard-card.flipped { transform: rotateY(180deg); }
+  .flashcard-card.flipped { transform:rotateY(180deg); }
 
   .flashcard-face {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    border-radius: 16px;
-    border: 1px solid var(--border2);
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:16px;
+    border:1px solid var(--border2);
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
   }
   .flashcard-front {
-    background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
+    background:linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
   }
   .flashcard-back {
-    background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(6,182,212,0.08) 100%);
-    border-color: rgba(59,130,246,0.3);
-    transform: rotateY(180deg);
+    background:linear-gradient(135deg, rgba(89,9,7,0.08) 0%, rgba(91,99,86,0.08) 100%);
+    border-color:rgba(89,9,7,0.3);
+    transform:rotateY(180deg);
   }
   .flashcard-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--dim);
-    margin-bottom: 16px;
-    font-weight: 700;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:var(--dim);
+    margin-bottom:16px;
+    font-weight:700;
   }
-  .flashcard-front .flashcard-label { color: var(--blue); }
-  .flashcard-back .flashcard-label { color: var(--green); }
+  .flashcard-front .flashcard-label { color:var(--blue); }
+  .flashcard-back .flashcard-label { color:var(--green); }
   .flashcard-text {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.6;
-    color: var(--text);
+    font-size:18px;
+    font-weight:600;
+    line-height:1.6;
+    color:var(--text);
   }
-  .flashcard-back .flashcard-text { color: #6ee7b7; }
+  .flashcard-back .flashcard-text { color:#4d5a34; }
   .flashcard-hint {
-    position: absolute;
-    bottom: 16px;
-    font-size: 11px;
-    color: var(--dim);
+    position:absolute;
+    bottom:16px;
+    font-size:11px;
+    color:var(--dim);
   }
   .flashcard-section-tag {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    font-size: 10px;
-    background: rgba(59,130,246,0.1);
-    border: 1px solid rgba(59,130,246,0.3);
-    color: var(--blue);
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-weight: 600;
+    position:absolute;
+    top:16px;
+    right:16px;
+    font-size:10px;
+    background:rgba(89,9,7,0.1);
+    border:1px solid rgba(89,9,7,0.3);
+    color:var(--blue);
+    padding:3px 10px;
+    border-radius:20px;
+    font-weight:600;
   }
 
   .flashcard-nav {
-    display: flex;
-    gap: 16px;
-    margin-top: 30px;
+    display:flex;
+    gap:16px;
+    margin-top:30px;
   }
   .flashcard-nav button {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 10px 28px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-family: 'Cairo', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.3s;
+    background:var(--card);
+    border:1px solid var(--border);
+    color:var(--muted);
+    padding:10px 28px;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:'Cairo', sans-serif;
+    font-size:14px;
+    font-weight:600;
+    transition:all 0.3s;
   }
-  .flashcard-nav button:hover { color: var(--text); border-color: var(--blue); }
+  .flashcard-nav button:hover { color:var(--text); border-color:var(--blue); }
 
   /* === QUICK REF SIDEBAR === */
   .quickref-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 250;
-    background: rgba(0,0,0,0.5);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    position:fixed;
+    inset:0;
+    z-index:250;
+    background:rgba(89,9,7,0.2);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.3s;
   }
-  .quickref-overlay.active { opacity: 1; pointer-events: all; }
+  .quickref-overlay.active { opacity:1; pointer-events:all; }
 
   .quickref-sidebar {
-    position: fixed;
-    top: 0;
-    right: -400px;
-    bottom: 0;
-    width: 380px;
-    max-width: 90vw;
-    z-index: 251;
-    background: var(--bg2);
-    border-left: 1px solid var(--border);
-    overflow-y: auto;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 24px;
+    position:fixed;
+    top:0;
+    right:-400px;
+    bottom:0;
+    width:380px;
+    max-width:90vw;
+    z-index:251;
+    background:var(--bg2);
+    border-left:1px solid var(--border);
+    overflow-y:auto;
+    transition:right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding:24px;
   }
-  .quickref-sidebar.active { right: 0; }
-  .quickref-sidebar::-webkit-scrollbar { width: 4px; }
-  .quickref-sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+  .quickref-sidebar.active { right:0; }
+  .quickref-sidebar::-webkit-scrollbar { width:4px; }
+  .quickref-sidebar::-webkit-scrollbar-thumb { background:var(--border2); border-radius:4px; }
 
   .qr-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:24px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--border);
   }
   .qr-title {
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--text);
+    font-size:18px;
+    font-weight:800;
+    color:var(--text);
   }
   .qr-close {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
+    background:none;
+    border:1px solid var(--border);
+    color:var(--muted);
+    width:32px;
+    height:32px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all 0.2s;
   }
-  .qr-close:hover { color: var(--red); border-color: var(--red); }
+  .qr-close:hover { color:var(--red); border-color:var(--red); }
 
   .qr-section {
-    margin-bottom: 20px;
+    margin-bottom:20px;
   }
   .qr-section-title {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 6px 12px;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    display: inline-block;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    padding:6px 12px;
+    border-radius:6px;
+    margin-bottom:10px;
+    display:inline-block;
   }
-  .qr-section-title.blue { background: rgba(59,130,246,0.1); color: var(--blue); }
-  .qr-section-title.cyan { background: rgba(6,182,212,0.1); color: var(--cyan); }
-  .qr-section-title.orange { background: rgba(249,115,22,0.1); color: var(--orange); }
-  .qr-section-title.yellow { background: rgba(245,158,11,0.1); color: var(--yellow); }
-  .qr-section-title.red { background: rgba(239,68,68,0.1); color: var(--red); }
-  .qr-section-title.purple { background: rgba(139,92,246,0.1); color: var(--purple); }
-  .qr-section-title.green { background: rgba(16,185,129,0.1); color: var(--green); }
+  .qr-section-title.blue { background:rgba(89,9,7,0.1); color:var(--blue); }
+  .qr-section-title.cyan { background:rgba(91,99,86,0.1); color:var(--cyan); }
+  .qr-section-title.orange { background:rgba(138,59,18,0.1); color:var(--orange); }
+  .qr-section-title.yellow { background:rgba(138,59,18,0.1); color:var(--yellow); }
+  .qr-section-title.red { background:rgba(155,42,31,0.1); color:var(--red); }
+  .qr-section-title.purple { background:rgba(89,9,7,0.1); color:var(--purple); }
+  .qr-section-title.green { background:rgba(77,90,52,0.1); color:var(--green); }
 
   .qr-items {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding-left: 8px;
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding-left:8px;
   }
   .qr-items li {
-    font-size: 12.5px;
-    color: var(--muted);
-    line-height: 1.5;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.5;
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
   }
-  .qr-items li::before { content: '→'; color: var(--dim); flex-shrink: 0; }
+  .qr-items li::before { content:'→'; color:var(--dim); flex-shrink:0; }
 
   /* === KEYBOARD SHORTCUTS MODAL === */
   .shortcuts-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 400;
-    background: rgba(10,12,16,0.9);
-    backdrop-filter: blur(10px);
-    display: none;
-    align-items: center;
-    justify-content: center;
+    position:fixed;
+    inset:0;
+    z-index:400;
+    background:linear-gradient(135deg, rgba(251,244,234,0.9) 0%, rgba(236,220,198,0.9) 100%);
+    backdrop-filter:blur(10px);
+    display:none;
+    align-items:center;
+    justify-content:center;
   }
-  .shortcuts-modal.active { display: flex; }
+  .shortcuts-modal.active { display:flex; }
   .shortcuts-box {
-    background: var(--card);
-    border: 1px solid var(--border2);
-    border-radius: 16px;
-    padding: 32px;
-    max-width: 400px;
-    width: 90%;
+    background:var(--card);
+    border:1px solid var(--border2);
+    border-radius:16px;
+    padding:32px;
+    max-width:400px;
+    width:90%;
   }
   .shortcuts-box h3 {
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 20px;
-    text-align: center;
+    font-size:18px;
+    font-weight:800;
+    color:var(--text);
+    margin-bottom:20px;
+    text-align:center;
   }
   .shortcut-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 0;
+    border-bottom:1px solid var(--border);
   }
-  .shortcut-row:last-child { border-bottom: none; }
+  .shortcut-row:last-child { border-bottom:none; }
   .shortcut-key {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    color: var(--cyan);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
+    background:var(--bg3);
+    border:1px solid var(--border2);
+    color:var(--cyan);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:6px;
   }
   .shortcut-desc {
-    font-size: 13px;
-    color: var(--muted);
+    font-size:13px;
+    color:var(--muted);
   }
 
   /* === CONFETTI === */
   .confetti-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 500;
-    overflow: hidden;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:500;
+    overflow:hidden;
   }
   .confetti-piece {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    border-radius: 2px;
-    animation: confettiFall 1.5s ease-out forwards;
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:2px;
+    animation:confettiFall 1.5s ease-out forwards;
   }
   @keyframes confettiFall {
-    0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
-    100% { transform: translateY(100vh) rotate(720deg) scale(0); opacity: 0; }
+    0% { transform:translateY(-20px) rotate(0deg) scale(1); opacity:1; }
+    100% { transform:translateY(100vh) rotate(720deg) scale(0); opacity:0; }
   }
 
   /* === ARABIC TRANSLATION BUTTON & PANEL === */
   .translate-btn {
-    background: rgba(16,185,129,0.1);
-    border: 1px solid rgba(16,185,129,0.3);
-    border-radius: 8px;
-    padding: 6px 12px;
-    font-size: 14px;
-    color: var(--green);
-    cursor: pointer;
-    font-family: 'Cairo', sans-serif;
-    font-weight: 600;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    position: relative;
+    background:rgba(77,90,52,0.1);
+    border:1px solid rgba(77,90,52,0.3);
+    border-radius:8px;
+    padding:6px 12px;
+    font-size:14px;
+    color:var(--green);
+    cursor:pointer;
+    font-family:'Cairo', sans-serif;
+    font-weight:600;
+    transition:all 0.3s;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+    flex-shrink:0;
+    position:relative;
   }
   .translate-btn:hover {
-    background: rgba(16,185,129,0.2);
-    border-color: rgba(16,185,129,0.5);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(16,185,129,0.15);
+    background:rgba(77,90,52,0.2);
+    border-color:rgba(77,90,52,0.5);
+    transform:translateY(-1px);
+    box-shadow:0 4px 15px rgba(77,90,52,0.09);
   }
   .translate-btn.active {
-    background: rgba(16,185,129,0.25);
-    border-color: var(--green);
-    color: #6ee7b7;
-    box-shadow: 0 0 12px rgba(16,185,129,0.2);
+    background:rgba(77,90,52,0.25);
+    border-color:var(--green);
+    color:#4d5a34;
+    box-shadow:0 0 12px rgba(77,90,52,0.12);
   }
   .translate-btn .btn-label {
-    font-size: 11px;
+    font-size:11px;
   }
-  @media (max-width: 640px) {
-    .translate-btn .btn-label { display: none; }
-    .translate-btn { padding: 6px 8px; font-size: 16px; }
+  @media (max-width:640px) {
+    .translate-btn .btn-label { display:none; }
+    .translate-btn { padding:6px 8px; font-size:16px; }
   }
 
   .arabic-panel {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, padding 0.4s ease;
-    opacity: 0;
-    background: linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(6,182,212,0.04) 100%);
-    border: 1px solid rgba(16,185,129,0.2);
-    border-radius: 12px;
-    margin-bottom: 16px;
-    direction: rtl;
-    text-align: right;
-    padding: 0 20px;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, padding 0.4s ease;
+    opacity:0;
+    background:linear-gradient(135deg, rgba(77,90,52,0.06) 0%, rgba(91,99,86,0.04) 100%);
+    border:1px solid rgba(77,90,52,0.2);
+    border-radius:12px;
+    margin-bottom:16px;
+    direction:rtl;
+    text-align:right;
+    padding:0 20px;
   }
   .arabic-panel.active {
-    max-height: 800px;
-    opacity: 1;
-    padding: 20px;
+    max-height:800px;
+    opacity:1;
+    padding:20px;
   }
   .arabic-panel-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(16,185,129,0.15);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+    padding-bottom:10px;
+    border-bottom:1px solid rgba(77,90,52,0.15);
   }
   .arabic-panel-icon {
-    font-size: 20px;
+    font-size:20px;
   }
   .arabic-panel-title {
-    font-size: 15px;
-    font-weight: 800;
-    color: var(--green);
-    font-family: 'Cairo', sans-serif;
+    font-size:15px;
+    font-weight:800;
+    color:var(--green);
+    font-family:'Cairo', sans-serif;
   }
   .arabic-panel-badge {
-    background: rgba(16,185,129,0.15);
-    border: 1px solid rgba(16,185,129,0.3);
-    color: #6ee7b7;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 2px 10px;
-    border-radius: 20px;
-    margin-right: auto;
-    direction: ltr;
+    background:rgba(77,90,52,0.15);
+    border:1px solid rgba(77,90,52,0.3);
+    color:#4d5a34;
+    font-size:10px;
+    font-weight:700;
+    padding:2px 10px;
+    border-radius:20px;
+    margin-right:auto;
+    direction:ltr;
   }
   .arabic-panel p {
-    font-size: 14px;
-    color: #b8c5d4;
-    line-height: 2;
-    margin-bottom: 10px;
-    font-family: 'Cairo', sans-serif;
+    font-size:14px;
+    color:#3b1f1c;
+    line-height:2;
+    margin-bottom:10px;
+    font-family:'Cairo', sans-serif;
   }
-  .arabic-panel p:last-child { margin-bottom: 0; }
+  .arabic-panel p:last-child { margin-bottom:0; }
   .arabic-panel strong {
-    color: #6ee7b7;
-    font-weight: 700;
+    color:#4d5a34;
+    font-weight:700;
   }
   .arabic-panel .ar-highlight {
-    background: rgba(16,185,129,0.1);
-    border-right: 3px solid var(--green);
-    padding: 10px 14px;
-    border-radius: 0 8px 8px 0;
-    margin: 10px 0;
-    font-size: 13px;
-    color: #a8b8c8;
-    line-height: 1.9;
+    background:rgba(77,90,52,0.1);
+    border-right:3px solid var(--green);
+    padding:10px 14px;
+    border-radius:0 8px 8px 0;
+    margin:10px 0;
+    font-size:13px;
+    color:#452f2b;
+    line-height:1.9;
   }
 
   /* === SCROLLBAR === */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 10px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--dim); }
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border2); border-radius:10px; }
+  ::-webkit-scrollbar-thumb:hover { background:var(--dim); }
 
   /* === PRINT === */
   @media print {
     body::before, body::after, .nav, .progress-bar-container, .progress-badge,
     .back-btn, .fab-group, .search-wrap, .sec-complete-btn, .translate-btn,
     .arabic-panel,
-    .flashcard-overlay, .quickref-overlay, .quickref-sidebar, .shortcuts-modal { display: none !important; }
-    .section { display: block !important; page-break-inside: avoid; }
-    .section + .section { margin-top: 40px; border-top: 2px solid #333; padding-top: 20px; }
-    body { background: #fff; color: #000; }
-    header { background: none; border-bottom: 2px solid #000; }
-    h1 { background: none; -webkit-text-fill-color: #000; color: #000; }
-    .content-card, .wall-card { border-color: #ccc; background: #fafafa; }
-    .highlight-box { border-color: #ccc; background: #f5f5f5; }
-    .sec-header { position: static; background: #fff; }
-    .stat-num { color: #000; }
-    .subtitle, .stat-label { color: #666; }
-    .header-badge { color: #333; border-color: #ccc; background: #eee; }
-    .sec-title { color: #000; }
-    .subsection-title { color: #333; }
-    .info-list li { color: #000; }
-    .data-table th, .muscle-table th { background: #eee; color: #333; }
-    .data-table td, .muscle-table td, .compare-table td { color: #000; border-color: #ddd; }
+    .flashcard-overlay, .quickref-overlay, .quickref-sidebar, .shortcuts-modal { display:none !important; }
+    .section { display:block !important; page-break-inside:avoid; }
+    .section + .section { margin-top:40px; border-top:2px solid rgba(89,9,7,0.2); padding-top:20px; }
+    body { background:linear-gradient(135deg, #771b16 0%, #450705 100%); color:#f8eedf; }
+    header { background:none; border-bottom:2px solid rgba(89,9,7,0.1); }
+    h1 { background:none; -webkit-text-fill-color:#f8eedf; color:#f8eedf; }
+    .content-card, .wall-card { border-color:rgba(89,9,7,0.4); background:linear-gradient(135deg, #791b16 0%, #480806 100%); }
+    .highlight-box { border-color:rgba(89,9,7,0.4); background:linear-gradient(135deg, #7b1d17 0%, #4a0907 100%); }
+    .sec-header { position:static; background:linear-gradient(135deg, #771b16 0%, #450705 100%); }
+    .stat-num { color:#f8eedf; }
+    .subtitle, .stat-label { color:#8a8c7f; }
+    .header-badge { color:#f0e1cc; border-color:rgba(89,9,7,0.4); background:linear-gradient(135deg, #7e1e18 0%, #4d0b08 100%); }
+    .sec-title { color:#f8eedf; }
+    .subsection-title { color:#f0e1cc; }
+    .info-list li { color:#f8eedf; }
+    .data-table th, .muscle-table th { background:linear-gradient(135deg, #7e1e18 0%, #4d0b08 100%); color:#f0e1cc; }
+    .data-table td, .muscle-table td, .compare-table td { color:#f8eedf; border-color:rgba(89,9,7,0.4); }
   }
 
   /* === RESPONSIVE === */
-  @media (max-width: 640px) {
-    .stats-bar { gap: 24px; }
-    .nav-btn { padding: 12px 10px; font-size: 11px; }
-    .back-btn { padding: 4px 10px; font-size: 11px; top: 8px; left: 8px; }
-    .progress-badge { top: 8px; right: 8px; font-size: 10px; padding: 4px 10px; }
-    header { padding: 50px 16px 30px; }
-    .fab-group { bottom: 16px; right: 16px; }
-    .fab { width: 42px; height: 42px; font-size: 18px; }
-    .sec-header { top: 48px; }
-    .flashcard-scene { height: 260px; }
-    .flashcard-text { font-size: 15px; }
+  @media (max-width:640px) {
+    .stats-bar { gap:24px; }
+    .nav-btn { padding:12px 10px; font-size:11px; }
+    .back-btn { padding:4px 10px; font-size:11px; top:8px; left:8px; }
+    .progress-badge { top:8px; right:8px; font-size:10px; padding:4px 10px; }
+    header { padding:50px 16px 30px; }
+    .fab-group { bottom:16px; right:16px; }
+    .fab { width:42px; height:42px; font-size:18px; }
+    .sec-header { top:48px; }
+    .flashcard-scene { height:260px; }
+    .flashcard-text { font-size:15px; }
   }
 </style>
+<meta name="theme-color" content="#590907">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/theme.css">
 </head>
 <body>
+<a class="fx-home" href="../../index.html" aria-label="PT Hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>PT Hub</a>
 
 <!-- Progress Bar -->
 <div class="progress-bar-container"><div class="progress-bar-fill" id="progressFill"></div></div>
@@ -1616,228 +1619,228 @@
       <div style="overflow-x:auto">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 920" style="width:100%;max-width:820px;display:block;margin:0 auto" font-family="'Segoe UI',system-ui,sans-serif">
           <defs>
-            <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#06b6d4"/></marker>
-            <marker id="ah-r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#ef4444"/></marker>
-            <marker id="ah-p" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/></marker>
-            <linearGradient id="svcGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#6366f1"/></linearGradient>
-            <linearGradient id="azGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#0891b2"/></linearGradient>
-            <linearGradient id="haGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient>
+            <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#5b6356"/></marker>
+            <marker id="ah-r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#9b2a1f"/></marker>
+            <marker id="ah-p" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#590907"/></marker>
+            <linearGradient id="svcGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#590907"/><stop offset="100%" stop-color="#590907"/></linearGradient>
+            <linearGradient id="azGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5b6356"/><stop offset="100%" stop-color="#5b6356"/></linearGradient>
+            <linearGradient id="haGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#590907"/><stop offset="100%" stop-color="#590907"/></linearGradient>
           </defs>
 
           <!-- ============ TITLE AREA ============ -->
-          <text x="410" y="32" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700" letter-spacing="1">INTERCOSTAL VEINS — Drainage System</text>
+          <text x="410" y="32" text-anchor="middle" fill="#590907" font-size="20" font-weight="700" letter-spacing="1">INTERCOSTAL VEINS — Drainage System</text>
 
           <!-- Anterior info box -->
-          <rect x="30" y="48" width="760" height="52" rx="8" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
-          <text x="50" y="70" fill="#f87171" font-size="12" font-weight="700" letter-spacing="1">ANTERIOR INTERCOSTAL VEINS</text>
-          <text x="50" y="88" fill="#94a3b8" font-size="12">Upper 6 → <tspan fill="#ef4444" font-weight="600">Internal Thoracic Vein</tspan>  ·  Lower 3 → <tspan fill="#ef4444" font-weight="600">Musculophrenic Vein</tspan></text>
+          <rect x="30" y="48" width="760" height="52" rx="8" fill="rgba(155,42,31,0.08)" stroke="rgba(155,42,31,0.25)" stroke-width="1"/>
+          <text x="50" y="70" fill="#9b2a1f" font-size="12" font-weight="700" letter-spacing="1">ANTERIOR INTERCOSTAL VEINS</text>
+          <text x="50" y="88" fill="#534b43" font-size="12">Upper 6 → <tspan fill="#9b2a1f" font-weight="600">Internal Thoracic Vein</tspan>  ·  Lower 3 → <tspan fill="#9b2a1f" font-weight="600">Musculophrenic Vein</tspan></text>
 
           <!-- ============ MAIN SCHEMATIC ============ -->
           <!-- Side labels -->
-          <text x="195" y="130" text-anchor="middle" fill="#f59e0b" font-size="16" font-weight="700">RIGHT</text>
-          <text x="625" y="130" text-anchor="middle" fill="#f59e0b" font-size="16" font-weight="700">LEFT</text>
+          <text x="195" y="130" text-anchor="middle" fill="#8a3b12" font-size="16" font-weight="700">RIGHT</text>
+          <text x="625" y="130" text-anchor="middle" fill="#8a3b12" font-size="16" font-weight="700">LEFT</text>
 
           <!-- === SVC vertical trunk === -->
           <line x1="410" y1="142" x2="410" y2="220" stroke="url(#svcGrad)" stroke-width="6" stroke-linecap="round"/>
-          <rect x="380" y="140" width="60" height="26" rx="6" fill="#3b82f6"/>
-          <text x="410" y="158" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">SVC</text>
+          <rect x="380" y="140" width="60" height="26" rx="6" fill="#590907"/>
+          <text x="410" y="158" text-anchor="middle" fill="#2a0504" font-size="13" font-weight="700">SVC</text>
 
           <!-- Azygos arch into SVC -->
           <path d="M310,230 Q310,195 350,185 Q385,178 405,170" stroke="url(#azGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
-          <text x="335" y="175" text-anchor="middle" fill="#06b6d4" font-size="10" font-weight="600">arch over R. bronchus</text>
+          <text x="335" y="175" text-anchor="middle" fill="#5b6356" font-size="10" font-weight="600">arch over R. bronchus</text>
 
           <!-- === RIGHT BRACHIOCEPHALIC === -->
-          <line x1="410" y1="170" x2="260" y2="148" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
-          <rect x="155" y="135" width="110" height="24" rx="6" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
-          <text x="210" y="152" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="600">R. Brachiocephalic</text>
+          <line x1="410" y1="170" x2="260" y2="148" stroke="#590907" stroke-width="4" stroke-linecap="round"/>
+          <rect x="155" y="135" width="110" height="24" rx="6" fill="rgba(89,9,7,0.15)" stroke="#590907" stroke-width="1"/>
+          <text x="210" y="152" text-anchor="middle" fill="#590907" font-size="11" font-weight="600">R. Brachiocephalic</text>
 
           <!-- === LEFT BRACHIOCEPHALIC === -->
-          <line x1="410" y1="170" x2="560" y2="148" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
-          <rect x="555" y="135" width="110" height="24" rx="6" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
-          <text x="610" y="152" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="600">L. Brachiocephalic</text>
+          <line x1="410" y1="170" x2="560" y2="148" stroke="#590907" stroke-width="4" stroke-linecap="round"/>
+          <rect x="555" y="135" width="110" height="24" rx="6" fill="rgba(89,9,7,0.15)" stroke="#590907" stroke-width="1"/>
+          <text x="610" y="152" text-anchor="middle" fill="#590907" font-size="11" font-weight="600">L. Brachiocephalic</text>
 
           <!-- ============ RIGHT SIDE ============ -->
 
           <!-- R. 1st intercostal → R. brachiocephalic (supreme) -->
-          <line x1="160" y1="195" x2="210" y2="160" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-r)"/>
-          <circle cx="140" cy="195" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
-          <text x="140" y="199" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">1</text>
-          <text x="100" y="199" text-anchor="end" fill="#94a3b8" font-size="10">supreme</text>
+          <line x1="160" y1="195" x2="210" y2="160" stroke="#9b2a1f" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-r)"/>
+          <circle cx="140" cy="195" r="13" fill="rgba(155,42,31,0.15)" stroke="#9b2a1f" stroke-width="1.5"/>
+          <text x="140" y="199" text-anchor="middle" fill="#9b2a1f" font-size="11" font-weight="700">1</text>
+          <text x="100" y="199" text-anchor="end" fill="#534b43" font-size="10">supreme</text>
 
           <!-- R. 2nd-3rd → R. sup. intercostal → azygos -->
-          <circle cx="140" cy="230" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
-          <text x="140" y="234" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">2</text>
-          <circle cx="140" cy="262" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
-          <text x="140" y="266" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">3</text>
-          <line x1="153" y1="230" x2="230" y2="230" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
-          <line x1="153" y1="262" x2="230" y2="262" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="140" cy="230" r="13" fill="rgba(155,42,31,0.15)" stroke="#9b2a1f" stroke-width="1.5"/>
+          <text x="140" y="234" text-anchor="middle" fill="#9b2a1f" font-size="11" font-weight="700">2</text>
+          <circle cx="140" cy="262" r="13" fill="rgba(155,42,31,0.15)" stroke="#9b2a1f" stroke-width="1.5"/>
+          <text x="140" y="266" text-anchor="middle" fill="#9b2a1f" font-size="11" font-weight="700">3</text>
+          <line x1="153" y1="230" x2="230" y2="230" stroke="#9b2a1f" stroke-width="2" stroke-linecap="round"/>
+          <line x1="153" y1="262" x2="230" y2="262" stroke="#9b2a1f" stroke-width="2" stroke-linecap="round"/>
           <!-- Collector label -->
-          <line x1="230" y1="222" x2="230" y2="270" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="230" y1="246" x2="310" y2="246" stroke="#f97316" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-r)"/>
-          <text x="233" y="218" fill="#f97316" font-size="10" font-weight="600">R. Sup.</text>
-          <text x="233" y="208" fill="#f97316" font-size="10" font-weight="600">Intercostal</text>
+          <line x1="230" y1="222" x2="230" y2="270" stroke="#8a3b12" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="230" y1="246" x2="310" y2="246" stroke="#8a3b12" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-r)"/>
+          <text x="233" y="218" fill="#8a3b12" font-size="10" font-weight="600">R. Sup.</text>
+          <text x="233" y="208" fill="#8a3b12" font-size="10" font-weight="600">Intercostal</text>
 
           <!-- AZYGOS VEIN (vertical on right side) -->
           <line x1="310" y1="220" x2="310" y2="760" stroke="url(#azGrad)" stroke-width="5" stroke-linecap="round"/>
-          <rect x="260" y="224" width="48" height="54" rx="6" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,2"/>
-          <text x="284" y="244" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">A</text>
-          <text x="284" y="256" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">Z</text>
-          <text x="284" y="268" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">Y</text>
+          <rect x="260" y="224" width="48" height="54" rx="6" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="284" y="244" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">A</text>
+          <text x="284" y="256" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">Z</text>
+          <text x="284" y="268" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">Y</text>
 
           <!-- Vertebral level markers on SVC line -->
-          <text x="400" y="208" text-anchor="end" fill="#475569" font-size="10" font-weight="600">T4</text>
-          <line x1="395" y1="200" x2="425" y2="200" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="400" y="208" text-anchor="end" fill="#999b8e" font-size="10" font-weight="600">T4</text>
+          <line x1="395" y1="200" x2="425" y2="200" stroke="#c4bfaf" stroke-width="1" stroke-dasharray="3,2"/>
 
           <!-- R. intercostals 4-11 draining into azygos -->
-          <circle cx="140" cy="330" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="140" y="334" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">4</text>
-          <line x1="153" y1="330" x2="305" y2="330" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+          <circle cx="140" cy="330" r="13" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5"/>
+          <text x="140" y="334" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">4</text>
+          <line x1="153" y1="330" x2="305" y2="330" stroke="#5b6356" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
 
-          <circle cx="140" cy="375" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="140" y="379" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">5</text>
-          <line x1="153" y1="375" x2="305" y2="375" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+          <circle cx="140" cy="375" r="13" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5"/>
+          <text x="140" y="379" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">5</text>
+          <line x1="153" y1="375" x2="305" y2="375" stroke="#5b6356" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
 
-          <circle cx="140" cy="420" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="140" y="424" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">6</text>
-          <line x1="153" y1="420" x2="305" y2="420" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+          <circle cx="140" cy="420" r="13" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5"/>
+          <text x="140" y="424" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">6</text>
+          <line x1="153" y1="420" x2="305" y2="420" stroke="#5b6356" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
 
-          <circle cx="140" cy="465" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="140" y="469" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">7</text>
-          <line x1="153" y1="465" x2="305" y2="465" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+          <circle cx="140" cy="465" r="13" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5"/>
+          <text x="140" y="469" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">7</text>
+          <line x1="153" y1="465" x2="305" y2="465" stroke="#5b6356" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
 
-          <circle cx="140" cy="510" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="140" y="514" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">8</text>
-          <line x1="153" y1="510" x2="305" y2="510" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+          <circle cx="140" cy="510" r="13" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5"/>
+          <text x="140" y="514" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">8</text>
+          <line x1="153" y1="510" x2="305" y2="510" stroke="#5b6356" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
 
-          <circle cx="140" cy="555" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="140" y="559" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">9</text>
-          <line x1="153" y1="555" x2="305" y2="555" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+          <circle cx="140" cy="555" r="13" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5"/>
+          <text x="140" y="559" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">9</text>
+          <line x1="153" y1="555" x2="305" y2="555" stroke="#5b6356" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
 
-          <circle cx="140" cy="600" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="140" y="604" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">10</text>
-          <line x1="153" y1="600" x2="305" y2="600" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+          <circle cx="140" cy="600" r="13" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5"/>
+          <text x="140" y="604" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">10</text>
+          <line x1="153" y1="600" x2="305" y2="600" stroke="#5b6356" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
 
-          <circle cx="140" cy="645" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
-          <text x="140" y="649" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">11</text>
-          <line x1="153" y1="645" x2="305" y2="645" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+          <circle cx="140" cy="645" r="13" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1.5"/>
+          <text x="140" y="649" text-anchor="middle" fill="#5b6356" font-size="11" font-weight="700">11</text>
+          <line x1="153" y1="645" x2="305" y2="645" stroke="#5b6356" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
 
           <!-- R. Subcostal -->
-          <rect x="80" y="680" width="85" height="22" rx="5" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1"/>
-          <text x="122" y="695" text-anchor="middle" fill="#06b6d4" font-size="10" font-weight="600">Subcostal</text>
-          <line x1="165" y1="691" x2="305" y2="691" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+          <rect x="80" y="680" width="85" height="22" rx="5" fill="rgba(91,99,86,0.12)" stroke="#5b6356" stroke-width="1"/>
+          <text x="122" y="695" text-anchor="middle" fill="#5b6356" font-size="10" font-weight="600">Subcostal</text>
+          <line x1="165" y1="691" x2="305" y2="691" stroke="#5b6356" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3" marker-end="url(#ah)"/>
 
           <!-- Right side label bracket -->
-          <text x="55" y="440" text-anchor="middle" fill="#475569" font-size="10" font-weight="600" transform="rotate(-90 55 440)">4–11 → Azygos directly</text>
+          <text x="55" y="440" text-anchor="middle" fill="#999b8e" font-size="10" font-weight="600" transform="rotate(-90 55 440)">4–11 → Azygos directly</text>
 
           <!-- ============ LEFT SIDE ============ -->
 
           <!-- L. 1st intercostal → L. brachiocephalic (supreme) -->
-          <line x1="660" y1="195" x2="610" y2="160" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-r)"/>
-          <circle cx="680" cy="195" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
-          <text x="680" y="199" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">1</text>
-          <text x="720" y="199" text-anchor="start" fill="#94a3b8" font-size="10">supreme</text>
+          <line x1="660" y1="195" x2="610" y2="160" stroke="#9b2a1f" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-r)"/>
+          <circle cx="680" cy="195" r="13" fill="rgba(155,42,31,0.15)" stroke="#9b2a1f" stroke-width="1.5"/>
+          <text x="680" y="199" text-anchor="middle" fill="#9b2a1f" font-size="11" font-weight="700">1</text>
+          <text x="720" y="199" text-anchor="start" fill="#534b43" font-size="10">supreme</text>
 
           <!-- L. 2nd-3rd → L. sup. intercostal → L. brachiocephalic -->
-          <circle cx="680" cy="230" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
-          <text x="680" y="234" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">2</text>
-          <circle cx="680" cy="262" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
-          <text x="680" y="266" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">3</text>
-          <line x1="667" y1="230" x2="590" y2="230" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
-          <line x1="667" y1="262" x2="590" y2="262" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="680" cy="230" r="13" fill="rgba(155,42,31,0.15)" stroke="#9b2a1f" stroke-width="1.5"/>
+          <text x="680" y="234" text-anchor="middle" fill="#9b2a1f" font-size="11" font-weight="700">2</text>
+          <circle cx="680" cy="262" r="13" fill="rgba(155,42,31,0.15)" stroke="#9b2a1f" stroke-width="1.5"/>
+          <text x="680" y="266" text-anchor="middle" fill="#9b2a1f" font-size="11" font-weight="700">3</text>
+          <line x1="667" y1="230" x2="590" y2="230" stroke="#9b2a1f" stroke-width="2" stroke-linecap="round"/>
+          <line x1="667" y1="262" x2="590" y2="262" stroke="#9b2a1f" stroke-width="2" stroke-linecap="round"/>
           <!-- Collector label -->
-          <line x1="590" y1="222" x2="590" y2="270" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="590" y1="246" x2="610" y2="164" stroke="#f97316" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-r)"/>
-          <text x="587" y="218" text-anchor="end" fill="#f97316" font-size="10" font-weight="600">L. Sup.</text>
-          <text x="587" y="208" text-anchor="end" fill="#f97316" font-size="10" font-weight="600">Intercostal</text>
+          <line x1="590" y1="222" x2="590" y2="270" stroke="#8a3b12" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="590" y1="246" x2="610" y2="164" stroke="#8a3b12" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-r)"/>
+          <text x="587" y="218" text-anchor="end" fill="#8a3b12" font-size="10" font-weight="600">L. Sup.</text>
+          <text x="587" y="208" text-anchor="end" fill="#8a3b12" font-size="10" font-weight="600">Intercostal</text>
 
           <!-- ============ SUPERIOR HEMI-AZYGOS (Accessory Hemiazygos) ============ -->
           <!-- Vertical trunk -->
           <line x1="510" y1="310" x2="510" y2="540" stroke="url(#haGrad)" stroke-width="4.5" stroke-linecap="round"/>
-          <rect x="520" y="380" width="95" height="40" rx="6" fill="rgba(139,92,246,0.1)" stroke="#8b5cf6" stroke-width="1"/>
-          <text x="567" y="396" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">SUP. HEMI-</text>
-          <text x="567" y="410" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">AZYGOS</text>
-          <text x="567" y="432" text-anchor="middle" fill="#64748b" font-size="9" font-style="italic">(Accessory)</text>
+          <rect x="520" y="380" width="95" height="40" rx="6" fill="rgba(89,9,7,0.1)" stroke="#590907" stroke-width="1"/>
+          <text x="567" y="396" text-anchor="middle" fill="#590907" font-size="10" font-weight="700">SUP. HEMI-</text>
+          <text x="567" y="410" text-anchor="middle" fill="#590907" font-size="10" font-weight="700">AZYGOS</text>
+          <text x="567" y="432" text-anchor="middle" fill="#787a6d" font-size="9" font-style="italic">(Accessory)</text>
 
           <!-- L. intercostals 4-8 draining into sup hemi-azygos -->
-          <circle cx="680" cy="330" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="680" y="334" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">4</text>
-          <line x1="667" y1="330" x2="515" y2="330" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+          <circle cx="680" cy="330" r="13" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1.5"/>
+          <text x="680" y="334" text-anchor="middle" fill="#590907" font-size="11" font-weight="700">4</text>
+          <line x1="667" y1="330" x2="515" y2="330" stroke="#590907" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
 
-          <circle cx="680" cy="375" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="680" y="379" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">5</text>
-          <line x1="667" y1="375" x2="515" y2="375" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+          <circle cx="680" cy="375" r="13" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1.5"/>
+          <text x="680" y="379" text-anchor="middle" fill="#590907" font-size="11" font-weight="700">5</text>
+          <line x1="667" y1="375" x2="515" y2="375" stroke="#590907" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
 
-          <circle cx="680" cy="420" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="680" y="424" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">6</text>
-          <line x1="667" y1="420" x2="515" y2="420" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+          <circle cx="680" cy="420" r="13" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1.5"/>
+          <text x="680" y="424" text-anchor="middle" fill="#590907" font-size="11" font-weight="700">6</text>
+          <line x1="667" y1="420" x2="515" y2="420" stroke="#590907" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
 
-          <circle cx="680" cy="465" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="680" y="469" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">7</text>
-          <line x1="667" y1="465" x2="515" y2="465" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+          <circle cx="680" cy="465" r="13" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1.5"/>
+          <text x="680" y="469" text-anchor="middle" fill="#590907" font-size="11" font-weight="700">7</text>
+          <line x1="667" y1="465" x2="515" y2="465" stroke="#590907" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
 
-          <circle cx="680" cy="510" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="680" y="514" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">8</text>
-          <line x1="667" y1="510" x2="515" y2="510" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+          <circle cx="680" cy="510" r="13" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1.5"/>
+          <text x="680" y="514" text-anchor="middle" fill="#590907" font-size="11" font-weight="700">8</text>
+          <line x1="667" y1="510" x2="515" y2="510" stroke="#590907" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
 
           <!-- Sup hemi-azygos crosses midline to azygos -->
-          <path d="M510,425 Q410,425 315,425" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-dasharray="8,4" marker-end="url(#ah-p)"/>
-          <text x="410" y="415" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="600">crosses midline</text>
+          <path d="M510,425 Q410,425 315,425" stroke="#590907" stroke-width="3" fill="none" stroke-dasharray="8,4" marker-end="url(#ah-p)"/>
+          <text x="410" y="415" text-anchor="middle" fill="#590907" font-size="9" font-weight="600">crosses midline</text>
 
           <!-- ============ INFERIOR HEMI-AZYGOS ============ -->
           <!-- Vertical trunk -->
           <line x1="510" y1="555" x2="510" y2="710" stroke="url(#haGrad)" stroke-width="4.5" stroke-linecap="round"/>
-          <rect x="520" y="590" width="95" height="40" rx="6" fill="rgba(139,92,246,0.1)" stroke="#8b5cf6" stroke-width="1"/>
-          <text x="567" y="606" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="700">INF. HEMI-</text>
-          <text x="567" y="620" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="700">AZYGOS</text>
+          <rect x="520" y="590" width="95" height="40" rx="6" fill="rgba(89,9,7,0.1)" stroke="#590907" stroke-width="1"/>
+          <text x="567" y="606" text-anchor="middle" fill="#590907" font-size="10" font-weight="700">INF. HEMI-</text>
+          <text x="567" y="620" text-anchor="middle" fill="#590907" font-size="10" font-weight="700">AZYGOS</text>
 
           <!-- L. intercostals 9-11 draining into inf hemi-azygos -->
-          <circle cx="680" cy="570" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="680" y="574" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">9</text>
-          <line x1="667" y1="570" x2="515" y2="570" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+          <circle cx="680" cy="570" r="13" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1.5"/>
+          <text x="680" y="574" text-anchor="middle" fill="#590907" font-size="11" font-weight="700">9</text>
+          <line x1="667" y1="570" x2="515" y2="570" stroke="#590907" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
 
-          <circle cx="680" cy="615" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="680" y="619" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">10</text>
-          <line x1="667" y1="615" x2="515" y2="615" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+          <circle cx="680" cy="615" r="13" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1.5"/>
+          <text x="680" y="619" text-anchor="middle" fill="#590907" font-size="11" font-weight="700">10</text>
+          <line x1="667" y1="615" x2="515" y2="615" stroke="#590907" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
 
-          <circle cx="680" cy="660" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
-          <text x="680" y="664" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">11</text>
-          <line x1="667" y1="660" x2="515" y2="660" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+          <circle cx="680" cy="660" r="13" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1.5"/>
+          <text x="680" y="664" text-anchor="middle" fill="#590907" font-size="11" font-weight="700">11</text>
+          <line x1="667" y1="660" x2="515" y2="660" stroke="#590907" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
 
           <!-- Inf hemi-azygos crosses midline to azygos -->
-          <path d="M510,635 Q410,635 315,635" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-dasharray="8,4" marker-end="url(#ah-p)"/>
-          <text x="410" y="625" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="600">crosses midline</text>
+          <path d="M510,635 Q410,635 315,635" stroke="#590907" stroke-width="3" fill="none" stroke-dasharray="8,4" marker-end="url(#ah-p)"/>
+          <text x="410" y="625" text-anchor="middle" fill="#590907" font-size="9" font-weight="600">crosses midline</text>
 
           <!-- L. Subcostal -->
-          <rect x="638" y="695" width="85" height="22" rx="5" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1"/>
-          <text x="680" y="710" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="600">Subcostal</text>
-          <line x1="638" y1="706" x2="515" y2="706" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3" marker-end="url(#ah-p)"/>
+          <rect x="638" y="695" width="85" height="22" rx="5" fill="rgba(89,9,7,0.12)" stroke="#590907" stroke-width="1"/>
+          <text x="680" y="710" text-anchor="middle" fill="#590907" font-size="10" font-weight="600">Subcostal</text>
+          <line x1="638" y1="706" x2="515" y2="706" stroke="#590907" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3" marker-end="url(#ah-p)"/>
 
           <!-- Left side label -->
-          <text x="765" y="480" text-anchor="middle" fill="#475569" font-size="10" font-weight="600" transform="rotate(90 765 480)">4–8 Sup. hemi · 9–11 Inf. hemi → Azygos</text>
+          <text x="765" y="480" text-anchor="middle" fill="#999b8e" font-size="10" font-weight="600" transform="rotate(90 765 480)">4–8 Sup. hemi · 9–11 Inf. hemi → Azygos</text>
 
           <!-- ============ MIDLINE / VERTEBRAL COLUMN REFERENCE ============ -->
-          <line x1="410" y1="220" x2="410" y2="760" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6,4"/>
-          <text x="410" y="772" text-anchor="middle" fill="#334155" font-size="10" font-style="italic">vertebral column (midline)</text>
+          <line x1="410" y1="220" x2="410" y2="760" stroke="#f1e3ce" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <text x="410" y="772" text-anchor="middle" fill="#c4bfaf" font-size="10" font-style="italic">vertebral column (midline)</text>
 
           <!-- ============ NOTES BOX AT BOTTOM ============ -->
-          <rect x="40" y="800" width="740" height="108" rx="10" fill="rgba(30,41,59,0.6)" stroke="#334155" stroke-width="1"/>
-          <text x="60" y="822" fill="#f59e0b" font-size="13" font-weight="700">📋 Drainage Pattern Summary</text>
+          <rect x="40" y="800" width="740" height="108" rx="10" fill="rgba(241,227,206,0.6)" stroke="#c4bfaf" stroke-width="1"/>
+          <text x="60" y="822" fill="#8a3b12" font-size="13" font-weight="700">📋 Drainage Pattern Summary</text>
 
-          <text x="60" y="846" fill="#ef4444" font-size="11" font-weight="600">①</text>
-          <text x="78" y="846" fill="#cbd5e1" font-size="11">1st intercostal → <tspan fill="#ef4444" font-weight="600">Supreme (brachiocephalic)</tspan> on both sides</text>
+          <text x="60" y="846" fill="#9b2a1f" font-size="11" font-weight="600">①</text>
+          <text x="78" y="846" fill="#331210" font-size="11">1st intercostal → <tspan fill="#9b2a1f" font-weight="600">Supreme (brachiocephalic)</tspan> on both sides</text>
 
-          <text x="60" y="866" fill="#f97316" font-size="11" font-weight="600">②③</text>
-          <text x="85" y="866" fill="#cbd5e1" font-size="11">R: Sup. intercostal → <tspan fill="#06b6d4" font-weight="600">Azygos</tspan>  ·  L: Sup. intercostal → <tspan fill="#3b82f6" font-weight="600">L. Brachiocephalic</tspan></text>
+          <text x="60" y="866" fill="#8a3b12" font-size="11" font-weight="600">②③</text>
+          <text x="85" y="866" fill="#331210" font-size="11">R: Sup. intercostal → <tspan fill="#5b6356" font-weight="600">Azygos</tspan>  ·  L: Sup. intercostal → <tspan fill="#590907" font-weight="600">L. Brachiocephalic</tspan></text>
 
-          <text x="60" y="886" fill="#8b5cf6" font-size="11" font-weight="600">④–⑧</text>
-          <text x="93" y="886" fill="#cbd5e1" font-size="11">L: <tspan fill="#a78bfa" font-weight="600">Sup. Hemi-azygos</tspan> → crosses midline → <tspan fill="#06b6d4" font-weight="600">Azygos</tspan>  ·  R: directly into Azygos</text>
+          <text x="60" y="886" fill="#590907" font-size="11" font-weight="600">④–⑧</text>
+          <text x="93" y="886" fill="#331210" font-size="11">L: <tspan fill="#590907" font-weight="600">Sup. Hemi-azygos</tspan> → crosses midline → <tspan fill="#5b6356" font-weight="600">Azygos</tspan>  ·  R: directly into Azygos</text>
 
-          <text x="60" y="906" fill="#c4b5fd" font-size="11" font-weight="600">⑨–⑪</text>
-          <text x="93" y="906" fill="#cbd5e1" font-size="11">L: <tspan fill="#c4b5fd" font-weight="600">Inf. Hemi-azygos</tspan> → crosses midline → <tspan fill="#06b6d4" font-weight="600">Azygos</tspan>  ·  R: directly into Azygos</text>
+          <text x="60" y="906" fill="#590907" font-size="11" font-weight="600">⑨–⑪</text>
+          <text x="93" y="906" fill="#331210" font-size="11">L: <tspan fill="#590907" font-weight="600">Inf. Hemi-azygos</tspan> → crosses midline → <tspan fill="#5b6356" font-weight="600">Azygos</tspan>  ·  R: directly into Azygos</text>
 
           <!-- Azygos → SVC final label -->
-          <rect x="320" y="182" width="80" height="16" rx="4" fill="rgba(6,182,212,0.15)" stroke="none"/>
-          <text x="360" y="194" text-anchor="middle" fill="#22d3ee" font-size="9" font-weight="600">→ drains SVC</text>
+          <rect x="320" y="182" width="80" height="16" rx="4" fill="rgba(91,99,86,0.15)" stroke="none"/>
+          <text x="360" y="194" text-anchor="middle" fill="#5b6356" font-size="9" font-weight="600">→ drains SVC</text>
         </svg>
       </div>
       <div class="note-box yellow" style="margin-top:12px">💡 <strong>Key:</strong> innominate = brachiocephalic. Azygos drains into SVC. Superior hemi-azygos (4–8) and inferior hemi-azygos (9–11) cross midline to join azygos.</div>
@@ -1928,31 +1931,31 @@
           <defs>
             <!-- Hatching pattern for medullary pyramids -->
             <pattern id="pyramidHatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
-              <line x1="0" y1="0" x2="0" y2="4" stroke="rgba(239,68,68,0.35)" stroke-width="1"/>
+              <line x1="0" y1="0" x2="0" y2="4" stroke="rgba(155,42,31,0.35)" stroke-width="1"/>
             </pattern>
             <!-- Subtle cortex texture -->
             <pattern id="cortexDots" patternUnits="userSpaceOnUse" width="8" height="8">
-              <circle cx="4" cy="4" r="0.6" fill="rgba(59,130,246,0.15)"/>
+              <circle cx="4" cy="4" r="0.6" fill="rgba(89,9,7,0.15)"/>
             </pattern>
             <!-- Fat stipple pattern -->
             <pattern id="fatStipple" patternUnits="userSpaceOnUse" width="6" height="6">
-              <circle cx="3" cy="3" r="0.5" fill="rgba(245,158,11,0.2)"/>
+              <circle cx="3" cy="3" r="0.5" fill="rgba(138,59,18,0.2)"/>
             </pattern>
             <!-- Arrow marker -->
             <marker id="arrowDown" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-              <path d="M1,1 L4,7 L7,1" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+              <path d="M1,1 L4,7 L7,1" fill="none" stroke="#8a3b12" stroke-width="1.5"/>
             </marker>
             <!-- Leader line dot -->
             <marker id="labelDot" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5">
-              <circle cx="2.5" cy="2.5" r="2" fill="#4a5568"/>
+              <circle cx="2.5" cy="2.5" r="2" fill="#989a8d"/>
             </marker>
           </defs>
 
           <!-- ================ TITLE ================ -->
-          <text x="375" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#e2e8f0" letter-spacing="1">KIDNEY — Coronal Section</text>
+          <text x="375" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#590907" letter-spacing="1">KIDNEY — Coronal Section</text>
 
           <!-- ================ PERIRENAL FAT LAYER ================ -->
-          <ellipse cx="340" cy="310" rx="195" ry="248" fill="url(#fatStipple)" stroke="#f59e0b" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
+          <ellipse cx="340" cy="310" rx="195" ry="248" fill="url(#fatStipple)" stroke="#8a3b12" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
 
           <!-- ================ FIBROUS CAPSULE (outer kidney outline) ================ -->
           <!-- Bean-shaped kidney: left=lateral, right=medial (hilum side) -->
@@ -1965,7 +1968,7 @@
             C 500 200, 490 140, 440 100
             C 400 65, 370 62, 340 62
             Z
-          " fill="rgba(59,130,246,0.06)" stroke="#3b82f6" stroke-width="2.5"/>
+          " fill="rgba(89,9,7,0.06)" stroke="#590907" stroke-width="2.5"/>
 
           <!-- ================ CORTEX (outer lighter zone) ================ -->
           <path d="
@@ -1977,7 +1980,7 @@
             C 483 205, 475 152, 430 115
             C 395 82, 365 78, 340 78
             Z
-          " fill="rgba(59,130,246,0.12)" stroke="none"/>
+          " fill="rgba(89,9,7,0.12)" stroke="none"/>
           <!-- Cortex texture overlay -->
           <path d="
             M 340 78
@@ -1992,85 +1995,85 @@
 
           <!-- ================ MEDULLARY PYRAMIDS (triangular, pointing inward) ================ -->
           <!-- Pyramid 1 (top-left) -->
-          <polygon points="250,150 210,240 290,240" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="250,150 210,240 290,240" fill="rgba(155,42,31,0.18)" stroke="#9b2a1f" stroke-width="1.2"/>
           <polygon points="250,150 210,240 290,240" fill="url(#pyramidHatch)"/>
           <!-- Papilla dot -->
-          <circle cx="250" cy="237" r="3" fill="#ef4444" opacity="0.7"/>
+          <circle cx="250" cy="237" r="3" fill="#9b2a1f" opacity="0.7"/>
 
           <!-- Pyramid 2 (upper-left) -->
-          <polygon points="210,250 185,340 260,340" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="210,250 185,340 260,340" fill="rgba(155,42,31,0.18)" stroke="#9b2a1f" stroke-width="1.2"/>
           <polygon points="210,250 185,340 260,340" fill="url(#pyramidHatch)"/>
-          <circle cx="222" cy="337" r="3" fill="#ef4444" opacity="0.7"/>
+          <circle cx="222" cy="337" r="3" fill="#9b2a1f" opacity="0.7"/>
 
           <!-- Pyramid 3 (lower-left) -->
-          <polygon points="220,355 205,435 270,435" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="220,355 205,435 270,435" fill="rgba(155,42,31,0.18)" stroke="#9b2a1f" stroke-width="1.2"/>
           <polygon points="220,355 205,435 270,435" fill="url(#pyramidHatch)"/>
-          <circle cx="237" cy="432" r="3" fill="#ef4444" opacity="0.7"/>
+          <circle cx="237" cy="432" r="3" fill="#9b2a1f" opacity="0.7"/>
 
           <!-- Pyramid 4 (bottom) -->
-          <polygon points="285,440 265,500 330,500" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="285,440 265,500 330,500" fill="rgba(155,42,31,0.18)" stroke="#9b2a1f" stroke-width="1.2"/>
           <polygon points="285,440 265,500 330,500" fill="url(#pyramidHatch)"/>
-          <circle cx="297" cy="497" r="3" fill="#ef4444" opacity="0.7"/>
+          <circle cx="297" cy="497" r="3" fill="#9b2a1f" opacity="0.7"/>
 
           <!-- Pyramid 5 (top-right) -->
-          <polygon points="400,130 360,215 440,215" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="400,130 360,215 440,215" fill="rgba(155,42,31,0.18)" stroke="#9b2a1f" stroke-width="1.2"/>
           <polygon points="400,130 360,215 440,215" fill="url(#pyramidHatch)"/>
-          <circle cx="400" cy="212" r="3" fill="#ef4444" opacity="0.7"/>
+          <circle cx="400" cy="212" r="3" fill="#9b2a1f" opacity="0.7"/>
 
           <!-- Pyramid 6 (mid-right) -->
-          <polygon points="430,225 395,310 465,310" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="430,225 395,310 465,310" fill="rgba(155,42,31,0.18)" stroke="#9b2a1f" stroke-width="1.2"/>
           <polygon points="430,225 395,310 465,310" fill="url(#pyramidHatch)"/>
-          <circle cx="430" cy="307" r="3" fill="#ef4444" opacity="0.7"/>
+          <circle cx="430" cy="307" r="3" fill="#9b2a1f" opacity="0.7"/>
 
           <!-- Pyramid 7 (lower-right) -->
-          <polygon points="410,320 380,400 450,400" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="410,320 380,400 450,400" fill="rgba(155,42,31,0.18)" stroke="#9b2a1f" stroke-width="1.2"/>
           <polygon points="410,320 380,400 450,400" fill="url(#pyramidHatch)"/>
-          <circle cx="415" cy="397" r="3" fill="#ef4444" opacity="0.7"/>
+          <circle cx="415" cy="397" r="3" fill="#9b2a1f" opacity="0.7"/>
 
           <!-- ================ RENAL COLUMNS (cortex between pyramids) ================ -->
           <!-- These are the cortex areas between pyramids - shown as subtle blue zones -->
-          <path d="M290,240 L260,240 L210,250 L230,250 Z" fill="rgba(59,130,246,0.15)" stroke="none"/>
-          <path d="M260,340 L240,340 L220,355 L240,355 Z" fill="rgba(59,130,246,0.15)" stroke="none"/>
-          <path d="M440,215 L445,225 L430,225 L420,215 Z" fill="rgba(59,130,246,0.15)" stroke="none"/>
-          <path d="M465,310 L455,320 L410,320 L395,310 Z" fill="rgba(59,130,246,0.15)" stroke="none"/>
+          <path d="M290,240 L260,240 L210,250 L230,250 Z" fill="rgba(89,9,7,0.15)" stroke="none"/>
+          <path d="M260,340 L240,340 L220,355 L240,355 Z" fill="rgba(89,9,7,0.15)" stroke="none"/>
+          <path d="M440,215 L445,225 L430,225 L420,215 Z" fill="rgba(89,9,7,0.15)" stroke="none"/>
+          <path d="M465,310 L455,320 L410,320 L395,310 Z" fill="rgba(89,9,7,0.15)" stroke="none"/>
 
           <!-- ================ MINOR CALYCES (cup shapes at pyramid tips) ================ -->
           <!-- Minor calyx 1 -->
-          <path d="M240,240 Q250,255 260,240" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
-          <path d="M240,240 Q250,255 260,240" fill="rgba(245,158,11,0.12)"/>
+          <path d="M240,240 Q250,255 260,240" fill="none" stroke="#8a3b12" stroke-width="1.8"/>
+          <path d="M240,240 Q250,255 260,240" fill="rgba(138,59,18,0.12)"/>
           <!-- Minor calyx 2 -->
-          <path d="M212,340 Q222,355 248,340" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
-          <path d="M212,340 Q222,355 248,340" fill="rgba(245,158,11,0.12)"/>
+          <path d="M212,340 Q222,355 248,340" fill="none" stroke="#8a3b12" stroke-width="1.8"/>
+          <path d="M212,340 Q222,355 248,340" fill="rgba(138,59,18,0.12)"/>
           <!-- Minor calyx 3 -->
-          <path d="M225,435 Q237,450 260,435" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
-          <path d="M225,435 Q237,450 260,435" fill="rgba(245,158,11,0.12)"/>
+          <path d="M225,435 Q237,450 260,435" fill="none" stroke="#8a3b12" stroke-width="1.8"/>
+          <path d="M225,435 Q237,450 260,435" fill="rgba(138,59,18,0.12)"/>
           <!-- Minor calyx 4 -->
-          <path d="M285,500 Q297,514 320,500" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
-          <path d="M285,500 Q297,514 320,500" fill="rgba(245,158,11,0.12)"/>
+          <path d="M285,500 Q297,514 320,500" fill="none" stroke="#8a3b12" stroke-width="1.8"/>
+          <path d="M285,500 Q297,514 320,500" fill="rgba(138,59,18,0.12)"/>
           <!-- Minor calyx 5 -->
-          <path d="M388,215 Q400,230 420,215" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
-          <path d="M388,215 Q400,230 420,215" fill="rgba(245,158,11,0.12)"/>
+          <path d="M388,215 Q400,230 420,215" fill="none" stroke="#8a3b12" stroke-width="1.8"/>
+          <path d="M388,215 Q400,230 420,215" fill="rgba(138,59,18,0.12)"/>
           <!-- Minor calyx 6 -->
-          <path d="M418,310 Q430,325 450,310" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
-          <path d="M418,310 Q430,325 450,310" fill="rgba(245,158,11,0.12)"/>
+          <path d="M418,310 Q430,325 450,310" fill="none" stroke="#8a3b12" stroke-width="1.8"/>
+          <path d="M418,310 Q430,325 450,310" fill="rgba(138,59,18,0.12)"/>
           <!-- Minor calyx 7 -->
-          <path d="M398,400 Q415,415 442,400" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
-          <path d="M398,400 Q415,415 442,400" fill="rgba(245,158,11,0.12)"/>
+          <path d="M398,400 Q415,415 442,400" fill="none" stroke="#8a3b12" stroke-width="1.8"/>
+          <path d="M398,400 Q415,415 442,400" fill="rgba(138,59,18,0.12)"/>
 
           <!-- ================ MAJOR CALYCES (larger collecting tubes) ================ -->
           <!-- Upper major calyx (collects from pyramids 1, 5) -->
-          <path d="M260,248 Q290,250 320,240 Q345,235 360,222 Q370,218 388,218" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M260,248 Q290,250 320,240 Q345,235 360,222 Q370,218 388,218" fill="none" stroke="#8a3b12" stroke-width="2.5" stroke-linejoin="round"/>
           <!-- Fill tube -->
           <path d="M260,245 Q290,247 320,237 Q345,232 360,219 Q370,215 388,215
-                   L388,221 Q370,221 360,225 Q345,238 320,243 Q290,253 260,251 Z" fill="rgba(245,158,11,0.1)"/>
+                   L388,221 Q370,221 360,225 Q345,238 320,243 Q290,253 260,251 Z" fill="rgba(138,59,18,0.1)"/>
 
           <!-- Middle major calyx (collects from pyramids 2, 3, 6) -->
           <path d="M248,343 Q280,350 310,345 Q340,340 360,330 Q380,318 395,315
-                   M260,438 Q280,440 310,430 Q330,420 350,395 Q360,375 370,340" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round"/>
+                   M260,438 Q280,440 310,430 Q330,420 350,395 Q360,375 370,340" fill="none" stroke="#8a3b12" stroke-width="2.5" stroke-linejoin="round"/>
 
           <!-- Lower major calyx (collects from pyramid 4, 7) -->
           <path d="M320,503 Q340,500 355,480 Q365,460 370,430 Q375,415 380,405
-                   M442,403 Q440,415 430,430 Q420,445 400,445" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round"/>
+                   M442,403 Q440,415 430,430 Q420,445 400,445" fill="none" stroke="#8a3b12" stroke-width="2.5" stroke-linejoin="round"/>
 
           <!-- ================ RENAL PELVIS (large funnel in center) ================ -->
           <path d="
@@ -2087,118 +2090,118 @@
             Q 365,260 368,230
             Q 370,215 380,210
             Z
-          " fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+          " fill="rgba(138,59,18,0.15)" stroke="#8a3b12" stroke-width="2"/>
 
           <!-- ================ HILUM (indentation on medial side) ================ -->
           <!-- Hilum opening area -->
-          <path d="M 483,240 Q 495,280 490,330 Q 487,370 475,400" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+          <path d="M 483,240 Q 495,280 490,330 Q 487,370 475,400" fill="none" stroke="#590907" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
 
           <!-- ================ URETER (exits from renal pelvis downward) ================ -->
-          <path d="M358,480 Q355,510 350,540 Q345,565 340,585" fill="none" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowDown)"/>
+          <path d="M358,480 Q355,510 350,540 Q345,565 340,585" fill="none" stroke="#8a3b12" stroke-width="3" marker-end="url(#arrowDown)"/>
           <!-- Ureter lumen -->
-          <path d="M355,480 Q352,510 347,540 Q343,565 338,585" fill="none" stroke="#f59e0b" stroke-width="1" opacity="0.4"/>
+          <path d="M355,480 Q352,510 347,540 Q343,565 338,585" fill="none" stroke="#8a3b12" stroke-width="1" opacity="0.4"/>
 
           <!-- ================ INTERLOBULAR ARTERIES (small arteries in cortex) ================ -->
           <!-- Arteries radiating outward in cortex -->
-          <line x1="285" y1="180" x2="260" y2="130" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
-          <line x1="270" y1="185" x2="235" y2="140" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
-          <line x1="195" y1="290" x2="175" y2="260" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
-          <line x1="195" y1="380" x2="178" y2="370" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
-          <line x1="440" y1="170" x2="460" y2="135" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
-          <line x1="470" y1="265" x2="485" y2="245" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+          <line x1="285" y1="180" x2="260" y2="130" stroke="#9b2a1f" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+          <line x1="270" y1="185" x2="235" y2="140" stroke="#9b2a1f" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+          <line x1="195" y1="290" x2="175" y2="260" stroke="#9b2a1f" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+          <line x1="195" y1="380" x2="178" y2="370" stroke="#9b2a1f" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+          <line x1="440" y1="170" x2="460" y2="135" stroke="#9b2a1f" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+          <line x1="470" y1="265" x2="485" y2="245" stroke="#9b2a1f" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
 
           <!-- ================ LABELS WITH LEADER LINES ================ -->
           <!-- LABEL: Capsule (Fibrous) -->
-          <line x1="210" y1="100" x2="115" y2="70" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="210" cy="100" r="2.5" fill="#4a5568"/>
-          <text x="110" y="67" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#e2e8f0" font-weight="600">Capsule</text>
-          <text x="110" y="80" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(fibrous)</text>
+          <line x1="210" y1="100" x2="115" y2="70" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="210" cy="100" r="2.5" fill="#989a8d"/>
+          <text x="110" y="67" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#590907" font-weight="600">Capsule</text>
+          <text x="110" y="80" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#5f6156">(fibrous)</text>
 
           <!-- LABEL: Perirenal Fat -->
-          <line x1="170" y1="170" x2="55" y2="138" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="170" cy="170" r="2.5" fill="#4a5568"/>
-          <text x="50" y="132" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#f59e0b" font-weight="600">Perirenal Fat</text>
-          <text x="50" y="145" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(adipose capsule)</text>
+          <line x1="170" y1="170" x2="55" y2="138" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="170" cy="170" r="2.5" fill="#989a8d"/>
+          <text x="50" y="132" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#8a3b12" font-weight="600">Perirenal Fat</text>
+          <text x="50" y="145" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#5f6156">(adipose capsule)</text>
 
           <!-- LABEL: Cortex -->
-          <line x1="190" y1="230" x2="50" y2="210" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="190" cy="230" r="2.5" fill="#4a5568"/>
-          <text x="45" y="207" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#3b82f6" font-weight="700">CORTEX</text>
+          <line x1="190" y1="230" x2="50" y2="210" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="190" cy="230" r="2.5" fill="#989a8d"/>
+          <text x="45" y="207" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#590907" font-weight="700">CORTEX</text>
 
           <!-- LABEL: Medullary Pyramid -->
-          <line x1="232" y1="300" x2="50" y2="285" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="232" cy="300" r="2.5" fill="#4a5568"/>
-          <text x="45" y="278" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#ef4444" font-weight="700">Medullary</text>
-          <text x="45" y="292" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#ef4444" font-weight="700">Pyramid</text>
+          <line x1="232" y1="300" x2="50" y2="285" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="232" cy="300" r="2.5" fill="#989a8d"/>
+          <text x="45" y="278" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#9b2a1f" font-weight="700">Medullary</text>
+          <text x="45" y="292" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#9b2a1f" font-weight="700">Pyramid</text>
 
           <!-- LABEL: Renal Column -->
-          <line x1="236" y1="348" x2="50" y2="348" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="236" cy="348" r="2.5" fill="#4a5568"/>
-          <text x="45" y="345" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#3b82f6" font-weight="600">Renal Column</text>
-          <text x="45" y="358" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(of Bertin)</text>
+          <line x1="236" y1="348" x2="50" y2="348" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="236" cy="348" r="2.5" fill="#989a8d"/>
+          <text x="45" y="345" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#590907" font-weight="600">Renal Column</text>
+          <text x="45" y="358" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#5f6156">(of Bertin)</text>
 
           <!-- LABEL: Renal Papilla -->
-          <line x1="222" y1="337" x2="50" y2="400" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="222" cy="337" r="2.5" fill="#4a5568"/>
-          <text x="45" y="397" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#ec4899" font-weight="600">Renal Papilla</text>
-          <text x="45" y="410" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(apex of pyramid)</text>
+          <line x1="222" y1="337" x2="50" y2="400" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="222" cy="337" r="2.5" fill="#989a8d"/>
+          <text x="45" y="397" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#8e2f45" font-weight="600">Renal Papilla</text>
+          <text x="45" y="410" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#5f6156">(apex of pyramid)</text>
 
           <!-- LABEL: Minor Calyx -->
-          <line x1="254" y1="440" x2="50" y2="460" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="254" cy="440" r="2.5" fill="#4a5568"/>
-          <text x="45" y="457" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#f59e0b" font-weight="600">Minor Calyx</text>
+          <line x1="254" y1="440" x2="50" y2="460" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="254" cy="440" r="2.5" fill="#989a8d"/>
+          <text x="45" y="457" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#8a3b12" font-weight="600">Minor Calyx</text>
 
           <!-- LABEL: Major Calyx -->
-          <line x1="310" y1="345" x2="50" y2="505" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="310" cy="345" r="2.5" fill="#4a5568"/>
-          <text x="45" y="502" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#f59e0b" font-weight="600">Major Calyx</text>
+          <line x1="310" y1="345" x2="50" y2="505" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="310" cy="345" r="2.5" fill="#989a8d"/>
+          <text x="45" y="502" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#8a3b12" font-weight="600">Major Calyx</text>
 
           <!-- LABEL: Renal Pelvis -->
-          <line x1="375" y1="350" x2="630" y2="290" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="375" cy="350" r="2.5" fill="#4a5568"/>
-          <text x="635" y="283" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#f59e0b" font-weight="700">Renal Pelvis</text>
-          <text x="635" y="297" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(funnel-shaped)</text>
+          <line x1="375" y1="350" x2="630" y2="290" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="375" cy="350" r="2.5" fill="#989a8d"/>
+          <text x="635" y="283" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#8a3b12" font-weight="700">Renal Pelvis</text>
+          <text x="635" y="297" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#5f6156">(funnel-shaped)</text>
 
           <!-- LABEL: Hilum -->
-          <line x1="490" y1="330" x2="635" y2="340" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="490" cy="330" r="2.5" fill="#4a5568"/>
-          <text x="640" y="337" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#8b5cf6" font-weight="700">HILUM</text>
-          <text x="640" y="351" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(medial opening)</text>
+          <line x1="490" y1="330" x2="635" y2="340" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="490" cy="330" r="2.5" fill="#989a8d"/>
+          <text x="640" y="337" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#590907" font-weight="700">HILUM</text>
+          <text x="640" y="351" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#5f6156">(medial opening)</text>
 
           <!-- LABEL: Ureter -->
-          <line x1="350" y1="560" x2="630" y2="530" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="350" cy="560" r="2.5" fill="#4a5568"/>
-          <text x="635" y="523" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#f59e0b" font-weight="700">URETER</text>
-          <text x="635" y="537" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">→ to urinary bladder</text>
+          <line x1="350" y1="560" x2="630" y2="530" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="350" cy="560" r="2.5" fill="#989a8d"/>
+          <text x="635" y="523" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#8a3b12" font-weight="700">URETER</text>
+          <text x="635" y="537" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#5f6156">→ to urinary bladder</text>
 
           <!-- LABEL: Interlobular Arteries -->
           <line x1="260" y1="133" x2="50" y2="545" stroke="none"/>
-          <line x1="460" y1="135" x2="635" y2="130" stroke="#4a5568" stroke-width="1"/>
-          <circle cx="460" cy="135" r="2.5" fill="#4a5568"/>
-          <text x="640" y="127" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#ef4444" font-weight="600">Interlobular</text>
-          <text x="640" y="141" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#ef4444" font-weight="600">Arteries</text>
+          <line x1="460" y1="135" x2="635" y2="130" stroke="#989a8d" stroke-width="1"/>
+          <circle cx="460" cy="135" r="2.5" fill="#989a8d"/>
+          <text x="640" y="127" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#9b2a1f" font-weight="600">Interlobular</text>
+          <text x="640" y="141" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#9b2a1f" font-weight="600">Arteries</text>
 
           <!-- ================ COLOR LEGEND ================ -->
-          <rect x="570" y="440" width="165" height="120" rx="6" fill="rgba(15,20,35,0.7)" stroke="#2a3248" stroke-width="1"/>
-          <text x="580" y="458" font-family="system-ui,sans-serif" font-size="10" fill="#8892a4" font-weight="700" letter-spacing="1">KEY</text>
+          <rect x="570" y="440" width="165" height="120" rx="6" fill="rgba(244,232,214,0.7)" stroke="#ecddc8" stroke-width="1"/>
+          <text x="580" y="458" font-family="system-ui,sans-serif" font-size="10" fill="#5f6156" font-weight="700" letter-spacing="1">KEY</text>
           <!-- Cortex -->
-          <rect x="580" y="466" width="12" height="8" rx="2" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" stroke-width="0.8"/>
-          <text x="598" y="474" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Cortex</text>
+          <rect x="580" y="466" width="12" height="8" rx="2" fill="rgba(89,9,7,0.3)" stroke="#590907" stroke-width="0.8"/>
+          <text x="598" y="474" font-family="system-ui,sans-serif" font-size="9" fill="#590907">Cortex</text>
           <!-- Pyramid -->
-          <rect x="580" y="480" width="12" height="8" rx="2" fill="rgba(239,68,68,0.25)" stroke="#ef4444" stroke-width="0.8"/>
-          <text x="598" y="488" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Medullary pyramid</text>
+          <rect x="580" y="480" width="12" height="8" rx="2" fill="rgba(155,42,31,0.25)" stroke="#9b2a1f" stroke-width="0.8"/>
+          <text x="598" y="488" font-family="system-ui,sans-serif" font-size="9" fill="#590907">Medullary pyramid</text>
           <!-- Calyx/pelvis -->
-          <rect x="580" y="494" width="12" height="8" rx="2" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="0.8"/>
-          <text x="598" y="502" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Calyces / Pelvis</text>
+          <rect x="580" y="494" width="12" height="8" rx="2" fill="rgba(138,59,18,0.2)" stroke="#8a3b12" stroke-width="0.8"/>
+          <text x="598" y="502" font-family="system-ui,sans-serif" font-size="9" fill="#590907">Calyces / Pelvis</text>
           <!-- Capsule -->
-          <line x1="580" y1="512" x2="592" y2="512" stroke="#3b82f6" stroke-width="2"/>
-          <text x="598" y="516" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Fibrous capsule</text>
+          <line x1="580" y1="512" x2="592" y2="512" stroke="#590907" stroke-width="2"/>
+          <text x="598" y="516" font-family="system-ui,sans-serif" font-size="9" fill="#590907">Fibrous capsule</text>
           <!-- Fat -->
-          <line x1="580" y1="526" x2="592" y2="526" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
-          <text x="598" y="530" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Perirenal fat</text>
+          <line x1="580" y1="526" x2="592" y2="526" stroke="#8a3b12" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="598" y="530" font-family="system-ui,sans-serif" font-size="9" fill="#590907">Perirenal fat</text>
           <!-- Arteries -->
-          <line x1="580" y1="540" x2="592" y2="540" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
-          <text x="598" y="544" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Interlobular arteries</text>
+          <line x1="580" y1="540" x2="592" y2="540" stroke="#9b2a1f" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="598" y="544" font-family="system-ui,sans-serif" font-size="9" fill="#590907">Interlobular arteries</text>
         </svg>
       </div>
     </div>
@@ -2779,121 +2782,121 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 550" width="100%" style="max-width:700px;display:block;margin:0 auto">
           <defs>
             <marker id="bArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-              <path d="M0,0 L8,3 L0,6 Z" fill="#06b6d4"/>
+              <path d="M0,0 L8,3 L0,6 Z" fill="#5b6356"/>
             </marker>
             <marker id="bArrowLabel" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
-              <path d="M0,0 L6,2.5 L0,5 Z" fill="#4a5568"/>
+              <path d="M0,0 L6,2.5 L0,5 Z" fill="#989a8d"/>
             </marker>
           </defs>
 
           <!-- ========== LIVER ========== -->
           <path d="M100,60 Q120,30 350,25 Q580,30 620,60 Q640,90 600,120 Q500,145 350,150 Q200,145 120,120 Q80,90 100,60 Z"
-                fill="rgba(249,115,22,0.15)" stroke="#f97316" stroke-width="2.5"/>
+                fill="rgba(138,59,18,0.15)" stroke="#8a3b12" stroke-width="2.5"/>
           <!-- Liver label -->
-          <text x="350" y="90" fill="#f97316" font-size="16" font-weight="700" text-anchor="middle" font-family="Arial,sans-serif">LIVER</text>
+          <text x="350" y="90" fill="#8a3b12" font-size="16" font-weight="700" text-anchor="middle" font-family="Arial,sans-serif">LIVER</text>
 
           <!-- ========== RIGHT HEPATIC DUCT ========== -->
-          <line x1="290" y1="150" x2="290" y2="195" stroke="#06b6d4" stroke-width="2.5"/>
+          <line x1="290" y1="150" x2="290" y2="195" stroke="#5b6356" stroke-width="2.5"/>
           <!-- Left hepatic duct -->
-          <line x1="410" y1="150" x2="410" y2="195" stroke="#06b6d4" stroke-width="2.5"/>
+          <line x1="410" y1="150" x2="410" y2="195" stroke="#5b6356" stroke-width="2.5"/>
 
           <!-- Confluence to Common Hepatic Duct -->
-          <line x1="290" y1="195" x2="350" y2="210" stroke="#06b6d4" stroke-width="2.5"/>
-          <line x1="410" y1="195" x2="350" y2="210" stroke="#06b6d4" stroke-width="2.5"/>
+          <line x1="290" y1="195" x2="350" y2="210" stroke="#5b6356" stroke-width="2.5"/>
+          <line x1="410" y1="195" x2="350" y2="210" stroke="#5b6356" stroke-width="2.5"/>
           <!-- Small junction circle -->
-          <circle cx="350" cy="210" r="4" fill="#06b6d4" opacity="0.6"/>
+          <circle cx="350" cy="210" r="4" fill="#5b6356" opacity="0.6"/>
 
           <!-- Right Hepatic Duct label -->
-          <line x1="290" y1="170" x2="195" y2="170" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="188" y="174" fill="#e2e8f0" font-size="11" text-anchor="end" font-family="Arial,sans-serif">Right Hepatic Duct</text>
+          <line x1="290" y1="170" x2="195" y2="170" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="188" y="174" fill="#590907" font-size="11" text-anchor="end" font-family="Arial,sans-serif">Right Hepatic Duct</text>
 
           <!-- Left Hepatic Duct label -->
-          <line x1="410" y1="170" x2="505" y2="170" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="512" y="174" fill="#e2e8f0" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Left Hepatic Duct</text>
+          <line x1="410" y1="170" x2="505" y2="170" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="512" y="174" fill="#590907" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Left Hepatic Duct</text>
 
           <!-- ========== COMMON HEPATIC DUCT ========== -->
-          <line x1="350" y1="210" x2="350" y2="265" stroke="#06b6d4" stroke-width="2.5"/>
+          <line x1="350" y1="210" x2="350" y2="265" stroke="#5b6356" stroke-width="2.5"/>
           <!-- Label -->
-          <line x1="350" y1="238" x2="480" y2="228" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="487" y="232" fill="#e2e8f0" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Common Hepatic Duct</text>
+          <line x1="350" y1="238" x2="480" y2="228" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="487" y="232" fill="#590907" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Common Hepatic Duct</text>
 
           <!-- ========== CYSTIC DUCT branching to Gallbladder ========== -->
           <!-- Junction point -->
-          <circle cx="350" cy="265" r="4" fill="#06b6d4" opacity="0.6"/>
+          <circle cx="350" cy="265" r="4" fill="#5b6356" opacity="0.6"/>
           <!-- Cystic duct going right -->
-          <path d="M350,265 Q380,260 420,240 Q460,220 490,210" stroke="#06b6d4" stroke-width="2" fill="none"/>
+          <path d="M350,265 Q380,260 420,240 Q460,220 490,210" stroke="#5b6356" stroke-width="2" fill="none"/>
 
           <!-- Cystic Duct label -->
-          <line x1="420" y1="242" x2="440" y2="260" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="443" y="274" fill="#e2e8f0" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Cystic Duct</text>
+          <line x1="420" y1="242" x2="440" y2="260" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="443" y="274" fill="#590907" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Cystic Duct</text>
 
           <!-- ========== GALLBLADDER ========== -->
-          <ellipse cx="520" cy="195" rx="38" ry="25" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2" transform="rotate(-15,520,195)"/>
+          <ellipse cx="520" cy="195" rx="38" ry="25" fill="rgba(77,90,52,0.2)" stroke="#4d5a34" stroke-width="2" transform="rotate(-15,520,195)"/>
           <!-- Fundus bump -->
-          <path d="M548,180 Q570,165 555,175" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2"/>
+          <path d="M548,180 Q570,165 555,175" fill="rgba(77,90,52,0.2)" stroke="#4d5a34" stroke-width="2"/>
           <!-- Gallbladder label -->
-          <line x1="555" y1="185" x2="600" y2="165" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="603" y="162" fill="#10b981" font-size="12" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">Gallbladder</text>
+          <line x1="555" y1="185" x2="600" y2="165" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="603" y="162" fill="#4d5a34" font-size="12" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">Gallbladder</text>
 
           <!-- ========== COMMON BILE DUCT (CBD) ========== -->
-          <line x1="350" y1="265" x2="350" y2="380" stroke="#06b6d4" stroke-width="3"/>
+          <line x1="350" y1="265" x2="350" y2="380" stroke="#5b6356" stroke-width="3"/>
           <!-- CBD label -->
-          <line x1="350" y1="320" x2="230" y2="310" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="130" y="306" fill="#06b6d4" font-size="12" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">Common Bile Duct</text>
-          <text x="155" y="320" fill="#8892a4" font-size="10" text-anchor="start" font-family="Arial,sans-serif">(CBD — ~8 cm)</text>
+          <line x1="350" y1="320" x2="230" y2="310" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="130" y="306" fill="#5b6356" font-size="12" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">Common Bile Duct</text>
+          <text x="155" y="320" fill="#5f6156" font-size="10" text-anchor="start" font-family="Arial,sans-serif">(CBD — ~8 cm)</text>
 
           <!-- ========== PANCREAS ========== -->
           <path d="M180,400 Q200,375 350,370 Q500,365 560,380 Q590,390 580,410 Q560,430 500,430 Q350,435 200,430 Q170,425 180,400 Z"
-                fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+                fill="rgba(138,59,18,0.15)" stroke="#8a3b12" stroke-width="2"/>
           <!-- Pancreas label -->
-          <text x="380" y="408" fill="#f59e0b" font-size="13" font-weight="700" text-anchor="middle" font-family="Arial,sans-serif">PANCREAS</text>
+          <text x="380" y="408" fill="#8a3b12" font-size="13" font-weight="700" text-anchor="middle" font-family="Arial,sans-serif">PANCREAS</text>
 
           <!-- ========== MAIN PANCREATIC DUCT ========== -->
-          <line x1="530" y1="400" x2="350" y2="400" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/>
+          <line x1="530" y1="400" x2="350" y2="400" stroke="#5b6356" stroke-width="2" stroke-dasharray="6,3"/>
           <!-- Pancreatic duct label -->
-          <line x1="450" y1="400" x2="490" y2="440" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="440" y="455" fill="#e2e8f0" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Main Pancreatic Duct</text>
+          <line x1="450" y1="400" x2="490" y2="440" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="440" y="455" fill="#590907" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Main Pancreatic Duct</text>
 
           <!-- ========== CBD passes through/behind pancreas ========== -->
           <!-- CBD continues down through pancreas area -->
-          <line x1="350" y1="380" x2="350" y2="435" stroke="#06b6d4" stroke-width="3" opacity="0.6"/>
+          <line x1="350" y1="380" x2="350" y2="435" stroke="#5b6356" stroke-width="3" opacity="0.6"/>
 
           <!-- ========== Junction — Hepatopancreatic Ampulla ========== -->
-          <circle cx="310" cy="460" r="6" fill="#ec4899" opacity="0.7" stroke="#ec4899" stroke-width="1.5"/>
+          <circle cx="310" cy="460" r="6" fill="#8e2f45" opacity="0.7" stroke="#8e2f45" stroke-width="1.5"/>
           <!-- CBD curves into junction -->
-          <path d="M350,435 Q345,450 310,460" stroke="#06b6d4" stroke-width="2.5" fill="none"/>
+          <path d="M350,435 Q345,450 310,460" stroke="#5b6356" stroke-width="2.5" fill="none"/>
           <!-- Pancreatic duct curves into junction -->
-          <path d="M350,400 Q340,430 310,460" stroke="#06b6d4" stroke-width="2" fill="none" stroke-dasharray="6,3"/>
+          <path d="M350,400 Q340,430 310,460" stroke="#5b6356" stroke-width="2" fill="none" stroke-dasharray="6,3"/>
 
           <!-- Hepatopancreatic duct label -->
-          <line x1="310" y1="460" x2="420" y2="480" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="423" y="477" fill="#ec4899" font-size="11" font-weight="600" text-anchor="start" font-family="Arial,sans-serif">Common Hepatopancreatic</text>
-          <text x="423" y="491" fill="#ec4899" font-size="11" font-weight="600" text-anchor="start" font-family="Arial,sans-serif">Duct (Ampulla of Vater)</text>
+          <line x1="310" y1="460" x2="420" y2="480" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="423" y="477" fill="#8e2f45" font-size="11" font-weight="600" text-anchor="start" font-family="Arial,sans-serif">Common Hepatopancreatic</text>
+          <text x="423" y="491" fill="#8e2f45" font-size="11" font-weight="600" text-anchor="start" font-family="Arial,sans-serif">Duct (Ampulla of Vater)</text>
 
           <!-- ========== DUODENUM ========== -->
           <path d="M250,435 Q220,445 200,470 Q185,500 210,515 Q240,525 280,520 Q310,510 310,485 Q310,470 310,460"
-                fill="none" stroke="#8b5cf6" stroke-width="3"/>
+                fill="none" stroke="#590907" stroke-width="3"/>
           <!-- Duodenum filled C-shape -->
           <path d="M250,435 Q220,445 200,470 Q185,500 210,515 Q240,525 280,520 Q310,510 310,485 Q310,470 310,460
                    L304,460 Q304,470 304,485 Q304,507 278,515 Q245,520 215,511 Q195,500 205,475 Q218,450 250,440 Z"
-                fill="rgba(139,92,246,0.15)"/>
+                fill="rgba(89,9,7,0.15)"/>
           <!-- Duodenum label -->
-          <line x1="215" y1="495" x2="135" y2="505" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
-          <text x="70" y="509" fill="#8b5cf6" font-size="13" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">DUODENUM</text>
+          <line x1="215" y1="495" x2="135" y2="505" stroke="#989a8d" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="70" y="509" fill="#590907" font-size="13" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">DUODENUM</text>
 
           <!-- ========== Flow arrow from duodenum ========== -->
-          <line x1="210" y1="520" x2="170" y2="540" stroke="#8b5cf6" stroke-width="2" marker-end="url(#bArrow)"/>
+          <line x1="210" y1="520" x2="170" y2="540" stroke="#590907" stroke-width="2" marker-end="url(#bArrow)"/>
 
           <!-- ========== Flow arrows from liver ========== -->
-          <line x1="350" y1="150" x2="350" y2="165" stroke="#06b6d4" stroke-width="2" marker-end="url(#bArrow)"/>
+          <line x1="350" y1="150" x2="350" y2="165" stroke="#5b6356" stroke-width="2" marker-end="url(#bArrow)"/>
 
           <!-- ========== Title at bottom ========== -->
-          <text x="350" y="540" fill="#8892a4" font-size="13" font-weight="600" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="2">BILIARY SYSTEM</text>
+          <text x="350" y="540" fill="#5f6156" font-size="13" font-weight="600" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="2">BILIARY SYSTEM</text>
 
           <!-- ========== Directional flow arrows along CBD ========== -->
           <!-- Arrow on CBD -->
-          <polygon points="346,340 354,340 350,350" fill="#06b6d4" opacity="0.5"/>
-          <polygon points="346,290 354,290 350,300" fill="#06b6d4" opacity="0.5"/>
+          <polygon points="346,340 354,340 350,350" fill="#5b6356" opacity="0.5"/>
+          <polygon points="346,290 354,290 350,300" fill="#5b6356" opacity="0.5"/>
         </svg>
       </div>
     </div>
@@ -3092,7 +3095,7 @@
 
   // === CONFETTI ===
   function spawnConfetti(el) {
-    const colors = ['#3b82f6','#06b6d4','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899'];
+    const colors = ['#590907','#5b6356','#4d5a34','#8a3b12','#9b2a1f','#590907','#8e2f45'];
     const container = document.createElement('div');
     container.className = 'confetti-container';
     document.body.appendChild(container);

@@ -1,0 +1,37 @@
+/* ============================================================
+   FOX · PT Hub — shared theme layer
+   Palette: Maroon #590907 · Beige #e8d2b5 · Sage #a5a79b
+   Loaded by every page after its own styles.
+   ============================================================ */
+:root {
+  --fx-maroon: #590907;
+  --fx-beige: #e8d2b5;
+  --fx-sage: #a5a79b;
+  --fx-ink: #2a0504;
+  --fx-grad-maroon: linear-gradient(135deg, #8a2a1f 0%, #590907 55%, #3a0504 100%);
+  --fx-grad-beige: linear-gradient(160deg, #f3e7d6 0%, #e8d2b5 50%, #dcc19c 100%);
+  --fx-grad-sage: linear-gradient(135deg, #c3c4b8 0%, #a5a79b 55%, #85877b 100%);
+  --fx-grad-card: linear-gradient(150deg, #fbf5ec 0%, #f3e6d4 100%);
+}
+html { background: #e8d2b5; }
+body { background-attachment: fixed !important; }
+::selection { background: rgba(89, 9, 7, 0.85); color: #f6ead8; }
+* { scrollbar-color: #a5a79b transparent; }
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--fx-grad-sage); border-radius: 10px; }
+
+/* floating "back to hub" pill */
+.fx-home {
+  position: fixed; left: 14px; bottom: 14px; z-index: 9999;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px 8px 12px; border-radius: 100px;
+  background: var(--fx-grad-maroon); color: #f6ead8 !important;
+  font: 700 12.5px/1 'Cairo', system-ui, sans-serif; text-decoration: none;
+  box-shadow: 0 6px 18px rgba(89, 9, 7, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform .2s, box-shadow .2s; direction: rtl;
+}
+.fx-home:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(89, 9, 7, 0.35); }
+.fx-home svg { width: 14px; height: 14px; }
+@media print { .fx-home { display: none; } }
+.fx-home.fx-raised { bottom: 86px; }

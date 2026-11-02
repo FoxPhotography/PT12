@@ -1,0 +1,29 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/Midterm/cvp_midterm", "destination": "/year-3/cvp/midterm", "permanent": true },
+    { "source": "/Midterm/immunology_midterm", "destination": "/year-3/immunology/midterm", "permanent": true },
+    { "source": "/Midterm/cns_midterm", "destination": "/year-2/physiology-cns/midterm", "permanent": true },
+    { "source": "/Midterm/electro1_midterm", "destination": "/year-2/electrotherapy/midterm", "permanent": true },
+    { "source": "/Midterm/anatomy2_midterm", "destination": "/year-2/anatomy/lower-limb", "permanent": true },
+    { "source": "/final/anatomy", "destination": "/year-2/anatomy/revision", "permanent": true },
+    { "source": "/final/anatomy2", "destination": "/year-2/anatomy/lower-limb", "permanent": true },
+    { "source": "/final/anatomy2_lower_limb", "destination": "/year-2/anatomy/lower-limb", "permanent": true },
+    { "source": "/final/biomechanics2", "destination": "/year-2/biomechanics/final", "permanent": true },
+    { "source": "/final/cns_questions", "destination": "/year-2/physiology-cns/final", "permanent": true },
+    { "source": "/final/electrotherapy", "destination": "/year-2/electrotherapy/exams", "permanent": true },
+    { "source": "/final/exam_pt10", "destination": "/year-2/electrotherapy/final-pt10", "permanent": true },
+    { "source": "/final/exam_questions", "destination": "/year-2/electrotherapy/final", "permanent": true },
+    { "source": "/final/exam_pt11", "destination": "/year-2/therapeutic-exercise/final", "permanent": true },
+    { "source": "/final/exercise_physiology", "destination": "/year-2/exercise-physiology/final", "permanent": true },
+    { "source": "/final/manual_therapy_questions", "destination": "/year-2/manual-therapy/final", "permanent": true },
+    { "source": "/final/muscletest2", "destination": "/year-2/muscle-test/dashboard", "permanent": true },
+    { "source": "/final/muscletest2q", "destination": "/year-2/muscle-test/questions", "permanent": true },
+    { "source": "/oral/BioMechanics", "destination": "/year-2/biomechanics/oral", "permanent": true },
+    { "source": "/oral/thera_exam_guide", "destination": "/year-2/therapeutic-exercise/oral", "permanent": true },
+    { "source": "/oral/exercise_physiology_questions", "destination": "/year-2/exercise-physiology/oral", "permanent": true },
+    { "source": "/oral/manual_therapy_questions", "destination": "/year-2/manual-therapy/oral", "permanent": true },
+    { "source": "/Rivision", "destination": "/year-2/exercise-physiology/revision", "permanent": true }
+  ]
+}

@@ -1,771 +1,281 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- منع الكاش القاطع لضمان ظهور التحديثات والصفحات الجديدة دائماً -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0, post-check=0, pre-check=0">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
-
-    <title>PT Exam Hub — Physical Therapy 2026</title>
-    <meta name="description" content="دليلك الشامل لجميع امتحانات العلاج الطبيعي — شفوي، عملي، فاينال، ميدتيرم">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0e1a;
-            --bg-secondary: #111827;
-            --bg-card: rgba(17, 24, 39, 0.7);
-            --bg-glass: rgba(255, 255, 255, 0.03);
-            --accent: #6366f1;
-            --accent2: #818cf8;
-            --accent-glow: rgba(99, 102, 241, 0.35);
-            --cyan: #22d3ee;
-            --emerald: #34d399;
-            --amber: #fbbf24;
-            --rose: #fb7185;
-            --purple: #a78bfa;
-            --text: #e2e8f0;
-            --text-dim: #94a3b8;
-            --border: rgba(255, 255, 255, 0.06);
-            --radius: 16px;
-        }
-
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text);
-            line-height: 1.75;
-            min-height: 100vh;
-            padding: 0;
-            background-image:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(34, 211, 238, 0.08), transparent);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* === HEADER === */
-        .header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            position: relative;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.12), transparent 70%);
-            pointer-events: none;
-        }
-
-        .header-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 500;
-            color: var(--accent2);
-            margin-bottom: 20px;
-        }
-
-        .header h1 {
-            font-size: clamp(2em, 6vw, 3.5em);
-            font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, var(--accent2) 50%, var(--cyan) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-        }
-
-        .header .subtitle {
-            color: var(--text-dim);
-            font-size: 1.1em;
-            font-weight: 400;
-            margin-bottom: 12px;
-        }
-
-        .header .author {
-            color: var(--accent2);
-            font-weight: 600;
-            font-size: 1em;
-            margin-top: 8px;
-        }
-
-        .header .author a {
-            color: var(--accent2);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .header .author a:hover {
-            color: var(--cyan);
-        }
-
-        /* === SECTION TITLE === */
-        .section-block {
-            margin-bottom: 48px;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 24px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-title .icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4em;
-            flex-shrink: 0;
-        }
-
-        .section-title .icon.oral {
-            background: rgba(99, 102, 241, 0.12);
-        }
-
-        .section-title .icon.final {
-            background: rgba(251, 113, 133, 0.12);
-        }
-
-        .section-title .icon.midterm {
-            background: rgba(251, 191, 36, 0.12);
-        }
-
-        .section-title h2 {
-            font-size: 1.5em;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: -0.5px;
-        }
-
-        .section-title .count-badge {
-            margin-right: auto;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border);
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.78em;
-            color: var(--text-dim);
-            font-weight: 500;
-        }
-
-        /* === CARDS GRID === */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .subject-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px 24px;
-            text-decoration: none;
-            color: var(--text);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .subject-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--card-color), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .subject-card:hover::before {
-            opacity: 1;
-        }
-
-        .subject-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--card-color);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .subject-card.biomechanics {
-            --card-color: var(--accent);
-        }
-
-        .subject-card.manual {
-            --card-color: var(--cyan);
-        }
-
-        .subject-card.exercise-phys {
-            --card-color: var(--emerald);
-        }
-
-        .subject-card.therapeutic {
-            --card-color: var(--amber);
-        }
-
-        .subject-card.pt10-final {
-            --card-color: var(--rose);
-        }
-
-        .subject-card.pt11-final {
-            --card-color: var(--purple);
-        }
-
-        .subject-card.cns-final {
-            --card-color: var(--emerald);
-        }
-
-        .subject-card.final-4 {
-            --card-color: var(--cyan);
-        }
-
-        .subject-card.anatomy-final {
-            --card-color: #f97316;
-        }
-
-        .subject-card.final-5 {
-            --card-color: var(--amber);
-        }
-
-        .subject-card.final-6 {
-            --card-color: var(--accent);
-        }
-
-        .subject-card.muscletest {
-            --card-color: var(--cyan);
-        }
-
-        .subject-card.immunology-mid {
-            --card-color: #a5a79b;
-        }
-
-        .subject-card.coming-soon {
-            --card-color: var(--amber);
-            opacity: 0.55;
-            pointer-events: none;
-        }
-
-        .card-icon {
-            font-size: 3em;
-            margin-bottom: 16px;
-            display: block;
-        }
-
-        .card-title {
-            font-size: 1.5em;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .card-subtitle {
-            font-size: 0.9em;
-            color: var(--text-dim);
-            margin-bottom: 16px;
-        }
-
-        .card-stats {
-            display: flex;
-            gap: 16px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-        }
-
-        .card-stat {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .card-stat-value {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: var(--card-color);
-        }
-
-        .card-stat-label {
-            font-size: 0.75em;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .card-badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.75em;
-            font-weight: 600;
-            color: var(--card-color);
-            margin-top: 12px;
-        }
-
-        .card-badge.soon {
-            background: rgba(251, 191, 36, 0.1);
-            border-color: rgba(251, 191, 36, 0.2);
-            color: var(--amber);
-        }
-
-        /* === FOOTER === */
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-dim);
-            font-size: 0.9em;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer a {
-            color: var(--accent2);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer a:hover {
-            color: var(--cyan);
-        }
-
-        /* === ANIMATIONS === */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .subject-card {
-            animation: fadeUp 0.6s ease both;
-        }
-
-        .subject-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .subject-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .subject-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .subject-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .subject-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .subject-card:nth-child(6) {
-            animation-delay: 0.6s;
-        }
-
-        .subject-card:nth-child(7) {
-            animation-delay: 0.7s;
-        }
-
-        .section-block {
-            animation: fadeUp 0.5s ease both;
-        }
-
-        .section-block:nth-child(2) {
-            animation-delay: 0.15s;
-        }
-
-        .section-block:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            .header {
-                padding: 40px 16px 30px;
-            }
-
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .subject-card {
-                padding: 24px 20px;
-            }
-
-            .section-title h2 {
-                font-size: 1.2em;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT Hub — بنك أسئلة العلاج الطبيعي</title>
+<meta name="description" content="بنك أسئلة وامتحانات كلية العلاج الطبيعي جامعة كفر الشيخ — ميدتيرم وفاينال وشفوي لكل سنة.">
+<meta name="theme-color" content="#590907">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+  :root {
+    --maroon: #590907; --maroon-2: #3a0504; --brick: #8a2a1f;
+    --beige: #e8d2b5; --cream: #f6ede0; --sage: #a5a79b; --sage-d: #6b6e5f;
+    --ink: #2a0504; --muted: #6b6255;
+    --line: rgba(89, 9, 7, 0.14);
+    --g-maroon: linear-gradient(135deg, #8a2a1f 0%, #590907 52%, #3a0504 100%);
+    --g-beige: linear-gradient(170deg, #f3e7d6 0%, #e8d2b5 45%, #dbbf98 100%);
+    --g-sage: linear-gradient(135deg, #c6c7bb 0%, #a5a79b 55%, #898b7f 100%);
+    --g-panel: linear-gradient(160deg, rgba(252, 247, 239, 0.92) 0%, rgba(243, 230, 212, 0.88) 100%);
+    --display: 'El Messiri', 'IBM Plex Sans Arabic', serif;
+    --body: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--body); color: var(--ink); background: var(--g-beige); min-height: 100vh; line-height: 1.7; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--brick); outline-offset: 3px; border-radius: 6px; }
+
+  /* ---------- HERO ---------- */
+  .hero { background: var(--g-maroon); color: var(--cream); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background:
+      radial-gradient(60% 90% at 85% 0%, rgba(232, 210, 181, 0.16), transparent 70%),
+      radial-gradient(50% 70% at 0% 100%, rgba(165, 167, 155, 0.18), transparent 70%); pointer-events: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; position: relative; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 22px 0 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; text-decoration: none; }
+  .brand img { width: 34px; height: 34px; border-radius: 10px; box-shadow: 0 0 0 1px rgba(232,210,181,.25); }
+  .batch { font-size: 13px; color: var(--beige); opacity: .85; }
+  .hero h1 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 6.2vw, 64px); line-height: 1.15; margin: 46px 0 12px; max-width: 14ch;
+    background: linear-gradient(180deg, #fbf3e6 0%, #e8d2b5 70%, #cdb08a 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero p.lead { font-size: 17px; color: rgba(246, 237, 224, 0.82); max-width: 52ch; }
+
+  /* level track — the signature element */
+  .track { margin: 44px 0 0; padding-bottom: 38px; }
+  .track-label { font-size: 13px; color: rgba(232, 210, 181, 0.75); margin-bottom: 14px; }
+  .levels { list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); position: relative; }
+  .levels::before { content: ''; position: absolute; top: 27px; right: 10%; left: 10%; height: 2px;
+    background: linear-gradient(270deg, rgba(232,210,181,.65), rgba(165,167,155,.35)); }
+  .lvl button { all: unset; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; padding: 4px 0 10px; position: relative; }
+  .lvl .dot { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 24px; font-weight: 700;
+    background: linear-gradient(160deg, #6e1611, #4a0705); color: var(--beige); box-shadow: 0 0 0 2px rgba(232, 210, 181, 0.35); transition: transform .2s, box-shadow .2s; }
+  .lvl .name { font-size: 14px; font-weight: 600; color: rgba(246, 237, 224, 0.78); }
+  .lvl .meta { font-size: 12px; color: rgba(232, 210, 181, 0.6); min-height: 18px; }
+  .lvl .short { display: none; }
+  .lvl.has .dot { box-shadow: 0 0 0 2px rgba(232, 210, 181, 0.8); }
+  .lvl button:hover .dot { transform: translateY(-2px); }
+  .lvl.active .dot { background: var(--g-beige); color: var(--maroon); box-shadow: 0 0 0 4px rgba(232, 210, 181, 0.25), 0 10px 26px rgba(0, 0, 0, 0.28); transform: scale(1.08); }
+  .lvl.active .name { color: var(--cream); }
+  .lvl .now { position: absolute; top: -22px; font-size: 11.5px; font-weight: 700; color: var(--maroon); background: var(--g-sage); padding: 1px 10px; border-radius: 100px; white-space: nowrap; }
+
+  /* ---------- YEAR ---------- */
+  main.wrap { padding: 44px 20px 30px; }
+  .year-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
+  .year-head h2 { font-family: var(--display); font-size: clamp(28px, 4vw, 40px); line-height: 1.2; color: var(--maroon); }
+  .year-head .sum { color: var(--muted); font-size: 15px; margin-top: 4px; }
+  .search { position: relative; width: min(340px, 100%); }
+  .search input { width: 100%; font: inherit; font-size: 15px; color: var(--ink); padding: 11px 42px 11px 14px; border-radius: 12px; border: 1px solid var(--line);
+    background: var(--g-panel); outline: none; transition: border-color .2s, box-shadow .2s; }
+  .search input::placeholder { color: #9a8f80; }
+  .search input:focus { border-color: rgba(89, 9, 7, 0.45); box-shadow: 0 0 0 3px rgba(89, 9, 7, 0.08); }
+  .search svg { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #9a8f80; }
+
+  .terms { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+  .term { background: var(--g-panel); border: 1px solid var(--line); border-radius: 20px; padding: 8px 22px 12px; box-shadow: 0 14px 40px -24px rgba(89, 9, 7, 0.35); }
+  .term h3 { font-family: var(--display); font-size: 21px; color: var(--maroon); padding: 16px 0 12px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; }
+  .term h3 small { font-family: var(--body); font-size: 13px; color: var(--muted); font-weight: 500; }
+  .course { padding: 14px 0; border-bottom: 1px dashed rgba(89, 9, 7, 0.14); }
+  .course:last-child { border-bottom: none; }
+  .course .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .course .en { direction: ltr; font-weight: 700; font-size: 15.5px; color: var(--ink); text-align: left; }
+  .course .tag { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .course.empty .en { color: #8d8274; font-weight: 500; }
+  .course.empty .tag { color: #a99d8d; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 13.5px; font-weight: 600; padding: 7px 14px 7px 12px; border-radius: 10px;
+    transition: transform .15s, box-shadow .15s; line-height: 1.4; }
+  .chip b { font-weight: 700; }
+  .chip span { font-weight: 500; opacity: .82; font-size: 12.5px; }
+  .chip:hover { transform: translateY(-1px); box-shadow: 0 8px 18px -8px rgba(89, 9, 7, 0.5); }
+  .chip.mid { background: var(--g-maroon); color: var(--cream); }
+  .chip.fin { background: var(--g-sage); color: var(--maroon-2); }
+  .chip.oral { background: linear-gradient(135deg, rgba(255,250,242,.9), rgba(239,224,202,.9)); color: var(--maroon); box-shadow: inset 0 0 0 1.5px rgba(89, 9, 7, 0.55); }
+  .chip.rev { background: linear-gradient(135deg, #f0dcbd, #dcbf96); color: var(--maroon-2); }
+  .no-results { display: none; text-align: center; color: var(--muted); padding: 30px 0 10px; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; margin: 24px 2px 0; font-size: 13px; color: var(--muted); }
+  .legend i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-left: 6px; }
+
+  .empty-year { background: var(--g-panel); border: 1px dashed rgba(89, 9, 7, 0.25); border-radius: 16px; padding: 18px 22px; margin-bottom: 22px; color: var(--muted); }
+  .empty-year b { color: var(--maroon); }
+
+  footer { text-align: center; color: var(--muted); font-size: 13.5px; padding: 30px 20px 40px; }
+  footer a { color: var(--maroon); font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(89,9,7,.3); }
+
+  @media (max-width: 820px) { .terms { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) {
+    .hero h1 { margin-top: 34px; }
+    .lvl .dot { width: 44px; height: 44px; font-size: 19px; }
+    .levels::before { top: 21px; }
+    .lvl .name { font-size: 12.5px; }
+    .lvl .meta { display: none; }
+    .lvl .full { display: none; } .lvl .short { display: inline; }
+    .term { padding: 6px 16px 10px; border-radius: 16px; }
+    .course .row { flex-direction: column; gap: 0; }
+    .course .en { text-align: right; direction: ltr; unicode-bidi: plaintext; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
 </head>
-
 <body>
-    <div class="container">
-        <!-- HEADER -->
-        <header class="header">
-            <div class="header-badge">🎓 Physical Therapy Exams 2026</div>
-            <h1>PT Exam Hub</h1>
-            <p class="subtitle">دليلك الشامل لجميع الامتحانات — شفوي، عملي، فاينال</p>
-            <p class="author">By: <a href="https://www.tiktok.com/@elfox.ph" target="_blank"
-                    rel="noopener noreferrer">Ibrahim Asar</a></p>
-        </header>
 
-        <!-- ══════ SECTION 1: FINAL EXAMS ══════ -->
-        <div class="section-block" style="padding-top: 36px;">
-            <div class="section-title">
-                <div class="icon final">📝</div>
-                <h2>Final Exams</h2>
-                <span class="count-badge">9 مواد</span>
-            </div>
-            <div class="cards-grid">
-                <a href="year-2/anatomy/lower-limb.html" class="subject-card anatomy-final">
-                    <span class="card-icon">🩻</span>
-                    <h3 class="card-title">Anatomy 2 (Lower Limb)</h3>
-                    <p class="card-subtitle">مراجعة شاملة وأسئلة مقالي — Thigh, Gluteal & Nerves</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">9</span><span
-                                class="card-stat-label">أقسام</span></div>
-                        <div class="card-stat"><span class="card-stat-value">45+</span><span
-                                class="card-stat-label">سؤال مقالي</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/electrotherapy/index.html" class="subject-card pt10-final">
-                    <span class="card-icon">⚡</span>
-                    <h3 class="card-title">Electrotherapy</h3>
-                    <p class="card-subtitle">أسئلة امتحان الفاينال — PT10 & PT11</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">116+</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">2</span><span
-                                class="card-stat-label">دفعة</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/physiology-cns/final.html" class="subject-card cns-final">
-                    <span class="card-icon">🧠</span>
-                    <h3 class="card-title">Physiology CNS</h3>
-                    <p class="card-subtitle">أسئلة امتحان الفاينال — Motor CNS & Metabolism</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">160</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">23</span><span
-                                class="card-stat-label">موضوع</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/anatomy/revision.html" class="subject-card anatomy-final">
-                    <span class="card-icon">🦴</span>
-                    <h3 class="card-title">Anatomy 1</h3>
-                    <p class="card-subtitle">مراجعة شاملة — Liver, Heart, Mediastinum & More</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">9</span><span
-                                class="card-stat-label">موضوع</span></div>
-                        <div class="card-stat"><span class="card-stat-value">8</span><span class="card-stat-label">جدول
-                                مقارنة</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/therapeutic-exercise/final.html" class="subject-card pt11-final">
-                    <span class="card-icon">🏋️</span>
-                    <h3 class="card-title">Therapeutic Exercise</h3>
-                    <p class="card-subtitle">تجميع امتحان PT11 — Therapeutic Exercise</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">54</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">4</span><span
-                                class="card-stat-label">أقسام</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/muscle-test/dashboard.html" class="subject-card muscletest">
-                    <span class="card-icon">⚡</span>
-                    <h3 class="card-title">Muscle Test 2</h3>
-                    <p class="card-subtitle">لوحة دراسة ذكية — MMT, ROM, Nerves & Special Tests</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">50</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">4</span><span
-                                class="card-stat-label">أقسام</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/biomechanics/final.html" class="subject-card final-6">
-                    <span class="card-icon">⚙️</span>
-                    <h3 class="card-title">Biomechanics 2</h3>
-                    <p class="card-subtitle">أسئلة امتحان الفاينال — Biomechanics 2</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">174</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">10</span><span
-                                class="card-stat-label">أقسام</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/exercise-physiology/final.html" class="subject-card exercise-phys">
-                    <span class="card-icon">⚡</span>
-                    <h3 class="card-title">Exercise Physiology</h3>
-                    <p class="card-subtitle">Final Exam Questions — Exercise Physiology</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">63</span><span
-                                class="card-stat-label">Questions</span></div>
-                        <div class="card-stat"><span class="card-stat-value">8</span><span
-                                class="card-stat-label">Sections</span></div>
-                    </div>
-                    <span class="card-badge">✓ Available Now</span>
-                </a>
-                <a href="year-2/manual-therapy/final.html" class="subject-card manual">
-                    <span class="card-icon">🤲</span>
-                    <h3 class="card-title">Manual Therapy</h3>
-                    <p class="card-subtitle">Final Exam Questions — Manual Therapy</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">140</span><span
-                                class="card-stat-label">Questions</span></div>
-                        <div class="card-stat"><span class="card-stat-value">8</span><span
-                                class="card-stat-label">Sections</span></div>
-                    </div>
-                    <span class="card-badge">✓ Available Now</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- ══════ SECTION 2: ORAL & PRACTICAL ══════ -->
-        <div class="section-block" style="padding-bottom: 40px;">
-            <div class="section-title">
-                <div class="icon oral">🎤</div>
-                <h2>Oral & Practical</h2>
-                <span class="count-badge">5 مواد</span>
-            </div>
-            <div class="cards-grid">
-                <a href="year-2/anatomy/lower-limb.html" class="subject-card anatomy-final">
-                    <span class="card-icon">🦴</span>
-                    <h3 class="card-title">Anatomy 2 (Lower Limb)</h3>
-                    <p class="card-subtitle">الشفوي والعملي — بنك أسئلة السبوتنج والمصائد وفلاش كاردز</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">30</span><span class="card-stat-label">فلاش
-                                كارد</span></div>
-                        <div class="card-stat"><span class="card-stat-value">8</span><span
-                                class="card-stat-label">مقارنات</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/biomechanics/oral.html" class="subject-card biomechanics">
-                    <span class="card-icon">⚕️</span>
-                    <h3 class="card-title">Biomechanics 2</h3>
-                    <p class="card-subtitle">ميكانيكا حيوية متقدمة - تحليل المشي والحركة</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">77</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">13</span><span
-                                class="card-stat-label">قسم</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/manual-therapy/oral.html" class="subject-card manual">
-                    <span class="card-icon">🤲</span>
-                    <h3 class="card-title">Manual Therapy</h3>
-                    <p class="card-subtitle">العلاج اليدوي - تقنيات التعبئة والتلاعب</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">72</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">17</span><span
-                                class="card-stat-label">قسم</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/exercise-physiology/oral.html" class="subject-card exercise-phys">
-                    <span class="card-icon">💪</span>
-                    <h3 class="card-title">Exercise Physiology</h3>
-                    <p class="card-subtitle">فسيولوجيا التمرين - استجابة الجسم للنشاط</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">50</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">11</span><span
-                                class="card-stat-label">قسم</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/therapeutic-exercise/oral.html" class="subject-card therapeutic">
-                    <span class="card-icon">🏋️</span>
-                    <h3 class="card-title">Therapeutic Exercise</h3>
-                    <p class="card-subtitle">التمارين العلاجية - برامج التأهيل والعلاج</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">59</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">9</span><span
-                                class="card-stat-label">قسم</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- ══════ SECTION 3: MIDTERM EXAMS ══════ -->
-        <div class="section-block" style="padding-bottom: 40px;">
-            <div class="section-title">
-                <div class="icon midterm">📝</div>
-                <h2>Midterm Exams</h2>
-                <span class="count-badge">5 مواد</span>
-            </div>
-            <div class="cards-grid">
-                <a href="year-3/immunology/midterm.html" class="subject-card immunology-mid">
-                    <span class="card-icon">🧫</span>
-                    <h3 class="card-title">Immunology</h3>
-                    <p class="card-subtitle">أسئلة متوقعة للميدتيرم — Innate · Antigens · Immunoglobulins (Lec 1–3)</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">131</span><span
-                                class="card-stat-label">MCQ</span></div>
-                        <div class="card-stat"><span class="card-stat-value">3</span><span
-                                class="card-stat-label">محاضرات</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-3/cvp/midterm.html" class="subject-card pt11-final">
-                    <span class="card-icon">🫁</span>
-                    <h3 class="card-title">Cardiopulmonary PT (CVP)</h3>
-                    <p class="card-subtitle">دليل المستشفى وسكاشن الميدتيرم — Vital Signs, History & Chest Exam + 30 MCQ</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">4</span><span
-                                class="card-stat-label">سكاشن</span></div>
-                        <div class="card-stat"><span class="card-stat-value">30</span><span
-                                class="card-stat-label">MCQ</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/anatomy/lower-limb.html" class="subject-card anatomy-final">
-                    <span class="card-icon">⚡</span>
-                    <h3 class="card-title">Anatomy 2 (Midterm)</h3>
-                    <p class="card-subtitle">سؤالين مقالي بـ 20 درجة — أهم 13 سؤال مرشح 10-Marks</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">13</span><span
-                                class="card-stat-label">سؤال مرشح</span></div>
-                        <div class="card-stat"><span class="card-stat-value">10/10</span><span
-                                class="card-stat-label">إجابة نموذجية</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/electrotherapy/midterm.html" class="subject-card pt10-final">
-                    <span class="card-icon">⚡</span>
-                    <h3 class="card-title">Electrotherapy 1</h3>
-                    <p class="card-subtitle">أسئلة الميدتيرم الشاملة — 156 MCQ + 30 Short Notes</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">156+</span><span
-                                class="card-stat-label">MCQ</span></div>
-                        <div class="card-stat"><span class="card-stat-value">30</span><span
-                                class="card-stat-label">Short Notes</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-                <a href="year-2/physiology-cns/midterm.html" class="subject-card cns-final">
-                    <span class="card-icon">🧠</span>
-                    <h3 class="card-title">Physiology CNS</h3>
-                    <p class="card-subtitle">أسئلة الميدتيرم — Neural Pool & Reflexes</p>
-                    <div class="card-stats">
-                        <div class="card-stat"><span class="card-stat-value">20</span><span
-                                class="card-stat-label">سؤال</span></div>
-                        <div class="card-stat"><span class="card-stat-value">1</span><span
-                                class="card-stat-label">قسم</span></div>
-                    </div>
-                    <span class="card-badge">✓ متاح الآن</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- FOOTER -->
-        <footer class="footer">
-            <p>© 2026 PT Exam Hub | Made with ❤️ by <a href="https://www.tiktok.com/@elfox.ph" target="_blank"
-                    rel="noopener noreferrer">Ibrahim Asar</a></p>
-            <p style="margin-top: 8px; font-size: 0.85em;">جميع الحقوق محفوظة - للاستخدام التعليمي فقط</p>
-        </footer>
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><img src="assets/favicon.svg" alt="">PT Hub</a>
+      <span class="batch">دفعة PT12 — جامعة كفر الشيخ</span>
     </div>
+    <h1>بنك أسئلة العلاج الطبيعي</h1>
+    <p class="lead">أسئلة الميدتيرم والفاينال والشفوي متجمعة لكل مادة، ومترتبة على حسب لايحة الكلية. اختار سنتك وادخل على المادة.</p>
 
-    <!-- سكريبت منع الكاش والتحديث الفوري عند أي ريفريش أو رجوع للصفحة -->
-    <script>
-        // 1. إعادة التحميل الفوري في حالة الرجوع من BFCache أو التنقل عبر المتصفح
-        window.addEventListener('pageshow', function (event) {
-            if (event.persisted || (window.performance && window.performance.navigation && window.performance.navigation.type === 2)) {
-                window.location.reload();
-            }
-        });
+    <nav class="track" aria-label="اختار السنة">
+      <div class="track-label">السنة الدراسية</div>
+      <ol class="levels" id="levels"></ol>
+    </nav>
+  </div>
+</header>
 
-        // 2. إلغاء أي Service Worker قديم قد يحتفظ بنسخة مخبأة
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(function (registrations) {
-                for (let registration of registrations) {
-                    registration.unregister();
-                }
-            });
-        }
+<main class="wrap">
+  <div class="year-head">
+    <div>
+      <h2 id="year-title"></h2>
+      <div class="sum" id="year-sum"></div>
+    </div>
+    <label class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="دوّر على مادة..." autocomplete="off">
+    </label>
+  </div>
+  <div id="year-body"></div>
+  <p class="no-results" id="no-results">مفيش مادة بالاسم ده في السنة دي.</p>
+  <div class="legend">
+    <span><i style="background:var(--g-maroon)"></i>ميدتيرم</span>
+    <span><i style="background:var(--g-sage)"></i>فاينال</span>
+    <span><i style="background:#f6ede0;box-shadow:inset 0 0 0 1.5px rgba(89,9,7,.55)"></i>شفوي وعملي</span>
+    <span><i style="background:linear-gradient(135deg,#f0dcbd,#dcbf96)"></i>مراجعة</span>
+  </div>
+</main>
 
-        // 3. تنظيف أي Cache Storage قديم في المتصفح
-        if ('caches' in window) {
-            caches.keys().then(function (names) {
-                for (let name of names) {
-                    caches.delete(name);
-                }
-            });
-        }
-    </script>
+<footer>
+  <p>اتعمل بحب لدفعة PT12 — <a href="https://www.tiktok.com/@elfox.ph" target="_blank" rel="noopener noreferrer">Ibrahim Asar</a></p>
+  <p>للاستخدام التعليمي فقط</p>
+</footer>
+
+<script>
+/* Courses per level from اللائحة الداخلية (Credit Hours System).
+   links: [type, label, note, href] — type: mid | fin | oral | rev */
+const CURRENT = 3;
+const YEARS = [
+  { n: 1, name: 'السنة الأولى', short: 'أولى', terms: [
+    ['Human Anatomy I', 'Physiology I', 'Histology I', 'Psychology of Handicapped', 'English', 'Human Rights and Citizenship', 'Biophysics'],
+    ['Human Anatomy II', 'Physiology II', 'Biochemistry I', 'Histology II', 'Pathology I', 'Kinesiology', 'Molecular Biology'] ] },
+  { n: 2, name: 'السنة التانية', short: 'تانية', terms: [
+    ['Neuroanatomy', 'Physiology III', 'Biochemistry II', 'Tests and Measurements I', 'Hydrotherapy', 'Biomechanics I',
+      { c: 'Electrotherapy I', links: [['mid', 'ميدتيرم', '156 MCQ + 30 Short notes', 'year-2/electrotherapy/midterm.html']] },
+      'Public Health'],
+    [{ c: 'Human Anatomy III', links: [
+        ['rev', 'Anatomy 1', 'Liver, Heart, Mediastinum', 'year-2/anatomy/revision.html'],
+        ['mid', 'Anatomy 2 — Lower Limb', '13 سؤال مقالي', 'year-2/anatomy/lower-limb.html']] },
+     { c: 'Exercise Physiology', links: [
+        ['fin', 'فاينال', '63 سؤال', 'year-2/exercise-physiology/final.html'],
+        ['oral', 'شفوي', 'أسئلة PT11', 'year-2/exercise-physiology/oral.html'],
+        ['rev', 'مراجعة', 'كروت تفاعلية', 'year-2/exercise-physiology/revision.html']] },
+     { c: 'Physiology IV', tag: 'CNS', links: [
+        ['mid', 'ميدتيرم', '20 MCQ', 'year-2/physiology-cns/midterm.html'],
+        ['fin', 'فاينال', '179 MCQ', 'year-2/physiology-cns/final.html']] },
+     { c: 'Tests and Measurements II', tag: 'Muscle Test', links: [
+        ['fin', 'أسئلة الامتحان', '120 MCQ', 'year-2/muscle-test/questions.html'],
+        ['rev', 'لوحة المذاكرة', 'MMT, ROM, Nerves', 'year-2/muscle-test/dashboard.html']] },
+     { c: 'Electrotherapy II', links: [
+        ['fin', 'فاينال PT11', '56+ سؤال', 'year-2/electrotherapy/final.html'],
+        ['fin', 'فاينال PT10', '60+ سؤال', 'year-2/electrotherapy/final-pt10.html']] },
+     { c: 'Therapeutic Exercises I', links: [
+        ['fin', 'فاينال', '98 سؤال', 'year-2/therapeutic-exercise/final.html'],
+        ['oral', 'شفوي وعملي', '59 سؤال', 'year-2/therapeutic-exercise/oral.html']] },
+     { c: 'Manual Therapy', links: [
+        ['fin', 'فاينال', '141 سؤال', 'year-2/manual-therapy/final.html'],
+        ['oral', 'شفوي', 'أسئلة PT11', 'year-2/manual-therapy/oral.html']] },
+     { c: 'Biomechanics II', links: [
+        ['fin', 'فاينال', '174 سؤال', 'year-2/biomechanics/final.html'],
+        ['oral', 'شفوي وعملي', '77 سؤال', 'year-2/biomechanics/oral.html']] }] ] },
+  { n: 3, name: 'السنة التالتة', short: 'تالتة', terms: [
+    [{ c: 'Cardiovascular Pulmonary PT', tag: 'CVP', links: [['mid', 'ميدتيرم', '30 MCQ + دليل المستشفى', 'year-3/cvp/midterm.html']] },
+     { c: 'Immunology', links: [['mid', 'ميدتيرم', '131 MCQ — Lec 1–3', 'year-3/immunology/midterm.html']] },
+     'Cardiovascular Pulmonary', 'Radiology and Imaging', 'Pathology II', 'Therapeutic Exercises II', 'Principles of Rehabilitation', 'Nutrition',
+     { c: 'Quality Principles', tag: 'اختياري' }, { c: 'Ergonomics', tag: 'اختياري' }],
+    ['Pharmacology', 'Intensive Care', 'Intensive Care Physical Therapy', 'Physical Therapy Organization and Management',
+     'Obstetric & Gynecology', 'Woman Health Physical Therapy', 'Obesity Management'] ] },
+  { n: 4, name: 'السنة الرابعة', short: 'رابعة', terms: [
+    ['Traumatology', 'Orthopedics and its Surgery', 'Musculoskeletal Physical Therapy I', 'Orthotics and Prosthesis', 'Physical Therapy for Sports Injury',
+     'Biostatistics', 'Community Medicine', 'Communication Skills for Physical Therapy'],
+    ['Musculoskeletal Physical Therapy II', 'Clinical Reasoning in Orthopedics', 'Dermatology', 'Burn and Plastic Surgery',
+     'Physical Therapy for Burn and Plastic Surgery', 'Integumentary Physical Therapy', 'Research and Evidence Based Practice'] ] },
+  { n: 5, name: 'السنة الخامسة', short: 'خامسة', terms: [
+    ['Neurology and Neurosurgery', 'Physical Therapy for Neuromuscular Disorders', 'Electrodiagnosis', 'Psychiatry', 'Neurological Rehabilitation',
+     'Motor Control', 'Scientific Writing and Capstone Project'],
+    ['Pediatric and its Surgery', 'Motor Development', 'Pediatrics Physical Therapy and its Surgery', 'Pediatrics Rehabilitation', 'Geriatric',
+     'Geriatric Rehabilitation', 'Differential Diagnosis in Physical Therapy', 'Scientific Writing and Capstone Project'] ] },
+];
+
+const norm = c => typeof c === 'string' ? { c } : c;
+const countPages = y => y.terms.flat().map(norm).reduce((s, c) => s + (c.links ? c.links.length : 0), 0);
+const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+
+function renderLevels(active) {
+  document.getElementById('levels').innerHTML = YEARS.map(y => {
+    const n = countPages(y);
+    return `<li class="lvl${y.n === active ? ' active' : ''}${n ? ' has' : ''}">
+      <button type="button" data-y="${y.n}" aria-pressed="${y.n === active}">
+        ${y.n === CURRENT ? '<span class="now">انت هنا</span>' : ''}
+        <span class="dot">${y.n}</span>
+        <span class="name"><span class="full">${y.name}</span><span class="short">${y.short}</span></span>
+        <span class="meta">${n ? n + ' صفحة' : 'لسه'}</span>
+      </button></li>`;
+  }).join('');
+}
+
+function renderYear(n) {
+  const y = YEARS.find(x => x.n === n);
+  const pages = countPages(y);
+  const withContent = y.terms.flat().map(norm).filter(c => c.links).length;
+  document.getElementById('year-title').textContent = y.name + (n === CURRENT ? ' — السنة الحالية' : '');
+  document.getElementById('year-sum').textContent = pages
+    ? `${withContent} مواد عليها أسئلة، و${pages} صفحة امتحانات`
+    : 'لسه مفيش امتحانات مرفوعة للسنة دي — دي المواد اللي هتدرسها.';
+  const term = (list, i) => `<section class="term"><h3>${i ? 'الترم التاني' : 'الترم الأول'}<small>${list.length} مواد</small></h3>` +
+    list.map(norm).sort((a, b) => !!b.links - !!a.links).map(c => `
+      <div class="course${c.links ? '' : ' empty'}" data-name="${esc((c.c + ' ' + (c.tag || '')).toLowerCase())}">
+        <div class="row"><span class="en">${esc(c.c)}</span><span class="tag">${c.links ? esc(c.tag || '') : (c.tag ? esc(c.tag) + ' — ' : '') + 'لسه مفيش أسئلة'}</span></div>
+        ${c.links ? `<div class="links">${c.links.map(([t, l, note, h]) => `<a class="chip ${t}" href="${h}"><b>${esc(l)}</b><span dir="auto">${esc(note)}</span></a>`).join('')}</div>` : ''}
+      </div>`).join('') + '</section>';
+  document.getElementById('year-body').innerHTML = `<div class="terms">${y.terms.map(term).join('')}</div>`;
+  filter();
+}
+
+function filter() {
+  const v = document.getElementById('q').value.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll('.course').forEach(el => {
+    const ok = !v || el.dataset.name.includes(v) || el.textContent.toLowerCase().includes(v);
+    el.style.display = ok ? '' : 'none'; if (ok) shown++;
+  });
+  document.querySelectorAll('.term').forEach(t => { t.style.display = [...t.querySelectorAll('.course')].some(c => c.style.display !== 'none') ? '' : 'none'; });
+  document.getElementById('no-results').style.display = shown ? 'none' : 'block';
+}
+
+function select(n, push) {
+  renderLevels(n); renderYear(n);
+  if (push) history.replaceState(null, '', '#year-' + n);
+}
+document.getElementById('levels').addEventListener('click', e => {
+  const b = e.target.closest('button[data-y]'); if (b) select(+b.dataset.y, true);
+});
+document.getElementById('q').addEventListener('input', filter);
+const fromHash = +((location.hash.match(/year-(\d)/) || [])[1] || CURRENT);
+select(YEARS.some(y => y.n === fromHash) ? fromHash : CURRENT, false);
+</script>
 </body>
-
 </html>
