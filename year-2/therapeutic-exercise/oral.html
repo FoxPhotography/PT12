@@ -10,20 +10,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary:linear-gradient(160deg, #f1e3cf 0%, #e8d2b5 45%, #dcc19c 100%);
-            --bg-secondary:linear-gradient(135deg, #faf3e9 0%, #ead9c2 100%);
-            --bg-card:linear-gradient(135deg, rgba(251,244,234,0.7) 0%, rgba(236,220,198,0.7) 100%);
-            --bg-glass:rgba(255,250,242,0.41);
-            --accent:linear-gradient(135deg, #771b16 0%, #450705 100%);
-            --accent2:#590907;
-            --accent-glow:rgba(89,9,7,0.21);
-            --cyan:#5b6356;
-            --emerald:#4d5a34;
-            --amber:#8a6326;
-            --rose:#9b2a1f;
-            --text:#590907;
-            --text-dim:#534b43;
-            --border:rgba(89,9,7,0.132);
+            --bg-primary:linear-gradient(160deg, #6b6d62 0%, #5a5c52 45%, #45473e 100%);
+            --bg-secondary:linear-gradient(135deg, #42423b 0%, #23241f 100%);
+            --bg-card:linear-gradient(135deg, rgba(45,46,40,0.82) 0%, rgba(36,37,32,0.82) 100%);
+            --bg-glass:rgba(232,210,181,0.048);
+            --accent:linear-gradient(135deg, #6a211d 0%, #430907 100%);
+            --accent2:#ecbda6;
+            --accent-glow:rgba(89,9,7,0.28);
+            --cyan:#bcc8b6;
+            --emerald:#c2d09f;
+            --amber:#e6c88f;
+            --rose:#f0937f;
+            --text:#ecbda6;
+            --text-dim:#d1c4b0;
+            --border:rgba(232,210,181,0.032);
             --radius:16px;
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -35,8 +35,8 @@
             line-height:1.75;
             padding:0 12px 100px;
             min-height:100vh;
-            background-image:radial-gradient(ellipse 80% 50% at 50% -20%, rgba(89,9,7,0.15), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(91,99,86,0.08), transparent);
+            background-image:radial-gradient(ellipse 80% 50% at 50% -20%, rgba(236,189,166,0.21), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(188,200,182,0.112), transparent);
         }
         .container { max-width:860px; margin:0 auto; }
 
@@ -45,7 +45,7 @@
             position:sticky; top:0; z-index:100;
             backdrop-filter:blur(20px) saturate(1.4);
             -webkit-backdrop-filter:blur(20px) saturate(1.4);
-            background:linear-gradient(135deg, rgba(251,244,234,0.75) 0%, rgba(236,220,198,0.75) 100%);
+            background:linear-gradient(135deg, rgba(70,72,63,0.82) 0%, rgba(55,56,49,0.82) 100%);
             border-bottom:1px solid var(--border);
             padding:10px 16px;
             display:flex; align-items:center; justify-content:space-between; gap:12px;
@@ -53,16 +53,16 @@
         }
         .top-bar .logo { font-weight:800; font-size:.95em; color:var(--accent2); letter-spacing:-.3px; }
         .progress-wrap { flex:1; max-width:220px; display:flex; align-items:center; gap:8px; }
-        .progress-bar { flex:1; height:6px; background:linear-gradient(135deg, rgba(255,250,242,0.51) 0%, rgba(238,223,203,0.51) 100%); border-radius:3px; overflow:hidden; }
+        .progress-bar { flex:1; height:6px; background:rgba(232,210,181,0.128); border-radius:3px; overflow:hidden; }
         .progress-fill { height:100%; width:0%; background:linear-gradient(90deg, var(--accent), var(--cyan)); border-radius:3px; transition:width .4s ease; }
         .progress-text { font-size:.75em; color:var(--text-dim); font-variant-numeric:tabular-nums; min-width:36px; text-align:left; }
         .timer-badge {
             display:flex; align-items:center; gap:5px;
-            background:rgba(89,9,7,0.12); border:1px solid rgba(89,9,7,0.2);
+            background:rgba(236,189,166,0.168); border:1px solid rgba(236,189,166,0.2);
             padding:4px 12px; border-radius:20px; font-size:.8em; font-weight:600;
             color:var(--accent2); cursor:pointer; user-select:none; transition:all .2s;
         }
-        .timer-badge:hover { background:rgba(89,9,7,0.2); }
+        .timer-badge:hover { background:rgba(236,189,166,0.22); }
         .timer-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--emerald); animation:pulse-dot 1.5s infinite; }
         .timer-badge.paused .dot { background:var(--amber); animation:none; }
         @keyframes pulse-dot { 0%,100%{ opacity:1 } 50%{ opacity:.3 } }
@@ -75,18 +75,18 @@
         .hero::before {
             content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
             width:340px; height:340px; border-radius:50%;
-            background:radial-gradient(circle, rgba(89,9,7,0.12), transparent 70%);
+            background:radial-gradient(circle, rgba(236,189,166,0.168), transparent 70%);
             pointer-events:none;
         }
         .hero-badge {
             display:inline-flex; align-items:center; gap:6px;
-            background:rgba(89,9,7,0.1); border:1px solid rgba(89,9,7,0.2);
+            background:rgba(236,189,166,0.14); border:1px solid rgba(236,189,166,0.2);
             padding:5px 14px; border-radius:20px; font-size:.78em; font-weight:500;
             color:var(--accent2); margin-bottom:16px;
         }
         .hero h1 {
             font-size:clamp(1.6em, 5vw, 2.4em); font-weight:900;
-            background:linear-gradient(120deg,#590907 0%,#8c2a1d 50%,#6b6e5f 100%);
+            background:linear-gradient(170deg,#fbf3e7 0%,#e8d2b5 55%,#c9a87e 100%);
             -webkit-background-clip:text; -webkit-text-fill-color:transparent;
             background-clip:text; line-height:1.3; margin-bottom:10px;
             letter-spacing:-.5px;
@@ -114,7 +114,7 @@
             color:var(--text-dim); cursor:pointer; transition:all .25s; white-space:nowrap;
             text-decoration:none;
         }
-        .nav-pill:hover, .nav-pill.active { background:rgba(89,9,7,0.15); border-color:rgba(89,9,7,0.3); color:var(--accent2); }
+        .nav-pill:hover, .nav-pill.active { background:rgba(236,189,166,0.21); border-color:rgba(236,189,166,0.3); color:var(--accent2); }
 
         /* === SECTIONS === */
         .section {
@@ -126,18 +126,18 @@
             margin-bottom:20px;
             transition:border-color .3s;
         }
-        .section:hover { border-color:rgba(89,9,7,0.15); }
+        .section:hover { border-color:rgba(236,189,166,0.15); }
         .section-title {
             font-size:1.25em; font-weight:700; margin-bottom:18px;
             padding-bottom:12px; border-bottom:1px solid var(--border);
             display:flex; align-items:center; gap:10px;
-            color:#2a0504;
+            color:#f7ecdc;
         }
         .icon { font-size:1.15em; }
 
         /* === QUESTIONS === */
         .question {
-            background:rgba(255,250,242,0.39);
+            background:rgba(232,210,181,0.032);
             border:1px solid var(--border);
             padding:16px 18px;
             border-radius:12px;
@@ -151,12 +151,12 @@
             background:linear-gradient(180deg, var(--accent), var(--cyan));
             border-radius:0 12px 12px 0; opacity:0; transition:opacity .25s;
         }
-        .question:hover { background:rgba(89,9,7,0.05); border-color:rgba(89,9,7,0.15); }
+        .question:hover { background:rgba(236,189,166,0.07); border-color:rgba(236,189,166,0.15); }
         .question:hover::before { opacity:1; }
-        .question.revealed { border-color:rgba(91,99,86,0.2); }
+        .question.revealed { border-color:rgba(188,200,182,0.2); }
         .question.revealed::before { opacity:1; background:linear-gradient(180deg, var(--emerald), var(--cyan)); }
         .question-text {
-            color:#2a0504; font-weight:600; font-size:.95em;
+            color:#f7ecdc; font-weight:600; font-size:.95em;
             display:flex; align-items:flex-start; gap:8px;
         }
         .question-text::after {
@@ -182,27 +182,27 @@
             padding:16px;
             opacity:1;
             margin-top:12px;
-            background:rgba(89,9,7,0.08);
+            background:rgba(20,20,16,0.2);
             border:1px solid var(--border);
             border-radius:10px;
         }
         .highlight { color:var(--emerald); font-weight:600; }
         .term { color:var(--cyan); font-weight:600; }
         .important {
-            background:rgba(155,42,31,0.12); padding:2px 8px; border-radius:4px;
+            background:rgba(240,147,127,0.168); padding:2px 8px; border-radius:4px;
             color:var(--rose); font-weight:600; font-size:.92em;
         }
         ul, ol { margin-right:20px; margin-top:8px; }
         li { margin-bottom:6px; padding-right:5px; line-height:1.7; }
 
         .note {
-            background:rgba(138,99,38,0.06); border:1px solid rgba(138,99,38,0.15);
+            background:rgba(230,200,143,0.084); border:1px solid rgba(230,200,143,0.15);
             border-right:3px solid var(--amber);
             padding:12px 14px; border-radius:10px; margin:12px 0;
             color:var(--amber); font-size:.9em;
         }
         table { border-collapse:collapse; width:100%; margin:12px 0; font-size:.9em; }
-        th { padding:10px; border:1px solid rgba(89,9,7,0.2); background:rgba(89,9,7,0.1); color:var(--accent2); font-weight:600; }
+        th { padding:10px; border:1px solid rgba(236,189,166,0.2); background:rgba(236,189,166,0.14); color:var(--accent2); font-weight:600; }
         td { padding:10px; border:1px solid var(--border); }
 
         /* === STEPS === */
@@ -215,7 +215,7 @@
             content:counter(step-counter);
             position:absolute; right:0; top:2px;
             background:linear-gradient(135deg, var(--accent), var(--cyan));
-            color:#2a0504; width:22px; height:22px; border-radius:6px;
+            color:#f7ecdc; width:22px; height:22px; border-radius:6px;
             display:flex; align-items:center; justify-content:center;
             font-weight:700; font-size:.75em;
         }
@@ -225,7 +225,7 @@
             position:fixed; bottom:0; left:0; right:0; z-index:100;
             backdrop-filter:blur(20px) saturate(1.4);
             -webkit-backdrop-filter:blur(20px) saturate(1.4);
-            background:linear-gradient(135deg, rgba(251,244,234,0.8) 0%, rgba(236,220,198,0.8) 100%);
+            background:linear-gradient(135deg, rgba(70,72,63,0.82) 0%, rgba(55,56,49,0.82) 100%);
             border-top:1px solid var(--border);
             padding:10px 16px;
             display:flex; justify-content:center; gap:10px;
@@ -235,10 +235,10 @@
             border:1px solid var(--border); cursor:pointer; transition:all .2s;
             font-family:'Inter', sans-serif;
         }
-        .ctrl-btn.primary { background:linear-gradient(135deg, var(--accent), #590907); color:#2a0504; border:none; }
+        .ctrl-btn.primary { background:linear-gradient(135deg, var(--accent), #590907); color:#f7ecdc; border:none; }
         .ctrl-btn.primary:hover { box-shadow:0 4px 20px var(--accent-glow); transform:translateY(-1px); }
         .ctrl-btn.secondary { background:var(--bg-glass); color:var(--text-dim); }
-        .ctrl-btn.secondary:hover { background:rgba(255,250,242,0.47); color:#2a0504; }
+        .ctrl-btn.secondary:hover { background:rgba(232,210,181,0.096); color:#f7ecdc; }
 
         /* === SEARCH === */
         .search-box {
@@ -251,7 +251,7 @@
             outline:none; transition:border-color .2s;
         }
         .search-box input::placeholder { color:var(--text-dim); }
-        .search-box input:focus { border-color:rgba(89,9,7,0.4); }
+        .search-box input:focus { border-color:rgba(236,189,166,0.4); }
         .search-box .search-icon {
             position:absolute; left:auto; right:14px; top:50%; transform:translateY(-50%);
             color:var(--text-dim); font-size:.9em; pointer-events:none;
@@ -267,7 +267,7 @@
             transition:all .2s;
         }
         .scroll-top.visible { display:flex; }
-        .scroll-top:hover { border-color:rgba(89,9,7,0.3); color:var(--accent2); }
+        .scroll-top:hover { border-color:rgba(236,189,166,0.3); color:var(--accent2); }
 
         /* === ANIMATIONS === */
         @keyframes fadeUp { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
@@ -288,12 +288,13 @@
             .top-bar { padding:8px 12px; }
         }
     </style>
-<meta name="theme-color" content="#590907">
+<meta name="theme-color" content="#5c5e54">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../../assets/theme.css">
 <script src="../../assets/theme.js" defer></script>
 </head>
 <body>
+<div class="fx-band" aria-hidden="true"></div>
 <a class="fx-home fx-raised" href="../../index.html" aria-label="PT Hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>PT Hub</a>
     <!-- TOP BAR -->
     <div class="top-bar">
@@ -729,35 +730,35 @@
                     
                     <div style="overflow-x:auto;">
                         <table style="width:100%; border-collapse:collapse; margin:15px 0;">
-                            <tr style="background:rgba(91,99,86,0.2);">
-                                <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">العنصر</th>
-                                <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">DeLorme</th>
-                                <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">Oxford</th>
+                            <tr style="background:rgba(188,200,182,0.22);">
+                                <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">العنصر</th>
+                                <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">DeLorme</th>
+                                <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">Oxford</th>
                             </tr>
                             <tr>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);"><strong>الترتيب</strong></td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Progressive (من الخفيف للثقيل)</td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Regressive (من الثقيل للخفيف)</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);"><strong>الترتيب</strong></td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Progressive (من الخفيف للثقيل)</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Regressive (من الثقيل للخفيف)</td>
                             </tr>
                             <tr>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);"><strong>Set 1</strong></td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">50% of 10RM × 10 reps</td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">100% of 10RM × 10 reps</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);"><strong>Set 1</strong></td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">50% of 10RM × 10 reps</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">100% of 10RM × 10 reps</td>
                             </tr>
                             <tr>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);"><strong>Set 2</strong></td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">75% of 10RM × 10 reps</td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">75% of 10RM × 10 reps</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);"><strong>Set 2</strong></td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">75% of 10RM × 10 reps</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">75% of 10RM × 10 reps</td>
                             </tr>
                             <tr>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);"><strong>Set 3</strong></td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">100% of 10RM × 10 reps</td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">50% of 10RM × 10 reps</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);"><strong>Set 3</strong></td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">100% of 10RM × 10 reps</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">50% of 10RM × 10 reps</td>
                             </tr>
                             <tr>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);"><strong>الميزة</strong></td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Warm-up تدريجي، أقل إصابات</td>
-                                <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Maximum effort في البداية</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);"><strong>الميزة</strong></td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Warm-up تدريجي، أقل إصابات</td>
+                                <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Maximum effort في البداية</td>
                             </tr>
                         </table>
                     </div>
@@ -1531,25 +1532,25 @@
                     
                     <p><strong class="highlight">أمثلة عملية:</strong></p>
                     <table style="width:100%; border-collapse:collapse; margin:15px 0;">
-                        <tr style="background:rgba(91,99,86,0.2);">
-                            <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">المفصل</th>
-                            <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">الحركة المطلوبة</th>
-                            <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">اتجاه الـ Glide</th>
+                        <tr style="background:rgba(188,200,182,0.22);">
+                            <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">المفصل</th>
+                            <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">الحركة المطلوبة</th>
+                            <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">اتجاه الـ Glide</th>
                         </tr>
                         <tr>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Shoulder Flexion</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Humerus flexion</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Posterior/Caudal glide</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Shoulder Flexion</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Humerus flexion</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Posterior/Caudal glide</td>
                         </tr>
                         <tr>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Knee Flexion</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Tibia flexion</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Posterior glide</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Knee Flexion</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Tibia flexion</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Posterior glide</td>
                         </tr>
                         <tr>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Hip Extension</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Femur extension</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Anterior glide</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Hip Extension</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Femur extension</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Anterior glide</td>
                         </tr>
                     </table>
                     
@@ -1909,25 +1910,25 @@
                     
                     <p><strong class="highlight">مقارنة CKC vs OKC:</strong></p>
                     <table style="width:100%; border-collapse:collapse; margin:15px 0;">
-                        <tr style="background:rgba(91,99,86,0.2);">
-                            <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">العنصر</th>
-                            <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">CKC</th>
-                            <th style="padding:10px; border:1px solid rgba(91,99,86,0.85);">OKC</th>
+                        <tr style="background:rgba(188,200,182,0.22);">
+                            <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">العنصر</th>
+                            <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">CKC</th>
+                            <th style="padding:10px; border:1px solid rgba(188,200,182,0.55);">OKC</th>
                         </tr>
                         <tr>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);"><strong>Distal Segment</strong></td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Fixed (ثابت)</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Free (حر)</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);"><strong>Distal Segment</strong></td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Fixed (ثابت)</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Free (حر)</td>
                         </tr>
                         <tr>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);"><strong>مثال - Lower</strong></td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Squat, Leg press</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Knee extension machine</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);"><strong>مثال - Lower</strong></td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Squat, Leg press</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Knee extension machine</td>
                         </tr>
                         <tr>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);"><strong>مثال - Upper</strong></td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Push-up, Wall push</td>
-                            <td style="padding:10px; border:1px solid rgba(91,99,86,0.3);">Bicep curl</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);"><strong>مثال - Upper</strong></td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Push-up, Wall push</td>
+                            <td style="padding:10px; border:1px solid rgba(188,200,182,0.3);">Bicep curl</td>
                         </tr>
                     </table>
                     

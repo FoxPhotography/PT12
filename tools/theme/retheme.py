@@ -15,32 +15,32 @@ def parse_hex(h):
     return (r, g, b), a
 def P(h): return parse_hex(h)[0]
 
-# ---- palette ramps ----
-BG_RAMP = [(0.00, P('#e6cfb0')), (0.06, P('#ecdcc4')), (0.10, P('#f6ede0')), (0.15, P('#faf3e9')),
-           (0.22, P('#efe2cf')), (0.35, P('#dcc5a6')), (0.55, P('#b9a68c')), (0.75, P('#7d1a14')), (1.0, P('#590907'))]
-TEXT_RAMP = [(0.0, P('#f8eedf')), (0.22, P('#efe0ca')), (0.30, P('#a5a79b')), (0.45, P('#7c7e71')),
-             (0.60, P('#5d5f54')), (0.75, P('#3f2421')), (0.9, P('#2a0504')), (1.0, P('#2a0504'))]
+# ---- palette: deep olive pages, charcoal cards, off-white text, maroon accents ----
+BG_RAMP = [(0.00, P('#55574d')), (0.06, P('#5c5e54')), (0.08, P('#33342d')), (0.12, P('#2b2c26')), (0.17, P('#36372f')),
+           (0.25, P('#43443b')), (0.40, P('#5d5f54')), (0.60, P('#8b8d81')), (0.80, P('#cdb99c')), (1.0, P('#e8d2b5'))]
+TEXT_RAMP = [(0.0, P('#22231e')), (0.18, P('#2b2c26')), (0.30, P('#7f8176')), (0.45, P('#a5a79b')),
+             (0.60, P('#c7bfae')), (0.75, P('#e3cfb3')), (0.9, P('#f4e7d4')), (1.0, P('#f7ecdc'))]
+OFF = P('#e8d2b5')
 
 def ramp(R, t):
     for (t0, c0), (t1, c1) in zip(R, R[1:]):
         if t <= t1: return mix(c0, c1, (t - t0) / (t1 - t0) if t1 > t0 else 0)
     return R[-1][1]
 
-ACCENTS = [  # (hue_from, hue_to, base)
-    (0, 15, P('#9b2a1f')),     # red -> brick
-    (15, 40, P('#8a3b12')),    # orange -> burnt
-    (40, 70, P('#8a6326')),    # amber -> caramel
-    (70, 165, P('#4d5a34')),   # green -> olive (sage family)
-    (165, 200, P('#5b6356')),  # cyan/teal -> deep sage
-    (200, 265, P('#590907')),  # blue/indigo -> maroon (primary)
-    (265, 300, P('#6a2b45')),  # purple -> plum
-    (300, 345, P('#8e2f45')),  # pink -> rose wine
-    (345, 361, P('#9b2a1f')),
-]
-def accent_base(h):
-    for a, b, c in ACCENTS:
-        if a <= h < b: return c
-    return ACCENTS[0][2]
+#            hue range      light (text/tint)    deep (solid bg)
+ACCENTS = [(0, 15,   P('#f0937f'), P('#7a140e')),   # red -> coral / brick
+           (15, 40,  P('#e6ab7c'), P('#7a3510')),   # orange
+           (40, 70,  P('#e6c88f'), P('#6e5320')),   # amber -> restrained gold
+           (70, 165, P('#c2d09f'), P('#4d5a34')),   # green -> light sage / olive
+           (165, 200, P('#bcc8b6'), P('#4a5649')),  # cyan
+           (200, 265, P('#ecbda6'), P('#590907')),  # blue/indigo -> peach / maroon (primary)
+           (265, 300, P('#d9adbd'), P('#5a2340')),  # purple
+           (300, 345, P('#eaa1b0'), P('#74203a')),  # pink
+           (345, 361, P('#f0937f'), P('#7a140e'))]
+def accent(h):
+    for a, b, lt, dp in ACCENTS:
+        if a <= h < b: return lt, dp
+    return ACCENTS[0][2], ACCENTS[0][3]
 
 def classify(rgb):
     r, g, b = [v / 255 for v in rgb]
@@ -58,47 +58,36 @@ def map_color(rgb, a, ctx):
         ctx = 'text' if (neutral and l >= 0.5) else 'bg'
     if neutral:
         if ctx == 'text':
-            if a < 1 and l > 0.85: return fmt(P('#2a0504'), max(a, 0.5))
             return fmt(ramp(TEXT_RAMP, l), a)
-        if ctx in ('border',):
-            if a < 1 and l > 0.85: return fmt(MAROON, min(0.32, max(0.10, a * 2.2)))
-            if l < 0.12: return fmt(MAROON, 0.10 if a >= 1 else max(0.06, a * 0.25))
-            return fmt(MAROON, min(0.40, 0.08 + l * 0.6) * (a if a < 1 else 1) if a < 1 else min(0.40, 0.08 + l * 0.6))
+        if ctx == 'border':
+            if l < 0.12: return fmt(OFF, 0.07 if a >= 1 else max(0.05, a * 0.5))
+            return fmt(OFF, min(0.35, (0.04 + l * 0.5) * (a if a < 1 else 1)))
         if ctx == 'shadow':
-            return fmt(MAROON, min(0.28, a * 0.35) if l < 0.3 else min(0.25, a * 0.6))
-        # bg
+            return fmt(P('#141410'), min(0.6, a))
         if a < 1:
-            if l > 0.85: return fmt(P('#fffaf2'), min(0.9, 0.35 + a * 2))
-            if max(rgb) < 10: return fmt(MAROON, min(0.35, a * 0.4))  # pure-black backdrops
-            if l < 0.12: return fmt(P('#fbf4ea'), min(0.94, max(0.7, a)))  # dark glass panels -> cream glass
-            return fmt(ramp(BG_RAMP, l), min(0.95, a + 0.15))
+            if l > 0.85: return fmt(OFF, min(0.22, a * 1.6))       # white glass -> off-white glass
+            if max(rgb) < 10: return fmt(P('#141410'), a)            # backdrops
+            return fmt(ramp(BG_RAMP, l), max(a, 0.82))
         return fmt(ramp(BG_RAMP, l), a)
-    base = accent_base(h)
-    if ctx == 'text':
-        return fmt(base if l > 0.35 else mix(base, P('#f8eedf'), 0.0), a)
-    if ctx == 'shadow':
-        return fmt(base, min(0.3, a * 0.6))
-    if ctx == 'border':
-        return fmt(base, a if a < 1 else 0.85)
-    # bg
-    if a >= 1 and l > 0.72:  # pastel solid background -> soft tint
-        return fmt(base, 0.16)
-    return fmt(base, a)
+    lt, dp = accent(h)
+    if ctx == 'text': return fmt(lt, a)
+    if ctx == 'shadow': return fmt(dp, min(0.45, a * 0.8))
+    if ctx == 'border': return fmt(lt, min(0.6, a if a < 1 else 0.55))
+    if a < 0.5: return fmt(lt, min(0.22, a * 1.4))                    # tints
+    if l > 0.72: return fmt(lt, 0.16)
+    return fmt(dp, a)
 
 def shade(css):
-    """darker partner for gradient"""
     m = re.match(r'#([0-9a-f]{6})$', css)
-    if m:
-        c = P(css); return hx(mix(c, (0, 0, 0), 0.22)) if sum(c) < 420 else hx(mix(c, P('#d9bf9b'), 0.45))
+    if m: return hx(mix(P(css), (10, 10, 8), 0.28))
     m = re.match(r'rgba\((\d+),(\d+),(\d+),([\d.]+)\)', css)
     if m:
-        c = tuple(int(x) for x in m.groups()[:3]); a = float(m.group(4))
-        return fmt(mix(c, (0, 0, 0), 0.2) if sum(c) < 420 else mix(c, P('#d9bf9b'), 0.45), a)
+        c = tuple(int(x) for x in m.groups()[:3]); return fmt(mix(c, (10, 10, 8), 0.25), float(m.group(4)))
     return css
 def light(css):
     m = re.match(r'#([0-9a-f]{6})$', css)
     if m:
-        c = P(css); return hx(mix(c, P('#c4483b'), 0.28)) if sum(c) < 420 else hx(mix(c, (255, 252, 246), 0.35))
+        c = P(css); return hx(mix(c, (255, 245, 230), 0.10)) if sum(c) < 300 else hx(mix(c, (255, 250, 242), 0.25))
     return css
 
 COL_RE = re.compile(r'(?<![\w&])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3,4})\b(?!-)|rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*(?:,\s*[\d.]+%?\s*)?\)|\b(?:white|black)\b(?![-\w])')
@@ -154,7 +143,7 @@ def gradientize(val, kind):
         return val  # translucent tint: keep
     imp = ' !important' if m.group(2) else ''
     if kind == 'page':
-        return 'linear-gradient(160deg, #f1e3cf 0%%, #e8d2b5 45%%, #dcc19c 100%%)%s' % imp
+        return 'linear-gradient(160deg, #6b6d62 0%%, #5a5c52 45%%, #45473e 100%%)%s' % imp
     return 'linear-gradient(135deg, %s 0%%, %s 100%%)%s' % (light(c), shade(c), imp)
 
 def process_css(css, varctx=None, is_root_style=True):
@@ -195,7 +184,7 @@ def process_css(css, varctx=None, is_root_style=True):
     def textgrad(m):
         body = m.group(2)
         if re.search(r'background-clip\s*:\s*text', body) or re.search(r'text-fill-color\s*:\s*transparent', body):
-            body = re.sub(r'(?<![\w-])background(-image)?\s*:[^;{}]*', 'background:linear-gradient(120deg,#590907 0%,#8c2a1d 50%,#6b6e5f 100%)', body)
+            body = re.sub(r'(?<![\w-])background(-image)?\s*:[^;{}]*', 'background:linear-gradient(170deg,#fbf3e7 0%,#e8d2b5 55%,#c9a87e 100%)', body)
         return m.group(1) + '{' + body + '}'
     res = re.sub(r'([^{}]+)\{([^{}]*)\}', textgrad, res)
     # background-color: var(--gradvar) -> background:

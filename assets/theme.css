@@ -1,48 +1,73 @@
 /* ============================================================
-   FOX · PT Hub — shared theme layer
-   Palette: Maroon #590907 · Beige #e8d2b5 · Sage #a5a79b
+   FOX · PT Hub — shared theme layer (v2: olive / off-white / maroon)
+   Palette: Olive #a5a79b · Off-white #e8d2b5 · Maroon #590907
    Loaded by every page after its own styles.
    ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Lalezar&display=swap');
+
 :root {
-  --fx-maroon: #590907;
-  --fx-beige: #e8d2b5;
-  --fx-sage: #a5a79b;
-  --fx-ink: #2a0504;
-  --fx-grad-maroon: linear-gradient(135deg, #8a2a1f 0%, #590907 55%, #3a0504 100%);
-  --fx-grad-beige: linear-gradient(160deg, #f3e7d6 0%, #e8d2b5 50%, #dcc19c 100%);
-  --fx-grad-sage: linear-gradient(135deg, #c3c4b8 0%, #a5a79b 55%, #85877b 100%);
-  --fx-grad-card: linear-gradient(150deg, #fbf5ec 0%, #f3e6d4 100%);
+  --fx-olive: #a5a79b; --fx-olive-deep: #5c5e54; --fx-char: #2b2c26;
+  --fx-off: #e8d2b5; --fx-maroon: #590907;
+  --fx-grad-maroon: linear-gradient(135deg, #7c150f 0%, #590907 50%, #3a0504 100%);
+  --fx-grad-off: linear-gradient(170deg, #fbf3e7 0%, #e8d2b5 55%, #c9a87e 100%);
+  --fx-grad-olive: linear-gradient(160deg, #6b6d62 0%, #5a5c52 45%, #45473e 100%);
+  --fx-ease: cubic-bezier(.16, 1, .3, 1);
 }
-html { background: #e8d2b5; }
+html { background: #5a5c52; }
 body { background-attachment: fixed !important; }
-::selection { background: rgba(89, 9, 7, 0.85); color: #f6ead8; }
+::selection { background: #590907; color: #f4e7d4; }
 * { scrollbar-color: #a5a79b transparent; }
 ::-webkit-scrollbar { width: 7px; height: 7px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--fx-grad-sage); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #a5a79b, #590907); border-radius: 10px; }
+
+/* poster headlines (Anton for Latin, Lalezar for Arabic) */
+h1 {
+  font-family: 'Anton', 'Lalezar', Impact, sans-serif !important;
+  font-weight: 400 !important; letter-spacing: .5px !important; text-transform: uppercase;
+  line-height: 1.05 !important;
+  background: var(--fx-grad-off) !important; -webkit-background-clip: text !important; background-clip: text !important;
+  -webkit-text-fill-color: transparent !important; color: transparent !important;
+  text-shadow: none !important;
+  filter: drop-shadow(.06em .08em 0 rgba(40, 4, 3, .6));
+  animation: fxRise 1s var(--fx-ease) both;
+}
+@keyframes fxRise { from { opacity: 0; transform: translateY(24px); } }
+
+/* signature diagonal maroon band behind the page header */
+.fx-band { position: absolute; top: 0; left: 0; right: 0; height: 620px; overflow: hidden; pointer-events: none; z-index: 0; }
+.fx-band::before { content: ''; position: absolute; top: -10%; bottom: -10%; left: 62%; width: min(26vw, 340px);
+  background: linear-gradient(180deg, #6e100b 0%, #590907 45%, rgba(58, 5, 4, 0) 100%);
+  transform: skewX(-20deg); transform-origin: bottom; animation: fxBand 1.2s var(--fx-ease) .05s both; opacity: .9; }
+.fx-band::after { content: ''; position: absolute; inset: 0;
+  background: radial-gradient(70% 60% at 15% 0%, rgba(232, 210, 181, .10), transparent 70%); }
+@keyframes fxBand { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+body > header, body > .header, body > main, body > nav, body > .nav, body > .container, body > .wrapper, body > .app { position: relative; z-index: 1; }
 
 /* floating "back to hub" pill */
 .fx-home {
   position: fixed; left: 14px; bottom: 14px; z-index: 9999;
   display: inline-flex; align-items: center; gap: 6px;
   padding: 8px 14px 8px 12px; border-radius: 100px;
-  background: var(--fx-grad-maroon); color: #f6ead8 !important;
-  font: 700 12.5px/1 'Cairo', system-ui, sans-serif; text-decoration: none;
-  box-shadow: 0 6px 18px rgba(89, 9, 7, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: transform .2s, box-shadow .2s; direction: rtl;
+  background: var(--fx-grad-maroon); color: #f4e7d4 !important;
+  font: 400 14px/1 'Anton', 'Cairo', Impact, sans-serif; letter-spacing: 1.5px; text-decoration: none;
+  box-shadow: 0 10px 24px -8px rgba(20, 2, 1, .6), inset 0 0 0 1px rgba(232, 210, 181, .18);
+  transition: transform .5s var(--fx-ease), box-shadow .5s var(--fx-ease); direction: ltr;
 }
-.fx-home:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(89, 9, 7, 0.35); }
+.fx-home:hover { transform: translateY(-3px); box-shadow: 0 16px 30px -10px rgba(20, 2, 1, .7), inset 0 0 0 1px rgba(232, 210, 181, .3); }
 .fx-home svg { width: 14px; height: 14px; }
-@media print { .fx-home { display: none; } }
 .fx-home.fx-raised { bottom: 86px; }
+@media print { .fx-home, .fx-band { display: none; } }
 
-/* scrollable tab bars: centre when they fit, scroll fully when they don't
-   (justify-content:center + overflow cuts off the start of the row) */
+/* scrollable tab bars: centre when they fit, scroll fully when they don't */
 .nav { justify-content: flex-start !important; scroll-behavior: smooth; }
 .nav > :first-child { margin-inline-start: auto !important; }
 .nav > :last-child { margin-inline-end: auto !important; }
 @media (hover: hover) {
-  .nav { scrollbar-width: thin !important; scrollbar-color: rgba(89, 9, 7, 0.35) transparent; }
+  .nav { scrollbar-width: thin !important; scrollbar-color: rgba(232, 210, 181, .35) transparent; }
   .nav::-webkit-scrollbar { display: block !important; height: 5px; }
   .nav::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #a5a79b, #590907); border-radius: 10px; }
 }
+@media (max-width: 640px) { .fx-band::before { left: 55%; width: 40vw; } }
+@media (prefers-reduced-motion: reduce) { h1, .fx-band::before { animation: none !important; } }
+h1::before, h1::after { text-shadow: none !important; }
