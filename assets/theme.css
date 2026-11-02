@@ -35,3 +35,14 @@ body { background-attachment: fixed !important; }
 .fx-home svg { width: 14px; height: 14px; }
 @media print { .fx-home { display: none; } }
 .fx-home.fx-raised { bottom: 86px; }
+
+/* scrollable tab bars: centre when they fit, scroll fully when they don't
+   (justify-content:center + overflow cuts off the start of the row) */
+.nav { justify-content: flex-start !important; scroll-behavior: smooth; }
+.nav > :first-child { margin-inline-start: auto !important; }
+.nav > :last-child { margin-inline-end: auto !important; }
+@media (hover: hover) {
+  .nav { scrollbar-width: thin !important; scrollbar-color: rgba(89, 9, 7, 0.35) transparent; }
+  .nav::-webkit-scrollbar { display: block !important; height: 5px; }
+  .nav::-webkit-scrollbar-thumb { background: linear-gradient(90deg, #a5a79b, #590907); border-radius: 10px; }
+}

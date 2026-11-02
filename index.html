@@ -171,14 +171,14 @@ const CURRENT = 3;
 const YEARS = [
   { n: 1, name: 'السنة الأولى', short: 'أولى', terms: [
     ['Human Anatomy I', 'Physiology I', 'Histology I', 'Psychology of Handicapped', 'English', 'Human Rights and Citizenship', 'Biophysics'],
-    ['Human Anatomy II', 'Physiology II', 'Biochemistry I', 'Histology II', 'Pathology I', 'Kinesiology', 'Molecular Biology'] ] },
+    [{ c: 'Human Anatomy II', tag: 'Lower Limb', links: [
+        ['mid', 'ميدتيرم وشفوي', '13 سؤال مقالي + فلاش كاردز', 'year-1/anatomy/lower-limb.html']] }, 'Physiology II', 'Biochemistry I', 'Histology II', 'Pathology I', 'Kinesiology', 'Molecular Biology'] ] },
   { n: 2, name: 'السنة التانية', short: 'تانية', terms: [
     ['Neuroanatomy', 'Physiology III', 'Biochemistry II', 'Tests and Measurements I', 'Hydrotherapy', 'Biomechanics I',
       { c: 'Electrotherapy I', links: [['mid', 'ميدتيرم', '156 MCQ + 30 Short notes', 'year-2/electrotherapy/midterm.html']] },
       'Public Health'],
     [{ c: 'Human Anatomy III', links: [
-        ['rev', 'Anatomy 1', 'Liver, Heart, Mediastinum', 'year-2/anatomy/revision.html'],
-        ['mid', 'Anatomy 2 — Lower Limb', '13 سؤال مقالي', 'year-2/anatomy/lower-limb.html']] },
+        ['rev', 'Anatomy 1', 'Liver, Heart, Mediastinum', 'year-2/anatomy/revision.html']] },
      { c: 'Exercise Physiology', links: [
         ['fin', 'فاينال', '63 سؤال', 'year-2/exercise-physiology/final.html'],
         ['oral', 'شفوي', 'أسئلة PT11', 'year-2/exercise-physiology/oral.html'],
@@ -243,7 +243,7 @@ function renderYear(n) {
   const withContent = y.terms.flat().map(norm).filter(c => c.links).length;
   document.getElementById('year-title').textContent = y.name + (n === CURRENT ? ' — السنة الحالية' : '');
   document.getElementById('year-sum').textContent = pages
-    ? `${withContent} مواد عليها أسئلة، و${pages} صفحة امتحانات`
+    ? `${withContent === 1 ? 'مادة واحدة عليها' : withContent + ' مواد عليها'} أسئلة، و${pages === 1 ? 'صفحة امتحانات واحدة' : pages + ' صفحة امتحانات'}`
     : 'لسه مفيش امتحانات مرفوعة للسنة دي — دي المواد اللي هتدرسها.';
   const term = (list, i) => `<section class="term"><h3>${i ? 'الترم التاني' : 'الترم الأول'}<small>${list.length} مواد</small></h3>` +
     list.map(norm).sort((a, b) => !!b.links - !!a.links).map(c => `
