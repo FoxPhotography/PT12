@@ -1,0 +1,2363 @@
+# -*- coding: utf-8 -*-
+"""
+High-Yield Midterm Master Builder for Anatomy 2 (Lower Limb)
+Focused strictly on the TOP 13 PREDICTED 10-MARK ESSAY QUESTIONS with model answers for full marks (10/10),
+plus comparison tables, OSPE spotting stations, and interactive flashcards.
+"""
+
+import os
+
+def generate_midterm_html():
+    return """<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0, post-check=0, pre-check=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+<title>Anatomy 2 (Lower Limb) — Top Predicted Midterm Essay Questions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --bg2: #0f1218;
+    --bg3: #141820;
+    --card: #13171f;
+    --card2: #1a1f2a;
+    --border: #1e2535;
+    --border2: #2a3248;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --dim: #4a5568;
+    --blue: #3b82f6;
+    --blue2: #1d4ed8;
+    --cyan: #06b6d4;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --purple: #8b5cf6;
+    --pink: #ec4899;
+    --orange: #f97316;
+    --glow-blue: 0 0 20px rgba(59,130,246,0.25);
+    --glow-cyan: 0 0 20px rgba(6,182,212,0.2);
+    --glow-green: 0 0 20px rgba(16,185,129,0.2);
+    --glow-purple: 0 0 20px rgba(139,92,246,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(139,92,246,0.08) 0%, rgba(6,182,212,0.05) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    height: 4px;
+    background: var(--bg3);
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green), var(--purple));
+    background-size: 200% 100%;
+    animation: gradientShift 3s ease infinite;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+    border-radius: 0 2px 2px 0;
+  }
+  @keyframes gradientShift {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .progress-badge {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 201;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cyan);
+    font-family: 'JetBrains Mono', monospace;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+
+  /* BACK BUTTON */
+  .back-btn {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 201;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+  }
+  .back-btn:hover { color: var(--text); border-color: var(--cyan); background: var(--card2); }
+
+  /* FLOATING BUTTONS */
+  .fab-group {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  .fab {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    border: 1px solid var(--border2);
+    background: var(--card);
+    color: var(--muted);
+    font-size: 19px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .fab:hover { color: var(--text); border-color: var(--cyan); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 60px 16px 30px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(139,92,246,0.08) 0%, rgba(6,182,212,0.03) 60%, transparent 100%);
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.35);
+    color: var(--yellow);
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .header-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--yellow);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-size: clamp(22px, 4.5vw, 38px);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    animation: fadeDown 0.6s 0.1s ease both;
+    background: linear-gradient(135deg, #fff 0%, #cbd5e1 50%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    margin-top: 8px;
+    font-size: 13.5px;
+    animation: fadeDown 0.6s 0.2s ease both;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .exam-banner {
+    background: linear-gradient(135deg, rgba(239,68,68,0.1) 0%, rgba(245,158,11,0.08) 100%);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 18px auto 0;
+    padding: 12px 18px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #fde68a;
+    text-align: center;
+    direction: rtl;
+  }
+  .exam-banner strong { color: #fff; }
+
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    animation: fadeDown 0.6s 0.3s ease both;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--cyan);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .stat-label {
+    font-size: 10.5px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* NAVIGATION BAR */
+  .nav-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 12, 16, 0.95);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  .nav-container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+  }
+
+  .nav-scroll-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .nav-scroll-btn:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    background: var(--card2);
+  }
+
+  .nav-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border2) transparent;
+    padding: 4px 2px 6px;
+    scroll-behavior: smooth;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
+  }
+
+  .nav-scroll::-webkit-scrollbar { height: 4px; }
+  .nav-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
+  .nav-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+  .nav-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Cairo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .nav-btn .num-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--dim);
+    padding: 1px 5px;
+    border-radius: 4px;
+    transition: all 0.25s;
+  }
+
+  .nav-btn:hover {
+    color: var(--text);
+    border-color: rgba(6,182,212,0.4);
+    background: rgba(6,182,212,0.06);
+    transform: translateY(-1px);
+  }
+
+  .nav-btn:hover .num-badge { color: var(--cyan); border-color: rgba(6,182,212,0.3); }
+
+  .nav-btn.active {
+    background: linear-gradient(135deg, rgba(6,182,212,0.2) 0%, rgba(59,130,246,0.12) 100%);
+    border-color: var(--cyan);
+    color: #fff;
+    box-shadow: 0 0 14px rgba(6,182,212,0.25);
+    font-weight: 700;
+  }
+
+  .nav-btn.active .num-badge {
+    background: rgba(6,182,212,0.25);
+    border-color: var(--cyan);
+    color: #67e8f9;
+  }
+
+  .nav-btn.special {
+    background: linear-gradient(135deg, rgba(236,72,153,0.12) 0%, rgba(139,92,246,0.12) 100%);
+    border-color: rgba(236,72,153,0.35);
+    color: #f472b6;
+    font-weight: 700;
+  }
+  .nav-btn.special:hover {
+    border-color: #ec4899;
+    color: #fbcfe8;
+    box-shadow: 0 0 14px rgba(236,72,153,0.3);
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px 80px;
+  }
+
+  .section { display: none; animation: fadeIn 0.4s ease; }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION HEADERS */
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 50px;
+    background: var(--bg);
+    z-index: 10;
+    padding-top: 8px;
+  }
+
+  .sec-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .ic-blue { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); }
+  .ic-cyan { background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.3); }
+  .ic-green { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); }
+  .ic-yellow { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); }
+  .ic-red { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); }
+  .ic-purple { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); }
+
+  .sec-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.35;
+  }
+
+  /* Section complete button */
+  .sec-complete-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 5px 11px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sec-complete-btn:hover { border-color: var(--green); color: var(--green); }
+  .sec-complete-btn.completed {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.4);
+    color: var(--green);
+  }
+
+  /* 10-MARK ESSAY QUESTION CARDS */
+  .essay-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 18px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--cyan);
+  }
+  .essay-card:hover {
+    border-color: var(--border2);
+    border-left-color: var(--cyan);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  }
+  .essay-card.open {
+    border-color: rgba(6,182,212,0.35);
+    border-left-color: var(--cyan);
+  }
+
+  .essay-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px 18px;
+    cursor: pointer;
+    background: var(--card);
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .essay-header:hover { background: var(--card2); }
+
+  .essay-q-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--yellow);
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 6px;
+    padding: 3px 8px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .essay-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.5;
+  }
+
+  .essay-badges {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .badge-10m {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 800;
+    color: #f472b6;
+    background: rgba(236,72,153,0.12);
+    border: 1px solid rgba(236,72,153,0.3);
+    padding: 2px 7px;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+  }
+
+  .essay-toggle-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 10px;
+    transition: all 0.25s;
+  }
+  .essay-card.open .essay-toggle-icon {
+    background: rgba(6,182,212,0.15);
+    border-color: var(--cyan);
+    color: var(--cyan);
+    transform: rotate(180deg);
+  }
+
+  .essay-body {
+    display: none;
+    padding: 16px 20px 20px;
+    border-top: 1px solid var(--border);
+    background: rgba(15,18,24,0.6);
+  }
+  .essay-card.open .essay-body {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  /* CRITERIA POINT HEADERS */
+  .ans-block {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .ans-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+  .ans-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .ans-title::before {
+    content: '▪';
+    color: var(--yellow);
+    font-size: 14px;
+  }
+
+  .ans-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 10px;
+  }
+  .ans-list li {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .ans-list li::before {
+    content: '▸';
+    color: var(--blue);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 11px;
+  }
+  .ans-list strong { color: #fff; }
+
+  /* HIGHLIGHT BOXES */
+  .highlight-box {
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+  .highlight-box.blue { background: rgba(59,130,246,0.08); border-left: 3px solid var(--blue); border: 1px solid rgba(59,130,246,0.2); }
+  .highlight-box.green { background: rgba(16,185,129,0.08); border-left: 3px solid var(--green); border: 1px solid rgba(16,185,129,0.2); }
+  .highlight-box.yellow { background: rgba(245,158,11,0.08); border-left: 3px solid var(--yellow); border: 1px solid rgba(245,158,11,0.2); }
+  .highlight-box.red { background: rgba(239,68,68,0.08); border-left: 3px solid var(--red); border: 1px solid rgba(239,68,68,0.2); }
+  .highlight-box.purple { background: rgba(139,92,246,0.08); border-left: 3px solid var(--purple); border: 1px solid rgba(139,92,246,0.2); }
+
+  .hb-title {
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .blue .hb-title { color: var(--blue); }
+  .green .hb-title { color: var(--green); }
+  .yellow .hb-title { color: var(--yellow); }
+  .red .hb-title { color: var(--red); }
+  .purple .hb-title { color: var(--purple); }
+
+  /* NERVE & VESSEL TAGS */
+  .nerve-tag {
+    background: rgba(139,92,246,0.12);
+    border: 1px solid rgba(139,92,246,0.3);
+    color: #c4b5fd;
+    font-size: 11.5px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    display: inline-block;
+  }
+  .artery-tag {
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #fca5a5;
+    font-size: 11.5px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-weight: 600;
+    display: inline-block;
+  }
+
+  /* COMPARISON TABLES */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin: 8px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .compare-table th {
+    padding: 9px 12px;
+    font-weight: 700;
+    font-size: 11.5px;
+    text-align: center;
+    background: var(--bg3);
+    border-bottom: 2px solid var(--border2);
+  }
+  .compare-table th:first-child { text-align: left; color: var(--muted); }
+  .compare-table th:nth-child(2) { color: var(--cyan); border-bottom-color: var(--cyan); }
+  .compare-table th:nth-child(3) { color: var(--green); border-bottom-color: var(--green); }
+  .compare-table th:nth-child(4) { color: var(--purple); border-bottom-color: var(--purple); }
+
+  .compare-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .compare-table td:first-child { font-weight: 700; color: var(--yellow); font-size: 11.5px; }
+  .compare-table td:nth-child(2) { background: rgba(6,182,212,0.02); }
+  .compare-table td:nth-child(3) { background: rgba(16,185,129,0.02); }
+  .compare-table td:nth-child(4) { background: rgba(139,92,246,0.02); }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+  /* SEARCH */
+  .search-wrap {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 13.5px;
+    padding: 11px 16px 11px 42px;
+    outline: none;
+    transition: all 0.3s;
+  }
+  .search-input:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(6,182,212,0.15); }
+  .search-input::placeholder { color: var(--dim); }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dim);
+    font-size: 15px;
+    pointer-events: none;
+  }
+  .search-results-info {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    display: none;
+  }
+  .search-results-info span { color: var(--cyan); font-weight: 700; }
+
+  mark.search-hl {
+    background: rgba(6,182,212,0.35);
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  /* ARABIC TRANSLATION BUTTON & PANEL */
+  .translate-btn {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: var(--green);
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .translate-btn:hover { background: rgba(16,185,129,0.2); transform: translateY(-1px); }
+  .translate-btn.active {
+    background: rgba(16,185,129,0.25);
+    border-color: var(--green);
+    color: #6ee7b7;
+  }
+
+  .arabic-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    opacity: 0;
+    background: linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(6,182,212,0.04) 100%);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    direction: rtl;
+    text-align: right;
+    padding: 0 16px;
+  }
+  .arabic-panel.active {
+    max-height: 800px;
+    opacity: 1;
+    padding: 14px 16px;
+    overflow-y: auto;
+  }
+  .arabic-panel-title {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .arabic-panel p {
+    font-size: 12.5px;
+    color: #b8c5d4;
+    line-height: 1.85;
+    margin-bottom: 6px;
+  }
+  .arabic-panel strong { color: #6ee7b7; }
+
+  /* FLASHCARD OVERLAY */
+  .flashcard-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(10,12,16,0.97);
+    backdrop-filter: blur(20px);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .flashcard-overlay.active { display: flex; }
+
+  .flashcard-header {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  .flashcard-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .flashcard-close {
+    position: absolute;
+    right: 24px;
+    top: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .flashcard-close:hover { color: var(--red); border-color: var(--red); }
+
+  .flashcard-scene {
+    width: 100%;
+    max-width: 560px;
+    height: 300px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .flashcard-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .flashcard-card.flipped { transform: rotateY(180deg); }
+
+  .flashcard-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--border2);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .flashcard-front { background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%); }
+  .flashcard-back {
+    background: linear-gradient(135deg, rgba(6,182,212,0.08) 0%, rgba(139,92,246,0.08) 100%);
+    border-color: rgba(6,182,212,0.3);
+    transform: rotateY(180deg);
+  }
+  .flashcard-label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-weight: 700; }
+  .flashcard-front .flashcard-label { color: var(--cyan); }
+  .flashcard-back .flashcard-label { color: var(--green); }
+  .flashcard-text { font-size: 16px; font-weight: 600; line-height: 1.6; color: var(--text); }
+  .flashcard-back .flashcard-text { color: #6ee7b7; font-size: 14.5px; }
+  .flashcard-hint { position: absolute; bottom: 12px; font-size: 11px; color: var(--dim); }
+  .flashcard-section-tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 9.5px;
+    background: rgba(139,92,246,0.12);
+    border: 1px solid rgba(139,92,246,0.3);
+    color: var(--purple);
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .flashcard-nav { display: flex; gap: 12px; margin-top: 20px; }
+  .flashcard-nav button {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 8px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .flashcard-nav button:hover { color: var(--text); border-color: var(--cyan); }
+
+  /* QUICK REF SIDEBAR */
+  .quickref-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .quickref-overlay.active { opacity: 1; pointer-events: all; }
+
+  .quickref-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    bottom: 0;
+    width: 380px;
+    max-width: 88vw;
+    z-index: 251;
+    background: var(--bg2);
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 20px;
+  }
+  .quickref-sidebar.active { right: 0; }
+  .qr-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .qr-title { font-size: 15px; font-weight: 800; color: var(--text); }
+  .qr-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .qr-section { margin-bottom: 14px; }
+  .qr-section-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+  }
+  .qr-section-title.purple { background: rgba(139,92,246,0.12); color: var(--purple); }
+  .qr-section-title.cyan { background: rgba(6,182,212,0.12); color: var(--cyan); }
+  .qr-section-title.red { background: rgba(239,68,68,0.12); color: var(--red); }
+  .qr-items { list-style: none; display: flex; flex-direction: column; gap: 4px; padding-left: 2px; }
+  .qr-items li { font-size: 12px; color: var(--muted); line-height: 1.45; }
+  .qr-items strong { color: var(--text); }
+
+  /* CONFETTI */
+  .confetti-container { position: fixed; inset: 0; pointer-events: none; z-index: 500; overflow: hidden; }
+  .confetti-piece { position: absolute; width: 7px; height: 7px; border-radius: 2px; animation: confettiFall 1.5s ease-out forwards; }
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg) scale(0); opacity: 0; }
+  }
+
+  /* PRINT */
+  @media print {
+    body::before, body::after, .nav-wrapper, .progress-bar-container, .progress-badge,
+    .back-btn, .fab-group, .search-wrap, .sec-complete-btn, .translate-btn,
+    .arabic-panel, .essay-toggle-icon, .flashcard-overlay, .quickref-overlay, .quickref-sidebar { display: none !important; }
+    .section { display: block !important; page-break-inside: avoid; }
+    .essay-card { border-color: #ccc !important; background: #fafafa !important; break-inside: avoid; }
+    .essay-body { display: block !important; background: #fff !important; color: #000 !important; }
+    body { background: #fff; color: #000; }
+    h1 { -webkit-text-fill-color: #000; color: #000; }
+    .sec-title { color: #000; }
+    .ans-title { color: #333; }
+    .ans-list li { color: #000; }
+  }
+
+  @media (max-width: 640px) {
+    .stats-bar { gap: 14px; }
+    .nav-btn { padding: 6px 10px; font-size: 11px; }
+    header { padding: 46px 12px 20px; }
+    .fab-group { bottom: 16px; right: 16px; }
+    .fab { width: 40px; height: 40px; font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar-container"><div class="progress-bar-fill" id="progressFill"></div></div>
+<div class="progress-badge" id="progressBadge">0/6</div>
+
+<!-- Back Button -->
+<a href="../index.html" class="back-btn">← الرئيسية</a>
+
+<!-- Floating Buttons -->
+<div class="fab-group">
+  <button class="fab" onclick="toggleQuickRef()" title="مرجع سريع (Q)">📌</button>
+  <button class="fab" onclick="window.print()" title="طباعة / تصدير PDF">🖨️</button>
+</div>
+
+<header>
+  <div class="header-badge">🎯 Top Predicted Midterm Essay Bank</div>
+  <h1>Anatomy 2 (Lower Limb) — Midterm Guide</h1>
+  <div class="subtitle">13 High-Yield 10-Mark Questions with Concise Model Answers (10/10 Guaranteed)</div>
+
+  <div class="exam-banner">
+    ⚠️ <strong>نظام امتحان الميدتيرم:</strong> الامتحان عبارة عن <strong>سؤالين مقالي فقط (كل سؤال بـ 10 درجات = 20 درجة إجمالية)</strong>. تم حصر أهم 13 سؤال مرشح بنسبة 100% لتغطية جميع التحديدات (Thigh + Gluteal + Nerves) بإجابات نموذجية ومختصرة بالنقاط والكلمات المفتاحية اللي المصحح بيبحث عنها.
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">13</div><div class="stat-label">Top Predicted Questions</div></div>
+    <div class="stat"><div class="stat-num">10/10</div><div class="stat-label">Model Scoring Scheme</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Comparison Tables</div></div>
+    <div class="stat"><div class="stat-num">20</div><div class="stat-label">Rapid Flashcards</div></div>
+  </div>
+</header>
+
+<!-- NAVIGATION BAR -->
+<div class="nav-wrapper">
+  <div class="nav-container">
+    <button class="nav-scroll-btn" onclick="scrollNav(-180)" title="تمرير لليسار">◀</button>
+    <div class="nav-scroll" id="navScroll">
+      <button class="nav-btn active" onclick="showSection('gluteal', this)">
+        <span class="num-badge">1</span> 🍑 Gluteal (3 Qs)
+      </button>
+      <button class="nav-btn" onclick="showSection('femoral-triangle', this)">
+        <span class="num-badge">2</span> 📐 Femoral & Canal (2 Qs)
+      </button>
+      <button class="nav-btn" onclick="showSection('ant-med-thigh', this)">
+        <span class="num-badge">3</span> 🦵 Ant. & Med. Thigh (2 Qs)
+      </button>
+      <button class="nav-btn" onclick="showSection('post-thigh-popliteal', this)">
+        <span class="num-badge">4</span> 🏃 Hamstrings & Popliteal (2 Qs)
+      </button>
+      <button class="nav-btn" onclick="showSection('nerves', this)">
+        <span class="num-badge">5</span> ⚡ Lower Limb Nerves (4 Qs)
+      </button>
+      <button class="nav-btn" onclick="showSection('tables', this)">
+        <span class="num-badge">6</span> 📊 Comparison Tables
+      </button>
+      <button class="nav-btn special" onclick="openFlashcards()">
+        🧠 اختبر نفسك (Flashcards)
+      </button>
+    </div>
+    <button class="nav-scroll-btn" onclick="scrollNav(180)" title="تمرير لليمين">▶</button>
+  </div>
+</div>
+
+<main>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <span class="search-icon">🔍</span>
+  <input class="search-input" id="searchInput" placeholder="ابحث في الأسئلة المقالية المرشحة..." oninput="searchAll(this.value)">
+  <div class="search-results-info" id="searchInfo">تم العثور على <span id="searchCount">0</span> نتيجة</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: GLUTEAL REGION (3 Top Questions)                  -->
+<!-- ============================================================ -->
+<div class="section active" id="gluteal">
+  <div class="sec-header">
+    <div class="sec-icon ic-purple">🍑</div>
+    <div class="sec-title">1. Gluteal Region (Top 3 Predicted 10-Mark Questions)</div>
+    <button class="translate-btn" onclick="toggleTranslation('gluteal', this)">🌐 <span class="btn-label">عربي</span></button>
+    <button class="sec-complete-btn" data-section="gluteal" onclick="toggleComplete('gluteal', this)">☐ تم المذاكرة</button>
+  </div>
+
+  <div class="arabic-panel" id="arabic-gluteal">
+    <div class="arabic-panel-title">💡 ملخص سريع بالعامية — منطقة الإلية (Gluteal Region):</div>
+    <p>منطقة الإلية فيها ٣ أسئلة مقالي أساسية للميدتيرم: <strong>١) عضلة Gluteus Maximus</strong> (أقوى Extensor لمفصل الحوض وبتتغذى بـ Inferior Gluteal N)، <strong>٢) عضلة Gluteus Medius & Minimus وعلامة Trendelenburg</strong> (أهم مثبت للحوض أثناء المشي، لو انشل العصب Superior Gluteal يقع الحوض في الناحية العكسية)، <strong>٣) الثقوب الوركية وحقن العضل الآمن</strong> (Piriformis هي المعلم، والحقن الآمن في Upper Outer Quadrant عشان نحمي العصب الوركي Sciatic N).</p>
+  </div>
+
+  <!-- Q1 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q1</span>
+      <div class="essay-title">Describe the Gluteus Maximus Muscle (Origin, Insertion, Nerve Supply, Actions, Bursae & Clinical Testing).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Origin & Insertion (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Origin:</strong> Outer surface of ilium (behind posterior gluteal line), posterior surface of sacrum and coccyx, and <strong>sacrotuberous ligament</strong>.</li>
+          <li><strong>Insertion:</strong>
+            <br>• <strong>Upper 3/4 (superficial fibers):</strong> Inserts into the <strong>Iliotibial tract (ITT)</strong>.
+            <br>• <strong>Lower 1/4 (deep fibers):</strong> Inserts into the <strong>Gluteal tuberosity of the femur</strong>.
+          </li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Nerve Supply (2 Marks)</div>
+        <ul class="ans-list">
+          <li><span class="nerve-tag">Inferior Gluteal Nerve (L5, S1, S2)</span> — enters the muscle on its deep surface.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Actions (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Chief powerful extensor</strong> of the hip joint (essential for rising from sitting, climbing stairs, and running; NOT used in normal flat walking).</li>
+          <li><strong>Lateral rotator</strong> of the thigh at the hip joint.</li>
+          <li>Through the iliotibial tract, it <strong>stabilizes the extended knee joint</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">4. Bursae & Clinical Testing (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Bursae:</strong> 1) <em>Trochanteric bursa</em> (between muscle and greater trochanter), 2) <em>Ischial bursa</em> (over ischial tuberosity — "Weaver's bottom").</li>
+          <li><strong>Clinical Test:</strong> Patient lies prone and raises the thigh against resistance while the examiner palpates muscle contraction.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q2</span>
+      <div class="essay-title">Describe Gluteus Medius & Minimus Muscles, and explain the mechanism and causes of a Positive Trendelenburg Sign and Gait.</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Origin, Insertion & Nerve Supply (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Origin:</strong> Outer surface of ilium (Medius: between anterior & posterior gluteal lines; Minimus: between anterior & inferior lines).</li>
+          <li><strong>Insertion:</strong> Greater trochanter of femur (Medius: lateral surface; Minimus: anterior border).</li>
+          <li><strong>Nerve Supply:</strong> <span class="nerve-tag">Superior Gluteal Nerve (L4, L5, S1)</span>.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Main Actions (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Chief abductors</strong> of the hip joint.</li>
+          <li>Anterior fibers cause <strong>medial rotation</strong> of the thigh.</li>
+          <li><strong>Pelvic Stabilizer:</strong> During single-leg stance, they contract to keep the pelvis level, preventing the unsupported side from sagging.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Trendelenburg Sign: Mechanism & Interpretation (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Normal:</strong> When standing on the right leg, right abductors contract → left side of pelvis rises slightly.</li>
+          <li><strong>Positive Trendelenburg:</strong> When standing on the affected (stance) leg, the pelvis <strong>DROPS on the opposite (unsupported swing) side</strong>.</li>
+          <li><strong>Conclusion:</strong> A positive sign on the left side of the pelvis indicates weakness of the <strong>RIGHT abductors / Right Superior Gluteal Nerve</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">4. Causes & Gait (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Causes:</strong> 1) Superior gluteal nerve injury, 2) Polio / muscular dystrophy, 3) Congenital dislocation of the hip (CDH), 4) Coxa vara / fracture neck of femur.</li>
+          <li><strong>Gait:</strong> Unilateral lesion causes <strong>Lurching Gait</strong> (trunk leans toward the affected supported side); bilateral lesion causes <strong>Waddling (Duck-like) Gait</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="essay-card">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q3</span>
+      <div class="essay-title">Enumerate the structures passing through the Greater and Lesser Sciatic Foramina, and explain the safe site for Intramuscular (IM) Injection in the Gluteal Region.</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Key Landmark Muscle (1 Mark)</div>
+        <ul class="ans-list">
+          <li><strong>Piriformis Muscle:</strong> Emerges through the Greater Sciatic Foramen and divides it into structures above and below it.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Structures Passing Through Greater Sciatic Foramen (4 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Above Piriformis:</strong> <span class="nerve-tag">Superior Gluteal Nerve</span> and Superior Gluteal Vessels (Artery & Vein).</li>
+          <li><strong>Below Piriformis:</strong>
+            <br>• <strong>Sciatic Nerve</strong> (largest nerve in the body).
+            <br>• <span class="nerve-tag">Inferior Gluteal Nerve</span> and Inferior Gluteal Vessels.
+            <br>• Posterior Cutaneous Nerve of Thigh.
+            <br>• Nerve to Quadratus Femoris.
+            <br>• <strong>PIN structures:</strong> Pudendal nerve, Internal pudendal vessels, Nerve to obturator internus.
+          </li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Structures Passing Through Lesser Sciatic Foramen (2 Marks)</div>
+        <ul class="ans-list">
+          <li>Tendon of <strong>Obturator Internus</strong> muscle.</li>
+          <li><strong>PIN structures (re-entering perineum):</strong> Pudendal Nerve, Internal Pudendal Vessels, Nerve to Obturator Internus.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">4. Safe Site for IM Gluteal Injection (3 Marks)</div>
+        <ul class="ans-list">
+          <li>The buttock is divided into 4 quadrants.</li>
+          <li><strong>ONLY Safe Quadrant:</strong> <strong>Upper Outer (Anterosuperior) Quadrant</strong> into the bulky Gluteus Medius muscle.</li>
+          <li><strong>Anatomical Reason:</strong> The <strong>Sciatic Nerve</strong> curves through the lower and medial quadrants, and superior gluteal vessels lie medially. Injection in any other quadrant risks piercing the sciatic nerve, causing <strong>Foot Drop and paralysis</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: FEMORAL TRIANGLE & CANAL (2 Top Questions)        -->
+<!-- ============================================================ -->
+<div class="section" id="femoral-triangle">
+  <div class="sec-header">
+    <div class="sec-icon ic-blue">📐</div>
+    <div class="sec-title">2. Femoral Triangle & Canal (Top 2 Predicted 10-Mark Questions)</div>
+    <button class="translate-btn" onclick="toggleTranslation('femoral-triangle', this)">🌐 <span class="btn-label">عربي</span></button>
+    <button class="sec-complete-btn" data-section="femoral-triangle" onclick="toggleComplete('femoral-triangle', this)">☐ تم المذاكرة</button>
+  </div>
+
+  <div class="arabic-panel" id="arabic-femoral-triangle">
+    <div class="arabic-panel-title">💡 ملخص سريع بالعامية — مثلث الفخذ والقناة الفخذية:</div>
+    <p><strong>مثلث الفخذ:</strong> حدوده (أعلى Inguinal Ligament، برة Sartorius، جوة Adductor Longus). محتوياته من برة لجوة <strong>NAVL</strong> (عصب، شريان، وريد، ليمف). <strong>الغمد الفخذي:</strong> العصب الفخذي <strong>برة الغمد</strong> تماماً! والقناة الفخذية (Femoral Canal) هي المسكن الإنسي، والفتق الفخذي فيها بيختنق بسرعة عشان حدوده الحادة الصلبة خصوصاً Lacunar Ligament.</p>
+  </div>
+
+  <!-- Q4 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q4</span>
+      <div class="essay-title">Describe the Femoral Triangle in detail (Boundaries, Roof, Floor, Contents with relations from lateral to medial, and Clinical Anatomy).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Location & Boundaries (3 Marks)</div>
+        <ul class="ans-list">
+          <li>Subfascial triangular space in the upper 1/3 of the anterior thigh.</li>
+          <li><strong>Base (Superior):</strong> Inguinal Ligament (extends from ASIS to Pubic Tubercle).</li>
+          <li><strong>Lateral Boundary:</strong> Medial border of <strong>Sartorius</strong> muscle.</li>
+          <li><strong>Medial Boundary:</strong> Medial border of <strong>Adductor Longus</strong> muscle.</li>
+          <li><strong>Apex (Inferior):</strong> Point where Sartorius crosses Adductor Longus (continuous with Adductor Canal).</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Floor & Roof (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Floor (Gutter-shaped, lateral to medial):</strong> 1) Iliopsoas, 2) Pectineus, 3) Adductor Longus.</li>
+          <li><strong>Roof:</strong> Skin, superficial fascia (contains Great Saphenous Vein, superficial arteries, femoral branch of genitofemoral nerve), and <strong>Fascia Lata with Cribriform Fascia</strong> covering the Saphenous Opening.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Contents from Lateral to Medial (NAVL) (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>1. Femoral Nerve (N):</strong> Lies laterally outside the femoral sheath in the groove between Psoas and Iliacus; terminates into anterior and posterior divisions.</li>
+          <li><strong>2. Femoral Artery (A):</strong> Main artery, gives off <em>Profunda Femoris Artery</em> (deep artery of thigh).</li>
+          <li><strong>3. Femoral Vein (V):</strong> Receives the <em>Great Saphenous Vein</em> and Profunda Femoris Vein.</li>
+          <li><strong>4. Deep Inguinal Lymphatics / Canal (L):</strong> Deep lymph nodes (Node of Cloquet).</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">4. Clinical Applied Anatomy (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Femoral Pulse Palpation:</strong> Felt at the <strong>Mid-Inguinal Point</strong> (midway between ASIS and Pubic Symphysis).</li>
+          <li><strong>Femoral Artery Cannulation:</strong> Used for left heart catheterization / coronary angiography.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="essay-card">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q5</span>
+      <div class="essay-title">Describe the Femoral Sheath, Femoral Canal & Ring (Boundaries, Contents, and compare Femoral vs Inguinal Hernia).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Femoral Sheath: Formation & 3 Compartments (3 Marks)</div>
+        <ul class="ans-list">
+          <li>Funnel-shaped fascial prolongation (about 3.75 cm long) surrounding the femoral vessels.</li>
+          <li><strong>Formation:</strong> Anterior wall from <em>Fascia Transversalis</em>; Posterior wall from <em>Fascia Iliaca</em>.</li>
+          <li><strong>3 Compartments:</strong>
+            <br>• <strong>Lateral compartment:</strong> Contains Femoral Artery and Femoral branch of Genitofemoral Nerve.
+            <br>• <strong>Intermediate compartment:</strong> Contains Femoral Vein.
+            <br>• <strong>Medial compartment (Femoral Canal):</strong> Contains lymphatics and Node of Cloquet.
+            <br>• <em>NOTE:</em> <strong>Femoral Nerve is OUTSIDE the sheath</strong>.
+          </li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Femoral Canal & Femoral Ring Boundaries (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Femoral Canal:</strong> Conical dead space (1.25 cm long); allows expansion of the femoral vein during increased venous return.</li>
+          <li><strong>Femoral Ring (Upper abdominal opening of canal) Boundaries:</strong>
+            <br>• <strong>Anterior:</strong> Inguinal Ligament.
+            <br>• <strong>Posterior:</strong> Pectineus muscle and Pectineal Ligament of Cooper.
+            <br>• <strong>Medial:</strong> Sharp crescentic free edge of <strong>Lacunar Ligament (Gimbernat's)</strong>.
+            <br>• <strong>Lateral:</strong> Femoral Vein.
+          </li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Femoral Hernia vs Inguinal Hernia Comparison (4 Marks)</div>
+        <table class="compare-table">
+          <tr>
+            <th>Feature</th>
+            <th>Femoral Hernia</th>
+            <th>Inguinal Hernia</th>
+          </tr>
+          <tr>
+            <td>Neck / Position</td>
+            <td><strong>Below & Lateral</strong> to Pubic Tubercle</td>
+            <td><strong>Above & Medial</strong> to Pubic Tubercle</td>
+          </tr>
+          <tr>
+            <td>Sex Predilection</td>
+            <td>More common in <strong>Females</strong> (wider pelvis & larger canal)</td>
+            <td>More common in <strong>Males</strong></td>
+          </tr>
+          <tr>
+            <td>Strangulation Risk</td>
+            <td><strong>High Risk (Early Strangulation)</strong> due to narrow, rigid neck & sharp lacunar ligament</td>
+            <td>Lower risk compared to femoral hernia</td>
+          </tr>
+          <tr>
+            <td>Surgical Danger</td>
+            <td>Abnormal obturator artery (crosses lacunar ligament in 20% of cases)</td>
+            <td>Inferior epigastric vessels</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: ANTERIOR & MEDIAL THIGH (2 Top Questions)         -->
+<!-- ============================================================ -->
+<div class="section" id="ant-med-thigh">
+  <div class="sec-header">
+    <div class="sec-icon ic-green">🦵</div>
+    <div class="sec-title">3. Anterior & Medial Thigh (Top 2 Predicted 10-Mark Questions)</div>
+    <button class="translate-btn" onclick="toggleTranslation('ant-med-thigh', this)">🌐 <span class="btn-label">عربي</span></button>
+    <button class="sec-complete-btn" data-section="ant-med-thigh" onclick="toggleComplete('ant-med-thigh', this)">☐ تم المذاكرة</button>
+  </div>
+
+  <div class="arabic-panel" id="arabic-ant-med-thigh">
+    <div class="arabic-panel-title">💡 ملخص سريع بالعامية — عضلات الفخذ الأمامية والإنسية:</div>
+    <p><strong>عضلة الرباعية (Quadriceps):</strong> أقوى باسط للركبة، وتغذيها الفروع الخلفية للعصب الفخذي، وRectus femoris الوحيدة اللي بتبسط الركبة وتثني الحوض. <strong>قناة الصياد (Hunter's Canal):</strong> نفق تحت عضلة Sartorius بين المسكن الأمامي والإنسي بينتهي بـ Adductor Hiatus. <strong>العضلة الهجينة Adductor Magnus:</strong> بتشتغل مقربة وباسطة للحوض وبتاخد عصبين (Obturator + Sciatic). <strong>قدم الإوزة (Pes Anserinus):</strong> تجميعة ٣ عضلات من ٣ مساكن و٣ أعصاب مختلفة (SGS).</p>
+  </div>
+
+  <!-- Q6 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q6</span>
+      <div class="essay-title">Describe the Adductor Canal (Hunter's / Subsartorial Canal) in detail (Extent, Boundaries, Contents, Structures entering vs leaving, and Clinical Significance).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Definition & Extent (2 Marks)</div>
+        <ul class="ans-list">
+          <li>Intermuscular aponeurotic tunnel (about 15 cm long) in the middle 1/3 of the medial side of the thigh.</li>
+          <li><strong>Extent:</strong> From the apex of the Femoral Triangle above to the <strong>Adductor Hiatus</strong> in the Adductor Magnus muscle below.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Boundaries (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Anteromedial (Roof):</strong> <strong>Sartorius</strong> muscle and subsartorial fascial plexus of nerves.</li>
+          <li><strong>Anterolateral:</strong> <strong>Vastus Medialis</strong> muscle.</li>
+          <li><strong>Posterior (Floor):</strong> <strong>Adductor Longus</strong> (above) and <strong>Adductor Magnus</strong> (below).</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Contents & Piercing Structures (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>1. Femoral Artery:</strong> Traverses the entire length and enters the popliteal fossa through Adductor Hiatus as Popliteal Artery.</li>
+          <li><strong>2. Femoral Vein:</strong> Lies posterior to artery above, then posterolateral below.</li>
+          <li><strong>3. Saphenous Nerve:</strong> Crosses anterior to the femoral artery from lateral to medial, then <em>pierces the roof</em> to become cutaneous.</li>
+          <li><strong>4. Nerve to Vastus Medialis:</strong> Enters the muscle in the upper part of the canal.</li>
+          <li><strong>5. Descending Genicular Artery:</strong> Arises near the lower end to contribute to anastomoses around the knee.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">4. Clinical Importance (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Adductor Canal Block:</strong> Local anesthetic injected around the saphenous nerve for postoperative knee pain management (spares motor quadriceps strength).</li>
+          <li><strong>Hunter's Ligation:</strong> Historical ligation of femoral artery in the canal for popliteal aneurysm.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="essay-card">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q7</span>
+      <div class="essay-title">Explain why Adductor Magnus is a composite (hybrid) muscle, and describe the anatomy of Pes Anserinus (SGS) and its clinical importance.</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Adductor Magnus as a Composite / Hybrid Muscle (5 Marks)</div>
+        <table class="compare-table">
+          <tr>
+            <th>Feature</th>
+            <th>Adductor Part (Pubic fibers)</th>
+            <th>Hamstring Part (Ischial fibers)</th>
+          </tr>
+          <tr>
+            <td>Origin</td>
+            <td>Ischiopubic ramus</td>
+            <td><strong>Ischial tuberosity</strong></td>
+          </tr>
+          <tr>
+            <td>Insertion</td>
+            <td>Linea aspera & medial supracondylar line</td>
+            <td><strong>Adductor Tubercle</strong> of femur</td>
+          </tr>
+          <tr>
+            <td>Nerve Supply</td>
+            <td><span class="nerve-tag">Obturator Nerve (L2, L3, L4 - Post. division)</span></td>
+            <td><span class="nerve-tag">Tibial part of Sciatic Nerve (L4)</span></td>
+          </tr>
+          <tr>
+            <td>Action</td>
+            <td><strong>Adducts and flexes</strong> the thigh at hip</td>
+            <td><strong>Extends</strong> the thigh at hip (like hamstrings)</td>
+          </tr>
+        </table>
+        <div class="highlight-box blue" style="margin-top:8px;">
+          • <strong>Adductor Hiatus:</strong> Gap between the two insertions through which the femoral vessels pass into the popliteal fossa.
+        </div>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Anatomy of Pes Anserinus (SGS) (3 Marks)</div>
+        <ul class="ans-list">
+          <li>Conjoined tendon insertion of <strong>3 muscles from 3 different compartments</strong> into the upper medial surface of the tibia:
+            <br>• <strong>S</strong>artorius: Anterior compartment → <span class="nerve-tag">Femoral Nerve</span>.
+            <br>• <strong>G</strong>racilis: Medial compartment → <span class="nerve-tag">Obturator Nerve</span>.
+            <br>• <strong>S</strong>emitendinosus: Posterior compartment → <span class="nerve-tag">Sciatic Nerve (Tibial part)</span>.
+          </li>
+          <li><strong>Mnemonic:</strong> <strong>SGS</strong> (Say Grace before Supper).</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Clinical Applied Anatomy (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Pes Anserine Bursitis:</strong> Inflammation of the bursa deep to the tendons; causes medial knee pain and tenderness in runners and osteoarthritis patients.</li>
+          <li><strong>Graft Harvest:</strong> Gracilis and Semitendinosus tendons are commonly harvested for ACL reconstruction surgery.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: POSTERIOR THIGH & POPLITEAL FOSSA (2 Top Qs)       -->
+<!-- ============================================================ -->
+<div class="section" id="post-thigh-popliteal">
+  <div class="sec-header">
+    <div class="sec-icon ic-yellow">🏃</div>
+    <div class="sec-title">4. Hamstrings & Popliteal Fossa (Top 2 Predicted 10-Mark Questions)</div>
+    <button class="translate-btn" onclick="toggleTranslation('post-thigh-popliteal', this)">🌐 <span class="btn-label">عربي</span></button>
+    <button class="sec-complete-btn" data-section="post-thigh-popliteal" onclick="toggleComplete('post-thigh-popliteal', this)">☐ تم المذاكرة</button>
+  </div>
+
+  <div class="arabic-panel" id="arabic-post-thigh-popliteal">
+    <div class="arabic-panel-title">💡 ملخص سريع بالعامية — عضلات الهامسترينج والحفرة المأبضية:</div>
+    <p><strong>عضلات الهامسترينج:</strong> ليها ٤ شروط ثابتة (أصلها Ischial tuberosity، اندغامها في عظام الساق، بتعدي على مفصلين، وعصبها Tibial). الرأس القصيرة للبايسبس مستثناة لأن عصبها Common Fibular ومش ماسكة في الإسكيم. <strong>الحفرة المأبضية (Popliteal Fossa):</strong> معين ورا الركبة، ترتيب محتوياته من السطح للعمق (عصب قصبي ثم وريد مأبضي ثم شريان مأبضي). <strong>عضلة Popliteus:</strong> مفتاح فك قفل الركبة (Unlocking).</p>
+  </div>
+
+  <!-- Q8 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q8</span>
+      <div class="essay-title">Describe the Hamstring Muscles (4 Criteria of a True Hamstring, OINA table, and why Short Head of Biceps is not a true hamstring).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. The 4 Criteria of a "True Hamstring" (3 Marks)</div>
+        <ul class="ans-list">
+          <li>1) Must arise from the <strong>Ischial Tuberosity</strong>.</li>
+          <li>2) Must insert into the <strong>bones of the leg (Tibia or Fibula)</strong>.</li>
+          <li>3) Must cross <strong>two joints</strong> (Hip & Knee joints).</li>
+          <li>4) Must be supplied by the <strong>Tibial component of the Sciatic Nerve</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Hamstring Muscles OINA Summary Table (4 Marks)</div>
+        <table class="compare-table">
+          <tr>
+            <th>Muscle</th>
+            <th>Origin</th>
+            <th>Insertion</th>
+            <th>Nerve & Action</th>
+          </tr>
+          <tr>
+            <td><strong>Semimembranosus</strong></td>
+            <td>Upper outer ischial tuberosity</td>
+            <td>Groove on medial condyle of tibia</td>
+            <td>Tibial N. (L5, S1, S2) → Flexes knee, extends hip</td>
+          </tr>
+          <tr>
+            <td><strong>Semitendinosus</strong></td>
+            <td>Lower inner ischial tuberosity</td>
+            <td>Upper medial tibia (Pes anserinus)</td>
+            <td>Tibial N. (L5, S1, S2) → Flexes knee, extends hip</td>
+          </tr>
+          <tr>
+            <td><strong>Biceps Femoris (Long Head)</strong></td>
+            <td>Lower inner ischial tuberosity</td>
+            <td>Head of Fibula</td>
+            <td>Tibial N. (L5, S1, S2) → Flexes knee, lateral rotator</td>
+          </tr>
+          <tr>
+            <td><strong>Ischial part of Adductor Magnus</strong></td>
+            <td>Ischial tuberosity</td>
+            <td>Adductor tubercle of femur</td>
+            <td>Tibial N. (L4) → Extends hip joint</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Why is Short Head of Biceps Femoris NOT a True Hamstring? (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>1. Origin:</strong> Arises from the <em>linea aspera</em> of femur (NOT ischial tuberosity).</li>
+          <li><strong>2. Joints crossed:</strong> Crosses only ONE joint (the knee joint, not the hip).</li>
+          <li><strong>3. Nerve Supply:</strong> Supplied by the <span class="nerve-tag">Common Fibular (Peroneal) Nerve</span> (NOT the tibial nerve).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="essay-card">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q9</span>
+      <div class="essay-title">Describe the Popliteal Fossa in detail (Boundaries, Roof, Floor, Contents from superficial to deep, and Clinical Anatomy: Popliteus unlocking role & Baker's cyst).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Boundaries (3 Marks)</div>
+        <ul class="ans-list">
+          <li>Diamond-shaped intermuscular space behind the knee joint.</li>
+          <li><strong>Superomedial:</strong> Semimembranosus and Semitendinosus.</li>
+          <li><strong>Superolateral:</strong> Biceps Femoris.</li>
+          <li><strong>Inferomedial:</strong> Medial head of Gastrocnemius.</li>
+          <li><strong>Inferolateral:</strong> Lateral head of Gastrocnemius and Plantaris.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Roof & Floor (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Roof:</strong> Skin, superficial fascia (contains Small Saphenous Vein and Posterior Cutaneous Nerve of Thigh), and deep popliteal fascia.</li>
+          <li><strong>Floor (Superior to Inferior):</strong> 1) Popliteal surface of femur, 2) Oblique popliteal ligament of knee joint, 3) Popliteus fascia over Popliteus muscle.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Contents from Superficial to Deep (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>1. Tibial Nerve:</strong> Most superficial central structure; bisects the fossa vertically.</li>
+          <li><strong>2. Common Fibular Nerve:</strong> Follows the medial border of the biceps femoris tendon superolaterally.</li>
+          <li><strong>3. Popliteal Vein:</strong> Lies deep to tibial nerve, between nerve and artery.</li>
+          <li><strong>4. Popliteal Artery:</strong> Deepest structure, lying directly against the floor and joint capsule.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">4. Clinical Applied Anatomy (2 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Popliteus Muscle ("Key to Knee"):</strong> Unlocks the locked knee joint at the beginning of flexion by <strong>laterally rotating the femur on fixed tibia</strong>.</li>
+          <li><strong>Baker's Cyst (Popliteal Cyst):</strong> Swelling caused by distension of the semimembranosus/gastrocnemius bursa; common in rheumatoid arthritis and knee osteoarthritis.</li>
+          <li><strong>Popliteal Pulse:</strong> Palpated deep in the midline of the fossa with the knee flexed to relax the popliteal fascia.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 5: NERVES OF THE LOWER LIMB (4 Top Questions)        -->
+<!-- ============================================================ -->
+<div class="section" id="nerves">
+  <div class="sec-header">
+    <div class="sec-icon ic-red">⚡</div>
+    <div class="sec-title">5. Nerves of the Lower Limb (Top 4 Predicted 10-Mark Questions)</div>
+    <button class="translate-btn" onclick="toggleTranslation('nerves', this)">🌐 <span class="btn-label">عربي</span></button>
+    <button class="sec-complete-btn" data-section="nerves" onclick="toggleComplete('nerves', this)">☐ تم المذاكرة</button>
+  </div>
+
+  <div class="arabic-panel" id="arabic-nerves">
+    <div class="arabic-panel-title">💡 ملخص سريع بالعامية — أعصاب الطرف السفلي:</div>
+    <p><strong>العصب الفخذي (Femoral N - L2,L3,L4):</strong> أكبر عصب في الضفيرة القطنية، مسؤل عن بسط الركبة ومنعكس Knee Jerk. <strong>العصب السدادي (Obturator N - L2,L3,L4):</strong> بيغذي المقربات وقانون هيلتون بيفسر وجع الركبة في أمراض مفصل الحوض. <strong>العصب الوركي (Sciatic N - L4-S3):</strong> أثخن عصب في الجسم. <strong>العصب الشظوي (Common Fibular):</strong> بيلف حول عنق الشظية وإصابته بتعمل سقوط قدم <strong>Foot Drop</strong> ومشية <strong>High-Stepping Gait</strong>.</p>
+  </div>
+
+  <!-- Q10 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q10</span>
+      <div class="essay-title">Describe the Femoral Nerve (Origin & Root value, Course, Branches, Patellar Reflex, and Effects of Nerve Injury).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Origin, Root Value & Course (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Origin:</strong> Largest branch of the Lumbar Plexus; arises from the <strong>Posterior divisions of anterior rami of L2, L3, L4</strong>.</li>
+          <li><strong>Course:</strong> Emerges from the lateral border of Psoas Major, descends in the groove between Psoas and Iliacus, passes <strong>behind the Inguinal Ligament OUTSIDE the femoral sheath</strong> into the Femoral Triangle.</li>
+          <li><strong>Termination:</strong> About 2.5 cm below inguinal ligament, it divides into Anterior and Posterior divisions.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Branches (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Anterior Division:</strong>
+            <br>• <em>Muscular:</em> Nerve to Sartorius.
+            <br>• <em>Cutaneous:</em> Medial & Intermediate Cutaneous Nerves of Thigh.
+          </li>
+          <li><strong>Posterior Division:</strong>
+            <br>• <em>Muscular:</em> Nerves to 4 heads of <strong>Quadriceps Femoris</strong> (Rectus Femoris, Vastus Medialis, Lateralis, Intermedius) and Articularis Genu.
+            <br>• <em>Cutaneous:</em> <strong>Saphenous Nerve</strong> (longest cutaneous nerve; supplies medial leg and foot up to the base of the great toe).
+          </li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Clinical Anatomy & Injury Effects (4 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Motor Loss:</strong> Complete paralysis of Quadriceps Femoris → <strong>Loss of knee extension</strong>; patient cannot stand steadily or climb stairs without supporting the knee by hand.</li>
+          <li><strong>Sensory Loss:</strong> Loss of sensation on the anterior and medial thigh, and medial aspect of the leg and foot (Saphenous distribution).</li>
+          <li><strong>Reflex Loss:</strong> <strong>Loss of Knee Jerk (Patellar Reflex - L3, L4)</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="essay-card">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q11</span>
+      <div class="essay-title">Describe the Obturator Nerve (Origin, Course, Divisions around Adductor Brevis, Motor/Sensory Distribution, and Hilton's Law).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Origin & Course (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Origin:</strong> Arises from the <strong>Anterior divisions of anterior rami of L2, L3, L4</strong> of the Lumbar Plexus.</li>
+          <li><strong>Course:</strong> Descends through Psoas Major, crosses the pelvic brim, runs along the lateral pelvic wall, and enters the thigh through the <strong>Obturator Canal</strong>.</li>
+          <li><strong>Division:</strong> Divides into Anterior and Posterior divisions as it straddles the <strong>Adductor Brevis</strong> muscle.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Distribution of Anterior & Posterior Divisions (4 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Anterior Division (Passes in front of Adductor Brevis):</strong>
+            <br>• <em>Muscular:</em> Adductor Longus, Adductor Brevis, Gracilis, and Pectineus (occasionally).
+            <br>• <em>Cutaneous:</em> Small patch on the medial side of the middle 1/3 of thigh.
+            <br>• <em>Articular:</em> Hip joint.
+          </li>
+          <li><strong>Posterior Division (Passes behind Adductor Brevis):</strong>
+            <br>• <em>Muscular:</em> Obturator Externus, Adductor part of <strong>Adductor Magnus</strong>.
+            <br>• <em>Articular:</em> <strong>Knee joint</strong> (pierces oblique popliteal ligament).
+          </li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Hilton's Law & Clinical Significance (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Hilton's Law:</strong> The nerve that supplies muscles moving a joint also supplies the joint capsule and the skin over the muscle insertions.</li>
+          <li><strong>Referred Pain:</strong> Because the Obturator Nerve supplies both the <strong>hip joint and knee joint</strong>, disease of the hip (e.g., tuberculosis, Perthes disease, arthritis) frequently presents as <strong>referred pain in the knee</strong> in children.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="essay-card">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q12</span>
+      <div class="essay-title">Describe the Sciatic Nerve (Origin & Roots, Course in Gluteal Region & Thigh, Relations, Piriformis Syndrome, and Sciatica with SLR Test).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Origin & Roots (2 Marks)</div>
+        <ul class="ans-list">
+          <li>Thickest nerve in the body (about 2 cm wide).</li>
+          <li><strong>Root Value:</strong> <strong>L4, L5, S1, S2, S3</strong> (Sacral Plexus). Composed of two nerves in a common sheath: <strong>Tibial Nerve</strong> (anterior divisions L4-S3) and <strong>Common Fibular Nerve</strong> (posterior divisions L4-S2).</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Course & Relations (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Gluteal Region:</strong> Enters via Greater Sciatic Foramen <strong>below Piriformis</strong>; descends midway between Greater Trochanter and Ischial Tuberosity under cover of Gluteus Maximus.</li>
+          <li><strong>Thigh:</strong> Runs down the posterior compartment on Adductor Magnus, crossed obliquely by Long Head of Biceps Femoris.</li>
+          <li><strong>Termination:</strong> Bifurcates into <strong>Tibial Nerve</strong> and <strong>Common Fibular Nerve</strong> at the upper angle of the Popliteal Fossa.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">3. Branches (2 Marks)</div>
+        <ul class="ans-list">
+          <li>Muscular branches to all Hamstrings (Semimembranosus, Semitendinosus, Biceps Femoris) and hamstring part of Adductor Magnus.</li>
+          <li>Articular branches to hip and knee joints.</li>
+        </ul>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">4. Clinical Anatomy (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Sciatica:</strong> Radiating pain along the sciatic distribution (buttock, back of thigh, posterolateral leg) commonly caused by herniated lumbar disc (L4/L5 or L5/S1).</li>
+          <li><strong>Straight Leg Raise (SLR / Lasegue's) Test:</strong> Passive elevation of the extended leg stretches the sciatic root, producing sharp pain between 30° and 70°.</li>
+          <li><strong>Piriformis Syndrome:</strong> Spasm or hypertrophy of the Piriformis muscle compressing the sciatic nerve.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">Q13</span>
+      <div class="essay-title">Compare Common Fibular (Peroneal) Nerve Injury vs Tibial Nerve Injury (Vulnerability, Deformities, Motor Loss, Sensory Loss, and Gaits).</div>
+      <div class="essay-badges">
+        <span class="badge-10m">10 MARKS</span>
+        <div class="essay-toggle-icon">▼</div>
+      </div>
+    </div>
+    <div class="essay-body">
+      <div class="ans-block">
+        <div class="ans-title">1. Detailed Comparison Table (7 Marks)</div>
+        <table class="compare-table">
+          <tr>
+            <th>Feature</th>
+            <th>Common Fibular Nerve Lesion</th>
+            <th>Tibial Nerve Lesion</th>
+          </tr>
+          <tr>
+            <td>Site of Vulnerability</td>
+            <td><strong>Subcutaneous winding around the Neck of the Fibula</strong> (fractures, tight plaster casts)</td>
+            <td>Deep in Popliteal Fossa or under Flexor Retinaculum behind Medial Malleolus (Tarsal Tunnel)</td>
+          </tr>
+          <tr>
+            <td>Characteristic Deformity</td>
+            <td><strong>Foot Drop (Equinovarus):</strong> Plantarflexed & Inverted foot</td>
+            <td><strong>Calcaneovalgus:</strong> Dorsiflexed & Everted foot</td>
+          </tr>
+          <tr>
+            <td>Motor Deficit</td>
+            <td>Loss of <strong>Dorsiflexion</strong> (Deep fibular) and <strong>Eversion</strong> (Superficial fibular)</td>
+            <td>Loss of <strong>Plantarflexion</strong> (Gastrocnemius, Soleus) & Inversion (Tibialis posterior)</td>
+          </tr>
+          <tr>
+            <td>Functional Inability</td>
+            <td>Cannot walk on <strong>Heels</strong></td>
+            <td>Cannot stand on <strong>Tiptoes</strong></td>
+          </tr>
+          <tr>
+            <td>Sensory Loss</td>
+            <td>Anterolateral leg, dorsum of foot, and <strong>1st web space</strong></td>
+            <td><strong>Sole of the foot</strong> (trophic ulcers risk) and posterolateral lower leg</td>
+          </tr>
+          <tr>
+            <td>Resulting Gait</td>
+            <td><strong>High-Stepping Gait (Cock-Walk):</strong> Knee raised high to avoid dragging toes</td>
+            <td><strong>Shuffling Gait:</strong> Loss of forward push-off thrust</td>
+          </tr>
+          <tr>
+            <td>Reflex Affected</td>
+            <td>None</td>
+            <td><strong>Loss of Ankle Jerk (Achilles Reflex - S1, S2)</strong></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="ans-block">
+        <div class="ans-title">2. Deep Fibular vs Superficial Fibular Nerve Summary (3 Marks)</div>
+        <ul class="ans-list">
+          <li><strong>Deep Fibular Nerve:</strong> Supplies anterior compartment muscles (Tibialis Anterior, EHL, EDL, Peroneus Tertius) + Extensor Digitorum Brevis. <em>Sensory:</em> <strong>1st interdigital web space ONLY</strong>.</li>
+          <li><strong>Superficial Fibular Nerve:</strong> Supplies lateral compartment muscles (Peroneus Longus & Brevis). <em>Sensory:</em> Lower anterolateral leg and most of the dorsum of foot.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 6: MASTER COMPARISON TABLES                          -->
+<!-- ============================================================ -->
+<div class="section" id="tables">
+  <div class="sec-header">
+    <div class="sec-icon ic-green">📊</div>
+    <div class="sec-title">6. Master Summary & Comparison Tables (Rapid Revision)</div>
+    <button class="translate-btn" onclick="toggleTranslation('tables', this)">🌐 <span class="btn-label">عربي</span></button>
+    <button class="sec-complete-btn" data-section="tables" onclick="toggleComplete('tables', this)">☐ تم المذاكرة</button>
+  </div>
+
+  <div class="arabic-panel" id="arabic-tables">
+    <div class="arabic-panel-title">💡 ملخص الجداول للمراجعة السريعة قبل اللجنة:</div>
+    <p>٤ جداول مجمعة لكل الأعصاب والمساكن والفتوق وعضلات الإلية، تراجعهم في ٥ دقائق قبل دخول الامتحان للحصول على الدرجة كاملة.</p>
+  </div>
+
+  <!-- Table 1 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">TABLE 1</span>
+      <div class="essay-title">Master Comparison of Thigh Compartments (Anterior vs Medial vs Posterior)</div>
+      <div class="essay-badges"><div class="essay-toggle-icon">▼</div></div>
+    </div>
+    <div class="essay-body">
+      <table class="compare-table">
+        <tr>
+          <th>Feature</th>
+          <th>Anterior Compartment</th>
+          <th>Medial Compartment</th>
+          <th>Posterior Compartment</th>
+        </tr>
+        <tr>
+          <td>Primary Action</td>
+          <td><strong>Knee Extension</strong> & Hip Flexion</td>
+          <td><strong>Hip Adduction</strong></td>
+          <td><strong>Knee Flexion</strong> & Hip Extension</td>
+        </tr>
+        <tr>
+          <td>Nerve Supply</td>
+          <td><span class="nerve-tag">Femoral Nerve (L2, L3, L4)</span></td>
+          <td><span class="nerve-tag">Obturator Nerve (L2, L3, L4)</span></td>
+          <td><span class="nerve-tag">Sciatic Nerve (Tibial part - L5, S1, S2)</span></td>
+        </tr>
+        <tr>
+          <td>Chief Muscles</td>
+          <td>Quadriceps femoris, Sartorius, Iliopsoas, Pectineus</td>
+          <td>Adductor longus, brevis, magnus, Gracilis, Obturator externus</td>
+          <td>Biceps femoris, Semitendinosus, Semimembranosus</td>
+        </tr>
+        <tr>
+          <td>Main Blood Supply</td>
+          <td>Femoral Artery</td>
+          <td>Profunda Femoris & Obturator Arteries</td>
+          <td>Perforating branches of Profunda Femoris</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Table 2 -->
+  <div class="essay-card open">
+    <div class="essay-header" onclick="toggleEssay(this)">
+      <span class="essay-q-tag">TABLE 2</span>
+      <div class="essay-title">Gluteal Muscles Comparison (Maximus vs Medius vs Minimus vs Piriformis)</div>
+      <div class="essay-badges"><div class="essay-toggle-icon">▼</div></div>
+    </div>
+    <div class="essay-body">
+      <table class="compare-table">
+        <tr>
+          <th>Muscle</th>
+          <th>Nerve Supply</th>
+          <th>Chief Action</th>
+          <th>Clinical Key Point</th>
+        </tr>
+        <tr>
+          <td><strong>Gluteus Maximus</strong></td>
+          <td><span class="nerve-tag">Inferior Gluteal (L5, S1, S2)</span></td>
+          <td>Hip Extension (Stairs/Standing)</td>
+          <td>Covers greater trochanter & ischial tuberosity</td>
+        </tr>
+        <tr>
+          <td><strong>Gluteus Medius</strong></td>
+          <td><span class="nerve-tag">Superior Gluteal (L4, L5, S1)</span></td>
+          <td>Hip Abduction & Pelvic Stability</td>
+          <td>Paralysis → <strong>Trendelenburg Sign</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Gluteus Minimus</strong></td>
+          <td><span class="nerve-tag">Superior Gluteal (L4, L5, S1)</span></td>
+          <td>Hip Abduction & Medial Rotation</td>
+          <td>Deepest abductor stabilizer</td>
+        </tr>
+        <tr>
+          <td><strong>Piriformis</strong></td>
+          <td><span class="nerve-tag">N. to Piriformis (S1, S2)</span></td>
+          <td>Lateral Rotation of Thigh</td>
+          <td>Divides Greater Sciatic Foramen (Landmark)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FLASHCARD OVERLAY (20 Focused Cards) -->
+<div class="flashcard-overlay" id="flashcardOverlay">
+  <div class="flashcard-header">
+    <span class="flashcard-counter" id="flashcardCounter">1 / 20</span>
+    <button class="flashcard-close" onclick="closeFlashcards()">✕</button>
+  </div>
+
+  <div class="flashcard-scene" onclick="flipCard()">
+    <div class="flashcard-card" id="flashcardCard">
+      <div class="flashcard-face flashcard-front">
+        <span class="flashcard-section-tag" id="fcSection">Gluteal Region</span>
+        <div class="flashcard-label">Question</div>
+        <div class="flashcard-text" id="fcQuestion">What is the nerve supply of Gluteus Maximus?</div>
+        <div class="flashcard-hint">اضغط للقلب والاطلاع على الإجابة (أو مسافة Space)</div>
+      </div>
+      <div class="flashcard-face flashcard-back">
+        <span class="flashcard-section-tag">Model Answer</span>
+        <div class="flashcard-label">Answer</div>
+        <div class="flashcard-text" id="fcAnswer">Inferior Gluteal Nerve (L5, S1, S2)</div>
+        <div class="flashcard-hint">استخدم الأسهم ◀ ▶ للتنقل</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flashcard-nav">
+    <button onclick="prevCard()">◀ السابق</button>
+    <button onclick="shuffleCards()">🔀 عشوائي</button>
+    <button onclick="nextCard()">التالي ▶</button>
+  </div>
+</div>
+
+<!-- QUICK REF SIDEBAR -->
+<div class="quickref-overlay" id="qrOverlay" onclick="toggleQuickRef()"></div>
+<div class="quickref-sidebar" id="qrSidebar">
+  <div class="qr-header">
+    <div class="qr-title">📌 Midterm Quick Sheet</div>
+    <button class="qr-close" onclick="toggleQuickRef()">✕</button>
+  </div>
+
+  <div class="qr-section">
+    <span class="qr-section-title purple">Nerve Roots Summary</span>
+    <ul class="qr-items">
+      <li><strong>Femoral Nerve:</strong> L2, L3, L4 (Post. divisions)</li>
+      <li><strong>Obturator Nerve:</strong> L2, L3, L4 (Ant. divisions)</li>
+      <li><strong>Superior Gluteal:</strong> L4, L5, S1</li>
+      <li><strong>Inferior Gluteal:</strong> L5, S1, S2</li>
+      <li><strong>Sciatic Nerve:</strong> L4, L5, S1, S2, S3</li>
+      <li><strong>Common Fibular:</strong> L4, L5, S1, S2 (Neck of fibula)</li>
+      <li><strong>Tibial Nerve:</strong> L4, L5, S1, S2, S3</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <span class="qr-section-title red">Clinical Deformities</span>
+    <ul class="qr-items">
+      <li><strong>Foot Drop:</strong> Common Fibular N. lesion</li>
+      <li><strong>Calcaneovalgus:</strong> Tibial N. lesion</li>
+      <li><strong>Trendelenburg:</strong> Superior Gluteal N. lesion (Stance side)</li>
+      <li><strong>Knee Jerk Lost:</strong> Femoral N. (L3, L4)</li>
+      <li><strong>Ankle Jerk Lost:</strong> Tibial N. (S1, S2)</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <span class="qr-section-title cyan">Must-Remember Mnemonics</span>
+    <ul class="qr-items">
+      <li><strong>NAVL (Femoral Triangle):</strong> Nerve, Artery, Vein, Lymph (Lat to Med)</li>
+      <li><strong>SGS (Pes Anserinus):</strong> Sartorius, Gracilis, Semitendinosus</li>
+      <li><strong>PIN (GSF to LSF):</strong> Pudendal N, Int. Pudendal, N to Obturator Int</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  const sectionIds = ['gluteal', 'femoral-triangle', 'ant-med-thigh', 'post-thigh-popliteal', 'nerves', 'tables'];
+  let currentSectionIndex = 0;
+
+  function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn:not(.special)').forEach(b => b.classList.remove('active'));
+    
+    const targetSection = document.getElementById(id);
+    if (targetSection) {
+      targetSection.classList.add('active');
+      currentSectionIndex = sectionIds.indexOf(id);
+    }
+    
+    if (btn) {
+      btn.classList.add('active');
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    } else {
+      const matchingBtn = document.querySelector(`.nav-btn[onclick*="'${id}'"]`);
+      if (matchingBtn) {
+        matchingBtn.classList.add('active');
+        matchingBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    updateProgress();
+  }
+
+  function scrollNav(amount) {
+    const nav = document.getElementById('navScroll');
+    if (nav) nav.scrollBy({ left: amount, behavior: 'smooth' });
+  }
+
+  function toggleEssay(header) {
+    header.parentElement.classList.toggle('open');
+  }
+
+  const completedSections = JSON.parse(localStorage.getItem('anatomy2_midterm_completed') || '{}');
+
+  function toggleComplete(sectionId, btn) {
+    completedSections[sectionId] = !completedSections[sectionId];
+    localStorage.setItem('anatomy2_midterm_completed', JSON.stringify(completedSections));
+    updateCompletionUI(sectionId, btn);
+    updateProgress();
+    if (completedSections[sectionId]) triggerConfetti(btn);
+  }
+
+  function updateCompletionUI(sectionId, btn) {
+    const isDone = !!completedSections[sectionId];
+    if (btn) {
+      btn.textContent = isDone ? '✓ تم المذاكرة' : '☐ تم المذاكرة';
+      btn.classList.toggle('completed', isDone);
+    }
+  }
+
+  function updateProgress() {
+    let completedCount = 0;
+    sectionIds.forEach(id => {
+      if (completedSections[id]) completedCount++;
+      const btn = document.querySelector(`.sec-complete-btn[data-section="${id}"]`);
+      if (btn) updateCompletionUI(id, btn);
+    });
+    const percent = Math.round((completedCount / sectionIds.length) * 100);
+    document.getElementById('progressFill').style.width = percent + '%';
+    document.getElementById('progressBadge').textContent = `${completedCount}/${sectionIds.length}`;
+  }
+
+  function triggerConfetti(el) {
+    const container = document.createElement('div');
+    container.className = 'confetti-container';
+    document.body.appendChild(container);
+    const colors = ['#3b82f6', '#06b6d4', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+    const rect = el.getBoundingClientRect();
+    for (let i = 0; i < 30; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.left = (rect.left + rect.width/2 + (Math.random()-0.5)*100) + 'px';
+      piece.style.top = rect.top + 'px';
+      piece.style.animationDuration = (1 + Math.random()) + 's';
+      container.appendChild(piece);
+    }
+    setTimeout(() => container.remove(), 1800);
+  }
+
+  function searchAll(query) {
+    document.querySelectorAll('mark.search-hl').forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+
+    const info = document.getElementById('searchInfo');
+    if (!query || query.length < 2) {
+      info.style.display = 'none';
+      return;
+    }
+
+    let totalMatches = 0;
+    let firstMatchSection = null;
+
+    sectionIds.forEach(id => {
+      const section = document.getElementById(id);
+      const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT, null, false);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach(node => {
+        const text = node.textContent;
+        const idx = text.toLowerCase().indexOf(query.toLowerCase());
+        if (idx >= 0) {
+          totalMatches++;
+          if (!firstMatchSection) firstMatchSection = id;
+          const mark = document.createElement('mark');
+          mark.className = 'search-hl';
+          mark.textContent = text.substring(idx, idx + query.length);
+          const parent = node.parentNode;
+          parent.insertBefore(document.createTextNode(text.substring(0, idx)), node);
+          parent.insertBefore(mark, node);
+          parent.insertBefore(document.createTextNode(text.substring(idx + query.length)), node);
+          parent.removeChild(node);
+        }
+      });
+    });
+
+    document.getElementById('searchCount').textContent = totalMatches;
+    info.style.display = totalMatches > 0 ? 'block' : 'none';
+
+    if (firstMatchSection && firstMatchSection !== sectionIds[currentSectionIndex]) {
+      showSection(firstMatchSection);
+    }
+    document.querySelectorAll('.section.active mark.search-hl').forEach(m => {
+      const card = m.closest('.essay-card');
+      if (card) card.classList.add('open');
+    });
+  }
+
+  const flashcards = [
+    { q: "What is the nerve supply of Gluteus Maximus?", a: "Inferior Gluteal Nerve (L5, S1, S2)", s: "Gluteal" },
+    { q: "What causes a Positive Trendelenburg Sign?", a: "Superior Gluteal Nerve lesion or Gluteus Medius paralysis on the STANCE leg (pelvis drops on opposite unsupported side)", s: "Gluteal" },
+    { q: "Where is the ONLY safe quadrant for IM injection in buttock?", a: "Upper Outer (Anterosuperior) Quadrant — avoids the Sciatic Nerve!", s: "Gluteal" },
+    { q: "Is the Femoral Nerve inside or outside the Femoral Sheath?", a: "OUTSIDE the femoral sheath (lateral to it in groove between psoas and iliacus)", s: "Femoral Triangle" },
+    { q: "What are the contents of the Femoral Triangle from lateral to medial?", a: "Femoral Nerve → Femoral Artery → Femoral Vein → Deep Inguinal Lymphatics (NAVL)", s: "Femoral Triangle" },
+    { q: "Why is Femoral Hernia more prone to strangulation than Inguinal Hernia?", a: "Narrow rigid neck (1.25 cm) and sharp unyielding edge of Lacunar Ligament", s: "Femoral Canal" },
+    { q: "What are the 3 muscles of Pes Anserinus (SGS) and their nerves?", a: "Sartorius (Femoral), Gracilis (Obturator), Semitendinosus (Sciatic/Tibial)", s: "Anterior/Medial Thigh" },
+    { q: "Why is Adductor Magnus a composite/hybrid muscle?", a: "Dual innervation: Adductor part by Obturator N (L2-L4); Hamstring part by Tibial N (L4)", s: "Medial Thigh" },
+    { q: "What are the 4 criteria of a true hamstring muscle?", a: "1. Origin from ischial tuberosity, 2. Insertion into leg bones, 3. Crosses 2 joints, 4. Tibial nerve supply", s: "Posterior Thigh" },
+    { q: "Why is the Short Head of Biceps Femoris NOT a true hamstring?", a: "Origin from linea aspera, crosses only knee joint, supplied by Common Fibular nerve", s: "Posterior Thigh" },
+    { q: "Which muscle unlocks the locked knee joint?", a: "Popliteus muscle (laterally rotates femur on fixed tibia at initiation of flexion)", s: "Popliteal Fossa" },
+    { q: "What is the nerve root value of the Femoral Nerve?", a: "L2, L3, L4 (Posterior divisions of lumbar plexus)", s: "Nerves" },
+    { q: "What is the deformity and gait in Common Fibular Nerve injury?", a: "Foot Drop (Equinovarus) with High-Stepping (Cock-Walk) Gait", s: "Nerves" },
+    { q: "Where is the Common Fibular Nerve most commonly injured?", a: "Directly winding around the subcutaneous Neck of the Fibula", s: "Nerves" },
+    { q: "What is the deformity in Tibial Nerve injury?", a: "Calcaneovalgus deformity (loss of plantarflexion, inability to stand on tiptoes)", s: "Nerves" },
+    { q: "What is Hilton's Law and why is knee pain felt in hip disease?", a: "Nerve supplying a joint also supplies its moving muscles; Obturator nerve supplies both hip and knee joints", s: "Nerves" },
+    { q: "What is tested by the Knee Jerk vs Ankle Jerk reflex?", a: "Knee Jerk = Femoral N. (L3, L4); Ankle Jerk = Tibial N. (S1, S2)", s: "Nerves" },
+    { q: "Where is the Femoral Pulse palpated?", a: "At the Mid-Inguinal Point (midway between ASIS and Pubic Symphysis)", s: "Practical" },
+    { q: "What passes through the Adductor Hiatus?", a: "Femoral Artery and Vein (changing into Popliteal Artery and Vein)", s: "Medial Thigh" },
+    { q: "What is the sensory loss in Deep Fibular Nerve injury?", a: "Loss of sensation in the 1st Interdigital Web Space ONLY", s: "Nerves" }
+  ];
+
+  let currentCard = 0;
+  let cardOrder = [...Array(flashcards.length).keys()];
+
+  function openFlashcards() {
+    document.getElementById('flashcardOverlay').classList.add('active');
+    currentCard = 0;
+    updateFlashcard();
+  }
+
+  function closeFlashcards() {
+    document.getElementById('flashcardOverlay').classList.remove('active');
+    document.getElementById('flashcardCard').classList.remove('flipped');
+  }
+
+  function flipCard() {
+    document.getElementById('flashcardCard').classList.toggle('flipped');
+  }
+
+  function nextCard() {
+    document.getElementById('flashcardCard').classList.remove('flipped');
+    setTimeout(() => {
+      currentCard = (currentCard + 1) % cardOrder.length;
+      updateFlashcard();
+    }, 120);
+  }
+
+  function prevCard() {
+    document.getElementById('flashcardCard').classList.remove('flipped');
+    setTimeout(() => {
+      currentCard = (currentCard - 1 + cardOrder.length) % cardOrder.length;
+      updateFlashcard();
+    }, 120);
+  }
+
+  function shuffleCards() {
+    for (let i = cardOrder.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cardOrder[i], cardOrder[j]] = [cardOrder[j], cardOrder[i]];
+    }
+    currentCard = 0;
+    document.getElementById('flashcardCard').classList.remove('flipped');
+    setTimeout(updateFlashcard, 120);
+  }
+
+  function updateFlashcard() {
+    const fc = flashcards[cardOrder[currentCard]];
+    document.getElementById('fcQuestion').textContent = fc.q;
+    document.getElementById('fcAnswer').textContent = fc.a;
+    document.getElementById('fcSection').textContent = fc.s;
+    document.getElementById('flashcardCounter').textContent = (currentCard + 1) + ' / ' + cardOrder.length;
+  }
+
+  function toggleQuickRef() {
+    document.getElementById('qrOverlay').classList.toggle('active');
+    document.getElementById('qrSidebar').classList.toggle('active');
+  }
+
+  function toggleTranslation(sectionId, btn) {
+    const panel = document.getElementById('arabic-' + sectionId);
+    if (!panel) return;
+    const isActive = panel.classList.contains('active');
+    document.querySelectorAll('.arabic-panel.active').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.translate-btn.active').forEach(b => b.classList.remove('active'));
+    if (!isActive) {
+      panel.classList.add('active');
+      btn.classList.add('active');
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT') return;
+    const fcOpen = document.getElementById('flashcardOverlay').classList.contains('active');
+    if (e.key === 'Escape') {
+      closeFlashcards();
+      document.getElementById('qrOverlay').classList.remove('active');
+      document.getElementById('qrSidebar').classList.remove('active');
+      return;
+    }
+    if (fcOpen) {
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') nextCard();
+      else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') prevCard();
+      else if (e.key === ' ') { e.preventDefault(); flipCard(); }
+      return;
+    }
+    if (e.key.toLowerCase() === 's') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+    else if (e.key.toLowerCase() === 'f') { e.preventDefault(); openFlashcards(); }
+    else if (e.key.toLowerCase() === 'q') { e.preventDefault(); toggleQuickRef(); }
+    else if (e.key.toLowerCase() === 'p') { e.preventDefault(); window.print(); }
+  });
+
+  updateProgress();
+
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted || (window.performance && window.performance.navigation && window.performance.navigation.type === 2)) {
+      window.location.reload();
+    }
+  });
+
+  if ('caches' in window) {
+    caches.keys().then(function(names) {
+      for (let name of names) caches.delete(name);
+    });
+  }
+</script>
+
+</body>
+</html>
+"""
+
+html_content = generate_midterm_html()
+
+# Write to both final/anatomy2.html and final/anatomy2_lower_limb.html
+with open(r"d:\Coding\PT12\final\anatomy2.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+with open(r"d:\Coding\PT12\final\anatomy2_lower_limb.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+# Also write to Midterm/anatomy2_midterm.html if desired so students find it in Midterm folder directly too!
+os.makedirs(r"d:\Coding\PT12\Midterm", exist_ok=True)
+with open(r"d:\Coding\PT12\Midterm\anatomy2_midterm.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Successfully generated focused Midterm guide ({len(html_content)} bytes)!")

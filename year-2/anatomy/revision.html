@@ -1,0 +1,3328 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Anatomy Revision Notebook — PT Exam Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --bg2: #0f1218;
+    --bg3: #141820;
+    --card: #13171f;
+    --card2: #1a1f2a;
+    --border: #1e2535;
+    --border2: #2a3248;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --dim: #4a5568;
+    --blue: #3b82f6;
+    --blue2: #1d4ed8;
+    --cyan: #06b6d4;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --purple: #8b5cf6;
+    --pink: #ec4899;
+    --orange: #f97316;
+    --glow-blue: 0 0 20px rgba(59,130,246,0.25);
+    --glow-cyan: 0 0 20px rgba(6,182,212,0.2);
+    --glow-green: 0 0 20px rgba(16,185,129,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* === PROGRESS BAR === */
+  .progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    height: 4px;
+    background: var(--bg3);
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green));
+    background-size: 200% 100%;
+    animation: gradientShift 3s ease infinite;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+    border-radius: 0 2px 2px 0;
+  }
+  @keyframes gradientShift {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  .progress-badge {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 201;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--cyan);
+    font-family: 'JetBrains Mono', monospace;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .progress-badge:hover { border-color: var(--cyan); }
+
+  /* === BACK BUTTON === */
+  .back-btn {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 201;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+  }
+  .back-btn:hover { color: var(--text); border-color: var(--blue); background: var(--card2); }
+
+  /* === FLOATING BUTTONS === */
+  .fab-group {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 150;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  .fab {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    border: 1px solid var(--border2);
+    background: var(--card);
+    color: var(--muted);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .fab:hover { color: var(--text); border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+  .fab.active { background: rgba(59,130,246,0.15); border-color: var(--blue); color: var(--blue); }
+
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(59,130,246,0.06) 0%, transparent 100%);
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: var(--blue);
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .header-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--blue);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    animation: fadeDown 0.6s 0.1s ease both;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    margin-top: 10px;
+    font-size: 14px;
+    animation: fadeDown 0.6s 0.2s ease both;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    animation: fadeDown 0.6s 0.3s ease both;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--blue);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* NAV */
+  .nav {
+    position: sticky;
+    top: 4px;
+    z-index: 100;
+    background: rgba(10,12,16,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Cairo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 14px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .nav-btn:hover { color: var(--text); }
+  .nav-btn.active {
+    color: var(--blue);
+    border-bottom-color: var(--blue);
+    text-shadow: 0 0 20px rgba(59,130,246,0.4);
+  }
+  .nav-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: var(--blue);
+    box-shadow: 0 0 10px var(--blue), 0 0 20px rgba(59,130,246,0.3);
+  }
+
+  /* Special nav buttons */
+  .nav-btn.special {
+    color: var(--cyan);
+    font-weight: 700;
+  }
+  .nav-btn.special:hover { color: #67e8f9; }
+
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  .section { display: none; animation: fadeIn 0.4s ease; }
+  .section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION HEADERS */
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 52px;
+    background: var(--bg);
+    z-index: 10;
+    padding-top: 12px;
+    margin-top: -12px;
+  }
+
+  .sec-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .ic-blue { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); }
+  .ic-cyan { background: rgba(6,182,212,0.15); border: 1px solid rgba(6,182,212,0.3); }
+  .ic-green { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); }
+  .ic-yellow { background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); }
+  .ic-red { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); }
+  .ic-purple { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); }
+  .ic-orange { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.3); }
+  .ic-pink { background: rgba(236,72,153,0.15); border: 1px solid rgba(236,72,153,0.3); }
+
+  .sec-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+  }
+
+  /* Section complete button */
+  .sec-complete-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sec-complete-btn:hover { border-color: var(--green); color: var(--green); }
+  .sec-complete-btn.completed {
+    background: rgba(16,185,129,0.12);
+    border-color: rgba(16,185,129,0.4);
+    color: var(--green);
+  }
+
+  /* CONTENT CARDS */
+  .content-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .content-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  }
+
+  .subsection-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .subsection-title::before {
+    content: '';
+    width: 3px;
+    height: 14px;
+    background: var(--cyan);
+    border-radius: 2px;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .info-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .info-list li::before {
+    content: '▸';
+    color: var(--blue);
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 12px;
+  }
+
+  .info-list.numbered { counter-reset: item; }
+  .info-list.numbered li::before {
+    counter-increment: item;
+    content: counter(item) '.';
+    color: var(--yellow);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 18px;
+  }
+
+  /* TABLES */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  .data-table th {
+    background: rgba(59,130,246,0.12);
+    color: var(--blue);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .data-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.6;
+    transition: background 0.2s;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .data-table tr:hover td {
+    background: rgba(59,130,246,0.04);
+  }
+
+  .data-table td:first-child {
+    font-weight: 700;
+    color: var(--cyan);
+    white-space: nowrap;
+  }
+
+  /* COMPARE TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .compare-table th {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .compare-table th:first-child { text-align: left; color: var(--muted); font-size: 11px; text-transform: uppercase; }
+  .compare-table th:nth-child(2) { color: var(--blue); background: rgba(59,130,246,0.08); border-bottom: 2px solid var(--blue); }
+  .compare-table th:nth-child(3) { color: var(--green); background: rgba(16,185,129,0.08); border-bottom: 2px solid var(--green); }
+
+  .compare-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+    font-size: 13px;
+    transition: background 0.2s;
+  }
+
+  .compare-table td:first-child {
+    font-weight: 700;
+    color: var(--yellow);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .compare-table td:nth-child(2) { background: rgba(59,130,246,0.04); }
+  .compare-table td:nth-child(3) { background: rgba(16,185,129,0.04); }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { filter: brightness(1.15); }
+
+  /* HIGHLIGHT BOXES */
+  .highlight-box {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.7;
+    transition: transform 0.2s;
+  }
+  .highlight-box:hover { transform: translateX(4px); }
+
+  .highlight-box.blue {
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.25);
+    border-left: 3px solid var(--blue);
+  }
+
+  .highlight-box.cyan {
+    background: rgba(6,182,212,0.08);
+    border: 1px solid rgba(6,182,212,0.25);
+    border-left: 3px solid var(--cyan);
+  }
+
+  .highlight-box.green {
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.25);
+    border-left: 3px solid var(--green);
+  }
+
+  .highlight-box.yellow {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-left: 3px solid var(--yellow);
+  }
+
+  .highlight-box.purple {
+    background: rgba(139,92,246,0.08);
+    border: 1px solid rgba(139,92,246,0.25);
+    border-left: 3px solid var(--purple);
+  }
+
+  .hb-title {
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .blue .hb-title { color: var(--blue); }
+  .cyan .hb-title { color: var(--cyan); }
+  .green .hb-title { color: var(--green); }
+  .yellow .hb-title { color: var(--yellow); }
+  .purple .hb-title { color: var(--purple); }
+
+  /* GRID LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .compare-table td:first-child { white-space: normal; }
+    .data-table td:first-child { white-space: normal; }
+  }
+
+  /* CONDUCTION SYSTEM */
+  .conduction-chain {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+
+  .conduction-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .conduction-step:hover { background: rgba(255,255,255,0.03); transform: translateX(4px); }
+
+  .c-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .c-num.blue { background: rgba(59,130,246,0.2); color: var(--blue); border: 1px solid rgba(59,130,246,0.4); }
+  .c-num.cyan { background: rgba(6,182,212,0.2); color: var(--cyan); border: 1px solid rgba(6,182,212,0.4); }
+  .c-num.green { background: rgba(16,185,129,0.2); color: var(--green); border: 1px solid rgba(16,185,129,0.4); }
+  .c-num.yellow { background: rgba(245,158,11,0.2); color: var(--yellow); border: 1px solid rgba(245,158,11,0.4); }
+  .c-num.purple { background: rgba(139,92,246,0.2); color: var(--purple); border: 1px solid rgba(139,92,246,0.4); }
+
+  .c-connector {
+    width: 1px;
+    height: 20px;
+    background: var(--border2);
+    margin-left: 31px;
+  }
+
+  .c-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .c-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* VEINS LIST */
+  .vein-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .vein-tag {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.25);
+    color: #fca5a5;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s;
+  }
+  .vein-tag:hover { transform: scale(1.05); }
+
+  .artery-tag {
+    background: rgba(249,115,22,0.1);
+    border: 1px solid rgba(249,115,22,0.25);
+    color: #fdba74;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s;
+  }
+  .artery-tag:hover { transform: scale(1.05); }
+
+  .nerve-tag {
+    background: rgba(139,92,246,0.1);
+    border: 1px solid rgba(139,92,246,0.25);
+    color: #c4b5fd;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s;
+  }
+  .nerve-tag:hover { transform: scale(1.05); }
+
+  .tube-tag {
+    background: rgba(6,182,212,0.1);
+    border: 1px solid rgba(6,182,212,0.25);
+    color: #67e8f9;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s;
+  }
+  .tube-tag:hover { transform: scale(1.05); }
+
+  .lymph-tag {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.25);
+    color: #6ee7b7;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s;
+  }
+  .lymph-tag:hover { transform: scale(1.05); }
+
+  /* MUSCLE TABLE */
+  .muscle-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .muscle-table th {
+    background: rgba(245,158,11,0.1);
+    color: var(--yellow);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(245,158,11,0.2);
+    text-align: left;
+  }
+  .muscle-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+    color: var(--text);
+    transition: background 0.2s;
+  }
+  .muscle-table tr:last-child td { border-bottom: none; }
+  .muscle-table tr:hover td { background: rgba(245,158,11,0.04); }
+  .muscle-table td:first-child {
+    font-weight: 700;
+    color: var(--orange);
+    white-space: nowrap;
+  }
+
+  /* WALLS */
+  .wall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:600px){ .wall-grid { grid-template-columns: 1fr; } }
+
+  .wall-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    transition: all 0.3s;
+  }
+  .wall-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+  .wall-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .wall-card.ant .wall-title { color: var(--blue); border-bottom: 1px solid rgba(59,130,246,0.2); padding-bottom: 8px; }
+  .wall-card.post .wall-title { color: var(--green); border-bottom: 1px solid rgba(16,185,129,0.2); padding-bottom: 8px; }
+  .wall-card.sup .wall-title { color: var(--yellow); border-bottom: 1px solid rgba(245,158,11,0.2); padding-bottom: 8px; }
+  .wall-card.inf .wall-title { color: var(--red); border-bottom: 1px solid rgba(239,68,68,0.2); padding-bottom: 8px; }
+
+  .wall-items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .wall-items li {
+    font-size: 12.5px;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .wall-items li::before { content: '–'; flex-shrink: 0; color: var(--dim); }
+
+  /* BILIARY */
+  .biliary-chain {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 16px 0;
+  }
+  .bil-node {
+    background: rgba(6,182,212,0.1);
+    border: 1px solid rgba(6,182,212,0.3);
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    transition: transform 0.2s;
+  }
+  .bil-node:hover { transform: scale(1.05); }
+  .bil-arrow {
+    color: var(--dim);
+    font-size: 16px;
+    padding: 0 6px;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    padding: 12px 16px 12px 44px;
+    outline: none;
+    transition: all 0.3s;
+  }
+  .search-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+  .search-input::placeholder { color: var(--dim); }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--dim);
+    font-size: 16px;
+    pointer-events: none;
+  }
+  .search-results-info {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    display: none;
+  }
+  .search-results-info span { color: var(--cyan); font-weight: 700; }
+
+  /* SEARCH HIGHLIGHT */
+  mark.search-hl {
+    background: rgba(59,130,246,0.3);
+    color: #fff;
+    padding: 1px 4px;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(59,130,246,0.4);
+  }
+
+  /* BADGE */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
+  .badge-yellow { background: rgba(245,158,11,0.15); color: var(--yellow); }
+  .badge-red { background: rgba(239,68,68,0.15); color: var(--red); }
+
+  .topic-group { margin-bottom: 40px; }
+
+  .note-box {
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 12px;
+  }
+  .note-box.yellow {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.25);
+    color: #fde68a;
+  }
+  .note-box.red {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.25);
+    color: #fca5a5;
+  }
+
+  /* === FLASHCARD MODE === */
+  .flashcard-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(10,12,16,0.97);
+    backdrop-filter: blur(20px);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .flashcard-overlay.active { display: flex; }
+
+  .flashcard-header {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  .flashcard-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .flashcard-close {
+    position: absolute;
+    right: 24px;
+    top: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+  }
+  .flashcard-close:hover { color: var(--red); border-color: var(--red); }
+
+  .flashcard-scene {
+    width: 100%;
+    max-width: 520px;
+    height: 320px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .flashcard-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+  .flashcard-card.flipped { transform: rotateY(180deg); }
+
+  .flashcard-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--border2);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .flashcard-front {
+    background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
+  }
+  .flashcard-back {
+    background: linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(6,182,212,0.08) 100%);
+    border-color: rgba(59,130,246,0.3);
+    transform: rotateY(180deg);
+  }
+  .flashcard-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--dim);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .flashcard-front .flashcard-label { color: var(--blue); }
+  .flashcard-back .flashcard-label { color: var(--green); }
+  .flashcard-text {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .flashcard-back .flashcard-text { color: #6ee7b7; }
+  .flashcard-hint {
+    position: absolute;
+    bottom: 16px;
+    font-size: 11px;
+    color: var(--dim);
+  }
+  .flashcard-section-tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-size: 10px;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.3);
+    color: var(--blue);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+
+  .flashcard-nav {
+    display: flex;
+    gap: 16px;
+    margin-top: 30px;
+  }
+  .flashcard-nav button {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 10px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .flashcard-nav button:hover { color: var(--text); border-color: var(--blue); }
+
+  /* === QUICK REF SIDEBAR === */
+  .quickref-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .quickref-overlay.active { opacity: 1; pointer-events: all; }
+
+  .quickref-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    bottom: 0;
+    width: 380px;
+    max-width: 90vw;
+    z-index: 251;
+    background: var(--bg2);
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 24px;
+  }
+  .quickref-sidebar.active { right: 0; }
+  .quickref-sidebar::-webkit-scrollbar { width: 4px; }
+  .quickref-sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+  .qr-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .qr-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .qr-close {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .qr-close:hover { color: var(--red); border-color: var(--red); }
+
+  .qr-section {
+    margin-bottom: 20px;
+  }
+  .qr-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .qr-section-title.blue { background: rgba(59,130,246,0.1); color: var(--blue); }
+  .qr-section-title.cyan { background: rgba(6,182,212,0.1); color: var(--cyan); }
+  .qr-section-title.orange { background: rgba(249,115,22,0.1); color: var(--orange); }
+  .qr-section-title.yellow { background: rgba(245,158,11,0.1); color: var(--yellow); }
+  .qr-section-title.red { background: rgba(239,68,68,0.1); color: var(--red); }
+  .qr-section-title.purple { background: rgba(139,92,246,0.1); color: var(--purple); }
+  .qr-section-title.green { background: rgba(16,185,129,0.1); color: var(--green); }
+
+  .qr-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-left: 8px;
+  }
+  .qr-items li {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .qr-items li::before { content: '→'; color: var(--dim); flex-shrink: 0; }
+
+  /* === KEYBOARD SHORTCUTS MODAL === */
+  .shortcuts-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 400;
+    background: rgba(10,12,16,0.9);
+    backdrop-filter: blur(10px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .shortcuts-modal.active { display: flex; }
+  .shortcuts-box {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 400px;
+    width: 90%;
+  }
+  .shortcuts-box h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .shortcut-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .shortcut-row:last-child { border-bottom: none; }
+  .shortcut-key {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    color: var(--cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .shortcut-desc {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* === CONFETTI === */
+  .confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 500;
+    overflow: hidden;
+  }
+  .confetti-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    animation: confettiFall 1.5s ease-out forwards;
+  }
+  @keyframes confettiFall {
+    0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg) scale(0); opacity: 0; }
+  }
+
+  /* === ARABIC TRANSLATION BUTTON & PANEL === */
+  .translate-btn {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: var(--green);
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .translate-btn:hover {
+    background: rgba(16,185,129,0.2);
+    border-color: rgba(16,185,129,0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(16,185,129,0.15);
+  }
+  .translate-btn.active {
+    background: rgba(16,185,129,0.25);
+    border-color: var(--green);
+    color: #6ee7b7;
+    box-shadow: 0 0 12px rgba(16,185,129,0.2);
+  }
+  .translate-btn .btn-label {
+    font-size: 11px;
+  }
+  @media (max-width: 640px) {
+    .translate-btn .btn-label { display: none; }
+    .translate-btn { padding: 6px 8px; font-size: 16px; }
+  }
+
+  .arabic-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, padding 0.4s ease;
+    opacity: 0;
+    background: linear-gradient(135deg, rgba(16,185,129,0.06) 0%, rgba(6,182,212,0.04) 100%);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    direction: rtl;
+    text-align: right;
+    padding: 0 20px;
+  }
+  .arabic-panel.active {
+    max-height: 800px;
+    opacity: 1;
+    padding: 20px;
+  }
+  .arabic-panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(16,185,129,0.15);
+  }
+  .arabic-panel-icon {
+    font-size: 20px;
+  }
+  .arabic-panel-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--green);
+    font-family: 'Cairo', sans-serif;
+  }
+  .arabic-panel-badge {
+    background: rgba(16,185,129,0.15);
+    border: 1px solid rgba(16,185,129,0.3);
+    color: #6ee7b7;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-right: auto;
+    direction: ltr;
+  }
+  .arabic-panel p {
+    font-size: 14px;
+    color: #b8c5d4;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-family: 'Cairo', sans-serif;
+  }
+  .arabic-panel p:last-child { margin-bottom: 0; }
+  .arabic-panel strong {
+    color: #6ee7b7;
+    font-weight: 700;
+  }
+  .arabic-panel .ar-highlight {
+    background: rgba(16,185,129,0.1);
+    border-right: 3px solid var(--green);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    margin: 10px 0;
+    font-size: 13px;
+    color: #a8b8c8;
+    line-height: 1.9;
+  }
+
+  /* === SCROLLBAR === */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--dim); }
+
+  /* === PRINT === */
+  @media print {
+    body::before, body::after, .nav, .progress-bar-container, .progress-badge,
+    .back-btn, .fab-group, .search-wrap, .sec-complete-btn, .translate-btn,
+    .arabic-panel,
+    .flashcard-overlay, .quickref-overlay, .quickref-sidebar, .shortcuts-modal { display: none !important; }
+    .section { display: block !important; page-break-inside: avoid; }
+    .section + .section { margin-top: 40px; border-top: 2px solid #333; padding-top: 20px; }
+    body { background: #fff; color: #000; }
+    header { background: none; border-bottom: 2px solid #000; }
+    h1 { background: none; -webkit-text-fill-color: #000; color: #000; }
+    .content-card, .wall-card { border-color: #ccc; background: #fafafa; }
+    .highlight-box { border-color: #ccc; background: #f5f5f5; }
+    .sec-header { position: static; background: #fff; }
+    .stat-num { color: #000; }
+    .subtitle, .stat-label { color: #666; }
+    .header-badge { color: #333; border-color: #ccc; background: #eee; }
+    .sec-title { color: #000; }
+    .subsection-title { color: #333; }
+    .info-list li { color: #000; }
+    .data-table th, .muscle-table th { background: #eee; color: #333; }
+    .data-table td, .muscle-table td, .compare-table td { color: #000; border-color: #ddd; }
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 640px) {
+    .stats-bar { gap: 24px; }
+    .nav-btn { padding: 12px 10px; font-size: 11px; }
+    .back-btn { padding: 4px 10px; font-size: 11px; top: 8px; left: 8px; }
+    .progress-badge { top: 8px; right: 8px; font-size: 10px; padding: 4px 10px; }
+    header { padding: 50px 16px 30px; }
+    .fab-group { bottom: 16px; right: 16px; }
+    .fab { width: 42px; height: 42px; font-size: 18px; }
+    .sec-header { top: 48px; }
+    .flashcard-scene { height: 260px; }
+    .flashcard-text { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar-container"><div class="progress-bar-fill" id="progressFill"></div></div>
+<div class="progress-badge" id="progressBadge">0/9</div>
+
+<!-- Back Button -->
+<a href="../../index.html" class="back-btn">← الرئيسية</a>
+
+<!-- Floating Action Buttons -->
+<div class="fab-group">
+  <button class="fab" onclick="toggleShortcuts()" title="اختصارات لوحة المفاتيح">⌨️</button>
+  <button class="fab" onclick="toggleQuickRef()" title="مرجع سريع (Q)">📌</button>
+  <button class="fab" onclick="window.print()" title="طباعة">🖨️</button>
+</div>
+
+<header>
+  <div class="header-badge">Anatomy Revision</div>
+  <h1>Anatomy Revision Notebook</h1>
+  <div class="subtitle">Comprehensive & Fully Organized Revision Guide</div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">Topics</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Comparison Tables</div></div>
+    <div class="stat"><div class="stat-num">12</div><div class="stat-label">Muscle Entries</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--cyan)">~15</div><div class="stat-label">Min Reading</div></div>
+  </div>
+</header>
+
+<nav class="nav" id="mainNav">
+  <button class="nav-btn active" onclick="showSection('liver', this)">🫁 Liver</button>
+  <button class="nav-btn" onclick="showSection('mediastinum', this)">🫀 Mediastinum</button>
+  <button class="nav-btn" onclick="showSection('post-abdominal', this)">💪 Post. Abd. Wall</button>
+  <button class="nav-btn" onclick="showSection('ant-abdominal', this)">🩻 Ant. Abd. Wall</button>
+  <button class="nav-btn" onclick="showSection('conduction', this)">⚡ Heart Conduction</button>
+  <button class="nav-btn" onclick="showSection('blood-supply', this)">🩸 Heart Blood Supply</button>
+  <button class="nav-btn" onclick="showSection('inguinal', this)">🔩 Inguinal Canal</button>
+  <button class="nav-btn" onclick="showSection('comparison', this)">📊 Comparisons</button>
+  <button class="nav-btn" onclick="showSection('biliary', this)">🧪 Biliary System</button>
+  <button class="nav-btn special" onclick="openFlashcards()">🧠 اختبر نفسك</button>
+</nav>
+
+<main>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <span class="search-icon">🔍</span>
+  <input class="search-input" id="searchInput" placeholder="ابحث في جميع الأقسام..." oninput="searchAll(this.value)">
+  <div class="search-results-info" id="searchInfo">تم العثور على <span id="searchCount">0</span> نتيجة</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: LIVER                                              -->
+<!-- ============================================================ -->
+<div class="section active" id="liver">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-blue">🫁</div>
+      <div class="sec-title">1. The Liver (porta hepatis, function, ligaments, surface)</div>
+      <button class="translate-btn" onclick="toggleTranslation('liver', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="liver" onclick="toggleComplete('liver', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-liver">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">🫁</span>
+        <span class="arabic-panel-title">شرح بالعربي — الكبد</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p><strong>الكبد</strong> هو أكبر غدة في الجسم ووزنه حوالي <strong>١.٥ كجم</strong> وله أكثر من <strong>٥٠٠ وظيفة</strong>. يقع تحت الحجاب الحاجز في المنطقة تحت الأضلاع اليمنى والمنطقة الشرسوفية.</p>
+      <p><strong>باب الكبد (Porta Hepatis):</strong> المنطقة اللي بتدخل فيها الأوعية الدموية والأعصاب، وموجودة بين الفص المذنب (Caudate) والفص المربع (Quadrate). بيمر فيها القنوات الكبدية والشريان الكبدي والوريد البابي.</p>
+      <div class="ar-highlight">⚡ <strong>وظائف الكبد:</strong> إنتاج الصفراء — تخزين الجلوكوز كجلايكوجين — معالجة الدهون والأحماض الأمينية — تخزين الفيتامينات — إزالة السموم — تصنيع بروتينات الدم.</div>
+      <p><strong>الأربطة:</strong> ٨ أربطة أهمها الرباط المنجلي (Falciform) اللي بيقسم الكبد ظاهرياً لفص يمين ويسار، والرباط التاجي (Coronary)، والرباط المثلثي الأيمن والأيسر.</p>
+      <p><strong>السطح الحجابي:</strong> السطح العلوي الأمامي — أملس ومحدب. <strong>السطح الحشوي:</strong> السطح الخلفي السفلي — غير منتظم وبيلامس الكلية اليمنى والغدة الكظرية والقولون والمعدة والاثني عشر.</p>
+    </div>
+
+    <div class="highlight-box blue">
+      <div class="hb-title">General Facts</div>
+      Largest gland in the body (about <strong>1.5 kg</strong>). Has over <strong>500 functions</strong>.
+      Located inferior to the diaphragm in the <strong>right hypochondrium and epigastric area</strong>, protected by ribs.
+    </div>
+
+    <div class="two-col">
+      <div class="content-card">
+        <div class="subsection-title">Porta Hepatis</div>
+        <div class="highlight-box cyan" style="margin-bottom:12px">
+          Area where major vessels and nerves enter and leave. Lies between <strong>caudate and quadrate lobes</strong>.
+        </div>
+        <ul class="info-list">
+          <li>Right and left hepatic ducts</li>
+          <li>Right and left branches of hepatic artery</li>
+          <li>Right and left branches of portal veins</li>
+        </ul>
+      </div>
+
+      <div class="content-card">
+        <div class="subsection-title">Functions of the Liver</div>
+        <ul class="info-list">
+          <li>Produces bile</li>
+          <li>Picks up glucose from blood</li>
+          <li>Stores glucose as glycogen</li>
+          <li>Processes fats and amino acids</li>
+          <li>Stores some vitamins</li>
+          <li>Detoxifies poisons and drugs</li>
+          <li>Makes the blood proteins</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="subsection-title">Ligaments of the Liver</div>
+      <ul class="info-list numbered">
+        <li>The Falciform ligament of liver</li>
+        <li>The Ligamentum teres hepatis</li>
+        <li>The coronary ligament</li>
+        <li>The right triangular ligament</li>
+        <li>The left triangular ligament</li>
+        <li>The Hepatogastric ligament</li>
+        <li>The hepatoduodenal ligament</li>
+        <li>The Ligamentum Venosum</li>
+      </ul>
+    </div>
+
+    <div class="two-col">
+      <div class="content-card">
+        <div class="subsection-title">Diaphragmatic Surface</div>
+        <ul class="info-list">
+          <li>The anterosuperior surface of the liver</li>
+          <li>Smooth and convex, fitting beneath the curvature of the diaphragm</li>
+          <li>Posterior aspect is NOT covered by peritoneum → <strong>Bare area of the liver</strong></li>
+        </ul>
+      </div>
+
+      <div class="content-card">
+        <div class="subsection-title">Visceral Surface</div>
+        <ul class="info-list">
+          <li>The posteroinferior surface of the liver</li>
+          <li>Moulded by surrounding organs — irregular and flat</li>
+          <li>In contact with: right kidney, right adrenal gland, right colic flexure, transverse colon, 1st part of duodenum, gallbladder, oesophagus, stomach</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end liver -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 2: MEDIASTINUM                                        -->
+<!-- ============================================================ -->
+<div class="section" id="mediastinum">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-cyan">🫀</div>
+      <div class="sec-title">2. Thoracic Mediastinum (enumerate contents)</div>
+      <button class="translate-btn" onclick="toggleTranslation('mediastinum', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="mediastinum" onclick="toggleComplete('mediastinum', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-mediastinum">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">🫀</span>
+        <span class="arabic-panel-title">شرح بالعربي — المنصف الصدري</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p><strong>المنصف (Mediastinum)</strong> هو المنطقة اللي في نص الصدر بين الرئتين. بينقسم لـ <strong>علوي وسفلي</strong> (والسفلي بينقسم لأمامي وأوسط وخلفي).</p>
+      <p><strong>محتويات المنصف العلوي:</strong></p>
+      <div class="ar-highlight">🔴 <strong>الشرايين:</strong> قوس الأبهر وفروعه الثلاثة (الجذع العضدي الرأسي — الشريان السباتي الأيسر — الشريان تحت الترقوة الأيسر)<br>🔵 <strong>الأوردة:</strong> الوريد العضدي الرأسي الأيمن والأيسر — النصف العلوي من الوريد الأجوف العلوي<br>💜 <strong>الأعصاب:</strong> العصب الحجابي — العصب المبهم — الجذع الودي — العصب الحنجري الراجع الأيسر<br>🟢 <strong>الليمف:</strong> العقد الليمفاوية — القناة الصدرية — الغدة الزعترية<br>🔷 <strong>الأنابيب:</strong> القصبة الهوائية — المريء</div>
+      <p><strong>محتويات المنصف الخلفي:</strong> المريء — الوريد الأزيغوسي — القناة الصدرية — السلسلة الودية — الشريان الأبهر النازل.</p>
+    </div>
+
+    <div class="content-card" style="margin-bottom:16px">
+      <div class="subsection-title">Contents of Superior Mediastinum</div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Arteries</div>
+          <div class="vein-grid">
+            <span class="artery-tag">Arch of Aorta</span>
+            <span class="artery-tag">Brachiocephalic artery</span>
+            <span class="artery-tag">Left common carotid artery</span>
+            <span class="artery-tag">Left subclavian artery</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Veins</div>
+          <div class="vein-grid">
+            <span class="vein-tag">Right brachiocephalic vein</span>
+            <span class="vein-tag">Left brachiocephalic vein</span>
+            <span class="vein-tag">Upper half of SVC</span>
+            <span class="vein-tag">Left superior intercostal vein</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--purple);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Nerves</div>
+          <div class="vein-grid">
+            <span class="nerve-tag">Phrenic nerves</span>
+            <span class="nerve-tag">Vagus nerves</span>
+            <span class="nerve-tag">Sympathetic trunks &amp; cardiac nerves</span>
+            <span class="nerve-tag">Left recurrent laryngeal nerve</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Lymphatics</div>
+          <div class="vein-grid">
+            <span class="lymph-tag">Lymph nodes</span>
+            <span class="lymph-tag">Thoracic duct</span>
+            <span class="lymph-tag">Thymus</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:var(--cyan);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Tubes</div>
+          <div class="vein-grid">
+            <span class="tube-tag">Trachea</span>
+            <span class="tube-tag">Esophagus</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="subsection-title">Contents of Posterior Mediastinum</div>
+      <div class="vein-grid" style="margin-top:4px">
+        <span class="tube-tag">Esophagus</span>
+        <span class="vein-tag">Azygos vein</span>
+        <span class="lymph-tag">Thoracic duct</span>
+        <span class="nerve-tag">Sympathetic chain</span>
+        <span class="artery-tag">Descending Aorta</span>
+      </div>
+    </div>
+
+    <div class="content-card" style="margin-top:16px">
+      <div class="subsection-title">📐 Intercostal Veins Diagram — Exam Drawing</div>
+      <div style="overflow-x:auto">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 920" style="width:100%;max-width:820px;display:block;margin:0 auto" font-family="'Segoe UI',system-ui,sans-serif">
+          <defs>
+            <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#06b6d4"/></marker>
+            <marker id="ah-r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#ef4444"/></marker>
+            <marker id="ah-p" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#8b5cf6"/></marker>
+            <linearGradient id="svcGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#6366f1"/></linearGradient>
+            <linearGradient id="azGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#0891b2"/></linearGradient>
+            <linearGradient id="haGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#7c3aed"/></linearGradient>
+          </defs>
+
+          <!-- ============ TITLE AREA ============ -->
+          <text x="410" y="32" text-anchor="middle" fill="#e2e8f0" font-size="20" font-weight="700" letter-spacing="1">INTERCOSTAL VEINS — Drainage System</text>
+
+          <!-- Anterior info box -->
+          <rect x="30" y="48" width="760" height="52" rx="8" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.25)" stroke-width="1"/>
+          <text x="50" y="70" fill="#f87171" font-size="12" font-weight="700" letter-spacing="1">ANTERIOR INTERCOSTAL VEINS</text>
+          <text x="50" y="88" fill="#94a3b8" font-size="12">Upper 6 → <tspan fill="#ef4444" font-weight="600">Internal Thoracic Vein</tspan>  ·  Lower 3 → <tspan fill="#ef4444" font-weight="600">Musculophrenic Vein</tspan></text>
+
+          <!-- ============ MAIN SCHEMATIC ============ -->
+          <!-- Side labels -->
+          <text x="195" y="130" text-anchor="middle" fill="#f59e0b" font-size="16" font-weight="700">RIGHT</text>
+          <text x="625" y="130" text-anchor="middle" fill="#f59e0b" font-size="16" font-weight="700">LEFT</text>
+
+          <!-- === SVC vertical trunk === -->
+          <line x1="410" y1="142" x2="410" y2="220" stroke="url(#svcGrad)" stroke-width="6" stroke-linecap="round"/>
+          <rect x="380" y="140" width="60" height="26" rx="6" fill="#3b82f6"/>
+          <text x="410" y="158" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">SVC</text>
+
+          <!-- Azygos arch into SVC -->
+          <path d="M310,230 Q310,195 350,185 Q385,178 405,170" stroke="url(#azGrad)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <text x="335" y="175" text-anchor="middle" fill="#06b6d4" font-size="10" font-weight="600">arch over R. bronchus</text>
+
+          <!-- === RIGHT BRACHIOCEPHALIC === -->
+          <line x1="410" y1="170" x2="260" y2="148" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+          <rect x="155" y="135" width="110" height="24" rx="6" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+          <text x="210" y="152" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="600">R. Brachiocephalic</text>
+
+          <!-- === LEFT BRACHIOCEPHALIC === -->
+          <line x1="410" y1="170" x2="560" y2="148" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+          <rect x="555" y="135" width="110" height="24" rx="6" fill="rgba(59,130,246,0.15)" stroke="#3b82f6" stroke-width="1"/>
+          <text x="610" y="152" text-anchor="middle" fill="#93c5fd" font-size="11" font-weight="600">L. Brachiocephalic</text>
+
+          <!-- ============ RIGHT SIDE ============ -->
+
+          <!-- R. 1st intercostal → R. brachiocephalic (supreme) -->
+          <line x1="160" y1="195" x2="210" y2="160" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-r)"/>
+          <circle cx="140" cy="195" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="140" y="199" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">1</text>
+          <text x="100" y="199" text-anchor="end" fill="#94a3b8" font-size="10">supreme</text>
+
+          <!-- R. 2nd-3rd → R. sup. intercostal → azygos -->
+          <circle cx="140" cy="230" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="140" y="234" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">2</text>
+          <circle cx="140" cy="262" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="140" y="266" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">3</text>
+          <line x1="153" y1="230" x2="230" y2="230" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+          <line x1="153" y1="262" x2="230" y2="262" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+          <!-- Collector label -->
+          <line x1="230" y1="222" x2="230" y2="270" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="230" y1="246" x2="310" y2="246" stroke="#f97316" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-r)"/>
+          <text x="233" y="218" fill="#f97316" font-size="10" font-weight="600">R. Sup.</text>
+          <text x="233" y="208" fill="#f97316" font-size="10" font-weight="600">Intercostal</text>
+
+          <!-- AZYGOS VEIN (vertical on right side) -->
+          <line x1="310" y1="220" x2="310" y2="760" stroke="url(#azGrad)" stroke-width="5" stroke-linecap="round"/>
+          <rect x="260" y="224" width="48" height="54" rx="6" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,2"/>
+          <text x="284" y="244" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">A</text>
+          <text x="284" y="256" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">Z</text>
+          <text x="284" y="268" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">Y</text>
+
+          <!-- Vertebral level markers on SVC line -->
+          <text x="400" y="208" text-anchor="end" fill="#475569" font-size="10" font-weight="600">T4</text>
+          <line x1="395" y1="200" x2="425" y2="200" stroke="#334155" stroke-width="1" stroke-dasharray="3,2"/>
+
+          <!-- R. intercostals 4-11 draining into azygos -->
+          <circle cx="140" cy="330" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="140" y="334" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">4</text>
+          <line x1="153" y1="330" x2="305" y2="330" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+
+          <circle cx="140" cy="375" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="140" y="379" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">5</text>
+          <line x1="153" y1="375" x2="305" y2="375" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+
+          <circle cx="140" cy="420" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="140" y="424" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">6</text>
+          <line x1="153" y1="420" x2="305" y2="420" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+
+          <circle cx="140" cy="465" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="140" y="469" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">7</text>
+          <line x1="153" y1="465" x2="305" y2="465" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+
+          <circle cx="140" cy="510" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="140" y="514" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">8</text>
+          <line x1="153" y1="510" x2="305" y2="510" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+
+          <circle cx="140" cy="555" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="140" y="559" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">9</text>
+          <line x1="153" y1="555" x2="305" y2="555" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+
+          <circle cx="140" cy="600" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="140" y="604" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">10</text>
+          <line x1="153" y1="600" x2="305" y2="600" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+
+          <circle cx="140" cy="645" r="13" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="140" y="649" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="700">11</text>
+          <line x1="153" y1="645" x2="305" y2="645" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" marker-end="url(#ah)"/>
+
+          <!-- R. Subcostal -->
+          <rect x="80" y="680" width="85" height="22" rx="5" fill="rgba(6,182,212,0.12)" stroke="#06b6d4" stroke-width="1"/>
+          <text x="122" y="695" text-anchor="middle" fill="#06b6d4" font-size="10" font-weight="600">Subcostal</text>
+          <line x1="165" y1="691" x2="305" y2="691" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3" marker-end="url(#ah)"/>
+
+          <!-- Right side label bracket -->
+          <text x="55" y="440" text-anchor="middle" fill="#475569" font-size="10" font-weight="600" transform="rotate(-90 55 440)">4–11 → Azygos directly</text>
+
+          <!-- ============ LEFT SIDE ============ -->
+
+          <!-- L. 1st intercostal → L. brachiocephalic (supreme) -->
+          <line x1="660" y1="195" x2="610" y2="160" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ah-r)"/>
+          <circle cx="680" cy="195" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="680" y="199" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">1</text>
+          <text x="720" y="199" text-anchor="start" fill="#94a3b8" font-size="10">supreme</text>
+
+          <!-- L. 2nd-3rd → L. sup. intercostal → L. brachiocephalic -->
+          <circle cx="680" cy="230" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="680" y="234" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">2</text>
+          <circle cx="680" cy="262" r="13" fill="rgba(239,68,68,0.15)" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="680" y="266" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="700">3</text>
+          <line x1="667" y1="230" x2="590" y2="230" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+          <line x1="667" y1="262" x2="590" y2="262" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+          <!-- Collector label -->
+          <line x1="590" y1="222" x2="590" y2="270" stroke="#f97316" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="590" y1="246" x2="610" y2="164" stroke="#f97316" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-r)"/>
+          <text x="587" y="218" text-anchor="end" fill="#f97316" font-size="10" font-weight="600">L. Sup.</text>
+          <text x="587" y="208" text-anchor="end" fill="#f97316" font-size="10" font-weight="600">Intercostal</text>
+
+          <!-- ============ SUPERIOR HEMI-AZYGOS (Accessory Hemiazygos) ============ -->
+          <!-- Vertical trunk -->
+          <line x1="510" y1="310" x2="510" y2="540" stroke="url(#haGrad)" stroke-width="4.5" stroke-linecap="round"/>
+          <rect x="520" y="380" width="95" height="40" rx="6" fill="rgba(139,92,246,0.1)" stroke="#8b5cf6" stroke-width="1"/>
+          <text x="567" y="396" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">SUP. HEMI-</text>
+          <text x="567" y="410" text-anchor="middle" fill="#a78bfa" font-size="10" font-weight="700">AZYGOS</text>
+          <text x="567" y="432" text-anchor="middle" fill="#64748b" font-size="9" font-style="italic">(Accessory)</text>
+
+          <!-- L. intercostals 4-8 draining into sup hemi-azygos -->
+          <circle cx="680" cy="330" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="680" y="334" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">4</text>
+          <line x1="667" y1="330" x2="515" y2="330" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+
+          <circle cx="680" cy="375" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="680" y="379" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">5</text>
+          <line x1="667" y1="375" x2="515" y2="375" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+
+          <circle cx="680" cy="420" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="680" y="424" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">6</text>
+          <line x1="667" y1="420" x2="515" y2="420" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+
+          <circle cx="680" cy="465" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="680" y="469" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">7</text>
+          <line x1="667" y1="465" x2="515" y2="465" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+
+          <circle cx="680" cy="510" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="680" y="514" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="700">8</text>
+          <line x1="667" y1="510" x2="515" y2="510" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+
+          <!-- Sup hemi-azygos crosses midline to azygos -->
+          <path d="M510,425 Q410,425 315,425" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-dasharray="8,4" marker-end="url(#ah-p)"/>
+          <text x="410" y="415" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="600">crosses midline</text>
+
+          <!-- ============ INFERIOR HEMI-AZYGOS ============ -->
+          <!-- Vertical trunk -->
+          <line x1="510" y1="555" x2="510" y2="710" stroke="url(#haGrad)" stroke-width="4.5" stroke-linecap="round"/>
+          <rect x="520" y="590" width="95" height="40" rx="6" fill="rgba(139,92,246,0.1)" stroke="#8b5cf6" stroke-width="1"/>
+          <text x="567" y="606" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="700">INF. HEMI-</text>
+          <text x="567" y="620" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="700">AZYGOS</text>
+
+          <!-- L. intercostals 9-11 draining into inf hemi-azygos -->
+          <circle cx="680" cy="570" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="680" y="574" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">9</text>
+          <line x1="667" y1="570" x2="515" y2="570" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+
+          <circle cx="680" cy="615" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="680" y="619" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">10</text>
+          <line x1="667" y1="615" x2="515" y2="615" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+
+          <circle cx="680" cy="660" r="13" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="680" y="664" text-anchor="middle" fill="#c4b5fd" font-size="11" font-weight="700">11</text>
+          <line x1="667" y1="660" x2="515" y2="660" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" marker-end="url(#ah-p)"/>
+
+          <!-- Inf hemi-azygos crosses midline to azygos -->
+          <path d="M510,635 Q410,635 315,635" stroke="#8b5cf6" stroke-width="3" fill="none" stroke-dasharray="8,4" marker-end="url(#ah-p)"/>
+          <text x="410" y="625" text-anchor="middle" fill="#c4b5fd" font-size="9" font-weight="600">crosses midline</text>
+
+          <!-- L. Subcostal -->
+          <rect x="638" y="695" width="85" height="22" rx="5" fill="rgba(139,92,246,0.12)" stroke="#8b5cf6" stroke-width="1"/>
+          <text x="680" y="710" text-anchor="middle" fill="#c4b5fd" font-size="10" font-weight="600">Subcostal</text>
+          <line x1="638" y1="706" x2="515" y2="706" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-dasharray="5,3" marker-end="url(#ah-p)"/>
+
+          <!-- Left side label -->
+          <text x="765" y="480" text-anchor="middle" fill="#475569" font-size="10" font-weight="600" transform="rotate(90 765 480)">4–8 Sup. hemi · 9–11 Inf. hemi → Azygos</text>
+
+          <!-- ============ MIDLINE / VERTEBRAL COLUMN REFERENCE ============ -->
+          <line x1="410" y1="220" x2="410" y2="760" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="6,4"/>
+          <text x="410" y="772" text-anchor="middle" fill="#334155" font-size="10" font-style="italic">vertebral column (midline)</text>
+
+          <!-- ============ NOTES BOX AT BOTTOM ============ -->
+          <rect x="40" y="800" width="740" height="108" rx="10" fill="rgba(30,41,59,0.6)" stroke="#334155" stroke-width="1"/>
+          <text x="60" y="822" fill="#f59e0b" font-size="13" font-weight="700">📋 Drainage Pattern Summary</text>
+
+          <text x="60" y="846" fill="#ef4444" font-size="11" font-weight="600">①</text>
+          <text x="78" y="846" fill="#cbd5e1" font-size="11">1st intercostal → <tspan fill="#ef4444" font-weight="600">Supreme (brachiocephalic)</tspan> on both sides</text>
+
+          <text x="60" y="866" fill="#f97316" font-size="11" font-weight="600">②③</text>
+          <text x="85" y="866" fill="#cbd5e1" font-size="11">R: Sup. intercostal → <tspan fill="#06b6d4" font-weight="600">Azygos</tspan>  ·  L: Sup. intercostal → <tspan fill="#3b82f6" font-weight="600">L. Brachiocephalic</tspan></text>
+
+          <text x="60" y="886" fill="#8b5cf6" font-size="11" font-weight="600">④–⑧</text>
+          <text x="93" y="886" fill="#cbd5e1" font-size="11">L: <tspan fill="#a78bfa" font-weight="600">Sup. Hemi-azygos</tspan> → crosses midline → <tspan fill="#06b6d4" font-weight="600">Azygos</tspan>  ·  R: directly into Azygos</text>
+
+          <text x="60" y="906" fill="#c4b5fd" font-size="11" font-weight="600">⑨–⑪</text>
+          <text x="93" y="906" fill="#cbd5e1" font-size="11">L: <tspan fill="#c4b5fd" font-weight="600">Inf. Hemi-azygos</tspan> → crosses midline → <tspan fill="#06b6d4" font-weight="600">Azygos</tspan>  ·  R: directly into Azygos</text>
+
+          <!-- Azygos → SVC final label -->
+          <rect x="320" y="182" width="80" height="16" rx="4" fill="rgba(6,182,212,0.15)" stroke="none"/>
+          <text x="360" y="194" text-anchor="middle" fill="#22d3ee" font-size="9" font-weight="600">→ drains SVC</text>
+        </svg>
+      </div>
+      <div class="note-box yellow" style="margin-top:12px">💡 <strong>Key:</strong> innominate = brachiocephalic. Azygos drains into SVC. Superior hemi-azygos (4–8) and inferior hemi-azygos (9–11) cross midline to join azygos.</div>
+    </div>
+
+  </div>
+</div><!-- end mediastinum -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 3: POSTERIOR ABDOMINAL WALL                          -->
+<!-- ============================================================ -->
+<div class="section" id="post-abdominal">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-orange">💪</div>
+      <div class="sec-title">3. Muscles of the Posterior Abdominal Wall</div>
+      <button class="translate-btn" onclick="toggleTranslation('post-abdominal', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="post-abdominal" onclick="toggleComplete('post-abdominal', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-post-abdominal">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">💪</span>
+        <span class="arabic-panel-title">شرح بالعربي — عضلات جدار البطن الخلفي</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p>جدار البطن الخلفي بيتكون من <strong>٤ عضلات رئيسية</strong> بالإضافة للحجاب الحاجز اللي هو العضلة الرئيسية للتنفس وبيفصل بين تجويف الصدر وتجويف البطن.</p>
+      <div class="ar-highlight">💪 <strong>العضلة القطنية الكبرى (Psoas Major):</strong> من T12-L5 إلى المدور الأصغر لعظمة الفخذ — تثني الفخذ وتلفه للداخل — تتغذى من الضفيرة القطنية L1-3<br><br>💪 <strong>العضلة القطنية الصغرى (Psoas Minor):</strong> غائبة في ٤٠٪ من الناس — من T12, L1 إلى البارزة الحرقفية العانية — تثني العمود الفقري<br><br>💪 <strong>العضلة المربعة القطنية (Quadratus Lumborum):</strong> تثبت وتخفض الضلع ١٢ — الانثناء الجانبي للعمود الفقري<br><br>💪 <strong>العضلة الحرقفية (Iliacus):</strong> من الحفرة الحرقفية إلى المدور الأصغر — تثني مفصل الورك — تتغذى من العصب الفخذي</div>
+    </div>
+
+    <div class="content-card" style="margin-bottom:16px">
+      <div class="subsection-title">Diaphragm</div>
+      <p style="font-size:14px;color:var(--muted)">Main respiratory muscle separating <strong style="color:var(--text)">thoracic and abdominal cavities</strong>.</p>
+    </div>
+
+    <div class="content-card">
+      <div class="subsection-title">Muscle Summary Table</div>
+      <div style="overflow-x:auto">
+        <table class="muscle-table">
+          <thead>
+            <tr>
+              <th>Muscle</th>
+              <th>Origin</th>
+              <th>Insertion</th>
+              <th>Nerve Supply</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Psoas Major</td>
+              <td>T12–L5 (transverse processes, vertebral bodies, discs)</td>
+              <td>Lesser trochanter of femur (with iliacus)</td>
+              <td>Lumbar plexus L1–3</td>
+              <td>Flexion &amp; medial rotation of thigh; flexion of trunk if thigh fixed</td>
+            </tr>
+            <tr>
+              <td>Psoas Minor <span class="badge badge-yellow">absent 40%</span></td>
+              <td>Sides of T12, L1 and intervening disc</td>
+              <td>Iliopectineal (iliopubic) eminence of hip bone</td>
+              <td>1st lumbar nerve</td>
+              <td>Flexion of vertebral column</td>
+            </tr>
+            <tr>
+              <td>Quadratus Lumborum</td>
+              <td>Transverse process of L5, iliolumbar ligament, iliac crest</td>
+              <td>Transverse processes L4–L1; medial half of 12th rib</td>
+              <td>Lumbar plexus T12 &amp; L1–4</td>
+              <td>Fixes/depresses 12th rib; laterally flexes column; together extend lumbar column</td>
+            </tr>
+            <tr>
+              <td>Iliacus</td>
+              <td>Upper 2/3 of iliac fossa and anterior sacroiliac ligament</td>
+              <td>Lesser trochanter (common tendon with psoas major)</td>
+              <td>Femoral nerve</td>
+              <td>Flexes the hip</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="content-card" style="margin-top:16px">
+      <div class="subsection-title">📐 Kidney Internal Structure — Exam Drawing</div>
+      <div style="overflow-x:auto">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 600" width="100%" style="max-width:750px;display:block;margin:0 auto">
+          <defs>
+            <!-- Hatching pattern for medullary pyramids -->
+            <pattern id="pyramidHatch" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="4" stroke="rgba(239,68,68,0.35)" stroke-width="1"/>
+            </pattern>
+            <!-- Subtle cortex texture -->
+            <pattern id="cortexDots" patternUnits="userSpaceOnUse" width="8" height="8">
+              <circle cx="4" cy="4" r="0.6" fill="rgba(59,130,246,0.15)"/>
+            </pattern>
+            <!-- Fat stipple pattern -->
+            <pattern id="fatStipple" patternUnits="userSpaceOnUse" width="6" height="6">
+              <circle cx="3" cy="3" r="0.5" fill="rgba(245,158,11,0.2)"/>
+            </pattern>
+            <!-- Arrow marker -->
+            <marker id="arrowDown" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+              <path d="M1,1 L4,7 L7,1" fill="none" stroke="#f59e0b" stroke-width="1.5"/>
+            </marker>
+            <!-- Leader line dot -->
+            <marker id="labelDot" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5">
+              <circle cx="2.5" cy="2.5" r="2" fill="#4a5568"/>
+            </marker>
+          </defs>
+
+          <!-- ================ TITLE ================ -->
+          <text x="375" y="28" text-anchor="middle" font-family="system-ui,sans-serif" font-size="15" font-weight="700" fill="#e2e8f0" letter-spacing="1">KIDNEY — Coronal Section</text>
+
+          <!-- ================ PERIRENAL FAT LAYER ================ -->
+          <ellipse cx="340" cy="310" rx="195" ry="248" fill="url(#fatStipple)" stroke="#f59e0b" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
+
+          <!-- ================ FIBROUS CAPSULE (outer kidney outline) ================ -->
+          <!-- Bean-shaped kidney: left=lateral, right=medial (hilum side) -->
+          <path d="
+            M 340 62
+            C 210 62, 155 155, 155 230
+            C 155 310, 180 430, 240 500
+            C 290 555, 350 558, 390 500
+            C 430 435, 500 350, 500 280
+            C 500 200, 490 140, 440 100
+            C 400 65, 370 62, 340 62
+            Z
+          " fill="rgba(59,130,246,0.06)" stroke="#3b82f6" stroke-width="2.5"/>
+
+          <!-- ================ CORTEX (outer lighter zone) ================ -->
+          <path d="
+            M 340 78
+            C 225 78, 172 165, 172 235
+            C 172 310, 195 420, 248 488
+            C 293 538, 345 541, 383 488
+            C 420 425, 483 340, 483 275
+            C 483 205, 475 152, 430 115
+            C 395 82, 365 78, 340 78
+            Z
+          " fill="rgba(59,130,246,0.12)" stroke="none"/>
+          <!-- Cortex texture overlay -->
+          <path d="
+            M 340 78
+            C 225 78, 172 165, 172 235
+            C 172 310, 195 420, 248 488
+            C 293 538, 345 541, 383 488
+            C 420 425, 483 340, 483 275
+            C 483 205, 475 152, 430 115
+            C 395 82, 365 78, 340 78
+            Z
+          " fill="url(#cortexDots)" stroke="none"/>
+
+          <!-- ================ MEDULLARY PYRAMIDS (triangular, pointing inward) ================ -->
+          <!-- Pyramid 1 (top-left) -->
+          <polygon points="250,150 210,240 290,240" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="250,150 210,240 290,240" fill="url(#pyramidHatch)"/>
+          <!-- Papilla dot -->
+          <circle cx="250" cy="237" r="3" fill="#ef4444" opacity="0.7"/>
+
+          <!-- Pyramid 2 (upper-left) -->
+          <polygon points="210,250 185,340 260,340" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="210,250 185,340 260,340" fill="url(#pyramidHatch)"/>
+          <circle cx="222" cy="337" r="3" fill="#ef4444" opacity="0.7"/>
+
+          <!-- Pyramid 3 (lower-left) -->
+          <polygon points="220,355 205,435 270,435" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="220,355 205,435 270,435" fill="url(#pyramidHatch)"/>
+          <circle cx="237" cy="432" r="3" fill="#ef4444" opacity="0.7"/>
+
+          <!-- Pyramid 4 (bottom) -->
+          <polygon points="285,440 265,500 330,500" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="285,440 265,500 330,500" fill="url(#pyramidHatch)"/>
+          <circle cx="297" cy="497" r="3" fill="#ef4444" opacity="0.7"/>
+
+          <!-- Pyramid 5 (top-right) -->
+          <polygon points="400,130 360,215 440,215" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="400,130 360,215 440,215" fill="url(#pyramidHatch)"/>
+          <circle cx="400" cy="212" r="3" fill="#ef4444" opacity="0.7"/>
+
+          <!-- Pyramid 6 (mid-right) -->
+          <polygon points="430,225 395,310 465,310" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="430,225 395,310 465,310" fill="url(#pyramidHatch)"/>
+          <circle cx="430" cy="307" r="3" fill="#ef4444" opacity="0.7"/>
+
+          <!-- Pyramid 7 (lower-right) -->
+          <polygon points="410,320 380,400 450,400" fill="rgba(239,68,68,0.18)" stroke="#ef4444" stroke-width="1.2"/>
+          <polygon points="410,320 380,400 450,400" fill="url(#pyramidHatch)"/>
+          <circle cx="415" cy="397" r="3" fill="#ef4444" opacity="0.7"/>
+
+          <!-- ================ RENAL COLUMNS (cortex between pyramids) ================ -->
+          <!-- These are the cortex areas between pyramids - shown as subtle blue zones -->
+          <path d="M290,240 L260,240 L210,250 L230,250 Z" fill="rgba(59,130,246,0.15)" stroke="none"/>
+          <path d="M260,340 L240,340 L220,355 L240,355 Z" fill="rgba(59,130,246,0.15)" stroke="none"/>
+          <path d="M440,215 L445,225 L430,225 L420,215 Z" fill="rgba(59,130,246,0.15)" stroke="none"/>
+          <path d="M465,310 L455,320 L410,320 L395,310 Z" fill="rgba(59,130,246,0.15)" stroke="none"/>
+
+          <!-- ================ MINOR CALYCES (cup shapes at pyramid tips) ================ -->
+          <!-- Minor calyx 1 -->
+          <path d="M240,240 Q250,255 260,240" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+          <path d="M240,240 Q250,255 260,240" fill="rgba(245,158,11,0.12)"/>
+          <!-- Minor calyx 2 -->
+          <path d="M212,340 Q222,355 248,340" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+          <path d="M212,340 Q222,355 248,340" fill="rgba(245,158,11,0.12)"/>
+          <!-- Minor calyx 3 -->
+          <path d="M225,435 Q237,450 260,435" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+          <path d="M225,435 Q237,450 260,435" fill="rgba(245,158,11,0.12)"/>
+          <!-- Minor calyx 4 -->
+          <path d="M285,500 Q297,514 320,500" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+          <path d="M285,500 Q297,514 320,500" fill="rgba(245,158,11,0.12)"/>
+          <!-- Minor calyx 5 -->
+          <path d="M388,215 Q400,230 420,215" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+          <path d="M388,215 Q400,230 420,215" fill="rgba(245,158,11,0.12)"/>
+          <!-- Minor calyx 6 -->
+          <path d="M418,310 Q430,325 450,310" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+          <path d="M418,310 Q430,325 450,310" fill="rgba(245,158,11,0.12)"/>
+          <!-- Minor calyx 7 -->
+          <path d="M398,400 Q415,415 442,400" fill="none" stroke="#f59e0b" stroke-width="1.8"/>
+          <path d="M398,400 Q415,415 442,400" fill="rgba(245,158,11,0.12)"/>
+
+          <!-- ================ MAJOR CALYCES (larger collecting tubes) ================ -->
+          <!-- Upper major calyx (collects from pyramids 1, 5) -->
+          <path d="M260,248 Q290,250 320,240 Q345,235 360,222 Q370,218 388,218" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- Fill tube -->
+          <path d="M260,245 Q290,247 320,237 Q345,232 360,219 Q370,215 388,215
+                   L388,221 Q370,221 360,225 Q345,238 320,243 Q290,253 260,251 Z" fill="rgba(245,158,11,0.1)"/>
+
+          <!-- Middle major calyx (collects from pyramids 2, 3, 6) -->
+          <path d="M248,343 Q280,350 310,345 Q340,340 360,330 Q380,318 395,315
+                   M260,438 Q280,440 310,430 Q330,420 350,395 Q360,375 370,340" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round"/>
+
+          <!-- Lower major calyx (collects from pyramid 4, 7) -->
+          <path d="M320,503 Q340,500 355,480 Q365,460 370,430 Q375,415 380,405
+                   M442,403 Q440,415 430,430 Q420,445 400,445" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round"/>
+
+          <!-- ================ RENAL PELVIS (large funnel in center) ================ -->
+          <path d="
+            M 380,210
+            Q 395,220 400,250
+            Q 405,300 395,350
+            Q 390,380 380,410
+            Q 375,440 370,460
+            Q 365,475 358,480
+            Q 350,485 345,478
+            Q 340,465 342,440
+            Q 345,400 350,370
+            Q 355,330 360,300
+            Q 365,260 368,230
+            Q 370,215 380,210
+            Z
+          " fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+
+          <!-- ================ HILUM (indentation on medial side) ================ -->
+          <!-- Hilum opening area -->
+          <path d="M 483,240 Q 495,280 490,330 Q 487,370 475,400" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,3" opacity="0.6"/>
+
+          <!-- ================ URETER (exits from renal pelvis downward) ================ -->
+          <path d="M358,480 Q355,510 350,540 Q345,565 340,585" fill="none" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowDown)"/>
+          <!-- Ureter lumen -->
+          <path d="M355,480 Q352,510 347,540 Q343,565 338,585" fill="none" stroke="#f59e0b" stroke-width="1" opacity="0.4"/>
+
+          <!-- ================ INTERLOBULAR ARTERIES (small arteries in cortex) ================ -->
+          <!-- Arteries radiating outward in cortex -->
+          <line x1="285" y1="180" x2="260" y2="130" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+          <line x1="270" y1="185" x2="235" y2="140" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+          <line x1="195" y1="290" x2="175" y2="260" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+          <line x1="195" y1="380" x2="178" y2="370" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+          <line x1="440" y1="170" x2="460" y2="135" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+          <line x1="470" y1="265" x2="485" y2="245" stroke="#ef4444" stroke-width="0.8" stroke-dasharray="3,2" opacity="0.5"/>
+
+          <!-- ================ LABELS WITH LEADER LINES ================ -->
+          <!-- LABEL: Capsule (Fibrous) -->
+          <line x1="210" y1="100" x2="115" y2="70" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="210" cy="100" r="2.5" fill="#4a5568"/>
+          <text x="110" y="67" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#e2e8f0" font-weight="600">Capsule</text>
+          <text x="110" y="80" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(fibrous)</text>
+
+          <!-- LABEL: Perirenal Fat -->
+          <line x1="170" y1="170" x2="55" y2="138" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="170" cy="170" r="2.5" fill="#4a5568"/>
+          <text x="50" y="132" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#f59e0b" font-weight="600">Perirenal Fat</text>
+          <text x="50" y="145" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(adipose capsule)</text>
+
+          <!-- LABEL: Cortex -->
+          <line x1="190" y1="230" x2="50" y2="210" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="190" cy="230" r="2.5" fill="#4a5568"/>
+          <text x="45" y="207" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#3b82f6" font-weight="700">CORTEX</text>
+
+          <!-- LABEL: Medullary Pyramid -->
+          <line x1="232" y1="300" x2="50" y2="285" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="232" cy="300" r="2.5" fill="#4a5568"/>
+          <text x="45" y="278" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#ef4444" font-weight="700">Medullary</text>
+          <text x="45" y="292" text-anchor="end" font-family="system-ui,sans-serif" font-size="12" fill="#ef4444" font-weight="700">Pyramid</text>
+
+          <!-- LABEL: Renal Column -->
+          <line x1="236" y1="348" x2="50" y2="348" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="236" cy="348" r="2.5" fill="#4a5568"/>
+          <text x="45" y="345" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#3b82f6" font-weight="600">Renal Column</text>
+          <text x="45" y="358" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(of Bertin)</text>
+
+          <!-- LABEL: Renal Papilla -->
+          <line x1="222" y1="337" x2="50" y2="400" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="222" cy="337" r="2.5" fill="#4a5568"/>
+          <text x="45" y="397" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#ec4899" font-weight="600">Renal Papilla</text>
+          <text x="45" y="410" text-anchor="end" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(apex of pyramid)</text>
+
+          <!-- LABEL: Minor Calyx -->
+          <line x1="254" y1="440" x2="50" y2="460" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="254" cy="440" r="2.5" fill="#4a5568"/>
+          <text x="45" y="457" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#f59e0b" font-weight="600">Minor Calyx</text>
+
+          <!-- LABEL: Major Calyx -->
+          <line x1="310" y1="345" x2="50" y2="505" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="310" cy="345" r="2.5" fill="#4a5568"/>
+          <text x="45" y="502" text-anchor="end" font-family="system-ui,sans-serif" font-size="11" fill="#f59e0b" font-weight="600">Major Calyx</text>
+
+          <!-- LABEL: Renal Pelvis -->
+          <line x1="375" y1="350" x2="630" y2="290" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="375" cy="350" r="2.5" fill="#4a5568"/>
+          <text x="635" y="283" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#f59e0b" font-weight="700">Renal Pelvis</text>
+          <text x="635" y="297" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(funnel-shaped)</text>
+
+          <!-- LABEL: Hilum -->
+          <line x1="490" y1="330" x2="635" y2="340" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="490" cy="330" r="2.5" fill="#4a5568"/>
+          <text x="640" y="337" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#8b5cf6" font-weight="700">HILUM</text>
+          <text x="640" y="351" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">(medial opening)</text>
+
+          <!-- LABEL: Ureter -->
+          <line x1="350" y1="560" x2="630" y2="530" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="350" cy="560" r="2.5" fill="#4a5568"/>
+          <text x="635" y="523" text-anchor="start" font-family="system-ui,sans-serif" font-size="12" fill="#f59e0b" font-weight="700">URETER</text>
+          <text x="635" y="537" text-anchor="start" font-family="system-ui,sans-serif" font-size="9" fill="#8892a4">→ to urinary bladder</text>
+
+          <!-- LABEL: Interlobular Arteries -->
+          <line x1="260" y1="133" x2="50" y2="545" stroke="none"/>
+          <line x1="460" y1="135" x2="635" y2="130" stroke="#4a5568" stroke-width="1"/>
+          <circle cx="460" cy="135" r="2.5" fill="#4a5568"/>
+          <text x="640" y="127" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#ef4444" font-weight="600">Interlobular</text>
+          <text x="640" y="141" text-anchor="start" font-family="system-ui,sans-serif" font-size="11" fill="#ef4444" font-weight="600">Arteries</text>
+
+          <!-- ================ COLOR LEGEND ================ -->
+          <rect x="570" y="440" width="165" height="120" rx="6" fill="rgba(15,20,35,0.7)" stroke="#2a3248" stroke-width="1"/>
+          <text x="580" y="458" font-family="system-ui,sans-serif" font-size="10" fill="#8892a4" font-weight="700" letter-spacing="1">KEY</text>
+          <!-- Cortex -->
+          <rect x="580" y="466" width="12" height="8" rx="2" fill="rgba(59,130,246,0.3)" stroke="#3b82f6" stroke-width="0.8"/>
+          <text x="598" y="474" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Cortex</text>
+          <!-- Pyramid -->
+          <rect x="580" y="480" width="12" height="8" rx="2" fill="rgba(239,68,68,0.25)" stroke="#ef4444" stroke-width="0.8"/>
+          <text x="598" y="488" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Medullary pyramid</text>
+          <!-- Calyx/pelvis -->
+          <rect x="580" y="494" width="12" height="8" rx="2" fill="rgba(245,158,11,0.2)" stroke="#f59e0b" stroke-width="0.8"/>
+          <text x="598" y="502" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Calyces / Pelvis</text>
+          <!-- Capsule -->
+          <line x1="580" y1="512" x2="592" y2="512" stroke="#3b82f6" stroke-width="2"/>
+          <text x="598" y="516" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Fibrous capsule</text>
+          <!-- Fat -->
+          <line x1="580" y1="526" x2="592" y2="526" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="598" y="530" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Perirenal fat</text>
+          <!-- Arteries -->
+          <line x1="580" y1="540" x2="592" y2="540" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="598" y="544" font-family="system-ui,sans-serif" font-size="9" fill="#e2e8f0">Interlobular arteries</text>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end post-abdominal -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 4: ANTERIOR ABDOMINAL WALL                           -->
+<!-- ============================================================ -->
+<div class="section" id="ant-abdominal">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-yellow">🩻</div>
+      <div class="sec-title">4. Muscles of the Anterior Abdominal Wall</div>
+      <button class="translate-btn" onclick="toggleTranslation('ant-abdominal', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="ant-abdominal" onclick="toggleComplete('ant-abdominal', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-ant-abdominal">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">🩻</span>
+        <span class="arabic-panel-title">شرح بالعربي — عضلات جدار البطن الأمامي</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p>جدار البطن الأمامي بيتكون من <strong>٣ عضلات مسطحة</strong> و<strong>٢ عضلات رأسية</strong>.</p>
+      <div class="ar-highlight">📋 <strong>العضلات المسطحة:</strong><br>١. <strong>المائلة الخارجية (External Oblique):</strong> من الأضلاع ٥-١٢ — تضغط البطن وتثني الجذع<br>٢. <strong>المائلة الداخلية (Internal Oblique):</strong> من اللفافة القطنية الصدرية والقمة الحرقفية<br>٣. <strong>المستعرضة البطنية (Transverse Abdominis):</strong> تضغط محتويات البطن</div>
+      <p><strong>العضلات الرأسية:</strong> العضلة المستقيمة البطنية (Rectus Abdominis) من عظم العانة للأضلاع ٥-٧ — والعضلة الهرمية (Pyramidalis) تشد الخط الأبيض.</p>
+      <p><strong>غمد المستقيمة (Rectus Sheath):</strong> غلاف ليفي غير كامل يحيط بالعضلة المستقيمة، يتكون من تقاطع سفاقات العضلات المسطحة.</p>
+      <p><strong>الرباط الإربي (Inguinal Ligament):</strong> الحد السفلي لسفاق العضلة المائلة الخارجية المطوي للخلف — يمتد من <strong>الشوكة الحرقفية الأمامية العلوية</strong> إلى <strong>الحديبة العانية</strong>.</p>
+    </div>
+
+    <div class="content-card">
+      <div class="subsection-title">Flat Muscles</div>
+      <div style="overflow-x:auto">
+        <table class="muscle-table">
+          <thead>
+            <tr>
+              <th>Muscle</th>
+              <th>Origin</th>
+              <th>Insertion</th>
+              <th>Innervation</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>External Oblique</td>
+              <td>Outer surfaces of lower 8 ribs (5–12)</td>
+              <td>Lateral lip of iliac crest; aponeurosis to linea alba</td>
+              <td>T7–T12</td>
+              <td>Compress abdomen; flex trunk; lateral flexion to same side</td>
+            </tr>
+            <tr>
+              <td>Internal Oblique</td>
+              <td>Thoracolumbar fascia; iliac crest; lateral 2/3 of inguinal ligament</td>
+              <td>Inferior border of lower 3–4 ribs; aponeurosis to linea alba; pubic crest</td>
+              <td>T7–T12, L1</td>
+              <td>Compress abdomen; flex trunk; lateral flexion</td>
+            </tr>
+            <tr>
+              <td>Transverse Abdominis</td>
+              <td>Thoracolumbar fascia; iliac crest; inguinal ligament; costal cartilages of lower 6 ribs</td>
+              <td>Aponeurosis to linea alba; pubic crest &amp; pectineal line (lower fibers = conjoint tendon)</td>
+              <td>T7–T12, L1</td>
+              <td>Compress abdominal contents</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="content-card" style="margin-top:16px">
+      <div class="subsection-title">Vertical Muscles</div>
+      <div style="overflow-x:auto">
+        <table class="muscle-table">
+          <thead>
+            <tr>
+              <th>Muscle</th>
+              <th>Origin</th>
+              <th>Insertion</th>
+              <th>Innervation</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Rectus Abdominis</td>
+              <td>Pubic crest, pubic tubercle, pubic symphysis</td>
+              <td>Costal cartilages of ribs 5–7; xiphoid process</td>
+              <td>T7–T12</td>
+              <td>Compress abdomen; flex vertebral column; tense wall</td>
+            </tr>
+            <tr>
+              <td>Pyramidalis</td>
+              <td>Anterior surface of symphysis pubis</td>
+              <td>Linea alba (midway between umbilicus and symphysis pubis)</td>
+              <td>T12 (Subcostal nerve)</td>
+              <td>Tenses the linea alba</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="highlight-box yellow" style="margin-top:16px">
+      <div class="hb-title">Rectus Sheath</div>
+      An incomplete fibrous compartment enclosing the rectus abdominis and pyramidalis muscles.
+      Formed by <strong>decussation of the aponeuroses</strong> of the flat abdominal muscles.
+    </div>
+
+    <div class="highlight-box blue" style="margin-top:12px">
+      <div class="hb-title">Inguinal Ligament</div>
+      Formed by the lower border of the aponeurosis of the external oblique muscle folded backward on itself.
+      Runs between the <strong>anterior superior iliac spine</strong> and the <strong>pubic tubercle</strong>.
+    </div>
+
+  </div>
+</div><!-- end ant-abdominal -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 5: CONDUCTION SYSTEM                                  -->
+<!-- ============================================================ -->
+<div class="section" id="conduction">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-cyan">⚡</div>
+      <div class="sec-title">5. Electrical Conduction System of the Heart</div>
+      <button class="translate-btn" onclick="toggleTranslation('conduction', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="conduction" onclick="toggleComplete('conduction', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-conduction">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">⚡</span>
+        <span class="arabic-panel-title">شرح بالعربي — نظام التوصيل الكهربي للقلب</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p>القلب عنده نظام توصيل كهربي خاص بيه بيخليه ينبض بشكل منتظم من غير ما يحتاج أوامر من المخ.</p>
+      <div class="ar-highlight">⚡ <strong>مسار التوصيل:</strong><br>١. <strong>العقدة الجيبية الأذينية (SA Node):</strong> منظم ضربات القلب الطبيعي — في جدار الأذين الأيمن تحت فتحة الوريد الأجوف العلوي — تبدأ النبضة الكهربائية<br><br>٢. <strong>العقدة الأذينية البطينية (AV Node):</strong> في الجزء السفلي من الحاجز بين الأذينين — بتأخر النبضة علشان البطينين يمتلوا بالدم<br><br>٣. <strong>حزمة هيس (AV Bundle):</strong> بتنشأ من العقدة الأذينية البطينية وبتمر في الجزء العلوي من الحاجز بين البطينين<br><br>٤. <strong>فرعي الحزمة (Bundle Branches):</strong> فرع أيمن وأيسر بيمروا على جانبي الحاجز بين البطينين<br><br>٥. <strong>ألياف بيركنجي (Purkinje Fibers):</strong> بتمر في جدران البطينين — آخر محطة لتوصيل النبضة لعضلة القلب</div>
+    </div>
+
+    <div class="content-card">
+      <div class="subsection-title">Conduction Pathway</div>
+      <div class="conduction-chain">
+
+        <div class="conduction-step">
+          <div class="c-num blue">SA</div>
+          <div>
+            <div class="c-label">Sinoatrial Node <span class="badge badge-blue">Pacemaker</span></div>
+            <div class="c-desc">Present in the wall of right atrium <strong>below the opening of the SVC</strong>. Initiates the electrical impulse.</div>
+          </div>
+        </div>
+        <div class="c-connector"></div>
+
+        <div class="conduction-step">
+          <div class="c-num cyan">AV</div>
+          <div>
+            <div class="c-label">Atrioventricular Node</div>
+            <div class="c-desc">Located in the <strong>lower part of the interatrial septum</strong>. Delays the impulse to allow ventricular filling.</div>
+          </div>
+        </div>
+        <div class="c-connector"></div>
+
+        <div class="conduction-step">
+          <div class="c-num green">HB</div>
+          <div>
+            <div class="c-label">Atrioventricular Bundle</div>
+            <div class="c-desc">Originates from AV Node, passes in the <strong>upper part of the interventricular septum</strong>.</div>
+          </div>
+        </div>
+        <div class="c-connector"></div>
+
+        <div class="conduction-step">
+          <div class="c-num yellow">BB</div>
+          <div>
+            <div class="c-label">Bundle Branches</div>
+            <div class="c-desc">Right and left branches pass along the right and left sides of the <strong>interventricular septum</strong>.</div>
+          </div>
+        </div>
+        <div class="c-connector"></div>
+
+        <div class="conduction-step">
+          <div class="c-num purple">PF</div>
+          <div>
+            <div class="c-label">Purkinje Fibers</div>
+            <div class="c-desc">Pass in the <strong>walls of ventricles</strong> from the ends of the bundle branches. Final delivery of impulse to cardiac muscle.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div><!-- end conduction -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 6: BLOOD SUPPLY                                       -->
+<!-- ============================================================ -->
+<div class="section" id="blood-supply">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-red">🩸</div>
+      <div class="sec-title">6. Blood Supply of the Heart (Arteries and Veins)</div>
+      <button class="translate-btn" onclick="toggleTranslation('blood-supply', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="blood-supply" onclick="toggleComplete('blood-supply', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-blood-supply">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">🩸</span>
+        <span class="arabic-panel-title">شرح بالعربي — التغذية الدموية للقلب</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p>القلب بيتغذى عن طريق <strong>الشرايين التاجية</strong> اللي بتخرج من بداية الشريان الأبهر (الأورطي).</p>
+      <div class="ar-highlight">🔴 <strong>الشريان التاجي الأيمن (RCA):</strong> بيدي فرعين رئيسيين — الفرع الهامشي (Marginal) والشريان بين البطينين الخلفي (Posterior Interventricular)<br><br>🔴 <strong>الشريان التاجي الأيسر (LCA):</strong> بيدي فرعين — الشريان بين البطينين الأمامي (Anterior Interventricular) والشريان المحيطي (Circumflex)</div>
+      <p><strong>التصريف الوريدي:</strong> معظم الدم الوريدي بيتجمع في <strong>الجيب التاجي (Coronary Sinus)</strong> اللي بيصب في الأذين الأيمن. وله ٥ روافد: الوريد القلبي الكبير — الأوسط — الصغير — الوريد الخلفي للبطين الأيسر — الوريد المائل للأذين الأيسر.</p>
+    </div>
+
+    <div class="two-col">
+      <div class="content-card">
+        <div class="subsection-title">Arteries</div>
+        <ul class="info-list" style="margin-bottom:14px">
+          <li><strong style="color:var(--orange)">Right Coronary Artery</strong></li>
+        </ul>
+        <div class="vein-grid" style="margin-bottom:18px;margin-left:16px">
+          <span class="artery-tag">Marginal branch</span>
+          <span class="artery-tag">Posterior interventricular (descending) artery</span>
+        </div>
+        <ul class="info-list" style="margin-bottom:14px">
+          <li><strong style="color:var(--orange)">Left Coronary Artery</strong></li>
+        </ul>
+        <div class="vein-grid" style="margin-left:16px">
+          <span class="artery-tag">Anterior interventricular (descending) artery</span>
+          <span class="artery-tag">Circumflex artery</span>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <div class="subsection-title">Venous Drainage — Coronary Sinus</div>
+        <div class="highlight-box green" style="margin-bottom:12px">
+          <div class="hb-title">Coronary Sinus</div>
+          Main collector vein draining into the right atrium.
+        </div>
+        <div style="font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Tributaries</div>
+        <div class="vein-grid">
+          <span class="vein-tag">Great cardiac vein</span>
+          <span class="vein-tag">Middle cardiac vein</span>
+          <span class="vein-tag">Small cardiac vein</span>
+          <span class="vein-tag">Posterior vein of left ventricle</span>
+          <span class="vein-tag">Oblique vein of left atrium</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end blood-supply -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 7: INGUINAL CANAL                                     -->
+<!-- ============================================================ -->
+<div class="section" id="inguinal">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-purple">🔩</div>
+      <div class="sec-title">7. Inguinal Canal — Walls &amp; Components</div>
+      <button class="translate-btn" onclick="toggleTranslation('inguinal', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="inguinal" onclick="toggleComplete('inguinal', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-inguinal">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">🔩</span>
+        <span class="arabic-panel-title">شرح بالعربي — القناة الإربية</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p><strong>القناة الإربية (Inguinal Canal)</strong> هي ممر مائل في جدار البطن الأمامي السفلي. في الذكور بيمر فيها الحبل المنوي، وفي الإناث الرباط المدور للرحم.</p>
+      <div class="ar-highlight">🧱 <strong>الجدران الأربعة:</strong><br>🔹 <strong>الجدار الأمامي:</strong> سفاق العضلة المائلة الخارجية (المكون الرئيسي) + ألياف العضلة المائلة الداخلية بتقوي الجزء الجانبي<br><br>🔹 <strong>الجدار الخلفي:</strong> اللفافة المستعرضة (Transversalis fascia) على طول القناة + الوتر المشترك (Conjoint tendon) يقوي الجزء الإنسي<br><br>🔹 <strong>السقف (الجدار العلوي):</strong> الوتر المشترك + القوس العضلي الوتري للعضلة المائلة الداخلية والمستعرضة<br><br>🔹 <strong>الأرضية (الجدار السفلي):</strong> الرباط الإربي + الرباط الثغري (Lacunar) + السبيل الحرقفي العاني</div>
+    </div>
+
+    <div class="content-card">
+      <div class="subsection-title">The Four Walls</div>
+      <div class="wall-grid">
+
+        <div class="wall-card ant">
+          <div class="wall-title">Anterior Wall</div>
+          <ul class="wall-items">
+            <li>Aponeurosis of the external oblique muscle (main component)</li>
+            <li>Internal oblique muscle fibers (reinforces laterally)</li>
+          </ul>
+        </div>
+
+        <div class="wall-card post">
+          <div class="wall-title">Posterior Wall</div>
+          <ul class="wall-items">
+            <li>Transversalis fascia (extends along entire length)</li>
+            <li>Conjoint tendon (reinforces medial portion)</li>
+          </ul>
+        </div>
+
+        <div class="wall-card sup">
+          <div class="wall-title">Superior Wall (Roof)</div>
+          <ul class="wall-items">
+            <li>Conjoint tendon</li>
+            <li>Medial crus of the aponeurosis of the external oblique</li>
+            <li>Musculoaponeurotic arches of the internal oblique and transverse abdominal muscles</li>
+            <li>Transversalis fascia</li>
+          </ul>
+        </div>
+
+        <div class="wall-card inf">
+          <div class="wall-title">Inferior Wall (Floor)</div>
+          <ul class="wall-items">
+            <li>Inguinal ligament</li>
+            <li>Lacunar ligament (reinforces medial aspect)</li>
+            <li>Iliopubic tract (laterally)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div><!-- end inguinal -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 8: COMPARISONS                                        -->
+<!-- ============================================================ -->
+<div class="section" id="comparison">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-blue">📊</div>
+      <div class="sec-title">8. Anatomical Comparisons</div>
+      <button class="translate-btn" onclick="toggleTranslation('comparison', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="comparison" onclick="toggleComplete('comparison', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-comparison">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">📊</span>
+        <span class="arabic-panel-title">شرح بالعربي — المقارنات التشريحية</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p><strong>الشعبة الهوائية اليمنى vs اليسرى:</strong> اليمنى أقصر (٢.٥ سم) وأعرض وزاويتها ٢٥° — اليسرى أطول (٤.٥ سم) وأضيق وزاويتها ٤٥°. اليمنى بتتفرع قبل دخول الرئة واليسرى بعد الدخول.</p>
+      <p><strong>الرئة اليمنى vs اليسرى:</strong> اليمنى ٣ فصوص وشقين — اليسرى فصين وشق واحد + بها الثلمة القلبية (Cardiac notch). اليمنى أقصر وأعرض وأثقل.</p>
+      <p><strong>الإحليل الأنثوي vs الذكري:</strong> الأنثوي ٤ سم وجزء واحد ممر بولي فقط — الذكري ٢٠ سم وله ٣ أجزاء (بروستاتي الأوسع — غشائي الأقصر — إسفنجي الأطول) وبيمر فيه البول والمني.</p>
+      <p><strong>الأمعاء الدقيقة vs الغليظة:</strong> الدقيقة أطول (٦ أمتار) وأضيق ومتحركة ومركزية — الغليظة أقصر (١٨٠ سم) وأوسع وثابتة ومحيطية وفيها الشرائط القولونية (Taenia coli).</p>
+    </div>
+
+    <!-- Bronchi -->
+    <div class="content-card" style="margin-bottom:16px">
+      <div class="subsection-title">Right vs. Left Bronchus</div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Right Bronchus</th>
+              <th>Left Bronchus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Length / Dimensions</td>
+              <td>Short (2.5 cm), wider</td>
+              <td>Longer (4.5 cm), narrower</td>
+            </tr>
+            <tr>
+              <td>Division</td>
+              <td>Divides <strong>before</strong> entering the lung</td>
+              <td>Divides <strong>after</strong> entering the lung</td>
+            </tr>
+            <tr>
+              <td>Angle with Trachea</td>
+              <td>25°</td>
+              <td>45°</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Lungs -->
+    <div class="content-card" style="margin-bottom:16px">
+      <div class="subsection-title">Right vs. Left Lung</div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Right Lung</th>
+              <th>Left Lung</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Fissures &amp; Lobes</td>
+              <td>2 fissures (oblique + transverse), 3 lobes</td>
+              <td>1 fissure (oblique), 2 lobes</td>
+            </tr>
+            <tr>
+              <td>Cardiac Notch</td>
+              <td>No cardiac notch</td>
+              <td>Has cardiac notch</td>
+            </tr>
+            <tr>
+              <td>Shape &amp; Weight</td>
+              <td>Shorter and wider, Heavier</td>
+              <td>Longer and narrower, Lighter</td>
+            </tr>
+            <tr>
+              <td>Base</td>
+              <td>Base is deep</td>
+              <td>Base is shallow</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Urethra -->
+    <div class="content-card" style="margin-bottom:16px">
+      <div class="subsection-title">Female vs. Male Urethra</div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Female Urethra</th>
+              <th>Male Urethra</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Length</td>
+              <td>4 cm</td>
+              <td>20 cm</td>
+            </tr>
+            <tr>
+              <td>Parts</td>
+              <td>One part — straight — opens in vestibule in front of vaginal opening</td>
+              <td>3 parts: Prostatic (widest), Membranous (shortest), Penile (longest)</td>
+            </tr>
+            <tr>
+              <td>External Urethral Sphincter</td>
+              <td>Around its lower end</td>
+              <td>Around the membranous part</td>
+            </tr>
+            <tr>
+              <td>Function</td>
+              <td>Urinary passage only</td>
+              <td>Urinary and genital passage</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Intestine -->
+    <div class="content-card">
+      <div class="subsection-title">Small vs. Large Intestine</div>
+      <div style="overflow-x:auto">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Small Intestine</th>
+              <th>Large Intestine</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Length</td>
+              <td>Longer (6 meters)</td>
+              <td>Shorter (180 cm)</td>
+            </tr>
+            <tr>
+              <td>Caliber</td>
+              <td>Smaller</td>
+              <td>Larger</td>
+            </tr>
+            <tr>
+              <td>Mobility</td>
+              <td>Mobile except duodenum</td>
+              <td>Fixed except transverse colon</td>
+            </tr>
+            <tr>
+              <td>Functions</td>
+              <td>Digestion and absorption</td>
+              <td>Absorption of water &amp; vitamins</td>
+            </tr>
+            <tr>
+              <td>Taenia coli</td>
+              <td>Absent</td>
+              <td>Present</td>
+            </tr>
+            <tr>
+              <td>Site</td>
+              <td>Central</td>
+              <td>Peripheral</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end comparison -->
+
+
+<!-- ============================================================ -->
+<!-- SECTION 9: BILIARY SYSTEM                                     -->
+<!-- ============================================================ -->
+<div class="section" id="biliary">
+
+  <div class="topic-group">
+    <div class="sec-header">
+      <div class="sec-icon ic-green">🧪</div>
+      <div class="sec-title">9. Biliary System</div>
+      <button class="translate-btn" onclick="toggleTranslation('biliary', this)" title="شرح بالعربي">🌐 <span class="btn-label">عربي</span></button>
+      <button class="sec-complete-btn" data-section="biliary" onclick="toggleComplete('biliary', this)">☐ تم المذاكرة</button>
+    </div>
+    <div class="arabic-panel" id="arabic-biliary">
+      <div class="arabic-panel-header">
+        <span class="arabic-panel-icon">🧪</span>
+        <span class="arabic-panel-title">شرح بالعربي — الجهاز الصفراوي</span>
+        <span class="arabic-panel-badge">Arabic</span>
+      </div>
+      <p><strong>الجهاز الصفراوي</strong> بيتكون من الكبد والمرارة والقنوات الصفراوية. الكبد بيفرز الصفراء بمعدل ثابت حوالي <strong>٤٠ مل في الساعة</strong>. لما مفيش هضم بتتخزن الصفراء في المرارة وبتتركز.</p>
+      <div class="ar-highlight">🔗 <strong>مسار الصفراء:</strong> القناة الكبدية اليمنى + اليسرى → القناة الكبدية المشتركة + القناة المرارية → القناة الصفراوية المشتركة (CBD) → الاثني عشر</div>
+      <p><strong>القناة الصفراوية المشتركة (CBD):</strong> طولها حوالي <strong>٨ سم</strong> وبتنزل في الحافة الحرة للثرب الصغير. وليها ٣ أجزاء: <strong>فوق الاثني عشر (Supraduodenal)</strong> — <strong>خلف الاثني عشر (Retroduodenal)</strong> — <strong>خلف البنكرياس (Retropancreatic)</strong>.</p>
+    </div>
+
+    <div class="highlight-box green" style="margin-bottom:16px">
+      <div class="hb-title">Overview</div>
+      The biliary system consists of the <strong>liver, gallbladder &amp; bile ducts</strong> involved in the production, storage &amp; transportation of bile.
+      Bile is secreted by liver cells at a constant rate of about <strong>40 ml per hour</strong>. When digestion is not occurring, bile is stored and concentrated in the gallbladder; later delivered to the duodenum.
+    </div>
+
+    <div class="content-card" style="margin-bottom:16px">
+      <div class="subsection-title">Extrahepatic Biliary System Components</div>
+      <div class="biliary-chain">
+        <span class="bil-node">Rt. Hepatic Duct</span>
+        <span class="bil-arrow">+</span>
+        <span class="bil-node">Lt. Hepatic Duct</span>
+        <span class="bil-arrow">→</span>
+        <span class="bil-node">Common Hepatic Duct</span>
+        <span class="bil-arrow">+</span>
+        <span class="bil-node">Cystic Duct</span>
+        <span class="bil-arrow">→</span>
+        <span class="bil-node">Common Bile Duct</span>
+        <span class="bil-arrow">→</span>
+        <span class="bil-node">Gallbladder</span>
+      </div>
+      <div class="note-box yellow" style="margin-top:4px">Also includes: <strong>Gallbladder</strong> (stores and concentrates bile)</div>
+    </div>
+
+    <div class="content-card">
+      <div class="subsection-title">Common Bile Duct</div>
+      <div class="highlight-box cyan" style="margin-bottom:14px">
+        About <strong>8 cm in length</strong>. Descends in the free edge of the lesser omentum.
+      </div>
+      <ul class="info-list numbered">
+        <li><strong>Supraduodenal part</strong> — above the duodenum</li>
+        <li><strong>Retroduodenal part</strong> — behind the duodenum</li>
+        <li><strong>Retropancreatic part</strong> — behind the head of the pancreas</li>
+      </ul>
+    </div>
+
+    <div class="content-card" style="margin-top:16px">
+      <div class="subsection-title">📐 Biliary System Diagram — Exam Drawing</div>
+      <div style="overflow-x:auto">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 550" width="100%" style="max-width:700px;display:block;margin:0 auto">
+          <defs>
+            <marker id="bArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#06b6d4"/>
+            </marker>
+            <marker id="bArrowLabel" markerWidth="6" markerHeight="5" refX="6" refY="2.5" orient="auto">
+              <path d="M0,0 L6,2.5 L0,5 Z" fill="#4a5568"/>
+            </marker>
+          </defs>
+
+          <!-- ========== LIVER ========== -->
+          <path d="M100,60 Q120,30 350,25 Q580,30 620,60 Q640,90 600,120 Q500,145 350,150 Q200,145 120,120 Q80,90 100,60 Z"
+                fill="rgba(249,115,22,0.15)" stroke="#f97316" stroke-width="2.5"/>
+          <!-- Liver label -->
+          <text x="350" y="90" fill="#f97316" font-size="16" font-weight="700" text-anchor="middle" font-family="Arial,sans-serif">LIVER</text>
+
+          <!-- ========== RIGHT HEPATIC DUCT ========== -->
+          <line x1="290" y1="150" x2="290" y2="195" stroke="#06b6d4" stroke-width="2.5"/>
+          <!-- Left hepatic duct -->
+          <line x1="410" y1="150" x2="410" y2="195" stroke="#06b6d4" stroke-width="2.5"/>
+
+          <!-- Confluence to Common Hepatic Duct -->
+          <line x1="290" y1="195" x2="350" y2="210" stroke="#06b6d4" stroke-width="2.5"/>
+          <line x1="410" y1="195" x2="350" y2="210" stroke="#06b6d4" stroke-width="2.5"/>
+          <!-- Small junction circle -->
+          <circle cx="350" cy="210" r="4" fill="#06b6d4" opacity="0.6"/>
+
+          <!-- Right Hepatic Duct label -->
+          <line x1="290" y1="170" x2="195" y2="170" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="188" y="174" fill="#e2e8f0" font-size="11" text-anchor="end" font-family="Arial,sans-serif">Right Hepatic Duct</text>
+
+          <!-- Left Hepatic Duct label -->
+          <line x1="410" y1="170" x2="505" y2="170" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="512" y="174" fill="#e2e8f0" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Left Hepatic Duct</text>
+
+          <!-- ========== COMMON HEPATIC DUCT ========== -->
+          <line x1="350" y1="210" x2="350" y2="265" stroke="#06b6d4" stroke-width="2.5"/>
+          <!-- Label -->
+          <line x1="350" y1="238" x2="480" y2="228" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="487" y="232" fill="#e2e8f0" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Common Hepatic Duct</text>
+
+          <!-- ========== CYSTIC DUCT branching to Gallbladder ========== -->
+          <!-- Junction point -->
+          <circle cx="350" cy="265" r="4" fill="#06b6d4" opacity="0.6"/>
+          <!-- Cystic duct going right -->
+          <path d="M350,265 Q380,260 420,240 Q460,220 490,210" stroke="#06b6d4" stroke-width="2" fill="none"/>
+
+          <!-- Cystic Duct label -->
+          <line x1="420" y1="242" x2="440" y2="260" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="443" y="274" fill="#e2e8f0" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Cystic Duct</text>
+
+          <!-- ========== GALLBLADDER ========== -->
+          <ellipse cx="520" cy="195" rx="38" ry="25" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2" transform="rotate(-15,520,195)"/>
+          <!-- Fundus bump -->
+          <path d="M548,180 Q570,165 555,175" fill="rgba(16,185,129,0.2)" stroke="#10b981" stroke-width="2"/>
+          <!-- Gallbladder label -->
+          <line x1="555" y1="185" x2="600" y2="165" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="603" y="162" fill="#10b981" font-size="12" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">Gallbladder</text>
+
+          <!-- ========== COMMON BILE DUCT (CBD) ========== -->
+          <line x1="350" y1="265" x2="350" y2="380" stroke="#06b6d4" stroke-width="3"/>
+          <!-- CBD label -->
+          <line x1="350" y1="320" x2="230" y2="310" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="130" y="306" fill="#06b6d4" font-size="12" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">Common Bile Duct</text>
+          <text x="155" y="320" fill="#8892a4" font-size="10" text-anchor="start" font-family="Arial,sans-serif">(CBD — ~8 cm)</text>
+
+          <!-- ========== PANCREAS ========== -->
+          <path d="M180,400 Q200,375 350,370 Q500,365 560,380 Q590,390 580,410 Q560,430 500,430 Q350,435 200,430 Q170,425 180,400 Z"
+                fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="2"/>
+          <!-- Pancreas label -->
+          <text x="380" y="408" fill="#f59e0b" font-size="13" font-weight="700" text-anchor="middle" font-family="Arial,sans-serif">PANCREAS</text>
+
+          <!-- ========== MAIN PANCREATIC DUCT ========== -->
+          <line x1="530" y1="400" x2="350" y2="400" stroke="#06b6d4" stroke-width="2" stroke-dasharray="6,3"/>
+          <!-- Pancreatic duct label -->
+          <line x1="450" y1="400" x2="490" y2="440" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="440" y="455" fill="#e2e8f0" font-size="11" text-anchor="start" font-family="Arial,sans-serif">Main Pancreatic Duct</text>
+
+          <!-- ========== CBD passes through/behind pancreas ========== -->
+          <!-- CBD continues down through pancreas area -->
+          <line x1="350" y1="380" x2="350" y2="435" stroke="#06b6d4" stroke-width="3" opacity="0.6"/>
+
+          <!-- ========== Junction — Hepatopancreatic Ampulla ========== -->
+          <circle cx="310" cy="460" r="6" fill="#ec4899" opacity="0.7" stroke="#ec4899" stroke-width="1.5"/>
+          <!-- CBD curves into junction -->
+          <path d="M350,435 Q345,450 310,460" stroke="#06b6d4" stroke-width="2.5" fill="none"/>
+          <!-- Pancreatic duct curves into junction -->
+          <path d="M350,400 Q340,430 310,460" stroke="#06b6d4" stroke-width="2" fill="none" stroke-dasharray="6,3"/>
+
+          <!-- Hepatopancreatic duct label -->
+          <line x1="310" y1="460" x2="420" y2="480" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="423" y="477" fill="#ec4899" font-size="11" font-weight="600" text-anchor="start" font-family="Arial,sans-serif">Common Hepatopancreatic</text>
+          <text x="423" y="491" fill="#ec4899" font-size="11" font-weight="600" text-anchor="start" font-family="Arial,sans-serif">Duct (Ampulla of Vater)</text>
+
+          <!-- ========== DUODENUM ========== -->
+          <path d="M250,435 Q220,445 200,470 Q185,500 210,515 Q240,525 280,520 Q310,510 310,485 Q310,470 310,460"
+                fill="none" stroke="#8b5cf6" stroke-width="3"/>
+          <!-- Duodenum filled C-shape -->
+          <path d="M250,435 Q220,445 200,470 Q185,500 210,515 Q240,525 280,520 Q310,510 310,485 Q310,470 310,460
+                   L304,460 Q304,470 304,485 Q304,507 278,515 Q245,520 215,511 Q195,500 205,475 Q218,450 250,440 Z"
+                fill="rgba(139,92,246,0.15)"/>
+          <!-- Duodenum label -->
+          <line x1="215" y1="495" x2="135" y2="505" stroke="#4a5568" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="70" y="509" fill="#8b5cf6" font-size="13" font-weight="700" text-anchor="start" font-family="Arial,sans-serif">DUODENUM</text>
+
+          <!-- ========== Flow arrow from duodenum ========== -->
+          <line x1="210" y1="520" x2="170" y2="540" stroke="#8b5cf6" stroke-width="2" marker-end="url(#bArrow)"/>
+
+          <!-- ========== Flow arrows from liver ========== -->
+          <line x1="350" y1="150" x2="350" y2="165" stroke="#06b6d4" stroke-width="2" marker-end="url(#bArrow)"/>
+
+          <!-- ========== Title at bottom ========== -->
+          <text x="350" y="540" fill="#8892a4" font-size="13" font-weight="600" text-anchor="middle" font-family="Arial,sans-serif" letter-spacing="2">BILIARY SYSTEM</text>
+
+          <!-- ========== Directional flow arrows along CBD ========== -->
+          <!-- Arrow on CBD -->
+          <polygon points="346,340 354,340 350,350" fill="#06b6d4" opacity="0.5"/>
+          <polygon points="346,290 354,290 350,300" fill="#06b6d4" opacity="0.5"/>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</div><!-- end biliary -->
+
+
+</main>
+
+<!-- === FLASHCARD OVERLAY === -->
+<div class="flashcard-overlay" id="flashcardOverlay">
+  <div class="flashcard-header">
+    <div class="flashcard-counter" id="flashcardCounter">1 / 20</div>
+    <button class="flashcard-close" onclick="closeFlashcards()">✕</button>
+  </div>
+  <div class="flashcard-scene" onclick="flipCard()">
+    <div class="flashcard-card" id="flashcardCard">
+      <div class="flashcard-face flashcard-front">
+        <div class="flashcard-section-tag" id="fcSection">Liver</div>
+        <div class="flashcard-label">❓ السؤال</div>
+        <div class="flashcard-text" id="fcQuestion">Loading...</div>
+        <div class="flashcard-hint">اضغط للإجابة</div>
+      </div>
+      <div class="flashcard-face flashcard-back">
+        <div class="flashcard-label">✅ الإجابة</div>
+        <div class="flashcard-text" id="fcAnswer">Loading...</div>
+        <div class="flashcard-hint">اضغط للرجوع</div>
+      </div>
+    </div>
+  </div>
+  <div class="flashcard-nav">
+    <button onclick="prevCard()">→ السابق</button>
+    <button onclick="shuffleCards()">🔀 عشوائي</button>
+    <button onclick="nextCard()">التالي ←</button>
+  </div>
+</div>
+
+<!-- === QUICK REF SIDEBAR === -->
+<div class="quickref-overlay" id="qrOverlay" onclick="toggleQuickRef()"></div>
+<div class="quickref-sidebar" id="qrSidebar">
+  <div class="qr-header">
+    <div class="qr-title">📌 مرجع سريع للامتحان</div>
+    <button class="qr-close" onclick="toggleQuickRef()">✕</button>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-section-title blue">🫁 Liver</div>
+    <ul class="qr-items">
+      <li>Largest gland — 1.5 kg — 500+ functions</li>
+      <li>Porta Hepatis: between caudate & quadrate lobes</li>
+      <li>Bare area: posterior, NOT covered by peritoneum</li>
+      <li>8 ligaments — Falciform divides into R & L lobes</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-section-title cyan">🫀 Mediastinum</div>
+    <ul class="qr-items">
+      <li>Superior: Arch of Aorta, SVC, Trachea, Esophagus</li>
+      <li>Posterior: Descending Aorta, Azygos, Thoracic duct</li>
+      <li>3 branches of aortic arch: Brachiocephalic, L. common carotid, L. subclavian</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-section-title orange">💪 Post. Abd. Wall</div>
+    <ul class="qr-items">
+      <li>Psoas Major: T12–L5 → Lesser trochanter → Hip flexion</li>
+      <li>Psoas Minor: absent in 40% of people</li>
+      <li>Quadratus Lumborum: fixes 12th rib</li>
+      <li>Iliacus: innervated by Femoral nerve</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-section-title yellow">🩻 Ant. Abd. Wall</div>
+    <ul class="qr-items">
+      <li>3 flat muscles: Ext. Oblique, Int. Oblique, Transversus</li>
+      <li>2 vertical: Rectus Abdominis, Pyramidalis</li>
+      <li>Rectus Sheath: aponeuroses decussation</li>
+      <li>Inguinal ligament: ASIS → Pubic tubercle</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-section-title cyan">⚡ Heart Conduction</div>
+    <ul class="qr-items">
+      <li>SA Node → AV Node → Bundle of His → Bundle Branches → Purkinje</li>
+      <li>SA Node = Pacemaker, below SVC opening</li>
+      <li>AV Node: lower interatrial septum — delays impulse</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-section-title red">🩸 Heart Blood Supply</div>
+    <ul class="qr-items">
+      <li>RCA → Marginal + Posterior interventricular</li>
+      <li>LCA → Anterior interventricular + Circumflex</li>
+      <li>Coronary Sinus: 5 tributaries → Right atrium</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-section-title purple">🔩 Inguinal Canal</div>
+    <ul class="qr-items">
+      <li>Anterior wall: Ext. Oblique aponeurosis</li>
+      <li>Posterior wall: Transversalis fascia + Conjoint tendon</li>
+      <li>Roof: Conjoint tendon + Int. Oblique arch</li>
+      <li>Floor: Inguinal ligament + Lacunar ligament</li>
+    </ul>
+  </div>
+
+  <div class="qr-section">
+    <div class="qr-section-title green">🧪 Biliary System</div>
+    <ul class="qr-items">
+      <li>Bile rate: 40 ml/hour</li>
+      <li>R+L Hepatic Ducts → Common Hepatic → +Cystic → CBD → Duodenum</li>
+      <li>CBD: 8 cm, 3 parts (Supra-, Retro-duodenal, Retropancreatic)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- === SHORTCUTS MODAL === -->
+<div class="shortcuts-modal" id="shortcutsModal" onclick="toggleShortcuts()">
+  <div class="shortcuts-box" onclick="event.stopPropagation()">
+    <h3>⌨️ اختصارات لوحة المفاتيح</h3>
+    <div class="shortcut-row"><span class="shortcut-desc">القسم التالي</span><span class="shortcut-key">→</span></div>
+    <div class="shortcut-row"><span class="shortcut-desc">القسم السابق</span><span class="shortcut-key">←</span></div>
+    <div class="shortcut-row"><span class="shortcut-desc">البحث</span><span class="shortcut-key">S</span></div>
+    <div class="shortcut-row"><span class="shortcut-desc">اختبر نفسك</span><span class="shortcut-key">F</span></div>
+    <div class="shortcut-row"><span class="shortcut-desc">المرجع السريع</span><span class="shortcut-key">Q</span></div>
+    <div class="shortcut-row"><span class="shortcut-desc">طباعة</span><span class="shortcut-key">P</span></div>
+    <div class="shortcut-row"><span class="shortcut-desc">إغلاق النوافذ</span><span class="shortcut-key">Esc</span></div>
+  </div>
+</div>
+
+<script>
+  // === SECTION NAVIGATION ===
+  const sectionIds = ['liver','mediastinum','post-abdominal','ant-abdominal','conduction','blood-supply','inguinal','comparison','biliary'];
+  let currentSectionIndex = 0;
+
+  function showSection(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn:not(.special)').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if (btn) btn.classList.add('active');
+    else {
+      const navBtns = document.querySelectorAll('.nav-btn:not(.special)');
+      const idx = sectionIds.indexOf(id);
+      if (idx >= 0 && navBtns[idx]) navBtns[idx].classList.add('active');
+    }
+    currentSectionIndex = sectionIds.indexOf(id);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextSection() {
+    const next = (currentSectionIndex + 1) % sectionIds.length;
+    showSection(sectionIds[next]);
+  }
+
+  function prevSection() {
+    const prev = (currentSectionIndex - 1 + sectionIds.length) % sectionIds.length;
+    showSection(sectionIds[prev]);
+  }
+
+  // === PROGRESS TRACKER ===
+  const STORAGE_KEY = 'anatomy-progress';
+  let completedSections = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+  function updateProgress() {
+    const count = Object.keys(completedSections).filter(k => completedSections[k]).length;
+    const pct = Math.round((count / 9) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressBadge').textContent = count + '/9 ✓';
+
+    document.querySelectorAll('.sec-complete-btn').forEach(btn => {
+      const sec = btn.dataset.section;
+      if (completedSections[sec]) {
+        btn.classList.add('completed');
+        btn.textContent = '✅ تم!';
+      } else {
+        btn.classList.remove('completed');
+        btn.textContent = '☐ تم المذاكرة';
+      }
+    });
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(completedSections));
+  }
+
+  function toggleComplete(section, btn) {
+    completedSections[section] = !completedSections[section];
+    updateProgress();
+    if (completedSections[section]) spawnConfetti(btn);
+  }
+
+  // === CONFETTI ===
+  function spawnConfetti(el) {
+    const colors = ['#3b82f6','#06b6d4','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899'];
+    const container = document.createElement('div');
+    container.className = 'confetti-container';
+    document.body.appendChild(container);
+
+    const rect = el.getBoundingClientRect();
+    for (let i = 0; i < 30; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.left = (rect.left + rect.width/2 + (Math.random()-0.5)*100) + 'px';
+      piece.style.top = (rect.top) + 'px';
+      piece.style.animationDuration = (1 + Math.random()) + 's';
+      piece.style.animationDelay = (Math.random() * 0.3) + 's';
+      container.appendChild(piece);
+    }
+    setTimeout(() => container.remove(), 2000);
+  }
+
+  // === SEARCH ===
+  function searchAll(query) {
+    // Clear previous highlights
+    document.querySelectorAll('mark.search-hl').forEach(m => {
+      const parent = m.parentNode;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+
+    const info = document.getElementById('searchInfo');
+    if (!query || query.length < 2) {
+      info.style.display = 'none';
+      return;
+    }
+
+    let totalMatches = 0;
+    let firstMatchSection = null;
+
+    sectionIds.forEach(id => {
+      const section = document.getElementById(id);
+      const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT, null, false);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach(node => {
+        const text = node.textContent;
+        const lowerText = text.toLowerCase();
+        const lowerQuery = query.toLowerCase();
+        const idx = lowerText.indexOf(lowerQuery);
+        if (idx >= 0) {
+          totalMatches++;
+          if (!firstMatchSection) firstMatchSection = id;
+          const before = text.substring(0, idx);
+          const match = text.substring(idx, idx + query.length);
+          const after = text.substring(idx + query.length);
+          const mark = document.createElement('mark');
+          mark.className = 'search-hl';
+          mark.textContent = match;
+          const parent = node.parentNode;
+          parent.insertBefore(document.createTextNode(before), node);
+          parent.insertBefore(mark, node);
+          parent.insertBefore(document.createTextNode(after), node);
+          parent.removeChild(node);
+        }
+      });
+    });
+
+    document.getElementById('searchCount').textContent = totalMatches;
+    info.style.display = totalMatches > 0 ? 'block' : 'none';
+
+    if (firstMatchSection && firstMatchSection !== sectionIds[currentSectionIndex]) {
+      showSection(firstMatchSection);
+    }
+
+    // Scroll to first highlight
+    const firstMark = document.querySelector('.section.active mark.search-hl');
+    if (firstMark) {
+      setTimeout(() => firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+    }
+  }
+
+  // === FLASHCARDS ===
+  const flashcards = [
+    { q: "What is the weight of the liver?", a: "About 1.5 kg — the largest gland in the body", s: "Liver" },
+    { q: "Where is the Porta Hepatis located?", a: "Between the caudate and quadrate lobes", s: "Liver" },
+    { q: "What is the Bare Area of the liver?", a: "Posterior part NOT covered by peritoneum", s: "Liver" },
+    { q: "Name the 3 branches of the Arch of Aorta", a: "Brachiocephalic, Left common carotid, Left subclavian", s: "Mediastinum" },
+    { q: "What are the contents of the Posterior Mediastinum?", a: "Esophagus, Azygos vein, Thoracic duct, Sympathetic chain, Descending Aorta", s: "Mediastinum" },
+    { q: "Where does Psoas Major insert?", a: "Lesser trochanter of femur (with iliacus)", s: "Post. Abd. Wall" },
+    { q: "Psoas Minor is absent in what percentage?", a: "40% of people", s: "Post. Abd. Wall" },
+    { q: "What is the action of Quadratus Lumborum?", a: "Fixes/depresses 12th rib, laterally flexes vertebral column", s: "Post. Abd. Wall" },
+    { q: "What forms the Inguinal Ligament?", a: "Lower border of the aponeurosis of the external oblique muscle folded backward", s: "Ant. Abd. Wall" },
+    { q: "What is the Rectus Sheath?", a: "Incomplete fibrous compartment formed by decussation of flat muscle aponeuroses", s: "Ant. Abd. Wall" },
+    { q: "Where is the SA Node located?", a: "Wall of right atrium, below the opening of SVC", s: "Heart Conduction" },
+    { q: "What is the function of the AV Node?", a: "Delays the impulse to allow ventricular filling", s: "Heart Conduction" },
+    { q: "Where does the AV Bundle pass?", a: "Upper part of the interventricular septum", s: "Heart Conduction" },
+    { q: "What are the branches of the Right Coronary Artery?", a: "Marginal branch + Posterior interventricular artery", s: "Heart Blood Supply" },
+    { q: "Where does the Coronary Sinus drain?", a: "Into the Right Atrium", s: "Heart Blood Supply" },
+    { q: "What forms the Anterior Wall of the Inguinal Canal?", a: "Aponeurosis of external oblique (main) + internal oblique fibers", s: "Inguinal Canal" },
+    { q: "What forms the Floor of the Inguinal Canal?", a: "Inguinal ligament + Lacunar ligament + Iliopubic tract", s: "Inguinal Canal" },
+    { q: "Right Bronchus: length and angle?", a: "2.5 cm long, 25° angle with trachea", s: "Comparisons" },
+    { q: "How many lobes does the Right Lung have?", a: "3 lobes with 2 fissures (oblique + transverse)", s: "Comparisons" },
+    { q: "What is the rate of bile secretion?", a: "40 ml per hour, secreted constantly by liver cells", s: "Biliary System" },
+    { q: "What are the 3 parts of the Common Bile Duct?", a: "Supraduodenal, Retroduodenal, Retropancreatic", s: "Biliary System" },
+    { q: "Male urethra length and parts?", a: "20 cm — Prostatic (widest), Membranous (shortest), Penile (longest)", s: "Comparisons" },
+  ];
+
+  let currentCard = 0;
+  let cardOrder = [...Array(flashcards.length).keys()];
+
+  function openFlashcards() {
+    document.getElementById('flashcardOverlay').classList.add('active');
+    currentCard = 0;
+    updateFlashcard();
+  }
+
+  function closeFlashcards() {
+    document.getElementById('flashcardOverlay').classList.remove('active');
+    document.getElementById('flashcardCard').classList.remove('flipped');
+  }
+
+  function flipCard() {
+    document.getElementById('flashcardCard').classList.toggle('flipped');
+  }
+
+  function nextCard() {
+    document.getElementById('flashcardCard').classList.remove('flipped');
+    setTimeout(() => {
+      currentCard = (currentCard + 1) % cardOrder.length;
+      updateFlashcard();
+    }, 150);
+  }
+
+  function prevCard() {
+    document.getElementById('flashcardCard').classList.remove('flipped');
+    setTimeout(() => {
+      currentCard = (currentCard - 1 + cardOrder.length) % cardOrder.length;
+      updateFlashcard();
+    }, 150);
+  }
+
+  function shuffleCards() {
+    for (let i = cardOrder.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cardOrder[i], cardOrder[j]] = [cardOrder[j], cardOrder[i]];
+    }
+    currentCard = 0;
+    document.getElementById('flashcardCard').classList.remove('flipped');
+    setTimeout(updateFlashcard, 150);
+  }
+
+  function updateFlashcard() {
+    const fc = flashcards[cardOrder[currentCard]];
+    document.getElementById('fcQuestion').textContent = fc.q;
+    document.getElementById('fcAnswer').textContent = fc.a;
+    document.getElementById('fcSection').textContent = fc.s;
+    document.getElementById('flashcardCounter').textContent = (currentCard + 1) + ' / ' + cardOrder.length;
+  }
+
+  // === QUICK REF ===
+  function toggleQuickRef() {
+    document.getElementById('qrOverlay').classList.toggle('active');
+    document.getElementById('qrSidebar').classList.toggle('active');
+  }
+
+  // === SHORTCUTS MODAL ===
+  function toggleShortcuts() {
+    document.getElementById('shortcutsModal').classList.toggle('active');
+  }
+
+  // === KEYBOARD SHORTCUTS ===
+  document.addEventListener('keydown', function(e) {
+    // Don't trigger if typing in search
+    if (e.target.tagName === 'INPUT') return;
+
+    const flashcardOpen = document.getElementById('flashcardOverlay').classList.contains('active');
+
+    if (e.key === 'Escape') {
+      closeFlashcards();
+      document.getElementById('qrOverlay').classList.remove('active');
+      document.getElementById('qrSidebar').classList.remove('active');
+      document.getElementById('shortcutsModal').classList.remove('active');
+      return;
+    }
+
+    if (flashcardOpen) {
+      if (e.key === 'ArrowLeft') nextCard();
+      else if (e.key === 'ArrowRight') prevCard();
+      else if (e.key === ' ') { e.preventDefault(); flipCard(); }
+      return;
+    }
+
+    if (e.key === 'ArrowLeft') nextSection();
+    else if (e.key === 'ArrowRight') prevSection();
+    else if (e.key.toLowerCase() === 's') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+    else if (e.key.toLowerCase() === 'f') { e.preventDefault(); openFlashcards(); }
+    else if (e.key.toLowerCase() === 'q') { e.preventDefault(); toggleQuickRef(); }
+    else if (e.key.toLowerCase() === 'p') { e.preventDefault(); window.print(); }
+  });
+
+  // === ARABIC TRANSLATION TOGGLE ===
+  function toggleTranslation(sectionId, btn) {
+    const panel = document.getElementById('arabic-' + sectionId);
+    const isActive = panel.classList.contains('active');
+    
+    // Close all other panels first
+    document.querySelectorAll('.arabic-panel.active').forEach(p => {
+      p.classList.remove('active');
+    });
+    document.querySelectorAll('.translate-btn.active').forEach(b => {
+      b.classList.remove('active');
+    });
+    
+    // Toggle current panel
+    if (!isActive) {
+      panel.classList.add('active');
+      btn.classList.add('active');
+      // Smooth scroll to panel
+      setTimeout(() => {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+  }
+
+  // === INIT ===
+  updateProgress();
+
+  // Refresh on back nav
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) window.location.reload();
+  });
+</script>
+
+</body>
+</html>

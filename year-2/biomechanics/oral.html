@@ -1,0 +1,3357 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biomechanics 2 — Exam Guide</title>
+    <meta name="description" content="دليل شامل لامتحان الـ Biomechanics 2 - أسئلة عملية وشفوية مع إجابات كاملة">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --accent: #6366f1;
+            --accent2: #818cf8;
+            --accent-glow: rgba(99, 102, 241, 0.35);
+            --cyan: #22d3ee;
+            --emerald: #34d399;
+            --amber: #fbbf24;
+            --rose: #fb7185;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --border: rgba(255, 255, 255, 0.06);
+            --radius: 16px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            line-height: 1.75;
+            padding: 0 12px 100px;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(34, 211, 238, 0.08), transparent);
+        }
+
+        .page-wrapper {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 24px;
+            position: relative;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* === SIDEBAR === */
+        .sidebar {
+            position: sticky;
+            top: 70px;
+            width: 260px;
+            height: fit-content;
+            max-height: calc(100vh - 90px);
+            overflow-y: auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-title {
+            font-size: 0.85em;
+            font-weight: 700;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 0.85em;
+            font-weight: 500;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(99, 102, 241, 0.08);
+            color: var(--accent2);
+            border-color: rgba(99, 102, 241, 0.15);
+        }
+
+        .sidebar-link.active {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent2);
+            border-color: rgba(99, 102, 241, 0.3);
+            font-weight: 600;
+        }
+
+        .sidebar-link .icon {
+            font-size: 1.1em;
+        }
+
+        /* Scrollbar styling for sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 3px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.5);
+        }
+
+        /* === TOP BAR === */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            background: rgba(10, 14, 26, 0.75);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 0 -12px;
+        }
+
+        .top-bar .logo {
+            font-weight: 800;
+            font-size: .95em;
+            color: var(--accent2);
+            letter-spacing: -.3px;
+        }
+
+        .progress-wrap {
+            flex: 1;
+            max-width: 220px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            border-radius: 3px;
+            transition: width .4s ease;
+        }
+
+        .progress-text {
+            font-size: .75em;
+            color: var(--text-dim);
+            font-variant-numeric: tabular-nums;
+            min-width: 36px;
+            text-align: left;
+        }
+
+        .timer-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: .8em;
+            font-weight: 600;
+            color: var(--accent2);
+            cursor: pointer;
+            user-select: none;
+            transition: all .2s;
+        }
+
+        .timer-badge:hover {
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .timer-badge .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--emerald);
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        .timer-badge.paused .dot {
+            background: var(--amber);
+            animation: none;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
+
+        /* === HERO === */
+        .hero {
+            text-align: center;
+            padding: 48px 20px 36px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12), transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: .78em;
+            font-weight: 500;
+            color: var(--accent2);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.6em, 5vw, 2.4em);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, var(--accent2) 50%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            letter-spacing: -.5px;
+        }
+
+        .hero .subtitle {
+            color: var(--text-dim);
+            font-size: .95em;
+            font-weight: 400;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .hero-stat .num {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--cyan);
+        }
+
+        .hero-stat .lbl {
+            font-size: .72em;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        /* === NAVIGATION PILLS === */
+        .nav-pills {
+            display: flex;
+            gap: 8px;
+            padding: 16px 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .nav-pills::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-pill {
+            flex-shrink: 0;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: .78em;
+            font-weight: 600;
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all .25s;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .nav-pill:hover,
+        .nav-pill.active {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: var(--accent2);
+        }
+
+        /* === SECTIONS === */
+        .section {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            transition: border-color .3s;
+        }
+
+        .section:hover {
+            border-color: rgba(99, 102, 241, 0.15);
+        }
+
+        .section-title {
+            font-size: 1.25em;
+            font-weight: 700;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+
+        .icon {
+            font-size: 1.15em;
+        }
+
+        /* === QUESTIONS === */
+        .question {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all .25s ease;
+            position: relative;
+        }
+
+        .question::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent), var(--cyan));
+            border-radius: 0 12px 12px 0;
+            opacity: 0;
+            transition: opacity .25s;
+        }
+
+        .question:hover {
+            background: rgba(99, 102, 241, 0.05);
+            border-color: rgba(99, 102, 241, 0.15);
+        }
+
+        .question:hover::before {
+            opacity: 1;
+        }
+
+        .question.revealed {
+            border-color: rgba(34, 211, 238, 0.2);
+        }
+
+        .question.revealed::before {
+            opacity: 1;
+            background: linear-gradient(180deg, var(--emerald), var(--cyan));
+        }
+
+        .question-text {
+            color: #fff;
+            font-weight: 600;
+            font-size: .95em;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .question-text::after {
+            content: '▾';
+            margin-right: auto;
+            margin-left: 0;
+            font-size: .8em;
+            color: var(--text-dim);
+            transition: transform .3s;
+        }
+
+        .question.revealed .question-text::after {
+            transform: rotate(180deg);
+            color: var(--cyan);
+        }
+
+        /* === ANSWERS === */
+        .answer {
+            color: var(--text);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease, padding .3s ease, opacity .3s ease;
+            opacity: 0;
+            border-radius: 10px;
+            margin-top: 0;
+        }
+
+        .answer.show {
+            display: block !important;
+            max-height: 5000px;
+            padding: 16px;
+            opacity: 1;
+            margin-top: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .highlight {
+            color: var(--emerald);
+            font-weight: 600;
+        }
+
+        .term {
+            color: var(--cyan);
+            font-weight: 600;
+        }
+
+        .important {
+            background: rgba(251, 113, 133, 0.12);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--rose);
+            font-weight: 600;
+            font-size: .92em;
+        }
+
+        ul,
+        ol {
+            margin-right: 20px;
+            margin-top: 8px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            padding-right: 5px;
+            line-height: 1.7;
+        }
+
+        .note {
+            background: rgba(251, 191, 36, 0.06);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            border-right: 3px solid var(--amber);
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin: 12px 0;
+            color: var(--amber);
+            font-size: .9em;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 12px 0;
+            font-size: .9em;
+        }
+
+        th {
+            padding: 10px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent2);
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid var(--border);
+        }
+
+        /* === STEPS === */
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            counter-increment: step-counter;
+            margin-bottom: 8px;
+            padding-right: 34px;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            right: 0;
+            top: 2px;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            color: #fff;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: .75em;
+        }
+
+        /* === BOTTOM CONTROLS === */
+        .bottom-controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            background: rgba(10, 14, 26, 0.8);
+            border-top: 1px solid var(--border);
+            padding: 10px 16px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .ctrl-btn {
+            padding: 9px 22px;
+            border-radius: 10px;
+            font-size: .82em;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all .2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .ctrl-btn.primary {
+            background: linear-gradient(135deg, var(--accent), #4f46e5);
+            color: #fff;
+            border: none;
+        }
+
+        .ctrl-btn.primary:hover {
+            box-shadow: 0 4px 20px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        .ctrl-btn.secondary {
+            background: var(--bg-glass);
+            color: var(--text-dim);
+        }
+
+        .ctrl-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+        }
+
+        /* === SEARCH === */
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 18px 12px 42px;
+            border-radius: 12px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: .9em;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .search-box input:focus {
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .search-box .search-icon {
+            position: absolute;
+            left: auto;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-dim);
+            font-size: .9em;
+            pointer-events: none;
+        }
+
+        /* === SCROLL TO TOP === */
+        .scroll-top {
+            position: fixed;
+            bottom: 70px;
+            left: 20px;
+            z-index: 99;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 1.1em;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+        }
+
+        .scroll-top.visible {
+            display: flex;
+        }
+
+        .scroll-top:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            color: var(--accent2);
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .section {
+            animation: fadeUp .5s ease both;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: .05s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: .1s;
+        }
+
+        /* === RESPONSIVE === */
+        @media (min-width: 1024px) {
+            .sidebar {
+                display: flex;
+            }
+
+            body {
+                padding: 0 24px 100px;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .page-wrapper {
+                display: block;
+            }
+
+            .sidebar {
+                display: none !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0 8px 90px;
+            }
+
+            .hero {
+                padding: 32px 12px 24px;
+            }
+
+            .hero h1 {
+                font-size: 1.5em;
+            }
+
+            .section {
+                padding: 16px 14px;
+            }
+
+            .question {
+                padding: 14px;
+            }
+
+            .hero-stats {
+                gap: 12px;
+            }
+
+            .hero-stat {
+                padding: 8px 14px;
+                min-width: 80px;
+            }
+
+            .nav-pills {
+                padding: 12px 0;
+            }
+
+            .top-bar {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="logo">By: Ibrahim Asar</div>
+        <div class="progress-wrap">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-text" id="progressText">0%</span>
+        </div>
+        <div class="timer-badge" id="timerBadge" onclick="toggleTimer()">
+            <span class="dot"></span>
+            <span id="timerDisplay">00:00</span>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- SIDEBAR (Desktop Only) -->
+        <aside class="sidebar">
+            <div class="sidebar-title">📑 الأقسام</div>
+            <a class="sidebar-link" href="#sec-priority">
+                <span class="icon">🔥</span>
+                <span>الأكثر تكراراً</span>
+            </a>
+            <a class="sidebar-link" href="#sec-definitions">
+                <span class="icon">📝</span>
+                <span>Definitions</span>
+            </a>
+            <a class="sidebar-link" href="#sec-variables">
+                <span class="icon">📊</span>
+                <span>Variables</span>
+            </a>
+            <a class="sidebar-link" href="#sec-determinants">
+                <span class="icon">⚙️</span>
+                <span>Determinants</span>
+            </a>
+            <a class="sidebar-link" href="#sec-forces">
+                <span class="icon">💥</span>
+                <span>Forces</span>
+            </a>
+            <a class="sidebar-link" href="#sec-cog">
+                <span class="icon">🎯</span>
+                <span>COG</span>
+            </a>
+            <a class="sidebar-link" href="#sec-hip">
+                <span class="icon">🦴</span>
+                <span>Hip</span>
+            </a>
+            <a class="sidebar-link" href="#sec-knee">
+                <span class="icon">🦵</span>
+                <span>Knee</span>
+            </a>
+            <a class="sidebar-link" href="#sec-ankle">
+                <span class="icon">🦶</span>
+                <span>Ankle</span>
+            </a>
+            <a class="sidebar-link" href="#sec-muscle">
+                <span class="icon">💪</span>
+                <span>Muscle</span>
+            </a>
+            <a class="sidebar-link" href="#sec-energy">
+                <span class="icon">⚡</span>
+                <span>Energy</span>
+            </a>
+            <a class="sidebar-link" href="#sec-pathological">
+                <span class="icon">🏥</span>
+                <span>Pathological</span>
+            </a>
+            <a class="sidebar-link" href="#sec-running">
+                <span class="icon">🏃</span>
+                <span>Running</span>
+            </a>
+            <a class="sidebar-link" href="#sec-phases">
+                <span class="icon">🔄</span>
+                <span>Phases</span>
+            </a>
+        </aside>
+
+    <div class="container">
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-badge">📋 Oral & Practical Exam 2026</div>
+            <h1>Biomechanics 2<br>Exam Guide</h1>
+            <p class="subtitle">أهم الأسئلة العملية والشفوية مع الإجابات الكاملة</p>
+            <p style="margin-top: 10px;"><a href="https://www.tiktok.com/@elfox.ph" target="_blank"
+                    rel="noopener noreferrer"
+                    style="color: var(--accent2); text-decoration: none; font-weight: 600; font-size: .9em; transition: color .2s;">By:
+                    Ibrahim Asar</a></p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="num" id="totalQ">0</div>
+                    <div class="lbl">سؤال</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="num" id="totalSec">13</div>
+                    <div class="lbl">أقسام</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="num" id="revealedCount">0</div>
+                    <div class="lbl">تمت مراجعته</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAV PILLS -->
+        <nav class="nav-pills" id="navPills">
+            <a class="nav-pill" href="#sec-definitions">📝 Definitions</a>
+            <a class="nav-pill" href="#sec-variables">📊 Variables</a>
+            <a class="nav-pill" href="#sec-determinants">⚙️ Determinants</a>
+            <a class="nav-pill" href="#sec-forces">💥 Forces</a>
+            <a class="nav-pill" href="#sec-cog">🎯 COG</a>
+            <a class="nav-pill" href="#sec-hip">🦴 Hip</a>
+            <a class="nav-pill" href="#sec-knee">🦵 Knee</a>
+            <a class="nav-pill" href="#sec-ankle">🦶 Ankle</a>
+            <a class="nav-pill" href="#sec-muscle">💪 Muscle</a>
+            <a class="nav-pill" href="#sec-energy">⚡ Energy</a>
+            <a class="nav-pill" href="#sec-pathological">🏥 Pathological</a>
+            <a class="nav-pill" href="#sec-running">🏃 Running</a>
+            <a class="nav-pill" href="#sec-phases">🔄 Phases</a>
+        </nav>
+
+        <!-- SEARCH -->
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="ابحث عن سؤال أو موضوع..."
+                oninput="handleSearch(this.value)">
+        </div>
+
+        <!-- Priority Section -->
+        <div class="section" id="sec-priority">
+            <h2 class="section-title"><span class="icon">🔥</span>الأكثر تكراراً — ابدأ منها</h2>
+            <table>
+                <tr>
+                    <th>الموضوع</th>
+                    <th>الأهمية</th>
+                </tr>
+                <tr>
+                    <td>Hip Kinetics (sagittal plane) — كل الأجزاء</td>
+                    <td>⭐⭐⭐⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>Pathological Gait (صور + شرح)</td>
+                    <td>⭐⭐⭐⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>Muscle Weakness & Compensation</td>
+                    <td>⭐⭐⭐⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>Determinants of Gait</td>
+                    <td>⭐⭐⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>GRFV (sagittal & frontal)</td>
+                    <td>⭐⭐⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>Compare Walking vs Running</td>
+                    <td>⭐⭐⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>Knee Kinetics (4–20%)</td>
+                    <td>⭐⭐⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>Energy: Kinetic vs Potential / Generated vs Absorbed</td>
+                    <td>⭐⭐⭐⭐</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 1: Gait Definitions -->
+        <div class="section" id="sec-definitions">
+            <h2 class="section-title"><span class="icon">📝</span>Gait Definitions & Basic Concepts</h2>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما هو تعريف Gait Cycle؟
+                </div>
+                <div class="answer">
+                    <strong>التعريف:</strong> Gait Cycle هي الفترة الزمنية من Initial Contact (IC) لرجل واحدة حتى
+                    Initial Contact التالي لنفس الرجل.<br><br>
+                    <strong>المكونات:</strong>
+                    <ul>
+                        <li><span class="highlight">Stance Phase</span>: 60% من الدورة (الرجل على الأرض)</li>
+                        <li><span class="highlight">Swing Phase</span>: 40% من الدورة (الرجل في الهواء)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اذكر الـ 4 Criteria (Major Characteristics) of Gait
+                </div>
+                <div class="answer">
+                    <ol>
+                        <li><strong>Stability:</strong> القدرة على الحفاظ على التوازن أثناء المشي</li>
+                        <li><strong>Progression:</strong> الحركة للأمام بشكل مستمر</li>
+                        <li><strong>Energy Conservation:</strong> استخدام أقل طاقة ممكنة</li>
+                        <li><strong>Shock Absorption:</strong> امتصاص الصدمات عند ملامسة القدم للأرض</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما هي Prerequisites of Gait Cycle؟
+                </div>
+                <div class="answer">
+                    <strong>المتطلبات الأساسية للمشي الطبيعي:</strong>
+                    <ul>
+                        <li><strong>Intact Musculoskeletal System:</strong> عظام ومفاصل وعضلات سليمة</li>
+                        <li><strong>Intact Nervous System:</strong> جهاز عصبي سليم للتحكم والتنسيق</li>
+                        <li><strong>Adequate ROM:</strong> مدى حركي كافي في المفاصل</li>
+                        <li><strong>Adequate Muscle Strength:</strong> قوة عضلية كافية</li>
+                        <li><strong>Proprioception:</strong> إحساس بموضع الجسم في الفراغ</li>
+                        <li><strong>Balance:</strong> توازن جيد</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ الفرق بين Gait Phases و Gait Events (مع أمثلة)
+                </div>
+                <div class="answer">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <tr>
+                                <th>Gait Events</th>
+                                <th>Gait Phases</th>
+                                <th>الفرق</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>لحظات محددة</strong><br>
+                                    - Initial Contact (IC)<br>
+                                    - Toe Off (TO)<br>
+                                    - Foot Flat<br>
+                                    - Heel Off
+                                </td>
+                                <td>
+                                    <strong>فترات زمنية</strong><br>
+                                    - Loading Response<br>
+                                    - Mid Stance<br>
+                                    - Terminal Stance<br>
+                                    - Pre-swing<br>
+                                    - Initial Swing<br>
+                                    - Mid Swing<br>
+                                    - Terminal Swing
+                                </td>
+                                <td>
+                                    Events = نقاط زمنية محددة<br>
+                                    Phases = فترات بين Events
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Gait Periods: Stance vs Swing — النسب المئوية
+                </div>
+                <div class="answer">
+                    <strong>Stance Phase (60%):</strong>
+                    <ul>
+                        <li>من 0% إلى 60% من الـ Gait Cycle</li>
+                        <li>القدم على الأرض</li>
+                        <li>تشمل: Initial Contact → Loading Response → Mid Stance → Terminal Stance → Pre-swing</li>
+                    </ul>
+                    <strong>Swing Phase (40%):</strong>
+                    <ul>
+                        <li>من 60% إلى 100% من الـ Gait Cycle</li>
+                        <li>القدم في الهواء</li>
+                        <li>تشمل: Initial Swing → Mid Swing → Terminal Swing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما هي نسب DLS و SLS؟
+                </div>
+                <div class="answer">
+                    <strong>Double Limb Support (DLS):</strong>
+                    <ul>
+                        <li><span class="highlight">20% من الـ Gait Cycle</span></li>
+                        <li>يحدث مرتين: في بداية ونهاية Stance Phase</li>
+                        <li>كل DLS = 10% من الدورة</li>
+                        <li>الرجلين على الأرض معاً</li>
+                    </ul>
+                    <strong>Single Limb Support (SLS):</strong>
+                    <ul>
+                        <li><span class="highlight">40% من الـ Gait Cycle</span></li>
+                        <li>رجل واحدة فقط على الأرض</li>
+                        <li>يتطلب توازن وقوة عضلية أكبر</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اذكر Functional Tasks of Gait وتمثيلها عملياً
+                </div>
+                <div class="answer">
+                    <strong>1. Weight Acceptance (0-10%):</strong>
+                    <ul>
+                        <li>استقبال وزن الجسم عند Initial Contact</li>
+                        <li>امتصاص الصدمة</li>
+                        <li>الحفاظ على الاستقرار</li>
+                        <li><strong>العضلات:</strong> Quadriceps (eccentric) + Dorsiflexors</li>
+                    </ul>
+                    <strong>2. Single Limb Support (10-50%):</strong>
+                    <ul>
+                        <li>دعم وزن الجسم على رجل واحدة</li>
+                        <li>الحفاظ على التوازن</li>
+                        <li>تقدم الجسم للأمام</li>
+                        <li><strong>العضلات:</strong> Hip Abductors + Ankle Plantar Flexors</li>
+                    </ul>
+                    <strong>3. Limb Advancement (50-100%):</strong>
+                    <ul>
+                        <li>تحريك الرجل للأمام في Swing Phase</li>
+                        <li>رفع القدم عن الأرض</li>
+                        <li>تجهيز الرجل للـ Initial Contact التالي</li>
+                        <li><strong>العضلات:</strong> Hip Flexors + Dorsiflexors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section" id="sec-variables">
+            <h2 class="section-title"><span class="icon">2️⃣</span> Spatial & Temporal Variables</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع د. الرفاعي ود. نورهان</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ صنّف Spatial Variables
+                </div>
+                <div class="answer">
+                    <strong>المتغيرات المكانية (Spatial Variables):</strong>
+                    <ul>
+                        <li><strong>Step Length:</strong> المسافة من IC لرجل إلى IC للرجل الأخرى (حوالي 72 cm)</li>
+                        <li><strong>Stride Length:</strong> المسافة من IC لرجل إلى IC التالي لنفس الرجل (حوالي 144 cm)
+                        </li>
+                        <li><strong>Step Width:</strong> المسافة الجانبية بين القدمين (5-10 cm)</li>
+                        <li><strong>Toe-out Angle:</strong> زاوية انحراف القدم للخارج (حوالي 7 درجات)</li>
+                    </ul>
+                    <div class="note">
+                        <strong>ملحوظة:</strong> Stride Length = 2 × Step Length (تقريباً)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ صنّف Temporal Variables
+                </div>
+                <div class="answer">
+                    <strong>المتغيرات الزمنية (Temporal Variables):</strong>
+                    <ul>
+                        <li><strong>Cadence:</strong> عدد الخطوات في الدقيقة (حوالي 110-120 steps/min)</li>
+                        <li><strong>Velocity (Speed):</strong> سرعة المشي (حوالي 1.4 m/s أو 82 m/min)</li>
+                        <li><strong>Stride Time:</strong> الوقت من IC إلى IC التالي لنفس الرجل (حوالي 1 ثانية)</li>
+                        <li><strong>Step Time:</strong> الوقت من IC لرجل إلى IC للرجل الأخرى (حوالي 0.5 ثانية)</li>
+                    </ul>
+                    <div class="note">
+                        <strong>العلاقة:</strong> Velocity = Stride Length × Cadence
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما الفرق المشترك بين Spatial و Temporal Variables؟
+                </div>
+                <div class="answer">
+                    <strong>الفرق الأساسي:</strong>
+                    <ul>
+                        <li><strong>Spatial Variables:</strong> تقيس <span class="highlight">المسافات والأبعاد</span>
+                            (بالسنتيمتر أو المتر)</li>
+                        <li><strong>Temporal Variables:</strong> تقيس <span class="highlight">الزمن والسرعة</span>
+                            (بالثواني أو الدقائق)</li>
+                    </ul>
+                    <strong>العامل المشترك:</strong>
+                    <ul>
+                        <li>كلاهما يستخدم لوصف وتحليل الـ Gait</li>
+                        <li>كلاهما يتأثر بالسرعة والعمر والحالة الصحية</li>
+                        <li>كلاهما ضروري لتقييم المشي الطبيعي والمرضي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ لو الرجل اليمين في IC — الرجل الشمال في أي Phase؟
+                </div>
+                <div class="answer">
+                    <strong>الإجابة:</strong> <span class="highlight">Pre-swing Phase</span><br><br>
+                    <strong>التفسير:</strong>
+                    <ul>
+                        <li>عندما تكون الرجل اليمين في IC (0%) → بداية Stance Phase</li>
+                        <li>الرجل الشمال تكون في نهاية Stance Phase = Pre-swing (50-60%)</li>
+                        <li>هذه لحظة Double Limb Support الأولى</li>
+                        <li>بعد ثوانٍ، الرجل الشمال ستدخل Swing Phase</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section" id="sec-determinants">
+            <h2 class="section-title"><span class="icon">3️⃣</span> Determinants of Gait (6 Determinants)</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">من أكثر الأسئلة تكراراً — خصوصاً مع د. محمد حازم ود.
+                نورهان ود. هدير</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح الـ 1st Determinant: Pelvic Rotation in Transverse Plane
+                </div>
+                <div class="answer">
+                    <strong>Pelvic Rotation (الدوران الحوضي في المستوى الأفقي):</strong>
+                    <ul>
+                        <li><strong>الحركة:</strong> الحوض يدور حوالي <span class="highlight">4 درجات</span> لكل جانب
+                        </li>
+                        <li><strong>التوقيت:</strong> يدور للأمام مع الرجل المتأرجحة (Swing Phase)</li>
+                        <li><strong>الفائدة:</strong> يزيد من Step Length بدون زيادة حركة الرجل</li>
+                        <li><strong>توفير الطاقة:</strong> يقلل من الحركة الرأسية للـ COG</li>
+                    </ul>
+                    <div class="note">
+                        <strong>مثال عملي:</strong> عند المشي، لاحظ كيف يدور الحوض قليلاً مع كل خطوة — هذا يساعد على
+                        إطالة الخطوة بدون مجهود إضافي
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Pelvic Tilt Determinant (Frontal Plane)
+                </div>
+                <div class="answer">
+                    <strong>Pelvic Tilt (الميل الحوضي في المستوى الأمامي):</strong>
+                    <ul>
+                        <li><strong>الحركة:</strong> الحوض يميل حوالي <span class="highlight">5 درجات</span> للأسفل على
+                            جانب الرجل المتأرجحة</li>
+                        <li><strong>التوقيت:</strong> أثناء Swing Phase للرجل</li>
+                        <li><strong>العضلات المسؤولة:</strong> Hip Abductors (Gluteus Medius & Minimus) على جانب الرجل
+                            الداعمة</li>
+                        <li><strong>الفائدة:</strong> يقلل من ارتفاع COG ويوفر الطاقة</li>
+                    </ul>
+                    <div class="note">
+                        <strong>⚠️ مهم:</strong> لو Hip Abductors ضعيفة → Trendelenburg Gait (الحوض يميل للأسفل بشكل
+                        مبالغ فيه)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح الـ 6th Determinant: Physiological Valgus of Knee (Q-angle)
+                </div>
+                <div class="answer">
+                    <strong>Physiological Valgus of Knee:</strong>
+                    <ul>
+                        <li><strong>التعريف:</strong> الزاوية الطبيعية بين الفخذ والساق (Q-angle)</li>
+                        <li><strong>القيمة الطبيعية:</strong> حوالي <span class="highlight">170-175 درجة</span></li>
+                        <li><strong>الفائدة:</strong> يقرب الركبتين من خط الجاذبية المركزي</li>
+                        <li><strong>توفير الطاقة:</strong> يقلل من الحركة الجانبية للـ COG</li>
+                        <li><strong>الاستقرار:</strong> يحسن التوازن أثناء Single Limb Support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما هي الأهمية السريرية للـ Determinants؟
+                </div>
+                <div class="answer">
+                    <strong>Clinical Significance of Determinants:</strong>
+                    <ul>
+                        <li><strong>Energy Saving Strategies:</strong> كل الـ 6 Determinants تهدف لتوفير الطاقة</li>
+                        <li><strong>تقليل حركة COG:</strong> تقلل من الحركة الرأسية والجانبية للـ COG</li>
+                        <li><strong>Smooth Gait:</strong> تجعل المشي أكثر سلاسة وكفاءة</li>
+                        <li><strong>تقليل استهلاك الأكسجين:</strong> المشي يصبح أقل إجهاداً</li>
+                    </ul>
+                    <div class="note">
+                        <strong>الـ 6 Determinants كاملة:</strong><br>
+                        1. Pelvic Rotation (Transverse Plane)<br>
+                        2. Pelvic Tilt (Frontal Plane)<br>
+                        3. Knee Flexion in Stance<br>
+                        4. Ankle Mechanism (Rockers)<br>
+                        5. Foot Mechanism<br>
+                        6. Physiological Valgus of Knee
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما الذي يميز Human Gait عن Animal Gait؟
+                </div>
+                <div class="answer">
+                    <strong>الإجابة:</strong> <span class="highlight">Six Determinants of Gait</span><br><br>
+                    <strong>التفسير:</strong>
+                    <ul>
+                        <li>الإنسان يستخدم 6 آليات لتوفير الطاقة أثناء المشي</li>
+                        <li>هذه الآليات تجعل المشي البشري أكثر كفاءة من الحيوانات</li>
+                        <li>الحيوانات تعتمد على القوة العضلية أكثر من الآليات الميكانيكية</li>
+                        <li>الإنسان يمشي بشكل عمودي (Bipedal) مما يتطلب استراتيجيات خاصة للتوازن</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="section" id="sec-forces">
+            <h2 class="section-title"><span class="icon">4️⃣</span> Forces & GRFV</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع الرفاعي وفتحي وحازم</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اذكر Forces of Gait: Internal vs External Forces
+                </div>
+                <div class="answer">
+                    <strong>Internal Forces (القوى الداخلية):</strong>
+                    <ul>
+                        <li><strong>Muscle Forces:</strong> قوة انقباض العضلات</li>
+                        <li><strong>Ligament Forces:</strong> قوة الأربطة</li>
+                        <li><strong>Joint Reaction Forces:</strong> قوى رد الفعل في المفاصل</li>
+                        <li><strong>Bone-on-Bone Forces:</strong> قوى الضغط بين العظام</li>
+                    </ul>
+                    <strong>External Forces (القوى الخارجية):</strong>
+                    <ul>
+                        <li><strong>Gravity:</strong> قوة الجاذبية الأرضية</li>
+                        <li><strong>Ground Reaction Force (GRF):</strong> قوة رد فعل الأرض</li>
+                        <li><strong>Friction:</strong> قوة الاحتكاك بين القدم والأرض</li>
+                        <li><strong>Air Resistance:</strong> مقاومة الهواء (قليلة جداً في المشي)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Pathway of GRFV in Sagittal Plane أثناء Stance Phase
+                </div>
+                <div class="answer">
+                    <strong>مسار GRFV في المستوى السهمي:</strong><br><br>
+                    <strong>1. Initial Contact (0%):</strong>
+                    <ul>
+                        <li>GRFV يمر <span class="highlight">خلف مفصل الركبة</span> → Flexion Moment</li>
+                        <li>يمر <span class="highlight">أمام مفصل الورك</span> → Extension Moment</li>
+                        <li>يمر <span class="highlight">أمام مفصل الكاحل</span> → Dorsiflexion Moment</li>
+                    </ul>
+                    <strong>2. Mid Stance (10-30%):</strong>
+                    <ul>
+                        <li>GRFV يمر <span class="highlight">أمام مفصل الركبة</span> → Extension Moment</li>
+                        <li>يمر <span class="highlight">أمام مفصل الورك</span> → Extension Moment</li>
+                        <li>يمر <span class="highlight">أمام مفصل الكاحل</span> → Dorsiflexion Moment</li>
+                    </ul>
+                    <strong>3. Terminal Stance (30-50%):</strong>
+                    <ul>
+                        <li>GRFV يمر <span class="highlight">أمام جميع المفاصل</span></li>
+                        <li>يخلق Extension Moments في الورك والركبة</li>
+                        <li>يخلق Plantar Flexion Moment في الكاحل</li>
+                    </ul>
+                    <strong>4. Pre-swing (50-60%):</strong>
+                    <ul>
+                        <li>GRFV يقل تدريجياً</li>
+                        <li>يستعد الجسم لرفع القدم عن الأرض</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Pathway of GRFV in Frontal Plane أثناء Stance Phase
+                </div>
+                <div class="answer">
+                    <strong>مسار GRFV في المستوى الأمامي:</strong><br><br>
+                    <strong>أثناء Single Limb Support:</strong>
+                    <ul>
+                        <li>GRFV يمر <span class="highlight">وسطياً (medial) لمفصل الورك</span></li>
+                        <li>يخلق <span class="highlight">Adduction Moment</span> على الورك</li>
+                        <li>يحاول إسقاط الحوض للأسفل على الجانب المقابل</li>
+                    </ul>
+                    <strong>التعويض العضلي:</strong>
+                    <ul>
+                        <li><strong>Hip Abductors</strong> (Gluteus Medius & Minimus) تنقبض</li>
+                        <li>تمنع سقوط الحوض على الجانب المقابل</li>
+                        <li>تحافظ على استقرار الحوض</li>
+                    </ul>
+                    <div class="note">
+                        <strong>⚠️ مهم:</strong> لو Hip Abductors ضعيفة → Trendelenburg Gait
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما هو تأثير GRFV على الـ Gait؟
+                </div>
+                <div class="answer">
+                    <strong>Effect of GRFV on Gait:</strong>
+                    <ul>
+                        <li><strong>يخلق Moments على المفاصل:</strong> يحدد اتجاه الحركة المطلوبة</li>
+                        <li><strong>يحدد نوع Muscle Contraction:</strong> Concentric أو Eccentric</li>
+                        <li><strong>يؤثر على الاستقرار:</strong> يحدد متطلبات التوازن</li>
+                        <li><strong>يحدد متطلبات القوة العضلية:</strong> العضلات تعمل ضد أو مع GRFV</li>
+                    </ul>
+                    <div class="note">
+                        <strong>قاعدة مهمة:</strong><br>
+                        - لو GRFV يمر أمام المفصل → Extension Moment<br>
+                        - لو GRFV يمر خلف المفصل → Flexion Moment<br>
+                        - العضلات تعمل لمقاومة أو مساعدة هذه Moments
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Pathway of COP (Center of Pressure) أثناء Gait Cycle
+                </div>
+                <div class="answer">
+                    <strong>مسار COP أثناء Stance Phase:</strong>
+                    <ul>
+                        <li><strong>Initial Contact:</strong> COP في <span class="highlight">الكعب (Heel)</span></li>
+                        <li><strong>Loading Response:</strong> COP يتحرك للأمام على طول القدم</li>
+                        <li><strong>Mid Stance:</strong> COP في <span class="highlight">منتصف القدم (Midfoot)</span>
+                        </li>
+                        <li><strong>Terminal Stance:</strong> COP يتحرك نحو <span class="highlight">مقدمة القدم
+                                (Forefoot)</span></li>
+                        <li><strong>Pre-swing:</strong> COP في <span class="highlight">أصابع القدم (Toes)</span></li>
+                    </ul>
+                    <div class="note">
+                        <strong>الأهمية:</strong> مسار COP يعكس كيفية توزيع الوزن على القدم أثناء المشي
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Pathway of LOG (Line of Gravity) من الجانب
+                </div>
+                <div class="answer">
+                    <strong>مسار خط الجاذبية (LOG) من المنظر الجانبي:</strong>
+                    <ul>
+                        <li>يمر عبر <strong>الأذن (Ear)</strong></li>
+                        <li>يمر أمام <strong>مفصل الكتف (Shoulder)</strong> قليلاً</li>
+                        <li>يمر خلف <strong>مفصل الورك (Hip)</strong> قليلاً</li>
+                        <li>يمر أمام <strong>مفصل الركبة (Knee)</strong></li>
+                        <li>يمر أمام <strong>مفصل الكاحل (Ankle)</strong></li>
+                    </ul>
+                    <strong>الأهمية:</strong>
+                    <ul>
+                        <li>يحدد متطلبات الاستقرار الوضعي</li>
+                        <li>يؤثر على توزيع الأحمال على المفاصل</li>
+                        <li>يحدد العضلات المطلوبة للحفاظ على الوضع المستقيم</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="section" id="sec-cog">
+            <h2 class="section-title"><span class="icon">5️⃣</span> COG & COG Displacement</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع د. هدير ود. نورهان</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اذكر الـ 3 Types of COG Displacement
+                </div>
+                <div class="answer">
+                    <strong>أنواع حركة مركز الثقل (COG):</strong><br><br>
+                    <strong>1. Vertical Displacement (الحركة الرأسية):</strong>
+                    <ul>
+                        <li>المدى: حوالي <span class="highlight">5 cm</span></li>
+                        <li>أعلى نقطة: في <strong>Mid Stance</strong></li>
+                        <li>أقل نقطة: في <strong>Double Limb Support</strong></li>
+                    </ul>
+                    <strong>2. Lateral Displacement (الحركة الجانبية):</strong>
+                    <ul>
+                        <li>المدى: حوالي <span class="highlight">5 cm</span></li>
+                        <li>يتحرك نحو الرجل الداعمة أثناء Single Limb Support</li>
+                    </ul>
+                    <strong>3. Progressional Displacement (الحركة الأمامية):</strong>
+                    <ul>
+                        <li>الحركة المستمرة للأمام</li>
+                        <li>تمثل التقدم في المشي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Vertical Displacement of COG — الـ Peaks
+                </div>
+                <div class="answer">
+                    <strong>الحركة الرأسية لمركز الثقل:</strong><br><br>
+                    <strong>Highest Point (أعلى نقطة):</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> Mid Stance (حوالي 30% من Gait Cycle)</li>
+                        <li><strong>السبب:</strong> الجسم يكون فوق الرجل الداعمة مباشرة</li>
+                        <li><strong>الارتفاع:</strong> حوالي 2.5 cm فوق المتوسط</li>
+                    </ul>
+                    <strong>Lowest Point (أقل نقطة):</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> Double Limb Support (0-10% و 50-60%)</li>
+                        <li><strong>السبب:</strong> الرجلين على الأرض والركبتين مثنيتين قليلاً</li>
+                        <li><strong>الانخفاض:</strong> حوالي 2.5 cm تحت المتوسط</li>
+                    </ul>
+                    <div class="note">
+                        <strong>الأهمية:</strong> الـ 6 Determinants تعمل على تقليل هذه الحركة الرأسية لتوفير الطاقة
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ كيف يحافظ الجسم على COG في نطاق ضيق أثناء المشي؟
+                </div>
+                <div class="answer">
+                    <strong>آليات الحفاظ على COG:</strong>
+                    <ul>
+                        <li><strong>Six Determinants of Gait:</strong> تقلل من حركة COG الرأسية والجانبية</li>
+                        <li><strong>Pelvic Rotation:</strong> يزيد Step Length بدون رفع COG كثيراً</li>
+                        <li><strong>Pelvic Tilt:</strong> يقلل من ارتفاع COG أثناء Swing</li>
+                        <li><strong>Knee Flexion in Stance:</strong> يمنع ارتفاع COG الزائد</li>
+                        <li><strong>Ankle Mechanism:</strong> يوفر انتقال سلس للوزن</li>
+                        <li><strong>Hip Abductors:</strong> تمنع الحركة الجانبية الزائدة</li>
+                    </ul>
+                    <div class="note">
+                        <strong>النتيجة:</strong> حركة COG تبقى في نطاق ضيق (5 cm رأسياً و 5 cm جانبياً) مما يوفر الطاقة
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما علاقة Pelvic Tilt بالـ COG وبالـ Knee Flexion؟
+                </div>
+                <div class="answer">
+                    <strong>العلاقة بين Pelvic Tilt و COG:</strong>
+                    <ul>
+                        <li>Pelvic Tilt يخفض الحوض على جانب الرجل المتأرجحة</li>
+                        <li>هذا يقلل من ارتفاع COG أثناء Swing Phase</li>
+                        <li>يوفر الطاقة المطلوبة لرفع الرجل</li>
+                    </ul>
+                    <strong>العلاقة بين Pelvic Tilt و Knee Flexion:</strong>
+                    <ul>
+                        <li>Knee Flexion في Stance Phase يعمل مع Pelvic Tilt</li>
+                        <li>كلاهما يقلل من ارتفاع COG</li>
+                        <li>يعملان معاً كجزء من الـ 6 Determinants</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="section" id="sec-hip">
+            <h2 class="section-title"><span class="icon">6️⃣</span> Hip Joint — Kinetics & Kinematics ⭐ (الأهم)</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع كل الدكاترة — ركّز جداً</p>
+
+            <h3
+                style="color: #22d3ee; font-size: 1.05em; font-weight: 700; margin: 20px 0 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                Kinematics (الحركة)</h3>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Hip Curve Peaks — كل الزوايا في كل الـ Phases
+                </div>
+                <div class="answer">
+                    <strong>Hip Joint ROM أثناء Gait Cycle:</strong><br><br>
+                    <strong>Initial Contact (0%):</strong>
+                    <ul>
+                        <li>Hip في <span class="highlight">30° Flexion</span></li>
+                    </ul>
+                    <strong>Loading Response → Mid Stance (0-30%):</strong>
+                    <ul>
+                        <li>Hip يتحرك من 30° Flexion إلى <span class="highlight">0° (Neutral)</span></li>
+                        <li>Extension تدريجي</li>
+                    </ul>
+                    <strong>Terminal Stance (30-50%):</strong>
+                    <ul>
+                        <li>Hip يصل إلى <span class="highlight">10-15° Hyperextension</span></li>
+                        <li>أقصى Extension في الـ Gait Cycle</li>
+                    </ul>
+                    <strong>Pre-swing (50-60%):</strong>
+                    <ul>
+                        <li>Hip يبدأ Flexion سريع</li>
+                    </ul>
+                    <strong>Swing Phase (60-100%):</strong>
+                    <ul>
+                        <li>Hip يتحرك من Extension إلى <span class="highlight">30° Flexion</span></li>
+                        <li>يصل لأقصى Flexion قبل Initial Contact</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Peak of Hip Flexion — متى وكام درجة؟
+                </div>
+                <div class="answer">
+                    <strong>Peak Hip Flexion:</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> في نهاية Terminal Swing (حوالي 95-100%)</li>
+                        <li><strong>الزاوية:</strong> <span class="highlight">30 درجة Flexion</span></li>
+                        <li><strong>السبب:</strong> تجهيز الرجل للـ Initial Contact القادم</li>
+                        <li><strong>العضلات:</strong> Hip Flexors (Iliopsoas, Rectus Femoris)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما علاقة Arm Swing بالـ Hip؟
+                </div>
+                <div class="answer">
+                    <strong>العلاقة بين Arm Swing و Hip Movement:</strong>
+                    <ul>
+                        <li><strong>Reciprocal Pattern:</strong> الذراع تتحرك عكس الرجل</li>
+                        <li>عندما الرجل اليمين للأمام → الذراع اليسار للأمام</li>
+                        <li><strong>الفائدة:</strong> يوازن الـ Rotational Momentum</li>
+                        <li><strong>توفير الطاقة:</strong> يقلل من الدوران الزائد للجذع</li>
+                        <li><strong>الاستقرار:</strong> يحسن التوازن أثناء المشي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3
+                style="color: #22d3ee; font-size: 1.05em; font-weight: 700; margin: 20px 0 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                Kinetics (القوى والعزوم) — الأكثر تكراراً</h3>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Hip Kinetics: 0% → 35% (IC to Mid-stance)
+                </div>
+                <div class="answer">
+                    <strong>من Initial Contact إلى Mid Stance:</strong><br><br>
+                    <strong>GRFV Position:</strong>
+                    <ul>
+                        <li>GRFV يمر <span class="highlight">أمام مفصل الورك</span></li>
+                        <li>يخلق <strong>Extension Moment</strong></li>
+                    </ul>
+                    <strong>Muscle Action:</strong>
+                    <ul>
+                        <li><strong>Hip Extensors</strong> (Gluteus Maximus, Hamstrings) تنقبض</li>
+                        <li>نوع الانقباض: <span class="highlight">Concentric Contraction</span></li>
+                        <li>الهدف: تمديد الورك من 30° Flexion إلى Neutral</li>
+                    </ul>
+                    <strong>Torque:</strong>
+                    <ul>
+                        <li><strong>Extension Torque</strong> يزداد تدريجياً</li>
+                        <li>يصل للذروة في Mid Stance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Hip Kinetics: 35% → 50% (Terminal Stance)
+                </div>
+                <div class="answer">
+                    <strong>Terminal Stance Phase:</strong><br><br>
+                    <strong>GRFV Position:</strong>
+                    <ul>
+                        <li>GRFV يمر <span class="highlight">أمام مفصل الورك</span></li>
+                        <li>يخلق <strong>Extension Moment</strong></li>
+                    </ul>
+                    <strong>Muscle Action:</strong>
+                    <ul>
+                        <li><strong>Passive Extension</strong> — ليس Concentric Contraction!</li>
+                        <li>Hip Extensors تكون <span class="highlight">غير نشطة</span></li>
+                        <li>Extension يحدث بسبب <strong>Forward Momentum</strong></li>
+                    </ul>
+                    <strong>Forward Momentum:</strong>
+                    <ul>
+                        <li>الجسم يتحرك للأمام فوق الرجل الثابتة</li>
+                        <li>هذا يدفع الورك للـ Hyperextension بشكل سلبي</li>
+                        <li>توفير للطاقة — لا حاجة لانقباض عضلي</li>
+                    </ul>
+                    <div class="note">
+                        <strong>⚠️ سؤال متكرر:</strong> لماذا نزل الـ Curve في Terminal Stance؟<br>
+                        <strong>الإجابة:</strong> بسبب Forward Momentum وليس Concentric Contraction
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Hip Kinetics: 50% → 80% (Pre-swing + Initial Swing)
+                </div>
+                <div class="answer">
+                    <strong>من Pre-swing إلى Initial Swing:</strong><br><br>
+                    <strong>Pre-swing (50-60%):</strong>
+                    <ul>
+                        <li>Hip يبدأ <strong>Flexion</strong> سريع</li>
+                        <li><strong>Hip Flexors</strong> تبدأ الانقباض</li>
+                        <li>نوع الانقباض: <span class="highlight">Concentric</span></li>
+                    </ul>
+                    <strong>Initial Swing (60-73%):</strong>
+                    <ul>
+                        <li>Hip Flexion يستمر</li>
+                        <li><strong>Hip Flexors</strong> (Iliopsoas, Rectus Femoris) نشطة</li>
+                        <li><strong>Flexion Torque</strong> يزداد</li>
+                    </ul>
+                    <strong>الهدف:</strong>
+                    <ul>
+                        <li>رفع الرجل عن الأرض</li>
+                        <li>تحريك الرجل للأمام</li>
+                        <li>تجهيز الرجل للـ Initial Contact</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Hip Kinetics: 80% → 100% (2nd Half of Swing / Late Swing)
+                </div>
+                <div class="answer">
+                    <strong>Mid Swing → Terminal Swing:</strong><br><br>
+                    <strong>Mid Swing (73-87%):</strong>
+                    <ul>
+                        <li>Hip Flexion يستمر ولكن بمعدل أبطأ</li>
+                        <li>Hip Flexors تقلل نشاطها</li>
+                    </ul>
+                    <strong>Terminal Swing (87-100%):</strong>
+                    <ul>
+                        <li><strong>Hamstrings</strong> تنقبض</li>
+                        <li>نوع الانقباض: <span class="highlight">Eccentric Contraction</span></li>
+                        <li>الهدف: <strong>إبطاء Hip Flexion</strong></li>
+                        <li>تجهيز الرجل للـ Initial Contact</li>
+                    </ul>
+                    <strong>Extension Torque:</strong>
+                    <ul>
+                        <li>يبدأ في الظهور</li>
+                        <li>يستعد لاستقبال الوزن</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما دور Rectus Femoris كـ Hip Flexor؟
+                </div>
+                <div class="answer">
+                    <strong>Rectus Femoris كـ Hip Flexor:</strong><br><br>
+                    <strong>الوظيفة المزدوجة:</strong>
+                    <ul>
+                        <li><strong>Hip Flexor:</strong> يثني الورك</li>
+                        <li><strong>Knee Extensor:</strong> يمد الركبة</li>
+                    </ul>
+                    <strong>أثناء Gait:</strong>
+                    <ul>
+                        <li><strong>Initial Swing:</strong> يساعد في Hip Flexion</li>
+                        <li><strong>Terminal Swing:</strong> يساعد في Knee Extension</li>
+                        <li>يعمل بشكل متناسق مع Iliopsoas</li>
+                    </ul>
+                    <strong>الأهمية:</strong>
+                    <ul>
+                        <li>عضلة مهمة جداً في Swing Phase</li>
+                        <li>ضعفها يؤثر على Hip Flexion و Knee Extension</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="section" id="sec-knee">
+            <h2 class="section-title"><span class="icon">7️⃣</span> Knee Joint — Kinetics & Kinematics ⭐</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع فتحي وحازم والرفاعي</p>
+
+            <h3
+                style="color: #22d3ee; font-size: 1.05em; font-weight: 700; margin: 20px 0 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                Kinematics (الحركة)</h3>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Knee ROM Curve — الـ Peaks والـ Valleys
+                </div>
+                <div class="answer">
+                    <strong>Knee Joint ROM أثناء Gait Cycle:</strong><br><br>
+                    <strong>Initial Contact (0%):</strong>
+                    <ul>
+                        <li>Knee في <span class="highlight">Full Extension (0°)</span></li>
+                    </ul>
+                    <strong>Loading Response (0-10%):</strong>
+                    <ul>
+                        <li>Knee يثنى إلى <span class="highlight">15-20° Flexion</span></li>
+                        <li><strong>أول Peak</strong> — مهم جداً لامتصاص الصدمة</li>
+                    </ul>
+                    <strong>Mid Stance (10-30%):</strong>
+                    <ul>
+                        <li>Knee يمتد تدريجياً إلى <span class="highlight">5° Flexion</span></li>
+                    </ul>
+                    <strong>Terminal Stance (30-50%):</strong>
+                    <ul>
+                        <li>Knee يصل إلى <span class="highlight">Full Extension (0°)</span></li>
+                    </ul>
+                    <strong>Pre-swing (50-60%):</strong>
+                    <ul>
+                        <li>Knee يثنى بسرعة إلى <span class="highlight">40° Flexion</span></li>
+                    </ul>
+                    <strong>Initial Swing (60-73%):</strong>
+                    <ul>
+                        <li>Knee يثنى إلى <span class="highlight">60° Flexion</span></li>
+                        <li><strong>ثاني Peak</strong> — أقصى Flexion في الـ Gait</li>
+                    </ul>
+                    <strong>Terminal Swing (87-100%):</strong>
+                    <ul>
+                        <li>Knee يمتد إلى <span class="highlight">Full Extension (0°)</span></li>
+                        <li>استعداداً للـ Initial Contact</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Knee Kinematics: Double Limb Support vs Single Limb Support
+                </div>
+                <div class="answer">
+                    <strong>Double Limb Support (DLS):</strong>
+                    <ul>
+                        <li><strong>Loading Response (0-10%):</strong> Knee Flexion (0° → 15-20°)</li>
+                        <li><strong>Pre-swing (50-60%):</strong> Knee Flexion (0° → 40°)</li>
+                        <li>الركبة تثنى لامتصاص الصدمة أو التحضير للـ Swing</li>
+                    </ul>
+                    <strong>Single Limb Support (SLS):</strong>
+                    <ul>
+                        <li><strong>Mid Stance (10-30%):</strong> Knee Extension (15° → 5°)</li>
+                        <li><strong>Terminal Stance (30-50%):</strong> Knee Extension (5° → 0°)</li>
+                        <li>الركبة تمتد لدعم وزن الجسم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Knee Curve في Loading Response — Peak وأهميته
+                </div>
+                <div class="answer">
+                    <strong>Peak Knee Flexion في Loading Response:</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> حوالي 10% من Gait Cycle</li>
+                        <li><strong>الزاوية:</strong> <span class="highlight">15-20° Flexion</span></li>
+                    </ul>
+                    <strong>الأهمية:</strong>
+                    <ul>
+                        <li><strong>Shock Absorption:</strong> امتصاص الصدمة عند Initial Contact</li>
+                        <li><strong>Lowering COG:</strong> خفض مركز الثقل (أحد الـ 6 Determinants)</li>
+                        <li><strong>Smooth Transition:</strong> انتقال سلس من DLS إلى SLS</li>
+                        <li><strong>Energy Conservation:</strong> توفير الطاقة</li>
+                    </ul>
+                    <div class="note">
+                        <strong>⚠️ مهم:</strong> لو Quadriceps ضعيفة → الركبة تثنى أكثر من اللازم (Quadriceps Gait)
+                    </div>
+                </div>
+            </div>
+
+            <h3
+                style="color: #22d3ee; font-size: 1.05em; font-weight: 700; margin: 20px 0 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                Kinetics (القوى والعزوم)</h3>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Knee Kinetics: 4% → 20% (Loading Response → Mid Stance)
+                </div>
+                <div class="answer">
+                    <strong>من Loading Response إلى Mid Stance:</strong><br><br>
+                    <strong>Loading Response (0-10%):</strong>
+                    <ul>
+                        <li><strong>GRFV Position:</strong> يمر <span class="highlight">خلف مفصل الركبة</span></li>
+                        <li><strong>Moment:</strong> Flexion Moment</li>
+                        <li><strong>Muscle Action:</strong> Quadriceps (Eccentric Contraction)</li>
+                        <li><strong>الهدف:</strong> التحكم في Knee Flexion ومنع الانهيار</li>
+                    </ul>
+                    <strong>Mid Stance (10-30%):</strong>
+                    <ul>
+                        <li><strong>GRFV Position:</strong> يمر <span class="highlight">أمام مفصل الركبة</span></li>
+                        <li><strong>Moment:</strong> Extension Moment</li>
+                        <li><strong>Muscle Action:</strong> Quadriceps (Concentric Contraction)</li>
+                        <li><strong>الهدف:</strong> تمديد الركبة لدعم الوزن</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Knee Kinetics: Mid-stance → Terminal Stance → Toe Off
+                </div>
+                <div class="answer">
+                    <strong>Terminal Stance (30-50%):</strong><br><br>
+                    <strong>Muscle Action:</strong>
+                    <ul>
+                        <li>Quadriceps تقلل نشاطها تدريجياً</li>
+                        <li><strong>Passive Extension</strong> يبدأ</li>
+                    </ul>
+                    <strong>Passive Component:</strong>
+                    <ul>
+                        <li><strong>Posterior Joint Capsule:</strong> يشد ويمنع Hyperextension</li>
+                        <li><strong>Posterior Cruciate Ligament (PCL):</strong> يساعد في الاستقرار</li>
+                        <li><strong>Forward Momentum:</strong> يدفع الجسم للأمام</li>
+                    </ul>
+                    <strong>لماذا يحدث Knee Extension؟</strong>
+                    <ul>
+                        <li>بسبب <span class="highlight">Forward Momentum</span> وليس Quadriceps</li>
+                        <li>الجسم يتحرك للأمام فوق الرجل الثابتة</li>
+                        <li>توفير للطاقة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Knee Kinetics في Late Swing
+                </div>
+                <div class="answer">
+                    <strong>Terminal Swing (87-100%):</strong><br><br>
+                    <strong>Muscle Action:</strong>
+                    <ul>
+                        <li><strong>Hamstrings</strong> تنقبض</li>
+                        <li>نوع الانقباض: <span class="highlight">Eccentric Contraction</span></li>
+                        <li>الهدف: إبطاء Knee Extension</li>
+                    </ul>
+                    <strong>Quadriceps:</strong>
+                    <ul>
+                        <li>تنقبض أيضاً (Concentric)</li>
+                        <li>تساعد في الوصول لـ Full Extension</li>
+                    </ul>
+                    <strong>الأهمية:</strong>
+                    <ul>
+                        <li>تجهيز الركبة للـ Initial Contact</li>
+                        <li>منع Hyperextension</li>
+                        <li>استقرار المفصل</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ الأهمية الميكانيكية لـ Peak Knee Extension في Terminal Stance
+                </div>
+                <div class="answer">
+                    <strong>Biomechanical Importance:</strong>
+                    <ul>
+                        <li><strong>نقل الوزن:</strong> يسهل نقل الوزن للرجل الأخرى</li>
+                        <li><strong>الاستقرار:</strong> يوفر قاعدة ثابتة للدفع</li>
+                        <li><strong>Push-off:</strong> يجهز الرجل لمرحلة الدفع</li>
+                        <li><strong>توفير الطاقة:</strong> يستخدم Passive Structures بدلاً من العضلات</li>
+                        <li><strong>Progression:</strong> يساعد في تقدم الجسم للأمام</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Pre-swing → Initial Swing: Knee Flexion — عضلات أم Forward Momentum؟
+                </div>
+                <div class="answer">
+                    <strong>Pre-swing (50-60%):</strong>
+                    <ul>
+                        <li>Knee Flexion يحدث بشكل <span class="highlight">سلبي (Passive)</span></li>
+                        <li><strong>السبب:</strong> Forward Momentum + رفع الكعب عن الأرض</li>
+                        <li>لا حاجة لانقباض عضلي نشط</li>
+                    </ul>
+                    <strong>Initial Swing (60-73%):</strong>
+                    <ul>
+                        <li>Knee Flexion يستمر بشكل <span class="highlight">نشط (Active)</span></li>
+                        <li><strong>العضلات:</strong> Hamstrings (Short Head of Biceps Femoris)</li>
+                        <li>تساعد في زيادة Flexion إلى 60°</li>
+                    </ul>
+                    <div class="note">
+                        <strong>الخلاصة:</strong> Pre-swing = Passive | Initial Swing = Active
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8 -->
+        <div class="section" id="sec-ankle">
+            <h2 class="section-title"><span class="icon">8️⃣</span> Ankle Joint — Kinetics & Kinematics</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع نورهان والرفاعي</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Kinematics of Ankle Joint — كل الـ Phases
+                </div>
+                <div class="answer">
+                    <strong>Ankle Joint ROM أثناء Gait Cycle:</strong><br><br>
+                    <strong>Initial Contact (0%):</strong>
+                    <ul>
+                        <li>Ankle في <span class="highlight">Neutral Position (0°)</span></li>
+                    </ul>
+                    <strong>Loading Response (0-10%):</strong>
+                    <ul>
+                        <li>Ankle يتحرك إلى <span class="highlight">10° Plantar Flexion</span></li>
+                        <li>القدم تنزل على الأرض (Foot Flat)</li>
+                    </ul>
+                    <strong>Mid Stance (10-30%):</strong>
+                    <ul>
+                        <li>Ankle يتحرك من Plantar Flexion إلى <span class="highlight">10° Dorsiflexion</span></li>
+                        <li>الساق تتحرك للأمام فوق القدم الثابتة</li>
+                    </ul>
+                    <strong>Terminal Stance (30-50%):</strong>
+                    <ul>
+                        <li>Ankle يصل إلى أقصى <span class="highlight">Dorsiflexion (10-15°)</span></li>
+                    </ul>
+                    <strong>Pre-swing (50-60%):</strong>
+                    <ul>
+                        <li>Ankle يتحرك بسرعة إلى <span class="highlight">20° Plantar Flexion</span></li>
+                        <li>Push-off Phase</li>
+                    </ul>
+                    <strong>Swing Phase (60-100%):</strong>
+                    <ul>
+                        <li>Ankle يعود إلى <span class="highlight">Neutral Position (0°)</span></li>
+                        <li>Dorsiflexors تعمل لرفع القدم (Toe Clearance)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Kinetics of Ankle أثناء Push-off Phase
+                </div>
+                <div class="answer">
+                    <strong>Push-off Phase (Terminal Stance → Pre-swing):</strong><br><br>
+                    <strong>GRFV Position:</strong>
+                    <ul>
+                        <li>GRFV يمر <span class="highlight">أمام مفصل الكاحل</span></li>
+                        <li>يخلق <strong>Dorsiflexion Moment</strong></li>
+                    </ul>
+                    <strong>Muscle Action:</strong>
+                    <ul>
+                        <li><strong>Plantar Flexors</strong> (Gastrocnemius, Soleus) تنقبض</li>
+                        <li>نوع الانقباض: <span class="highlight">Concentric Contraction</span></li>
+                        <li>أقوى انقباض عضلي في الـ Gait Cycle</li>
+                    </ul>
+                    <strong>الوظيفة:</strong>
+                    <ul>
+                        <li><strong>Push-off:</strong> دفع الجسم للأمام</li>
+                        <li><strong>Propulsion:</strong> توليد القوة للتقدم</li>
+                        <li><strong>Acceleration:</strong> زيادة السرعة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Ankle Kinetics أثناء Weight Acceptance
+                </div>
+                <div class="answer">
+                    <strong>Weight Acceptance (Loading Response):</strong><br><br>
+                    <strong>GRFV Position:</strong>
+                    <ul>
+                        <li>GRFV يمر <span class="highlight">أمام مفصل الكاحل</span></li>
+                        <li>يخلق <strong>Dorsiflexion Moment</strong></li>
+                    </ul>
+                    <strong>Muscle Action:</strong>
+                    <ul>
+                        <li><strong>Plantar Flexors</strong> (Gastrocnemius, Soleus) تنقبض</li>
+                        <li>نوع الانقباض: <span class="highlight">Eccentric Contraction</span></li>
+                        <li>تتحكم في سرعة نزول القدم على الأرض</li>
+                    </ul>
+                    <strong>الوظيفة:</strong>
+                    <ul>
+                        <li><strong>Shock Absorption:</strong> امتصاص الصدمة</li>
+                        <li><strong>Controlled Lowering:</strong> خفض القدم بشكل متحكم فيه</li>
+                        <li><strong>Stability:</strong> الحفاظ على الاستقرار</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Rockers of Gait (الثلاثة)
+                </div>
+                <div class="answer">
+                    <strong>الـ 3 Rockers of Gait:</strong><br><br>
+                    <strong>1. Heel Rocker (First Rocker):</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> Initial Contact → Loading Response (0-10%)</li>
+                        <li><strong>نقطة الارتكاز:</strong> الكعب</li>
+                        <li><strong>الحركة:</strong> القدم تدور حول الكعب لتصل للأرض</li>
+                        <li><strong>العضلات:</strong> Dorsiflexors (Eccentric) تتحكم في النزول</li>
+                    </ul>
+                    <strong>2. Ankle Rocker (Second Rocker):</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> Mid Stance (10-30%)</li>
+                        <li><strong>نقطة الارتكاز:</strong> مفصل الكاحل</li>
+                        <li><strong>الحركة:</strong> الساق تتحرك للأمام فوق القدم الثابتة</li>
+                        <li><strong>العضلات:</strong> Plantar Flexors (Eccentric) تتحكم في الحركة</li>
+                    </ul>
+                    <strong>3. Forefoot Rocker (Third Rocker):</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> Terminal Stance → Pre-swing (30-60%)</li>
+                        <li><strong>نقطة الارتكاز:</strong> مقدمة القدم (Metatarsal Heads)</li>
+                        <li><strong>الحركة:</strong> الكعب يرتفع والجسم يدفع للأمام</li>
+                        <li><strong>العضلات:</strong> Plantar Flexors (Concentric) للدفع</li>
+                    </ul>
+                    <div class="note">
+                        <strong>الأهمية:</strong> الـ 3 Rockers تضمن انتقال سلس للوزن من الكعب إلى أصابع القدم
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9 -->
+        <div class="section" id="sec-muscle">
+            <h2 class="section-title"><span class="icon">9️⃣</span> Muscle Activity & Contractions</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع هدير والرفاعي وحازم</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Eccentric Contraction of Hamstring — متى وليه؟
+                </div>
+                <div class="answer">
+                    <strong>Eccentric Contraction of Hamstrings:</strong><br><br>
+                    <strong>التوقيت:</strong>
+                    <ul>
+                        <li><span class="highlight">Terminal Swing (87-100%)</span></li>
+                    </ul>
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>لإبطاء <strong>Hip Flexion</strong></li>
+                        <li>لإبطاء <strong>Knee Extension</strong></li>
+                        <li>لمنع Hyperextension للركبة</li>
+                        <li>لتجهيز الرجل للـ Initial Contact</li>
+                    </ul>
+                    <strong>الآلية:</strong>
+                    <ul>
+                        <li>Hamstrings تطول أثناء الانقباض</li>
+                        <li>تعمل كـ <strong>Brake</strong> (فرامل)</li>
+                        <li>تمتص الطاقة الحركية للرجل</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Isometric Contraction — مثال من الـ Gait
+                </div>
+                <div class="answer">
+                    <strong>Isometric Contraction في الـ Gait:</strong><br><br>
+                    <strong>أمثلة:</strong>
+                    <ul>
+                        <li><strong>Hip Abductors</strong> أثناء Single Limb Support:
+                            <ul>
+                                <li>تنقبض بدون تغيير في الطول</li>
+                                <li>تحافظ على استقرار الحوض</li>
+                                <li>تمنع سقوط الحوض للجانب المقابل</li>
+                            </ul>
+                        </li>
+                        <li><strong>Trunk Muscles</strong> أثناء المشي:
+                            <ul>
+                                <li>تحافظ على وضع الجذع المستقيم</li>
+                                <li>تمنع الدوران الزائد</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="note">
+                        <strong>تعريف Isometric:</strong> انقباض عضلي بدون تغيير في طول العضلة — توليد قوة بدون حركة
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Concentric vs Eccentric — 3 أمثلة لكل منهم
+                </div>
+                <div class="answer">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Concentric Contraction</th>
+                                    <th>Eccentric Contraction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>التعريف:</strong> العضلة تقصر أثناء الانقباض</td>
+                                    <td><strong>التعريف:</strong> العضلة تطول أثناء الانقباض</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="background: #667eea; color: white; font-weight: bold;">
+                                        الأمثلة من الـ Gait</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>1. Hip Extensors</strong> (0-35%)<br>
+                                        - تمدد الورك من Flexion إلى Extension<br>
+                                        - Gluteus Maximus & Hamstrings
+                                    </td>
+                                    <td>
+                                        <strong>1. Hamstrings</strong> (87-100%)<br>
+                                        - تبطئ Hip Flexion و Knee Extension<br>
+                                        - في Terminal Swing
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>2. Plantar Flexors</strong> (50-60%)<br>
+                                        - Push-off Phase<br>
+                                        - Gastrocnemius & Soleus
+                                    </td>
+                                    <td>
+                                        <strong>2. Quadriceps</strong> (0-10%)<br>
+                                        - تتحكم في Knee Flexion<br>
+                                        - في Loading Response
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>3. Hip Flexors</strong> (60-80%)<br>
+                                        - تثني الورك في Swing Phase<br>
+                                        - Iliopsoas & Rectus Femoris
+                                    </td>
+                                    <td>
+                                        <strong>3. Dorsiflexors</strong> (0-10%)<br>
+                                        - تتحكم في نزول القدم<br>
+                                        - في Loading Response
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Muscles Working at 35% of Gait (Terminal Stance)
+                </div>
+                <div class="answer">
+                    <strong>العضلات النشطة عند 35% (Terminal Stance):</strong><br><br>
+                    <strong>1. Plantar Flexors:</strong>
+                    <ul>
+                        <li><strong>Gastrocnemius & Soleus</strong></li>
+                        <li>نوع الانقباض: Eccentric → Concentric</li>
+                        <li>تتحكم في Dorsiflexion ثم تبدأ Push-off</li>
+                    </ul>
+                    <strong>2. Hip Abductors:</strong>
+                    <ul>
+                        <li><strong>Gluteus Medius & Minimus</strong></li>
+                        <li>نوع الانقباض: Isometric</li>
+                        <li>تحافظ على استقرار الحوض</li>
+                    </ul>
+                    <strong>3. Trunk Muscles:</strong>
+                    <ul>
+                        <li>تحافظ على وضع الجذع</li>
+                    </ul>
+                    <div class="note">
+                        <strong>ملحوظة:</strong> Hip Extensors و Quadriceps تكون غير نشطة — الحركة تحدث بشكل سلبي
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Eccentric Contraction صورة — العضلة تعمل مع أو عكس الجاذبية؟
+                </div>
+                <div class="answer">
+                    <strong>Eccentric Contraction والجاذبية:</strong><br><br>
+                    <strong>القاعدة العامة:</strong>
+                    <ul>
+                        <li>Eccentric Contraction عادةً تعمل <span class="highlight">عكس الجاذبية</span></li>
+                        <li>العضلة تطول أثناء محاولتها مقاومة قوة خارجية</li>
+                    </ul>
+                    <strong>أمثلة:</strong>
+                    <ul>
+                        <li><strong>Quadriceps في Loading Response:</strong>
+                            <ul>
+                                <li>تعمل عكس الجاذبية</li>
+                                <li>تمنع الركبة من الانهيار تحت وزن الجسم</li>
+                            </ul>
+                        </li>
+                        <li><strong>Hamstrings في Terminal Swing:</strong>
+                            <ul>
+                                <li>تعمل عكس الـ Momentum</li>
+                                <li>تبطئ حركة الرجل للأمام</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Type of Contraction عندما الكعب يتحرك نحو/بعيداً عن الأرداف
+                </div>
+                <div class="answer">
+                    <strong>حركة الكعب نحو الأرداف:</strong>
+                    <ul>
+                        <li><strong>الحركة:</strong> Knee Flexion</li>
+                        <li><strong>العضلات:</strong> Hamstrings</li>
+                        <li><strong>نوع الانقباض:</strong> <span class="highlight">Concentric Contraction</span></li>
+                        <li><strong>مثال:</strong> Initial Swing Phase</li>
+                    </ul>
+                    <strong>حركة الكعب بعيداً عن الأرداف:</strong>
+                    <ul>
+                        <li><strong>الحركة:</strong> Knee Extension</li>
+                        <li><strong>العضلات:</strong> Quadriceps</li>
+                        <li><strong>نوع الانقباض:</strong> <span class="highlight">Concentric Contraction</span></li>
+                        <li><strong>مثال:</strong> Terminal Swing Phase</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Generated Energy vs Absorbed Energy — الفرق + أمثلة
+                </div>
+                <div class="answer">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Generated (Positive) Energy</th>
+                                    <th>Absorbed (Negative) Energy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>التعريف:</strong> طاقة تُنتج وتُضاف للنظام</td>
+                                    <td><strong>التعريف:</strong> طاقة تُمتص وتُزال من النظام</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>نوع الانقباض:</strong> Concentric</td>
+                                    <td><strong>نوع الانقباض:</strong> Eccentric</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الوظيفة:</strong> تسريع الحركة / توليد القوة</td>
+                                    <td><strong>الوظيفة:</strong> إبطاء الحركة / امتصاص الصدمة</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="background: #667eea; color: white; font-weight: bold;">
+                                        الأمثلة</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>1. Plantar Flexors في Push-off</strong><br>
+                                        - توليد قوة للدفع<br>
+                                        - تسريع الجسم للأمام
+                                    </td>
+                                    <td>
+                                        <strong>1. Quadriceps في Loading Response</strong><br>
+                                        - امتصاص صدمة الهبوط<br>
+                                        - إبطاء Knee Flexion
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>2. Hip Flexors في Swing</strong><br>
+                                        - تسريع الرجل للأمام<br>
+                                        - رفع الرجل عن الأرض
+                                    </td>
+                                    <td>
+                                        <strong>2. Hamstrings في Terminal Swing</strong><br>
+                                        - إبطاء Hip Flexion<br>
+                                        - إبطاء Knee Extension
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>3. Hip Extensors في Early Stance</strong><br>
+                                        - تمديد الورك<br>
+                                        - دفع الجسم للأمام
+                                    </td>
+                                    <td>
+                                        <strong>3. Dorsiflexors في Loading Response</strong><br>
+                                        - التحكم في نزول القدم<br>
+                                        - منع القدم من الصفع على الأرض
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10 -->
+        <div class="section" id="sec-energy">
+            <h2 class="section-title"><span class="icon">🔟</span> Energy</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع فتحي والرفاعي وهدير</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Kinetic Energy vs Potential Energy — Compare (Peaks & Interaction)
+                </div>
+                <div class="answer">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Kinetic Energy (KE)</th>
+                                    <th>Potential Energy (PE)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>التعريف:</strong> طاقة الحركة</td>
+                                    <td><strong>التعريف:</strong> طاقة الوضع (الارتفاع)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>المعادلة:</strong> KE = ½mv²</td>
+                                    <td><strong>المعادلة:</strong> PE = mgh</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Peak:</strong> في Double Limb Support</td>
+                                    <td><strong>Peak:</strong> في Mid Stance</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>أعلى قيمة:</strong> عندما السرعة أعلى</td>
+                                    <td><strong>أعلى قيمة:</strong> عندما COG أعلى</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <strong>التفاعل بين KE و PE:</strong>
+                    <ul>
+                        <li><strong>Reciprocal Pattern:</strong> عندما واحدة تزيد، الأخرى تقل</li>
+                        <li><strong>Energy Exchange:</strong> يحدث تبادل بين الطاقتين</li>
+                        <li><strong>Mid Stance:</strong> PE أعلى، KE أقل (الجسم أعلى وأبطأ)</li>
+                        <li><strong>DLS:</strong> KE أعلى، PE أقل (الجسم أقل وأسرع)</li>
+                        <li><strong>توفير الطاقة:</strong> هذا التبادل يقلل من الطاقة الكلية المطلوبة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ في أي نقاط محددة تحدث Peaks لـ KE و PE؟
+                </div>
+                <div class="answer">
+                    <strong>Potential Energy (PE) Peaks:</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> <span class="highlight">Mid Stance (حوالي 30%)</span></li>
+                        <li><strong>السبب:</strong> COG في أعلى نقطة</li>
+                        <li>يحدث مرتين في كل Gait Cycle (لكل رجل)</li>
+                    </ul>
+                    <strong>Kinetic Energy (KE) Peaks:</strong>
+                    <ul>
+                        <li><strong>التوقيت:</strong> <span class="highlight">Double Limb Support (0-10% و
+                                50-60%)</span></li>
+                        <li><strong>السبب:</strong> السرعة الأفقية أعلى</li>
+                        <li>COG في أقل نقطة ولكن السرعة أعلى</li>
+                    </ul>
+                    <div class="note">
+                        <strong>الخلاصة:</strong> PE و KE يتبادلان — عندما واحدة في الذروة، الأخرى في القاع
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ كيف يحافظ الجسم على الطاقة أثناء Stance-to-Swing Transition؟
+                </div>
+                <div class="answer">
+                    <strong>آليات الحفاظ على الطاقة:</strong><br><br>
+                    <strong>1. Passive Knee Flexion:</strong>
+                    <ul>
+                        <li>في Pre-swing، الركبة تثنى بشكل سلبي</li>
+                        <li>لا حاجة لانقباض عضلي نشط</li>
+                        <li>Forward Momentum يساعد في الحركة</li>
+                    </ul>
+                    <strong>2. Energy Transfer:</strong>
+                    <ul>
+                        <li>الطاقة من Push-off تُنقل للرجل المتأرجحة</li>
+                        <li>تقلل من الطاقة المطلوبة لـ Swing</li>
+                    </ul>
+                    <strong>3. Pendulum Motion:</strong>
+                    <ul>
+                        <li>الرجل تتأرجح كـ Pendulum في Swing Phase</li>
+                        <li>تستخدم الجاذبية والـ Momentum</li>
+                        <li>تقلل من العمل العضلي المطلوب</li>
+                    </ul>
+                    <strong>4. Six Determinants:</strong>
+                    <ul>
+                        <li>تقلل من حركة COG</li>
+                        <li>تقلل من التغيرات في PE و KE</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 11 -->
+        <div class="section" id="sec-pathological">
+            <h2 class="section-title"><span class="icon">1️⃣1️⃣</span> Pathological Gait ⭐⭐ (الأهم عملياً)</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع كل الدكاترة — صور + اسم + شرح</p>
+
+            <h3
+                style="color: #22d3ee; font-size: 1.05em; font-weight: 700; margin: 20px 0 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                Muscle Weakness Gaits</h3>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Gluteus Maximus Weakness Gait
+                </div>
+                <div class="answer">
+                    <strong>الاسم:</strong> <span class="highlight">Gluteus Maximus Gait</span><br><br>
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>ضعف عضلة Gluteus Maximus</li>
+                        <li>عدم القدرة على تمديد الورك بشكل كافٍ</li>
+                    </ul>
+                    <strong>التعويض:</strong>
+                    <ul>
+                        <li><strong>Backward Trunk Lean</strong> عند Initial Contact</li>
+                        <li>الجذع يميل للخلف لنقل خط الجاذبية خلف مفصل الورك</li>
+                        <li>هذا يخلق Extension Moment سلبي</li>
+                    </ul>
+                    <strong>التوقيت:</strong>
+                    <ul>
+                        <li>يحدث في بداية Stance Phase (0-10%)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Gluteus Medius Weakness Gait
+                </div>
+                <div class="answer">
+                    <strong>الاسم:</strong> <span class="highlight">Trendelenburg Gait</span> (أحادي) أو <span
+                        class="highlight">Waddling Gait</span> (ثنائي)<br><br>
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>ضعف عضلة Gluteus Medius & Minimus</li>
+                        <li>عدم القدرة على تثبيت الحوض أثناء Single Limb Support</li>
+                    </ul>
+                    <strong>التعويض (Unilateral):</strong>
+                    <ul>
+                        <li><strong>Lateral Trunk Lean</strong> نحو الجانب المصاب</li>
+                        <li>نقل COG فوق الرجل الداعمة</li>
+                        <li>تقليل Moment Arm على الورك</li>
+                    </ul>
+                    <strong>التعويض (Bilateral):</strong>
+                    <ul>
+                        <li><strong>Waddling Gait</strong> — المشي كالبطة</li>
+                        <li>الجذع يميل يميناً ويساراً مع كل خطوة</li>
+                    </ul>
+                    <strong>Trendelenburg Sign:</strong>
+                    <ul>
+                        <li>الحوض يسقط على الجانب المقابل (غير المصاب)</li>
+                        <li>يحدث أثناء Single Limb Support على الجانب المصاب</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Quadriceps Weakness Gait
+                </div>
+                <div class="answer">
+                    <strong>الاسم:</strong> <span class="highlight">Quadriceps Gait / Quads Gait</span><br><br>
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>ضعف عضلة Quadriceps</li>
+                        <li>عدم القدرة على التحكم في Knee Flexion أثناء Loading Response</li>
+                    </ul>
+                    <strong>التعويض:</strong>
+                    <ul>
+                        <li><strong>Hand Push:</strong> المريض يدفع الفخذ للخلف باليد</li>
+                        <li><strong>Forward Trunk Lean:</strong> الجذع يميل للأمام</li>
+                        <li>كلاهما ينقل GRFV أمام الركبة لخلق Extension Moment</li>
+                    </ul>
+                    <strong>المشكلة:</strong>
+                    <ul>
+                        <li>الركبة قد تنهار (Buckling) أثناء Weight Acceptance</li>
+                        <li>خطر السقوط</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Calf Muscles (Plantar Flexors) Weakness Gait
+                </div>
+                <div class="answer">
+                    <strong>الاسم:</strong> <span class="highlight">Calcaneus Gait / Weak Push-off Gait</span><br><br>
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>ضعف عضلات Gastrocnemius & Soleus</li>
+                        <li>عدم القدرة على Push-off بشكل فعال</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>Weak Push-off:</strong> دفع ضعيف في Terminal Stance</li>
+                        <li><strong>Shorter Step Length:</strong> طول الخطوة أقصر</li>
+                        <li><strong>Decreased Velocity:</strong> سرعة المشي أبطأ</li>
+                        <li><strong>Flat Foot Contact:</strong> القدم كلها تلمس الأرض مرة واحدة</li>
+                    </ul>
+                    <strong>التعويض:</strong>
+                    <ul>
+                        <li>قليل — صعب التعويض عن ضعف Plantar Flexors</li>
+                        <li>قد يستخدم Hip Flexors أكثر في Swing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Dorsiflexors Weakness Gait
+                </div>
+                <div class="answer">
+                    <strong>الاسم:</strong> <span class="highlight">High Steppage Gait / Drop Foot Gait</span><br><br>
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>ضعف عضلات Dorsiflexors (Tibialis Anterior)</li>
+                        <li>عدم القدرة على رفع القدم أثناء Swing</li>
+                        <li><strong>الأسباب الشائعة:</strong> Common Peroneal Nerve Injury, L5 Radiculopathy</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>Foot Drop:</strong> القدم تسقط (Plantar Flexion) أثناء Swing</li>
+                        <li><strong>Foot Slap:</strong> القدم تصفع الأرض بقوة عند Initial Contact</li>
+                    </ul>
+                    <strong>التعويض:</strong>
+                    <ul>
+                        <li><strong>Excessive Hip & Knee Flexion:</strong> رفع الرجل عالياً في Swing</li>
+                        <li><strong>Circumduction:</strong> قد يدور الرجل للخارج</li>
+                        <li><strong>Steppage Gait:</strong> مشي كأنه يصعد سلم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="overflow-x: auto; margin: 30px 0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>الضعف العضلي</th>
+                            <th>اسم الـ Gait</th>
+                            <th>التعويض الرئيسي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gluteus Maximus</td>
+                            <td>Gluteus Max Gait</td>
+                            <td>Backward Trunk Lean</td>
+                        </tr>
+                        <tr>
+                            <td>Gluteus Medius</td>
+                            <td>Trendelenburg / Waddling</td>
+                            <td>Lateral Trunk Lean toward affected side</td>
+                        </tr>
+                        <tr>
+                            <td>Quadriceps</td>
+                            <td>Quads Gait</td>
+                            <td>Hand Push / Forward Trunk Lean</td>
+                        </tr>
+                        <tr>
+                            <td>Plantar Flexors</td>
+                            <td>Calcaneus Gait</td>
+                            <td>Weak Push-off</td>
+                        </tr>
+                        <tr>
+                            <td>Dorsiflexors</td>
+                            <td>High Steppage Gait</td>
+                            <td>Excessive Hip & Knee Flexion</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3
+                style="color: #22d3ee; font-size: 1.05em; font-weight: 700; margin: 20px 0 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">
+                Neurological & Other Gaits</h3>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Hemiplegic Gait (Circumduction)
+                </div>
+                <div class="answer">
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>Stroke (CVA) — إصابة نصف الجسم</li>
+                        <li>Upper Motor Neuron Lesion</li>
+                    </ul>
+                    <strong>خصائص الطرف السفلي:</strong>
+                    <ul>
+                        <li><strong>Spasticity:</strong> تيبس العضلات</li>
+                        <li><strong>Extended Hip & Knee:</strong> الورك والركبة ممتدين</li>
+                        <li><strong>Plantar Flexed Ankle:</strong> القدم في Plantar Flexion</li>
+                        <li><strong>Circumduction:</strong> الرجل تدور في قوس نصف دائري</li>
+                        <li><strong>Toe Drag:</strong> أصابع القدم تجر على الأرض</li>
+                    </ul>
+                    <strong>خصائص الطرف العلوي:</strong>
+                    <ul>
+                        <li><strong>Flexed Elbow:</strong> الكوع مثني</li>
+                        <li><strong>Flexed Wrist:</strong> الرسغ مثني</li>
+                        <li><strong>Clenched Fist:</strong> اليد مقبوضة</li>
+                        <li><strong>Adducted Shoulder:</strong> الكتف مضموم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Parkinson's Gait
+                </div>
+                <div class="answer">
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>Parkinson's Disease</li>
+                        <li>نقص Dopamine في الدماغ</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>Shuffling Gait:</strong> خطوات قصيرة ومتسارعة</li>
+                        <li><strong>Festinating Gait:</strong> يبدأ ببطء ثم يتسارع</li>
+                        <li><strong>Reduced Arm Swing:</strong> حركة الذراعين قليلة أو معدومة</li>
+                        <li><strong>Stooped Posture:</strong> وضع منحني للأمام</li>
+                        <li><strong>Difficulty Initiating Movement:</strong> صعوبة في بدء المشي</li>
+                        <li><strong>Freezing:</strong> توقف مفاجئ أثناء المشي</li>
+                        <li><strong>En Bloc Turning:</strong> الدوران كقطعة واحدة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Ataxic Gait
+                </div>
+                <div class="answer">
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>Cerebellar Lesion — إصابة المخيخ</li>
+                        <li>فقدان التنسيق الحركي</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>Wide Base of Support:</strong> قاعدة عريضة بين القدمين</li>
+                        <li><strong>Unsteady Gait:</strong> مشي غير مستقر</li>
+                        <li><strong>Irregular Steps:</strong> خطوات غير منتظمة</li>
+                        <li><strong>Staggering:</strong> ترنح كالسكران</li>
+                        <li><strong>Difficulty with Tandem Walking:</strong> صعوبة في المشي على خط مستقيم</li>
+                        <li><strong>Loss of Balance:</strong> فقدان التوازن بسهولة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Choreiform Gait (St. Vitus' Dance)
+                </div>
+                <div class="answer">
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>Huntington's Disease</li>
+                        <li>Rheumatic Fever (Sydenham's Chorea)</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>Involuntary Movements:</strong> حركات لا إرادية مفاجئة</li>
+                        <li><strong>Jerky Movements:</strong> حركات متقطعة وعشوائية</li>
+                        <li><strong>Dance-like Gait:</strong> مشي يشبه الرقص</li>
+                        <li><strong>Unpredictable:</strong> حركات غير متوقعة</li>
+                        <li><strong>Affects Face & Limbs:</strong> تؤثر على الوجه والأطراف</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Genu Recurvatum Gait
+                </div>
+                <div class="answer">
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>Quadriceps Spasticity</li>
+                        <li>Knee Hyperextension</li>
+                        <li>Posterior Capsule Laxity</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>Knee Hyperextension:</strong> الركبة تمتد أكثر من اللازم</li>
+                        <li>يحدث أثناء Stance Phase</li>
+                        <li>قد يسبب ألم وتلف في المفصل</li>
+                    </ul>
+                    <strong>التعويض:</strong>
+                    <ul>
+                        <li>استخدام Knee Brace لمنع Hyperextension</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Leg Length Discrepancy (LLD) Gait
+                </div>
+                <div class="answer">
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>فرق في طول الرجلين</li>
+                        <li>قد يكون خلقي أو مكتسب</li>
+                    </ul>
+                    <strong>التعويضات:</strong>
+                    <ul>
+                        <li><strong>Equinus Gait:</strong> المشي على أصابع القدم القصيرة</li>
+                        <li><strong>Hip Hiking:</strong> رفع الحوض على الجانب الطويل</li>
+                        <li><strong>Vaulting:</strong> الدفع بالرجل القصيرة</li>
+                        <li><strong>Circumduction:</strong> دوران الرجل الطويلة</li>
+                        <li><strong>Lateral Trunk Lean:</strong> ميل الجذع</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Analogical Gait
+                </div>
+                <div class="answer">
+                    <strong>التعريف:</strong>
+                    <ul>
+                        <li>مشي بسبب <strong>الألم</strong></li>
+                        <li>المريض يتجنب وضع الوزن على الجانب المؤلم</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>Shortened Stance Phase:</strong> على الجانب المؤلم</li>
+                        <li><strong>Prolonged Swing Phase:</strong> على الجانب المؤلم</li>
+                        <li><strong>Limping:</strong> عرج واضح</li>
+                        <li><strong>Quick Weight Transfer:</strong> نقل سريع للوزن</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="note">
+                <strong>⚠️ نصيحة مهمة للامتحان:</strong><br>
+                لما تجيلك صورة Pathological Gait:<br>
+                1. قول الاسم الصحيح للـ Gait<br>
+                2. اشرح السبب (أي عضلة ضعيفة أو أي مرض)<br>
+                3. وضّح حركات الأطراف العلوية والسفلية<br>
+                4. اذكر التعويضات<br>
+                5. مثّل عملياً لو طُلب منك
+            </div>
+        </div>
+
+        <!-- Section 12 -->
+        <div class="section" id="sec-running">
+            <h2 class="section-title"><span class="icon">1️⃣2️⃣</span> Walking vs Running</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع فتحي والرفاعي ونورهان</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Compare Walking vs Running: Phases / Periods / Variables
+                </div>
+                <div class="answer">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>العنصر</th>
+                                    <th>Walking</th>
+                                    <th>Running</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Stance Phase</strong></td>
+                                    <td>60% من Gait Cycle</td>
+                                    <td>40% من Gait Cycle</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Swing Phase</strong></td>
+                                    <td>40% من Gait Cycle</td>
+                                    <td>60% من Gait Cycle</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Double Limb Support</strong></td>
+                                    <td>موجود (20%)</td>
+                                    <td><span class="highlight">غير موجود</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Flight Phase</strong></td>
+                                    <td><span class="highlight">غير موجود</span></td>
+                                    <td>موجود — كلا القدمين في الهواء</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Velocity</strong></td>
+                                    <td>حوالي 1.4 m/s</td>
+                                    <td>أكثر من 3 m/s</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cadence</strong></td>
+                                    <td>110-120 steps/min</td>
+                                    <td>أكثر من 160 steps/min</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Stride Length</strong></td>
+                                    <td>حوالي 1.4 m</td>
+                                    <td>أكثر من 2 m</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Vertical Displacement</strong></td>
+                                    <td>5 cm</td>
+                                    <td>أكثر من 10 cm</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GRF</strong></td>
+                                    <td>1.2 × Body Weight</td>
+                                    <td>2-3 × Body Weight</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Energy Cost</strong></td>
+                                    <td>أقل</td>
+                                    <td>أعلى بكثير</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Arm Swing</strong></td>
+                                    <td>معتدل</td>
+                                    <td>أكثر وضوحاً وقوة</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Trunk Lean</strong></td>
+                                    <td>مستقيم</td>
+                                    <td>ميل للأمام قليلاً</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ ما الذي يتغير ويزيد في الـ Running؟
+                </div>
+                <div class="answer">
+                    <strong>التغيرات في Running:</strong><br><br>
+                    <strong>يزيد:</strong>
+                    <ul>
+                        <li><strong>Velocity:</strong> السرعة تزيد بشكل كبير</li>
+                        <li><strong>Stride Length:</strong> طول الخطوة أطول</li>
+                        <li><strong>Cadence:</strong> عدد الخطوات في الدقيقة أكثر</li>
+                        <li><strong>GRF:</strong> قوة رد فعل الأرض أعلى (2-3× وزن الجسم)</li>
+                        <li><strong>Muscle Activity:</strong> النشاط العضلي أقوى</li>
+                        <li><strong>Energy Cost:</strong> استهلاك الطاقة أعلى</li>
+                        <li><strong>ROM:</strong> مدى الحركة في المفاصل أكبر</li>
+                        <li><strong>Vertical Displacement:</strong> الحركة الرأسية أكثر</li>
+                    </ul>
+                    <strong>يقل:</strong>
+                    <ul>
+                        <li><strong>Stance Phase:</strong> من 60% إلى 40%</li>
+                        <li><strong>Contact Time:</strong> وقت ملامسة القدم للأرض أقل</li>
+                    </ul>
+                    <strong>يختفي:</strong>
+                    <ul>
+                        <li><strong>Double Limb Support:</strong> لا يوجد DLS في Running</li>
+                    </ul>
+                    <strong>يظهر:</strong>
+                    <ul>
+                        <li><strong>Flight Phase:</strong> كلا القدمين في الهواء</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Running Analysis — كل جوانبه
+                </div>
+                <div class="answer">
+                    <strong>Running Gait Cycle:</strong><br><br>
+                    <strong>Stance Phase (40%):</strong>
+                    <ul>
+                        <li><strong>Initial Contact:</strong> عادةً بمقدمة القدم أو منتصفها (Forefoot/Midfoot Strike)
+                        </li>
+                        <li><strong>Absorption Phase:</strong> امتصاص الصدمة — GRF عالية جداً</li>
+                        <li><strong>Propulsion Phase:</strong> دفع قوي للأمام</li>
+                    </ul>
+                    <strong>Flight Phase:</strong>
+                    <ul>
+                        <li>كلا القدمين في الهواء</li>
+                        <li>يحدث مرتين في كل Gait Cycle</li>
+                    </ul>
+                    <strong>Swing Phase (60%):</strong>
+                    <ul>
+                        <li>أطول من Walking</li>
+                        <li>حركة أسرع وأكثر قوة</li>
+                    </ul>
+                    <strong>Joint Kinematics:</strong>
+                    <ul>
+                        <li><strong>Hip:</strong> ROM أكبر (Flexion & Extension أكثر)</li>
+                        <li><strong>Knee:</strong> Flexion أكثر في Swing (حوالي 90-100°)</li>
+                        <li><strong>Ankle:</strong> Plantar Flexion أقوى في Push-off</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Muscle Activity أثناء Running
+                </div>
+                <div class="answer">
+                    <strong>النشاط العضلي في Running:</strong><br><br>
+                    <strong>Stance Phase:</strong>
+                    <ul>
+                        <li><strong>Quadriceps:</strong> انقباض قوي جداً (Eccentric ثم Concentric)</li>
+                        <li><strong>Hamstrings:</strong> نشطة طوال Stance</li>
+                        <li><strong>Plantar Flexors:</strong> انقباض قوي جداً للدفع</li>
+                        <li><strong>Hip Extensors:</strong> نشطة بقوة</li>
+                    </ul>
+                    <strong>Swing Phase:</strong>
+                    <ul>
+                        <li><strong>Hip Flexors:</strong> انقباض قوي لرفع الرجل</li>
+                        <li><strong>Hamstrings:</strong> Eccentric في نهاية Swing</li>
+                        <li><strong>Dorsiflexors:</strong> نشطة لرفع القدم</li>
+                    </ul>
+                    <strong>الفرق عن Walking:</strong>
+                    <ul>
+                        <li>كل العضلات تعمل بقوة أكبر</li>
+                        <li>الانقباضات أسرع وأقوى</li>
+                        <li>استهلاك الطاقة أعلى بكثير</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Shoulder & Elbow ROM أثناء Gait Cycle (+ تمثيل عملي)
+                </div>
+                <div class="answer">
+                    <strong>Shoulder ROM:</strong>
+                    <ul>
+                        <li><strong>Walking:</strong> حوالي 30° (15° Flexion / 15° Extension)</li>
+                        <li><strong>Running:</strong> حوالي 60° أو أكثر</li>
+                        <li><strong>Pattern:</strong> Reciprocal — عكس حركة الرجل</li>
+                    </ul>
+                    <strong>Elbow ROM:</strong>
+                    <ul>
+                        <li><strong>Walking:</strong> حوالي 20° Flexion/Extension</li>
+                        <li><strong>Running:</strong> يبقى مثني حوالي 90° معظم الوقت</li>
+                    </ul>
+                    <strong>التمثيل العملي:</strong>
+                    <ul>
+                        <li>عند المشي: الذراعين تتأرجح بحرية، الكوع شبه مستقيم</li>
+                        <li>عند الجري: الكوع مثني 90°، الذراعين تتحرك بقوة للأمام والخلف</li>
+                        <li>الذراع اليمين للأمام = الرجل اليسار للأمام</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Arm Position أثناء Swing Phase
+                </div>
+                <div class="answer">
+                    <strong>وضع الذراعين في Swing Phase:</strong><br><br>
+                    <strong>Walking:</strong>
+                    <ul>
+                        <li>الذراع المقابلة للرجل المتأرجحة تكون <strong>للأمام</strong></li>
+                        <li>مثال: رجل يمين في Swing → ذراع يسار للأمام</li>
+                        <li>الكوع شبه مستقيم</li>
+                    </ul>
+                    <strong>Running:</strong>
+                    <ul>
+                        <li>نفس الـ Pattern ولكن بحركة أقوى</li>
+                        <li>الكوع مثني 90°</li>
+                        <li>الذراعين تتحرك بقوة أكبر</li>
+                    </ul>
+                    <strong>الوظيفة:</strong>
+                    <ul>
+                        <li>توازن الـ Rotational Momentum</li>
+                        <li>تقليل دوران الجذع</li>
+                        <li>زيادة الكفاءة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 13 -->
+        <div class="section" id="sec-phases">
+            <h2 class="section-title"><span class="icon">1️⃣3️⃣</span> Stance & Swing Phases</h2>
+            <p style="color: var(--text-dim); margin-bottom: 20px;">بيجي مع فتحي وهدير</p>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Stance Phase وأقسامها الفرعية
+                </div>
+                <div class="answer">
+                    <strong>Stance Phase (60% من Gait Cycle):</strong><br><br>
+                    <strong>1. Contact Period (0-10%):</strong>
+                    <ul>
+                        <li><strong>Initial Contact (IC):</strong> لحظة ملامسة الكعب للأرض</li>
+                        <li><strong>Loading Response (LR):</strong> استقبال الوزن وامتصاص الصدمة</li>
+                        <li><strong>الوظيفة:</strong> Weight Acceptance</li>
+                    </ul>
+                    <strong>2. Mid-stance Period (10-30%):</strong>
+                    <ul>
+                        <li>الجسم يتحرك فوق الرجل الداعمة</li>
+                        <li>Single Limb Support</li>
+                        <li><strong>الوظيفة:</strong> Stability & Progression</li>
+                    </ul>
+                    <strong>3. Propulsive Period (30-60%):</strong>
+                    <ul>
+                        <li><strong>Terminal Stance (30-50%):</strong> الجسم يتقدم للأمام</li>
+                        <li><strong>Pre-swing (50-60%):</strong> تحضير للرفع عن الأرض</li>
+                        <li><strong>الوظيفة:</strong> Push-off & Limb Advancement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ اشرح Swing Phase: ISW / MSW / TSW
+                </div>
+                <div class="answer">
+                    <strong>Swing Phase (40% من Gait Cycle):</strong><br><br>
+                    <strong>1. Initial Swing (ISW) — Acceleration (60-73%):</strong>
+                    <ul>
+                        <li>الرجل ترتفع عن الأرض</li>
+                        <li>Hip Flexion و Knee Flexion يزدادان</li>
+                        <li><strong>العضلات:</strong> Hip Flexors + Dorsiflexors</li>
+                        <li><strong>الهدف:</strong> تسريع الرجل للأمام</li>
+                    </ul>
+                    <strong>2. Mid Swing (MSW) — Mid-swing (73-87%):</strong>
+                    <ul>
+                        <li>الرجل تتأرجح للأمام</li>
+                        <li>Knee يبدأ Extension تدريجياً</li>
+                        <li><strong>الهدف:</strong> Toe Clearance (رفع القدم عن الأرض)</li>
+                    </ul>
+                    <strong>3. Terminal Swing (TSW) — Deceleration (87-100%):</strong>
+                    <ul>
+                        <li>الرجل تستعد للـ Initial Contact</li>
+                        <li>Knee Extension يكتمل</li>
+                        <li><strong>العضلات:</strong> Hamstrings (Eccentric) لإبطاء الحركة</li>
+                        <li><strong>الهدف:</strong> تجهيز الرجل للهبوط</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">
+                    ⭐ Gait Functional Tasks Table — اشرح كل Task
+                </div>
+                <div class="answer">
+                    <div style="overflow-x: auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Functional Task</th>
+                                    <th>التوقيت</th>
+                                    <th>الوظيفة</th>
+                                    <th>العضلات الرئيسية</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Weight Acceptance</strong></td>
+                                    <td>0-10%<br>(IC + LR)</td>
+                                    <td>
+                                        - استقبال وزن الجسم<br>
+                                        - امتصاص الصدمة<br>
+                                        - الحفاظ على الاستقرار
+                                    </td>
+                                    <td>
+                                        - Quadriceps (Eccentric)<br>
+                                        - Dorsiflexors<br>
+                                        - Hip Extensors
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Single Limb Support</strong></td>
+                                    <td>10-50%<br>(Mid + Terminal Stance)</td>
+                                    <td>
+                                        - دعم وزن الجسم<br>
+                                        - تقدم الجسم للأمام<br>
+                                        - الحفاظ على التوازن
+                                    </td>
+                                    <td>
+                                        - Hip Abductors<br>
+                                        - Plantar Flexors<br>
+                                        - Trunk Muscles
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Limb Advancement</strong></td>
+                                    <td>50-100%<br>(Pre-swing + Swing)</td>
+                                    <td>
+                                        - رفع الرجل عن الأرض<br>
+                                        - تحريك الرجل للأمام<br>
+                                        - تجهيز الرجل للـ IC
+                                    </td>
+                                    <td>
+                                        - Hip Flexors<br>
+                                        - Dorsiflexors<br>
+                                        - Hamstrings (في النهاية)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="section" id="sec-tips">
+            <h2 class="section-title"><span class="icon">💡</span>نصائح من PT11 للمذاكرة</h2>
+            <div class="note">
+                <strong>"الـ Kinetics مهمة جداً جداً — ركّزوا عليها"</strong> — متكررة من طلاب كتير
+            </div>
+            <ol>
+                <li><strong>ذاكر السكاشن</strong> حتى لو الدكتور قال من الكتاب بس — معظم الأسئلة الخارجية منها</li>
+                <li><strong>افهم متحفظش</strong> — الدكاترة بتسأل بفهم مش حفظ (خصوصاً هدير ونورهان)</li>
+                <li><strong>ركّز على الصور والكيرفات</strong> — الدكاترة بتحبها جداً</li>
+                <li><strong>اعرف الأرقام</strong> (% of gait cycle) — خصوصاً مع د. نورهان</li>
+                <li><strong>اربط كل حاجة ببعض</strong> — مش تذاكر كل جزء لوحده</li>
+                <li><strong>الـ Passive Component مهم</strong> — اعرف امتى حركات بتحصل من غير muscle contraction</li>
+                <li><strong>Pathological Gait أهم حاجة عملي</strong> — خصوصاً مع د. محمد فتحي</li>
+                <li>في الامتحان هيجيلك سؤالين: <strong>واحد نظري + واحد عملي</strong> (تمثيل)</li>
+            </ol>
+        </div>
+
+    </div>
+    </div>
+
+    <!-- BOTTOM CONTROLS -->
+    <div class="bottom-controls">
+        <button class="ctrl-btn primary" onclick="toggleAll()">📖 إظهار/إخفاء الكل</button>
+        <button class="ctrl-btn secondary" onclick="resetAll()">🔄 إعادة تعيين</button>
+        <button class="ctrl-btn secondary" onclick="scrollToTop()">⬆ أعلى</button>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">⬆</button>
+
+    <script>
+        // === STATE ===
+        let allAnswersVisible = false;
+        let timerRunning = true;
+        let timerSeconds = 0;
+        let timerInterval = null;
+        const revealedSet = new Set();
+
+        // === INIT ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalQ = document.querySelectorAll('.question').length;
+            document.getElementById('totalQ').textContent = totalQ;
+            startTimer();
+            updateProgress();
+        });
+
+        // === TOGGLE ANSWER ===
+        function toggleAnswer(element) {
+            const answer = element.querySelector('.answer');
+            if (!answer) return;
+            const isShowing = answer.classList.toggle('show');
+            element.classList.toggle('revealed', isShowing);
+            if (isShowing) {
+                revealedSet.add(element);
+            } else {
+                revealedSet.delete(element);
+            }
+            updateProgress();
+        }
+
+        // === TOGGLE ALL ===
+        function toggleAll() {
+            const questions = document.querySelectorAll('.question');
+            const answers = document.querySelectorAll('.answer');
+            allAnswersVisible = !allAnswersVisible;
+            answers.forEach(a => {
+                if (allAnswersVisible) a.classList.add('show');
+                else a.classList.remove('show');
+            });
+            questions.forEach(q => {
+                q.classList.toggle('revealed', allAnswersVisible);
+                if (allAnswersVisible) revealedSet.add(q);
+                else revealedSet.delete(q);
+            });
+            updateProgress();
+        }
+
+        // === RESET ===
+        function resetAll() {
+            document.querySelectorAll('.answer.show').forEach(a => a.classList.remove('show'));
+            document.querySelectorAll('.question.revealed').forEach(q => q.classList.remove('revealed'));
+            revealedSet.clear();
+            allAnswersVisible = false;
+            timerSeconds = 0;
+            updateProgress();
+        }
+
+        // === PROGRESS ===
+        function updateProgress() {
+            const total = document.querySelectorAll('.question').length;
+            const revealed = revealedSet.size;
+            const pct = total > 0 ? Math.round((revealed / total) * 100) : 0;
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = pct + '%';
+            document.getElementById('revealedCount').textContent = revealed;
+        }
+
+        // === TIMER ===
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timerRunning) {
+                    timerSeconds++;
+                    const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+                    const s = String(timerSeconds % 60).padStart(2, '0');
+                    document.getElementById('timerDisplay').textContent = m + ':' + s;
+                }
+            }, 1000);
+        }
+        function toggleTimer() {
+            timerRunning = !timerRunning;
+            document.getElementById('timerBadge').classList.toggle('paused', !timerRunning);
+        }
+
+        // === SEARCH ===
+        function handleSearch(query) {
+            const q = query.toLowerCase().trim();
+            document.querySelectorAll('.question').forEach(el => {
+                const text = el.textContent.toLowerCase();
+                el.style.display = (!q || text.includes(q)) ? '' : 'none';
+            });
+            document.querySelectorAll('.section').forEach(sec => {
+                const visible = sec.querySelectorAll('.question[style=""], .question:not([style])');
+                const hasVisible = Array.from(sec.querySelectorAll('.question')).some(
+                    q => q.style.display !== 'none'
+                );
+                sec.style.display = (!q || hasVisible) ? '' : 'none';
+            });
+        }
+
+        // === SCROLL ===
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('scrollTopBtn');
+            btn.classList.toggle('visible', window.scrollY > 600);
+        });
+
+        // === KEYBOARD SHORTCUTS ===
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.answer.show').forEach(a => a.classList.remove('show'));
+                document.querySelectorAll('.question.revealed').forEach(q => q.classList.remove('revealed'));
+                revealedSet.clear();
+                allAnswersVisible = false;
+                updateProgress();
+            }
+            if (e.key === '/' && !e.ctrlKey && document.activeElement.tagName !== 'INPUT') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+        });
+
+        // === NAV PILL ACTIVE STATE ===
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id) {
+                    // Update nav pills
+                    document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+                    const pill = document.querySelector(`.nav-pill[href="#${entry.target.id}"]`);
+                    if (pill) pill.classList.add('active');
+                    
+                    // Update sidebar links
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                    const sidebarLink = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+                    if (sidebarLink) sidebarLink.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '-80px 0px -60% 0px' });
+        document.querySelectorAll('.section[id]').forEach(s => observer.observe(s));
+    </script>
+</body>
+
+</html>

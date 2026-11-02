@@ -1,0 +1,11 @@
+with open('final/anatomy2_lower_limb.html', 'r', encoding='utf-8') as f:
+    text = f.read()
+print('Length:', len(text))
+print('Sections count:', text.count('class="section'))
+print('Essay cards count:', text.count('class="essay-card'))
+print('Compare tables:', text.count('class="compare-table'))
+print('Muscle tables:', text.count('class="muscle-table'))
+print('Data tables:', text.count('class="data-table'))
+print('Highlight boxes:', text.count('class="highlight-box'))
+print('Arabic panels:', text.count('class="arabic-panel"'))
+print('Flashcards count:', text.count('{ q:'))

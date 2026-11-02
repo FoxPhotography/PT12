@@ -1,0 +1,1536 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immunology Midterm — Lec 1–3</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --maroon:#590907; --maroon2:#3f0605; --beige:#e8d2b5; --sage:#a5a79b;
+    --bg:#e8d2b5; --bg2:#efdfc8; --bg3:#e1c8a6;
+    --card:#f5ebdd; --card2:#f9f2e8;
+    --border:rgba(89,9,7,0.13); --border2:rgba(89,9,7,0.28);
+    --text:#2a0504; --muted:#5d5f54; --dim:#8c8e82;
+    --ok:#3f4a2c; --ok-bg:rgba(165,167,155,0.38); --ok-bd:#7f8273;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+  body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(89,9,7,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(89,9,7,0.035) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+
+  /* HEADER — maroon block */
+  header { position:relative; z-index:10; padding:50px 16px 38px; text-align:center; background:var(--maroon); color:var(--beige); border-bottom:4px solid var(--sage); overflow:hidden; }
+  header::after { content:''; position:absolute; top:-220px; left:50%; transform:translateX(-50%); width:900px; height:440px; background:radial-gradient(ellipse,rgba(232,210,181,0.12) 0%,transparent 70%); pointer-events:none; }
+  .header-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(232,210,181,0.08); border:1px solid rgba(232,210,181,0.35); color:var(--beige); padding:6px 18px; border-radius:100px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; animation:fadeDown 0.6s ease both; }
+  .header-badge::before { content:''; width:6px; height:6px; background:var(--sage); border-radius:50%; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.8);} }
+  h1 { font-size:clamp(26px,5vw,46px); font-weight:900; letter-spacing:-1px; line-height:1.2; color:var(--beige); animation:fadeDown 0.6s 0.1s ease both; }
+  .subtitle { color:var(--sage); margin-top:8px; font-size:13px; animation:fadeDown 0.6s 0.2s ease both; font-family:'JetBrains Mono',monospace; letter-spacing:1px; }
+  .stats-bar { display:flex; justify-content:center; gap:40px; margin-top:28px; flex-wrap:wrap; animation:fadeDown 0.6s 0.3s ease both; position:relative; z-index:1; }
+  .stat { text-align:center; }
+  .stat-num { font-size:26px; font-weight:900; color:var(--beige); font-family:'JetBrains Mono',monospace; }
+  .stat-label { font-size:11px; color:var(--sage); letter-spacing:1px; text-transform:uppercase; margin-top:2px; }
+
+  /* NAV */
+  .nav { position:sticky; top:0; z-index:100; background:rgba(232,210,181,0.96); backdrop-filter:blur(20px); border-bottom:1px solid var(--border2); padding:0 16px; display:flex; gap:4px; justify-content:center; overflow-x:auto; scrollbar-width:none; }
+  .nav::-webkit-scrollbar { display:none; }
+  .nav-btn { background:none; border:none; color:var(--muted); font-family:'Cairo',sans-serif; font-size:12.5px; font-weight:700; padding:14px 16px; cursor:pointer; white-space:nowrap; border-bottom:3px solid transparent; transition:all 0.2s; text-decoration:none; display:flex; align-items:center; gap:4px; }
+  .nav-btn:hover { color:var(--maroon); }
+  .nav-btn.active { color:var(--maroon); border-bottom-color:var(--maroon); }
+
+  main { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:36px 20px 80px; }
+  .section { display:none; animation:fadeIn 0.4s ease; }
+  .section.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-15px);} to{opacity:1;transform:translateY(0);} }
+
+  /* LEGEND + LECTURE BANNER */
+  .legend { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:-12px 0 28px; font-size:12px; color:var(--muted); }
+  .legend span { display:inline-flex; align-items:center; gap:6px; }
+  .lec-banner { display:flex; align-items:center; gap:14px; padding:18px 20px; background:var(--maroon); color:var(--beige); border-radius:12px; margin-bottom:26px; }
+  .lec-icon { width:44px; height:44px; border-radius:10px; background:rgba(232,210,181,0.12); display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+  .lec-title { font-size:18px; font-weight:800; }
+  .lec-sub { font-size:12px; color:var(--sage); font-family:'JetBrains Mono',monospace; }
+
+  /* TOPIC GROUP */
+  .topic-group { margin-bottom:32px; }
+  .topic-header { display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border2); }
+  .topic-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; font-family:'JetBrains Mono',monospace; flex-shrink:0; background:var(--sage); color:var(--maroon2); }
+  .topic-title { font-size:17px; font-weight:700; color:var(--text); }
+  .topic-count { margin-left:auto; background:var(--card); border:1px solid var(--border); color:var(--muted); font-size:11px; font-family:'JetBrains Mono',monospace; padding:3px 10px; border-radius:100px; white-space:nowrap; }
+
+  /* Q CARDS */
+  .q-card { background:var(--card); border:1px solid var(--border); border-radius:12px; margin-bottom:10px; overflow:hidden; transition:border-color 0.2s,box-shadow 0.2s; }
+  .q-card:hover { border-color:var(--border2); box-shadow:0 4px 20px rgba(89,9,7,0.08); }
+  .q-card.is-dr { border-left:4px solid var(--maroon); }
+  .q-header { display:flex; align-items:flex-start; gap:14px; padding:16px 18px; cursor:pointer; }
+  .q-num { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--maroon); background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:4px 10px; flex-shrink:0; margin-top:1px; }
+  .q-text { font-size:14px; font-weight:600; line-height:1.6; flex:1; }
+  .q-badge { display:inline-block; font-size:10.5px; font-weight:700; padding:1px 9px; border-radius:100px; margin-right:8px; vertical-align:2px; letter-spacing:0.5px; }
+  .q-badge.dr { background:var(--maroon); color:var(--beige); }
+  .q-badge.imp { background:transparent; color:var(--maroon); border:1px solid var(--maroon); font-family:'JetBrains Mono',monospace; }
+  .q-toggle { width:24px; height:24px; border-radius:6px; background:var(--bg2); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--muted); font-size:12px; transition:all 0.2s; margin-top:1px; }
+  .q-card.open .q-toggle { background:var(--maroon); border-color:var(--maroon); color:var(--beige); transform:rotate(180deg); }
+  .q-body { display:none; padding:0 18px 16px 18px; border-top:1px solid var(--border); }
+  .q-card.open .q-body { display:block; }
+
+  /* OPTIONS */
+  .options { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+  .option { display:flex; align-items:flex-start; gap:12px; padding:11px 13px; border-radius:8px; border:1px solid var(--border); background:var(--card2); font-size:13.5px; line-height:1.5; transition:all 0.2s; cursor:pointer; }
+  .option:hover { border-color:var(--maroon); }
+  .opt-letter { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; width:22px; height:22px; min-width:22px; border-radius:5px; display:flex; align-items:center; justify-content:center; background:var(--bg2); border:1px solid var(--border); color:var(--muted); transition:background 0.2s,border-color 0.2s,color 0.2s; }
+
+  .q-card.answered .option, .show-all-mode .option { pointer-events:none; }
+  .q-card.answered .option.correct, .show-all-mode .option.correct { border-color:var(--ok-bd); background:var(--ok-bg); color:var(--ok); font-weight:700; }
+  .q-card.answered .option:not(.correct):not(.wrong-selected), .show-all-mode .option:not(.correct) { opacity:0.45; }
+  .q-card.answered .option.correct .opt-letter, .show-all-mode .option.correct .opt-letter { background:var(--ok); border-color:var(--ok); color:var(--beige); font-size:0; }
+  .q-card.answered .option.correct .opt-letter::after, .show-all-mode .option.correct .opt-letter::after { content:'✓'; font-size:12px; }
+  .option.wrong-selected { border-color:var(--maroon); background:rgba(89,9,7,0.08); color:var(--maroon); opacity:1!important; }
+  .option.wrong-selected .opt-letter { background:var(--maroon); border-color:var(--maroon); color:var(--beige); font-size:0; }
+  .option.wrong-selected .opt-letter::after { content:'✗'; font-size:12px; }
+  @keyframes popCorrect { 0%{transform:scale(1);} 50%{transform:scale(1.02);} 100%{transform:scale(1);} }
+  .pop-animation { animation:popCorrect 0.5s cubic-bezier(0.175,0.885,0.32,1.275); }
+
+  /* SEARCH */
+  .search-wrap { margin-bottom:24px; position:relative; }
+  .search-input { width:100%; background:var(--card); border:1px solid var(--border2); border-radius:10px; color:var(--text); font-family:'Cairo',sans-serif; font-size:14px; padding:13px 18px 13px 46px; outline:none; transition:border-color 0.2s; direction:rtl; }
+  .search-input::placeholder { color:var(--dim); }
+  .search-input:focus { border-color:var(--maroon); box-shadow:0 0 0 3px rgba(89,9,7,0.08); }
+  .search-icon { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--dim); font-size:16px; pointer-events:none; }
+
+  /* REVIEW */
+  .guide-section { margin-bottom:28px; }
+  .guide-title { display:flex; align-items:center; gap:12px; margin-bottom:14px; padding:14px 18px; background:var(--card); border:1px solid var(--border); border-radius:10px; }
+  .guide-emoji { font-size:20px; }
+  .guide-heading { font-size:16px; font-weight:800; flex:1; }
+  .guide-badge { font-family:'JetBrains Mono',monospace; font-size:11px; background:var(--maroon); color:var(--beige); padding:3px 10px; border-radius:100px; }
+  .table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:10px; background:var(--card); margin-bottom:12px; }
+  .data-table { width:100%; border-collapse:collapse; font-size:13px; direction:ltr; min-width:520px; }
+  .data-table th { background:var(--maroon); color:var(--beige); font-weight:700; padding:10px 12px; text-align:left; font-size:12px; }
+  .data-table td { padding:10px 12px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.55; }
+  .data-table tr:last-child td { border-bottom:none; }
+  .data-table td:first-child { font-weight:700; color:var(--maroon); }
+  .data-table .hl { background:var(--ok-bg); color:var(--ok); font-weight:700; }
+  .tip { list-style:none; background:var(--card); border:1px solid var(--border); border-left:4px solid var(--sage); border-radius:10px; padding:12px 18px; font-size:13.5px; line-height:1.7; margin-bottom:12px; direction:ltr; }
+  .tip li { padding:6px 0; border-bottom:1px dashed var(--border); }
+  .tip li:last-child { border-bottom:none; }
+  .tip b { color:var(--maroon); }
+  .tip code { font-family:'JetBrains Mono',monospace; font-size:12px; background:var(--bg2); border-radius:4px; padding:1px 6px; direction:ltr; display:inline-block; }
+
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--sage); border-radius:10px; }
+  @media(max-width:640px) {
+    .stats-bar{gap:20px;} .nav-btn{padding:12px 10px;font-size:11px;}
+    h1{font-size:24px;} main{padding:24px 16px 60px;} .q-header{padding:14px; gap:10px;} .q-body{padding:0 14px 14px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">🧫 Midterm · Lec 1 → 3</div>
+  <h1>Immunology — Expected MCQ</h1>
+  <p class="subtitle">Innate Immunity · Antigens · Immunoglobulins</p>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">محاضرات</div></div>
+    <div class="stat"><div class="stat-num">131</div><div class="stat-label">سؤال MCQ</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">سؤال الدكتور</div></div>
+    <div class="stat"><div class="stat-num" id="score-display">0/131</div><div class="stat-label">إجابات صحيحة</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">بتوفق يا هيما</div></div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="../../index.html" class="nav-btn">🔙 الرئيسية</a>
+  <button class="nav-btn active" onclick="showSection('lec1')" id="btn-lec1">🛡️ Lec 1 — Innate (44)</button>
+  <button class="nav-btn" onclick="showSection('lec2')" id="btn-lec2">🧬 Lec 2 — Antigens (47)</button>
+  <button class="nav-btn" onclick="showSection('lec3')" id="btn-lec3">🔱 Lec 3 — Ig (40)</button>
+  <button class="nav-btn" onclick="showSection('review')" id="btn-review">🎯 مراجعة سريعة</button>
+  <button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار الإجابات</button>
+  <button class="nav-btn" onclick="retest()">🔄 إعادة</button>
+</nav>
+
+<main>
+  <div class="legend">
+    <span><span class="q-badge dr" style="margin:0">★ سؤال الدكتور</span> جه في السلايدز بنصه — احفظه زي ما هو</span>
+    <span><span class="q-badge imp" style="margin:0">IMP</span> جزء الدكتور كاتب عليه (imp)</span>
+  </div>
+
+<div class="section active" id="lec1">
+  <div class="search-wrap"><span class="search-icon">🔍</span>
+    <input class="search-input" placeholder="ابحث في أسئلة Lec 1 — Innate..." oninput="searchQ(this.value,'lec1')"></div>
+  <div class="lec-banner"><div class="lec-icon">🛡️</div><div><div class="lec-title">Lecture 1 — Innate Immunity</div><div class="lec-sub">44 سؤال · 5 مواضيع</div></div></div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">01</div><div class="topic-title">Immunity &amp; Functions of the Immune System</div><div class="topic-count">8 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Immunity means:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Increased susceptibility to infection</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Destruction of the body's own normal cells</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Resistance, protection and non-susceptibility to invasion by foreign substances</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Production of antibodies only</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q2</div><div class="q-text">The main function of the immune system is to:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Produce hormones</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Regulate body temperature only</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Prevent or limit infections by microorganisms</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Transport oxygen to tissues</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Hyperfunction (aberration) of the DEFENSE function of the immune system results in:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Autoimmune diseases</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Allergy</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Repeated infections</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Malignant diseases</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Hyperfunction of the HOMEOSTASIS function (immunological balance) results in:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Autoimmune diseases</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Malignant diseases</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Allergy</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Superinfection</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q5</div><div class="q-text">Hypofunction of the SURVEILLANCE function (immunological control) results in:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Allergy</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Autoimmune diseases</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Malignant diseases</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Anaphylaxis</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q6</div><div class="q-text">Hypofunction of the DEFENSE function results in:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Allergy</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Increased susceptibility to repeated infections</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Autoimmune diseases</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Removal of damaged components</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Recognition and destruction of abnormal (mutant) cells arising within the body is the function of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Surveillance</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Defense</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Opsonization</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Homeostasis</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Removal of damaged components is the normal function of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Surveillance</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Homeostasis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Defense</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Chemotaxis</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">02</div><div class="topic-title">Innate vs Adaptive Immunity</div><div class="topic-count">4 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q9</div><div class="q-text">The first line of defense against infectious agents is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Adaptive immunity</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Innate immunity</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Humoral antibodies</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Immunological memory</div>
+      </div></div>
+    </div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q10</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>Which of the following is NOT characteristic of the innate immune response?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Acts immediately against infectious agents</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Responses are broad-spectrum (non-specific)</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>There is memory or lasting protective immunity</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Such mechanisms are present since birth</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Immunological memory that allows faster and stronger attacks on re-exposure is a feature of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Anatomic barriers</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Inflammatory barriers</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Adaptive (acquired) immunity</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Innate immunity</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Innate and acquired immunity communicate and activate each other through:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Sweat and sebum</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Cytokines and adhesion molecules</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Hair and cilia</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Lysozyme and HCl</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">03</div><div class="topic-title">Cells of Innate Immunity</div><div class="topic-count">10 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q13</div><div class="q-text">The largest nucleated cell of the blood, which develops into a macrophage when it migrates into tissues, is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Neutrophil</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Lymphocyte</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Monocyte</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Eosinophil</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Kupffer cells are macrophages present in the:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Bone</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Liver</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Brain</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Lung</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q15</div><div class="q-text">The commonest leukocyte of the blood (polymorphonuclear, short-lived phagocyte) is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Basophil</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Monocyte</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Neutrophil</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Eosinophil</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Mast cells are most often associated with allergy and anaphylaxis by releasing:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Lysozyme</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Interferons</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Perforins</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Histamine</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Cells involved in allergic reactions and killing of larger parasites including helminthes are:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>NK cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Neutrophils</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Monocytes</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Eosinophils</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Basophil granules contain:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Immunoglobulins</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Heparin and vasoactive amines</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Perforins only</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Lysozyme and defensins</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q19</div><div class="q-text">NK cells kill cancerous or virus-infected cells by releasing:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Histamine</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Perforins and cytolytic chemicals</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Antibodies</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Heparin</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q20</div><div class="q-text">The killing function of NK cells is inhibited by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>MHC class II</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>C3b</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>MHC class I</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Which of the following is NOT true about NK cells?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>They are MHC restricted and need antigen presentation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>They act spontaneously without prior activation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>They are non-specific</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>They express Fc receptors for IgG</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q22</div><div class="q-text">NK cells destroy cells coated with antibodies by a mechanism called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Agglutination</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Chemotaxis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Opsonization</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Antibody dependent cellular cytotoxicity (ADCC)</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">04</div><div class="topic-title">Mechanisms of Innate Immunity</div><div class="topic-count">11 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q23</div><div class="q-text"><span class="q-badge imp">IMP</span>Which of the following is NOT one of the mechanisms of innate immunity?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Phagocytic barriers</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Fever</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Anatomic &amp; mechanical barriers</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Antibody production by plasma cells</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q24</div><div class="q-text">Peptides produced by epithelia of skin, GIT and respiratory tract that have natural antibiotic function are:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Interferons</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Defensins</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Colicins</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Perforins</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Continuous movement of cilia in the respiratory tract is an example of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Phagocytic barrier</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Chemical barrier</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Inflammatory barrier</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Anatomic &amp; mechanical barrier</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Lysozyme dissolves bacterial cell walls by breaking down:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Lipopolysaccharide</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Peptidoglycan</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Cholesterol</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Nucleic acids</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Lysozyme is present in all of the following EXCEPT:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Stomach HCl</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Skin</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Cervical secretions</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Tears</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Sweat and sebaceous secretions are antimicrobial because of their:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Acidic pH and high fatty acid content</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Antibody content</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>High protein content</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Alkaline pH</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q29</div><div class="q-text">The acidic pH of the adult vagina is maintained by normal microbiota namely:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>E. coli</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Staphylococci</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Streptococci</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Lactobacilli</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q30</div><div class="q-text">Suppression of normal microbiota by antibiotics leads to:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Allergy</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Immunological tolerance</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Superinfection with potential pathogens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Autoimmunity</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q31</div><div class="q-text">Measuring which acute phase protein is useful to assess activity of inflammatory diseases?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Interferon</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Defensin</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>C-reactive protein (CRP)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Lysozyme</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q32</div><div class="q-text">In the inflammatory response, oedema results from:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Increased capillary permeability and influx of fluids and cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Vasoconstriction</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Release of lysozyme</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Decreased tissue temperature</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q33</div><div class="q-text">Pus is formed when phagocytes:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Engulf bacteria and release lytic enzymes that damage nearby healthy cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Form the membrane attack complex</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Produce antibodies</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Release interferons only</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">05</div><div class="topic-title">Phagocytosis &amp; Macrophages</div><div class="topic-count">11 أسئلة</div></div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q34</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>Movement of cells in response to a chemical stimulus is called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Addressinazition</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Chemotaxis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Diapedesis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Marginalization</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">E</div>Opsonization</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q35</div><div class="q-text">During engulfment, the microbe is ingested by pseudopodia forming:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Lysosome</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Granule</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Phagosome</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Phagolysosome</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q36</div><div class="q-text">Fusion of the phagosome with lysosome forms:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Exosome</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Phagolysosome</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Endosome</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Phagosome</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Intracellular killing in phagocytes occurs through:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Histamine</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Complement C9 only</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Antibodies</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Oxygen radicals and nitrogen radicals (nitric oxide)</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q38</div><div class="q-text">The step of phagocytosis considered a link between innate and adaptive immunity is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Chemotaxis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Engulfment</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Binding</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Exocytosis of processed antigens after intracellular killing</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Macrophages present antigen fragments to T-cells in association with:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>MHC class II molecules</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>C5a</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgE</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>MHC class I molecules</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q40</div><div class="q-text">Soluble mediators produced by macrophages include:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Lysozyme only</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Histamine and heparin</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Perforins</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IL-1, IL-6 and TNF</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q41</div><div class="q-text">Opsonization means:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Movement towards chemical stimulus</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Promotion or enhancement of phagocytosis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Clumping of antigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Lysis of target cell by complement</div>
+      </div></div>
+    </div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q42</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>Opsonins include which one of the following?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Perforin</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>C5a</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>C9</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IFNγ</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">E</div>C3b</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q43</div><div class="q-text">The heat-labile opsonin is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgG</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>C3b</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgM</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgE</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q44</div><div class="q-text">The heat-stable opsonin is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>C3b</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>C5a</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>CRP</div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="lec2">
+  <div class="search-wrap"><span class="search-icon">🔍</span>
+    <input class="search-input" placeholder="ابحث في أسئلة Lec 2 — Antigens..." oninput="searchQ(this.value,'lec2')"></div>
+  <div class="lec-banner"><div class="lec-icon">🧬</div><div><div class="lec-title">Lecture 2 — Antigens</div><div class="lec-sub">47 سؤال · 6 مواضيع</div></div></div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">01</div><div class="topic-title">Epitopes &amp; Requirements of Immunogenicity</div><div class="topic-count">9 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Epitopes determine the ________ of the antigen molecule:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Degradability</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Foreignness</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Specificity</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Molecular weight</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Antigens having different groups of epitopes are described as:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Adjuvants</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Multivalent</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Monovalent</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Haptens</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q3</div><div class="q-text"><span class="q-badge imp">IMP</span>Which of the following is NOT a requirement of immunogenicity?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Foreignness</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Resistance to enzymatic degradation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Large molecular size</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Chemical complexity</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q4</div><div class="q-text"><span class="q-badge imp">IMP</span>The strongest immunogens are:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Nucleic acids</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Simple sugars</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Lipids</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Proteins</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q5</div><div class="q-text"><span class="q-badge imp">IMP</span>Regarding molecular size, an immunogen usually has a molecular weight not less than:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>350</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>100</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>10,000</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>1,000</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q6</div><div class="q-text"><span class="q-badge imp">IMP</span>For a substance to be immunogenic it has to be susceptible to partial enzymatic degradation during antigen processing by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Mast cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Plasma cells</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Antigen presenting cells such as macrophages</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Red blood cells</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q7</div><div class="q-text">A state of antigen-specific unresponsiveness (immunologic tolerance) can result if:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Booster doses are given</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>An adjuvant is added</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>The antigen is given parenterally</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Very high or very low doses of certain antigens are administered</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Repeated administration of booster doses to stimulate a strong immune response is related to:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Dosage number</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Degradability</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Route of administration</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Dosage amount</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Which route of administration is preferred as it induces a stronger immune response?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Parenteral</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Topical</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Both equal</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Oral</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">02</div><div class="topic-title">Haptens</div><div class="topic-count">3 أسئلة</div></div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q10</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>Which of the following is low molecular weight molecules that cannot induce specific immune response by themselves and need to combine with larger molecules to become antigenic?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Hapten</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Epitope</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Antigen</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Adjuvant</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q11</div><div class="q-text">Penicillin (MW ≈ 350) is an example of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Adjuvant</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Heterophile antigen</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Superantigen</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Hapten</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q12</div><div class="q-text">A hapten becomes antigenic when it combines with:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>An adjuvant</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Another hapten</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>MHC class I</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>A protein "carrier" molecule</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">03</div><div class="topic-title">Types of Complete Antigens</div><div class="topic-count">8 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Exotoxins, enzymes and haemolysins are examples of bacterial:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Isoantigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Cellular antigens</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Soluble antigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Somatic antigens</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Capsular antigens of pneumococci are often:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Nucleoproteins</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Lipids</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Proteins</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Polysaccharides</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Flagellar antigens are called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>O antigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>K antigens</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>H antigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Rh antigens</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Somatic "O" antigens are part of the cell wall of gram negative bacteria and are called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Endotoxins</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Exotoxins</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Haemolysins</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Superantigens</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q17</div><div class="q-text">Antibodies produced against protein coat viral antigens:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Neutralize viral infectivity</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Cause toxic shock</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Cross the placenta only</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Cause graft rejection</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Soluble nucleoproteins of influenza and mumps viruses are examples of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Protein coat antigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Isoantigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Haptens</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Soluble viral antigens</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q19</div><div class="q-text">Blood group antigens A, B and Rh antigens are examples of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Human tissue antigens (isoantigens)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Bacterial antigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Superantigens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Viral antigens</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Blood group antigens are of importance in:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Rheumatic fever</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Toxic shock syndrome</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Paternity testing only</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Blood transfusion reactions</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">04</div><div class="topic-title">MHC (HLA)</div><div class="topic-count">10 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Histocompatibility antigens are ________ molecules present on membranes of tissue cells:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Nucleic acid</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Polysaccharide</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Lipid</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Glycoprotein</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q22</div><div class="q-text">MHC antigens are also called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Haptens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Heterophile antigens</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Human leucocyte antigens (HLA)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Superantigens</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q23</div><div class="q-text">MHC class I is present on:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>B cells only</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Red blood cells only</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>All nucleated cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Antigen presenting cells only</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q24</div><div class="q-text">MHC class II is present on all of the following EXCEPT:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Dendritic cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Macrophages</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>All nucleated cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>B cells</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q25</div><div class="q-text"><span class="q-badge imp">IMP</span>Helper T cells recognize foreign antigens on APCs only when presented in the groove of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>MHC class I</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>TCR β-chain</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>MHC class II</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgD</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q26</div><div class="q-text"><span class="q-badge imp">IMP</span>Cytotoxic T cells recognize antigens on virus-infected or tumour cells only when presented by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>C3b</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>MHC class I</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>MHC class II</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Fc receptors</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q27</div><div class="q-text"><span class="q-badge imp">IMP</span>Graft rejection is due to immunologic response of the recipient to tissue grafts from a donor with:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Same blood group</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Different HLA type</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Same HLA type</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Low molecular weight antigens</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q28</div><div class="q-text"><span class="q-badge imp">IMP</span>HLA-B27 is associated with:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Rheumatic fever</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Rheumatoid arthritis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Toxic shock syndrome</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Ankylosing spondylitis</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q29</div><div class="q-text"><span class="q-badge imp">IMP</span>HLA-DR4 is associated with:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Ankylosing spondylitis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Acute rheumatic fever</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Rheumatoid arthritis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Diphtheria</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q30</div><div class="q-text"><span class="q-badge imp">IMP</span>Which of the following is NOT a significance of MHC?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Organ transplantation and graft rejection</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>MHC restriction</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Opsonization</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Paternity testing and forensic investigations</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">05</div><div class="topic-title">Superantigens</div><div class="topic-count">8 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q31</div><div class="q-text"><span class="q-badge imp">IMP</span>Superantigens stimulate T-lymphocyte proliferation:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Without regard for antigenic specificity of the T-cell</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Only in specific few T cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Through MHC class I</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>After processing by APCs</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q32</div><div class="q-text"><span class="q-badge imp">IMP</span>Superantigens bind to:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Fc receptors of mast cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>C3b receptors</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Class I MHC and TCR α-chain</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Class II MHC and the TCR β-chain</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q33</div><div class="q-text"><span class="q-badge imp">IMP</span>Superantigens interact with the MHC molecule:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Inside the peptide-binding groove</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Through the Fc portion</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Outside the peptide-binding groove</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>After antigen processing</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q34</div><div class="q-text"><span class="q-badge imp">IMP</span>Massive T-cell activation and release of large amounts of cytokines by superantigens causes:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Immunologic tolerance</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Immunological memory</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Rheumatic carditis</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Systemic toxicity similar to toxic shock</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q35</div><div class="q-text">Which of the following is NOT an example of superantigens?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Group streptococcal pyrogenic toxin A</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Toxic shock syndrome toxin</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Penicillin</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Staphylococcal enterotoxins</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q36</div><div class="q-text">The outcome of superantigen stimulation is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Anergy (harmful to host)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Memory development</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Acquired immunity (beneficial)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Opsonization</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q37</div><div class="q-text">Compared to ordinary antigens, superantigens:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Activate few specific T cells</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Do not need processing or presentation and do not develop memory</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Bind the variable regions of both α and β chains</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Need processing and develop memory</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q38</div><div class="q-text">The TCR binds superantigens by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Fc portion</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Variable regions of both α and β chains</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Constant region of α chain</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Variable region of β chain only</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">06</div><div class="topic-title">T-cell Dependence, Adjuvants &amp; Heterophile Antigens</div><div class="topic-count">9 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q39</div><div class="q-text">An antigen that depends on presence of T helper cells for activation of B cells, e.g. protein, is called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>T-cell dependent (thymus dependent)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>T-cell independent</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Superantigen</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Hapten</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q40</div><div class="q-text">T-cell independent antigens include:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Toxoids</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Polysaccharides</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>MHC molecules</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Bacterial enzymes (proteins)</div>
+      </div></div>
+    </div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q41</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>Which of the following is non-antigenic substances that when mixed with an immunogen it will enhance the immune response against the immunogen?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Hapten</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Epitope</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Antigen</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Adjuvant</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q42</div><div class="q-text">Freund's adjuvant (killed T.B., mineral oil and detergent) is used for:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Graft rejection</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Animal immunization</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Blood transfusion</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Human vaccines</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q43</div><div class="q-text">Alum-precipitated toxoid is an example of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>A superantigen</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>An adjuvant added to vaccines</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>A heterophile antigen</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>A hapten</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q44</div><div class="q-text">Which of the following is NOT a function of adjuvants?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>They increase efficiency of macrophages in processing the antigen</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>They amplify proliferation of lymphocytes</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>They decrease surface area of the antigen</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>They act as depots and prolong exposure to the antigen</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q45</div><div class="q-text">Heterophile antigens are groups of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Identical antigens in the same species</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Low molecular weight molecules</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Non-antigenic substances</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Related but not identical antigens occurring in unrelated species</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q46</div><div class="q-text">In acute rheumatic fever, antibodies to Streptococcus pyogenes cross-react with heart tissue. This is an in vivo example of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Haptens</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Adjuvants</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Heterophile antigens (cross reactivity)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Superantigens</div>
+      </div></div>
+    </div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q47</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>Cold agglutinins is an example of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Super antigen</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Heterophile antigen</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Adjuvant</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Epitope</div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="lec3">
+  <div class="search-wrap"><span class="search-icon">🔍</span>
+    <input class="search-input" placeholder="ابحث في أسئلة Lec 3 — Immunoglobulins..." oninput="searchQ(this.value,'lec3')"></div>
+  <div class="lec-banner"><div class="lec-icon">🔱</div><div><div class="lec-title">Lecture 3 — Immunoglobulins</div><div class="lec-sub">40 سؤال · 4 مواضيع</div></div></div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">01</div><div class="topic-title">General &amp; Structure of Antibody</div><div class="topic-count">8 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q1</div><div class="q-text">Immunoglobulins are a group of ________ present in the serum and tissue fluids of all mammals:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Glycoproteins</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Nucleoproteins</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Polysaccharides</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Lipoproteins</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Immunoglobulins are secreted by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>T helper cells</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Activated B cells and plasma cells</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Macrophages</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>NK cells</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q3</div><div class="q-text">The simplest antibody is a Y-shaped molecule composed of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>1 heavy and 1 light chain</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>4 heavy chains</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>2 heavy chains only</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>2 heavy and 2 light chains</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q4</div><div class="q-text">The constant regions of the same immunoglobulin class:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Have the same amino acid sequence and determine characteristic functions</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Bind the antigen</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Differ from one antibody to another</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Are called Fab</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q5</div><div class="q-text">The class of immunoglobulin (IgM, IgG, IgA, IgD, IgE) is determined by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Light chain</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Hinge region</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Variable region (Fab)</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Constant region (Fc)</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q6</div><div class="q-text">The region that interacts with antigenic determinants is called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>J chain</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Fc region</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Secretory piece</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Antigen binding region (Fab)</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Variable regions of antibody molecules differ in their:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Arrangement of amino acid sequences</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Constant region</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Number of heavy chains</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Class of immunoglobulin</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Immunoglobulins exist as:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Soluble only</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Membrane-bound or soluble in serum</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Membrane-bound only</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Intracellular only</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">02</div><div class="topic-title">Classes of Immunoglobulins</div><div class="topic-count">21 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q9</div><div class="q-text">There are 5 classes of antibodies; each class is called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Idiotype</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Epitope</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Isotype</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Hapten</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q10</div><div class="q-text">The immunoglobulin that is a monomer attached to the surface of B cells and functions during B cell development, maturation and activation is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgE</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgD</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgA</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q11</div><div class="q-text">The major circulating antibody, comprising ~80% of serum immunoglobulins after age of two years, is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgD</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgA</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgM</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q12</div><div class="q-text">IgG has how many subclasses?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>5</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>2</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>3</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>4</div>
+      </div></div>
+    </div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q13</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>Which of the following immunoglobulins can cross placenta?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgM</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgD</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgE</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">E</div>IgA</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q14</div><div class="q-text">IgG is responsible for:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Mast cell sensitization</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Mucosal immunity</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Primary immune response only</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Secondary immune response</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q15</div><div class="q-text">The immunoglobulin that confers passive immunity to the newborn is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgE</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgM</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgA</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgG</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q16</div><div class="q-text">IgM is a:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Trimer</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Monomer</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Pentamer of 5 units linked by J-chain</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Dimer with secretory piece</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q17</div><div class="q-text">The immunoglobulin released by plasma cells during the primary immune response is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgM</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgE</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgD</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q18</div><div class="q-text">The first immunoglobulin produced by the human fetus is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgE</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgA</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgM</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q19</div><div class="q-text">The most powerful agglutinin is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgE</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgM</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgD</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgG</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q20</div><div class="q-text">IgM is able to interact with complement but it:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Is the main mucosal antibody</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Has a half-life of 21 days</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Is unable to cross the placenta</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Binds mast cells</div>
+      </div></div>
+    </div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q21</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>Which of the following immunoglobulins present in high concentration in mucous secretion?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgM</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgD</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgE</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">E</div>IgA</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q22</div><div class="q-text">The secretory piece is a feature of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgA</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgE</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgM</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgG</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q23</div><div class="q-text">IgE has a half-life in serum of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>6 months</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>2 days</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>5 days</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>21 days</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q24</div><div class="q-text">IgE is responsible for allergic reactions because it binds to:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Mast cells and basophils causing histamine release</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Neutrophils causing phagocytosis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Complement causing lysis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Red cells causing agglutination</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Serum level of IgE increases in:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Newborns</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Allergic subjects and parasitic infection</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Viral infections only</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Graft rejection</div>
+      </div></div>
+    </div>
+    <div class="q-card is-dr" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q26</div><div class="q-text"><span class="q-badge dr">★ سؤال الدكتور</span>The Fc portion of IgE usually:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Binds to an Fc receptor on mast cell</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Highly variable</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Part of antigen recognition and binding</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Mediates complement fixation</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q27</div><div class="q-text">The immunoglobulin with the highest serum concentration (~1200 mg/dl) and the longest half-life (21 days) is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgM</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgE</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgA</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q28</div><div class="q-text">The immunoglobulin with the strongest complement fixation (+++) is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgA</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgD</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgM</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q29</div><div class="q-text">The immunoglobulin with the strongest opsonization activity (++++) is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>IgE</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>IgG</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>IgA</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>IgM</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">03</div><div class="topic-title">Functions of Immunoglobulins</div><div class="topic-count">7 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q30</div><div class="q-text"><span class="q-badge imp">IMP</span>Antibodies bind to and block specific sites on viruses or exotoxins, preventing them from binding to tissue receptors. This is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Neutralization</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Agglutination</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Precipitation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Opsonization</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q31</div><div class="q-text"><span class="q-badge imp">IMP</span>Antibodies bind the same determinant on more than one antigen on cell membrane causing cross-linked clumping. This is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Agglutination</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Precipitation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Opsonization</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Neutralization</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q32</div><div class="q-text"><span class="q-badge imp">IMP</span>Soluble molecules cross-linked into large insoluble complexes is called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Agglutination</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Neutralization</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Precipitation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Degranulation</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q33</div><div class="q-text"><span class="q-badge imp">IMP</span>Antibodies facilitating phagocytosis is called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Neutralization</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Opsonization</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Precipitation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Chemotaxis</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q34</div><div class="q-text"><span class="q-badge imp">IMP</span>The main mechanism used against cellular antigens is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Precipitation</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Complement activation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Mast cell degranulation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Neutralization</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q35</div><div class="q-text">The membrane attack complex is formed by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>C2b and C4b</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>C5b, C6, C7, C8 and C9</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>C1, C2, C3</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>C3a and C5a</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q36</div><div class="q-text">In the complement cascade, C3b cleaves:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>C5 into C5a and C5b</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>C3 into C3a and C3b</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>C1 complex</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>C2 into C2a and C2b</div>
+      </div></div>
+    </div>
+  </div>
+  <div class="topic-group">
+    <div class="topic-header"><div class="topic-icon">04</div><div class="topic-title">Antigen-Antibody Interactions</div><div class="topic-count">4 أسئلة</div></div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q37</div><div class="q-text">In the lock and key concept of Ag-Ab interaction, the antigen acts as:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Adjuvant</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Key which fits into a lock (specific Ab)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Lock</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Carrier</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q38</div><div class="q-text">The bonds that hold the antigen in the antibody combining site are:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Covalent bonds</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Non-covalent (hydrogen, electrostatic bonds)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Peptide bonds</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Disulfide bonds only</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q39</div><div class="q-text">Ag-Ab binding is reversible because:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>It occurs via non-covalent bonds</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>It occurs via covalent bonds</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Antibodies are pentamers</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Of complement activation</div>
+      </div></div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q40</div><div class="q-text">The specificity of an antibody for a corresponding antigen is determined by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>The Fc region</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>The J chain</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Size and shape of both the antigenic determinant and Fab</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>The class of immunoglobulin</div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="review">
+  <div class="guide-section">
+    <div class="guide-title"><div class="guide-emoji">🛡️</div><div class="guide-heading">Lec 1 — Functions of the immune system</div><div class="guide-badge">جدول مهم</div></div>
+    <div class="table-wrap"><table class="data-table">
+      <tr><th></th><th>Defense</th><th>Homeostasis</th><th>Surveillance</th></tr>
+      <tr><td>Normal</td><td>Resistance to infection</td><td>Removal of damaged components</td><td>Destruction of abnormal (mutant) cells</td></tr>
+      <tr><td>Hyper-function</td><td class="hl">Allergy</td><td class="hl">Autoimmune diseases</td><td>—</td></tr>
+      <tr><td>Hypo-function</td><td class="hl">Repeated infections</td><td>—</td><td class="hl">Malignant diseases</td></tr>
+    </table></div>
+    <ul class="tip">
+      <li><b>Monocyte</b> — largest nucleated blood cell → macrophage in tissues</li>
+      <li><b>Neutrophil</b> — commonest leukocyte · <b>Kupffer</b> — liver macrophage</li>
+      <li><b>Mast cell</b> — histamine · <b>Basophil</b> — heparin · <b>Eosinophil</b> — helminths</li>
+      <li><b>NK</b> — perforins · inhibited by <code>MHC I</code> · not MHC restricted · ADCC (Fc for IgG)</li>
+      <li><b>Lysozyme</b> — breaks <code>peptidoglycan</code> · <b>Lactobacilli</b> — vaginal acidic pH · <b>CRP</b> — acute phase</li>
+      <li><b>Opsonins</b> — <code>C3b</code> heat-labile · <code>IgG</code> heat-stable</li>
+      <li><b>Phagocytosis</b> — Chemotaxis → Binding → Engulfment (phagosome) → Phagolysosome → Killing (O₂ &amp; NO radicals) → exocytosis = link to adaptive</li>
+    </ul>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title"><div class="guide-emoji">🧬</div><div class="guide-heading">Lec 2 — Antigen vs Superantigen</div><div class="guide-badge">IMP</div></div>
+    <div class="table-wrap"><table class="data-table">
+      <tr><th></th><th>Antigens</th><th>Superantigens</th></tr>
+      <tr><td>Processing in APCs</td><td>Occurs</td><td>Does not occur</td></tr>
+      <tr><td>Presentation</td><td>Essential</td><td>Does not occur</td></tr>
+      <tr><td>Binding to MHC</td><td>Into the peptide-binding groove</td><td class="hl">Outside the groove</td></tr>
+      <tr><td>TCR bind by</td><td>Variable regions of α and β</td><td class="hl">Variable region of β only</td></tr>
+      <tr><td>T cells activated</td><td>Specific, few</td><td>Non-specific, many</td></tr>
+      <tr><td>Cytokines</td><td>Required levels</td><td>Very high, harmful</td></tr>
+      <tr><td>Memory</td><td>Occurs</td><td>Does not occur</td></tr>
+      <tr><td>Outcome</td><td>Acquired immunity</td><td class="hl">Anergy (harmful)</td></tr>
+      <tr><td>Example</td><td>Ordinary antigens</td><td>Toxic shock syndrome toxin</td></tr>
+    </table></div>
+    <ul class="tip">
+      <li><b>MHC I</b> — all nucleated cells → presents to <b>Cytotoxic T</b></li>
+      <li><b>MHC II</b> — APCs (B cells, macrophages, dendritic, activated T) → presents to <b>Helper T</b></li>
+      <li><code>HLA-B27</code> ankylosing spondylitis · <code>HLA-DR4</code> rheumatoid arthritis</li>
+    </ul>
+    <ul class="tip">
+      <li><b>Immunogenicity (imp)</b> — Foreignness · Chemical complexity (proteins strongest) · Size (≥ 10,000) · Degradability</li>
+      <li><b>Hapten</b> — low MW (penicillin ≈ 350), needs carrier protein</li>
+      <li><b>Adjuvant</b> — non-antigenic, enhances response · Freund's (animals) · Alum (vaccines)</li>
+      <li><b>Heterophile</b> — related not identical · rheumatic fever · cold agglutinins</li>
+      <li><b>T-dependent</b> — protein · <b>T-independent</b> — polysaccharide</li>
+    </ul>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title"><div class="guide-emoji">🔱</div><div class="guide-heading">Lec 3 — Classes of Immunoglobulins</div><div class="guide-badge">جدول مهم</div></div>
+    <div class="table-wrap"><table class="data-table">
+      <tr><th></th><th>IgG</th><th>IgA</th><th>IgM</th><th>IgD</th><th>IgE</th></tr>
+      <tr><td>Structure</td><td>Monomer (4 subclasses)</td><td>Secretory piece</td><td>Pentamer + J-chain</td><td>Monomer on B cells</td><td>Monomer</td></tr>
+      <tr><td>Serum conc.</td><td class="hl">1200 (highest)</td><td>300</td><td>150</td><td>Trace</td><td>0.02</td></tr>
+      <tr><td>Half-life (days)</td><td class="hl">21 (longest)</td><td>5.5</td><td>5</td><td>2–3</td><td>2</td></tr>
+      <tr><td>Complement</td><td>++</td><td>—</td><td class="hl">+++</td><td>—</td><td>—</td></tr>
+      <tr><td>Opsonization</td><td class="hl">++++</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>Mast cell</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="hl">+++</td></tr>
+      <tr><td>Placenta</td><td class="hl">+</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>Mucosal</td><td>—</td><td class="hl">+</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>Key point</td><td>Secondary response</td><td>Mucous secretions</td><td>Primary response · first in fetus · agglutinin</td><td>B cell maturation</td><td>Allergy & parasites</td></tr>
+    </table></div>
+    <ul class="tip">
+      <li><b>Functions</b> — Opsonization · Neutralization (viruses/exotoxins) · Agglutination (cell-bound) · Precipitation (soluble) · Complement activation (main vs cellular Ag) · Mast cell degranulation</li>
+      <li><b>Ag–Ab</b> — Lock &amp; key (Ag = key) · Non-covalent → Reversible · Specificity = size &amp; shape of determinant + Fab</li>
+      <li><b>Structure</b> — 2H + 2L · Fc (constant) decides class · Fab (variable) binds Ag · <code>MAC = C5b–C9</code></li>
+    </ul>
+  </div>
+</div>
+
+</main>
+
+<script>
+  let score = 0, answered = 0, showAllMode = false;
+  const TOTAL = 131;
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('btn-' + id)?.classList.add('active');
+    window.scrollTo({top: document.querySelector('.nav').offsetTop, behavior: 'smooth'});
+  }
+
+  function toggleQ(card) {
+    if (card.classList.contains('answered')) return;
+    card.classList.toggle('open');
+  }
+
+  function selectOpt(e, opt) {
+    e.stopPropagation();
+    const card = opt.closest('.q-card');
+    if (card.classList.contains('answered') || showAllMode) return;
+    if (opt.classList.contains('correct')) { score++; opt.classList.add('pop-animation'); }
+    else opt.classList.add('wrong-selected');
+    answered++;
+    card.classList.add('answered', 'open');
+    updateScore();
+  }
+
+  function updateScore() { document.getElementById('score-display').textContent = score + '/' + TOTAL; }
+
+  function showAllAnswers() {
+    showAllMode = true;
+    document.querySelectorAll('.q-card').forEach(c => c.classList.add('open'));
+    document.body.classList.add('show-all-mode');
+  }
+
+  function retest() {
+    score = 0; answered = 0; showAllMode = false;
+    document.body.classList.remove('show-all-mode');
+    document.querySelectorAll('.q-card').forEach(c => {
+      c.classList.remove('answered', 'open', 'pop-animation');
+      c.querySelectorAll('.option').forEach(o => o.classList.remove('wrong-selected', 'pop-animation'));
+    });
+    updateScore();
+    showSection('lec1');
+  }
+
+  function searchQ(val, sec) {
+    const v = val.trim().toLowerCase();
+    document.querySelectorAll('#' + sec + ' .q-card').forEach(card => {
+      const txt = card.textContent.toLowerCase();
+      card.style.display = (!v || txt.includes(v)) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
+

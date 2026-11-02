@@ -1,0 +1,3014 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>أسئلة الامتحان — Muscle Test 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --bg: #0a0c10;
+      --bg2: #0f1218;
+      --bg3: #141820;
+      --card: #13171f;
+      --card2: #1a1f2a;
+      --border: #1e2535;
+      --border2: #2a3248;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --dim: #4a5568;
+      --blue: #3b82f6;
+      --blue2: #1d4ed8;
+      --cyan: #06b6d4;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --orange: #f97316;
+      --glow-blue: 0 0 20px rgba(59, 130, 246, 0.25);
+      --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 50px 0 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.06) 0%, transparent 100%);
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--blue);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .header-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      animation: fadeDown 0.6s 0.1s ease both;
+      background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 14px;
+      animation: fadeDown 0.6s 0.2s ease both;
+      direction: ltr;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      animation: fadeDown 0.6s 0.3s ease both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--blue);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 12, 16, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 14px 18px;
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      color: var(--text);
+    }
+
+    .nav-btn.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .topic-group {
+      margin-bottom: 32px;
+    }
+
+    .topic-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topic-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .topic-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .topic-count {
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .q-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .q-card:hover {
+      border-color: var(--border2);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .q-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      cursor: pointer;
+    }
+
+    .q-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .q-text {
+      font-size: 14.5px;
+      font-weight: 600;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .q-toggle {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 12px;
+      transition: all 0.2s;
+      margin-top: 1px;
+    }
+
+    .q-card.open .q-toggle {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: var(--blue);
+      transform: rotate(180deg);
+    }
+
+    .q-body {
+      display: none;
+      padding: 0 20px 18px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .q-card.open .q-body {
+      display: block;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      font-size: 13.5px;
+      line-height: 1.5;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      border-color: var(--border2);
+      background: var(--card);
+    }
+
+    .q-card.answered .option,
+    .show-all-mode .option {
+      pointer-events: none;
+    }
+
+    .q-card.answered .option.correct,
+    .show-all-mode .option.correct {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.07);
+      color: #6ee7b7;
+      opacity: 1;
+    }
+
+    .q-card.answered .option:not(.correct):not(.wrong-selected),
+    .show-all-mode .option:not(.correct) {
+      opacity: 0.45;
+    }
+
+    .opt-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .q-card.answered .option.correct .opt-letter,
+    .show-all-mode .option.correct .opt-letter {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--green);
+    }
+
+    .q-card.answered .option.correct .opt-letter::after,
+    .show-all-mode .option.correct .opt-letter::after {
+      content: '✓';
+    }
+
+    .option.wrong-selected {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.07);
+      color: #fca5a5;
+      opacity: 1 !important;
+    }
+
+    .option.wrong-selected .opt-letter {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: var(--red);
+    }
+
+    .option.wrong-selected .opt-letter::after {
+      content: '✗';
+    }
+
+    @keyframes popCorrect {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+        background: rgba(16, 185, 129, 0.15);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .pop-animation {
+      animation: popCorrect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .note-box {
+      margin-top: 12px;
+      background: rgba(245, 158, 11, 0.07);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-right: 3px solid var(--yellow);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #fcd34d;
+      line-height: 1.7;
+      direction: ltr;
+    }
+
+    .note-box.blue {
+      background: rgba(59, 130, 246, 0.07);
+      border-color: rgba(59, 130, 246, 0.2);
+      border-right-color: var(--blue);
+      color: #93c5fd;
+    }
+
+    .note-box.red {
+      background: rgba(239, 68, 68, 0.07);
+      border-color: rgba(239, 68, 68, 0.2);
+      border-right-color: var(--red);
+      color: #fca5a5;
+    }
+
+    .search-wrap {
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      padding: 14px 20px 14px 48px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input::placeholder {
+      color: var(--dim);
+    }
+
+    .search-input:focus {
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dim);
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .ic-blue {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--blue);
+    }
+
+    .ic-green {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--green);
+    }
+
+    .ic-yellow {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--yellow);
+    }
+
+    .ic-red {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--red);
+    }
+
+    .ic-purple {
+      background: rgba(139, 92, 246, 0.12);
+      color: var(--purple);
+    }
+
+    .ic-cyan {
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--cyan);
+    }
+
+    .ic-orange {
+      background: rgba(249, 115, 22, 0.12);
+      color: var(--orange);
+    }
+
+    .ic-pink {
+      background: rgba(236, 72, 153, 0.12);
+      color: var(--pink);
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 10px;
+    }
+
+    .summary-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .sum-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .sum-row:hover {
+      border-color: var(--border2);
+    }
+
+    .sum-key {
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      flex: 1;
+      border-left: 1px solid var(--border);
+    }
+
+    .sum-val {
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      width: 220px;
+      background: var(--bg2);
+      flex-shrink: 0;
+    }
+
+    @media (max-width:640px) {
+      .stats-bar {
+        gap: 24px;
+      }
+
+      .sum-val {
+        width: 150px;
+        font-size: 11px;
+      }
+
+      .nav-btn {
+        padding: 12px 12px;
+        font-size: 12px;
+      }
+    }
+
+    .metabolism-badge {
+      display: inline-block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: var(--red);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-right: 8px;
+      vertical-align: middle;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .q-card.excluded {
+      opacity: 0.7;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+  </style>
+<body>
+<header>
+  <div class="header-badge">Muscle Test 2 Exam</div>
+  <h1>أسئلة الامتحان المجمّعة</h1>
+  <p class="subtitle">Hip · Face Muscles · MMT · Nerves · Neck & Trunk · Knee + Foot & Ankle · MCQs</p>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">120</div>
+      <div class="stat-label">سؤال MCQ</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">9</div>
+      <div class="stat-label">موضوع</div>
+    </div>
+    <div class="stat" id="score-stat">
+      <div class="stat-num">0/120</div>
+      <div class="stat-label">الإجابات الصحيحة</div>
+    </div>
+  </div>
+</header>
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('mcq')">📋 MCQ</button>
+  <button class="nav-btn" onclick="showSection('summary')">⚡ ملخص سريع</button>
+  <button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار كل الإجابات</button>
+  <button class="nav-btn" onclick="retest()">🔄 إعادة الاختبار</button>
+</nav>
+<main>
+  <div class="section active" id="mcq">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" placeholder="... ابحث عن سؤال" oninput="searchQ(this.value)">
+    </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-blue">🦵</div>
+      <div class="topic-title">Hip</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q1</div>
+        <div class="q-text">Prime mover of Hip Flexion:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Iliopsoas</div>
+          <div class="option wrong"><div class="opt-letter"></div>Rectus Femoris</div>
+          <div class="option wrong"><div class="opt-letter"></div>Sartorius</div>
+          <div class="option wrong"><div class="opt-letter"></div>TFL</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q2</div>
+        <div class="q-text">Nerve supply of Iliacus:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+          <div class="option correct"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Sciatic</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q3</div>
+        <div class="q-text">Positive Trendelenburg indicates weakness of:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Gluteus Maximus</div>
+          <div class="option wrong"><div class="opt-letter"></div>Quadriceps</div>
+          <div class="option correct"><div class="opt-letter"></div>Gluteus Medius</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hamstrings</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q4</div>
+        <div class="q-text">Positive Ober test indicates:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Hamstring tightness</div>
+          <div class="option wrong"><div class="opt-letter"></div>Rectus Femoris tightness</div>
+          <div class="option correct"><div class="opt-letter"></div>TFL / IT Band tightness</div>
+          <div class="option wrong"><div class="opt-letter"></div>Piriformis tightness</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q5</div>
+        <div class="q-text">Positive Ely test indicates:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Iliopsoas tightness</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hamstring tightness</div>
+          <div class="option correct"><div class="opt-letter"></div>Rectus Femoris tightness</div>
+          <div class="option wrong"><div class="opt-letter"></div>Adductor tightness</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q6</div>
+        <div class="q-text">Thomas test mainly detects:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Knee pathology</div>
+          <div class="option wrong"><div class="opt-letter"></div>Ankle pathology</div>
+          <div class="option correct"><div class="opt-letter"></div>Hip Flexor tightness</div>
+          <div class="option wrong"><div class="opt-letter"></div>Foot deformity</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q7</div>
+        <div class="q-text">Sartorius action:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Hip Flexion + Adduction + IR</div>
+          <div class="option correct"><div class="opt-letter"></div>Hip Flexion + Abduction + ER</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hip Extension + ER</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hip Flexion only</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q8</div>
+        <div class="q-text">TFL action:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Hip Extension + IR</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hip Flexion + ER</div>
+          <div class="option correct"><div class="opt-letter"></div>Hip Flexion + Abduction + IR</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hip Extension + Abduction</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q9</div>
+        <div class="q-text">Hip Abduction nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+          <div class="option correct"><div class="opt-letter"></div>Superior Gluteal</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q10</div>
+        <div class="q-text">Hip Extension nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Sciatic</div>
+          <div class="option correct"><div class="opt-letter"></div>Inferior Gluteal</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-green">🎭</div>
+      <div class="topic-title">Face Muscles</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q11</div>
+        <div class="q-text">Frontalis action:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Close eye</div>
+          <div class="option wrong"><div class="opt-letter"></div>Smile</div>
+          <div class="option correct"><div class="opt-letter"></div>Raise eyebrows</div>
+          <div class="option wrong"><div class="opt-letter"></div>Blow cheek</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q12</div>
+        <div class="q-text">Orbicularis Oculi:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Open eye</div>
+          <div class="option wrong"><div class="opt-letter"></div>Smile</div>
+          <div class="option correct"><div class="opt-letter"></div>Close eye</div>
+          <div class="option wrong"><div class="opt-letter"></div>Pout</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q13</div>
+        <div class="q-text">Levator Palpebrae weakness causes:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Smile</div>
+          <div class="option wrong"><div class="opt-letter"></div>Diplopia</div>
+          <div class="option correct"><div class="opt-letter"></div>Ptosis</div>
+          <div class="option wrong"><div class="opt-letter"></div>Nystagmus</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q14</div>
+        <div class="q-text">Kissing muscle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Buccinator</div>
+          <div class="option wrong"><div class="opt-letter"></div>Mentalis</div>
+          <div class="option correct"><div class="opt-letter"></div>Orbicularis Oris</div>
+          <div class="option wrong"><div class="opt-letter"></div>Risorius</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q15</div>
+        <div class="q-text">Smiling muscle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Mentalis</div>
+          <div class="option wrong"><div class="opt-letter"></div>Buccinator</div>
+          <div class="option correct"><div class="opt-letter"></div>Zygomaticus Major</div>
+          <div class="option wrong"><div class="opt-letter"></div>Procerus</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q16</div>
+        <div class="q-text">Blow cheeks:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Orbicularis Oris</div>
+          <div class="option wrong"><div class="opt-letter"></div>Mentalis</div>
+          <div class="option correct"><div class="opt-letter"></div>Buccinator</div>
+          <div class="option wrong"><div class="opt-letter"></div>Frontalis</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q17</div>
+        <div class="q-text">Pouting expression:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Risorius</div>
+          <div class="option wrong"><div class="opt-letter"></div>Zygomaticus</div>
+          <div class="option correct"><div class="opt-letter"></div>Mentalis</div>
+          <div class="option wrong"><div class="opt-letter"></div>Procerus</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q18</div>
+        <div class="q-text">LR6 means:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Levator Rectus</div>
+          <div class="option correct"><div class="opt-letter"></div>Lateral Rectus CN VI</div>
+          <div class="option wrong"><div class="opt-letter"></div>Lateral Rotation</div>
+          <div class="option wrong"><div class="opt-letter"></div>Long Rectus</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q19</div>
+        <div class="q-text">SO4 means:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Superior Rectus</div>
+          <div class="option wrong"><div class="opt-letter"></div>Inferior Oblique</div>
+          <div class="option correct"><div class="opt-letter"></div>Superior Oblique CN IV</div>
+          <div class="option wrong"><div class="opt-letter"></div>Superior Rotation</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q20</div>
+        <div class="q-text">AO3 means:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>All muscles CN IV</div>
+          <div class="option wrong"><div class="opt-letter"></div>All muscles CN VI</div>
+          <div class="option correct"><div class="opt-letter"></div>All others CN III</div>
+          <div class="option wrong"><div class="opt-letter"></div>All ocular CN II</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-yellow">💪</div>
+      <div class="topic-title">MMT</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q21</div>
+        <div class="q-text">Grade 0:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Trace contraction</div>
+          <div class="option wrong"><div class="opt-letter"></div>Full ROM GE</div>
+          <div class="option correct"><div class="opt-letter"></div>No contraction</div>
+          <div class="option wrong"><div class="opt-letter"></div>Against gravity</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q22</div>
+        <div class="q-text">Grade 1:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Full ROM</div>
+          <div class="option correct"><div class="opt-letter"></div>Contraction only</div>
+          <div class="option wrong"><div class="opt-letter"></div>Moderate resistance</div>
+          <div class="option wrong"><div class="opt-letter"></div>Maximum resistance</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q23</div>
+        <div class="q-text">Grade 2:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Against gravity</div>
+          <div class="option wrong"><div class="opt-letter"></div>Moderate resistance</div>
+          <div class="option correct"><div class="opt-letter"></div>Full ROM Gravity Eliminated</div>
+          <div class="option wrong"><div class="opt-letter"></div>Max resistance</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q24</div>
+        <div class="q-text">Grade 3:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Trace contraction</div>
+          <div class="option correct"><div class="opt-letter"></div>Full ROM Against Gravity</div>
+          <div class="option wrong"><div class="opt-letter"></div>Resistance</div>
+          <div class="option wrong"><div class="opt-letter"></div>Max resistance</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q25</div>
+        <div class="q-text">Grade 5:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Moderate resistance</div>
+          <div class="option wrong"><div class="opt-letter"></div>Against gravity only</div>
+          <div class="option correct"><div class="opt-letter"></div>Max resistance</div>
+          <div class="option wrong"><div class="opt-letter"></div>Gravity eliminated</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q26</div>
+        <div class="q-text">Concentric contraction:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Lengthens</div>
+          <div class="option wrong"><div class="opt-letter"></div>No movement</div>
+          <div class="option correct"><div class="opt-letter"></div>Shortens</div>
+          <div class="option wrong"><div class="opt-letter"></div>Passive</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q27</div>
+        <div class="q-text">Eccentric contraction:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Shortens</div>
+          <div class="option wrong"><div class="opt-letter"></div>No movement</div>
+          <div class="option correct"><div class="opt-letter"></div>Lengthens while contracting</div>
+          <div class="option wrong"><div class="opt-letter"></div>Relaxation</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q28</div>
+        <div class="q-text">Isometric:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Movement occurs</div>
+          <div class="option wrong"><div class="opt-letter"></div>Muscle shortens</div>
+          <div class="option wrong"><div class="opt-letter"></div>Muscle lengthens</div>
+          <div class="option correct"><div class="opt-letter"></div>No movement</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q29</div>
+        <div class="q-text">Prime mover:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Helper</div>
+          <div class="option wrong"><div class="opt-letter"></div>Opposite muscle</div>
+          <div class="option correct"><div class="opt-letter"></div>Main muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Fixator</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q30</div>
+        <div class="q-text">Synergist:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Opposite muscle</div>
+          <div class="option correct"><div class="opt-letter"></div>Helper muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Main muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Stabilizer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-red">🧠</div>
+      <div class="topic-title">Nerves</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q31</div>
+        <div class="q-text">Femoral roots:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>L1-2-3</div>
+          <div class="option correct"><div class="opt-letter"></div>L2-3-4</div>
+          <div class="option wrong"><div class="opt-letter"></div>L4-5-S1</div>
+          <div class="option wrong"><div class="opt-letter"></div>L5-S1-S2</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q32</div>
+        <div class="q-text">Femoral action:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Adduction</div>
+          <div class="option wrong"><div class="opt-letter"></div>Abduction</div>
+          <div class="option correct"><div class="opt-letter"></div>Hip Flexion + Knee Extension</div>
+          <div class="option wrong"><div class="opt-letter"></div>Plantar flexion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q33</div>
+        <div class="q-text">Obturator action:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Flexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Extension</div>
+          <div class="option correct"><div class="opt-letter"></div>Adduction</div>
+          <div class="option wrong"><div class="opt-letter"></div>Abduction</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q34</div>
+        <div class="q-text">Superior Gluteal roots:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>L2-3-4</div>
+          <div class="option wrong"><div class="opt-letter"></div>L5-S1-S2</div>
+          <div class="option correct"><div class="opt-letter"></div>L4-5-S1</div>
+          <div class="option wrong"><div class="opt-letter"></div>S1-S2-S3</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q35</div>
+        <div class="q-text">Inferior Gluteal roots:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>L4-5-S1</div>
+          <div class="option correct"><div class="opt-letter"></div>L5-S1-S2</div>
+          <div class="option wrong"><div class="opt-letter"></div>L2-3-4</div>
+          <div class="option wrong"><div class="opt-letter"></div>S2-S3-S4</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q36</div>
+        <div class="q-text">Largest nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+          <div class="option correct"><div class="opt-letter"></div>Sciatic</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q37</div>
+        <div class="q-text">Foot Drop commonly:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Tibial injury</div>
+          <div class="option wrong"><div class="opt-letter"></div>Femoral injury</div>
+          <div class="option correct"><div class="opt-letter"></div>Common Peroneal injury</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator injury</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q38</div>
+        <div class="q-text">Tibial nerve action:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Dorsiflexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Eversion</div>
+          <div class="option correct"><div class="opt-letter"></div>Plantar Flexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Knee Extension</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q39</div>
+        <div class="q-text">Meralgia Paresthetica:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Sciatic</div>
+          <div class="option correct"><div class="opt-letter"></div>Lateral Femoral Cutaneous</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q40</div>
+        <div class="q-text">Cannot stand on toes:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Peroneal</div>
+          <div class="option correct"><div class="opt-letter"></div>Tibial</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-purple">🧍</div>
+      <div class="topic-title">Neck & Trunk</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q41</div>
+        <div class="q-text">Cervical Flexion:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Rectus Abdominis</div>
+          <div class="option correct"><div class="opt-letter"></div>SCM</div>
+          <div class="option wrong"><div class="opt-letter"></div>Erector Spinae</div>
+          <div class="option wrong"><div class="opt-letter"></div>Trapezius</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q42</div>
+        <div class="q-text">Right SCM rotates head:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Right</div>
+          <div class="option correct"><div class="opt-letter"></div>Left</div>
+          <div class="option wrong"><div class="opt-letter"></div>Up</div>
+          <div class="option wrong"><div class="opt-letter"></div>Down</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q43</div>
+        <div class="q-text">Weak SCM substitution:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Masseter</div>
+          <div class="option wrong"><div class="opt-letter"></div>Temporalis</div>
+          <div class="option correct"><div class="opt-letter"></div>Platysma</div>
+          <div class="option wrong"><div class="opt-letter"></div>Buccinator</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q44</div>
+        <div class="q-text">Trunk Flexion:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Erector Spinae</div>
+          <div class="option wrong"><div class="opt-letter"></div>Oblique</div>
+          <div class="option correct"><div class="opt-letter"></div>Rectus Abdominis</div>
+          <div class="option wrong"><div class="opt-letter"></div>SCM</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q45</div>
+        <div class="q-text">Trunk Extension:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Rectus Abdominis</div>
+          <div class="option wrong"><div class="opt-letter"></div>Oblique</div>
+          <div class="option correct"><div class="opt-letter"></div>Erector Spinae</div>
+          <div class="option wrong"><div class="opt-letter"></div>SCM</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q46</div>
+        <div class="q-text">Rotate trunk right:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Right EO + Right IO</div>
+          <div class="option wrong"><div class="opt-letter"></div>Right EO + Left IO</div>
+          <div class="option correct"><div class="opt-letter"></div>Left EO + Right IO</div>
+          <div class="option wrong"><div class="opt-letter"></div>Left EO + Left IO</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q47</div>
+        <div class="q-text">Umbilicus deviation toward:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Weak side</div>
+          <div class="option wrong"><div class="opt-letter"></div>Opposite side</div>
+          <div class="option correct"><div class="opt-letter"></div>Stronger side</div>
+          <div class="option wrong"><div class="opt-letter"></div>Midline</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q48</div>
+        <div class="q-text">Grade 5 trunk flexion:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Arms beside</div>
+          <div class="option wrong"><div class="opt-letter"></div>Arms crossed</div>
+          <div class="option correct"><div class="opt-letter"></div>Hands behind head</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hands on abdomen</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q49</div>
+        <div class="q-text">Cervical Extension:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Look down</div>
+          <div class="option wrong"><div class="opt-letter"></div>Rotate head</div>
+          <div class="option correct"><div class="opt-letter"></div>Look up</div>
+          <div class="option wrong"><div class="opt-letter"></div>Side bend</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q50</div>
+        <div class="q-text">Grade 3 Cervical Extension:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Supine</div>
+          <div class="option wrong"><div class="opt-letter"></div>Sitting</div>
+          <div class="option correct"><div class="opt-letter"></div>Prone with head off table</div>
+          <div class="option wrong"><div class="opt-letter"></div>Side lying</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-cyan">🦶</div>
+      <div class="topic-title">Knee + Foot & Ankle</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q51</div>
+        <div class="q-text">Prime mover Knee Extension:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Hamstrings</div>
+          <div class="option correct"><div class="opt-letter"></div>Quadriceps</div>
+          <div class="option wrong"><div class="opt-letter"></div>Gastrocnemius</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibialis Anterior</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q52</div>
+        <div class="q-text">Knee Flexion nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+          <div class="option correct"><div class="opt-letter"></div>Sciatic</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q53</div>
+        <div class="q-text">Biceps Femoris:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Medial rotation</div>
+          <div class="option correct"><div class="opt-letter"></div>Lateral rotation</div>
+          <div class="option wrong"><div class="opt-letter"></div>Dorsiflexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Eversion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q54</div>
+        <div class="q-text">Semitendinosus:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Lateral rotation</div>
+          <div class="option correct"><div class="opt-letter"></div>Medial rotation</div>
+          <div class="option wrong"><div class="opt-letter"></div>Dorsiflexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Extension</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q55</div>
+        <div class="q-text">Tibialis Anterior:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>PF + Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>PF + Eversion</div>
+          <div class="option correct"><div class="opt-letter"></div>DF + Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>DF + Eversion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q56</div>
+        <div class="q-text">Tibialis Posterior:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>DF + Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>DF + Eversion</div>
+          <div class="option correct"><div class="opt-letter"></div>PF + Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>PF + Eversion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q57</div>
+        <div class="q-text">Gastrocnemius action:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Dorsiflexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Eversion</div>
+          <div class="option correct"><div class="opt-letter"></div>Plantar Flexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Adduction</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q58</div>
+        <div class="q-text">Peroneus Longus:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Dorsiflexion</div>
+          <div class="option correct"><div class="opt-letter"></div>PF + Eversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Knee Flexion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q59</div>
+        <div class="q-text">Great Toe Flexion:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>EHL</div>
+          <div class="option wrong"><div class="opt-letter"></div>EDL</div>
+          <div class="option correct"><div class="opt-letter"></div>Flexor Hallucis Brevis</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibialis Posterior</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q60</div>
+        <div class="q-text">Great Toe Extension:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>FHB</div>
+          <div class="option wrong"><div class="opt-letter"></div>FDB</div>
+          <div class="option correct"><div class="opt-letter"></div>EHL</div>
+          <div class="option wrong"><div class="opt-letter"></div>Peroneus Longus</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-orange">🔥</div>
+      <div class="topic-title">🔥 MCQ 61 → 80 (Level Medium)</div>
+      <div class="topic-count">20 سؤال</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q61</div>
+        <div class="q-text">Hip Abduction ROM:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>30°</div>
+          <div class="option correct"><div class="opt-letter"></div>45°</div>
+          <div class="option wrong"><div class="opt-letter"></div>90°</div>
+          <div class="option wrong"><div class="opt-letter"></div>120°</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q62</div>
+        <div class="q-text">Hip Internal Rotation ROM:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>20°</div>
+          <div class="option wrong"><div class="opt-letter"></div>30°</div>
+          <div class="option correct"><div class="opt-letter"></div>45°</div>
+          <div class="option wrong"><div class="opt-letter"></div>90°</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q63</div>
+        <div class="q-text">Hip Flexion ROM:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>45°</div>
+          <div class="option wrong"><div class="opt-letter"></div>90°</div>
+          <div class="option correct"><div class="opt-letter"></div>120°</div>
+          <div class="option wrong"><div class="opt-letter"></div>135°</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q64</div>
+        <div class="q-text">Knee Flexion ROM:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>90°</div>
+          <div class="option wrong"><div class="opt-letter"></div>120°</div>
+          <div class="option correct"><div class="opt-letter"></div>135°</div>
+          <div class="option wrong"><div class="opt-letter"></div>150°</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q65</div>
+        <div class="q-text">Ankle Dorsiflexion ROM:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>20°</div>
+          <div class="option wrong"><div class="opt-letter"></div>35°</div>
+          <div class="option wrong"><div class="opt-letter"></div>45°</div>
+          <div class="option wrong"><div class="opt-letter"></div>50°</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q66</div>
+        <div class="q-text">Ankle Eversion ROM:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>35°</div>
+          <div class="option wrong"><div class="opt-letter"></div>45°</div>
+          <div class="option correct"><div class="opt-letter"></div>15°</div>
+          <div class="option wrong"><div class="opt-letter"></div>20°</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q67</div>
+        <div class="q-text">Thomas Test positive indicates:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Meniscus injury</div>
+          <div class="option wrong"><div class="opt-letter"></div>ACL injury</div>
+          <div class="option correct"><div class="opt-letter"></div>Hip Flexor Tightness</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibial injury</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q68</div>
+        <div class="q-text">FABER means:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Flexion Adduction ER</div>
+          <div class="option correct"><div class="opt-letter"></div>Flexion Abduction ER</div>
+          <div class="option wrong"><div class="opt-letter"></div>Flexion Abduction IR</div>
+          <div class="option wrong"><div class="opt-letter"></div>Flexion Extension ER</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q69</div>
+        <div class="q-text">Piriformis belongs to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Hip Flexors</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hip Adductors</div>
+          <div class="option correct"><div class="opt-letter"></div>Hip External Rotators</div>
+          <div class="option wrong"><div class="opt-letter"></div>Hip Abductors</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q70</div>
+        <div class="q-text">Sartorius nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Sciatic</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+          <div class="option correct"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q71</div>
+        <div class="q-text">TFL nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+          <div class="option correct"><div class="opt-letter"></div>Superior Gluteal</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q72</div>
+        <div class="q-text">Iliopsoas nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+          <div class="option correct"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Superior Gluteal</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q73</div>
+        <div class="q-text">Quadriceps reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Achilles</div>
+          <div class="option wrong"><div class="opt-letter"></div>Biceps</div>
+          <div class="option correct"><div class="opt-letter"></div>Knee Jerk</div>
+          <div class="option wrong"><div class="opt-letter"></div>Babinski</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q74</div>
+        <div class="q-text">Tibial nerve sensory area:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Dorsum foot</div>
+          <div class="option wrong"><div class="opt-letter"></div>Lateral leg</div>
+          <div class="option correct"><div class="opt-letter"></div>Sole of foot</div>
+          <div class="option wrong"><div class="opt-letter"></div>Anterior thigh</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q75</div>
+        <div class="q-text">Common Peroneal sensory area:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Sole</div>
+          <div class="option wrong"><div class="opt-letter"></div>Medial thigh</div>
+          <div class="option correct"><div class="opt-letter"></div>Dorsum of foot</div>
+          <div class="option wrong"><div class="opt-letter"></div>Buttock</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q76</div>
+        <div class="q-text">Zygomaticus Major causes:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Pout</div>
+          <div class="option wrong"><div class="opt-letter"></div>Blow</div>
+          <div class="option correct"><div class="opt-letter"></div>Smile</div>
+          <div class="option wrong"><div class="opt-letter"></div>Close eye</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q77</div>
+        <div class="q-text">Risorius causes:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Smile</div>
+          <div class="option wrong"><div class="opt-letter"></div>Pout</div>
+          <div class="option correct"><div class="opt-letter"></div>Grimace</div>
+          <div class="option wrong"><div class="opt-letter"></div>Close eye</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q78</div>
+        <div class="q-text">Mentalis causes:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Smile</div>
+          <div class="option wrong"><div class="opt-letter"></div>Blow</div>
+          <div class="option wrong"><div class="opt-letter"></div>Close eye</div>
+          <div class="option correct"><div class="opt-letter"></div>Pouting</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q79</div>
+        <div class="q-text">Buccinator is tested by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Smile</div>
+          <div class="option wrong"><div class="opt-letter"></div>Pout</div>
+          <div class="option correct"><div class="opt-letter"></div>Puff cheeks</div>
+          <div class="option wrong"><div class="opt-letter"></div>Raise eyebrows</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q80</div>
+        <div class="q-text">Frontalis produces:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Eye closure</div>
+          <div class="option wrong"><div class="opt-letter"></div>Smile</div>
+          <div class="option correct"><div class="opt-letter"></div>Forehead wrinkles</div>
+          <div class="option wrong"><div class="opt-letter"></div>Lip protrusion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-pink">⚠️</div>
+      <div class="topic-title">🔥 MCQ 81 → 100 (Doctor Traps)</div>
+      <div class="topic-count">20 سؤال</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q81</div>
+        <div class="q-text">Grade 2 MMT means:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Full ROM AG</div>
+          <div class="option wrong"><div class="opt-letter"></div>Trace contraction</div>
+          <div class="option correct"><div class="opt-letter"></div>Full ROM GE</div>
+          <div class="option wrong"><div class="opt-letter"></div>Max resistance</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q82</div>
+        <div class="q-text">Grade 4 means:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Trace contraction</div>
+          <div class="option wrong"><div class="opt-letter"></div>AG only</div>
+          <div class="option correct"><div class="opt-letter"></div>AG + Moderate Resistance</div>
+          <div class="option wrong"><div class="opt-letter"></div>Max Resistance</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q83</div>
+        <div class="q-text">Break Test:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Patient moves</div>
+          <div class="option correct"><div class="opt-letter"></div>Patient holds position</div>
+          <div class="option wrong"><div class="opt-letter"></div>No resistance</div>
+          <div class="option wrong"><div class="opt-letter"></div>Passive test</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q84</div>
+        <div class="q-text">Active Resistance Test:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Hold only</div>
+          <div class="option wrong"><div class="opt-letter"></div>Passive</div>
+          <div class="option correct"><div class="opt-letter"></div>Patient moves against resistance</div>
+          <div class="option wrong"><div class="opt-letter"></div>No movement</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q85</div>
+        <div class="q-text">Prime Mover is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Opposite muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Helper</div>
+          <div class="option correct"><div class="opt-letter"></div>Main muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Stabilizer</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q86</div>
+        <div class="q-text">Antagonist:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Main muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Helper</div>
+          <div class="option wrong"><div class="opt-letter"></div>Stabilizer</div>
+          <div class="option correct"><div class="opt-letter"></div>Opposite action muscle</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q87</div>
+        <div class="q-text">Synergist:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Opposite muscle</div>
+          <div class="option correct"><div class="opt-letter"></div>Assisting muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Stabilizer</div>
+          <div class="option wrong"><div class="opt-letter"></div>Neutralizer</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q88</div>
+        <div class="q-text">Neutralizer:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Produces movement</div>
+          <div class="option wrong"><div class="opt-letter"></div>Assists movement</div>
+          <div class="option correct"><div class="opt-letter"></div>Prevents unwanted movement</div>
+          <div class="option wrong"><div class="opt-letter"></div>Fixes limb</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q89</div>
+        <div class="q-text">Stabilizer:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Opposite muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Main muscle</div>
+          <div class="option correct"><div class="opt-letter"></div>Provides stable base</div>
+          <div class="option wrong"><div class="opt-letter"></div>Assisting muscle</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q90</div>
+        <div class="q-text">Isometric contraction:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Shortens</div>
+          <div class="option wrong"><div class="opt-letter"></div>Lengthens</div>
+          <div class="option correct"><div class="opt-letter"></div>No change in length</div>
+          <div class="option wrong"><div class="opt-letter"></div>Passive</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q91</div>
+        <div class="q-text">Concentric contraction:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Lengthens</div>
+          <div class="option wrong"><div class="opt-letter"></div>No movement</div>
+          <div class="option correct"><div class="opt-letter"></div>Shortens</div>
+          <div class="option wrong"><div class="opt-letter"></div>Passive</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q92</div>
+        <div class="q-text">Eccentric contraction:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Shortens</div>
+          <div class="option wrong"><div class="opt-letter"></div>Passive</div>
+          <div class="option wrong"><div class="opt-letter"></div>No movement</div>
+          <div class="option correct"><div class="opt-letter"></div>Lengthens under tension</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q93</div>
+        <div class="q-text">Outer Range:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>End of motion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Middle motion</div>
+          <div class="option correct"><div class="opt-letter"></div>Full stretch → Mid ROM</div>
+          <div class="option wrong"><div class="opt-letter"></div>Mid ROM → End</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q94</div>
+        <div class="q-text">Inner Range:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Stretch → Mid</div>
+          <div class="option wrong"><div class="opt-letter"></div>Mid → Stretch</div>
+          <div class="option correct"><div class="opt-letter"></div>Mid → Full shortening</div>
+          <div class="option wrong"><div class="opt-letter"></div>Entire ROM</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q95</div>
+        <div class="q-text">Empty End Feel:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Bone contact</div>
+          <div class="option wrong"><div class="opt-letter"></div>Muscle stretch</div>
+          <div class="option correct"><div class="opt-letter"></div>Pain limits movement</div>
+          <div class="option wrong"><div class="opt-letter"></div>Fat contact</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q96</div>
+        <div class="q-text">Springy End Feel:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>OA</div>
+          <div class="option wrong"><div class="opt-letter"></div>Capsule</div>
+          <div class="option wrong"><div class="opt-letter"></div>Pain</div>
+          <div class="option correct"><div class="opt-letter"></div>Meniscus lesion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q97</div>
+        <div class="q-text">Firm End Feel:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Bone</div>
+          <div class="option wrong"><div class="opt-letter"></div>Fat</div>
+          <div class="option correct"><div class="opt-letter"></div>Capsule/Ligament</div>
+          <div class="option wrong"><div class="opt-letter"></div>Pain</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q98</div>
+        <div class="q-text">Soft Approximation:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Bone contact</div>
+          <div class="option wrong"><div class="opt-letter"></div>Ligament stretch</div>
+          <div class="option correct"><div class="opt-letter"></div>Soft tissue contact</div>
+          <div class="option wrong"><div class="opt-letter"></div>Meniscus</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q99</div>
+        <div class="q-text">Bony End Feel:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Capsule</div>
+          <div class="option wrong"><div class="opt-letter"></div>Muscle</div>
+          <div class="option wrong"><div class="opt-letter"></div>Fat</div>
+          <div class="option correct"><div class="opt-letter"></div>Bone to bone</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q100</div>
+        <div class="q-text">Soft Tissue Stretch:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Bone contact</div>
+          <div class="option wrong"><div class="opt-letter"></div>Fat contact</div>
+          <div class="option correct"><div class="opt-letter"></div>Muscle/Ligament stretch</div>
+          <div class="option wrong"><div class="opt-letter"></div>Meniscus</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-red">🏆</div>
+      <div class="topic-title">🔥 MCQ 101 → 120 (Most Expected Viva MCQs)</div>
+      <div class="topic-count">20 سؤال</div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q101</div>
+        <div class="q-text">SCM unilateral action:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Same side rotation</div>
+          <div class="option correct"><div class="opt-letter"></div>Opposite side rotation</div>
+          <div class="option wrong"><div class="opt-letter"></div>Extension</div>
+          <div class="option wrong"><div class="opt-letter"></div>Abduction</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q102</div>
+        <div class="q-text">Weak SCM substitution:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Masseter</div>
+          <div class="option wrong"><div class="opt-letter"></div>Temporalis</div>
+          <div class="option correct"><div class="opt-letter"></div>Platysma</div>
+          <div class="option wrong"><div class="opt-letter"></div>Buccinator</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q103</div>
+        <div class="q-text">Trunk Flexion muscle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Erector Spinae</div>
+          <div class="option wrong"><div class="opt-letter"></div>Oblique</div>
+          <div class="option correct"><div class="opt-letter"></div>Rectus Abdominis</div>
+          <div class="option wrong"><div class="opt-letter"></div>SCM</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q104</div>
+        <div class="q-text">Trunk Extension muscle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Rectus Abdominis</div>
+          <div class="option wrong"><div class="opt-letter"></div>Oblique</div>
+          <div class="option correct"><div class="opt-letter"></div>Erector Spinae</div>
+          <div class="option wrong"><div class="opt-letter"></div>SCM</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q105</div>
+        <div class="q-text">Rotate trunk right:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Right EO + Right IO</div>
+          <div class="option wrong"><div class="opt-letter"></div>Right EO + Left IO</div>
+          <div class="option correct"><div class="opt-letter"></div>Left EO + Right IO</div>
+          <div class="option wrong"><div class="opt-letter"></div>Left EO + Left IO</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q106</div>
+        <div class="q-text">Rotate trunk left:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Right EO + Left IO</div>
+          <div class="option wrong"><div class="opt-letter"></div>Left EO + Right IO</div>
+          <div class="option wrong"><div class="opt-letter"></div>Left EO + Left IO</div>
+          <div class="option wrong"><div class="opt-letter"></div>Right EO + Right IO</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q107</div>
+        <div class="q-text">Umbilicus deviation:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Weak side</div>
+          <div class="option wrong"><div class="opt-letter"></div>Opposite side</div>
+          <div class="option wrong"><div class="opt-letter"></div>Midline</div>
+          <div class="option correct"><div class="opt-letter"></div>Strong side</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q108</div>
+        <div class="q-text">Biceps Femoris rotation:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Medial</div>
+          <div class="option correct"><div class="opt-letter"></div>Lateral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Dorsiflexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Eversion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q109</div>
+        <div class="q-text">Semitendinosus rotation:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Lateral</div>
+          <div class="option correct"><div class="opt-letter"></div>Medial</div>
+          <div class="option wrong"><div class="opt-letter"></div>Extension</div>
+          <div class="option wrong"><div class="opt-letter"></div>Eversion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q110</div>
+        <div class="q-text">Tibialis Anterior:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>PF + Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>PF + Eversion</div>
+          <div class="option correct"><div class="opt-letter"></div>DF + Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>DF + Eversion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q111</div>
+        <div class="q-text">Tibialis Posterior:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>DF + Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>DF + Eversion</div>
+          <div class="option correct"><div class="opt-letter"></div>PF + Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>PF + Eversion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q112</div>
+        <div class="q-text">Peroneus Longus:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Inversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Dorsiflexion</div>
+          <div class="option correct"><div class="opt-letter"></div>PF + Eversion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Knee Flexion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q113</div>
+        <div class="q-text">Gastrocnemius:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>DF</div>
+          <div class="option wrong"><div class="opt-letter"></div>Eversion</div>
+          <div class="option correct"><div class="opt-letter"></div>Plantar Flexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Toe Extension</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q114</div>
+        <div class="q-text">Soleus:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>DF</div>
+          <div class="option wrong"><div class="opt-letter"></div>Eversion</div>
+          <div class="option correct"><div class="opt-letter"></div>Plantar Flexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Toe Extension</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q115</div>
+        <div class="q-text">Extensor Hallucis Longus:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Great toe flexion</div>
+          <div class="option correct"><div class="opt-letter"></div>Great toe extension</div>
+          <div class="option wrong"><div class="opt-letter"></div>Toe adduction</div>
+          <div class="option wrong"><div class="opt-letter"></div>Plantar flexion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q116</div>
+        <div class="q-text">Flexor Hallucis Brevis:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Great toe extension</div>
+          <div class="option correct"><div class="opt-letter"></div>Great toe flexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Dorsiflexion</div>
+          <div class="option wrong"><div class="opt-letter"></div>Eversion</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q117</div>
+        <div class="q-text">Toe extensors nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option correct"><div class="opt-letter"></div>Deep Peroneal</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q118</div>
+        <div class="q-text">Toe flexors nerve:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Deep Peroneal</div>
+          <div class="option correct"><div class="opt-letter"></div>Tibial</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q119</div>
+        <div class="q-text">Positive Trendelenburg:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Femoral injury</div>
+          <div class="option wrong"><div class="opt-letter"></div>Tibial injury</div>
+          <div class="option correct"><div class="opt-letter"></div>Superior Gluteal injury</div>
+          <div class="option wrong"><div class="opt-letter"></div>Obturator injury</div>
+        </div>
+      </div>
+    </div>
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q120</div>
+        <div class="q-text">Most common nerve associated with Foot Drop:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter"></div>Tibial</div>
+          <div class="option wrong"><div class="opt-letter"></div>Femoral</div>
+          <div class="option wrong"><div class="opt-letter"></div>Sciatic</div>
+          <div class="option correct"><div class="opt-letter"></div>Common Peroneal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="section" id="summary">
+<div class="topic-group">
+  <div class="topic-header">
+    <div class="topic-icon ic-cyan">⚡</div>
+    <div class="topic-title">ملخص سريع — أهم النقاط</div>
+  </div>
+  <div class="summary-grid">
+    <div class="sum-row">
+      <div class="sum-key">Prime mover of Hip Flexion</div>
+      <div class="sum-val">Iliopsoas</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Nerve supply of Iliacus</div>
+      <div class="sum-val">Femoral nerve (L2, L3, L4)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Positive Trendelenburg test</div>
+      <div class="sum-val">Indicates weakness of Gluteus Medius</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Positive Ober test</div>
+      <div class="sum-val">Indicates TFL / IT Band tightness</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Positive Ely test</div>
+      <div class="sum-val">Indicates Rectus Femoris tightness</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Thomas test</div>
+      <div class="sum-val">Detects Hip Flexor tightness</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Sartorius action</div>
+      <div class="sum-val">Hip Flexion + Abduction + ER (and Knee Flexion + IR)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">TFL action</div>
+      <div class="sum-val">Hip Flexion + Abduction + IR</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Hip Abduction nerve</div>
+      <div class="sum-val">Superior Gluteal nerve</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Hip Extension nerve</div>
+      <div class="sum-val">Inferior Gluteal nerve</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Frontalis action</div>
+      <div class="sum-val">Raise eyebrows / Wrinkle forehead</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Orbicularis Oculi</div>
+      <div class="sum-val">Close eye</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Levator Palpebrae weakness</div>
+      <div class="sum-val">Causes Ptosis (drooping eyelid)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Kissing muscle</div>
+      <div class="sum-val">Orbicularis Oris</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Smiling muscle</div>
+      <div class="sum-val">Zygomaticus Major</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Blow cheeks / Puff cheeks</div>
+      <div class="sum-val">Buccinator</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Pouting expression</div>
+      <div class="sum-val">Mentalis</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">LR6</div>
+      <div class="sum-val">Lateral Rectus CN VI (Abducens)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">SO4</div>
+      <div class="sum-val">Superior Oblique CN IV (Trochlear)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">AO3</div>
+      <div class="sum-val">All others CN III (Oculomotor)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Grade 0 MMT</div>
+      <div class="sum-val">No contraction</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Grade 1 MMT</div>
+      <div class="sum-val">Contraction only (Trace)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Grade 2 MMT</div>
+      <div class="sum-val">Full ROM Gravity Eliminated (GE)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Grade 3 MMT</div>
+      <div class="sum-val">Full ROM Against Gravity (AG)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Grade 4 MMT</div>
+      <div class="sum-val">Full ROM AG + Moderate Resistance</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Grade 5 MMT</div>
+      <div class="sum-val">Full ROM AG + Max resistance</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Concentric contraction</div>
+      <div class="sum-val">Muscle shortens</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Eccentric contraction</div>
+      <div class="sum-val">Muscle lengthens while contracting</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Isometric contraction</div>
+      <div class="sum-val">No movement / No change in length</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Prime mover</div>
+      <div class="sum-val">Main muscle producing movement</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Synergist</div>
+      <div class="sum-val">Helper / Assisting muscle</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Antagonist</div>
+      <div class="sum-val">Opposite action muscle</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Neutralizer</div>
+      <div class="sum-val">Prevents unwanted movement</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Stabilizer</div>
+      <div class="sum-val">Provides stable base</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Femoral nerve roots</div>
+      <div class="sum-val">L2-3-4</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Obturator action</div>
+      <div class="sum-val">Hip Adduction</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Superior Gluteal roots</div>
+      <div class="sum-val">L4-5-S1</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Inferior Gluteal roots</div>
+      <div class="sum-val">L5-S1-S2</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Largest nerve</div>
+      <div class="sum-val">Sciatic nerve</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Foot Drop</div>
+      <div class="sum-val">Common Peroneal (Fibular) nerve injury</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Tibial nerve action</div>
+      <div class="sum-val">Plantar Flexion</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Meralgia Paresthetica</div>
+      <div class="sum-val">Lateral Femoral Cutaneous nerve compression</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Cannot stand on toes</div>
+      <div class="sum-val">Tibial nerve injury</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Cervical Flexion</div>
+      <div class="sum-val">SCM (Sternocleidomastoid)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Right SCM rotates head to</div>
+      <div class="sum-val">Left side</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Weak SCM substitution</div>
+      <div class="sum-val">Platysma</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Trunk Flexion</div>
+      <div class="sum-val">Rectus Abdominis</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Trunk Extension</div>
+      <div class="sum-val">Erector Spinae</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Rotate trunk right</div>
+      <div class="sum-val">Left External Oblique + Right Internal Oblique</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Rotate trunk left</div>
+      <div class="sum-val">Right External Oblique + Left Internal Oblique</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Umbilicus deviation</div>
+      <div class="sum-val">Deviates toward the strong/stronger side</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Grade 5 trunk flexion</div>
+      <div class="sum-val">Hands behind head</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Cervical Extension</div>
+      <div class="sum-val">Look up</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Grade 3 Cervical Extension</div>
+      <div class="sum-val">Prone with head off table</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Knee Extension prime mover</div>
+      <div class="sum-val">Quadriceps</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Knee Flexion nerve</div>
+      <div class="sum-val">Sciatic nerve</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Biceps Femoris rotation</div>
+      <div class="sum-val">Lateral rotation of knee (flexed)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Semitendinosus rotation</div>
+      <div class="sum-val">Medial rotation of knee (flexed)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Tibialis Anterior</div>
+      <div class="sum-val">Dorsiflexion (DF) + Inversion</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Tibialis Posterior</div>
+      <div class="sum-val">Plantar Flexion (PF) + Inversion</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Gastrocnemius / Soleus</div>
+      <div class="sum-val">Plantar Flexion</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Peroneus Longus</div>
+      <div class="sum-val">Plantar Flexion (PF) + Eversion</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Great Toe Flexion</div>
+      <div class="sum-val">Flexor Hallucis Brevis</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Great Toe Extension</div>
+      <div class="sum-val">EHL (Extensor Hallucis Longus)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Toe extensors nerve</div>
+      <div class="sum-val">Deep Peroneal nerve</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Toe flexors nerve</div>
+      <div class="sum-val">Tibial nerve</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Hip Abduction Normal ROM</div>
+      <div class="sum-val">45°</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Hip Internal Rotation ROM</div>
+      <div class="sum-val">45°</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Hip Flexion Normal ROM</div>
+      <div class="sum-val">120°</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Knee Flexion Normal ROM</div>
+      <div class="sum-val">135°</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Ankle Dorsiflexion Normal ROM</div>
+      <div class="sum-val">20°</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Ankle Eversion Normal ROM</div>
+      <div class="sum-val">15°</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">FABER meaning</div>
+      <div class="sum-val">Flexion Abduction External Rotation</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Piriformis group</div>
+      <div class="sum-val">Hip External Rotators</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Tibial nerve sensory area</div>
+      <div class="sum-val">Sole of foot</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Common Peroneal sensory</div>
+      <div class="sum-val">Dorsum of foot</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Risorius expression</div>
+      <div class="sum-val">Grimace</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Buccinator test</div>
+      <div class="sum-val">Puff / Blow cheeks</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Break Test</div>
+      <div class="sum-val">Patient holds position against resistance</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Active Resistance Test</div>
+      <div class="sum-val">Patient moves against resistance</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Outer Range</div>
+      <div class="sum-val">Full stretch → Mid ROM</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Inner Range</div>
+      <div class="sum-val">Mid → Full shortening</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Empty End Feel</div>
+      <div class="sum-val">Pain limits movement (no physical end feel)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Springy End Feel</div>
+      <div class="sum-val">Meniscus lesion</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Firm End Feel</div>
+      <div class="sum-val">Capsule / Ligament stretch / tightness</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Soft Approximation</div>
+      <div class="sum-val">Soft tissue contact (e.g. knee flexion)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Bony End Feel</div>
+      <div class="sum-val">Bone to bone contact (e.g. elbow extension)</div>
+    </div>
+    <div class="sum-row">
+      <div class="sum-key">Soft Tissue Stretch</div>
+      <div class="sum-val">Muscle/Ligament stretch</div>
+    </div>
+  </div>
+</div>
+  </div>
+</main>
+<script>
+    let correctScore = 0;
+    let totalQuestions = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const qCards = document.querySelectorAll('.q-card');
+      totalQuestions = qCards.length;
+
+      const scoreNum = document.querySelector('#score-stat .stat-num');
+      if (scoreNum) scoreNum.innerText = `0/${totalQuestions}`;
+
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+      document.querySelectorAll('.options').forEach(opts => {
+        opts.querySelectorAll('.opt-letter').forEach((letterEl, index) => {
+          letterEl.innerText = letters[index] || '';
+        });
+      });
+
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          const card = opt.closest('.q-card');
+          if (card.classList.contains('answered') || document.body.classList.contains('show-all-mode')) return;
+
+          card.classList.add('answered');
+
+          if (opt.classList.contains('correct')) {
+            opt.classList.add('pop-animation');
+            correctScore++;
+          } else {
+            opt.classList.add('wrong-selected');
+          }
+
+          updateScore();
+        });
+      });
+    });
+
+    function updateScore() {
+      const scoreNum = document.querySelector('#score-stat .stat-num');
+      if (scoreNum) scoreNum.innerText = `${correctScore}/${totalQuestions}`;
+    }
+
+    function showAllAnswers() {
+      document.body.classList.add('show-all-mode');
+    }
+
+    function retest() {
+      document.body.classList.remove('show-all-mode');
+      correctScore = 0;
+      updateScore();
+
+      document.querySelectorAll('.q-card').forEach(card => {
+        card.classList.remove('answered');
+      });
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('wrong-selected', 'pop-animation');
+      });
+    }
+
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => {
+        if (b.getAttribute('onclick') && b.getAttribute('onclick').includes('showSection')) {
+          b.classList.remove('active');
+        }
+      });
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+    function toggleQ(card) { card.classList.toggle('open'); }
+    function searchQ(val) {
+      const q = val.trim().toLowerCase();
+      document.querySelectorAll('.q-card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = (!q || text.includes(q)) ? '' : 'none';
+      });
+      document.querySelectorAll('.topic-group').forEach(group => {
+        const visible = [...group.querySelectorAll('.q-card')].some(c => c.style.display !== 'none');
+        group.style.display = visible ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

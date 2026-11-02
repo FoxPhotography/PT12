@@ -1,0 +1,444 @@
+=== PAGE 1 ===
+Infra-Red Radiation
+Infra-Red Radiation
+
+=== PAGE 2 ===
+ 
+ 
+Infra-Red Radiation (IRR)
+Deﬁnition:
+*Infra red rays are electromagnetic wave with
+wavelengths 760:15000 nm (nanometers). It lies
+between microwave and visible light in the
+electromagnetic spectrum.
+ 
+*Any heated body emits infrared radiations that can be
+subdivided into three region or bands, A, B, C
+according to its wave length.
+ 
+
+=== PAGE 3 ===
+ 
+Classiﬁcation of infrared radiations
+ 
+Type
+Wave length
+IRA
+760-1400 nm
+IRB
+1400-3000 nm
+IRC
+3000-15000 nm (not
+used in therapy
+Former classiﬁcation
+ 
+near or short IR
+760-1500 nm
+far or long IR
+1500-15000 nm
+
+=== PAGE 4 ===
+
+
+=== PAGE 5 ===
+Production of
+ 
+infrared radiations
+ 
+Infrared radiations are produced as a result of
+molecular motion within material. An increase in
+temperature above absolute zero results in the
+vibration or rotation of molecules within the matter,
+which lead to the emission of infrared radiations.
+ 
+ 
+
+=== PAGE 6 ===
+ 
+Luminous generators
+Non-luminous generators
+emit visible light, IRR and
+few ultraviolet (UV).
+Luminous lamps are
+produced by electrically
+heated ﬁlament in an
+evacuated glass bulb or
+may contain an inert gas
+at a low pressure, often
+with silvered inner
+surface to provide a
+reﬂector
+provide I.R. rays only
+produced by electrically
+heated resistance wire
+coiled on a cylinder of
+insulating material such
+as a ﬁreclay or porcelain.
+The resistance wire
+serves as the heater,
+and the cylinder
+becomes the radiation
+source.
+ 
+Sources of infrared radiations
+
+=== PAGE 7 ===
+The luminous lamps emitted approximately;
+70% short IR, 24% long IR, 5% visible light
+and a few 1% UV rays.
+ 
+Often the front of the bulb is red to ﬁlter out
+the UV rays.
+ 
+            Luminous generators
+
+=== PAGE 8 ===
+Non-luminous I.R generators  :
+These lamps emitted mainly long IR radiation around
+3000-4000 nm with about 10% short IR.
+ 
+1. 
+The elements of the non-luminous lamps take
+about 5: 10 mins to heat up and emit their
+maximum intensity, so lamps must be switched on
+at an appropriate time before they are required.
+
+=== PAGE 9 ===
+2. In all radiators there are always some
+visible light rays emitted as a red glow, it is
+visible when the element is hot. So they are
+not completely non-luminous.
+ 
+3. It has been suggested that the non-
+luminous units apparently feel hotter than do
+the luminous at equal distances and power
+levels, due to the increased absorption of the
+longer wave lengths by the top layers of the
+skin.
+ 
+
+=== PAGE 10 ===
+
+
+=== PAGE 11 ===
+
+
+Red light penetrates deeper than blue light,   The
+reason is that skin consists of a range of
+chromophores which have scattering and absorption
+coeﬃcients which are highly wavelength dependent.
+The scattering properties of tissue are due to
+attenuation properties intrinsic to the chromophore
+and also to the size of the particles within the tissue
+which also governs the type of scattering that
+occurs, namely Mie or Rayleigh scattering
+
+=== PAGE 12 ===
+
+Scattering leads to light distribution in the tissue
+and the eventual reduction in the energy density with
+increasing depth 
+
+=== PAGE 13 ===
+Tunnel Bath (electric light bath) = Bakers:
+ 
+There is upright tube that consists of a metal or
+wooden cabinet ﬁtted with a number of
+incandescent lamps arranged among the inner
+sides
+Used for chronic conditions.
+Several areas can be treated.
+ 
+ 
+
+=== PAGE 14 ===
+Tunnel Bath
+
+
+=== PAGE 15 ===
+Absorption and penetration of IRR:
+ 
+Absorption will take place within the top 3mm of
+tissues, and the heat is carried to the deeper tissues
+by conduction and by the circulating ﬂuids.
+ 
+The absorption of IRR and the maximal penetration of
+the rays will depend upon the following variables:
+
+=== PAGE 16 ===
+Variables affect I.R absorption
+ 
+1-Frequency or wave length of the rays (short
+IR can be penetrated to the level of dermis and
+subcutaneous tissues while long IR penetrates
+only to the epidermis level). .
+2-Thermal conductivity of the tissues
+3-Density of each tissue.
+
+=== PAGE 17 ===
+4- 
+Speciﬁc heat of each tissue.
+ 
+5- angle of incidence  of the rays.
+ 
+6- Distance from the source of I.R.
+ 
+7- Patency of the circulation.
+ 
+8- Source of the I.R.
+.
+
+=== PAGE 18 ===
+ 
+Physiological
+effect of IRR.:
+ 
+
+=== PAGE 19 ===
+1- Ner ve stimulation:
+IRR stimulates thermal heat receptors in the skin which gives
+awareness of the heating.
+Increase sensory nerve conduction velocity which inﬂuences
+sensory response via increase in endorphin release.
+ 
+ 
+2- Blood supply:
+IRR increase blood supply in the superﬁcial tissue. This effect is
+due to vasodilatation of capillaries caused by increase liberation
+of histamine-like substances.
+ The heat regulating center in medulla also signals the capillaries
+to vasodilator when the
+temperature rises).
+
+=== PAGE 20 ===
+-
+
+3- Phagocy tosis:
+ this process increased with
+temperature, and if there is superﬁcial inﬂammation,
+heating will promote phagocytosis.
+ 
+ 
+4- Pigmentation and erythema:
+IRR causes a reddening of the skin, which is a gentle
+erythema that disappears rapidly. This erythema is
+due to distraction of red blood corpuscles. If
+radiations are given frequently, the skin pigments in
+a mottled fashion.
+
+=== PAGE 21 ===
+ 
+5- Reﬂex heating:
+IRR can be applied to the abdominal area to promote
+peripheral circulation (heating of the large
+splanchnic vessels in the abdomen that stimulates
+the heat regulating center in the medulla which
+reﬂexively opens up the peripheral vessels in an
+endeavor to regulate the body temperature quickly.
+ 
+
+=== PAGE 22 ===
+6- Sw eating:
+  with prolonged or intense heating the
+activity of sweat glands increased by reﬂex
+stimulation from the heat regulating centre to cool
+the skin.
+ 
+7-Blood  pressure:
+ if heating is given to a large area
+of the body for a prolonged period as in the use of
+IR baker, there will be a fall in blood pressure due
+to the generalized vasodilatation, and reduction of
+peripheral resistance in the arterioles.
+ 
+
+=== PAGE 23 ===
+8-Increase eﬃciency of muscle action
+: rise in
+temperature causes muscle ﬁbers to contract and
+relax more quickly.
+ 
+Metabolism
+:  metabolic rate increase. Heat
+produced by IR increase the demands to oxygen
+and food stuff as well as increases output of
+waste products.
+
+=== PAGE 24 ===
+Therapeutic effects and indication of IRR:
+ 
+                                            1-Relief of pain:
+Pain may be due to accumulation of waste
+product of metabolism in the tissue so
+increased blood ﬂow through the part by IR
+lead to removal of chemical mediators which
+causes irritation of nerve ending and lead to
+relief of pain
+.
+ 
+
+=== PAGE 25 ===
+ 
+ 
+Sedative effect: mild heating increases skin
+temperature that lead to state of analgesia
+by increase pain threshold.
+ 
+    
+Counterirritant effect: Strong heating
+stimulates the superﬁcial sensory nerve
+ﬁbers which blocking the transmission of
+pain.
+
+=== PAGE 26 ===
+Therapeutic effects and indication of IRR:
+2-Reduce of muscle spasm:
+ ?????????
+3-Relaxation of Muscle
+:
+  muscle relaxes when tissues
+are warm and also relief of pain facilitates relaxation.
+So IR can be used prior to other forms of physical
+therapy.
+
+=== PAGE 27 ===
+Therapeutic effects and indication of IRR:
+4- increase range of mot ion and decrease joint stiffn ess:
+IR increases extensibility of soft tissue that occurs with
+increasing its temperature.
+It's preferable to perform stretching exercises
+immediately after application of IR.
+5- Edema :
+ IR reduces chronic edema of the hand and foot, but with
+elevation during treatment. Vessels dilation induced by
+heating will allow increased rates of ﬂuid exchange and
+thus may help to increase the reabsorption of exudates
+
+=== PAGE 28 ===
+Therapeutic effects and indication of IRR:
+6-Healing of tissue:
+IR accelerates tissue healing by increasing circulation and
+enzymatic activity.  A good blood supply to the tissue is
+essential for healing to take place. Increase blood supply
+brings more oxygen and nutrients to tissue and removes
+waste products.
+Increasing the temperature of blood by IR increases the
+dissociation of oxygen from hemoglobin to tissue, making
+more oxygen available for the process of tissue repair.
+ If there is an infection the increased number of white blood
+cells (WBC) and the phagosetic effect of IR assist in
+destroying the bacteria.
+7-tr eatment
+ of arthritic joints and other sub acute or chronic
+inﬂammatory lesions
+ 
+
+=== PAGE 29 ===
+Contraindications to IRR:
+ 
+*Imp aired sensation:
+ patients with impaired sensation in
+the area to be treated will not be able to determine if
+excessive heating is occurring. Large areas of scar
+tissue with impaired sensation will also be a
+contraindication.
+*Acu te injury or acute inﬂamma tion:
+  as increasing tissue
+temperature can increase edema and bleeding as a
+result of vasodilatation and increased blood ﬂow. This
+may aggravate the injury, increase pain and or delay
+recovery.
+*Acu te infection: all
+ acute infections are a
+contraindication to IR, as the increase in temperature is
+likely to exacerbate the infective process.
+ 
+
+=== PAGE 30 ===
+Contraindications to IRR:
+ 
+4- Imp aired circulation
+ (defective arterial blood supply):
+when there’s a history of defective circulation from any
+circulatory disease (e.g. atherosclerosis, deep venous
+thrombosis (DVT) or Burger’s disease), care must be
+taken not to administer heat over the area with
+impaired circulation.
+The function of skin circulation is to dissipate heat, and if
+this heat regulating mechanism is defective, it would
+be quite easy to cause a burn.
+5- De rma tological con ditions:
+ skin lesions such as
+fungus, dermatitis and eczema are some lesions to
+look for. Heat tends to irritate skin lesions.
+ 
+
+=== PAGE 31 ===
+6- Metal
+: there should be no metal in the area that is
+irradiated. Metal retains the heat and will cause a burn to
+the underlying tissue.
+    deep metal implants are not a contraindication.
+ 
+7- E yes
+: radiations can cause cataracts. This will occur if I.R.
+R is given over a long period. It can also cause iritis.
+8-  T opical cr eams and oils (r ecent use of ointment):
+ all
+applications must be removed before giving I.R.R, or the
+creams and oils will cause burns because they make the
+skin hypersensitive.
+9- Skin tumors
+: patients with skin tumors or melanoma must
+not receive I.R.R, as the tumor growth may be increased.
+ 
+Contraindications to IRR
+:
+ 
+
+=== PAGE 32 ===
+Contraindications to IRR:
+10- Blood  pressure abnorma lities:
+ I.R.R should not be
+given to large areas for a prolonged time, as the patient
+may be unable to tolerate the change in BP which may
+be produced.
+11- Se ver ca rdiac con ditions:
+ heating a large area will
+cause an increase in cardiac output which may not be
+tolerated by patients with sever cardiac conditions.
+12- Un reliable patients:
+ - Very young people: unreliable in
+reporting the heat intensity, there is a tendency to fall
+asleep, and they lack the normal C.V and respiratory
+reserves.
+ 
+
+=== PAGE 33 ===
+Contraindications to IRR:
+13- Very old people
+: they generally have impairment of
+sensation and circulation, and in these patients large
+areas must not be irradiated.
+14-The testes:
+ temporary lowering of sperm count.
+15-Analgesic and narcot ic drugs
+: if the patient have had
+strong analgesic or narcotic drugs just prior to treatment,
+I.R.R must not be given as these drugs will raise the pain
+threshold and the patient will not be able to determine
+whether the I.R.R are  of too great an intensity.
+16-Deep X-Ray therapy
+: for 3 months after therapy, patients
+must not be given I.R.R, as deep X-Ray therapy reduces
+sensory appreciation.
+17-Danger of hemorrhage (hemophilia).
+ 
+ 
+
+=== PAGE 34 ===
+TH ANK Y OU
+TH ANK Y OU
+TH ANK Y OU
+TH ANK Y OU
+

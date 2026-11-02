@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أسئلة الامتحان — Pt 10 | Electrotherapy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --bg2: #0f1218;
+    --bg3: #141820;
+    --card: #13171f;
+    --card2: #1a1f2a;
+    --border: #1e2535;
+    --border2: #2a3248;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --dim: #4a5568;
+    --blue: #3b82f6;
+    --cyan: #06b6d4;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --purple: #8b5cf6;
+    --pink: #ec4899;
+    --orange: #f97316;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Cairo',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none; z-index:0;
+  }
+  body::after {
+    content:'';
+    position:fixed; top:-200px; left:50%; transform:translateX(-50%);
+    width:800px; height:400px;
+    background:radial-gradient(ellipse,rgba(139,92,246,0.08) 0%,transparent 70%);
+    pointer-events:none; z-index:0;
+  }
+
+  /* HEADER */
+  header {
+    position:relative; z-index:10;
+    padding:50px 20px 40px;
+    text-align:center;
+    border-bottom:1px solid var(--border);
+    background:linear-gradient(180deg,rgba(139,92,246,0.06) 0%,transparent 100%);
+  }
+  .header-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(139,92,246,0.1);
+    border:1px solid rgba(139,92,246,0.3);
+    color:var(--purple);
+    padding:6px 18px; border-radius:100px;
+    font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    margin-bottom:20px;
+    animation:fadeDown 0.6s ease both;
+  }
+  .header-badge::before {
+    content:''; width:6px; height:6px;
+    background:var(--purple); border-radius:50%;
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  h1 {
+    font-size:clamp(26px,5vw,46px); font-weight:900; letter-spacing:-1px; line-height:1.2;
+    animation:fadeDown 0.6s 0.1s ease both;
+    background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.55) 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .subtitle {
+    color:var(--muted); margin-top:10px; font-size:13px;
+    animation:fadeDown 0.6s 0.2s ease both;
+    direction:ltr; font-family:'JetBrains Mono',monospace; letter-spacing:1px;
+  }
+  .stats-bar {
+    display:flex; justify-content:center; gap:40px; margin-top:28px; flex-wrap:wrap;
+    animation:fadeDown 0.6s 0.3s ease both;
+  }
+  .stat { text-align:center; }
+  .stat-num { font-size:28px; font-weight:900; color:var(--purple); font-family:'JetBrains Mono',monospace; }
+  .stat-label { font-size:11px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-top:2px; }
+
+  /* HOT TOPICS BANNER */
+  .hot-banner {
+    position:relative; z-index:5;
+    background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(245,158,11,0.06));
+    border-bottom:1px solid rgba(239,68,68,0.2);
+    padding:14px 24px;
+    display:flex; align-items:flex-start; gap:14px;
+    flex-wrap:wrap;
+  }
+  .hot-label {
+    font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase;
+    color:var(--red); font-family:'JetBrains Mono',monospace;
+    flex-shrink:0; margin-top:2px;
+  }
+  .hot-tags { display:flex; flex-wrap:wrap; gap:8px; }
+  .hot-tag {
+    background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.25);
+    color:#fca5a5; padding:4px 12px; border-radius:100px; font-size:12px; font-weight:600;
+  }
+  .hot-tag.yellow { background:rgba(245,158,11,0.1); border-color:rgba(245,158,11,0.25); color:#fcd34d; }
+  .hot-tag.purple { background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.25); color:#c4b5fd; }
+
+  /* NAV */
+  .nav {
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,12,16,0.95); backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    padding:0 20px;
+    display:flex; gap:4px; justify-content:center; overflow-x:auto; scrollbar-width:none;
+  }
+  .nav::-webkit-scrollbar { display:none; }
+  .nav-btn {
+    background:none; border:none; color:var(--muted);
+    font-family:'Cairo',sans-serif; font-size:13px; font-weight:600;
+    padding:14px 18px; cursor:pointer; white-space:nowrap;
+    border-bottom:2px solid transparent; transition:all 0.2s;
+  }
+  .nav-btn:hover { color:var(--text); }
+  .nav-btn.active { color:var(--purple); border-bottom-color:var(--purple); }
+
+  /* MAIN */
+  main { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:40px 20px 80px; }
+  .section { display:none; animation:fadeIn 0.4s ease; }
+  .section.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-15px)} to{opacity:1;transform:translateY(0)} }
+
+  /* TOPIC GROUP */
+  .topic-group { margin-bottom:32px; }
+  .topic-header {
+    display:flex; align-items:center; gap:12px;
+    margin-bottom:16px; padding-bottom:12px;
+    border-bottom:1px solid var(--border);
+  }
+  .topic-icon {
+    width:36px; height:36px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; flex-shrink:0;
+  }
+  .topic-title { font-size:17px; font-weight:700; color:var(--text); }
+  .topic-count {
+    margin-right:auto;
+    background:rgba(255,255,255,0.06); border:1px solid var(--border);
+    color:var(--muted); font-size:11px; font-family:'JetBrains Mono',monospace;
+    padding:3px 10px; border-radius:100px;
+  }
+
+  /* QUESTION CARD */
+  .q-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; margin-bottom:12px; overflow:hidden;
+    transition:border-color 0.2s,box-shadow 0.2s;
+  }
+  .q-card:hover { border-color:var(--border2); box-shadow:0 4px 24px rgba(0,0,0,0.3); }
+  .q-header { display:flex; align-items:flex-start; gap:14px; padding:18px 20px; cursor:pointer; }
+  .q-num {
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
+    color:var(--muted); background:var(--bg3); border:1px solid var(--border);
+    border-radius:6px; padding:4px 10px; flex-shrink:0; margin-top:1px;
+  }
+  .q-text { font-size:14.5px; font-weight:600; line-height:1.6; flex:1; }
+  .q-toggle {
+    width:24px; height:24px; border-radius:6px;
+    background:var(--bg3); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; color:var(--muted); font-size:12px;
+    transition:all 0.2s; margin-top:1px;
+  }
+  .q-card.open .q-toggle {
+    background:rgba(139,92,246,0.1); border-color:rgba(139,92,246,0.3);
+    color:var(--purple); transform:rotate(180deg);
+  }
+  .q-body { display:none; padding:0 20px 18px; border-top:1px solid var(--border); }
+  .q-card.open .q-body { display:block; }
+
+  /* OPTIONS */
+  .options { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+  .option {
+    display:flex; align-items:flex-start; gap:12px;
+    padding:12px 14px; border-radius:8px;
+    border:1px solid var(--border); background:var(--bg2);
+    font-size:13.5px; line-height:1.5; transition:all 0.2s;
+  }
+  .option.correct { border-color:rgba(16,185,129,0.4); background:rgba(16,185,129,0.07); color:#6ee7b7; }
+  .option.wrong { opacity:.4; }
+  .opt-letter {
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
+    width:22px; height:22px; border-radius:5px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; background:var(--bg3); border:1px solid var(--border); color:var(--muted);
+  }
+  .option.correct .opt-letter {
+    background:rgba(16,185,129,0.2); border-color:rgba(16,185,129,0.5); color:var(--green);
+  }
+  .option.correct .opt-letter::after { content:'✓'; }
+
+  .answer-direct {
+    margin-top:12px; display:flex; align-items:flex-start; gap:10px;
+    background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.25);
+    border-radius:8px; padding:12px 16px; color:#6ee7b7; font-size:14px; font-weight:700; line-height:1.6;
+  }
+  .answer-direct .ans-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+
+  .note-box {
+    margin-top:12px;
+    background:rgba(245,158,11,0.07); border:1px solid rgba(245,158,11,0.2);
+    border-right:3px solid var(--yellow); border-radius:8px;
+    padding:12px 16px; font-size:13px; color:#fcd34d; line-height:1.7; direction:ltr;
+  }
+  .note-box.blue { background:rgba(59,130,246,0.07); border-color:rgba(59,130,246,0.2); border-right-color:var(--blue); color:#93c5fd; }
+  .note-box.red { background:rgba(239,68,68,0.07); border-color:rgba(239,68,68,0.2); border-right-color:var(--red); color:#fca5a5; }
+  .note-box.purple { background:rgba(139,92,246,0.07); border-color:rgba(139,92,246,0.2); border-right-color:var(--purple); color:#c4b5fd; }
+  .note-box.green { background:rgba(16,185,129,0.07); border-color:rgba(16,185,129,0.2); border-right-color:var(--green); color:#6ee7b7; }
+
+  /* TRICK BOX */
+  .trick-box {
+    margin-top:12px;
+    background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.3);
+    border-radius:8px; padding:14px 16px; font-size:13.5px; color:#fca5a5; line-height:1.7;
+    direction:rtl;
+  }
+  .trick-box .trick-label {
+    font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase;
+    color:var(--red); margin-bottom:8px; display:block; font-family:'JetBrains Mono',monospace;
+  }
+
+  /* SUMMARY TABLE */
+  .summary-grid { display:grid; gap:10px; }
+  .sum-row {
+    display:flex; align-items:center;
+    background:var(--card); border:1px solid var(--border);
+    border-radius:10px; overflow:hidden; transition:border-color 0.2s;
+  }
+  .sum-row:hover { border-color:var(--border2); }
+  .sum-key { padding:12px 18px; font-size:13px; font-weight:600; flex:1; border-left:1px solid var(--border); }
+  .sum-val {
+    padding:12px 18px; font-family:'JetBrains Mono',monospace;
+    font-size:12px; font-weight:700; color:var(--purple);
+    width:240px; background:var(--bg2); flex-shrink:0;
+  }
+
+  /* SEARCH */
+  .search-wrap { margin-bottom:28px; position:relative; }
+  .search-input {
+    width:100%; background:var(--card); border:1px solid var(--border);
+    border-radius:10px; color:var(--text);
+    font-family:'Cairo',sans-serif; font-size:14px;
+    padding:14px 20px 14px 48px; outline:none;
+    transition:border-color 0.2s,box-shadow 0.2s;
+  }
+  .search-input::placeholder { color:var(--dim); }
+  .search-input:focus { border-color:rgba(139,92,246,0.4); box-shadow:0 0 0 3px rgba(139,92,246,0.08); }
+  .search-icon { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--dim); font-size:16px; pointer-events:none; }
+
+  /* ICON COLORS */
+  .ic-blue { background:rgba(59,130,246,0.12); color:var(--blue); }
+  .ic-green { background:rgba(16,185,129,0.12); color:var(--green); }
+  .ic-yellow { background:rgba(245,158,11,0.12); color:var(--yellow); }
+  .ic-red { background:rgba(239,68,68,0.12); color:var(--red); }
+  .ic-purple { background:rgba(139,92,246,0.12); color:var(--purple); }
+  .ic-cyan { background:rgba(6,182,212,0.12); color:var(--cyan); }
+  .ic-orange { background:rgba(249,115,22,0.12); color:var(--orange); }
+  .ic-pink { background:rgba(236,72,153,0.12); color:var(--pink); }
+
+  /* SDC SECTION */
+  .sdc-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; overflow:hidden; margin-bottom:16px;
+  }
+  .sdc-header {
+    padding:18px 20px;
+    background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(239,68,68,0.06));
+    border-bottom:1px solid var(--border);
+    font-size:15px; font-weight:700;
+  }
+  .sdc-body { padding:16px 20px; }
+  .sdc-row {
+    display:flex; gap:12px; align-items:flex-start;
+    margin-bottom:10px; font-size:13.5px; line-height:1.6;
+    padding:10px 14px; border-radius:8px;
+    background:rgba(245,158,11,0.04); border:1px solid rgba(245,158,11,0.08);
+  }
+  .sdc-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:6px; }
+
+  ::-webkit-scrollbar { width:5px; height:5px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border2); border-radius:10px; }
+
+  /* === CASE CARD (reusable) === */
+  .case-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:14px; overflow:hidden; margin-bottom:24px;
+  }
+  .case-top {
+    padding:24px;
+    border-bottom:1px solid var(--border);
+  }
+  .case-top.cyan { background:linear-gradient(135deg,rgba(6,182,212,0.08),rgba(59,130,246,0.06)); }
+  .case-top.purple { background:linear-gradient(135deg,rgba(139,92,246,0.08),rgba(59,130,246,0.06)); }
+  .case-top.red { background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(245,158,11,0.06)); }
+  .case-badge {
+    font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+    margin-bottom:10px; font-family:'JetBrains Mono',monospace;
+  }
+  .case-badge.cyan { color:var(--cyan); }
+  .case-badge.purple { color:var(--purple); }
+  .case-badge.red { color:var(--red); }
+  .case-title { font-size:17px; font-weight:800; line-height:1.5; }
+  .case-subtitle { color:var(--muted); font-size:13px; margin-top:6px; }
+  .case-body { padding:24px; }
+  .req-label {
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px;
+    color:var(--muted); margin-bottom:14px; font-family:'JetBrains Mono',monospace;
+  }
+  .req-item {
+    display:flex; gap:14px; margin-bottom:14px; padding:14px 16px;
+    background:var(--bg2); border:1px solid var(--border); border-radius:10px;
+    font-size:13.5px; line-height:1.7;
+  }
+  .req-icon { font-size:16px; margin-top:2px; flex-shrink:0; }
+  .step-block { margin-top:20px; }
+  .step-label {
+    display:flex; align-items:center; gap:10px;
+    font-size:13px; font-weight:700; color:var(--cyan);
+    margin-bottom:12px; letter-spacing:1px; text-transform:uppercase;
+  }
+  .step-label::after { content:''; flex:1; height:1px; background:var(--border); }
+  .step-item {
+    display:flex; gap:12px; margin-bottom:10px; font-size:13.5px; line-height:1.6;
+    padding:10px 14px; border-radius:8px;
+    background:rgba(6,182,212,0.04); border:1px solid rgba(6,182,212,0.1);
+  }
+  .step-num {
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700;
+    color:var(--cyan); background:rgba(6,182,212,0.1);
+    width:24px; height:24px; border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-top:1px;
+  }
+
+  /* === LANGUAGE TOGGLE === */
+  .lang-toggle-wrap {
+    display:flex; justify-content:center; margin-bottom:28px;
+  }
+  .lang-toggle {
+    display:flex; background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:4px; gap:4px;
+  }
+  .lang-btn {
+    position:relative; z-index:2; background:none; border:none;
+    color:var(--muted); font-family:'Cairo',sans-serif;
+    font-size:13px; font-weight:700; padding:10px 28px; border-radius:9px;
+    cursor:pointer; transition:color 0.3s; display:flex; align-items:center; gap:8px;
+  }
+  .lang-btn.active {
+    color:#fff; background:linear-gradient(135deg,var(--purple),var(--blue));
+    box-shadow:0 2px 12px rgba(139,92,246,0.3);
+  }
+  .lang-btn:hover:not(.active) { color:var(--text); }
+  .case-lang-version { display:none; animation:fadeIn 0.4s ease; }
+  .case-lang-version.active { display:block; }
+
+  @media(max-width:640px) {
+    .stats-bar{gap:24px} .sum-val{width:150px;font-size:11px} .nav-btn{padding:12px 12px;font-size:12px}
+    .hot-banner{flex-direction:column;gap:8px}
+    .lang-btn{padding:8px 18px;font-size:12px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">ELECTRO_2 Final — Pt 10</div>
+  <h1>أسئلة الامتحان المجمّعة</h1>
+  <p class="subtitle">Hands3ed Ba3ed pt10 · Compiled from student responses</p>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">60+</div><div class="stat-label">سؤال MCQ</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">case study</div></div>
+    <div class="stat"><div class="stat-num">⚠️</div><div class="stat-label">نص الامتحان</div></div>
+  </div>
+</header>
+
+<div class="hot-banner">
+  <div class="hot-label">🔥 الأكثر تكراراً</div>
+  <div class="hot-tags">
+    <span class="hot-tag">Wound Healing — نص الامتحان</span>
+    <span class="hot-tag">Denervated ms — ~30 سؤال</span>
+    <span class="hot-tag">SDC + Chronaxie</span>
+    <span class="hot-tag yellow">Muscle Fiber Types</span>
+    <span class="hot-tag yellow">HVPC + Electrodes</span>
+    <span class="hot-tag purple">IF + MES + TENS</span>
+    <span class="hot-tag purple">Iontophoresis</span>
+  </div>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('mcq',this)">📋 MCQ</button>
+  <button class="nav-btn" onclick="showSection('sdc',this)">📈 SDC</button>
+  <button class="nav-btn" onclick="showSection('cases',this)">🏥 Cases</button>
+  <button class="nav-btn" onclick="showSection('summary',this)">⚡ ملخص</button>
+</nav>
+
+<main>
+
+<!-- ====== MCQ ====== -->
+<div class="section active" id="mcq">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" placeholder="ابحث في الأسئلة..." oninput="searchQ(this.value)">
+  </div>
+
+  <!-- Chronaxie TRICK -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-red">⚠️</div>
+      <div class="topic-title">Chronaxie — الـ Trick المهمة</div>
+      <div class="topic-count">3 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q1</div>
+        <div class="q-text">Rheobase is given in mV — find Chronaxie. Options are all in mV. What's the answer?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="trick-box">
+          <span class="trick-label">⚠️ TRICK — مهم جداً</span>
+          الـ Chronaxie دايماً يُقاس بالـ <strong>TIME (ms / sec)</strong> وليس بالـ mV<br>
+          لو كل الإجابات بالـ mV → الإجابة هي <strong>None of the above</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q2</div>
+        <div class="q-text">Rheobase estimated for radial nerve day 8 = 1.6ms, 2.3V. Chronaxie should be?<br><small style="color:var(--muted)">A. 4.6 &nbsp; B. 3.6</small></div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Chronaxie = pulse duration at 2× rheobase → check unit carefully — if options in mV = None of the above</div>
+        <div class="note-box">Chronaxie = TIME unit (ms/sec) | Rheobase = VOLTAGE unit (mV/V)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q3</div>
+        <div class="q-text">Innervated deltoid muscle — Rheobase is normally?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>14 Volt / 5 mAmpere (normal deltoid rheobase)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Muscle Fibers -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-orange">🏃</div>
+      <div class="topic-title">Muscle Fiber Types — 4 أسئلة</div>
+      <div class="topic-count">4 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q4</div>
+        <div class="q-text">During getting UP a flight of stairs — which muscle fiber?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Fast twitch — Type 2</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Slow twitch — Type 1</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Intermediate</div>
+        </div>
+        <div class="note-box">Climbing = explosive = Fast twitch Type 2</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q5</div>
+        <div class="q-text">During getting UP and DOWN stairs — which fiber type?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Slow twitch — Type 1</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Fast twitch — Type 2</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Intermediate</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q6</div>
+        <div class="q-text">Marathon runner gets injured → rests 3 months → strengthen by ECS. Which muscle type?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Slow twitch — Type 1</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Fast twitch — Type 2</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Intermediate</div>
+        </div>
+        <div class="note-box">ES strikes fast twitch → لو العضلة محتاجة تتقوى بعد راحة = slow twitch نفس ما كانت بتشتغل (marathon = endurance = Type 1)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q7</div>
+        <div class="q-text">Electric stimulation (ES) strikes which fiber type?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Fast twitch — Type 2</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Current Types -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-blue">⚡</div>
+      <div class="topic-title">Current Types & Parameters</div>
+      <div class="topic-count">8 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q8</div>
+        <div class="q-text">2,500 Hz burst mode → which current?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Russian current</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q9</div>
+        <div class="q-text">0.1 to 1 msec, 30 to 100 Hz → which current?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Faradic current</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q10</div>
+        <div class="q-text">Which is a monophasic current?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>HVPC (High Voltage)</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Faradic</div>
+          <div class="option wrong"><div class="opt-letter">C</div>IF</div>
+          <div class="option wrong"><div class="opt-letter">D</div>TENS</div>
+        </div>
+        <div class="note-box">DD أيضاً = Monophasic ✅</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q11</div>
+        <div class="q-text">Low frequency current causes?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Fatigue easily</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Asynchronous stimulus</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Synchronous stimulus</div>
+          <div class="option wrong"><div class="opt-letter">D</div>None of the above</div>
+        </div>
+        <div class="note-box">Low f → fatigue (1:1 duty cycle) | High f (Russian/Aussie) → less fatigue</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q12</div>
+        <div class="q-text">Which current causes MORE fatigue?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Faradic (Low frequency)</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Russian</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Aussie</div>
+          <div class="option wrong"><div class="opt-letter">D</div>D.D.</div>
+        </div>
+        <div class="note-box">Aussie vs Russian — Aussie more comfortable (مريح أكتر)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q13</div>
+        <div class="q-text">IF MS fatigue rapidly — we use duty cycle?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>1:1</div>
+          <div class="option correct"><div class="opt-letter"></div>1:5</div>
+          <div class="option wrong"><div class="opt-letter">C</div>1:7</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q14</div>
+        <div class="q-text">For endurance — which waveform with EMS?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Exercise with EMS triangular waveform</div>
+          <div class="option correct"><div class="opt-letter"></div>Exercise with EMS rectangular waveform</div>
+        </div>
+        <div class="note-box blue">Verify from book — rectangular wave = endurance</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q15</div>
+        <div class="q-text">Pelvic floor muscle strength — use which current?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Russian</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Faradic</div>
+        </div>
+        <div class="note-box">Russian or Faradic — check lecture for pelvic floor specifically</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wound Healing -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-green">🩹</div>
+      <div class="topic-title">Wound Healing — نص الامتحان</div>
+      <div class="topic-count">12+ أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q16</div>
+        <div class="q-text">Wound healing stages — how many stages?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>3 Stages (NOT 4) — Homeostasis = Phase not a Stage</div>
+        <div class="note-box red">⚠️ مهم: Stage 1 = Inflammation | Stage 2 = Proliferation | Stage 3 = Remodeling<br>Homeostasis هي phase داخل Stage 1 مش stage مستقلة</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q17</div>
+        <div class="q-text">Late wound stage timing?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>6 to 24 hours</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q18</div>
+        <div class="q-text">Non-skilled cells in wound healing are?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Neutrophils</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q19</div>
+        <div class="q-text">Contractor cell in wound healing?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Macrophages</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q20</div>
+        <div class="q-text">Plumber cell in wound healing?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Pericytes</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q21</div>
+        <div class="q-text">Cell responsible for epithelialization?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Keratinocytes</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q22</div>
+        <div class="q-text">Farmer cell in wound healing = ?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Fibroblasts (produce collagen)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q23</div>
+        <div class="q-text">Red bed tissue appearance indicates which stage?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Proliferation stage (granulation tissue)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q24</div>
+        <div class="q-text">Thrombin activates?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Fibrinogen → forms fibrin clot</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q25</div>
+        <div class="q-text">Best wound measurement method?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Computerized stereographimetry</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q26</div>
+        <div class="q-text">Septic wound — electrode placement & polarity?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Negative electrode INSIDE wound first → then positive to close</div>
+        <div class="note-box green">
+          Septic: Negative inside → attract neutrophils & macrophages (clean infection)<br>
+          Aseptic / clean: Positive → attract fibroblasts → close wound<br>
+          Electrode in: INSIDE the wound
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q27</div>
+        <div class="q-text">US intensity for aseptic wound healing?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>0.3 – 0.5 W/cm²</div>
+          <div class="option wrong"><div class="opt-letter">B</div>2.3 – 2.7 W/cm²</div>
+          <div class="option wrong"><div class="opt-letter">C</div>US is contraindicated</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q28</div>
+        <div class="q-text">Collagen formation decreased by?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Vitamin C deficiency</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q29</div>
+        <div class="q-text">Iontophoresis uses which modality? Phonophoresis uses which?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Iontophoresis = DC (direct current) | Phonophoresis = US (Ultrasound — deep penetration)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q30</div>
+        <div class="q-text">IF frequency for EDEMA reduction?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>15–20 Hz (edema reduction)</div>
+        <div class="note-box blue" style="direction:ltr">
+          Pain relief: 80–150 Hz<br>
+          Edema reduction: 15–20 Hz<br>
+          Muscle contraction: 25–50 Hz<br>
+          Twitch contraction: 1–10 Hz
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nerve Injury -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-red">🧬</div>
+      <div class="topic-title">Nerve Injury & Denervation</div>
+      <div class="topic-count">8 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q31</div>
+        <div class="q-text">Wallerian degeneration — picture shown — what is this?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Wallerian Degeneration</div>
+        <div class="note-box blue">Retrograde degeneration of distal axon after nerve lesion → 7–21 days → EMG shows after day 21</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q32</div>
+        <div class="q-text">Kink on SDC indicates?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Re-innervation (nerve recovering)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q33</div>
+        <div class="q-text">Randomly sprouts occur → indicates?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Neurotmesis</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q34</div>
+        <div class="q-text">Focal conduction block = which type of nerve injury?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Neuropraxia</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q35</div>
+        <div class="q-text">Player — crushed injury upper fibula → contusion → mild weakness of dorsiflexors. Nerve + classification?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Lateral peroneal nerve — Neuropraxia</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Lateral peroneal nerve — Neurotmesis</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Lateral peroneal nerve — Axonotmesis</div>
+        </div>
+        <div class="note-box">Mild weakness → Neuropraxia (mild, reversible, focal conduction block)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q36</div>
+        <div class="q-text">Acute nerve degeneration occurs after?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>After 21 days</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q37</div>
+        <div class="q-text">Spurting occurs after?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Less than 1 day</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q38</div>
+        <div class="q-text">Separation occurs after?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>After 30 minutes</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IF & MES & TENS -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-purple">〰️</div>
+      <div class="topic-title">IF / MES / TENS</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q39</div>
+        <div class="q-text">L4/5 disc, right sciatica — which IF technique?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>IF bipolar</div>
+          <div class="option correct"><div class="opt-letter"></div>IF quadripolar (4-pole)</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Faradic</div>
+          <div class="option wrong"><div class="opt-letter">D</div>HVPC</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q40</div>
+        <div class="q-text">Intramedullary nail in femur → strengthen quadriceps → which current?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>IF 2-polar</div>
+          <div class="option wrong"><div class="opt-letter">B</div>IF 4-polar</div>
+          <div class="option correct"><div class="opt-letter"></div>Faradic</div>
+          <div class="option wrong"><div class="opt-letter">D</div>TENS</div>
+        </div>
+        <div class="note-box red">⚠️ الكسر deep → Faradic مش contra مع metal في deep tissue<br>بس اتأكد من الاختيارات لأن في IF 2polar و 4polar برضو</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q41</div>
+        <div class="q-text">MES (Microcurrent) — intensity specification?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Less than 1 mAmpere (1000 microamps) — subsensory level</div>
+        <div class="note-box blue" style="direction:ltr">
+          MES = pain relief WITHOUT muscle contraction<br>
+          MES = bone healing WITHOUT muscle contraction<br>
+          MES = acute & chronic pain<br>
+          Works at cellular level through ionic balance
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q42</div>
+        <div class="q-text">Conventional TENS stimulates which nerve fiber without stimulating C fibers?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Beta fibers (Aβ)</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Delta fibers (Aδ)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q43</div>
+        <div class="q-text">Brief intense TENS is used for?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Post-surgical pain (post-operative)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q44</div>
+        <div class="q-text">Cloverleaf pattern belongs to?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Static Interferential</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q45</div>
+        <div class="q-text">Faradic — if elbow flexion needed → use on which muscle?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Faradic on BICEPS → elbow flexion<br>Faradic on TRICEPS → elbow extension</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q46</div>
+        <div class="q-text">Acupuncture-like TENS used for?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Chronic pain</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q47</div>
+        <div class="q-text">Russian — contraindicated area?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Abdominal area + Menstruation + General fainting + Metal implants</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q48</div>
+        <div class="q-text">Duty cycle of Aussie current?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="note-box purple">ذاكر الـ duty cycle بتاع Aussie من المحاضرة — كان في سؤال عليها</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Physics & Definitions -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-cyan">📡</div>
+      <div class="topic-title">Physics / Definitions</div>
+      <div class="topic-count">6 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q49</div>
+        <div class="q-text">Current density is highest at?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Skin surface (under electrode)</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Deep tissue</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Deep muscle</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Bone</div>
+        </div>
+        <div class="note-box">⚠️ Current density highest = skin surface (under electrode) | When electrodes far apart → deep tissue density increases</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q50</div>
+        <div class="q-text">Capacitive reactance depends on?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Skin resistance (skin impedance)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q51</div>
+        <div class="q-text">Definition: Pulse Period?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Time from start of one pulse to start of next pulse (includes pulse duration + interpulse interval)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q52</div>
+        <div class="q-text">Definition: Interpulse Interval?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Time between the end of one pulse and start of the next pulse (the "off" time)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q53</div>
+        <div class="q-text">When tissue injury occurs — interior cell surface polarity becomes?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Positive (+)</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q54</div>
+        <div class="q-text">Definition of Transduction?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>Process that converts sensory signal → electrical signal processed in specialized brain area (at sensory receptor → receptor potential)</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end MCQ -->
+
+
+<!-- ====== SDC SECTION ====== -->
+<div class="section" id="sdc">
+
+  <div class="topic-group">
+    <div class="topic-header">
+      <div class="topic-icon ic-yellow">📈</div>
+      <div class="topic-title">SDC (Strength-Duration Curve) — مهمة جداً</div>
+    </div>
+
+    <div class="sdc-card">
+      <div class="sdc-header">🔑 قواعد أساسية للـ SDC</div>
+      <div class="sdc-body">
+        <div class="sdc-row"><div class="sdc-dot"></div><div>SDC shifted to RIGHT → denervated muscle (Chronaxie ↑)</div></div>
+        <div class="sdc-row"><div class="sdc-dot"></div><div>SDC shifted to LEFT → improvement / reinnervation (Chronaxie ↓)</div></div>
+        <div class="sdc-row"><div class="sdc-dot"></div><div>Kink on SDC = Re-innervation occurring ✅</div></div>
+        <div class="sdc-row"><div class="sdc-dot"></div><div>Chronaxie unit = TIME (ms/sec) — NOT mV</div></div>
+        <div class="sdc-row"><div class="sdc-dot"></div><div>Rheobase = minimum voltage at infinite pulse duration</div></div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">SDC-1</div>
+        <div class="q-text">SDC Chronaxie was 40 → became 37 after 12 weeks. What does this mean?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Axonotmesis</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Neurotmesis</div>
+          <div class="option correct"><div class="opt-letter"></div>Neuropraxia (improvement — Chronaxie decreasing)</div>
+        </div>
+        <div class="note-box">Chronaxie ↓ = improving → Neuropraxia getting better</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">SDC-2</div>
+        <div class="q-text">SDC Chronaxie was 30 → became 15 after 3 weeks. What does this mean?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Neurotmesis</div>
+          <div class="option correct"><div class="opt-letter"></div>Axonotmesis (significant recovery in short time)</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Neuropraxia</div>
+        </div>
+        <div class="note-box">Rapid significant decrease → Axonotmesis recovering well</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">SDC-3</div>
+        <div class="q-text">AQ = 1 means?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Innervated</div>
+          <div class="option correct"><div class="opt-letter"></div>Denervated more than 6 months</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Denervated less than 6 months</div>
+        </div>
+        <div class="note-box red">AQ = 1 → no further plotting required → difficult to regenerate by electrotherapy</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">SDC-4</div>
+        <div class="q-text">Rheobase given for innervated deltoid muscle — what's normal value?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="answer-direct"><span class="ans-icon">✅</span>14 Volt / 5 mAmpere</div>
+        <div class="note-box blue">لو الـ rheobase أعلى من normal → denervated<br>لو مساوية للـ normal → innervated</div>
+      </div>
+    </div>
+
+    <div class="sdc-card" style="margin-top:16px">
+      <div class="sdc-header">📌 Chronaxie في Case Studies — طريقة التفكير</div>
+      <div class="sdc-body">
+        <div class="sdc-row"><div class="sdc-dot"></div><div>Chronaxie ↑ (increasing) → worse → denervation progressing → Axonotmesis / Neurotmesis</div></div>
+        <div class="sdc-row"><div class="sdc-dot"></div><div>Chronaxie ↓ (decreasing) → better → reinnervation → Neuropraxia recovering</div></div>
+        <div class="sdc-row"><div class="sdc-dot"></div><div>All options in mV → answer = None of the above (Chronaxie = time not voltage)</div></div>
+        <div class="sdc-row"><div class="sdc-dot"></div><div>Kink = re-innervation sign</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end SDC -->
+
+
+<!-- ====== CASES ====== -->
+<div class="section" id="cases">
+
+  <!-- Language Toggle -->
+  <div class="lang-toggle-wrap">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="switchCaseLang('ar', this)">🇪🇬 عربي</button>
+      <button class="lang-btn" onclick="switchCaseLang('en', this)">🇬🇧 English</button>
+    </div>
+  </div>
+
+  <!-- ══════ Case 1: Edema ══════ -->
+  <div class="case-card">
+    <div class="case-top cyan">
+      <div class="case-badge cyan">CASE 1</div>
+      <div class="case-title">Patient with Edema + Weakness in Iliocostalis + Post-tumor excision</div>
+      <div class="case-subtitle">35 years old — post-tumor excision — benign — edema + weakness in lower back</div>
+    </div>
+
+    <!-- Arabic -->
+    <div class="case-lang-version active" data-lang="ar">
+      <div class="case-body">
+        <div class="req-label">المطلوب: تقوية العضلة + تقليل الـ Edema</div>
+
+        <div class="step-block">
+          <div class="step-label">🔍 التقييم الأول</div>
+          <div class="step-item"><div class="step-num">1</div><div>ناخد تاريخ طبي كامل ونتأكد إن الورم benign ومفيش أي recurrence أو contraindications (زي active malignancy أو infection).</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>نقيّم درجة ضعف العضلة بالـ MMT (Manual Muscle Testing) ونقيّم حجم الـ edema بالقياس.</div></div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">💪 تقوية عضلة الـ Iliocostalis</div>
+          <div class="step-item"><div class="step-num">1</div><div><strong>Faradic current</strong> على عضلة الـ iliocostalis عشان نعمل muscle re-education و strengthening.<br>• Pulse duration: 0.1–1 ms<br>• Frequency: 30–100 Hz<br>• Surged mode — on:off = 1:1 (لو مفيش fatigue) أو 1:3 (لو في fatigue)<br>• مدة العلاج: 15–20 دقيقة</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>ممكن نستخدم <strong>Russian current</strong> (2500 Hz burst) لو محتاجين strengthening أقوى بدون fatigue كتير.</div></div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">💧 تقليل الـ Edema</div>
+          <div class="step-item"><div class="step-num">1</div><div><strong>IF quadripolar</strong> بتردد 15–20 Hz عشان يقلل الـ edema عن طريق تنشيط الدورة الدموية والـ lymphatic drainage.</div></div>
+          <div class="step-item"><div class="step-num">2</div><div><strong>HVPC</strong> بالقطب السالب (−) → بيساعد في تقليل الـ edema عن طريق التأثير على نفاذية الأوعية الدموية.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div>Elevation + Compression كعلاج مساعد.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- English -->
+    <div class="case-lang-version" data-lang="en">
+      <div class="case-body">
+        <div class="req-label">Required: Strengthen muscle + Reduce edema</div>
+
+        <div class="step-block">
+          <div class="step-label">🔍 Assessment</div>
+          <div class="step-item"><div class="step-num">1</div><div>Take a full medical history. Confirm the tumor was benign with no recurrence or contraindications (e.g. active malignancy, infection, implanted devices).</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>Assess muscle weakness using MMT (Manual Muscle Testing) and measure edema volume using circumferential or volumetric measurements.</div></div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">💪 Muscle Strengthening — Iliocostalis</div>
+          <div class="step-item"><div class="step-num">1</div><div><strong>Faradic current</strong> applied to the iliocostalis muscle for muscle re-education and strengthening.<br>• Pulse duration: 0.1–1 ms<br>• Frequency: 30–100 Hz<br>• Surged mode — on:off ratio 1:1 (no fatigue) or 1:3 (if fatigued)<br>• Treatment duration: 15–20 minutes</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>Alternatively, <strong>Russian current</strong> (2500 Hz burst mode) can be used for stronger muscle contraction with less fatigue.</div></div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">💧 Edema Reduction</div>
+          <div class="step-item"><div class="step-num">1</div><div><strong>IF quadripolar</strong> at 15–20 Hz to reduce edema by enhancing blood circulation and lymphatic drainage.</div></div>
+          <div class="step-item"><div class="step-num">2</div><div><strong>HVPC</strong> with negative electrode (−) to reduce edema by modulating vascular permeability.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div>Elevation + Compression as adjunct treatment.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ Case 2: Disc ══════ -->
+  <div class="case-card">
+    <div class="case-top purple">
+      <div class="case-badge purple">CASE 2</div>
+      <div class="case-title">L4/L5 Disc Prolapse + Right Sciatica</div>
+    </div>
+
+    <!-- Arabic -->
+    <div class="case-lang-version active" data-lang="ar">
+      <div class="case-body">
+        <div class="req-label">المطلوب: أنهي technique للـ IF؟ + العلاج الكامل</div>
+
+        <div class="step-block">
+          <div class="step-label">🔍 التقييم</div>
+          <div class="step-item"><div class="step-num">1</div><div>ناخد تاريخ طبي كامل ونتأكد من مكان الألم وتوزيعه (الألم ماشي في الرجل اليمين = sciatica).</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>نعمل neurological assessment: reflexes, sensation, muscle power للـ L4/L5 dermatome.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div>نشيك على الـ contraindications: cauda equina syndrome, severe neurological deficit.</div></div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">💊 العلاج</div>
+          <div class="step-item"><div class="step-num">1</div><div><strong>IF Quadripolar (4-pole technique)</strong> — لأن المنطقة عميقة وواسعة (L4/L5 + sciatica).<br>• التردد: 80–150 Hz لتسكين الألم (pain relief)<br>• 4 electrodes تتحط حوالين المنطقة المصابة بشكل متقاطع<br>• مدة العلاج: 20–30 دقيقة<br>• الشدة: لحد ما المريض يحس وخز مريح (comfortable tingling)</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>ممكن نضيف <strong>TENS</strong> (conventional) على مسار العصب لتسكين الألم بين الجلسات.</div></div>
+        </div>
+
+        <div class="note-box blue" style="margin-top:16px">
+          ⚡ ليه 4-polar مش 2-polar؟<br>
+          لأن الألم deep ومنتشر في منطقة واسعة → 4-polar بيعمل تقاطع التيارين في العمق ويغطي مساحة أكبر.
+        </div>
+      </div>
+    </div>
+
+    <!-- English -->
+    <div class="case-lang-version" data-lang="en">
+      <div class="case-body">
+        <div class="req-label">Required: IF technique + Full treatment plan</div>
+
+        <div class="step-block">
+          <div class="step-label">🔍 Assessment</div>
+          <div class="step-item"><div class="step-num">1</div><div>Take a full medical history and confirm pain distribution (right leg radiating pain = sciatica).</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>Perform neurological assessment: reflexes, sensation, and muscle power in the L4/L5 dermatome.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div>Check for contraindications: cauda equina syndrome, severe neurological deficit, pacemaker.</div></div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">💊 Treatment</div>
+          <div class="step-item"><div class="step-num">1</div><div><strong>IF Quadripolar (4-pole technique)</strong> — because the affected area is deep and widespread (L4/L5 + sciatica).<br>• Frequency: 80–150 Hz for pain relief<br>• 4 electrodes placed around the affected area in a crossed pattern<br>• Treatment duration: 20–30 minutes<br>• Intensity: up to comfortable tingling (sensory level)</div></div>
+          <div class="step-item"><div class="step-num">2</div><div><strong>TENS</strong> (conventional mode) can be added along the nerve pathway for pain relief between sessions.</div></div>
+        </div>
+
+        <div class="note-box blue" style="margin-top:16px">
+          ⚡ Why 4-polar not 2-polar?<br>
+          The pain is deep and widespread → 4-polar creates current intersection at depth, covering a larger treatment area with better penetration.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ Case 3: Fibula ══════ -->
+  <div class="case-card">
+    <div class="case-top red">
+      <div class="case-badge red">CASE 3</div>
+      <div class="case-title">Fracture near Fibular Head + Contusion → Mild Weakness of Dorsiflexors</div>
+    </div>
+
+    <!-- Arabic -->
+    <div class="case-lang-version active" data-lang="ar">
+      <div class="case-body">
+        <div class="req-label">المطلوب: تحديد العصب + تصنيف الإصابة + خطة العلاج</div>
+
+        <div class="req-item">
+          <div class="req-icon">🧬</div>
+          <div><strong>العصب المصاب:</strong> Lateral Peroneal Nerve (Common Peroneal Nerve)<br>لأنه بيعدي حوالين رأس الـ fibula وهو superficial جداً في المنطقة دي.</div>
+        </div>
+        <div class="req-item">
+          <div class="req-icon">📊</div>
+          <div><strong>تصنيف الإصابة:</strong> Neuropraxia<br>لأن الضعف mild + الإصابة contusion (رضة) → focal conduction block بدون قطع في الـ axon → قابل للشفاء الكامل.</div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">💊 خطة العلاج</div>
+          <div class="step-item"><div class="step-num">1</div><div><strong>Faradic current</strong> على عضلات الـ dorsiflexors (Tibialis Anterior) عشان نعمل muscle re-education ونمنع الـ atrophy أثناء فترة الشفاء.<br>• Pulse duration: 0.1–1 ms | Frequency: 30–100 Hz<br>• Surged mode | مدة: 15–20 دقيقة</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>Splint أو ankle-foot orthosis (AFO) لمنع foot drop أثناء المشي.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div>متابعة بالـ SDC كل أسبوعين لمراقبة تحسن العصب (الـ Chronaxie المفروض تقل مع الوقت).</div></div>
+        </div>
+
+        <div class="note-box green" style="margin-top:16px">
+          ✅ Neuropraxia = أخف إصابة عصبية → شفاء كامل خلال أسابيع لشهور بدون تدخل جراحي.
+        </div>
+      </div>
+    </div>
+
+    <!-- English -->
+    <div class="case-lang-version" data-lang="en">
+      <div class="case-body">
+        <div class="req-label">Required: Identify nerve + Classify injury + Treatment plan</div>
+
+        <div class="req-item">
+          <div class="req-icon">🧬</div>
+          <div><strong>Affected nerve:</strong> Lateral Peroneal Nerve (Common Peroneal Nerve)<br>It wraps around the fibular head and is very superficial at that location, making it vulnerable to compression and contusion injuries.</div>
+        </div>
+        <div class="req-item">
+          <div class="req-icon">📊</div>
+          <div><strong>Classification:</strong> Neuropraxia<br>Mild weakness + contusion injury → focal conduction block without axonal disruption → full recovery expected.</div>
+        </div>
+
+        <div class="step-block">
+          <div class="step-label">💊 Treatment Plan</div>
+          <div class="step-item"><div class="step-num">1</div><div><strong>Faradic current</strong> applied to the dorsiflexor muscles (Tibialis Anterior) for muscle re-education and prevention of disuse atrophy during recovery.<br>• Pulse duration: 0.1–1 ms | Frequency: 30–100 Hz<br>• Surged mode | Duration: 15–20 minutes</div></div>
+          <div class="step-item"><div class="step-num">2</div><div>Splint or ankle-foot orthosis (AFO) to prevent foot drop during ambulation.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div>Follow-up with SDC every 2 weeks to monitor nerve recovery (Chronaxie should decrease over time).</div></div>
+        </div>
+
+        <div class="note-box green" style="margin-top:16px">
+          ✅ Neuropraxia = mildest nerve injury → full recovery expected within weeks to months without surgical intervention.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end Cases -->
+
+
+<!-- ====== SUMMARY ====== -->
+<div class="section" id="summary">
+
+  <div class="topic-group">
+    <div class="topic-header">
+      <div class="topic-icon ic-red">🔥</div>
+      <div class="topic-title">أهم ما في الامتحان — بالنص من الطلاب</div>
+    </div>
+    <div class="summary-grid">
+      <div class="sum-row"><div class="sum-key">Wound Healing stages</div><div class="sum-val">3 (NOT 4)</div></div>
+      <div class="sum-row"><div class="sum-key">Homeostasis</div><div class="sum-val">Phase, not a Stage</div></div>
+      <div class="sum-row"><div class="sum-key">Kink on SDC</div><div class="sum-val">Re-innervation</div></div>
+      <div class="sum-row"><div class="sum-key">Randomly sprouting</div><div class="sum-val">Neurotmesis</div></div>
+      <div class="sum-row"><div class="sum-key">Focal conduction block</div><div class="sum-val">Neuropraxia</div></div>
+      <div class="sum-row"><div class="sum-key">Chronaxie unit</div><div class="sum-val">TIME (ms/sec) — NOT mV</div></div>
+      <div class="sum-row"><div class="sum-key">All options in mV for Chronaxie</div><div class="sum-val">None of the above</div></div>
+      <div class="sum-row"><div class="sum-key">AQ = 1</div><div class="sum-val">Denervated > 6 months</div></div>
+    </div>
+  </div>
+
+  <div class="topic-group" style="margin-top:28px">
+    <div class="topic-header">
+      <div class="topic-icon ic-yellow">⚡</div>
+      <div class="topic-title">Currents — أرقام ومعلومات</div>
+    </div>
+    <div class="summary-grid">
+      <div class="sum-row"><div class="sum-key">Russian current</div><div class="sum-val">2,500 Hz burst mode</div></div>
+      <div class="sum-row"><div class="sum-key">Faradic frequency</div><div class="sum-val">30 – 100 Hz</div></div>
+      <div class="sum-row"><div class="sum-key">Faradic pulse duration</div><div class="sum-val">0.1 – 1 ms</div></div>
+      <div class="sum-row"><div class="sum-key">MES intensity</div><div class="sum-val">&lt; 1 mA (subsensory)</div></div>
+      <div class="sum-row"><div class="sum-key">HVPC waveform</div><div class="sum-val">Monophasic</div></div>
+      <div class="sum-row"><div class="sum-key">D.D. waveform</div><div class="sum-val">Monophasic</div></div>
+      <div class="sum-row"><div class="sum-key">Low frequency effect</div><div class="sum-val">Fatigue easily</div></div>
+      <div class="sum-row"><div class="sum-key">IF 15–20 Hz</div><div class="sum-val">Edema reduction</div></div>
+      <div class="sum-row"><div class="sum-key">IF 1:5 duty cycle</div><div class="sum-val">Rapid fatigue cases</div></div>
+    </div>
+  </div>
+
+  <div class="topic-group" style="margin-top:28px">
+    <div class="topic-header">
+      <div class="topic-icon ic-green">🩹</div>
+      <div class="topic-title">Wound Healing — Cells & Timing</div>
+    </div>
+    <div class="summary-grid">
+      <div class="sum-row"><div class="sum-key">Contractor cell</div><div class="sum-val">Macrophages</div></div>
+      <div class="sum-row"><div class="sum-key">Plumber cell</div><div class="sum-val">Pericytes</div></div>
+      <div class="sum-row"><div class="sum-key">Farmer cell</div><div class="sum-val">Fibroblasts</div></div>
+      <div class="sum-row"><div class="sum-key">Epithelialization cell</div><div class="sum-val">Keratinocytes</div></div>
+      <div class="sum-row"><div class="sum-key">Non-skilled cells</div><div class="sum-val">Neutrophils</div></div>
+      <div class="sum-row"><div class="sum-key">Late wound stage</div><div class="sum-val">6 – 24 hours</div></div>
+      <div class="sum-row"><div class="sum-key">Acute nerve degeneration</div><div class="sum-val">After 21 days</div></div>
+      <div class="sum-row"><div class="sum-key">Spurting</div><div class="sum-val">Less than 1 day</div></div>
+      <div class="sum-row"><div class="sum-key">Separation</div><div class="sum-val">After 30 min</div></div>
+      <div class="sum-row"><div class="sum-key">Thrombin activates</div><div class="sum-val">Fibrinogen</div></div>
+      <div class="sum-row"><div class="sum-key">US for aseptic wound</div><div class="sum-val">0.3 – 0.5 W/cm²</div></div>
+      <div class="sum-row"><div class="sum-key">Septic wound → electrode</div><div class="sum-val">Negative inside wound</div></div>
+      <div class="sum-row"><div class="sum-key">Best wound measurement</div><div class="sum-val">Computerized stereographimetry</div></div>
+      <div class="sum-row"><div class="sum-key">Collagen ↓ by</div><div class="sum-val">Vitamin C deficiency</div></div>
+    </div>
+  </div>
+
+  <div class="topic-group" style="margin-top:28px">
+    <div class="topic-header">
+      <div class="topic-icon ic-orange">🏃</div>
+      <div class="topic-title">Muscle Fiber Types Quick Ref</div>
+    </div>
+    <div class="summary-grid">
+      <div class="sum-row"><div class="sum-key">Climbing stairs (explosive)</div><div class="sum-val">Type 2 Fast twitch</div></div>
+      <div class="sum-row"><div class="sum-key">Up & down stairs (sustained)</div><div class="sum-val">Type 1 Slow twitch</div></div>
+      <div class="sum-row"><div class="sum-key">Marathon / Runner</div><div class="sum-val">Type 1 Slow twitch</div></div>
+      <div class="sum-row"><div class="sum-key">ES / EMS strikes</div><div class="sum-val">Type 2 Fast twitch</div></div>
+    </div>
+  </div>
+
+</div><!-- end Summary -->
+
+</main>
+
+<script>
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleQ(card) { card.classList.toggle('open'); }
+function searchQ(val) {
+  const q = val.trim().toLowerCase();
+  document.querySelectorAll('.q-card').forEach(card => {
+    card.style.display = (!q || card.innerText.toLowerCase().includes(q)) ? '' : 'none';
+  });
+  document.querySelectorAll('.topic-group').forEach(g => {
+    const vis = [...g.querySelectorAll('.q-card')].some(c => c.style.display !== 'none');
+    g.style.display = vis ? '' : 'none';
+  });
+}
+function switchCaseLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.case-lang-version').forEach(v => {
+    v.classList.toggle('active', v.dataset.lang === lang);
+  });
+}
+</script>
+</body>
+</html>

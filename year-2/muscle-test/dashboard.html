@@ -1,0 +1,3436 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muscle Test 2 - Cyber Study Dashboard ⚡</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(11, 15, 30, 0.7);
+            --card-border: rgba(0, 242, 255, 0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+
+            /* Neon Cyber Palette */
+            --cyber-cyan: #00f2ff;
+            --cyber-pink: #ff007f;
+            --cyber-green: #00ff87;
+            --cyber-purple: #7f00ff;
+            --cyber-amber: #ffaa00;
+
+            --glass-blur: blur(20px);
+            --neon-glow-cyan: 0 0 15px rgba(0, 242, 255, 0.25);
+            --neon-glow-pink: 0 0 15px rgba(255, 0, 127, 0.25);
+            --transition-smooth: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(99, 102, 241, 0.2);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --cyber-cyan: #0891b2;
+            --cyber-pink: #db2777;
+            --cyber-green: #059669;
+            --cyber-purple: #6d28d9;
+            --cyber-amber: #d97706;
+            --neon-glow-cyan: 0 4px 12px rgba(8, 145, 178, 0.15);
+            --neon-glow-pink: 0 4px 12px rgba(219, 39, 119, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(127, 0, 255, 0.12) 0px, transparent 40%),
+                radial-gradient(at 100% 100%, rgba(0, 242, 255, 0.12) 0px, transparent 40%),
+                radial-gradient(at 50% 50%, rgba(255, 0, 127, 0.05) 0px, transparent 50%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Container Layout */
+        .app-container {
+            max-width: 1440px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        /* Top Progress Hub Widget */
+        .cyber-hud {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--neon-glow-cyan);
+            border-radius: 18px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1.2fr 2fr 1fr;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .hud-metric {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            padding-left: 15px;
+        }
+
+        .hud-metric:last-child {
+            border-left: none;
+        }
+
+        .hud-value-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hud-value {
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--cyber-cyan), var(--cyber-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.3);
+        }
+
+        .hud-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .hud-progress-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .hud-progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .hud-progress-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hud-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--cyber-cyan), var(--cyber-purple), var(--cyber-pink));
+            box-shadow: 0 0 10px var(--cyber-cyan);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Study Path Widget */
+        .study-path-card {
+            background: linear-gradient(135deg, rgba(255, 0, 127, 0.06), rgba(0, 242, 255, 0.06));
+            border: 1px solid var(--cyber-pink);
+            box-shadow: var(--neon-glow-pink);
+            border-radius: 16px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            animation: pulseGlow 4s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 0, 127, 0.1);
+            }
+
+            100% {
+                box-shadow: 0 0 25px rgba(255, 0, 127, 0.25);
+            }
+        }
+
+        .path-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .path-icon {
+            background: var(--cyber-pink);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px var(--cyber-pink);
+        }
+
+        .path-info h4 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--cyber-pink);
+        }
+
+        .path-info p {
+            font-size: 13px;
+            color: var(--text-primary);
+            margin-top: 2px;
+        }
+
+        /* Header Style */
+        header {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--neon-glow-cyan);
+        }
+
+        .header-title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            background: linear-gradient(135deg, var(--cyber-purple), var(--cyber-cyan));
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(to left, var(--cyber-cyan), var(--cyber-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+
+        .header-title p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-icon {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-icon:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 10px var(--cyber-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Search Box */
+        .search-box {
+            position: relative;
+            width: 320px;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 12px 42px 12px 15px;
+            color: var(--text-primary);
+            outline: none;
+            font-size: 14px;
+            transition: var(--transition-smooth);
+        }
+
+        .search-box input:focus {
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            padding: 8px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-tab:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-tab.active {
+            color: white;
+            background: linear-gradient(135deg, var(--cyber-purple), var(--cyber-cyan));
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+        }
+
+        /* Content Sections */
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        /* Grid layouts */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+
+        /* Sidebar Filters */
+        .sidebar-card {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: fit-content;
+        }
+
+        .filter-title {
+            font-size: 16px;
+            font-weight: 800;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--cyber-cyan);
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
+        .filter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .filter-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 14px;
+            text-align: right;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: rgba(0, 242, 255, 0.12);
+            border-color: rgba(0, 242, 255, 0.3);
+            color: var(--cyber-cyan);
+            font-weight: 700;
+            box-shadow: inset 0 0 8px rgba(0, 242, 255, 0.1);
+        }
+
+        .filter-badge {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2px 8px;
+            font-size: 11px;
+            color: var(--text-primary);
+        }
+
+        .filter-btn.active .filter-badge {
+            background: var(--cyber-cyan);
+            color: black;
+            font-weight: 700;
+        }
+
+        /* Quiz Simulator styles */
+        .quiz-container {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 15px;
+        }
+
+        .quiz-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .quiz-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .quiz-progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .quiz-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to left, var(--cyber-cyan), var(--cyber-pink));
+            box-shadow: 0 0 8px var(--cyber-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .question-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            font-size: 16px;
+        }
+
+        .option-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(0, 242, 255, 0.4);
+            transform: translateX(-6px);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.1);
+        }
+
+        .option-item.selected {
+            border-color: var(--cyber-purple);
+            background: rgba(127, 0, 255, 0.12);
+            box-shadow: 0 0 15px rgba(127, 0, 255, 0.2);
+        }
+
+        .option-badge {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            transition: var(--transition-smooth);
+        }
+
+        .option-item.selected .option-badge {
+            background: var(--cyber-purple);
+            color: white;
+            box-shadow: 0 0 8px var(--cyber-purple);
+        }
+
+        /* Checked results classes */
+        .option-item.correct {
+            border-color: var(--cyber-green) !important;
+            background: rgba(0, 255, 135, 0.1) !important;
+            box-shadow: 0 0 15px rgba(0, 255, 135, 0.2) !important;
+        }
+
+        .option-item.correct .option-badge {
+            background: var(--cyber-green) !important;
+            color: black !important;
+            font-weight: 800;
+        }
+
+        .option-item.wrong {
+            border-color: var(--cyber-pink) !important;
+            background: rgba(255, 0, 127, 0.1) !important;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.2) !important;
+        }
+
+        .option-item.wrong .option-badge {
+            background: var(--cyber-pink) !important;
+            color: white !important;
+        }
+
+        .explanation-card {
+            background: rgba(0, 242, 255, 0.05);
+            border: 1px dashed rgba(0, 242, 255, 0.25);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 10px;
+            display: none;
+            animation: slideDown 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .explanation-card h4 {
+            color: var(--cyber-cyan);
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .explanation-card p {
+            font-size: 14px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .quiz-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cyber-purple), var(--cyber-cyan));
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 242, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.15);
+        }
+
+        /* Quiz Results Dashboard */
+        .quiz-results {
+            display: none;
+            flex-direction: column;
+            gap: 30px;
+            text-align: center;
+            padding: 20px 0;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .result-circle {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(127, 0, 255, 0.15) 0%, rgba(0, 242, 255, 0.08) 100%);
+            border: 3px solid var(--cyber-cyan);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.3);
+        }
+
+        .result-score {
+            font-size: 46px;
+            font-weight: 900;
+            color: var(--cyber-cyan);
+            text-shadow: 0 0 15px rgba(0, 242, 255, 0.4);
+        }
+
+        .result-percent {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 15px;
+            transition: var(--transition-smooth);
+        }
+
+        .result-card:hover {
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.15);
+        }
+
+        .result-card-val {
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .result-card-lbl {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* Flashcard Styles */
+        .flashcards-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .flashcard-wrapper {
+            perspective: 1000px;
+            width: 100%;
+            max-width: 600px;
+            height: 360px;
+            cursor: pointer;
+        }
+
+        .flashcard {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.75s cubic-bezier(0.2, 0.85, 0.25, 1);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Fix for Flashcards flip */
+        .flashcard-wrapper.flipped .flashcard {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            box-shadow: inset 0 0 20px rgba(0, 242, 255, 0.05);
+        }
+
+        .card-front {
+            background: radial-gradient(circle at 10% 10%, rgba(127, 0, 255, 0.18) 0%, var(--card-bg) 100%);
+        }
+
+        .card-back {
+            background: radial-gradient(circle at 90% 90%, rgba(255, 0, 127, 0.18) 0%, var(--card-bg) 100%);
+            transform: rotateY(180deg);
+            border-color: var(--cyber-pink);
+            box-shadow: inset 0 0 20px rgba(255, 0, 127, 0.05);
+        }
+
+        .card-category {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--cyber-cyan);
+            text-transform: uppercase;
+            background: rgba(0, 242, 255, 0.12);
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            text-shadow: 0 0 5px rgba(0, 242, 255, 0.2);
+        }
+
+        .card-back .card-category {
+            color: var(--cyber-pink);
+            background: rgba(255, 0, 127, 0.12);
+            border-color: rgba(255, 0, 127, 0.2);
+            text-shadow: 0 0 5px rgba(255, 0, 127, 0.2);
+        }
+
+        .card-content-text {
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.6;
+            margin: auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .card-hint {
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        .card-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            justify-content: space-between;
+        }
+
+        .card-master-btn {
+            background: rgba(0, 255, 135, 0.08);
+            border: 1px solid rgba(0, 255, 135, 0.25);
+            color: var(--cyber-green);
+            padding: 12px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-master-btn:hover {
+            background: var(--cyber-green);
+            color: black;
+            box-shadow: 0 0 15px var(--cyber-green);
+            transform: translateY(-2px);
+        }
+
+        .card-master-btn.mastered {
+            background: var(--cyber-green);
+            color: black;
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 15px var(--cyber-green);
+        }
+
+        /* Study Guides / Tables Styles */
+        .guides-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .guide-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .guide-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .guide-tab-btn {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .guide-tab-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(0, 242, 255, 0.3);
+        }
+
+        .guide-tab-btn.active {
+            color: white;
+            background: rgba(0, 242, 255, 0.15);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
+        /* Checkbox custom style */
+        .cyber-checkbox {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cyber-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            height: 22px;
+            width: 22px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: transparent;
+        }
+
+        .cyber-checkbox:hover input~.checkmark {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--cyber-cyan);
+        }
+
+        .cyber-checkbox input:checked~.checkmark {
+            background-color: var(--cyber-cyan);
+            border-color: var(--cyber-cyan);
+            color: black;
+            box-shadow: 0 0 10px var(--cyber-cyan);
+        }
+
+        /* Database table styles */
+        .table-wrapper {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            overflow: auto;
+            max-height: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        th {
+            background: #060b13;
+            padding: 16px;
+            font-weight: 800;
+            color: var(--cyber-cyan);
+            border-bottom: 2px solid var(--card-border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--text-primary);
+            line-height: 1.55;
+        }
+
+        tr.revised td {
+            background-color: rgba(0, 255, 135, 0.03);
+            color: var(--text-secondary);
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        /* MMT Cards */
+        .mmt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        .mmt-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .mmt-card.revised {
+            border-color: var(--cyber-green);
+            box-shadow: 0 0 10px rgba(0, 255, 135, 0.1);
+            background-color: rgba(0, 255, 135, 0.01);
+        }
+
+        .mmt-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 8px 30px rgba(0, 242, 255, 0.15);
+        }
+
+        .mmt-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 10px;
+        }
+
+        .muscle-title {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .muscle-badge {
+            background: rgba(127, 0, 255, 0.12);
+            color: #b085ff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(127, 0, 255, 0.2);
+        }
+
+        .mmt-field {
+            font-size: 13px;
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 10px;
+            line-height: 1.45;
+        }
+
+        .field-label {
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+
+        .field-val {
+            color: var(--text-primary);
+        }
+
+        /* High-yield pearls styling */
+        .pearls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 15px;
+        }
+
+        .pearl-card {
+            background: rgba(0, 242, 255, 0.03);
+            border: 1px solid rgba(0, 242, 255, 0.15);
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .pearl-card:hover {
+            background: rgba(0, 242, 255, 0.06);
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .pearl-icon {
+            color: var(--cyber-cyan);
+            flex-shrink: 0;
+            margin-top: 2px;
+            text-shadow: 0 0 5px var(--cyber-cyan);
+        }
+
+        .pearl-content h4 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--cyber-cyan);
+            margin-bottom: 6px;
+        }
+
+        .pearl-content p {
+            font-size: 13px;
+            color: var(--text-primary);
+            line-height: 1.55;
+        }
+
+        /* Quick helper widget */
+        .helper-card {
+            background: linear-gradient(135deg, rgba(127, 0, 255, 0.06), rgba(0, 242, 255, 0.06));
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .helper-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .helper-col h3 {
+            font-size: 16px;
+            color: var(--cyber-cyan);
+            font-weight: 800;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 8px;
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.2);
+        }
+
+        .helper-col p {
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+
+        /* Highlights */
+        .highlight-emerald {
+            color: var(--cyber-green);
+            font-weight: 700;
+        }
+
+        .highlight-rose {
+            color: var(--cyber-pink);
+            font-weight: 700;
+        }
+
+        .highlight-cyan {
+            color: var(--cyber-cyan);
+            font-weight: 700;
+        }
+
+        .highlight-amber {
+            color: var(--cyber-amber);
+            font-weight: 700;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive UI */
+        @media (max-width: 950px) {
+            .cyber-hud {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .hud-metric {
+                border-left: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                padding-bottom: 10px;
+                padding-left: 0;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .helper-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-bottom: calc(75px + env(safe-area-inset-bottom, 0px));
+                /* Space for sticky bottom navigation */
+            }
+
+            /* Sticky Bottom Navigation Bar */
+            .nav-tabs {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                border-radius: 0;
+                border: none;
+                border-top: 1px solid var(--card-border);
+                background: rgba(3, 7, 18, 0.96);
+                backdrop-filter: var(--glass-blur);
+                padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px)) 8px;
+                box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.6);
+                display: flex;
+                justify-content: space-around;
+                gap: 2px;
+            }
+
+            .nav-tab {
+                flex: 1;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                font-size: 10px;
+                padding: 6px 2px;
+                color: var(--text-secondary);
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                border-radius: 8px;
+                min-height: 48px;
+            }
+
+            .nav-tab span {
+                font-size: 9.5px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                display: inline-block;
+            }
+
+            .nav-tab i {
+                width: 20px;
+                height: 20px;
+            }
+
+            .nav-tab.active {
+                color: var(--cyber-cyan);
+                text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+            }
+
+            .nav-tab.active i {
+                color: var(--cyber-cyan);
+                filter: drop-shadow(0 0 5px var(--cyber-cyan));
+            }
+
+            /* Horizontal Category Scroll for Sidebar lists */
+            .sidebar-card {
+                background: transparent;
+                border: none;
+                padding: 0;
+                box-shadow: none;
+                gap: 8px;
+            }
+
+            .sidebar-card .filter-title {
+                display: none;
+                /* Hide headings to maximize space */
+            }
+
+            .filter-list {
+                display: flex !important;
+                flex-direction: row !important;
+                overflow-x: auto;
+                scrollbar-width: none;
+                /* Firefox */
+                gap: 8px;
+                padding: 6px 0;
+                width: 100vw;
+                margin-left: -20px;
+                margin-right: -20px;
+                padding-left: 20px;
+                padding-right: 20px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-list::-webkit-scrollbar {
+                display: none;
+                /* Chrome/Safari */
+            }
+
+            .filter-list li {
+                flex-shrink: 0;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-size: 13px;
+                white-space: nowrap;
+                min-height: 40px;
+            }
+
+            /* Responsive Table-to-Card Layout */
+            .table-wrapper {
+                border: none;
+                background: transparent;
+                box-shadow: none;
+                max-height: none;
+                overflow: visible;
+            }
+
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+                width: 100%;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                background: var(--card-bg);
+                border: 1px solid var(--card-border);
+                border-radius: 16px;
+                margin-bottom: 16px;
+                padding: 16px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                direction: rtl;
+            }
+
+            td {
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+                text-align: right;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            td:last-child {
+                border-bottom: none;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-size: 11px;
+                font-weight: 800;
+                color: var(--cyber-cyan);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            /* Option click targets & spacing */
+            .option-item {
+                padding: 18px 20px;
+                min-height: 48px;
+            }
+
+            /* Sizing and spacings */
+            .quiz-container {
+                padding: 20px;
+            }
+
+            .flashcard-wrapper {
+                height: 320px;
+            }
+
+            .card-face {
+                padding: 20px;
+            }
+
+            .card-content-text {
+                font-size: 18px;
+            }
+
+            /* Practice mode selector layout */
+            .quiz-mode-selector {
+                flex-direction: row !important;
+                justify-content: space-around;
+                gap: 10px;
+                background: var(--card-bg);
+                border: 1px solid var(--card-border);
+                padding: 12px;
+                border-radius: 12px;
+                width: 100%;
+            }
+
+            .sidebar-card label {
+                margin: 0 !important;
+                padding: 4px 0;
+            }
+
+            /* Header mobile layout */
+            header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .header-title-container {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .search-box {
+                flex-grow: 1;
+                width: auto;
+            }
+
+            /* Study path card mobile layout */
+            .study-path-card {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .path-content {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            #path-action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Results Grid mobile optimization */
+            .results-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+                gap: 8px !important;
+            }
+
+            .result-card {
+                padding: 10px 5px !important;
+            }
+
+            .result-card-val {
+                font-size: 18px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Cyber HUD Hub -->
+        <div class="cyber-hud">
+            <div class="hud-metric">
+                <div class="hud-value" id="hud-prep-score">0%</div>
+                <div class="hud-value-container">
+                    <span class="hud-label">مؤشر جاهزيتك للامتحان 🎯</span>
+                    <span style="font-size:11px; color:var(--text-secondary)">جاهز للفاينال</span>
+                </div>
+            </div>
+
+            <div class="hud-progress-container">
+                <div class="hud-progress-header">
+                    <span>تغطية المنهج كله</span>
+                    <span id="hud-prep-ratio">0 / 113 جزء</span>
+                </div>
+                <div class="hud-progress-bar">
+                    <div class="hud-progress-fill" id="hud-progress-fill"></div>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: space-around;">
+                <div style="text-align: center;">
+                    <div style="font-size: 18px; font-weight: 800;" id="hud-quiz-count">0/50</div>
+                    <div style="font-size: 11px; color: var(--text-secondary);">الأسئلة الصح</div>
+                </div>
+                <div style="text-align: center; border-right: 1px solid rgba(255,255,255,0.08); padding-right: 10px;">
+                    <div style="font-size: 18px; font-weight: 800;" id="hud-cards-count">0/15</div>
+                    <div style="font-size: 11px; color: var(--text-secondary);">فلاش كاردز</div>
+                </div>
+                <div style="text-align: center; border-right: 1px solid rgba(255,255,255,0.08); padding-right: 10px;">
+                    <div style="font-size: 18px; font-weight: 800;" id="hud-topics-count">0/48</div>
+                    <div style="font-size: 11px; color: var(--text-secondary);">مواضيع راجعتها</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personalized Study Path Engine -->
+        <div class="study-path-card" id="study-path-card">
+            <div class="path-content">
+                <div class="path-icon">
+                    <i data-lucide="compass" id="path-icon-symbol"></i>
+                </div>
+                <div class="path-info">
+                    <h4 id="path-title">دليل المذاكرة الذكي 🧭</h4>
+                    <p id="path-recommendation">بنحلل مستواك دلوقتي... حل كام سؤال أو احفظ فلاش كارد عشان تبدأ.</p>
+                </div>
+            </div>
+            <button class="btn btn-secondary" onclick="actionPathRecommend()" id="path-action-btn"
+                style="padding: 8px 16px; font-size: 12px;">روق ودوس هنا</button>
+        </div>
+
+        <!-- Header -->
+        <header>
+            <div class="header-title-container">
+                <div class="header-logo">
+                    <i data-lucide="shield-alert"></i>
+                </div>
+                <div class="header-title">
+                    <h1>Muscle Test 2 - Study Dashboard</h1>
+                    <p>Study With Elfox Smarter Not Harder</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <!-- Search Bar -->
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="global-search" placeholder="ابحث عن اختبار، مفصل، عصب..."
+                        oninput="handleSearch()">
+                </div>
+                <!-- Synth Sound Toggle -->
+                <button class="btn-icon" onclick="SoundEngine.toggle()" title="كتم/تشغيل المؤثرات الصوتية">
+                    <i data-lucide="volume-2" id="sound-icon"></i>
+                </button>
+                <!-- Theme Toggle -->
+                <button class="btn-icon" onclick="toggleTheme()" title="تغيير المظهر">
+                    <i data-lucide="sun" id="theme-icon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" id="tab-btn-quiz" onclick="switchTab('quiz')">
+                <i data-lucide="list-checks"></i>
+                <span>كويزات MCQ تفاعلية</span>
+            </button>
+            <button class="nav-tab" id="tab-btn-flashcards" onclick="switchTab('flashcards')">
+                <i data-lucide="layers"></i>
+                <span>فلاش كاردز</span>
+            </button>
+            <button class="nav-tab" id="tab-btn-guides" onclick="switchTab('guides')">
+                <i data-lucide="book-open"></i>
+                <span>جداول المراجعة</span>
+            </button>
+            <button class="nav-tab" id="tab-btn-pearls" onclick="switchTab('pearls')">
+                <i data-lucide="zap"></i>
+                <span>خلاصة الميدترم ⚡</span>
+            </button>
+        </nav>
+
+        <!-- Tab 1: Quiz Section -->
+        <div id="quiz-tab" class="tab-content active">
+            <div class="dashboard-grid">
+                <div class="sidebar-card">
+                    <div class="filter-title">
+                        <i data-lucide="filter"></i>
+                        <span>أقسام الأسئلة</span>
+                    </div>
+                    <ul class="filter-list">
+                        <li><button class="filter-btn active" id="quiz-flt-all"
+                                onclick="filterQuiz('all', this)"><span>كل الأسئلة</span><span class="filter-badge"
+                                    id="badge-all">50</span></button></li>
+                        <li><button class="filter-btn" id="quiz-flt-sandbox" onclick="filterQuiz('sandbox', this)"
+                                style="border: 1px dashed var(--cyber-pink);"><span>صندوق الأخطاء (الـ
+                                    Sandbox)</span><span class="filter-badge highlight-rose" id="badge-sandbox"
+                                    style="background: rgba(255,0,127,0.1)">0</span></button></li>
+                        <li><button class="filter-btn" id="quiz-flt-midterm" onclick="filterQuiz('midterm', this)"><span>أسئلة الميدترم
+                                    الفعلية</span><span class="filter-badge" id="badge-midterm">14</span></button></li>
+                        <li><button class="filter-btn" id="quiz-flt-goniometry" onclick="filterQuiz('goniometry', this)"><span>قياس المدى الحركي
+                                    ROM</span><span class="filter-badge" id="badge-goniometry">7</span></button></li>
+                        <li><button class="filter-btn" id="quiz-flt-mmt" onclick="filterQuiz('mmt', this)"><span>تقييم العضلات
+                                    MMT</span><span class="filter-badge" id="badge-mmt">6</span></button></li>
+                        <li><button class="filter-btn" id="quiz-flt-nerves" onclick="filterQuiz('nerves', this)"><span>الأعصاب
+                                    وإصاباتها</span><span class="filter-badge" id="badge-nerves">3</span></button></li>
+                        <li><button class="filter-btn" id="quiz-flt-special" onclick="filterQuiz('special', this)"><span>الاختبارات
+                                    الخاصة</span><span class="filter-badge" id="badge-special">5</span></button></li>
+                    </ul>
+
+                    <div class="filter-title" style="margin-top: 15px;">
+                        <i data-lucide="settings"></i>
+                        <span>طريقة الحل</span>
+                    </div>
+                    <div class="quiz-mode-selector" style="display: flex; gap: 8px; flex-direction: column;">
+                        <label style="font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="quiz-mode" value="practice" checked onchange="changeQuizMode()">
+                            <span>طريقة الحل (إجابة فورية)</span>
+                        </label>
+                        <label style="font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="radio" name="quiz-mode" value="exam" onchange="changeQuizMode()">
+                            <span>وضع الامتحان (امتحان حقيقي بجد)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="quiz-container" id="quiz-container">
+                    <div class="quiz-header">
+                        <div class="quiz-meta">
+                            <span class="quiz-meta-item"><i data-lucide="help-circle" style="width:16px;"></i> سؤال
+                                <span id="current-q-num">1</span> من <span id="total-q-num">10</span></span>
+                            <span class="quiz-meta-item" id="score-meta-item"><i data-lucide="award"
+                                    style="width:16px;"></i> السكور الحالي: <span id="current-score">0</span></span>
+                            <span class="quiz-meta-item"><i data-lucide="tag" style="width:16px;"></i> القسم: <span
+                                    id="current-q-category">عام</span></span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="restartQuiz()"
+                            style="padding: 6px 12px; font-size: 12px;">ابدأ من الأول</button>
+                    </div>
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill" id="quiz-progress"></div>
+                    </div>
+
+                    <div class="question-card" id="question-card">
+                        <div class="question-header"
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px dashed rgba(255, 255, 255, 0.08); padding-bottom: 8px;">
+                            <span
+                                style="font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: var(--cyber-pink); text-transform: uppercase;">QUESTION
+                                TEXT</span>
+                            <button class="btn btn-secondary" id="btn-question-hint" onclick="toggleQuestionHint()"
+                                style="padding: 4px 10px; font-size: 11px; border-radius: 20px; display: flex; align-items: center; gap: 4px; background: rgba(0, 242, 255, 0.08); border: 1px solid rgba(0, 242, 255, 0.2); color: var(--cyber-cyan); cursor: pointer; height: auto; min-height: unset;">
+                                <i data-lucide="languages" style="width:13px; height: 13px;"></i>
+                                <span>تلميح الترجمة</span>
+                            </button>
+                        </div>
+                        <h3 id="question-text"
+                            style="margin-bottom: 20px; text-align: left; direction: ltr; font-size: 18px; line-height: 1.5; font-weight: 700; color: var(--text-primary);">
+                            سؤال تجريبي؟</h3>
+                        <div id="question-hint-box"
+                            style="display: none; background: rgba(0, 242, 255, 0.05); border: 1px dashed rgba(0, 242, 255, 0.25); border-radius: 12px; padding: 14px; margin-bottom: 20px; font-size: 14px; direction: rtl; text-align: right; line-height: 1.5;">
+                            <!-- Filled dynamically -->
+                        </div>
+                        <div class="options-list" id="options-list" style="text-align: left; direction: ltr;">
+                            <!-- Options filled dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Explanation Box -->
+                    <div class="explanation-card" id="explanation-box" style="text-align: left; direction: ltr;">
+                        <h4
+                            style="display: flex; align-items: center; gap: 6px; font-size: 15px; color: var(--cyber-cyan); margin-bottom: 8px;">
+                            <i data-lucide="info" style="width:18px;"></i> Explanation</h4>
+                        <p id="explanation-text"
+                            style="font-size: 14px; line-height: 1.6; color: var(--text-primary); margin-bottom: 12px;">
+                            Explanation text in English...
+                        </p>
+                        <div
+                            style="border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 12px; text-align: right; direction: rtl;">
+                            <button class="btn btn-secondary" onclick="toggleExplanationTranslation()"
+                                style="padding: 6px 12px; font-size: 11px; border-radius: 8px; background: rgba(255, 0, 127, 0.08); border: 1px solid rgba(255, 0, 127, 0.2); color: var(--cyber-pink); display: inline-flex; align-items: center; gap: 4px;">
+                                <i data-lucide="languages" style="width:12px; height: 12px;"></i>
+                                <span>عرض الترجمة / تلميح بالعربي</span>
+                            </button>
+                            <div id="explanation-translation-box"
+                                style="display: none; margin-top: 10px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; padding: 8px; background: rgba(255, 0, 127, 0.03); border-radius: 6px;">
+                                <!-- Arabic translation hint -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-actions">
+                        <button class="btn btn-secondary" id="btn-prev" onclick="prevQuestion()"
+                            style="visibility:hidden;"><i data-lucide="chevron-right"></i> اللي فات</button>
+                        <button class="btn btn-primary" id="btn-next" onclick="checkOrNextQuestion()">تشيك على الإجابة
+                            <i data-lucide="chevron-left"></i></button>
+                    </div>
+                </div>
+
+                <!-- Quiz Results (Hidden by default) -->
+                <div class="quiz-container" id="results-container" style="display:none;">
+                    <div class="quiz-results">
+                        <div class="result-circle">
+                            <div class="result-score" id="result-final-score">80%</div>
+                            <div class="result-percent" id="result-fraction">12 / 15 صحيحة</div>
+                        </div>
+                        <h2 id="result-message">عاش يا بطل! جاهز للامتحان بكرة إن شاء الله 💪</h2>
+                        <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">استمر في المراجعة
+                            وتخزين الأسئلة الخاطئة في الساندبوكس للتدرب عليها لاحقاً.</p>
+
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="result-card-val highlight-emerald" id="res-correct">12</div>
+                                <div class="result-card-lbl">صح</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-card-val highlight-rose" id="res-incorrect">3</div>
+                                <div class="result-card-lbl">غلط</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-card-val highlight-cyan" id="res-time">02:30</div>
+                                <div class="result-card-lbl">الوقت اللي أخدته</div>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 15px;">
+                            <button class="btn btn-primary" onclick="restartQuiz()"><i data-lucide="refresh-cw"></i> أعد
+                                المحاولة</button>
+                            <button class="btn btn-secondary"
+                                onclick="filterQuiz('sandbox', document.getElementById('quiz-flt-sandbox'))"><i
+                                    data-lucide="shield-alert"></i> افتح صندوق الأخطاء</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Flashcards Section -->
+        <div id="flashcards-tab" class="tab-content">
+            <div class="dashboard-grid">
+                <div class="sidebar-card">
+                    <div class="filter-title">
+                        <i data-lucide="filter"></i>
+                        <span>أقسام الكروت</span>
+                    </div>
+                    <ul class="filter-list">
+                        <li><button class="filter-btn active" onclick="filterCards('all', this)"><span>الكل</span><span
+                                    class="filter-badge" id="card-badge-all">0</span></button></li>
+                        <li><button class="filter-btn" onclick="filterCards('rom', this)"><span>المدى الحركي
+                                    ROM</span><span class="filter-badge" id="card-badge-rom">0</span></button></li>
+                        <li><button class="filter-btn" onclick="filterCards('anatomy', this)"><span>منشأ وعضلات
+                                    MMT</span><span class="filter-badge" id="card-badge-anatomy">0</span></button></li>
+                        <li><button class="filter-btn" onclick="filterCards('lesions', this)"><span>إصابات
+                                    وأعصاب</span><span class="filter-badge" id="card-badge-lesions">0</span></button>
+                        </li>
+                        <li><button class="filter-btn" onclick="filterCards('special', this)"><span>الاختبارات
+                                    الخاصة</span><span class="filter-badge" id="card-badge-special">0</span></button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flashcards-view">
+                    <div class="quiz-progress-bar" style="max-width: 600px;">
+                        <div class="quiz-progress-fill" id="cards-progress-bar" style="width: 0%;"></div>
+                    </div>
+                    <div style="font-size: 13.5px; color: var(--text-secondary); font-weight: 700;">
+                        حفظت: <span id="mastered-count" class="highlight-emerald">0</span> من <span
+                            id="total-cards-count">20</span> كروت
+                    </div>
+
+                    <!-- Fixed HTML for Flashcard (id added to flashcard-wrapper) -->
+                    <div class="flashcard-wrapper" id="flashcard-wrapper" onclick="flipCard()">
+                        <div class="flashcard" id="active-flashcard">
+                            <!-- Front Face -->
+                            <div class="card-face card-front">
+                                <span class="card-category" id="card-front-category">تصنيف</span>
+                                <div class="card-content-text" id="card-front-text">السؤال أو المصطلح هنا؟</div>
+                                <div class="card-hint">
+                                    <i data-lucide="mouse-pointer-click" style="width:16px;"></i>
+                                    <span>دوس على الكارت عشان تشوف الإجابة</span>
+                                </div>
+                            </div>
+                            <!-- Back Face -->
+                            <div class="card-face card-back">
+                                <span class="card-category" id="card-back-category">تصنيف</span>
+                                <div class="card-content-text" id="card-back-text">الإجابة والتعليل العلمي هنا...</div>
+                                <div class="card-hint">
+                                    <i data-lucide="refresh-cw" style="width:16px;"></i>
+                                    <span>دوس هنا تاني عشان تلف الكارت</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-controls">
+                        <button class="btn btn-secondary" onclick="prevCard()"><i data-lucide="chevron-right"></i>
+                            اللي فات</button>
+                        <button class="card-master-btn" id="btn-master" onclick="toggleMasterCard(event)">✓ حفظ الكارت
+                            والإتقان</button>
+                        <button class="btn btn-secondary" onclick="nextCard()">اللي بعده <i
+                                data-lucide="chevron-left"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Study Guides Section -->
+        <div id="guides-tab" class="tab-content">
+            <div class="guides-container">
+                <div class="guide-header-bar">
+                    <div class="guide-tabs">
+                        <button class="guide-tab-btn active" id="guide-tab-btn-special"
+                            onclick="switchGuideTab('special', this)">الاختبارات الخاصة (Special Tests)</button>
+                        <button class="guide-tab-btn" id="guide-tab-btn-goniometry"
+                            onclick="switchGuideTab('goniometry', this)">قياس الزوايا والمفاصل (Goniometry)</button>
+                        <button class="guide-tab-btn" id="guide-tab-btn-mmt" onclick="switchGuideTab('mmt', this)">درجات
+                            وعضلات MMT</button>
+                        <button class="guide-tab-btn" id="guide-tab-btn-nerves"
+                            onclick="switchGuideTab('nerves', this)">الأعصاب والإصابات العصبية</button>
+                    </div>
+                    <div style="font-size: 13px; color: var(--text-secondary); font-weight: 700;">
+                        *علم صح قدام الموضوع اللي ذاكرته عشان تسيف تقدمك
+                    </div>
+                </div>
+
+                <!-- Guide Tab: Special Tests -->
+                <div id="guide-special" class="guide-tab-content" style="display: block;">
+                    <div class="table-wrapper">
+                        <table id="special-tests-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">تمام؟</th>
+                                    <th>اسم الاختبار</th>
+                                    <th>وضعية المريض</th>
+                                    <th>طريقة الفحص والخطوات</th>
+                                    <th>علامة إيجابية الاختبار (+) (Positive)</th>
+                                    <th>معناها إيه كلينيكال؟</th>
+                                </tr>
+                            </thead>
+                            <tbody id="special-tests-tbody">
+                                <!-- Dynamic Content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Guide Tab: Goniometry -->
+                <div id="guide-goniometry" class="guide-tab-content" style="display: none;">
+                    <div class="table-wrapper">
+                        <table id="goniometry-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">تمام؟</th>
+                                    <th>المفصل والحركة</th>
+                                    <th>المدى الحركي الطبيعي (Normal ROM)</th>
+                                    <th>المحور (Axis)</th>
+                                    <th>الذراع الثابت (SA)</th>
+                                    <th>الذراع المتحرك (MA)</th>
+                                    <th>وضعية الفحص بالمنقلة</th>
+                                </tr>
+                            </thead>
+                            <tbody id="goniometry-tbody">
+                                <!-- Dynamic Content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Guide Tab: MMT -->
+                <div id="guide-mmt" class="guide-tab-content" style="display: none;">
+                    <div class="mmt-grid" id="mmt-cards-container">
+                        <!-- Dynamic Muscle MMT Cards -->
+                    </div>
+                </div>
+
+                <!-- Guide Tab: Nerves -->
+                <div id="guide-nerves" class="guide-tab-content" style="display: none;">
+                    <div class="table-wrapper">
+                        <table id="nerves-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px;">تمام؟</th>
+                                    <th>العصب (Nerve)</th>
+                                    <th>الجذور العصبية (Nerve Roots)</th>
+                                    <th>بيغذي عضلات إيه؟</th>
+                                    <th>التشوه الناتج لو اتصاب (Deformity)</th>
+                                    <th>التنميل وفقدان الإحساس فين؟</th>
+                                    <th>تركات إكلينيكية وعواقب الإصابة</th>
+                                </tr>
+                            </thead>
+                            <tbody id="nerves-tbody">
+                                <!-- Dynamic Content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: High Yield Pearls Section -->
+        <div id="pearls-tab" class="tab-content">
+            <!-- Helper Widget -->
+            <div class="helper-card">
+                <div class="helper-col">
+                    <h3>تركات الأعصاب والتشوهات لو اتصابت (Nerve Injuries)</h3>
+                    <p>❖ <strong>Common Peroneal (Fibular) Injury:</strong> بيعمل تشوه القدم المخلبية لجوة <span
+                            class="highlight-rose">Equinovarus</span> وسقوط القدم (Foot Drop).</p>
+                    <p>❖ <strong>Tibial Nerve Injury:</strong> بيعمل تشوه القدم المخلبية لبرة <span
+                            class="highlight-rose">Calcaneovalgus</span> وفقدان الإحساس ببطن الرجل بالكامل.</p>
+                    <p>❖ <strong>Superior Gluteal Nerve Injury:</strong> بيخلي الحوض يقع على الناحية السليمة وأنت واقف
+                        على رجْل واحدة <span class="highlight-cyan">Positive Trendelenburg Sign</span> ومشية البطة <span
+                            class="highlight-cyan">Waddling Gait</span> عند حدوثه بالناحيتين.</p>
+                    <p>❖ <strong>Inferior Gluteal Nerve Injury:</strong> بيصعب جداً صعود السلم، القومة من الكرسي، أو
+                        صعود المطالع والتلال <span class="highlight-cyan">Gluteus Maximus Weakness</span>.</p>
+                </div>
+                <div class="helper-col">
+                    <h3>التعويضات والحركات الخداعية (Substitutions)</h3>
+                    <p>❖ <strong>Sartorius MMT Substitution:</strong> المريض بيعوض حركة ثني الفخذ (Hip Flexion) بأنه
+                        يبعد ويدور رجْله لبرة <span class="highlight-amber">(Abduction + External Rotation)</span>.
+                    </p>
+                    <p>❖ <strong>TFL MMT Substitution:</strong> المريض بيعوض حركة ثني الفخذ بأنه يبعد ويدور رجْله لجوة
+                        <span class="highlight-amber">(Abduction + Internal Rotation)</span>.
+                    </p>
+                    <p>❖ <strong>Tibialis Anterior MMT Substitution:</strong> المريض بيعوض بسط الكاحل (Dorsiflexion)
+                        بأنه يفرد أصابع رجليه بعضلات <span class="highlight-cyan">EHL / EDL</span>.</p>
+                    <p>❖ <strong>Tibialis Posterior MMT Substitution:</strong> المريض بيعوض الانقلاب لجوة (Inversion)
+                        بأنه يتني أصابع رجليه بعضلات <span class="highlight-cyan">FHL / FDL</span>.</p>
+                    <p>❖ <strong>SCM MMT Substitution:</strong> عضلة <span class="highlight-rose">Platysma</span> بتعوض
+                        ثني الرقبة، وبتظهر على شكل شد زوايا البق لتحت وتجاعيد في جلد الرقبة.</p>
+                </div>
+            </div>
+
+            <div class="filter-title" style="margin-top: 10px;">
+                <i data-lucide="zap"></i>
+                <span>الكبسولات واللآلئ المهمة جداً للامتحان (High-Yield Pearls)</span>
+            </div>
+            <div class="pearls-grid" id="pearls-container">
+                <!-- Dynamic Pearls Content -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // SYNTHESIZED FUTURISTIC SOUND ENGINE (AudioContext)
+        // ==========================================
+        const SoundEngine = {
+            ctx: null,
+            enabled: true,
+            init() {
+                if (!this.ctx) {
+                    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            },
+            toggle() {
+                this.enabled = !this.enabled;
+                const icon = document.getElementById('sound-icon');
+                if (this.enabled) {
+                    icon.setAttribute('data-lucide', 'volume-2');
+                } else {
+                    icon.setAttribute('data-lucide', 'volume-x');
+                }
+                lucide.createIcons();
+            },
+            playClick() {
+                if (!this.enabled) return;
+                this.init();
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(800, this.ctx.currentTime);
+                    gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.05);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.05);
+                } catch (e) { }
+            },
+            playCorrect() {
+                if (!this.enabled) return;
+                this.init();
+                try {
+                    const now = this.ctx.currentTime;
+                    const playNote = (freq, start, duration) => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, start);
+                        gain.gain.setValueAtTime(0.06, start);
+                        gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+                        osc.start(start);
+                        osc.stop(start + duration);
+                    };
+                    playNote(523.25, now, 0.08); // C5
+                    playNote(659.25, now + 0.06, 0.08); // E5
+                    playNote(783.99, now + 0.12, 0.12); // G5
+                    playNote(1046.50, now + 0.18, 0.18); // C6
+                } catch (e) { }
+            },
+            playWrong() {
+                if (!this.enabled) return;
+                this.init();
+                try {
+                    const now = this.ctx.currentTime;
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(180, now);
+                    osc.frequency.linearRampToValueAtTime(90, now + 0.25);
+                    gain.gain.setValueAtTime(0.08, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.start();
+                    osc.stop(now + 0.25);
+                } catch (e) { }
+            },
+            playFlip() {
+                if (!this.enabled) return;
+                this.init();
+                try {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(350, this.ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(550, this.ctx.currentTime + 0.15);
+                    gain.gain.setValueAtTime(0.02, this.ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.15);
+                    osc.start();
+                    osc.stop(this.ctx.currentTime + 0.15);
+                } catch (e) { }
+            },
+            playSuccess() {
+                if (!this.enabled) return;
+                this.init();
+                try {
+                    const now = this.ctx.currentTime;
+                    const notes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((freq, idx) => {
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        const filter = this.ctx.createBiquadFilter();
+                        filter.type = 'lowpass';
+                        filter.frequency.value = 1000;
+                        osc.connect(filter);
+                        filter.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        gain.gain.setValueAtTime(0.04, now + idx * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.22);
+                        osc.start(now + idx * 0.08);
+                        osc.stop(now + idx * 0.08 + 0.22);
+                    });
+                } catch (e) { }
+            }
+        };
+
+        // ==========================================
+        // CACHING / LOCALSTORAGE STATE
+        // ==========================================
+        const State = {
+            masteredCards: [],     // card front texts
+            revisedTopics: [],      // topic names/IDs
+            wrongQuestions: [],     // question strings
+            completedQuestions: [], // correctly answered questions
+
+            load() {
+                const data = localStorage.getItem('muscle_test_2_state');
+                if (data) {
+                    try {
+                        const parsed = JSON.parse(data);
+                        this.masteredCards = parsed.masteredCards || [];
+                        this.revisedTopics = parsed.revisedTopics || [];
+                        this.wrongQuestions = parsed.wrongQuestions || [];
+                        this.completedQuestions = parsed.completedQuestions || [];
+                    } catch (e) {
+                        console.error("Error loading cached state", e);
+                    }
+                }
+            },
+            save() {
+                localStorage.setItem('muscle_test_2_state', JSON.stringify({
+                    masteredCards: this.masteredCards,
+                    revisedTopics: this.revisedTopics,
+                    wrongQuestions: this.wrongQuestions,
+                    completedQuestions: this.completedQuestions
+                }));
+                updateProgressHUD();
+                updateStudyPathRecommendation();
+            }
+        };
+
+        // System Theme Management
+        let currentTheme = 'dark';
+        function toggleTheme() {
+            SoundEngine.playClick();
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            const icon = document.getElementById('theme-icon');
+            if (currentTheme === 'dark') {
+                icon.setAttribute('data-lucide', 'sun');
+                document.body.style.backgroundImage = `
+                radial-gradient(at 0% 0%, rgba(127, 0, 255, 0.12) 0px, transparent 40%),
+                radial-gradient(at 100% 100%, rgba(0, 242, 255, 0.12) 0px, transparent 40%),
+                radial-gradient(at 50% 50%, rgba(255, 0, 127, 0.05) 0px, transparent 50%)
+            `;
+            } else {
+                icon.setAttribute('data-lucide', 'moon');
+                document.body.style.backgroundImage = `
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.05) 0px, transparent 50%)
+            `;
+            }
+            lucide.createIcons();
+        }
+
+        // Tab switcher
+        function switchTab(tabName) {
+            SoundEngine.playClick();
+            document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+            document.getElementById(`tab-btn-${tabName}`).classList.add('active');
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+
+            if (tabName === 'guides') {
+                // refresh default active guide subtab
+                document.querySelector('.guide-tab-btn.active').click();
+            }
+            lucide.createIcons();
+        }
+
+        // Guide sub-tab switcher
+        function switchGuideTab(guideId, element) {
+            SoundEngine.playClick();
+            document.querySelectorAll('.guide-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.guide-tab-content').forEach(content => content.style.display = 'none');
+
+            element.classList.add('active');
+            document.getElementById(`guide-${guideId}`).style.display = 'block';
+        }
+
+        // ==========================================
+        // DATASET COMPILATION FROM ALL DATA FILES
+        // ==========================================
+
+        const SPECIAL_TESTS = [
+            { id: "test_ely", name: "Ely's Test", position: "Prone position", procedure: "المعالج بيعمل passive knee flexion لحد ما الـ heel يلمس الـ buttock", positive: "المريض بيعمل automatic hip flexion والـ pelvis يترفع من على الـ bed", indication: "tightness / contracture في الـ Rectus Femoris muscle" },
+            { id: "test_ober", name: "Ober's Test", position: "Side-lying (الـ lower leg متنية hip & knee للـ stabilization)", procedure: "المعالج بيعمل passive hip extension & abduction للـ upper leg وبعدين ينزلها بالراحة للـ bed", positive: "الـ tested leg تفضل معلقة في الهوا (fails to adduct) ومتقدرش تلمس الـ bed", indication: "tightness / contracture في الـ TFL / IT Band" },
+            { id: "test_piriformis", name: "Piriformis Test", position: "Side-lying (الـ upper leg متنية 60° hip flexion)", procedure: "المعالج بيعمل stabilization للـ pelvis وبيدوس downward force على ركبة المريض", positive: "وجع أو pain شديد في الـ buttock area", indication: "tightness في الـ Piriformis muscle أو compression على الـ Sciatic Nerve" },
+            { id: "test_thomas", name: "Thomas Test", position: "Supine position", procedure: "المريض بيسحب الـ knees لاتنين لصدره عشان يفرد الـ lumbar spine (flat back)، وبعدين ينزل leg واحدة بالراحة برة الـ bed", positive: "• لو الـ hip extension مش كامل والـ knee flexion أكتر من 45°: tightness في الـ Iliopsoas<br>• لو الـ hip extension مش كامل والـ knee flexion أقل من 45°: tightness في الـ Rectus Femoris<br>• لو الـ hip abduction أو lateral rotation حصل: tightness في الـ IT Band", indication: "Hip flexor tightness / contractures" },
+            { id: "test_tripod", name: "Tripod Sign", position: "Sitting على حافة الـ bed (الـ knees متنية 90°)", procedure: "المعالج بيعمل passive knee extension كامل لرجْل واحدة", positive: "المريض بيعمل trunk extension لورا عشان يقلل الـ Hamstring tension", indication: "tightness / contracture في الـ Hamstrings" },
+            { id: "test_9090slr", name: "90-90 Straight Leg Raise", position: "Supine position", procedure: "المعالج بيعمل stabilization للـ hip في 90° flexion والـ knee متنية، والمريض بيحاول يعمل active knee extension لوحده", positive: "يفضل فيه أكتر من 20° knee flexion ومش قادر يكمل الـ extension للأخر", indication: "Hamstring tightness" },
+            { id: "test_craig", name: "Craig's Test", position: "Prone position (الـ knee متنية 90°)", procedure: "المعالج بيحس الـ Greater Trochanter ويلف الـ hip internal & external rotation لحد ما يحس الـ trochanter موازي للـ bed بالظبط", positive: "الـ normal value: من 8 لـ 15 درجة internal rotation للـ hip (وهذا يسمى Anteversion).", indication: "بيحدد هل فيه femoral Anteversion أو Retroversion" },
+            { id: "test_patrick", name: "Patrick's (FABER)", position: "Supine position", procedure: "الـ hip بيكون في وضع flexion, abduction, external rotation (وضع رقم 4) والمعالج بيدوس downward force", positive: "وجع أو pain أو عدم قدرة على نزول الـ knee تحت مستوى الـ contralateral leg", indication: "مشاكل في الـ Iliopsoas، أو الـ SI Joint، أو الـ Hip Joint" },
+            { id: "test_scouring", name: "Quadrant Scouring", position: "Supine position", procedure: "المعالج بيعمل flexion و adduction للـ hip بالـ knee، وبيدوس axial load قوي في الـ femur shaft ويلف المفصل في اتجاهات مختلفة", positive: "صوت click، crepitus، أو إحساس إن المفصل بيعلق", indication: "Hip arthritis، أو avascular necrosis (AVN) في الـ femoral head، أو labral tear" },
+            { id: "test_trendelenburg", name: "Trendelenburg Test", position: "Standing position", procedure: "المريض بيقف على single leg (الـ involved side) لمدة 10 ثواني", positive: "الـ pelvis يقع لتحت (pelvic drop) في الـ contralateral side (الـ non-weight bearing side)", indication: "ضعف أو weakness في الـ Gluteus Medius للـ weight bearing side" }
+        ];
+
+        const GONIOMETRY_DATA = [
+            { id: "gon_sh_flex", joint: "Shoulder Flexion", rom: "0° - 180°", axis: "Humeral head near acromion process", sa: "Parallel to mid-axillary line of thorax", ma: "Humeral midline (aligned with lateral epicondyle)", position: "Supine position (knee flexed, flat back)" },
+            { id: "gon_sh_ext", joint: "Shoulder Extension", rom: "0° - 60°", axis: "Humeral head near acromion process", sa: "Parallel to mid-axillary line of thorax", ma: "Humeral midline (aligned with lateral epicondyle)", position: "Prone position" },
+            { id: "gon_sh_abd", joint: "Shoulder Abduction", rom: "0° - 180°", axis: "Humeral head near acromion process", sa: "Parallel to the sternum", ma: "Humeral midline", position: "Supine position (external rotation بالكامل)" },
+            { id: "gon_sh_rot", joint: "Shoulder ER / IR", rom: "ER: 0-90° / IR: 0-70°", axis: "Olecranon process of ulna", sa: "Vertically aligned (perpendicular to floor)", ma: "Ulnar styloid process", position: "Supine position (shoulder abducted 90°, elbow flexed 90°)" },
+            { id: "gon_el_flex", joint: "Elbow Flexion / Ext", rom: "0° - 150°", axis: "Lateral epicondyle of humerus", sa: "Humerus longitudinal axis", ma: "Radial styloid process", position: "Supine position (forearm fully supinated)" },
+            { id: "gon_fo_pron", joint: "Forearm Pronation", rom: "0° - 80°", axis: "Lateral to the ulnar styloid", sa: "Parallel to humerus longitudinal axis", ma: "Dorsum of the radius", position: "Sitting (elbow flexed 90°)" },
+            { id: "gon_fo_sup", joint: "Forearm Supination", rom: "0° - 80°", axis: "Medial to the ulnar styloid", sa: "Parallel to humerus longitudinal axis", ma: "Ventral aspect of the radius", position: "Sitting (elbow flexed 90°)" },
+            { id: "gon_wr_flex", joint: "Wrist Flexion / Ext", rom: "Flex: 80° / Ext: 70°", axis: "Lateral aspect of wrist (Triquetrum)", sa: "Midline of ulna", ma: "5th metacarpal midline", position: "Sitting (forearm rest على table مسطحة)" },
+            { id: "gon_wr_dev", joint: "Radial / Ulnar Dev", rom: "Rad: 20° / Uln: 30°", axis: "Capitate bone", sa: "Midline of forearm", ma: "3rd metacarpal midline", position: "Sitting (forearm مفرود على table)" },
+            { id: "gon_hip_flex", joint: "Hip Flexion", rom: "0° - 120°", axis: "Greater trochanter of femur", sa: "Midline of pelvis/trunk", ma: "Lateral midline of femur (lateral epicondyle)", position: "Supine position (اسمح للـ knee بالـ flexion عشان تريح الـ Hamstrings)" },
+            { id: "gon_hip_ext", joint: "Hip Extension", rom: "0° - 30°", axis: "Greater trochanter of femur", sa: "Midline of pelvis/trunk", ma: "Lateral midline of femur (lateral epicondyle)", position: "Prone position (ثبت الـ pelvis كويس جداً)" },
+            { id: "gon_hip_abd", joint: "Hip Abd / Add", rom: "Abd: 45° / Add: 30°", axis: "Anterior Superior Iliac Spine (ASIS)", sa: "Horizontal line to opposite ASIS", ma: "Anterior midline of femur (center of patella)", position: "Supine position (ابعد الـ contralateral leg عشان تفتح طريق للـ adduction)" },
+            { id: "gon_hip_rot", joint: "Hip ER / IR", rom: "0° - 45°", axis: "Anterior center of patella", sa: "Aligned vertically (perpendicular to floor)", ma: "Anterior midline of leg (crest of tibia)", position: "Sitting على سرير عالي (knee flexed 90°)" },
+            { id: "gon_kn_flex", joint: "Knee Flexion", rom: "0° - 135°", axis: "Lateral epicondyle of femur", sa: "Femur longitudinal axis (to greater trochanter)", ma: "Lateral malleolus of fibula", position: "Supine position (مسموح للـ hip بالـ flexion)" },
+            { id: "gon_an_pf", joint: "Ankle Plantarflexion", rom: "0° - 50°", axis: "Lateral malleolus", sa: "Midline of fibula (to fibular head)", ma: "Lateral midline of fifth metatarsal", position: "Supine position (knee fully extended)" },
+            { id: "gon_an_df", joint: "Ankle Dorsiflexion", rom: "0° - 20°", axis: "Lateral malleolus", sa: "Midline of fibula (to fibular head)", ma: "Lateral midline of fifth metatarsal", position: "Prone position (knee flexed عشان تريح الـ Gastrocnemius)" },
+            { id: "gon_an_rot", joint: "Ankle Inversion / Ever", rom: "Inv: 35° / Ev: 15°", axis: "Predefined goniometer alignment", sa: "Posterior midline of lower leg", ma: "Inv: Aligned with calcaneus midline | Ev: Plantar 1st metatarsal head", position: "Prone position (ثبت الـ leg والـ calcaneus)" }
+        ];
+
+        const MMT_MUSCLES = [
+            { id: "mmt_sartorius", name: "Sartorius", nerve: "Femoral nerve (L2, L3, L4)", action: "Flexes, abducts, and externally rotates the hip with knee flexion.", rom: "No specific ROM (two-joint muscle)", test_p: "Grade 3: sitting، الـ heel للـ tested leg قدام الـ contralateral ankle، والمريض بيسحب الـ heel لحد الـ knee. Grade 2: supine، وبيزحلق الـ heel على الـ contralateral leg لحد الـ knee.", substitution: "الـ Iliopsoas أو الـ Rectus Femoris هيعملوا flexion بس من غير abduction أو external rotation كتعويض.", notes: "المقاومة للـ flexion والـ abduction للفخذ عند الـ knee، والـ external rotation فوق الـ ankle." },
+            { id: "mmt_tfl", name: "Tensor Fasciae Latae (TFL)", nerve: "Superior Gluteal nerve (L4, L5, S1)", action: "Abducts and internally rotates a flexed thigh; tenses IT band.", rom: "No specific ROM (two-joint muscle)", test_p: "Grade 3: side-lying، الـ upper leg متنية 45° flexion، ويقوم يرفعها 30° abduction. Grade 2: sitting مع lean backward 45°، ويبعد رجْله 30° abduction على السرير.", substitution: "عضلات الـ lateral rotation للفخذ.", notes: "الـ weakness بيخلي الـ leg تلف external rotation في الـ gait. الـ contracture بيعمل knock-knees (Genu valgum)." },
+            { id: "mmt_psoas", name: "Psoas Major & Iliacus", nerve: "Psoas: Lumbar Plexus (L1-L4) | Iliacus: Femoral Nerve (L2-L4)", action: "Hip Flexion", rom: "115° - 125°", test_p: "Grade 3: sitting، ويرفع رجْله لفوق. Grade 2: side-lying والـ tested leg تحت (downside)، ويسحبها لصدره. Grade 1: supine، وبنحس الـ Psoas major under the inguinal ligament.", substitution: "الـ Sartorius (بيعمل external rotation و abduction) أو الـ TFL (بيعمل internal rotation و abduction).", notes: "الـ weakness بيصعب صعود السلم أو القومة من وضع الـ lying." },
+            { id: "mmt_gluteusmax", name: "Gluteus Maximus", nerve: "Inferior Gluteal nerve (L5, S1, S2)", action: "Hip extension and lateral rotation.", rom: "10° - 15° hyperextension", test_p: "Grade 3: prone ويرفع رجْله لفوق. وعشان نعزل الـ Hamstrings نتني الـ knee لـ 90°. Grade 2: side-lying، يرجع رجْله لورا.", substitution: "فرد أسفل الظهر والعمود الفقري (lumbar extension).", notes: "الـ weakness بيصعب القومة من الكرسي وصعود الهضاب والتلال (difficulty rising from chair/climbing stairs)." },
+            { name: "Gluteus Medius & Minimus", id: "mmt_gluteusmed", nerve: "Superior Gluteal nerve (L4, L5, S1)", action: "Hip Abduction وتثبيت الـ pelvis أثناء الـ walking", rom: "0° - 45°", test_p: "Grade 3: side-lying، يرفع رجْله لفوق من غير ما تلف lateral rotation. Grade 2: supine، ويبعد رجْله 45° abduction.", substitution: "رفع الـ pelvis للجنب (pelvic hike) أو substitution بالـ TFL.", notes: "ضعف ناحية واحدة بيعمل positive Trendelenburg sign، والناحيتين بيعمل Waddling gait." },
+            { name: "Adductor Group", id: "mmt_adductors", nerve: "Obturator nerve (L2-L4)", action: "Hip Adduction", rom: "15° - 20°", test_p: "Grade 3: side-lying، الـ tested leg بتكون downside ويرفعها لفوق لتلمس الـ upper leg اللي المعالج ماسكها في 25° abduction. Grade 2: supine ويزحلق رجْله adduction لجوة.", substitution: "الـ Hip flexor recruitment (بيعمل slight flexion).", notes: "الـ tightness بيعمل Scissoring gait و crossover للرجلين." },
+            { name: "Quadriceps Femoris", id: "mmt_quads", nerve: "Femoral nerve (L2, L3, L4)", action: "Knee extension.", rom: "135° - 0°", test_p: "Grade 3: sitting، يفرد ركبته (knee extension). Grade 2: side-lying، يفرد ركبته على السرير. Grade 1: supine، ونحس الـ patellar tendon.", substitution: "الـ hip internal rotators (في Grade 2 side-lying).", notes: "تأكد من عدم قفل الركبة للآخر (Screw-home mechanism) وقت الفحص. الـ weakness بيعمل Genu Recurvatum." },
+            { name: "Biceps Femoris", id: "mmt_bicepsfem", nerve: "Sciatic nerve (Tibial div: long head | Common peroneal div: short head)", action: "Knee flexion and lateral rotation of leg.", rom: "0° - 135°", test_p: "Grade 5/4: prone، يتني ركبته (knee flexion) ويلف الـ leg لبرة (lateral rotation) لعزل الـ lateral hamstrings. المقاومة فوق الـ ankle.", substitution: "الـ Sartorius (بيعمل flexion و lateral rotation للـ hip) أو الـ Gastrocnemius.", notes: "الـ weakness بيعمل Genu Recurvatum وعدم ثبات في الركبة من برة." },
+            { name: "Semitendinosus & Semimembranosus", id: "mmt_medialham", nerve: "Sciatic nerve - Tibial division (L5, S1)", action: "Knee flexion and medial rotation of leg.", rom: "0° - 135°", test_p: "Grade 5/4: prone، يتني ركبته (knee flexion) ويلف الـ leg لجوة (medial rotation) لعزل الـ medial hamstrings.", substitution: "الـ Sartorius أو الـ Gastrocnemius.", notes: "الـ weakness بيعمل عدم ثبات في الركبة من جوة وضهر مسطح." },
+            { name: "Gastrocnemius & Soleus", id: "mmt_gastroc", nerve: "Tibial nerve (Gastroc: S1-S2 | Soleus: L5-S2)", action: "Ankle plantarflexion.", rom: "0° - 35°", test_p: "Grade 5 (standing): يعمل 25 single-leg heel rises. Grade 4: من 10 لـ 24 single-leg heel rises. Grade 3: من 1 لـ 9. Grade 2 (prone): full ROM وبدون أي مقاومة.", substitution: "الـ Tibialis posterior (بيعمل inversion) أو الـ Peronei (بيعمل eversion) أو الـ long toe flexors.", notes: "عضلة الـ Soleus بنعزلها عن طريق knee flexion 90° وقت فحص الـ prone." },
+            { name: "Tibialis Anterior", id: "mmt_tibant", nerve: "Deep Peroneal nerve (L4, L5, S1)", action: "Ankle dorsiflexion and foot inversion.", rom: "0° - 20°", test_p: "Grade 3: sitting أو supine، يعمل ankle dorsiflexion مع inversion كامل. Grade 1: نحس الوتر ant/medial للـ ankle.", substitution: "عضلات EHL / EDL مسببة extension للـ toes كتعويض.", notes: "خلي الـ knee flexed عشان تريح الـ Gastrocnemius. الـ weakness بيعمل Foot Drop." },
+            { name: "Tibialis Posterior", id: "mmt_tibpost", nerve: "Tibial nerve (L4, L5, S1)", action: "Foot inversion from a plantarflexed position.", rom: "0° - 35°", test_p: "Grade 3: sitting، يعمل foot inversion من وضع plantarflexion. Grade 1: نحس الوتر بين الـ medial malleolus والـ Navicular bone.", substitution: "عضلات FDL و FHL مسببة flexion للـ toes كتعويض.", notes: "سيب الـ toes مسترخية تماماً عشان تمنع الـ substitution. الـ weakness بيعمل Flat foot." },
+            { name: "SCM (Bilateral)", id: "mmt_scm", nerve: "Accessory Nerve (CN XI) & C2-C3 rami", action: "Bilateral: Cervical flexion. Unilateral: contralateral rotation + ipsilateral lateral flexion.", rom: "Available cervical ROM", test_p: "Grade 3: supine، يرفع رأسه لفوق (cervical flexion) وعينيه باصة للسقف. Grade 2: supine، ويلف رأسه يمين وشمال.", substitution: "الـ Platysma muscle substitution (grimacing, corners of mouth pulled down).", notes: "فحص الـ cervical flexion لازم يسبق فحص الـ trunk flexion." }
+        ];
+
+        const NERVES_DATA = [
+            { id: "nerv_femoral", name: "Femoral Nerve", roots: "L2, L3, L4", muscles: "Quadriceps Femoris, Sartorius, Pectineus, Iliacus", deformity: "Loss of Knee Extension", sensory: "Anterior/medial thigh, anteromedial leg & medial foot (Saphenous nerve)", clinical: "Stab/gunshot wound below inguinal ligament. Cannot extend knee. Loss of patellar reflex (L4)." },
+            { id: "nerv_obturator", name: "Obturator Nerve", roots: "L2, L3, L4", muscles: "Adductor Longus, Breins, Magnus (adductor part), Gracilis", deformity: "Loss of Thigh Adduction", sensory: "Medial thigh", clinical: "Penetrating wound or anterior hip dislocation. Inability to adduct hip or cross legs." },
+            { id: "nerv_latcut", name: "Lateral Cutaneous Nerve", roots: "L2, L3", muscles: "None (Purely Sensory)", deformity: "Meralgia Paresthetica", sensory: "Lateral thigh and lateral knee", clinical: "Compression behind inguinal ligament. Burning pain, tingling, and numbness." },
+            { id: "nerv_supglut", name: "Superior Gluteal Nerve", roots: "L4, L5, S1", muscles: "Gluteus Medius, Gluteus Minimus, Tensor Fasciae Latae", deformity: "Positive Trendelenburg Sign", sensory: "None", clinical: "Unilateral: Pelvis drops on unsupported side during stance. Bilateral: Waddling gait." },
+            { id: "nerv_infglut", name: "Inferior Gluteal Nerve", roots: "L5, S1, S2", muscles: "Gluteus Maximus", deformity: "Gluteus Maximus Lurch (Gluteal wasting)", sensory: "None", clinical: "Exits below piriformis. Inability to extend hip powerfully. Difficulty rising from chair, climbing stairs." },
+            { id: "nerv_sciatic", name: "Sciatic Nerve", roots: "L4, L5, S1, S2, S3", muscles: "Hamstrings, all muscles below knee", deformity: "Foot Drop", sensory: "All leg & foot except medial side (saphenous)", clinical: "Largest nerve. Injured in hip dislocation or disc bulge. Loss of knee flexion & ankle movements." },
+            { id: "nerv_commonperoneal", name: "Common Peroneal (Fibular)", roots: "L4, L5, S1, S2", muscles: "Tibialis Anterior, EDL, EHL (Deep branch) | Fibularis Longus/Brevis (Superficial)", deformity: "Equinovarus (Plantarflexion, Inversion, Supination)", sensory: "Ant/lateral leg, dorsum of foot", clinical: "Injured at fracture of fibular neck. Loss of dorsiflexion & eversion. Foot slap/high steppage gait." },
+            { id: "nerv_tibial", name: "Tibial Nerve", roots: "L4, L5, S1, S2, S3", muscles: "Gastrocnemius, Soleus, Tibialis Posterior, FDL, FHL, sole muscles", deformity: "Calcaneovalgus (Dorsiflexion, Eversion)", sensory: "Sole of the foot", clinical: "Upper tibial fracture. Cannot plantarflex or invert foot. Complete loss of Achilles reflex (S1)." }
+        ];
+
+        const HIGH_YIELD_PEARLS = [
+            { title: "علاقة الديسك بالعصب المضغوط (Pathological Rule)", text: "في حالات الـ Posterolateral Disc Bulge، العصب اللي بيتضغط هو العصب اللي خارج بعده (العصب الأسفل). يعني مثلاً: ديسك L4-L5 هيضغط على عصب L5، وديسك L3-L4 هيضغط على عصب L4." },
+            { title: "المنعكسات العصبية وجذورها (Reflex Roots)", text: "الـ Patellar Reflex المسؤول عنه هو جذر L4، والـ Achilles Reflex المسؤول عنه هو جذر S1." },
+            { title: "تقسيمة درجات الـ Plantarflexion (Plantarflexion Reps)", text: "تحديد درجات الـ MMT للـ Ankle Plantarflexion في وضع الـ standing بيعتمد على عدد مرات الـ single-leg heel rises: درجة 5 (Normal) = 25 رفعة | درجة 4 (Good) = من 10 لـ 24 رفعة | درجة 3 (Fair) = من 1 لـ 9 رفعة." },
+            { title: "انحراف السرة في فحص البطن (Umbilical Deviation)", text: "وأنت بتعمل فحص الـ Trunk Flexion MMT، السرة بتتسحب ناحية العضلات الأقوى (تطلع لفوق Cranial لو الـ upper abdominal muscles أقوى، وتنزل لتحت Caudal لو الـ lower abdominal muscles أقوى)، ودي بنسميها Beevor's Sign." },
+            { title: "فحص Sartorius MMT الفريد", text: "طريقة فحص الـ Sartorius في Grade 3 بتكون والمريض sitting وبيسحب الـ heel لفوق وهو لامس الـ leg التانية لحد الـ knee (يعمل flexion, abduction, external rotation للـ hip مع knee flexion). وفي Grade 2 بيكون supine." },
+            { title: "اختبار توماس التفصيلي (Thomas Test Nuances)", text: "في الـ Thomas Test، لو فيه lack of hip extension والـ knee flexion أكتر من 45°، ده معناه tightness في الـ Iliopsoas. أما لو الـ knee flexion أقل من 45°، فده معناه tightness في الـ Rectus Femoris." },
+            { title: "طرق قياس الـ LLD", text: "الـ True LLD: بيتقاس من الـ ASIS لحد الـ Medial Malleolus. الـ Apparent LLD: بيتقاس من الـ Umbilicus أو الـ Xiphoid process لحد الـ Medial Malleolus." },
+            { title: "وضعية ركبة المريض في قياس Ankle DF", text: "عشان تقيس الـ Ankle Dorsiflexion صح، لازم تخلي الـ knee flexed (نايم prone والـ knee متنية 90°) عشان تريح الـ Gastrocnemius ثنائية المفصل (active insufficiency)، وتمنعها تقيد الـ ROM." }
+        ];
+
+        // ==========================================
+        // QUESTIONS DATASET (50 QUESTIONS)
+        // ==========================================
+
+        const QUESTIONS = [
+            // --- Midterm Questions (1-12) ---
+            {
+                category: "midterm",
+                q: "Which condition gives a soft end-feel?",
+                qAr: "تلميح: بيسأل عن المثال الطبيعي لشعور الـ soft end-feel بسبب تلامس الـ muscle bulk.",
+                options: [
+                    "Elbow flexion with large muscle bulk",
+                    "Shoulder external rotation",
+                    "Knee extension",
+                    "Elbow extension"
+                ],
+                answer: 0,
+                explanation: "Elbow flexion with large muscle bulk is a classic example of a normal soft end-feel due to muscle compression.",
+                arabicHint: "فكر في الحركة اللي بتنتهي بضغط muscle bulk على muscle bulk تانية فالحركة تقف بنعومة (زي الـ Elbow flexion)."
+            },
+            {
+                category: "midterm",
+                q: "The most common normal end-feel in joint assessment is:",
+                qAr: "تلميح: بيسأل عن نوع الـ end-feel الطبيعي الأكثر شيوعاً عند تقييم المفاصل.",
+                options: [
+                    "Firm",
+                    "Soft",
+                    "Empty",
+                    "Hard (bony)"
+                ],
+                answer: 0,
+                explanation: "A firm end-feel (capsular/ligamentous stretch) is the most common normal end-feel found in joint assessments.",
+                arabicHint: "معظم المفاصل بتنتهي بشد مطاطي للـ capsule أو الـ ligaments (زي الـ capsular/ligamentous stretch) وده بنسميه Firm."
+            },
+            {
+                category: "midterm",
+                q: "When measuring hip adduction, why must the opposite limb be abducted?",
+                qAr: "تلميح: ليه لازم نعمل abduction للرجل السليمة لما نيجي نقيس الـ Hip Adduction للرجل التانية؟",
+                options: [
+                    "To increase resistance",
+                    "To allow full ROM (To clear path for adduction)",
+                    "To prevent substitution",
+                    "To stabilize pelvis"
+                ],
+                answer: 1,
+                explanation: "Abducting the opposite limb prevents the legs from contacting each other, allowing a full range of hip adduction.",
+                arabicHint: "عشان نفتح طريق للرجل المختبرة وهي بتعمل adduction وميخبطوش في بعض، فتتحرك بالـ full ROM."
+            },
+            {
+                category: "midterm",
+                q: "Failure to stabilize the pelvis most likely leads to:",
+                qAr: "تلميح: لو مقدرناش نثبت الـ pelvis وقت قياس الـ ROM، ده هيأثر إزاي على القياس؟",
+                options: [
+                    "Increased end-feel resistance",
+                    "Overestimation of ROM",
+                    "Underestimation of ROM",
+                    "No effect on ROM"
+                ],
+                answer: 1,
+                explanation: "Lack of pelvic stabilization allows compensatory movements like pelvic tilt, leading to an overestimation of the true joint ROM.",
+                arabicHint: "لو الـ pelvis اتحرك هيحصل substitution فتقيس زاوية أكبر من الحقيقية (Overestimation)."
+            },
+            {
+                category: "midterm",
+                q: "In MMT, if contractile activity is palpable but no movement occurs, the grade is:",
+                qAr: "تلميح: لو حسيت contractile activity في الـ muscle بإيدك بس مفيش joint movement حصلت خالص، تاخد كام؟",
+                options: [
+                    "Grade 3",
+                    "Grade 1",
+                    "Grade 0",
+                    "Grade 2"
+                ],
+                answer: 1,
+                explanation: "Grade 1 (Trace) indicates that muscle contraction is palpable or visible (flicker) but produces no joint movement.",
+                arabicHint: "الـ muscle contraction المحسوس بدون حركة المفصل بنسميه Trace وبيساوي الدرجة 1."
+            },
+            {
+                category: "midterm",
+                q: "In trunk flexion testing, if scapulae do NOT clear the table but the head lifts, the grade is:",
+                qAr: "تلميح: لو المريض رفع راسه بس الـ scapulae مطلعتش عن السرير في فحص الـ trunk flexion، تاخد كام؟",
+                options: [
+                    "Grade 3",
+                    "Grade 1",
+                    "Grade 4",
+                    "Grade 2"
+                ],
+                answer: 3,
+                explanation: "Grade 2 (Poor) in abdominal testing indicates the patient can lift their head but cannot clear the scapulae off the table.",
+                arabicHint: "عدم القدرة على رفع الـ scapulae مع رفع الرأس بس بيعني ضعف عضلات البطن وبياخد الدرجة 2 (Poor)."
+            },
+            {
+                category: "midterm",
+                q: "A patient attempting trunk extension shows posterior pelvic tilt instead of lifting the trunk. This indicates:",
+                qAr: "تلميح: لو المريض عمل posterior pelvic tilt وهو بيفرد ضهره بدل الـ trunk extension، ده معناه ضعف إيه؟",
+                options: [
+                    "Strong trunk extensors",
+                    "Normal pattern",
+                    "Weak hip extensors",
+                    "Weak trunk extensors"
+                ],
+                answer: 3,
+                explanation: "Posterior pelvic tilt indicates weak trunk extensors, with the hip extensors attempting to compensate.",
+                arabicHint: "الـ posterior pelvic tilt معناه إن الـ trunk extensors ضعيفة جداً، والـ hip extensors هي اللي بتحاول تعوض وتشد الحوض لورا."
+            },
+            {
+                category: "midterm",
+                q: "In cervical rotation MMT (Grade 3), the patient must:",
+                qAr: "تلميح: في الـ cervical rotation MMT للدرجة 3، المريض بيعمل إيه؟",
+                options: [
+                    "Complete full ROM without resistance",
+                    "Move partially",
+                    "Show muscle flicker only",
+                    "Hold against resistance"
+                ],
+                answer: 0,
+                explanation: "Grade 3 (Fair) requires the patient to complete the full range of motion against gravity without external resistance.",
+                arabicHint: "درجة 3 دايماً معناها full ROM ضد الجاذبية بس من غير أي resistance خارجية."
+            },
+            {
+                category: "midterm",
+                q: "A patient presents to the clinic with radicular pain. An MRI reveals a posterolateral disc bulge at the L4-L5 level. During your myotome assessment, which specific muscle action is most likely to demonstrate weakness?",
+                qAr: "تلميح: ديسك L4-L5 بيضغط على الـ L5 nerve root، فإنهي myotome لـ L5 هيحصل فيه weakness؟",
+                options: [
+                    "Great toe extension",
+                    "Hip flexion",
+                    "Plantarflexion",
+                    "Knee extension"
+                ],
+                answer: 0,
+                explanation: "An L4-L5 disc bulge compresses the L5 nerve root. Great toe extension (Extensor Hallucis Longus) is the key myotome for L5.",
+                arabicHint: "الـ nerve المضغوط هو L5، والميوتوم المميز ليه هو الـ great toe extension عن طريق الـ EHL."
+            },
+            {
+                category: "midterm",
+                q: "Following a fracture of the fibular neck, a patient develops a noticeable gait deviation and a specific foot deformity. Based on the most likely nerve injury, which of the following postural presentations will the patient exhibit?",
+                qAr: "تلميح: كسر الـ fibular neck بيصيب الـ Common Peroneal Nerve، فإنهي deformity هتحصل للـ foot؟",
+                options: [
+                    "Equinovarus (plantarflexion and inversion)",
+                    "Excessive dorsiflexion and supination",
+                    "Calcaneovalgus (dorsiflexion and eversion)",
+                    "A pure foot drop with normal inversion/eversion"
+                ],
+                answer: 0,
+                explanation: "Fracture of the fibular neck injures the Common Peroneal nerve, leading to paralysis of dorsiflexors and everters, causing an equinovarus deformity (foot drop).",
+                arabicHint: "الإصابة دي بتشل الـ dorsiflexors والـ everters، فتعمل foot drop وتشوه الـ Equinovarus."
+            },
+            {
+                category: "midterm",
+                q: "A patient has difficulty clearing their foot from the floor and climbing stairs. Phase walking on level ground remains relatively normal. Which nerve is most likely trapped, and which muscle is paralyzed?",
+                qAr: "تلميح: مريض عنده صعوبة في الـ foot clearance وصعود السلم، فإنهي nerve والـ muscle المتأثرين؟",
+                options: [
+                    "Superior gluteal nerve; Gluteus medius",
+                    "Inferior gluteal nerve; Gluteus maximus",
+                    "Sciatic nerve; Hamstrings",
+                    "Deep peroneal nerve; Tibialis anterior"
+                ],
+                answer: 3,
+                explanation: "Difficulty clearing the foot and climbing stairs indicates weakness/paralysis of the Tibialis Anterior, innervated by the Deep Peroneal nerve.",
+                arabicHint: "الـ dorsiflexion بتعمله الـ Tibialis Anterior اللي بيغذيها الـ Deep Peroneal Nerve."
+            },
+            {
+                category: "midterm",
+                q: "A patient sustains a penetrating stab wound just below the inguinal ligament, lateral to the femoral artery. During the sensory examination, the patient exhibits numbness along the medial border of the foot up to the ball of the great toe. Which of the following primary motor deficits will this patient exhibit?",
+                qAr: "تلميح: طعنة أسفل الـ inguinal ligament وللخارج من الـ femoral artery بتصيب الـ Femoral Nerve. إيه الـ motor deficit؟",
+                options: [
+                    "Inability to adduct the hip",
+                    "Complete loss of knee extension",
+                    "Profound loss of hip abduction",
+                    "Severe impairment in knee flexion"
+                ],
+                answer: 1,
+                explanation: "An injury lateral to the femoral artery below the inguinal ligament damages the femoral nerve, paralyzing the Quadriceps and causing a loss of knee extension.",
+                arabicHint: "الـ Femoral Nerve بيغذي الـ Quadriceps المسؤولة عن الـ knee extension، فإصابته بتفقد الحركة دي."
+            },
+            // --- Goniometry (13-19) ---
+            {
+                category: "goniometry",
+                q: "What is the axis of alignment when measuring Elbow Flexion and Extension?",
+                qAr: "تلميح: بيسأل عن نقطة وضع الـ axis للمنقلة وقت قياس الـ Elbow flexion/extension.",
+                options: [
+                    "Radial styloid process",
+                    "Center of humeral head",
+                    "Lateral epicondyle of the humerus",
+                    "Olecranon process"
+                ],
+                answer: 2,
+                explanation: "The axis of the goniometer is placed over the lateral epicondyle of the humerus during elbow flexion/extension measurement.",
+                arabicHint: "الـ axis بيتحط على الـ lateral epicondyle of humerus."
+            },
+            {
+                category: "goniometry",
+                q: "Which of the following is the correct normal range of motion for Forearm Pronation?",
+                qAr: "تلميح: ما هو الـ normal ROM لحركة الـ Forearm Pronation؟",
+                options: [
+                    "0° - 150°",
+                    "0° - 80°",
+                    "0° - 45°",
+                    "0° - 20°"
+                ],
+                answer: 1,
+                explanation: "The normal range of motion for forearm pronation is 0° to 80°.",
+                arabicHint: "الـ normal ROM للـ Pronation والـ Supination بيكون 80 درجة."
+            },
+            {
+                category: "goniometry",
+                q: "Where should the stationary arm be aligned during the measurement of Hip Abduction?",
+                qAr: "تلميح: أين يوضع الـ stationary arm للمنقلة وقت قياس الـ Hip Abduction؟",
+                options: [
+                    "Parallel to the sternum",
+                    "Midline of the pelvis/trunk",
+                    "Horizontal line aligned with the opposite ASIS",
+                    "Parallel to the floor"
+                ],
+                answer: 2,
+                explanation: "The stationary arm should be aligned with a horizontal line connecting both ASIS (pointing towards the opposite ASIS).",
+                arabicHint: "الـ stationary arm بنوجهه في خط أفقي واصل مع الـ opposite ASIS."
+            },
+            {
+                category: "goniometry",
+                q: "During the measurement of Ankle Dorsiflexion, why should the patient be prone with the knee flexed?",
+                qAr: "تلميح: ليه بنخلي المريض prone والـ knee flexed وإحنا بنقيس الـ Ankle Dorsiflexion؟",
+                options: [
+                    "To increase the resistance of the joint",
+                    "To relax the Gastrocnemius muscle and prevent passive limitation",
+                    "To stabilize the calcaneus bone",
+                    "To isolate the Tibialis Posterior muscle"
+                ],
+                answer: 1,
+                explanation: "Flexing the knee relaxes the two-joint Gastrocnemius muscle to prevent it from passively restricting ankle dorsiflexion.",
+                arabicHint: "عشان بنريح الـ Gastrocnemius (ثنائية المفصل) ونمنعها تقيد الـ passive dorsiflexion."
+            },
+            {
+                category: "goniometry",
+                q: "What is the normal range of motion for Hip Extension?",
+                qAr: "تلميح: ما هو الـ normal ROM للـ Hip Extension؟",
+                options: [
+                    "0° - 120°",
+                    "0° - 45°",
+                    "0° - 30°",
+                    "0° - 15°"
+                ],
+                answer: 2,
+                explanation: "The normal range of motion for hip extension is 0° to 30°.",
+                arabicHint: "الـ normal ROM للـ Hip Extension بيكون 30 درجة بس."
+            },
+            {
+                category: "goniometry",
+                q: "Where is the goniometer axis placed when measuring Shoulder External and Internal Rotation?",
+                qAr: "تلميح: أين يوضع الـ goniometer axis عند قياس الـ Shoulder ER / IR؟",
+                options: [
+                    "Acromion process",
+                    "Olecranon process of the ulna",
+                    "Ulnar styloid process",
+                    "Lateral epicondyle of humerus"
+                ],
+                answer: 1,
+                explanation: "The axis is placed over the olecranon process of the ulna as it is the pivot point for rotation.",
+                arabicHint: "الـ axis بيتحط على الـ olecranon process of ulna."
+            },
+            {
+                category: "goniometry",
+                q: "For Cervical Sidebending (Lateral Flexion), the goniometer axis is placed on the:",
+                qAr: "تلميح: عند قياس الـ Cervical Sidebending، الـ goniometer axis بيتحط فين؟",
+                options: [
+                    "External auditory meatus",
+                    "Spinous process of the C7 vertebra",
+                    "Vertex of the head",
+                    "Nostrils"
+                ],
+                answer: 1,
+                explanation: "The axis is placed over the spinous process of the C7 vertebra for cervical lateral flexion.",
+                arabicHint: "بنحط الـ axis على الـ spinous process of C7."
+            },
+            // --- MMT & Anatomy (20-25) ---
+            {
+                category: "mmt",
+                q: "How many single-leg heel rises must a patient perform to achieve a Grade 5 (Normal) for Ankle Plantarflexion?",
+                qAr: "تلميح: كم عدد الـ single-leg heel rises للدرجة 5 (Normal) في الـ Ankle Plantarflexion؟",
+                options: [
+                    "At least 10 repetitions",
+                    "At least 25 repetitions",
+                    "At least 15 repetitions",
+                    "Only 5 repetitions with maximum resistance"
+                ],
+                answer: 1,
+                explanation: "Grade 5 (Normal) ankle plantarflexion requires at least 25 consecutive single-leg heel rises in a standing position.",
+                arabicHint: "الدرجة 5 بتطلب 25 رفعة كعب صحيحة متتالية في وضع الـ standing."
+            },
+            {
+                category: "mmt",
+                q: "To isolate the Gluteus Maximus during hip extension MMT and minimize Hamstring activity, the therapist must:",
+                qAr: "تلميح: إزاي نعزل الـ Gluteus Maximus ونقلل الـ Hamstrings وقت فحص الـ Hip Extension MMT؟",
+                options: [
+                    "Keep the patient's knee fully extended",
+                    "Flex the patient's knee to 90 degrees",
+                    "Externally rotate the hip",
+                    "Abduct the hip to 45 degrees"
+                ],
+                answer: 1,
+                explanation: "Flexing the knee to 90 degrees puts the hamstrings in active insufficiency, isolating the Gluteus Maximus.",
+                arabicHint: "بنتني الـ knee لـ 90 درجة عشان نضعف الـ Hamstrings بالـ active insufficiency."
+            },
+            {
+                category: "mmt",
+                q: "What is the primary action of the Tensor Fasciae Latae (TFL) muscle tested in MMT?",
+                qAr: "تلميح: ما هي الـ primary action لعضلة الـ TFL المختبرة في الـ MMT؟",
+                options: [
+                    "Abducts and laterally rotates the extended thigh",
+                    "Abducts and medially rotates the flexed thigh",
+                    "Adducts and flexes the hip",
+                    "Extends the hip and knee joint"
+                ],
+                answer: 1,
+                explanation: "The TFL abducts and internally (medially) rotates the thigh when the hip is in a flexed position.",
+                arabicHint: "الـ TFL بتعمل abduction و internal (medial) rotation للفخذ لما يكون في وضع flexion."
+            },
+            {
+                category: "mmt",
+                q: "During Tibialis Anterior MMT, keeping the toes relaxed is important to prevent substitution by:",
+                qAr: "تلميح: ليه لازم نخلي الـ toes مسترخية تماماً وإحنا بنعمل فحص الـ Tibialis Anterior MMT؟",
+                options: [
+                    "Fibularis longus and brevis",
+                    "Extensor Hallucis Longus (EHL) and Extensor Digitorum Longus (EDL)",
+                    "Flexor Digitorum Longus (FDL)",
+                    "Gastrocnemius"
+                ],
+                answer: 1,
+                explanation: "Relaxing the toes prevents long toe extensors (EHL and EDL) from substituting for ankle dorsiflexion.",
+                arabicHint: "الـ long toe extensors (EHL/EDL) ممكن تعمل substitution للـ ankle dorsiflexion. استرخاء الأصابع بيعزل الـ Tibialis Anterior."
+            },
+            {
+                category: "mmt",
+                q: "A patient attempts SCM testing (cervical flexion) and exhibits extreme grimacing and pulling down of the corners of the mouth. This indicates substitution by:",
+                qAr: "تلميح: لو المريض كشر وشد زوايا بقه وجلد رقبته لتحت في فحص الـ cervical flexion (SCM)، ده substitution بـ muscle إيه؟",
+                options: [
+                    "Masseter",
+                    "Platysma",
+                    "Sartorius",
+                    "Temporalis"
+                ],
+                answer: 1,
+                explanation: "Grimacing and pulling down the corners of the mouth indicates compensation by the superficial Platysma muscle.",
+                arabicHint: "الحركة دي بتعملها الـ Platysma muscle كنوع من الـ substitution."
+            },
+            {
+                category: "mmt",
+                q: "What is the patient's position for Grade 3 (Fair) Hip Adduction MMT?",
+                qAr: "تلميح: ما هي وضعية المريض في فحص الـ Hip Adduction MMT للـ Grade 3؟",
+                options: [
+                    "Supine lying with legs abducted",
+                    "Side-lying, tested leg underneath (downside) while therapist supports the upper leg in 25° abduction",
+                    "Prone lying with knees flexed",
+                    "Short sitting with legs dangling"
+                ],
+                answer: 1,
+                explanation: "The patient is side-lying, with the tested leg on the bottom, lifting it to meet the upper leg which is supported in 25° of abduction.",
+                arabicHint: "المريض بيكون side-lying، والـ tested leg بتكون downside ويرفعها لفوق عشان تلمس الـ upper leg اللي ممسوكة في 25° abduction."
+            },
+            // --- Nerve Injuries (26-28) ---
+            {
+                category: "nerves",
+                q: "Which nerve is injured if a patient exhibits a positive Trendelenburg sign (pelvic drop on the unsupported side)?",
+                qAr: "تلميح: إنهي عصب مصاب لو المريض عنده positive Trendelenburg sign (pelvic drop في الـ unsupported side)؟",
+                options: [
+                    "Inferior Gluteal Nerve",
+                    "Femoral Nerve",
+                    "Superior Gluteal Nerve",
+                    "Obturator Nerve"
+                ],
+                answer: 2,
+                explanation: "The Superior Gluteal Nerve innervates the Gluteus Medius (pelvic stabilizer). Its injury causes a positive Trendelenburg sign.",
+                arabicHint: "العصب ده بيغذي الـ Gluteus Medius (الـ pelvic stabilizer)، وهو الـ Superior Gluteal Nerve."
+            },
+            {
+                category: "nerves",
+                q: "Which nerve injury leads to 'Calcaneovalgus' deformity of the foot?",
+                qAr: "تلميح: إصابة أي عصب تؤدي لـ Calcaneovalgus deformity؟",
+                options: [
+                    "Common Peroneal Nerve",
+                    "Deep Peroneal Nerve",
+                    "Tibial Nerve",
+                    "Obturator Nerve"
+                ],
+                answer: 2,
+                explanation: "The Tibial Nerve innervates plantarflexors and inverters. Its injury leaves antagonist dorsiflexors/everters unopposed, causing calcaneovalgus.",
+                arabicHint: "العصب اللي بيغذي الـ plantarflexors والـ invertors هو الـ Tibial nerve. وإصابته بتخلي الـ antagonist dorsiflexors/everters تشتغل بدون مقاومة."
+            },
+            {
+                category: "nerves",
+                q: "Compression or irritation of the Lateral Cutaneous Nerve of Thigh results in a clinical condition known as:",
+                qAr: "تلميح: انضغاط أو تهيج الـ Lateral Cutaneous Nerve of Thigh بيعمل حالة إيه؟",
+                options: [
+                    "Trendelenburg Lurch",
+                    "Meralgia Paresthetica",
+                    "Sciatica",
+                    "Waddling Gait"
+                ],
+                answer: 1,
+                explanation: "Compression of this sensory nerve causes Meralgia Paresthetica, presenting as numbness/tingling in the lateral thigh.",
+                arabicHint: "الحالة دي sensory وبتسبب تنميل وحرقان في الـ lateral thigh وتسمى Meralgia Paresthetica."
+            },
+            // --- Special Tests (29-33) ---
+            {
+                category: "special",
+                q: "A positive Ober's test is indicated by:",
+                qAr: "تلميح: إزاي بنعرف إن الـ Ober's Test بيكون positive؟",
+                options: [
+                    "Spontaneous flexion of the hip during knee flexion",
+                    "Inability of the test leg to adduct and touch the table",
+                    "Pain in the posterior hip radiating down the thigh",
+                    "Excessive pelvic tilt or rotation"
+                ],
+                answer: 1,
+                explanation: "A positive Ober's test is indicated by the test leg remaining abducted and failing to touch the table, indicating TFL/IT band tightness.",
+                arabicHint: "لما الـ tested leg تفضل abducted ومتقدرش تنزل تلمس الـ table بسبب tightness في الـ TFL أو الـ IT Band."
+            },
+            {
+                category: "special",
+                q: "When performing the Thomas Test, a lack of hip extension accompanied by knee flexion greater than 45° indicates tightness of:",
+                qAr: "تلميح: في الـ Thomas Test، الـ lack of hip extension مع knee flexion أكتر من 45° بيشير لـ tightness في إيه؟",
+                options: [
+                    "Rectus Femoris",
+                    "Iliopsoas",
+                    "Tensor Fasciae Latae",
+                    "Gluteus Maximus"
+                ],
+                answer: 1,
+                explanation: "A lack of hip extension with knee flexion > 45° in the Thomas Test indicates tightness of the Iliopsoas.",
+                arabicHint: "الـ knee flexion اللي أكتر من 45° مع lack of hip extension بيشير لـ tightness في الـ Iliopsoas."
+            },
+            {
+                category: "special",
+                q: "To measure True Leg Length Discrepancy (LLD), the therapist measures the distance from the:",
+                qAr: "تلميح: بنقيس الـ True LLD من إنهي fixed bony landmarks؟",
+                options: [
+                    "Umbilicus to the medial malleolus",
+                    "Anterior Superior Iliac Spine (ASIS) to the inferior border of the medial malleolus",
+                    "Xiphoid process to the lateral malleolus",
+                    "Iliac crest to the calcaneus"
+                ],
+                answer: 1,
+                explanation: "True LLD is measured from the ASIS to the medial malleolus (both fixed bony landmarks).",
+                arabicHint: "القياس بيتقاس من الـ ASIS لحد الـ medial malleolus."
+            },
+            {
+                category: "special",
+                q: "During the knee flexed observation (crook lying) for LLD, if one knee projects further anteriorly, it indicates a longer:",
+                qAr: "تلميح: لو knee بارزة anteriorly أكتر في وضع الـ crook lying، ده معناه طول عظمة إيه؟",
+                options: [
+                    "Tibia bone",
+                    "Femur bone",
+                    "Fibula bone",
+                    "Calcaneus bone"
+                ],
+                answer: 1,
+                explanation: "If one knee projects further anteriorly, it indicates a longer femur on that side.",
+                arabicHint: "البروز لقدام (anteriorly) بيحدد طول الـ Femur، والبروز لفوق (superiorly) بيحدد طول الـ Tibia."
+            },
+            {
+                category: "special",
+                q: "A positive Tripod Sign is characterized by:",
+                qAr: "تلميح: إيه الـ positive Tripod Sign لـ Hamstrings tightness؟",
+                options: [
+                    "The patient sliding their heel to their knee",
+                    "The patient extending their trunk backward to relieve hamstring tension when the knee is extended",
+                    "The pelvis dropping on the unsupported side",
+                    "Pain elicited during compression of the greater trochanter"
+                ],
+                answer: 1,
+                explanation: "A positive Tripod Sign is characterized by the patient extending their trunk backward to relieve tension in tight hamstrings when the knee is passively extended.",
+                arabicHint: "لما نعمل passive knee extension والمريض قاعد، بيميل بالـ trunk backward (يعمل trunk extension) عشان يقلل الـ Hamstring tension."
+            }
+        ];
+
+        // ==========================================
+        // FLASHCARDS DATASET (15 CARDS)
+        // ==========================================
+        const FLASHCARDS = [
+            { category: "rom", front: "الـ normal ROM للـ Hip Extension؟", back: "من 0° إلى 30°" },
+            { category: "rom", front: "الـ normal ROM للـ Shoulder Flexion؟", back: "من 0° إلى 180°" },
+            { category: "rom", front: "الـ normal ROM للـ Ankle Plantarflexion؟", back: "من 0° إلى 35° أو 50°" },
+            { category: "rom", front: "الـ normal ROM للـ Ankle Dorsiflexion؟", back: "من 0° إلى 20°" },
+
+            { category: "anatomy", front: "إيه هي الـ primary muscles للـ Ankle Plantarflexion؟", back: "الـ Gastrocnemius والـ Soleus" },
+            { category: "anatomy", front: "إيه هي الـ primary muscles للـ Hip Adduction وإيه العصب اللي بيغذيها؟", back: "الـ Adductor group (Adductor Longus, Brevis, Magnus, Gracilis) وبيغذيها الـ Obturator Nerve (L2-L4)" },
+            { category: "anatomy", front: "إزاي بنعزل الـ Soleus عن الـ Gastrocnemius وقت الـ MMT؟", back: "بنتني الـ knee لـ 90° عشان نعمل active insufficiency للـ Gastrocnemius لأنها two-joint muscle" },
+            { category: "anatomy", front: "إيه هو الـ Origin والـ Insertion للـ Sartorius muscle؟", back: "الـ Origin: الـ ASIS | الـ Insertion: الـ Pes Anserinus (أعلى الـ Tibia من الداخل)" },
+
+            { category: "lesions", front: "شكل الـ deformity لو اتصاب الـ Common Peroneal Nerve؟", back: "الـ Equinovarus deformity: القدم بتنزل لتحت وتلف لجوة (Plantarflexion & Inversion) مع Foot Drop" },
+            { category: "lesions", front: "شكل الـ deformity لو اتصاب الـ Tibial Nerve؟", back: "الـ Calcaneovalgus deformity: القدم بتترفع لفوق وتلف لبرة (Dorsiflexion & Eversion)" },
+            { category: "lesions", front: "إيه هو الـ positive Trendelenburg sign ومعناه إيه؟", back: "الـ pelvic drop في الـ contralateral side وأنت واقف على single leg؛ وده بيشير لضعف الـ Gluteus Medius في الـ weight-bearing side نتيجة إصابة الـ Superior Gluteal Nerve" },
+            { category: "lesions", front: "إيه العصب والجذور المسؤولين عن الـ Meralgia Paresthetica؟", back: "الـ Lateral Cutaneous Nerve of Thigh (جذوره L2-L3)" },
+
+            { category: "special", front: "لو الـ Ober's Test طلع positive معناه إيه؟", back: "tightness / contracture في الـ TFL أو الـ IT Band" },
+            { category: "special", front: "إيه الفرق بين الـ True LLD والـ Apparent LLD؟", back: "الـ True LLD: بيتقاس من fixed bony landmark (الـ ASIS) للـ medial malleolus.<br>الـ Apparent LLD: بيتقاس من الـ Umbilicus أو الـ Xiphoid process للـ medial malleolus." },
+            { category: "special", front: "لو الـ Ely's Test طلع positive معناه إيه؟", back: "الـ passive knee flexion بيخلي الـ hip يتني لوحده (automatic hip flexion) من على السرير، وده معناه tightness في الـ Rectus Femoris." }
+        ];
+
+        // ==========================================
+        // CORE LOGIC STATE & WORKFLOW
+        // ==========================================
+        let quizMode = 'practice'; // 'practice' or 'exam'
+        let currentQuizFilter = 'all';
+        let filteredQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOptionIndex = null;
+        let userAnswers = [];
+        let startTime = null;
+
+        // Flashcard State
+        let currentCardFilter = 'all';
+        let filteredCards = [];
+        let currentCardIndex = 0;
+
+        // Initialize Page Content
+        window.onload = function () {
+            // Load local storage cached state
+            State.load();
+
+            lucide.createIcons();
+            initQuizCountBadges();
+            initFlashcardsCountBadges();
+            restartQuiz();
+            renderGuidesData();
+            renderPearlsData();
+            renderFlashcard();
+            updateProgressHUD();
+            updateStudyPathRecommendation();
+        };
+
+        function initQuizCountBadges() {
+            document.getElementById('badge-all').innerText = QUESTIONS.length;
+            document.getElementById('badge-sandbox').innerText = State.wrongQuestions.length;
+            document.getElementById('badge-midterm').innerText = QUESTIONS.filter(q => q.category === 'midterm').length;
+            document.getElementById('badge-goniometry').innerText = QUESTIONS.filter(q => q.category === 'goniometry').length;
+            document.getElementById('badge-mmt').innerText = QUESTIONS.filter(q => q.category === 'mmt').length;
+            document.getElementById('badge-nerves').innerText = QUESTIONS.filter(q => q.category === 'nerves').length;
+            document.getElementById('badge-special').innerText = QUESTIONS.filter(q => q.category === 'special').length;
+        }
+
+        function initFlashcardsCountBadges() {
+            document.getElementById('card-badge-all').innerText = FLASHCARDS.length;
+            document.getElementById('card-badge-rom').innerText = FLASHCARDS.filter(c => c.category === 'rom').length;
+            document.getElementById('card-badge-anatomy').innerText = FLASHCARDS.filter(c => c.category === 'anatomy').length;
+            document.getElementById('card-badge-lesions').innerText = FLASHCARDS.filter(c => c.category === 'lesions').length;
+            document.getElementById('card-badge-special').innerText = FLASHCARDS.filter(c => c.category === 'special').length;
+        }
+
+        // Update the TOP HUD progress bar and counters
+        function updateProgressHUD() {
+            const totalQ = QUESTIONS.length; // 50
+            const totalCards = FLASHCARDS.length; // 15
+            const totalTopics = SPECIAL_TESTS.length + GONIOMETRY_DATA.length + MMT_MUSCLES.length + NERVES_DATA.length; // 10 + 17 + 13 + 8 = 48
+
+            const solvedCorrect = State.completedQuestions.length;
+            const masteredC = State.masteredCards.length;
+            const revisedT = State.revisedTopics.length;
+
+            const totalParts = totalQ + totalCards + totalTopics; // 50 + 15 + 48 = 113
+            const coveredParts = solvedCorrect + masteredC + revisedT;
+
+            const prepScorePercent = totalParts > 0 ? Math.round((coveredParts / totalParts) * 100) : 0;
+
+            document.getElementById('hud-prep-score').innerText = `${prepScorePercent}%`;
+            document.getElementById('hud-prep-ratio').innerText = `${coveredParts} / ${totalParts} جزء`;
+            document.getElementById('hud-progress-fill').style.width = `${prepScorePercent}%`;
+
+            document.getElementById('hud-quiz-count').innerText = `${solvedCorrect} / ${totalQ}`;
+            document.getElementById('hud-cards-count').innerText = `${masteredC} / ${totalCards}`;
+            document.getElementById('hud-topics-count').innerText = `${revisedT} / ${totalTopics}`;
+        }
+
+        // Dynamic AI Study Path Recommender
+        function updateStudyPathRecommendation() {
+            const titleEl = document.getElementById('path-title');
+            const descEl = document.getElementById('path-recommendation');
+            const btnEl = document.getElementById('path-action-btn');
+
+            const midtermCorrect = QUESTIONS.filter(q => q.category === 'midterm' && State.completedQuestions.includes(q.q)).length;
+            const totalMidterm = 12; // 12 unique in code (collapsed duplicates)
+
+            if (State.wrongQuestions.length > 0) {
+                titleEl.innerText = "⚠️ ركز على نقط ضعفك (صندوق الأخطاء)";
+                descEl.innerText = `عندك ${State.wrongQuestions.length} سؤال غلط في صندوق الأخطاء. حلهم دلوقتي عشان تضمن تقفل المادة 100%.`;
+                btnEl.innerText = "افتح صندوق الأخطاء";
+                btnEl.setAttribute('onclick', "filterQuiz('sandbox', document.getElementById('quiz-flt-sandbox')); switchTab('quiz');");
+            } else if (midtermCorrect < 10) {
+                titleEl.innerText = "🚨 أول خطوة: إتقان الميدترم الفعلي";
+                descEl.innerText = "أسئلة الميدترم هي أهم حاجة وبتتكرر كتير جداً. حلها الأول واضمنها.";
+                btnEl.innerText = "حل الميدترم";
+                btnEl.setAttribute('onclick', "filterQuiz('midterm', document.getElementById('quiz-flt-midterm')); switchTab('quiz');");
+            } else if (State.masteredCards.length < 8) {
+                titleEl.innerText = "💡 تاني خطوة: احفظ وسهّلها بالـ Flashcards";
+                descEl.innerText = "احفظ قيم المدى الحركي (ROM) وتفاصيل الأعصاب عشان تثبت في دماغك.";
+                btnEl.innerText = "ابدأ الكروت";
+                btnEl.setAttribute('onclick', "switchTab('flashcards');");
+            } else if (State.revisedTopics.length < 20) {
+                titleEl.innerText = "🧭 تالت خطوة: عدي على جداول التلخيص";
+                descEl.innerText = "اقرأ جداول المفاصل والأعصاب وعلم عليها كـ 'خلصت مراجعة' عشان تكمل خريطتك الذهنية.";
+                btnEl.innerText = "افتح المراجعة";
+                btnEl.setAttribute('onclick', "switchTab('guides');");
+            } else {
+                titleEl.innerText = "👑 محاكاة الفاينال (Exam Mode)";
+                descEl.innerText = "أنت مستعد تماماً! شغل 'وضع الامتحان' لحل 50 سؤالاً بالكامل تحت ضغط الوقت وقياس جاهزيتك للتقفيل.";
+                btnEl.innerText = "شغل الامتحان";
+                btnEl.setAttribute('onclick', "document.querySelector('input[value=\"exam\"]').checked = true; changeQuizMode(); switchTab('quiz');");
+            }
+        }
+
+        function actionPathRecommend() {
+            SoundEngine.playClick();
+            // Trigger whatever action the button has mapped to it.
+        }
+
+        // Change Quiz mode
+        function changeQuizMode() {
+            SoundEngine.playClick();
+            const checkedVal = document.querySelector('input[name="quiz-mode"]:checked').value;
+            quizMode = checkedVal;
+            restartQuiz();
+        }
+
+        // Filter Quiz questions
+        function filterQuiz(category, element) {
+            SoundEngine.playClick();
+            document.querySelectorAll('.sidebar-card .filter-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = element || document.getElementById(`quiz-flt-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+            currentQuizFilter = category;
+            restartQuiz();
+        }
+
+        // Restart Quiz
+        function restartQuiz() {
+            document.getElementById('quiz-container').style.display = 'flex';
+            document.getElementById('results-container').style.display = 'none';
+
+            if (currentQuizFilter === 'all') {
+                filteredQuestions = [...QUESTIONS];
+            } else if (currentQuizFilter === 'sandbox') {
+                filteredQuestions = QUESTIONS.filter(q => State.wrongQuestions.includes(q.q));
+            } else {
+                filteredQuestions = QUESTIONS.filter(q => q.category === currentQuizFilter);
+            }
+
+            // Shuffle questions (except sandbox, keep them ordered)
+            if (currentQuizFilter !== 'sandbox') {
+                filteredQuestions.sort(() => Math.random() - 0.5);
+            }
+
+            currentQuestionIndex = 0;
+            score = 0;
+            selectedOptionIndex = null;
+            userAnswers = [];
+            startTime = new Date();
+
+            document.getElementById('score-meta-item').style.display = quizMode === 'practice' ? 'inline-flex' : 'none';
+            document.getElementById('current-score').innerText = '0';
+            document.getElementById('total-q-num').innerText = filteredQuestions.length;
+
+            loadQuestion();
+        }
+
+        // Load current Question
+        function loadQuestion() {
+            const optionsContainer = document.getElementById('options-list');
+            const explanationBox = document.getElementById('explanation-box');
+            const qHintBox = document.getElementById('question-hint-box');
+
+            if (filteredQuestions.length === 0) {
+                document.getElementById('question-text').innerText = currentQuizFilter === 'sandbox'
+                    ? "ساندبوكس الأخطاء فارغ حاليًا! عمل رائع."
+                    : "لا توجد أسئلة متوفرة في هذا القسم.";
+                optionsContainer.innerHTML = "";
+                explanationBox.style.display = 'none';
+                qHintBox.style.display = 'none';
+                document.getElementById('btn-next').style.display = 'none';
+                document.getElementById('btn-prev').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('btn-next').style.display = 'flex';
+            document.getElementById('btn-prev').style.display = 'flex';
+
+            const currentQ = filteredQuestions[currentQuestionIndex];
+            document.getElementById('current-q-num').innerText = currentQuestionIndex + 1;
+            document.getElementById('current-q-category').innerText = getCategoryNameAr(currentQ.category);
+            document.getElementById('question-text').innerText = currentQ.q;
+
+            // Reset and load question translation hint
+            qHintBox.style.display = 'none';
+            qHintBox.innerHTML = `<strong>الترجمة:</strong> ${currentQ.qAr || 'غير متوفرة حالياً'}`;
+
+            // Render options
+            optionsContainer.innerHTML = "";
+            selectedOptionIndex = null;
+
+            currentQ.options.forEach((opt, idx) => {
+                const letter = String.fromCharCode(65 + idx);
+                const optItem = document.createElement('div');
+                optItem.className = 'option-item';
+                optItem.innerHTML = `
+                <div class="option-badge">${letter}</div>
+                <div>${opt}</div>
+            `;
+                optItem.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(optItem);
+            });
+
+            // Hide explanation
+            explanationBox.style.display = 'none';
+
+            // Button text reset
+            document.getElementById('btn-next').innerHTML = quizMode === 'practice' ? 'تشيك على الإجابة <i data-lucide="chevron-left"></i>' : 'اللي بعده <i data-lucide="chevron-left"></i>';
+
+            // Progress Bar
+            const progressPercent = ((currentQuestionIndex) / filteredQuestions.length) * 100;
+            document.getElementById('quiz-progress').style.width = `${progressPercent}%`;
+
+            // Prev button visibility
+            document.getElementById('btn-prev').style.visibility = currentQuestionIndex > 0 ? 'visible' : 'hidden';
+
+            lucide.createIcons();
+        }
+
+        // Translation hint togglers
+        function toggleQuestionHint() {
+            SoundEngine.playClick();
+            const hintBox = document.getElementById('question-hint-box');
+            if (hintBox.style.display === 'none') {
+                hintBox.style.display = 'block';
+            } else {
+                hintBox.style.display = 'none';
+            }
+        }
+
+        function toggleExplanationTranslation() {
+            SoundEngine.playClick();
+            const transBox = document.getElementById('explanation-translation-box');
+            if (transBox.style.display === 'none') {
+                transBox.style.display = 'block';
+            } else {
+                transBox.style.display = 'none';
+            }
+        }
+
+        function selectOption(index) {
+            if (document.getElementById('explanation-box').style.display === 'block' && quizMode === 'practice') {
+                return; // Already checked in practice mode
+            }
+
+            SoundEngine.playClick();
+            selectedOptionIndex = index;
+            const options = document.querySelectorAll('.options-list .option-item');
+            options.forEach((opt, idx) => {
+                if (idx === index) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+        }
+
+        function checkOrNextQuestion() {
+            if (selectedOptionIndex === null) {
+                alert("من فضلك اختر إجابة أولاً!");
+                return;
+            }
+
+            const currentQ = filteredQuestions[currentQuestionIndex];
+
+            if (quizMode === 'practice') {
+                const explanationBox = document.getElementById('explanation-box');
+
+                // Check if already showing explanation (means we want to go Next)
+                if (explanationBox.style.display === 'block') {
+                    moveToNext();
+                } else {
+                    const options = document.querySelectorAll('.options-list .option-item');
+                    const isCorrect = selectedOptionIndex === currentQ.answer;
+
+                    if (isCorrect) {
+                        options[selectedOptionIndex].classList.add('correct');
+                        score++;
+                        document.getElementById('current-score').innerText = score;
+                        SoundEngine.playCorrect();
+
+                        // Add to completed, remove from wrong sandbox
+                        if (!State.completedQuestions.includes(currentQ.q)) {
+                            State.completedQuestions.push(currentQ.q);
+                        }
+                        State.wrongQuestions = State.wrongQuestions.filter(qText => qText !== currentQ.q);
+                    } else {
+                        options[selectedOptionIndex].classList.add('wrong');
+                        options[currentQ.answer].classList.add('correct');
+                        SoundEngine.playWrong();
+
+                        // Add to wrong sandbox, remove from completed
+                        if (!State.wrongQuestions.includes(currentQ.q)) {
+                            State.wrongQuestions.push(currentQ.q);
+                        }
+                        State.completedQuestions = State.completedQuestions.filter(qText => qText !== currentQ.q);
+                    }
+
+                    // Save state
+                    State.save();
+                    initQuizCountBadges();
+
+                    // Show explanation
+                    document.getElementById('explanation-text').innerHTML = currentQ.explanation;
+                    document.getElementById('explanation-translation-box').innerHTML = currentQ.arabicHint || "لا يوجد ترجمة متوفرة.";
+                    document.getElementById('explanation-translation-box').style.display = 'none'; // reset to hidden
+                    explanationBox.style.display = 'block';
+
+                    // Change button text
+                    document.getElementById('btn-next').innerHTML = 'السؤال اللي بعده <i data-lucide="arrow-left"></i>';
+                    lucide.createIcons();
+                }
+            } else {
+                // Exam Mode: just record answers silently, move next
+                userAnswers[currentQuestionIndex] = selectedOptionIndex;
+                const isCorrect = selectedOptionIndex === currentQ.answer;
+                if (isCorrect) {
+                    score++;
+                    if (!State.completedQuestions.includes(currentQ.q)) {
+                        State.completedQuestions.push(currentQ.q);
+                    }
+                    State.wrongQuestions = State.wrongQuestions.filter(qText => qText !== currentQ.q);
+                } else {
+                    if (!State.wrongQuestions.includes(currentQ.q)) {
+                        State.wrongQuestions.push(currentQ.q);
+                    }
+                    State.completedQuestions = State.completedQuestions.filter(qText => qText !== currentQ.q);
+                }
+                State.save();
+                initQuizCountBadges();
+                SoundEngine.playClick();
+                moveToNext();
+            }
+        }
+
+        function prevQuestion() {
+            SoundEngine.playClick();
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function moveToNext() {
+            if (currentQuestionIndex < filteredQuestions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('results-container').style.display = 'flex';
+
+            const percent = Math.round((score / filteredQuestions.length) * 100);
+            document.getElementById('result-final-score').innerText = `${percent}%`;
+            document.getElementById('result-fraction').innerText = `${score} من ${filteredQuestions.length} صحيحة`;
+
+            // Calculate Time
+            const endTime = new Date();
+            const diffMs = endTime - startTime;
+            const diffSecs = Math.floor(diffMs / 1000);
+            const mins = Math.floor(diffSecs / 60).toString().padStart(2, '0');
+            const secs = (diffSecs % 60).toString().padStart(2, '0');
+            document.getElementById('res-time').innerText = `${mins}:${secs}`;
+
+            document.getElementById('res-correct').innerText = score;
+            document.getElementById('res-incorrect').innerText = filteredQuestions.length - score;
+
+            // Custom feedback message
+            const msg = document.getElementById('result-message');
+            if (percent >= 85) {
+                msg.innerText = "أداء ممتاز! أنت مستعد تماماً للفاينال 🏆";
+                SoundEngine.playSuccess();
+            } else if (percent >= 65) {
+                msg.innerText = "أداء جيد، أنصحك بمراجع صندوق الأخطاء 📘";
+                SoundEngine.playSuccess();
+            } else {
+                msg.innerText = "تحتاج لمزيد من المراجعة، صندوق الأخطاء وجداول التلخيص ستساعدك 🎯";
+                SoundEngine.playWrong();
+            }
+        }
+
+        function getCategoryNameAr(category) {
+            switch (category) {
+                case 'midterm': return 'الميدترم الفعلي';
+                case 'goniometry': return 'قياس المدى الحركي';
+                case 'mmt': return 'تقييم العضلات (MMT)';
+                case 'nerves': return 'الأعصاب وإصاباتها';
+                case 'special': return 'الاختبارات الخاصة';
+                default: return 'عام';
+            }
+        }
+
+        // ==========================================
+        // FLASHCARDS LOGIC
+        // ==========================================
+
+        function filterCards(category, element) {
+            SoundEngine.playClick();
+            document.querySelectorAll('#flashcards-tab .filter-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            currentCardFilter = category;
+            currentCardIndex = 0;
+            renderFlashcard();
+        }
+
+        function renderFlashcard() {
+            if (currentCardFilter === 'all') {
+                filteredCards = [...FLASHCARDS];
+            } else {
+                filteredCards = FLASHCARDS.filter(c => c.category === currentCardFilter);
+            }
+
+            document.getElementById('total-cards-count').innerText = filteredCards.length;
+
+            if (filteredCards.length === 0) {
+                document.getElementById('card-front-text').innerText = "لا توجد كروت متاحة في هذا التصنيف.";
+                document.getElementById('card-back-text').innerText = "";
+                return;
+            }
+
+            const card = filteredCards[currentCardIndex];
+
+            // Fix: get flashcard-wrapper safely by ID
+            const wrapper = document.getElementById('flashcard-wrapper');
+            if (wrapper) {
+                wrapper.classList.remove('flipped');
+            }
+
+            setTimeout(() => {
+                document.getElementById('card-front-category').innerText = getCardCategoryName(card.category);
+                document.getElementById('card-front-text').innerHTML = card.front;
+
+                document.getElementById('card-back-category').innerText = getCardCategoryName(card.category);
+                document.getElementById('card-back-text').innerHTML = card.back;
+
+                // Setup master button state
+                const masterBtn = document.getElementById('btn-master');
+                if (State.masteredCards.includes(card.front)) {
+                    masterBtn.classList.add('mastered');
+                    masterBtn.innerText = "✓ اتحفظ وخلاص تمام";
+                } else {
+                    masterBtn.classList.remove('mastered');
+                    masterBtn.innerText = "علم عليه كـ 'حفظته'";
+                }
+
+                // Cards Progress bar calculation
+                const masteredSize = State.masteredCards.filter(frontText =>
+                    FLASHCARDS.some(c => c.front === frontText && (currentCardFilter === 'all' || c.category === currentCardFilter))
+                ).length;
+
+                const barPercent = filteredCards.length > 0 ? (masteredSize / filteredCards.length) * 100 : 0;
+                document.getElementById('cards-progress-bar').style.width = `${barPercent}%`;
+                document.getElementById('mastered-count').innerText = masteredSize;
+            }, 150);
+        }
+
+        function flipCard() {
+            SoundEngine.playFlip();
+            const wrapper = document.getElementById('flashcard-wrapper');
+            if (wrapper) {
+                wrapper.classList.toggle('flipped');
+            }
+        }
+
+        function nextCard() {
+            SoundEngine.playClick();
+            if (currentCardIndex < filteredCards.length - 1) {
+                currentCardIndex++;
+            } else {
+                currentCardIndex = 0; // loop back
+            }
+            renderFlashcard();
+        }
+
+        function prevCard() {
+            SoundEngine.playClick();
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+            } else {
+                currentCardIndex = filteredCards.length - 1;
+            }
+            renderFlashcard();
+        }
+
+        function toggleMasterCard(event) {
+            event.stopPropagation(); // Prevent card flipping when clicking the button
+            SoundEngine.playClick();
+            const card = filteredCards[currentCardIndex];
+
+            if (State.masteredCards.includes(card.front)) {
+                State.masteredCards = State.masteredCards.filter(text => text !== card.front);
+            } else {
+                State.masteredCards.push(card.front);
+            }
+
+            State.save();
+            renderFlashcard();
+        }
+
+        function getCardCategoryName(cat) {
+            switch (cat) {
+                case 'rom': return 'المدى الحركي قياس';
+                case 'anatomy': return 'منشأ وعضلات MMT';
+                case 'lesions': return 'إصابات وأعصاب';
+                case 'special': return 'اختبارات خاصة';
+                default: return 'مراجعة';
+            }
+        }
+
+        // ==========================================
+        // STUDY GUIDES & REVISED CHECKLISTS LOGIC
+        // ==========================================
+
+        function toggleTopicRevised(topicId, element) {
+            SoundEngine.playClick();
+            const isChecked = element.checked;
+            const row = element.closest('tr') || element.closest('.mmt-card');
+
+            if (isChecked) {
+                if (!State.revisedTopics.includes(topicId)) {
+                    State.revisedTopics.push(topicId);
+                }
+                if (row) row.classList.add('revised');
+            } else {
+                State.revisedTopics = State.revisedTopics.filter(id => id !== topicId);
+                if (row) row.classList.remove('revised');
+            }
+
+            State.save();
+        }
+
+        function renderGuidesData() {
+            // 1. Special Tests Table
+            const specialTbody = document.getElementById('special-tests-tbody');
+            specialTbody.innerHTML = "";
+            SPECIAL_TESTS.forEach(test => {
+                const isRevised = State.revisedTopics.includes(test.id);
+                const tr = document.createElement('tr');
+                if (isRevised) tr.className = "revised";
+                tr.innerHTML = `
+                <td data-label="تمام؟">
+                    <label class="cyber-checkbox">
+                        <input type="checkbox" ${isRevised ? 'checked' : ''} onchange="toggleTopicRevised('${test.id}', this)">
+                        <span class="checkmark"><i data-lucide="check" style="width:14px;height:14px;"></i></span>
+                    </label>
+                </td>
+                <td data-label="اسم الاختبار"><strong>${test.name}</strong></td>
+                <td data-label="وضعية المريض">${test.position}</td>
+                <td data-label="طريقة الفحص والخطوات">${test.procedure}</td>
+                <td data-label="علامة إيجابية الاختبار (+) (Positive)"><span class="highlight-rose">${test.positive}</span></td>
+                <td data-label="معناها إيه كلينيكال؟"><span class="highlight-cyan">${test.indication}</span></td>
+            `;
+                specialTbody.appendChild(tr);
+            });
+
+            // 2. Goniometry Table
+            const goniometryTbody = document.getElementById('goniometry-tbody');
+            goniometryTbody.innerHTML = "";
+            GONIOMETRY_DATA.forEach(row => {
+                const isRevised = State.revisedTopics.includes(row.id);
+                const tr = document.createElement('tr');
+                if (isRevised) tr.className = "revised";
+                tr.innerHTML = `
+                <td data-label="تمام؟">
+                    <label class="cyber-checkbox">
+                        <input type="checkbox" ${isRevised ? 'checked' : ''} onchange="toggleTopicRevised('${row.id}', this)">
+                        <span class="checkmark"><i data-lucide="check" style="width:14px;height:14px;"></i></span>
+                    </label>
+                </td>
+                <td data-label="المفصل والحركة"><strong>${row.joint}</strong></td>
+                <td data-label="المدى الحركي الطبيعي (Normal ROM)"><span class="highlight-cyan">${row.rom}</span></td>
+                <td data-label="المحور (Axis)">${row.axis}</td>
+                <td data-label="الذراع الثابت (SA)">${row.sa}</td>
+                <td data-label="الذراع المتحرك (MA)">${row.ma}</td>
+                <td data-label="وضعية الفحص بالمنقلة">${row.position}</td>
+            `;
+                goniometryTbody.appendChild(tr);
+            });
+
+            // 3. MMT Cards
+            const mmtContainer = document.getElementById('mmt-cards-container');
+            mmtContainer.innerHTML = "";
+            MMT_MUSCLES.forEach(m => {
+                const isRevised = State.revisedTopics.includes(m.id);
+                const card = document.createElement('div');
+                card.className = `mmt-card ${isRevised ? 'revised' : ''}`;
+                card.innerHTML = `
+                <div class="mmt-card-header">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <label class="cyber-checkbox">
+                            <input type="checkbox" ${isRevised ? 'checked' : ''} onchange="toggleTopicRevised('${m.id}', this)">
+                            <span class="checkmark"><i data-lucide="check" style="width:14px;height:14px;"></i></span>
+                        </label>
+                        <span class="muscle-title">${m.name}</span>
+                    </div>
+                    <span class="muscle-badge">${m.nerve}</span>
+                </div>
+                <div class="mmt-field"><span class="field-label">الوظيفة الأساسية:</span><span class="field-val">${m.action}</span></div>
+                <div class="mmt-field"><span class="field-label">المدى الحركي:</span><span class="field-val highlight-cyan">${m.rom}</span></div>
+                <div class="mmt-field"><span class="field-label">طريقة فحص الـ MMT:</span><span class="field-val">${m.test_p}</span></div>
+                <div class="mmt-field"><span class="field-label">تعويض المريض بالحركات التانية (Substitution):</span><span class="field-val highlight-amber">${m.substitution}</span></div>
+                <div class="mmt-field"><span class="field-label">ملاحظات وتفاصيل مهمة:</span><span class="field-val">${m.notes}</span></div>
+            `;
+                mmtContainer.appendChild(card);
+            });
+
+            // 4. Nerves Table
+            const nervesTbody = document.getElementById('nerves-tbody');
+            nervesTbody.innerHTML = "";
+            NERVES_DATA.forEach(n => {
+                const isRevised = State.revisedTopics.includes(n.id);
+                const tr = document.createElement('tr');
+                if (isRevised) tr.className = "revised";
+                tr.innerHTML = `
+                <td data-label="تمام؟">
+                    <label class="cyber-checkbox">
+                        <input type="checkbox" ${isRevised ? 'checked' : ''} onchange="toggleTopicRevised('${n.id}', this)">
+                        <span class="checkmark"><i data-lucide="check" style="width:14px;height:14px;"></i></span>
+                    </label>
+                </td>
+                <td data-label="العصب (Nerve)"><strong>${n.name}</strong></td>
+                <td data-label="الجذور العصبية (Nerve Roots)"><span class="highlight-cyan">${n.roots}</span></td>
+                <td data-label="بيغذي عضلات إيه؟">${n.muscles}</td>
+                <td data-label="التشوه الناتج لو اتصاب (Deformity)"><span class="highlight-rose">${n.deformity}</span></td>
+                <td data-label="التنميل وفقدان الإحساس فين؟">${n.sensory}</td>
+                <td data-label="تركات إكلينيكية وعواقب الإصابة">${n.clinical}</td>
+            `;
+                nervesTbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        // Render Pearls
+        function renderPearlsData() {
+            const container = document.getElementById('pearls-container');
+            container.innerHTML = "";
+            HIGH_YIELD_PEARLS.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'pearl-card';
+                card.innerHTML = `
+                <div class="pearl-icon"><i data-lucide="zap"></i></div>
+                <div class="pearl-content">
+                    <h4>${p.title}</h4>
+                    <p>${p.text}</p>
+                </div>
+            `;
+                container.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // ==========================================
+        // DYNAMIC GLOBAL SEARCH & FILTER LOGIC
+        // ==========================================
+        function handleSearch() {
+            const query = document.getElementById('global-search').value.toLowerCase().trim();
+
+            // 1. Filter Special Tests Table
+            const specialRows = document.querySelectorAll('#special-tests-tbody tr');
+            specialRows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+
+            // 2. Filter Goniometry Table
+            const goniometryRows = document.querySelectorAll('#goniometry-tbody tr');
+            goniometryRows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+
+            // 3. Filter MMT Cards
+            const mmtCards = document.querySelectorAll('#mmt-cards-container .mmt-card');
+            mmtCards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(query) ? '' : 'none';
+            });
+
+            // 4. Filter Nerves Table
+            const nervesRows = document.querySelectorAll('#nerves-tbody tr');
+            nervesRows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+        }
+    </script>
+
+</body>
+
+</html>

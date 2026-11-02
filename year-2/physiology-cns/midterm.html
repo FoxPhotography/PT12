@@ -1,0 +1,550 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أسئلة الميدتيرم — Neurophysiology</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10; --bg2: #0f1218; --bg3: #141820;
+    --card: #13171f; --card2: #1a1f2a;
+    --border: #1e2535; --border2: #2a3248;
+    --text: #e2e8f0; --muted: #8892a4; --dim: #4a5568;
+    --blue: #3b82f6; --blue2: #1d4ed8; --cyan: #06b6d4;
+    --green: #10b981; --yellow: #f59e0b; --red: #ef4444;
+    --purple: #8b5cf6; --pink: #ec4899; --orange: #f97316;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+  body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+  body::after { content:''; position:fixed; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:400px; background:radial-gradient(ellipse,rgba(59,130,246,0.08) 0%,transparent 70%); pointer-events:none; z-index:0; }
+  header { position:relative; z-index:10; padding:50px 0 40px; text-align:center; border-bottom:1px solid var(--border); background:linear-gradient(180deg,rgba(59,130,246,0.06) 0%,transparent 100%); }
+  .header-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:var(--blue); padding:6px 18px; border-radius:100px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; animation:fadeDown 0.6s ease both; }
+  .header-badge::before { content:''; width:6px; height:6px; background:var(--blue); border-radius:50%; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.8);} }
+  h1 { font-size:clamp(28px,5vw,48px); font-weight:900; letter-spacing:-1px; line-height:1.2; animation:fadeDown 0.6s 0.1s ease both; background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.6) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .subtitle { color:var(--muted); margin-top:10px; font-size:14px; animation:fadeDown 0.6s 0.2s ease both; direction:ltr; font-family:'JetBrains Mono',monospace; letter-spacing:1px; }
+  .stats-bar { display:flex; justify-content:center; gap:40px; margin-top:30px; flex-wrap:wrap; animation:fadeDown 0.6s 0.3s ease both; }
+  .stat { text-align:center; }
+  .stat-num { font-size:28px; font-weight:900; color:var(--blue); font-family:'JetBrains Mono',monospace; }
+  .stat-label { font-size:11px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-top:2px; }
+  .nav { position:sticky; top:0; z-index:100; background:rgba(10,12,16,0.95); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0 20px; display:flex; gap:4px; justify-content:center; overflow-x:auto; scrollbar-width:none; }
+  .nav::-webkit-scrollbar { display:none; }
+  .nav-btn { background:none; border:none; color:var(--muted); font-family:'Cairo',sans-serif; font-size:13px; font-weight:600; padding:14px 18px; cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent; transition:all 0.2s; text-decoration: none; display: flex; align-items: center; }
+  .nav-btn:hover { color:var(--text); }
+  .nav-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+  main { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:40px 20px 80px; }
+  .section { display:none; animation:fadeIn 0.4s ease; }
+  .section.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-15px);} to{opacity:1;transform:translateY(0);} }
+  .topic-group { margin-bottom:32px; }
+  .topic-header { display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .topic-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .topic-title { font-size:17px; font-weight:700; color:var(--text); }
+  .topic-count { margin-right:auto; background:rgba(255,255,255,0.06); border:1px solid var(--border); color:var(--muted); font-size:11px; font-family:'JetBrains Mono',monospace; padding:3px 10px; border-radius:100px; }
+  .q-card { background:var(--card); border:1px solid var(--border); border-radius:12px; margin-bottom:12px; overflow:hidden; transition:border-color 0.2s,box-shadow 0.2s; }
+  .q-card:hover { border-color:var(--border2); box-shadow:0 4px 24px rgba(0,0,0,0.3); }
+  .q-header { display:flex; align-items:flex-start; gap:14px; padding:18px 20px; cursor:pointer; }
+  .q-num { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--muted); background:var(--bg3); border:1px solid var(--border); border-radius:6px; padding:4px 10px; flex-shrink:0; margin-top:1px; }
+  .q-text { font-size:14.5px; font-weight:600; line-height:1.6; flex:1; }
+  .q-toggle { width:24px; height:24px; border-radius:6px; background:var(--bg3); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--muted); font-size:12px; transition:all 0.2s; margin-top:1px; }
+  .q-card.open .q-toggle { background:rgba(59,130,246,0.1); border-color:rgba(59,130,246,0.3); color:var(--blue); transform:rotate(180deg); }
+  .q-body { display:none; padding:0 20px 18px 20px; border-top:1px solid var(--border); }
+  .q-card.open .q-body { display:block; }
+  .options { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+  .option { display:flex; align-items:flex-start; gap:12px; padding:12px 14px; border-radius:8px; border:1px solid var(--border); background:var(--bg2); font-size:13.5px; line-height:1.5; transition:all 0.2s; cursor:pointer; }
+  .option:hover { border-color:var(--border2); background:var(--card); }
+  
+  .q-card.answered .option, .show-all-mode .option { pointer-events: none; }
+  .q-card.answered .option.correct, .show-all-mode .option.correct { border-color:rgba(16,185,129,0.4); background:rgba(16,185,129,0.07); color:#6ee7b7; opacity:1; }
+  .q-card.answered .option:not(.correct):not(.wrong-selected), .show-all-mode .option:not(.correct) { opacity:0.45; }
+  
+  .opt-letter { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; width:22px; height:22px; border-radius:5px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--bg3); border:1px solid var(--border); color:var(--muted); transition:all 0.2s; }
+  .q-card.answered .option.correct .opt-letter, .show-all-mode .option.correct .opt-letter { background:rgba(16,185,129,0.2); border-color:rgba(16,185,129,0.5); color:var(--green); }
+  .q-card.answered .option.correct .opt-letter::after, .show-all-mode .option.correct .opt-letter::after { content:'✓'; }
+  
+  .option.wrong-selected { border-color:rgba(239,68,68,0.4); background:rgba(239,68,68,0.07); color:#fca5a5; opacity:1 !important; }
+  .option.wrong-selected .opt-letter { background:rgba(239,68,68,0.2); border-color:rgba(239,68,68,0.5); color:var(--red); }
+  .option.wrong-selected .opt-letter::after { content:'✗'; }
+  
+  @keyframes popCorrect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); background: rgba(16,185,129,0.15); }
+    100% { transform: scale(1); }
+  }
+  .pop-animation { animation: popCorrect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .search-wrap { margin-bottom:28px; position:relative; }
+  .search-input { width:100%; background:var(--card); border:1px solid var(--border); border-radius:10px; color:var(--text); font-family:'Cairo',sans-serif; font-size:14px; padding:14px 20px 14px 48px; outline:none; transition:border-color 0.2s,box-shadow 0.2s; }
+  .search-input::placeholder { color:var(--dim); }
+  .search-input:focus { border-color:rgba(59,130,246,0.4); box-shadow:0 0 0 3px rgba(59,130,246,0.08); }
+  .search-icon { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--dim); font-size:16px; pointer-events:none; }
+  .ic-blue { background:rgba(59,130,246,0.12); color:var(--blue); }
+  ::-webkit-scrollbar { width:5px; height:5px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border2); border-radius:10px; }
+  @media (max-width:640px) {
+    .stats-bar { gap:24px; }
+    .nav-btn { padding:12px 12px; font-size:12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">Midterm Exam</div>
+  <h1>Physiology CNS Midterm</h1>
+  <p class="subtitle">Neural Pool · Reflexes · Synaptic Transmission</p>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">20</div>
+      <div class="stat-label">سؤال MCQ</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-label">موضوع</div>
+    </div>
+    <div class="stat" id="score-stat">
+      <div class="stat-num">0/20</div>
+      <div class="stat-label">الإجابات الصحيحة</div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="../../index.html" class="nav-btn">🔙 رجوع للرئيسية</a>
+  <button class="nav-btn active" onclick="showSection('mcq')">📋 MCQ</button>
+  <button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار كل الإجابات</button>
+  <button class="nav-btn" onclick="retest()">🔄 إعادة الاختبار</button>
+</nav>
+
+<main>
+
+<div class="section active" id="mcq">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" placeholder="ابحث في الأسئلة..." oninput="searchQ(this.value)">
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-blue">🧠</div>
+      <div class="topic-title">Neural Pool, Reflexes & Synaptic Transmission</div>
+      <div class="topic-count">20 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q1</div>
+        <div class="q-text">Divergence in the neural pool explains:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Temporal summation</div>
+          <div class="option correct"><div class="opt-letter"></div>Spread of stimulus</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Lateral inhibition</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Spatial summation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q2</div>
+        <div class="q-text">Convergence in the neural pool leads to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Temporal summation</div>
+          <div class="option wrong"><div class="opt-letter">B</div>After discharge</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Spread of stimulus</div>
+          <div class="option correct"><div class="opt-letter"></div>Spatial summation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q3</div>
+        <div class="q-text">After discharge:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is due to presence of Ranshaw cells</div>
+          <div class="option correct"><div class="opt-letter"></div>Can be caused by parallel circuits</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Can be caused by lateral inhibition</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Leads to spread of the stimulus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q4</div>
+        <div class="q-text">Parallel circuit is a mechanism for:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Hyperalgesia</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Referred pain</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Pain inhibition</div>
+          <div class="option correct"><div class="opt-letter"></div>After discharge</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q5</div>
+        <div class="q-text">Skeletal muscle tone:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Increases if the muscle shortens</div>
+          <div class="option wrong"><div class="opt-letter">B</div>All are correct</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is a voluntary act</div>
+          <div class="option correct"><div class="opt-letter"></div>Keeps posture against gravity</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q6</div>
+        <div class="q-text">Dynamic stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Increased in UMNL</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Slower than withdrawal reflex</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Polysynaptic reflex</div>
+          <div class="option wrong"><div class="opt-letter">D</div>The mechanism of muscle tone</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q7</div>
+        <div class="q-text">Static stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>The base of muscle tone</div>
+          <div class="option wrong"><div class="opt-letter">B</div>The base of tendon jerk</div>
+          <div class="option wrong"><div class="opt-letter">C</div>A polysynaptic reflex</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Stimulated by red nucleus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q8</div>
+        <div class="q-text">Static stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Initiated at nuclear bag intrafusal fibers</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Responsible for tendon jerk</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Transmitted through primary ending only</div>
+          <div class="option correct"><div class="opt-letter"></div>Initiated at nuclear chain intrafusal fibers</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q9</div>
+        <div class="q-text">Gamma motor neuron to muscle spindle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Constitutes the pathway through which higher centers can affect the stretch reflex</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Supplies the central receptor areas of intrafusal muscle fibers</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Supplies the extrafusal muscle fibers</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Constitutes the efferent for stretch reflex</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q10</div>
+        <div class="q-text">Muscle tone:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Is based on the static stretch reflex</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Decreases venous return</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is less in antigravity muscles</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is characterized by fatigue</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q11</div>
+        <div class="q-text">Nuclear bag fibers in muscle spindle are:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Slowly responding</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Slowly adapting</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Connected to secondary ending</div>
+          <div class="option correct"><div class="opt-letter"></div>Rapidly responding</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q12</div>
+        <div class="q-text">Muscle spindle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is encapsulated mechanoreceptor that detects muscle tension</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Contains extrafusal fibers sensitive to stretch</div>
+          <div class="option correct"><div class="opt-letter"></div>Contains 2 types of intrafusal fibers which are sensitive to stretch</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Attached to tendon of origin only and not to tendon of insertion</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q13</div>
+        <div class="q-text">Intrafusal fibers:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Nuclear bag fibers are shorter, thinner and fewer than nuclear chain fibers</div>
+          <div class="option correct"><div class="opt-letter"></div>Have a central stretchable zone and peripheral contractile zone</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Its central part is the effector part while its peripheral part is the receptor part</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Its efferent is alpha motor neuron</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q14</div>
+        <div class="q-text">Dynamic stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Occurs in response to maintained stretch</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is mediated by stimulation of nuclear chain fibers</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Impulses are carried in secondary afferents</div>
+          <div class="option correct"><div class="opt-letter"></div>It is manifested in tendon jerks</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q15</div>
+        <div class="q-text">Static stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Impulses are carried only in primary afferents</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is mediated by stimulation of nuclear bag fibers</div>
+          <div class="option wrong"><div class="opt-letter">C</div>It is manifested in tendon jerks</div>
+          <div class="option correct"><div class="opt-letter"></div>Occurs in response to maintained stretch</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q16</div>
+        <div class="q-text">The following are facilitatory supraspinal centers to stretch reflex EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Primary motor cortex (area 4)</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Neocerebellum</div>
+          <div class="option correct"><div class="opt-letter"></div>Medullary reticular formation</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Vestibular nucleus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q17</div>
+        <div class="q-text">The following are inhibitory supraspinal centers to stretch reflex EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Red nucleus</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Premotor cortex (area 6)</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Paleocerebellum</div>
+          <div class="option correct"><div class="opt-letter"></div>Pontine reticular formation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q18</div>
+        <div class="q-text">Inverse stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Its receptor monitors muscle length</div>
+          <div class="option correct"><div class="opt-letter"></div>Its polysynaptic reflex involving inhibitory interneuron releasing glycine</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is reflex contraction of a muscle in response to severe increase in tension</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Its receptor is a network of nerve ending in parallel with extrafusal fibers</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q19</div>
+        <div class="q-text">Synaptic transmission depends upon:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Direct transmission of impulses from the presynaptic neuron to the postsynaptic neuron</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Presence of voltage-gated Ca++ channels in the post-synaptic membrane</div>
+          <div class="option correct"><div class="opt-letter"></div>Presence of voltage-gated Ca++ channels in pre-synaptic membrane</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Diffusion of neurotransmitters from synaptic knobs into the soma and dendrites of postsynaptic neurons</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q20</div>
+        <div class="q-text">Opening of ligand-gated Cl- channels causes:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Initiation of an action potential</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Depolarization of the postsynaptic neuron</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Block of ligand-gated cation channels</div>
+          <div class="option correct"><div class="opt-letter"></div>Inhibition of the postsynaptic neuron</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</main>
+
+<script>
+  let correctScore = 0;
+  let totalQuestions = 0;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const qCards = document.querySelectorAll('.q-card');
+    totalQuestions = qCards.length;
+    
+    const scoreNum = document.querySelector('#score-stat .stat-num');
+    if (scoreNum) scoreNum.innerText = `0/${totalQuestions}`;
+
+    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    document.querySelectorAll('.options').forEach(opts => {
+      opts.querySelectorAll('.opt-letter').forEach((letterEl, index) => {
+        letterEl.innerText = letters[index] || '';
+      });
+    });
+
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        
+        const card = opt.closest('.q-card');
+        if (card.classList.contains('answered') || document.body.classList.contains('show-all-mode')) return;
+
+        card.classList.add('answered');
+
+        if (opt.classList.contains('correct')) {
+          opt.classList.add('pop-animation');
+          correctScore++;
+        } else {
+          opt.classList.add('wrong-selected');
+        }
+
+        updateScore();
+      });
+    });
+  });
+
+  function updateScore() {
+    const scoreNum = document.querySelector('#score-stat .stat-num');
+    if (scoreNum) scoreNum.innerText = `${correctScore}/${totalQuestions}`;
+  }
+
+  function showAllAnswers() {
+    document.body.classList.add('show-all-mode');
+  }
+
+  function retest() {
+    document.body.classList.remove('show-all-mode');
+    correctScore = 0;
+    updateScore();
+    
+    document.querySelectorAll('.q-card').forEach(card => {
+      card.classList.remove('answered');
+    });
+    document.querySelectorAll('.option').forEach(opt => {
+      opt.classList.remove('wrong-selected', 'pop-animation');
+    });
+  }
+
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes('showSection')) {
+        b.classList.remove('active');
+      }
+    });
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+  }
+  function toggleQ(card) { card.classList.toggle('open'); }
+  function searchQ(val) {
+    const q = val.trim().toLowerCase();
+    document.querySelectorAll('.q-card').forEach(card => {
+      const text = card.innerText.toLowerCase();
+      card.style.display = (!q || text.includes(q)) ? '' : 'none';
+    });
+    document.querySelectorAll('.topic-group').forEach(group => {
+      const visible = [...group.querySelectorAll('.q-card')].some(c => c.style.display !== 'none');
+      group.style.display = visible ? '' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
+

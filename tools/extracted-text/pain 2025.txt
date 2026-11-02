@@ -1,0 +1,847 @@
+=== PAGE 1 ===
+Physiology of 
+pain in physical 
+therapy
+Prof Dr. Mahmoud M. Ewidea
+Dean faculty of physical therapy
+Kaferelshek university.
+
+
+=== PAGE 2 ===
+Topics covered in the lecture
+Neuroanatomy  and 
+definition of pain? 
+(International 
+definition of pain) 
+Dual nature of pain: 
+fast pain and slow 
+pain
+What causes pain : 
+pain stimuli
+Nerve pathways 
+carrying pain 
+signals to the brain 
+Brain areas 
+involved in pain 
+perception
+Pain modulatory 
+pathways 
+Neurochemicals 
+involved in pain 
+pathways 
+Gate control theory 
+of pain
+
+=== PAGE 3 ===
+Patients use different words to describe pain
+eg.
+Aching, Pins and needles, Annoying, Pricking, Biting, 
+Hurting, Radiating, Blunt, Intermittent, Burning, Sore, 
+Miserable, Splitting, Cutting, Nagging, Stabbing, 
+Crawling, Stinging, Crushing, Tender, Dragging, 
+Numbness, Throbbing, Dull, Overwhelming, Tingling, 
+Electric-shock like, Penetrating, Tiring, Excruciating, 
+Piercing, Unbearable
+What is pain?
+
+
+=== PAGE 4 ===
+There is an International definition 
+of pain formulated by the IASP 
+(International Association for the 
+study of pain)
+Pain is an unpleasant sensory and 
+emotional experience associated 
+with actual or potential tissue 
+damage or described in terms of 
+such damage.
+Definition of pain?
+
+
+=== PAGE 5 ===
+Let us think about pain
+
+
+=== PAGE 6 ===
+Let’s start with acute 
+pain
+
+=== PAGE 7 ===
+Acute pain
+• Tissue damage
+• Site and intensity correlation
+• Gets better with healing (self 
+limiting)
+
+=== PAGE 8 ===
+Case 1
+• A man with a pain in his right leg
+• “Are you sure it is the right leg?”
+• A man with a pain in his right leg
+• How does it feel like?
+• any other abnormalities?
+• What causes it?
+
+
+=== PAGE 9 ===
+Remarks from Case 1
+Chronic pain is 
+not prolonged 
+acute pain
+
+=== PAGE 10 ===
+Remarks from Case 1
+• Pathophysiology is different from acute 
+pain
+• Pathophysiology is different from acute 
+pain
+• Neuropathic pain
+• Site
+• Character
+• Timing
+• More than that…
+• Sensitization
+• Reduced pain threshold (hyperalgesia)
+• Non-painful stimulus (allodynia)
+
+=== PAGE 11 ===
+What is pain?
+
+=== PAGE 12 ===
+pain
+• Pain is 
+• subjective 
+• protective 
+• and it is modified by 
+developmental, behavioural, 
+personality and cultural 
+factors
+• It is a symptom
+• Associated signs are crying, 
+sweating, increased heart rate, 
+blood pressure, behavioural 
+changes etc
+
+
+=== PAGE 13 ===
+Measurement of pain
+• It is difficult to describe pain although we know what it is
+• It is difficult to measure pain
+• visual analogue scale  (VAS) is used
+
+=== PAGE 14 ===
+Dual nature of pain 
+• Fast pain
+• acute
+• pricking type
+• well localised
+• short duration
+• Thin myelinated nerve fibres are 
+involved (A delta)
+• Slow pain
+• chronic
+• throbbing type
+• poorly localised
+• long duration
+• Unmyelinated nerve fibres are 
+involved (c fibres)
+
+=== PAGE 15 ===
+Different situations 
+•No stimuli, but pain is felt
+•phantom limb pain
+•eg. in amputated limb 
+•Stimuli present, but no pain felt
+•eg. soldier in battlefield, 
+sportsman in arena
+•Pain due to a stimulus that does 
+not normally provoke pain 
+•Allodynia
+•Pain caused by a lesion or disease of the 
+somatosensory nervous system
+•Neuropathic pain
+
+
+=== PAGE 16 ===
+Pain terminology
+International Association for the 
+Study of Pain 2011
+• Hyperalgesia 
+• Increased pain from a stimulus that 
+normally provokes pain
+• Hyperaesthesia
+• Increased sensitivity to stimulation, 
+excluding the special senses 
+(increased cutaneous sensibility to 
+thermal sensation without pain )
+• Paraesthesia
+• An abnormal sensation, whether 
+spontaneous or evoked
+
+
+=== PAGE 17 ===
+Neuralgia
+Pain in the 
+distribution of a 
+nerve or nerves
+Analgesia 
+Absence of pain in 
+response to a 
+normally painful 
+stimulus
+Allodynia 
+Pain due to a stimulus 
+that does not 
+normally provoke 
+pain
+Anaesthesia
+A loss of sensation 
+resulting from 
+pharmacologic 
+depression of nerve 
+function or from 
+neurological 
+dysfunction
+
+=== PAGE 18 ===
+Pain 
+• Pain as a sensation
+• physiologically (nociception)
+• Nociceptive pain 
+• Pain as an emotional experience
+• Psychologically
+• Psychogenic pain 
+• Pain caused by damage to nerve
+• Neuropathic pain 
+
+=== PAGE 19 ===
+Transduction and 
+perception 
+• Transduction
+• Transduction is the process that converts 
+a sensory signal to an electrical signal to 
+be processed in a specialized area in the 
+brain.
+• This takes place at the sensory receptor. 
+The change in electrical potential that is 
+produced is called the receptor potential.
+
+=== PAGE 20 ===
+Perception
+• Perception is an individual’s interpretation of a 
+sensation. Although perception relies on the 
+activation of sensory receptors, perception 
+happens, not at the level of the sensory 
+receptor, but at the brain level. The brain 
+distinguishes sensory stimuli through a sensory 
+pathway: action potentials from sensory 
+receptors travel along neurons that are 
+dedicated to a particular stimulus.
+
+
+=== PAGE 21 ===
+Stimuli 
+• Physical
+• pressure etc
+• Electrical
+• Thermal
+• cold, hot
+• Chemical
+• H+, lactic acid, K+, histamine, bradykinin, 
+serotonin, acetylcholine, proteolytic 
+enzymes, capsiacin  
+• Prostaglandins (PGE2)
+• Cannot directly stimulate nociceptors 
+• Increase the sensitivity of nociceptors 
+for other stimuli (decrease the 
+threshold)
+
+
+=== PAGE 22 ===
+CLASSIFICATION OF PAIN
+PAIN
+Somatic
+(somasthetic)
+Visceral (from viscera)
+e.g. angina pectoris, peptic 
+ulcer, intestinal colic, renal colic, 
+etc. 
+Superficial (from skin & 
+subcutaneous tissue) e.g. 
+superficial cuts/burns, etc. 
+Deep (from 
+muscles/bones/fascia/periosteum
+) e.g. 
+fractures/arthritis/fibrositis, 
+rupture of muscle belly
+
+=== PAGE 23 ===
+The Nervous System 
+and Pain 
+Somatosensory
+System
+Brain
+Somatosensory 
+Cortex
+Thalamus
+Spinal Cord
+Dorsal Horn 
+Ventral Root
+PNS
+Afferent Neuron
+Efferent Neuron
+A-delta Fibers
+C-Fibers
+
+=== PAGE 24 ===
+Pain Pathways – Going 
+Up
+• Pain information travels up the 
+spinal cord through the spino-
+thalamic track (2 parts)
+• Immediate warning of the presence, 
+location, and intensity of an injury
+• Slow, aching reminder that tissue 
+damage has occurred
+
+=== PAGE 25 ===
+
+
+=== PAGE 26 ===
+The Neurochemicals 
+of Pain 
+ Pain Initiators
+◦ Glutamate – Central (Acute – A delta)
+◦ Substance P – Central (chronic – c fiber)
+◦ Brandykinin - Peripheral
+◦ Prostaglandins - Peripheral
+ Pain Inhibitors
+◦ Serotonin
+◦ Endorphins
+◦ Enkephalins
+◦ Dynorphin
+
+
+=== PAGE 27 ===
+
+
+=== PAGE 28 ===
+Define each of the following
+1. Transduction and 
+perception.
+2. Enumerate Pain Inhibitors
+3. Enumerate  Pain Initiators
+4. Allodynia.
+5. Dual nature of pain 
+6. How to measure pain?
+
+
+=== PAGE 29 ===
+I Sensory pathways
+
+
+=== PAGE 30 ===
+• Sensory systems allow us to detect, analyze and respond to our environment
+• “ascending pathways”
+• Carry information from sensory receptors to the brain.
+• Conscious: reach cerebral cortex.
+• Unconscious: do not reach cerebral cortex.
+• Sensations from body reach the opposite side of the brain
+
+
+=== PAGE 31 ===
+1. Sensory receptors
+A: Free nerve endings (pain, 
+temperature)
+B: Pacinian corpuscle (pressure)
+C: Meissner’s corpuscle (touch)
+D: Muscle spindle (stretch)
+E: Ruffini's endings respond to 
+tension and stretch in the skin 
+A
+B C
+D
+
+=== PAGE 32 ===
+Ruffini's endings respond to tension and stretch in 
+the skin 
+
+
+=== PAGE 33 ===
+Spinal Cord
+• Multiple ascending and 
+descending tracts and  
+interneurons (connect afferent & 
+efferent)
+• Afferent Neurons – Enter to 
+dorsal (back) side
+• Efferent Neurons – Exit the 
+ventral (front) side
+
+
+=== PAGE 34 ===
+
+
+=== PAGE 35 ===
+Spinal Cord
+ Spinal Layers
+◦ Spinal grey matters 
+divided into 10 layers
+ Substantia 
+Gelatinosa
+◦ Composed of a layer of cell 
+bodies running up and down 
+the dorsal horns of the spinal 
+cord
+◦ Receive input from A and C-
+fibers
+◦ Activity in SG inhibits pain 
+transmission
+
+
+=== PAGE 36 ===
+The Brain
+• Thalamus
+• Somatosensory 
+Cortex
+
+
+=== PAGE 37 ===
+Thalamus
+• The sensory 
+switchboard of 
+the brain
+• Located in the 
+middle of the 
+brain
+
+
+=== PAGE 38 ===
+Somatosensory Cortex
+•Area of cerebral 
+cortex located in 
+the parietal lobe 
+right behind the 
+frontal lobe
+•Receives all info 
+on touch and 
+pain.
+•Somatotopically 
+organized
+
+=== PAGE 39 ===
+
+
+=== PAGE 40 ===
+• Somatosensory function:
+• Frontal cortex :
+• Limbic system:
+• Raffunii corpuscles:
+• Messines's corpuscles:
+• Nerve ending:
+• Thalamus:
+• Substantia Gelatinosa:
+
+=== PAGE 41 ===
+2. Sensory pathways: 3 neurons
+• 1st: enters spinal cord from 
+periphery
+• 2nd: crosses over (decussates), 
+ascends in spinal cord to thalamus
+• 3rd: projects to somatosensory 
+cortex
+
+
+=== PAGE 42 ===
+
+
+=== PAGE 43 ===
+2.1 Spinothalamic pathway
+• Carries pain, 
+temperature, touch 
+and pressure signals
+• 1st neuron enters spinal 
+cord through dorsal root
+• 2nd neuron crosses 
+over in spinal cord; 
+ascends to thalamus
+• 3rd neuron projects 
+from thalamus to 
+somatosensory cortex
+
+
+=== PAGE 44 ===
+spinothalamic
+pathway
+
+=== PAGE 45 ===
+Spinothalamic Pathway
+Small sensory fibres:
+Pain, temperature, 
+some touch
+Primary somatosensory 
+cortex (S1)
+Thalamus
+Medulla
+Spinal cord
+Spinothalamic 
+tract
+
+=== PAGE 46 ===
+Spinothalamic damage
+spinothalamic pathway
+Left
+spinal cord injury
+Loss of sense of:
+•Touch
+•Pain
+•Warmth/cold
+in right leg
+
+=== PAGE 47 ===
+2.2 Dorsal column pathway
+• Carries fine touch, 
+vibration and conscious 
+proprioception signals
+• 1st neuron enters spinal 
+cord through dorsal root; 
+ascends to medulla (brain 
+stem)
+• 2nd neuron crosses over in 
+medulla; ascends to 
+thalamus
+• 3rd neuron projects to 
+somatosensory cortex
+
+
+=== PAGE 48 ===
+Two-Point Discrimination
+
+
+=== PAGE 49 ===
+dorsal 
+cloumn
+pathway
+
+=== PAGE 50 ===
+Dorsal column pathway
+Large sensory nerves:
+Touch, vibration, two-point 
+discrimination, proprioception
+Primary somatosensory 
+cortex (S1) in parietal 
+lobe
+Thalamus 
+Medulla
+Medial
+lemniscus
+Spinal cord
+Dorsal column
+Dorsal column
+nuclei
+
+=== PAGE 51 ===
+Dorsal 
+column 
+damage
+dorsal column 
+pathway
+Left
+spinal cord injury
+Loss of sense of:
+•touch
+•proprioception
+•vibration
+in left leg
+
+=== PAGE 52 ===
+Dorsal 
+column 
+damage
+
+
+=== PAGE 53 ===
+Dorsal column damage
+• Sensory ataxia
+• Patient staggers; 
+cannot perceive 
+position or 
+movement of legs
+• Visual clues help 
+movement
+
+
+=== PAGE 54 ===
+Central 
+Pathways
+
+
+=== PAGE 55 ===
+3.3 Spinocerebellar pathway
+• Carries unconscious 
+proprioception signals
+• Receptors in muscles & 
+joints
+• 1st neuron: enters spinal 
+cord through dorsal root
+• 2nd neuron: ascends to 
+cerebellum
+• No 3rd neuron to cortex, 
+hence unconscious 
+
+
+=== PAGE 56 ===
+Spinocerebellar tract damage
+• Cerebellar ataxia
+• Clumsy movements
+• Incoordination of the limbs (intention 
+tremor)
+• Wide-based, reeling gait (ataxia)
+• Alcoholic intoxication produces similar 
+effects!
+
+=== PAGE 57 ===
+4. Somatosensory cortex
+Located in the postcentral gyrus of the 
+human cerebral cortex.
+
+
+=== PAGE 58 ===
+afferent fibres
+• two types
+– A (thin myelinated)
+– C (unmyelinated)
+
+=== PAGE 59 ===
+central connections
+• afferent fibre enters the spinal cord
+• synapses in laminae ii,iii
+– substantia gelatinosa
+substantia
+gelatinosa
+Neurotransmitter at the first synapse of the 
+pain pathway is substance P
+• Acute pain : glutamate
+• Chronic pain: substance P
+• Pain inhibitory neurotransmitters: enkephalin, 
+GABA
+
+=== PAGE 60 ===
+Pain
+lateral
+spinothalamic 
+tract
+C fibre
+substantia
+gelatinosa
+• crosses the midline
+• ascends up as the lateral spinothalamic 
+tract
+ascending pathway
+
+=== PAGE 61 ===
+lateral
+spinothalamic 
+tract
+thalamus
+C fibre
+thalamo
+cortical
+tracts
+
+=== PAGE 62 ===
+physiology of pain
+
+
+=== PAGE 63 ===
+Pain perception
+• This occurs at different levels
+– thalamus is an important centre of 
+pain perception
+• lesions of thalamus produces severe 
+type of pain known as ‘thalamic pain’
+– Sensory cortex is necessary for the 
+localisation of pain
+– Other areas are also important
+• reticular formation, limbic areas, 
+hypothalamus and other 
+subcortical areas
+
+
+=== PAGE 64 ===
+Pathophysiology of pain
+• Pain sensations could arise due to
+– Inflammation of the nerves (neuritis)
+– Injury to the nerves and nerve endings with scar 
+formation (disk prolapse) 
+– Injury to the structures in the spinal cord, thalamus 
+or cortical areas that process pain information 
+(spinal trauma)
+– Abnormal activity in the nerve circuits that is 
+perceived as pain (phantom limb pain)  
+– Nerve invasion, for example by cancer (brachial 
+plexopathy) 
+
+=== PAGE 65 ===
+opioid peptides
+• short peptides originally known to be secreted in CNS and later 
+found to be present in GIT etc
+
+=== PAGE 66 ===
+opioid peptides
+•  endorphin
+• Earliest to discover, present in pituitary 
+• encephalins - met & leu
+• widely distributed
+• dynorphin
+• Endomorphine 1 & 2
+Receptors: kappa, delta, recently discovered ORL1 receptor
+
+=== PAGE 67 ===
+• descending tracts involving opioid peptides as neurotransmitter 
+were discovered
+• these were known to modify (inhibit) pain impulse transmission 
+at the first synapse at the substantia gelatinosa
+
+=== PAGE 68 ===
+– it involves encephalin secreting neurons in the reticular formation
+– starting from the PAG (periaqueductal grey area) of the midbrain
+– ending in the NRM (nucleus raphe magnus) of the medulla
+– from their ending in the substantia gelatinosa of the dorsal horn
+
+=== PAGE 69 ===
+midbrain
+pons
+medulla
+spinal cord
+periaqueductal
+grey nucleus
+nucleus raphe
+magnus
+substantia gelatinosa
+
+
+=== PAGE 70 ===
+• in the subtantia gelatinosa
+– enkephalin secreting neuron is involved in presynaptic inhibition of the 
+pain impulse transmission by blocking substance P release
+
+=== PAGE 71 ===
+substantia
+gelatinosa
+c fibre input
+descending inhibitory tract
+dorsal horn
+substantia 
+gelatinosa cell
+
+=== PAGE 72 ===
+substance P
+enkephalin
+Presynaptic inhibition
+
+=== PAGE 73 ===
+Presynaptic inhibition
+substance P
+enkephalin
+pain impulse
+blocking of 
+pain impulse 
+
+=== PAGE 74 ===
+PAIN PATHWAYS
+Think about pain 
+perception and 
+pain inhibition
+
+=== PAGE 75 ===
+C fibre
+Final pain perception 
+depends on activity 
+of the
+❖Ascending 
+pain impulse 
+transmitting 
+tracts
+❖Descending 
+pain modulatory 
+(inhibitory) tracts
+
+=== PAGE 76 ===
+Cont.
+• At SGR, there is a synapse between 1st order & 2nd order neuron. Also 
+there is synapse of 2nd & 3rd order neuron at thalamus.
+•  The NT (neurotransmitter ) at the synapse between Aδ fiber & 2nd 
+order neuron at SGR is glutamate while the NT between C fiber & 
+2nd order neuron  (slow pain) at SGR is substance P.
+
+=== PAGE 77 ===
+• Other 2nd order neurons, from SGR also are 
+known, & they also cross to the opposite side to 
+reach different areas of brain. 
+• The tip of dorsal horn, particularly the SGR 
+plays a key role in modification of pain 
+perception. It is called a gate. As a gate can be 
+shut/ partially opened/ fully opened to control 
+incoming traffic, so also behaves the SGR 
+controlling the incoming traffic of pain. 
+
+=== PAGE 78 ===
+Aß - fibres Aδ - fibres C- fibres
+Threshold Low Medium High
+Axon diameter 6-14μm 1-6μm 0.2-1μm
+Myelination Yes Thinly No
+Velocity 36-90 5-36 0.2-1
+Receptor types Mechanoreceptor Mechano/Nocicept
+or
+Nociceptor
+Receptive field Small Small Large
+Quality Touch Sharp/first pain Dull/second pain
+Summary of receptor types
+
+=== PAGE 79 ===
+Gate-Control Theory – 
+Ronald Melzack (1960s)
+• Described physiological 
+mechanism by which 
+psychological factors can affect 
+the experience of pain.
+• Neural gate can open and close 
+thereby modulating pain.
+• Gate is located in the spinal cord.
+– It is the SG
+
+
+=== PAGE 80 ===
+❖ Gate Control Theory 
+• The large nerve fibers have collateral branches, which 
+carry impulses to substantia gelatinosa where they 
+stimulate secondary neurons.
+•  The substantia gelatinosa cells terminate on the smaller 
+nerve fibers just as the latter are about to synapse, thus 
+reducing activity, the result is, ongoing activity is reduced 
+or stopped –gate is closed.
+• The theory also proposes that large diameter fiber input 
+has ability to modulate synaptic transmission of small 
+diameter fibers within the dorsal horn. 
+•  
+
+=== PAGE 81 ===
+• Large diameter fibers transmit 
+signals that are initiated by 
+pressure, vibration and temperature; 
+small diameter fibers transmit 
+painful sensations. 
+• Activation of large fiber system 
+inhibits small fiber synaptic 
+transmission, which closes the gate 
+to central progression of impulse 
+carried by small fibers.
+
+
+=== PAGE 82 ===
+THANK YOU
+Your collaboration and commitment make a meaningful 
+difference—thank you.
+
+

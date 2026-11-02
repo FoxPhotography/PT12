@@ -1,0 +1,2275 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أسئلة Manual Therapy - PT11</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            padding: 10px;
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #1a1f3a;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            padding: 16px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00d4ff;
+            margin-bottom: 8px;
+            font-size: 1.6em;
+            text-shadow: 0 0 20px rgba(0,212,255,0.5);
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #a0aec0;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            padding: 0 4px;
+        }
+
+        .category {
+            margin-bottom: 20px;
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 14px 12px;
+            background: #252b4a;
+        }
+
+        .category h2 {
+            color: #00d4ff;
+            margin-bottom: 14px;
+            font-size: 1.15em;
+            border-bottom: 2px solid #00d4ff;
+            padding-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .category h3 {
+            color: #ffd700;
+            margin: 16px 0 10px 0;
+            font-size: 1em;
+        }
+
+        .question {
+            background: #2d3454;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+            border-right: 4px solid #00d4ff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            /* no hover transform on mobile — causes layout shift */
+        }
+
+        @media (hover: hover) {
+            .question:hover {
+                transform: translateX(-4px);
+                box-shadow: 0 4px 10px rgba(0,212,255,0.3);
+            }
+        }
+
+        .question-text {
+            color: #e2e8f0;
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .question-number {
+            color: #00d4ff;
+            font-weight: bold;
+            margin-left: 6px;
+            white-space: nowrap;
+        }
+
+        .answer {
+            background: #1e2338;
+            padding: 12px;
+            border-radius: 6px;
+            border-right: 3px solid #4ade80;
+            color: #cbd5e0;
+            line-height: 1.8;
+            margin-top: 10px;
+            font-size: 0.93em;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .answer-title {
+            color: #4ade80;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95em;
+        }
+
+        .answer ul {
+            margin: 8px 0;
+            padding-right: 18px;
+            padding-left: 0;
+        }
+
+        .answer ul ul {
+            padding-right: 16px;
+            margin-top: 4px;
+        }
+
+        .answer li {
+            margin-bottom: 6px;
+            color: #cbd5e0;
+            line-height: 1.6;
+        }
+
+        .answer strong {
+            color: #ffd700;
+        }
+
+        .answer br {
+            line-height: 2;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            color: white;
+            padding: 16px 14px;
+            border-radius: 10px;
+            margin-top: 24px;
+            border: 2px solid #00d4ff;
+        }
+
+        .summary h2 {
+            margin-bottom: 14px;
+            font-size: 1.2em;
+            color: #00d4ff;
+        }
+
+        .summary-item {
+            background: rgba(0,212,255,0.1);
+            padding: 9px 12px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            border-right: 3px solid rgba(255,215,0,0.3);
+            font-size: 0.9em;
+            flex-wrap: wrap;
+        }
+
+        .summary-item span:first-child {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1em;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 20px;
+            color: #a0aec0;
+            font-size: 0.85em;
+            padding: 14px;
+            background: #252b4a;
+            border-radius: 8px;
+            line-height: 1.7;
+        }
+
+        /* Tablet */
+        @media (min-width: 600px) {
+            body { padding: 16px; font-size: 16px; }
+            .container { padding: 24px; border-radius: 14px; }
+            h1 { font-size: 2em; }
+            .category { padding: 20px; }
+            .category h2 { font-size: 1.4em; }
+            .question { padding: 14px 18px; }
+            .question-text { font-size: 1.05em; }
+            .answer { font-size: 0.97em; padding: 14px; }
+        }
+
+        /* Desktop */
+        @media (min-width: 900px) {
+            body { padding: 20px; }
+            .container { padding: 40px; }
+            h1 { font-size: 2.5em; }
+            .category { padding: 25px; }
+            .category h2 { font-size: 1.8em; }
+            .question { padding: 15px 20px; }
+            .question-text { font-size: 1.1em; }
+            .answer { font-size: 1em; padding: 15px; }
+            .summary { padding: 30px; }
+            .summary h2 { font-size: 1.8em; }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; background: white; padding: 20px; }
+            .question, .answer, .category { background: white; color: black; border-color: #333; }
+            .question-text, .answer li, .answer { color: black; }
+            .answer strong { color: #333; }
+            .question-number, .answer-title { color: #000; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 أسئلة Manual Therapy</h1>
+        <p class="subtitle">مجمّعة من استطلاع طلاب PT11 (بعد حذف المتشابهات والملغي)</p>
+
+        <!-- Trigger Points -->
+        <div class="category">
+            <h2>🎯 Trigger Points & Tender Points</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">1.</span>
+                    ما الفرق بين Trigger Point و Tender Point؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Trigger Point:</strong>
+                    <ul>
+                        <li>نقطة شديدة الحساسية في العضلة</li>
+                        <li>تسبب <strong>Referred Pain</strong> (ألم منتشر لمناطق أخرى)</li>
+                        <li>تكون في شكل <strong>Taut Band</strong> (شريط مشدود)</li>
+                        <li>عند الضغط عليها يحدث <strong>Local Twitch Response</strong></li>
+                        <li>مرتبطة بـ <strong>Myofascial Pain Syndrome</strong></li>
+                    </ul>
+                    <strong>Tender Point:</strong>
+                    <ul>
+                        <li>نقطة حساسة للألم</li>
+                        <li><strong>لا تسبب Referred Pain</strong> (الألم موضعي فقط)</li>
+                        <li>لا يوجد Taut Band</li>
+                        <li>لا يحدث Local Twitch Response</li>
+                        <li>مرتبطة بـ <strong>Fibromyalgia</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">2.</span>
+                    ما هو Central Trigger Point؟ ولماذا يسمى central؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Central Trigger Point</strong> هو نقطة الألم الموجودة في <strong>منتصف بطن العضلة</strong> (center of muscle belly)
+                    <br><br>
+                    <strong>سبب التسمية:</strong>
+                    <ul>
+                        <li>يقع في المنطقة المركزية من العضلة</li>
+                        <li>يكون عند <strong>Motor End Plate Zone</strong> (منطقة النهاية الحركية للعصب)</li>
+                        <li>يحدث بسبب <strong>Overload</strong> أو <strong>Overuse</strong> للعضلة</li>
+                        <li>أكثر الأنواع شيوعاً</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">3.</span>
+                    اذكر أنواع Trigger Points
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>حسب الموقع:</strong>
+                    <ul>
+                        <li><strong>Central TrP:</strong> في منتصف بطن العضلة</li>
+                        <li><strong>Attachment TrP:</strong> عند نقطة اتصال العضلة بالعظم</li>
+                    </ul>
+                    <strong>حسب النشاط:</strong>
+                    <ul>
+                        <li><strong>Active TrP:</strong> يسبب ألم تلقائي حتى بدون ضغط</li>
+                        <li><strong>Latent TrP:</strong> لا يسبب ألم إلا عند الضغط عليه</li>
+                    </ul>
+                    <strong>حسب العلاقة:</strong>
+                    <ul>
+                        <li><strong>Primary TrP:</strong> النقطة الأساسية المسببة للألم</li>
+                        <li><strong>Secondary TrP:</strong> ينشأ نتيجة تعويض العضلات الأخرى</li>
+                        <li><strong>Satellite TrP:</strong> ينشأ في منطقة الـ Referred Pain من Primary TrP</li>
+                    </ul>
+                    <strong>أنواع أخرى:</strong>
+                    <ul>
+                        <li><strong>Diffuse TrP:</strong> منتشر في منطقة واسعة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">4.</span>
+                    ما هي خصائص Primary Trigger Point؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li>هو <strong>المصدر الأساسي</strong> للألم</li>
+                        <li>يحدث بسبب <strong>Overuse, Trauma, أو Postural Stress</strong></li>
+                        <li>يسبب <strong>Referred Pain Pattern</strong> مميز</li>
+                        <li>عند علاجه، تختفي Secondary و Satellite TrPs تلقائياً</li>
+                        <li>يكون في العضلة <strong>الأكثر استخداماً</strong> أو المجهدة</li>
+                        <li>يظهر عليه <strong>Local Twitch Response</strong> عند الضغط</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">5.</span>
+                    كيف تعالج Trigger Point في منطقة Trapezius؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التقنيات المستخدمة:</strong>
+                    <ul>
+                        <li><strong>Ischemic Compression:</strong> ضغط مستمر على النقطة لمدة 30-90 ثانية</li>
+                        <li><strong>Deep Pressure:</strong> ضغط عميق تدريجي حتى يقل الألم</li>
+                        <li><strong>Spray and Stretch:</strong> رش بارد مع شد العضلة</li>
+                        <li><strong>Post-Isometric Relaxation:</strong> انقباض ثم استرخاء</li>
+                        <li><strong>Dry Needling:</strong> إبر جافة (إذا متاح)</li>
+                    </ul>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li>حدد موقع الـ TrP بالجس</li>
+                        <li>اضغط بشكل تدريجي على النقطة</li>
+                        <li>حافظ على الضغط حتى يقل الألم</li>
+                        <li>اعمل Stretching للعضلة بعد العلاج</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">6.</span>
+                    ما هي Autonomic Phenomena المرتبطة بـ Trigger Points؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الظواهر اللاإرادية التي تحدث مع Trigger Points:</strong>
+                    <ul>
+                        <li><strong>Sweating:</strong> زيادة التعرق في المنطقة</li>
+                        <li><strong>Vasoconstriction:</strong> انقباض الأوعية الدموية</li>
+                        <li><strong>Pilomotor Response:</strong> وقوف شعر الجسم</li>
+                        <li><strong>Lacrimation:</strong> زيادة الدموع</li>
+                        <li><strong>Salivation:</strong> زيادة اللعاب</li>
+                        <li><strong>Temperature Changes:</strong> تغير في درجة حرارة الجلد</li>
+                    </ul>
+                    <strong>السبب:</strong> تأثير الـ TrP على الجهاز العصبي اللاإرادي (Autonomic Nervous System)
+                </div>
+            </div>
+        </div>
+
+        <!-- Kinesiotaping -->
+        <div class="category">
+            <h2>🩹 Kinesiotaping Applications</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">7.</span>
+                    كيف تطبق Kinesiotape على مريض لديه Right Scoliosis؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الهدف:</strong> تصحيح انحناء العمود الفقري وتقوية العضلات الضعيفة
+                    <br><br>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الجانب المحدب (Convex - Right side):</strong>
+                            <ul>
+                                <li>ضع الشريط بدون شد (0-15% tension)</li>
+                                <li>الهدف: <strong>تثبيط</strong> العضلات المشدودة</li>
+                                <li>اتجاه الشريط: من الأسفل للأعلى</li>
+                            </ul>
+                        </li>
+                        <li><strong>الجانب المقعر (Concave - Left side):</strong>
+                            <ul>
+                                <li>ضع الشريط مع شد متوسط (25-50% tension)</li>
+                                <li>الهدف: <strong>تنشيط</strong> العضلات الضعيفة</li>
+                                <li>اتجاه الشريط: من الأعلى للأسفل</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>الشكل:</strong> I-shape أو Y-shape على جانبي العمود الفقري
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">8.</span>
+                    كيف تطبق Kinesiotape على مريض لديه Edema؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التقنية: Lymphatic Correction Technique</strong>
+                    <br><br>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الشكل:</strong> Fan shape أو Octopus shape (متعدد الأذرع)</li>
+                        <li><strong>الاتجاه:</strong> من المنطقة المتورمة باتجاه <strong>Lymph Nodes</strong></li>
+                        <li><strong>الشد:</strong> 0-15% tension (شد خفيف جداً)</li>
+                        <li><strong>الوضع:</strong> ضع المفصل في وضع Stretch أثناء التطبيق</li>
+                        <li>قص الشريط إلى 4-6 أذرع</li>
+                        <li>ثبت القاعدة بدون شد</li>
+                        <li>ضع الأذرع بشد خفيف جداً</li>
+                    </ul>
+                    <strong>الآلية:</strong> رفع الجلد لتحسين تدفق الليمف وتقليل الضغط
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">9.</span>
+                    كيف تستخدم Kinesiotape لعلاج Low Back Pain؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التقنيات المستخدمة:</strong>
+                    <ul>
+                        <li><strong>Muscle Technique:</strong>
+                            <ul>
+                                <li>شريطين I-shape على جانبي العمود الفقري</li>
+                                <li>من الأسفل (Sacrum) للأعلى (T12)</li>
+                                <li>شد 25-50% للعضلات الضعيفة</li>
+                                <li>المريض في وضع Flexion أثناء التطبيق</li>
+                            </ul>
+                        </li>
+                        <li><strong>Space Correction:</strong>
+                            <ul>
+                                <li>شريط عرضي (Horizontal) على منطقة الألم</li>
+                                <li>شد 50-75%</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">10.</span>
+                    كيف تطبق Kinesiotape لمريض لديه Lateral Tracking of Patella؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الهدف:</strong> تصحيح مسار الـ Patella للداخل (Medially)
+                    <br><br>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الشكل:</strong> I-shape</li>
+                        <li><strong>الوضع:</strong> الركبة في 90° flexion</li>
+                        <li><strong>التطبيق:</strong>
+                            <ul>
+                                <li>ثبت أحد طرفي الشريط على الجانب الخارجي (Lateral) للـ Patella</li>
+                                <li>اسحب الشريط بشد 50-75% باتجاه الداخل (Medial)</li>
+                                <li>ثبت الطرف الآخر على الجانب الداخلي</li>
+                            </ul>
+                        </li>
+                        <li><strong>الشد:</strong> 50-75% tension (Mechanical Correction)</li>
+                    </ul>
+                    <strong>الآلية:</strong> سحب الـ Patella ميكانيكياً للداخل لتصحيح المسار
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">11.</span>
+                    كيف تطبق Kinesiotape لمريض لديه Tarsal Tunnel Syndrome؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الهدف:</strong> تقليل الضغط على Tibial Nerve وتحسين الدورة الدموية
+                    <br><br>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الشكل:</strong> Y-shape أو I-shape</li>
+                        <li><strong>الوضع:</strong> القدم في Dorsiflexion و Eversion</li>
+                        <li><strong>التطبيق:</strong>
+                            <ul>
+                                <li>ابدأ من أسفل الكعب (Heel)</li>
+                                <li>مرر الشريط خلف الـ Medial Malleolus</li>
+                                <li>استمر على مسار الـ Tibial Nerve</li>
+                                <li>انتهي عند منتصف الساق</li>
+                            </ul>
+                        </li>
+                        <li><strong>الشد:</strong> 15-25% tension</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">12.</span>
+                    ما هي أشكال Kinesiotape المختلفة؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>I-shape:</strong> شريط مستقيم - للعضلات المستقيمة</li>
+                        <li><strong>Y-shape:</strong> شريط متفرع - للعضلات الكبيرة (مثل Deltoid, Gastrocnemius)</li>
+                        <li><strong>X-shape:</strong> شريطين متقاطعين - للمفاصل</li>
+                        <li><strong>Fan shape (Octopus):</strong> متعدد الأذرع - للـ Edema و Lymphatic drainage</li>
+                        <li><strong>Donut shape:</strong> دائري مفرغ - حول منطقة الألم أو الإصابة</li>
+                        <li><strong>Web shape (Spider):</strong> شبكي - للمناطق الواسعة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medical Massage -->
+        <div class="category">
+            <h2>💆 Medical Massage</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">13.</span>
+                    ما هو تعريف Medical Massage؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Medical Massage</strong> هو استخدام تقنيات التدليك العلاجية بشكل منهجي ومنظم لعلاج حالات طبية محددة وتحقيق أهداف علاجية واضحة.
+                    <br><br>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li>يتم بناءً على <strong>تشخيص طبي</strong></li>
+                        <li>له <strong>أهداف علاجية محددة</strong></li>
+                        <li>يستخدم <strong>تقنيات معينة</strong> حسب الحالة</li>
+                        <li>يتم بواسطة <strong>معالج مؤهل</strong></li>
+                        <li>يركز على <strong>منطقة معينة</strong> من الجسم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">14.</span>
+                    اذكر التأثيرات الفسيولوجية (Physiological Effects) للـ Massage
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>1. التأثيرات على الدورة الدموية:</strong>
+                    <ul>
+                        <li>زيادة تدفق الدم (Blood Flow)</li>
+                        <li>تحسين الأكسجين للأنسجة</li>
+                        <li>إزالة الفضلات الأيضية</li>
+                    </ul>
+                    <strong>2. التأثيرات على الجهاز العصبي:</strong>
+                    <ul>
+                        <li>تقليل الألم (Pain Relief) - Gate Control Theory</li>
+                        <li>تحفيز الـ Parasympathetic NS (استرخاء)</li>
+                        <li>إفراز Endorphins (مسكنات طبيعية)</li>
+                    </ul>
+                    <strong>3. التأثيرات على العضلات:</strong>
+                    <ul>
+                        <li>تقليل Muscle Tension و Spasm</li>
+                        <li>تحسين المرونة (Flexibility)</li>
+                        <li>تقليل Muscle Fatigue</li>
+                    </ul>
+                    <strong>4. التأثيرات على الليمف:</strong>
+                    <ul>
+                        <li>تحسين Lymphatic Drainage</li>
+                        <li>تقليل Edema</li>
+                    </ul>
+                    <strong>5. التأثيرات على الجلد:</strong>
+                    <ul>
+                        <li>تحسين مرونة الجلد</li>
+                        <li>تحفيز تجديد الخلايا</li>
+                    </ul>
+                    <strong>6. التأثيرات النفسية:</strong>
+                    <ul>
+                        <li>تقليل التوتر والقلق</li>
+                        <li>تحسين المزاج</li>
+                        <li>تحسين النوم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">15.</span>
+                    اذكر أنواع Medical Massage وطبّق واحدة
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الأنواع:</strong>
+                    <ul>
+                        <li><strong>Effleurage:</strong> حركات انزلاقية سطحية أو عميقة</li>
+                        <li><strong>Pétrissage:</strong> عجن وضغط (Kneading, Rolling, Picking up, Wringing)</li>
+                        <li><strong>Friction:</strong> حركات دائرية عميقة (Deep Friction)</li>
+                        <li><strong>Tapotement:</strong> طرق إيقاعي (Hacking, Clapping, Cupping)</li>
+                        <li><strong>Vibration:</strong> اهتزازات سريعة</li>
+                        <li><strong>Shaking:</strong> هز العضلات</li>
+                    </ul>
+                    <strong>مثال للتطبيق - Hacking:</strong>
+                    <ul>
+                        <li>استخدم حافة اليد (Ulnar border)</li>
+                        <li>حركات سريعة متبادلة</li>
+                        <li>على عضلات الظهر أو الصدر</li>
+                        <li>لتحفيز العضلات والدورة الدموية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">16.</span>
+                    كيف يؤثر Medical Massage على الـ Nervous System؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التأثيرات:</strong>
+                    <ul>
+                        <li><strong>Gate Control Theory:</strong>
+                            <ul>
+                                <li>تحفيز الألياف العصبية الكبيرة (A-beta fibers)</li>
+                                <li>غلق "البوابة" أمام إشارات الألم</li>
+                                <li>تقليل الإحساس بالألم</li>
+                            </ul>
+                        </li>
+                        <li><strong>تحفيز Parasympathetic NS:</strong>
+                            <ul>
+                                <li>تقليل معدل ضربات القلب</li>
+                                <li>خفض ضغط الدم</li>
+                                <li>زيادة الاسترخاء</li>
+                            </ul>
+                        </li>
+                        <li><strong>إفراز Endorphins:</strong>
+                            <ul>
+                                <li>مسكنات طبيعية للألم</li>
+                                <li>تحسين المزاج</li>
+                            </ul>
+                        </li>
+                        <li><strong>تقليل Cortisol:</strong> (هرمون التوتر)</li>
+                        <li><strong>تحسين Proprioception:</strong> الإحساس بوضع الجسم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">17.</span>
+                    ما هي موانع استخدام Massage (Contraindications)؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>موانع مطلقة (Absolute):</strong>
+                    <ul>
+                        <li><strong>Acute Inflammation:</strong> التهاب حاد</li>
+                        <li><strong>Infection:</strong> عدوى موضعية</li>
+                        <li><strong>DVT:</strong> جلطة وريدية عميقة</li>
+                        <li><strong>Open Wounds:</strong> جروح مفتوحة</li>
+                        <li><strong>Severe Osteoporosis:</strong> هشاشة عظام شديدة</li>
+                        <li><strong>Cancer:</strong> في المنطقة المصابة</li>
+                        <li><strong>Hemophilia:</strong> سيولة الدم</li>
+                    </ul>
+                    <strong>موانع نسبية (Relative):</strong>
+                    <ul>
+                        <li><strong>Pregnancy:</strong> (تجنب البطن والظهر السفلي)</li>
+                        <li><strong>Varicose Veins:</strong> دوالي الأوردة</li>
+                        <li><strong>Skin Conditions:</strong> أمراض جلدية</li>
+                        <li><strong>Recent Surgery:</strong> عملية جراحية حديثة</li>
+                        <li><strong>Hypertension:</strong> ضغط دم مرتفع غير منضبط</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Effleurage -->
+        <div class="category">
+            <h2>✋ Effleurage Techniques</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">18.</span>
+                    طبّق Longitudinal Effleurage على Lower Limb
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Supine أو Prone</li>
+                        <li><strong>البداية:</strong> من الكاحل (Ankle)</li>
+                        <li><strong>الاتجاه:</strong> للأعلى باتجاه القلب (نحو الفخذ)</li>
+                        <li><strong>اليدين:</strong> استخدم راحة اليد كاملة</li>
+                        <li><strong>الضغط:</strong>
+                            <ul>
+                                <li>صاعد: ضغط متوسط إلى عميق</li>
+                                <li>نازل: ضغط خفيف (عودة سطحية)</li>
+                            </ul>
+                        </li>
+                        <li><strong>السرعة:</strong> بطيئة ومنتظمة</li>
+                        <li><strong>التكرار:</strong> 5-10 مرات</li>
+                    </ul>
+                    <strong>الهدف:</strong> تحسين الدورة الدموية والليمفاوية، الاسترخاء
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">19.</span>
+                    طبّق Effleurage على الظهر (Back)
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Prone</li>
+                        <li><strong>البداية:</strong> من أسفل الظهر (Lumbar)</li>
+                        <li><strong>الحركة:</strong>
+                            <ul>
+                                <li>صاعد: على جانبي العمود الفقري للأعلى حتى الكتفين</li>
+                                <li>عند الكتفين: افتح اليدين للخارج</li>
+                                <li>نازل: من الجانبين بضغط خفيف</li>
+                            </ul>
+                        </li>
+                        <li><strong>الضغط:</strong> متوسط إلى عميق صعوداً، خفيف نزولاً</li>
+                        <li><strong>النمط:</strong> حركة دائرية مستمرة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">20.</span>
+                    ما هي أنواع Effleurage؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Superficial Effleurage:</strong> سطحي خفيف - للاسترخاء</li>
+                        <li><strong>Deep Effleurage:</strong> عميق - لتحسين الدورة الدموية</li>
+                        <li><strong>Longitudinal:</strong> طولي مع اتجاه العضلة</li>
+                        <li><strong>Transverse:</strong> عرضي عبر العضلة</li>
+                        <li><strong>Circular:</strong> دائري</li>
+                        <li><strong>Alternating:</strong> متبادل بين اليدين</li>
+                        <li><strong>Thumb Effleurage:</strong> بالإبهام للمناطق الصغيرة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">21.</span>
+                    طبّق Double Hand Technique (Hand over Hand)
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li>ضع يد فوق الأخرى</li>
+                        <li>اليد السفلى تلامس جسم المريض</li>
+                        <li>اليد العليا تضيف ضغط إضافي</li>
+                        <li>حركة انزلاقية عميقة</li>
+                        <li>مفيد للمناطق التي تحتاج ضغط أعمق (مثل Lower Back)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pétrissage -->
+        <div class="category">
+            <h2>🤲 Pétrissage Techniques</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">22.</span>
+                    طبّق Skin Rolling على عضلات الظهر
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Prone</li>
+                        <li><strong>التقنية:</strong>
+                            <ul>
+                                <li>استخدم الإبهام والأصابع</li>
+                                <li>ارفع الجلد والأنسجة تحت الجلد</li>
+                                <li>دحرج (Roll) الجلد للأمام</li>
+                                <li>حرك اليدين بشكل متتابع</li>
+                            </ul>
+                        </li>
+                        <li><strong>الاتجاه:</strong> من أسفل لأعلى، أو من الجانبين للمنتصف</li>
+                        <li><strong>المنطقة:</strong> على جانبي العمود الفقري</li>
+                    </ul>
+                    <strong>الفوائد:</strong> تحسين مرونة الجلد والفاشيا، تقليل Adhesions
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">23.</span>
+                    اذكر أنواع Pétrissage وطبّق واحدة
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الأنواع:</strong>
+                    <ul>
+                        <li><strong>Kneading:</strong> عجن العضلات بحركة دائرية</li>
+                        <li><strong>Picking up:</strong> رفع وعصر العضلة</li>
+                        <li><strong>Wringing:</strong> عصر العضلة كالمنشفة</li>
+                        <li><strong>Rolling:</strong> دحرجة العضلة أو الجلد</li>
+                        <li><strong>Skin Rolling:</strong> دحرجة الجلد</li>
+                    </ul>
+                    <strong>مثال - Kneading:</strong>
+                    <ul>
+                        <li>استخدم راحة اليد والأصابع</li>
+                        <li>اضغط وحرك بشكل دائري</li>
+                        <li>ارفع العضلة قليلاً</li>
+                        <li>حركة متبادلة بين اليدين</li>
+                        <li>على العضلات الكبيرة (Trapezius, Gastrocnemius)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">24.</span>
+                    طبّق Wringing Technique على Upper Back
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Prone أو Sitting</li>
+                        <li><strong>التقنية:</strong>
+                            <ul>
+                                <li>ضع اليدين على جانبي العضلة</li>
+                                <li>اسحب بيد للأمام والأخرى للخلف</li>
+                                <li>حركة عصر متبادلة (كعصر المنشفة)</li>
+                                <li>حرك اليدين على طول العضلة</li>
+                            </ul>
+                        </li>
+                        <li><strong>المنطقة:</strong> Trapezius, Paraspinal muscles</li>
+                        <li><strong>الضغط:</strong> متوسط إلى عميق</li>
+                    </ul>
+                    <strong>الهدف:</strong> تقليل Muscle Tension، تحسين الدورة الدموية
+                </div>
+            </div>
+        </div>
+
+        <!-- Tapotement & Percussion -->
+        <div class="category">
+            <h2>👏 Tapotement & Percussion</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">25.</span>
+                    طبّق Tapotement Techniques (Hacking, Clapping, Cupping)
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>1. Hacking:</strong>
+                    <ul>
+                        <li>استخدم حافة اليد (Ulnar border)</li>
+                        <li>حركات سريعة متبادلة</li>
+                        <li>الأصابع مرتخية</li>
+                        <li>على العضلات الكبيرة</li>
+                    </ul>
+                    <strong>2. Clapping:</strong>
+                    <ul>
+                        <li>اليد مفتوحة ومسطحة</li>
+                        <li>طرق بكف اليد</li>
+                        <li>صوت تصفيق</li>
+                    </ul>
+                    <strong>3. Cupping:</strong>
+                    <ul>
+                        <li>اليد على شكل كوب (مقعرة)</li>
+                        <li>طرق بحافة اليد المقعرة</li>
+                        <li>صوت أجوف</li>
+                        <li>للصدر والظهر</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">26.</span>
+                    ما الفرق بين Clapping و Cupping؟ ومتى تستخدمهم؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Clapping:</strong>
+                    <ul>
+                        <li>اليد مسطحة</li>
+                        <li>صوت حاد (Sharp sound)</li>
+                        <li>تحفيز سطحي</li>
+                        <li>للتنشيط العام</li>
+                    </ul>
+                    <strong>Cupping:</strong>
+                    <ul>
+                        <li>اليد مقعرة (كوب)</li>
+                        <li>صوت أجوف (Hollow sound)</li>
+                        <li>تأثير أعمق</li>
+                        <li>لتحريك الإفرازات في الصدر</li>
+                        <li>لمشاكل الجهاز التنفسي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">27.</span>
+                    مريض لديه Chest Congestion - طبّق Cupping
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Sitting أو Prone</li>
+                        <li><strong>المنطقة:</strong> الظهر (فوق الرئتين) والصدر</li>
+                        <li><strong>التقنية:</strong>
+                            <ul>
+                                <li>اجعل اليد على شكل كوب</li>
+                                <li>اطرق بحركات سريعة متبادلة</li>
+                                <li>من الأسفل للأعلى</li>
+                                <li>لمدة 3-5 دقائق</li>
+                            </ul>
+                        </li>
+                        <li><strong>الهدف:</strong> تحريك البلغم وتسهيل خروجه</li>
+                        <li><strong>ملحوظة:</strong> تجنب العمود الفقري والكلى</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vibration & Shaking -->
+        <div class="category">
+            <h2>〰️ Vibration & Shaking</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">28.</span>
+                    طبّق Shaking على Right Lower Limb
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Supine</li>
+                        <li><strong>الإمساك:</strong> امسك الساق من الكاحل أو القدم</li>
+                        <li><strong>الحركة:</strong>
+                            <ul>
+                                <li>هز الطرف بحركة سريعة جانبية</li>
+                                <li>حركة من المعصم والساعد</li>
+                                <li>اتساع صغير (Small amplitude)</li>
+                                <li>تردد عالي (High frequency)</li>
+                            </ul>
+                        </li>
+                        <li><strong>المدة:</strong> 10-30 ثانية</li>
+                    </ul>
+                    <strong>الهدف:</strong> استرخاء العضلات، تقليل Muscle Tone
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">29.</span>
+                    طبّق Vibration على Quadriceps
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Supine، الركبة ممدودة</li>
+                        <li><strong>وضع اليد:</strong> ضع اليد على بطن عضلة Quadriceps</li>
+                        <li><strong>الحركة:</strong>
+                            <ul>
+                                <li>اهتزازات دقيقة وسريعة جداً</li>
+                                <li>من الأصابع والمعصم</li>
+                                <li>ضغط ثابت مع اهتزاز</li>
+                            </ul>
+                        </li>
+                        <li><strong>المدة:</strong> 5-15 ثانية</li>
+                    </ul>
+                    <strong>الهدف:</strong> تحفيز أو استرخاء العضلة حسب التردد
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">30.</span>
+                    ما الفرق بين Vibration و Shaking؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Vibration:</strong>
+                    <ul>
+                        <li>اهتزازات <strong>دقيقة وسريعة جداً</strong></li>
+                        <li>اليد <strong>ثابتة</strong> على العضلة</li>
+                        <li>حركة من <strong>الأصابع والمعصم</strong></li>
+                        <li>تردد عالي جداً (High frequency)</li>
+                        <li>اتساع صغير جداً (Very small amplitude)</li>
+                    </ul>
+                    <strong>Shaking:</strong>
+                    <ul>
+                        <li>هز <strong>أوسع وأبطأ</strong></li>
+                        <li>هز <strong>الطرف كله</strong></li>
+                        <li>حركة من <strong>المعصم والساعد</strong></li>
+                        <li>تردد أقل</li>
+                        <li>اتساع أكبر (Larger amplitude)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deep Friction Massage -->
+        <div class="category">
+            <h2>🔄 Deep Friction Massage</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">31.</span>
+                    ما هي طرق Deep Friction Massage؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Transverse (Cross-fiber):</strong>
+                            <ul>
+                                <li>عمودي على اتجاه الألياف</li>
+                                <li>الأكثر استخداماً</li>
+                                <li>للأوتار والأربطة</li>
+                            </ul>
+                        </li>
+                        <li><strong>Longitudinal (With-fiber):</strong>
+                            <ul>
+                                <li>مع اتجاه الألياف</li>
+                                <li>للعضلات</li>
+                            </ul>
+                        </li>
+                        <li><strong>Circular:</strong>
+                            <ul>
+                                <li>حركة دائرية</li>
+                                <li>للمناطق الصغيرة</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>ملاحظات مهمة:</strong>
+                    <ul>
+                        <li><strong>بدون زيت</strong> (Without oil)</li>
+                        <li>ضغط عميق</li>
+                        <li>لمدة 5-10 دقائق</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">32.</span>
+                    طبّق Deep Friction Massage على Common Extensor (Tennis Elbow)
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الموقع:</strong> Lateral Epicondyle (خارج الكوع)</li>
+                        <li><strong>الوضع:</strong> الكوع مثني قليلاً، الساعد في Pronation</li>
+                        <li><strong>التقنية:</strong>
+                            <ul>
+                                <li>استخدم الإبهام أو الأصابع</li>
+                                <li>حدد موقع الألم على الـ Tendon</li>
+                                <li>اضغط بعمق على الوتر</li>
+                                <li>حركة <strong>Transverse</strong> (عمودية على الوتر)</li>
+                                <li>ذهاباً وإياباً</li>
+                            </ul>
+                        </li>
+                        <li><strong>المدة:</strong> 5-10 دقائق</li>
+                        <li><strong>بدون زيت</strong></li>
+                    </ul>
+                    <strong>الهدف:</strong> كسر Adhesions، تحفيز الشفاء
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">33.</span>
+                    طبّق Deep Friction Massage على Lower Back
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Prone</li>
+                        <li><strong>التقنية:</strong>
+                            <ul>
+                                <li>حدد منطقة الألم أو Trigger Point</li>
+                                <li>استخدم الإبهام أو الأصابع أو Knuckles</li>
+                                <li>اضغط بعمق</li>
+                                <li>حركة دائرية أو Transverse</li>
+                                <li>على Paraspinal muscles</li>
+                            </ul>
+                        </li>
+                        <li><strong>المدة:</strong> 3-5 دقائق لكل منطقة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">34.</span>
+                    ما هو اتجاه Deep Friction؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>للأوتار والأربطة:</strong> Transverse (عمودي على الألياف)</li>
+                        <li><strong>للعضلات:</strong> Longitudinal (مع اتجاه الألياف) أو Transverse</li>
+                        <li><strong>الهدف:</strong> كسر Adhesions والأنسجة الندبية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">35.</span>
+                    طبّق Friction Massage على Biceps Tendon
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الموقع:</strong> Bicipital Groove (أمام الكتف)</li>
+                        <li><strong>الوضع:</strong> الذراع في External Rotation لكشف الوتر</li>
+                        <li><strong>التقنية:</strong>
+                            <ul>
+                                <li>استخدم الإبهام</li>
+                                <li>حدد الوتر في الـ Groove</li>
+                                <li>حركة Transverse عبر الوتر</li>
+                                <li>ضغط متوسط إلى عميق</li>
+                            </ul>
+                        </li>
+                        <li><strong>المدة:</strong> 3-5 دقائق</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Myofascial Release (MFR) -->
+        <div class="category">
+            <h2>🌊 Myofascial Release (MFR)</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">36.</span>
+                    ما هو تعريف MFR وما تأثيره؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong>
+                    <br>
+                    Myofascial Release هو تقنية علاجية تستخدم ضغط مستمر وبطيء على الفاشيا (Fascia) لتحرير القيود والتوتر في الأنسجة الرخوة.
+                    <br><br>
+                    <strong>التأثيرات:</strong>
+                    <ul>
+                        <li><strong>ميكانيكية:</strong>
+                            <ul>
+                                <li>تحرير Fascial Restrictions</li>
+                                <li>كسر Adhesions</li>
+                                <li>تحسين Tissue Mobility</li>
+                            </ul>
+                        </li>
+                        <li><strong>فسيولوجية:</strong>
+                            <ul>
+                                <li>تحسين الدورة الدموية</li>
+                                <li>تقليل الألم</li>
+                                <li>تحسين ROM</li>
+                            </ul>
+                        </li>
+                        <li><strong>عصبية:</strong>
+                            <ul>
+                                <li>تقليل Muscle Tone</li>
+                                <li>تحفيز Mechanoreceptors</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">37.</span>
+                    ما هي آلية عمل (Mechanism of Action) الـ MFR؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الآليات:</strong>
+                    <ul>
+                        <li><strong>1. Mechanical Effect:</strong>
+                            <ul>
+                                <li>الضغط المستمر يسبب <strong>Creep</strong> (انزلاق تدريجي)</li>
+                                <li>تمدد الكولاجين (Collagen)</li>
+                                <li>كسر Cross-links بين الألياف</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Piezoelectric Effect:</strong>
+                            <ul>
+                                <li>الضغط يولد شحنات كهربائية</li>
+                                <li>تحفيز إعادة تنظيم الأنسجة</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Neurological Effect:</strong>
+                            <ul>
+                                <li>تحفيز Mechanoreceptors</li>
+                                <li>تثبيط إشارات الألم</li>
+                                <li>تقليل Muscle Guarding</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Fluid Dynamic:</strong>
+                            <ul>
+                                <li>تحسين تدفق السوائل في الأنسجة</li>
+                                <li>إزالة الفضلات الأيضية</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">38.</span>
+                    ما هي دواعي استخدام (Indications) الـ MFR؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Myofascial Pain Syndrome</strong></li>
+                        <li><strong>Chronic Pain:</strong> ألم مزمن في الظهر، الرقبة، الكتف</li>
+                        <li><strong>Restricted ROM:</strong> محدودية الحركة</li>
+                        <li><strong>Postural Dysfunction:</strong> مشاكل الوضعية</li>
+                        <li><strong>Scar Tissue:</strong> أنسجة ندبية</li>
+                        <li><strong>Fibromyalgia</strong></li>
+                        <li><strong>Headaches:</strong> صداع توتري</li>
+                        <li><strong>TMJ Dysfunction</strong></li>
+                        <li><strong>Sports Injuries</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">39.</span>
+                    طبّق Cross Hand Technique على منتصف الظهر/أسفل الظهر
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Prone</li>
+                        <li><strong>وضع اليدين:</strong>
+                            <ul>
+                                <li>ضع اليدين متقاطعتين (X shape)</li>
+                                <li>يد على كل جانب من العمود الفقري</li>
+                            </ul>
+                        </li>
+                        <li><strong>التقنية:</strong>
+                            <ul>
+                                <li>اضغط لأسفل بلطف</li>
+                                <li>انتظر حتى تشعر بـ <strong>Tissue Release</strong> (90-120 ثانية)</li>
+                                <li>اتبع اتجاه الأنسجة (Follow the tissue)</li>
+                                <li>لا تفرض الحركة</li>
+                            </ul>
+                        </li>
+                        <li><strong>الضغط:</strong> خفيف إلى متوسط</li>
+                        <li><strong>المدة:</strong> 3-5 دقائق</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">40.</span>
+                    ما هي اختبارات تقييم Fascia (Myofascial Assessment Tests)؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Skin Rolling Test:</strong>
+                            <ul>
+                                <li>ارفع الجلد ودحرجه</li>
+                                <li>تقييم المرونة والألم</li>
+                            </ul>
+                        </li>
+                        <li><strong>Palpation:</strong>
+                            <ul>
+                                <li>جس الأنسجة للبحث عن Restrictions</li>
+                                <li>تحديد Trigger Points</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fascial Glide Test:</strong>
+                            <ul>
+                                <li>تحريك الجلد في اتجاهات مختلفة</li>
+                                <li>تقييم حرية الحركة</li>
+                            </ul>
+                        </li>
+                        <li><strong>Postural Assessment:</strong>
+                            <ul>
+                                <li>تقييم الوضعية</li>
+                                <li>البحث عن Asymmetry</li>
+                            </ul>
+                        </li>
+                        <li><strong>ROM Assessment:</strong>
+                            <ul>
+                                <li>قياس مدى الحركة</li>
+                                <li>تحديد القيود</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">41.</span>
+                    ما هو Myofascial Pain Syndrome (MPS)؟ وكيف تعالجه؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong>
+                    <br>
+                    حالة ألم مزمن ناتجة عن Trigger Points في العضلات والفاشيا، تسبب ألم موضعي و Referred Pain.
+                    <br><br>
+                    <strong>العلاج:</strong>
+                    <ul>
+                        <li><strong>MFR Techniques:</strong> Cross hand, J stroke</li>
+                        <li><strong>Trigger Point Release:</strong> Ischemic compression</li>
+                        <li><strong>Deep Friction Massage</strong></li>
+                        <li><strong>Stretching:</strong> إطالة العضلات المصابة</li>
+                        <li><strong>Kinesiotaping</strong></li>
+                        <li><strong>Heat/Cold Therapy</strong></li>
+                        <li><strong>Exercise:</strong> تقوية وتحسين الوضعية</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fascia -->
+        <div class="category">
+            <h2>🧬 Fascia</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">42.</span>
+                    ما هي وظائف (Functions) الـ Fascia؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Support:</strong> دعم الأعضاء والعضلات</li>
+                        <li><strong>Protection:</strong> حماية الأنسجة</li>
+                        <li><strong>Separation:</strong> فصل العضلات والأعضاء</li>
+                        <li><strong>Force Transmission:</strong> نقل القوة بين العضلات</li>
+                        <li><strong>Shock Absorption:</strong> امتصاص الصدمات</li>
+                        <li><strong>Proprioception:</strong> الإحساس بوضع الجسم (غنية بـ Mechanoreceptors)</li>
+                        <li><strong>Fluid Exchange:</strong> تبادل السوائل والمواد الغذائية</li>
+                        <li><strong>Wound Healing:</strong> المساعدة في التئام الجروح</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">43.</span>
+                    اذكر الخصائص الميكانيكية الحيوية (Biomechanical Characteristics) للـ Fascia
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>1. Elasticity (المرونة):</strong>
+                            <ul>
+                                <li>قدرة الفاشيا على العودة لشكلها الأصلي بعد التمدد</li>
+                                <li>بسبب ألياف Elastin</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Creep (الانزلاق التدريجي):</strong>
+                            <ul>
+                                <li>تمدد تدريجي تحت حمل ثابت مستمر</li>
+                                <li>تغيير دائم في الطول</li>
+                                <li>أساس عمل MFR</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Hysteresis:</strong>
+                            <ul>
+                                <li>فقدان الطاقة أثناء التحميل والتفريغ</li>
+                                <li>الأنسجة لا تعود بنفس المسار</li>
+                                <li>تحول الطاقة لحرارة</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Viscoelasticity:</strong>
+                            <ul>
+                                <li>خصائص لزجة ومرنة معاً</li>
+                                <li>الاستجابة تعتمد على سرعة التحميل</li>
+                            </ul>
+                        </li>
+                        <li><strong>5. Thixotropy:</strong>
+                            <ul>
+                                <li>تصبح أكثر سيولة مع الحركة</li>
+                                <li>تصبح أكثر صلابة مع السكون</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">44.</span>
+                    ما الفرق بين Superficial Fascia و Deep Fascia؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Superficial Fascia:</strong>
+                    <ul>
+                        <li>تحت الجلد مباشرة</li>
+                        <li>تحتوي على دهون</li>
+                        <li>رخوة ومرنة</li>
+                        <li>تحتوي على أوعية دموية وأعصاب سطحية</li>
+                    </ul>
+                    <strong>Deep Fascia:</strong>
+                    <ul>
+                        <li>تحت Superficial Fascia</li>
+                        <li>كثيفة وليفية</li>
+                        <li>تغلف العضلات والأعضاء</li>
+                        <li>أقوى وأقل مرونة</li>
+                        <li>تنقسم إلى:
+                            <ul>
+                                <li><strong>Epimysium:</strong> تغلف العضلة كاملة</li>
+                                <li><strong>Perimysium:</strong> تغلف حزم الألياف</li>
+                                <li><strong>Endomysium:</strong> تغلف كل ليفة عضلية</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scar Release -->
+        <div class="category">
+            <h2>🩹 Scar Release</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">45.</span>
+                    كيف تعمل Scar Release؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التقنيات:</strong>
+                    <ul>
+                        <li><strong>Deep Friction Massage:</strong>
+                            <ul>
+                                <li>حركة Transverse على الندبة</li>
+                                <li>بدون زيت</li>
+                                <li>لكسر Adhesions</li>
+                            </ul>
+                        </li>
+                        <li><strong>J Stroke:</strong>
+                            <ul>
+                                <li>حركة على شكل حرف J</li>
+                                <li>من حافة الندبة للداخل</li>
+                                <li>بالإبهام أو الأصابع</li>
+                            </ul>
+                        </li>
+                        <li><strong>Skin Rolling:</strong>
+                            <ul>
+                                <li>رفع ودحرجة الجلد</li>
+                                <li>حول الندبة</li>
+                            </ul>
+                        </li>
+                        <li><strong>Cross-fiber Technique:</strong>
+                            <ul>
+                                <li>عمودي على اتجاه الندبة</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>الهدف:</strong> تحسين مرونة الندبة، تقليل Adhesions، تحسين المظهر
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">46.</span>
+                    مريض لديه Longitudinal Scar في ظهر اليد - طبّق تقنيات العلاج
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>1. Deep Friction:</strong>
+                            <ul>
+                                <li>حركة Transverse (عرضية) على الندبة</li>
+                                <li>بدون زيت</li>
+                                <li>3-5 دقائق</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. J Stroke:</strong>
+                            <ul>
+                                <li>من حافة الندبة باتجاه المركز</li>
+                                <li>حركة J shape</li>
+                                <li>بالإبهام</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Skin Mobilization:</strong>
+                            <ul>
+                                <li>حرك الجلد في جميع الاتجاهات</li>
+                                <li>حول الندبة</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>ملاحظة:</strong> الندبة يجب أن تكون ملتئمة تماماً (6-8 أسابيع بعد الإصابة)
+                </div>
+            </div>
+        </div>
+
+        <!-- J Stroke -->
+        <div class="category">
+            <h2>🔤 J Stroke Techniques</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">47.</span>
+                    ما هي أنواع J Stroke؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>حسب الأداة المستخدمة:</strong>
+                    <ul>
+                        <li><strong>Fingers J Stroke:</strong>
+                            <ul>
+                                <li>باستخدام الأصابع</li>
+                                <li>للمناطق الصغيرة</li>
+                            </ul>
+                        </li>
+                        <li><strong>Thumb J Stroke:</strong>
+                            <ul>
+                                <li>باستخدام الإبهام</li>
+                                <li>الأكثر شيوعاً</li>
+                                <li>ضغط أعمق</li>
+                            </ul>
+                        </li>
+                        <li><strong>Knuckles J Stroke:</strong>
+                            <ul>
+                                <li>باستخدام مفاصل الأصابع</li>
+                                <li>للمناطق الكبيرة والعميقة</li>
+                                <li>ضغط أقوى</li>
+                            </ul>
+                        </li>
+                        <li><strong>Elbow J Stroke:</strong>
+                            <ul>
+                                <li>باستخدام الكوع</li>
+                                <li>للعضلات الكبيرة جداً</li>
+                                <li>أقصى ضغط</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">48.</span>
+                    طبّق J Stroke على Semispinalis Muscle
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>الوضع:</strong> المريض Prone أو Sitting</li>
+                        <li><strong>الموقع:</strong> Semispinalis على جانبي العمود الفقري (الرقبة والظهر العلوي)</li>
+                        <li><strong>التقنية:</strong>
+                            <ul>
+                                <li>استخدم الإبهام أو الأصابع</li>
+                                <li>ابدأ من أسفل العضلة</li>
+                                <li>اضغط لأسفل ثم اسحب للأعلى بحركة J</li>
+                                <li>كرر على طول العضلة</li>
+                            </ul>
+                        </li>
+                        <li><strong>الضغط:</strong> متوسط إلى عميق</li>
+                    </ul>
+                    <strong>الهدف:</strong> تحرير Trigger Points وتحسين مرونة العضلة
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">49.</span>
+                    طبّق Vertical Stroke
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li>حركة مستقيمة عمودية</li>
+                        <li>من الأسفل للأعلى</li>
+                        <li>بالإبهام أو الأصابع</li>
+                        <li>ضغط عميق</li>
+                        <li>على طول العضلة</li>
+                    </ul>
+                    <strong>الاستخدام:</strong> على Paraspinal muscles، للتحرير العميق
+                </div>
+            </div>
+        </div>
+
+        <!-- Manual Lymphatic Drainage -->
+        <div class="category">
+            <h2>💧 Manual Lymphatic Drainage</h2>
+            
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">50.</span>
+                    ما هي مبادئ (Principles/Guidelines) الـ Manual Lymphatic Drainage؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>المبادئ الأساسية:</strong>
+                    <ul>
+                        <li><strong>1. Light Pressure:</strong>
+                            <ul>
+                                <li>ضغط خفيف جداً (30-40 mmHg)</li>
+                                <li>أخف من وزن عملة معدنية</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Direction:</strong>
+                            <ul>
+                                <li>باتجاه <strong>Lymph Nodes</strong></li>
+                                <li>من البعيد للقريب (Distal to Proximal)</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Slow Rhythm:</strong>
+                            <ul>
+                                <li>حركات بطيئة ومنتظمة</li>
+                                <li>5-7 حركات في الدقيقة</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Sequence:</strong>
+                            <ul>
+                                <li>ابدأ بتحفيز Lymph Nodes أولاً</li>
+                                <li>ثم اعمل من القريب للبعيد</li>
+                                <li>ثم ادفع السوائل للـ Nodes</li>
+                            </ul>
+                        </li>
+                        <li><strong>5. Elevation:</strong>
+                            <ul>
+                                <li>ارفع الطرف المتورم</li>
+                                <li>فوق مستوى القلب</li>
+                            </ul>
+                        </li>
+                        <li><strong>6. No Oil:</strong>
+                            <ul>
+                                <li>بدون زيت أو كريم</li>
+                                <li>لتحريك الجلد وليس الانزلاق عليه</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">51.</span>
+                    مريض (44 سنة) لديه Edema في الذراع الأيمن - طبّق Manual Lymphatic Drainage
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الخطوات:</strong>
+                    <ul>
+                        <li><strong>1. الوضع:</strong>
+                            <ul>
+                                <li>المريض Supine أو Sitting</li>
+                                <li>الذراع مرفوعة ومدعومة</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. التسلسل:</strong>
+                            <ul>
+                                <li><strong>أ. تحفيز Axillary Nodes:</strong> (الإبط)
+                                    <ul>
+                                        <li>حركات دائرية خفيفة</li>
+                                        <li>10-15 مرة</li>
+                                    </ul>
+                                </li>
+                                <li><strong>ب. تحفيز Supraclavicular Nodes:</strong> (فوق الترقوة)
+                                    <ul>
+                                        <li>حركات خفيفة للأسفل</li>
+                                    </ul>
+                                </li>
+                                <li><strong>ج. Upper Arm:</strong>
+                                    <ul>
+                                        <li>من الكوع باتجاه الإبط</li>
+                                        <li>حركات دفع خفيفة</li>
+                                    </ul>
+                                </li>
+                                <li><strong>د. Forearm:</strong>
+                                    <ul>
+                                        <li>من المعصم باتجاه الكوع</li>
+                                    </ul>
+                                </li>
+                                <li><strong>هـ. Hand:</strong>
+                                    <ul>
+                                        <li>من الأصابع باتجاه المعصم</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>3. التكرار:</strong> كل منطقة 5-7 مرات</li>
+                        <li><strong>4. المدة:</strong> 30-45 دقيقة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text">
+                    <span class="question-number">52.</span>
+                    ما هي التقنيات المستخدمة لتحسين Lymph Drainage؟
+                </div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Manual Lymphatic Drainage (MLD)</strong></li>
+                        <li><strong>Kinesiotaping:</strong> Fan shape للـ Edema</li>
+                        <li><strong>Elevation:</strong> رفع الطرف</li>
+                        <li><strong>Compression:</strong> ضمادات ضاغطة</li>
+                        <li><strong>Exercise:</strong> تمارين خفيفة</li>
+                        <li><strong>Skin Care:</strong> العناية بالجلد</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acupressure & Acupoints -->
+        <div class="category">
+            <h2>📍 Acupressure & Acupoints</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">53.</span> ما هو تعريف Acupressure؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Acupressure</strong> هو تقنية علاجية مشتقة من الطب الصيني التقليدي، تعتمد على الضغط اليدوي على نقاط محددة (Acupoints) على امتداد قنوات الطاقة (Meridians) لتحقيق توازن الطاقة وتخفيف الألم.
+                    <br><br>
+                    <strong>الفرق عن Acupuncture:</strong> نفس النقاط لكن بالضغط اليدوي بدلاً من الإبر.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">54.</span> ما هي موانع استخدام Acupressure (Contraindications)؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Pregnancy:</strong> تجنب نقاط SP6, LI4, BL60 (تسبب انقباضات)</li>
+                        <li><strong>Open Wounds / Infections:</strong> جروح أو التهابات في المنطقة</li>
+                        <li><strong>Fractures:</strong> كسور في المنطقة</li>
+                        <li><strong>Varicose Veins:</strong> دوالي الأوردة</li>
+                        <li><strong>Cancer:</strong> في المنطقة المصابة</li>
+                        <li><strong>Severe Osteoporosis</strong></li>
+                        <li><strong>Skin Conditions:</strong> أمراض جلدية حادة</li>
+                        <li><strong>After Heavy Meal:</strong> بعد الأكل مباشرة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">55.</span> حدد مكان ووظيفة: LI4, ST36, LV3</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Large Intestine 4 (LI4) — "Hegu":</strong>
+                    <ul>
+                        <li><strong>المكان:</strong> في الجزء اللحمي بين الإبهام والسبابة (ظهر اليد)</li>
+                        <li><strong>الوظيفة:</strong> تسكين الألم (خاصة الرأس والوجه)، تقوية المناعة، علاج الصداع</li>
+                    </ul>
+                    <strong>Stomach 36 (ST36) — "Zusanli":</strong>
+                    <ul>
+                        <li><strong>المكان:</strong> 4 أصابع تحت الركبة، خارج عظمة Tibia</li>
+                        <li><strong>الوظيفة:</strong> تقوية الجسم عموماً، تحسين الهضم، رفع المناعة، تقليل التعب</li>
+                    </ul>
+                    <strong>Liver 3 (LV3) — "Taichong":</strong>
+                    <ul>
+                        <li><strong>المكان:</strong> ظهر القدم، بين الإبهام والسبابة (بين العظمتين)</li>
+                        <li><strong>الوظيفة:</strong> تخفيف التوتر والقلق، علاج الصداع، تنظيم الكبد</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">56.</span> ما هو Pericardium 6 (PC6) و Spleen 6 (SP6)؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Pericardium 6 (PC6) — "Neiguan":</strong>
+                    <ul>
+                        <li><strong>المكان:</strong> الجانب الداخلي للساعد، 3 أصابع فوق خط المعصم، بين الأوتار</li>
+                        <li><strong>الوظيفة:</strong> علاج الغثيان والقيء، تخفيف ألم الصدر، تقليل القلق، مفيد في CTS</li>
+                    </ul>
+                    <strong>Spleen 6 (SP6) — "Sanyinjiao":</strong>
+                    <ul>
+                        <li><strong>المكان:</strong> 4 أصابع فوق الكعب الداخلي (Medial Malleolus)، خلف عظمة Tibia</li>
+                        <li><strong>الوظيفة:</strong> تنظيم الهرمونات، تخفيف آلام الدورة الشهرية، تحسين الهضم</li>
+                        <li><strong>⚠️ ممنوع في الحمل</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">57.</span> ما هو Third Eye (GV 24.5)؟ وما وظيفته؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>المكان:</strong> في منتصف الجبهة، بين الحاجبين (Glabella)
+                    <br><br>
+                    <strong>الوظيفة:</strong>
+                    <ul>
+                        <li>تخفيف الصداع والضغط النفسي</li>
+                        <li>تحسين التركيز والوضوح الذهني</li>
+                        <li>تقليل التوتر والقلق</li>
+                        <li>تحسين النوم</li>
+                        <li>علاج مشاكل الجيوب الأنفية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">58.</span> ما هي نقاط Acupressure للصداع؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>LI4 (Hegu):</strong> بين الإبهام والسبابة — الأقوى لتسكين الصداع</li>
+                        <li><strong>GV 24.5 (Third Eye):</strong> بين الحاجبين</li>
+                        <li><strong>GB20 (Feng Chi):</strong> قاعدة الجمجمة، على جانبي العمود الفقري</li>
+                        <li><strong>LV3 (Taichong):</strong> ظهر القدم بين الإبهام والسبابة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">59.</span> ما هو Meridian؟ وما أنواعه؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> Meridians هي قنوات غير مرئية تسري فيها طاقة الحياة (Qi) في جسم الإنسان وفق الطب الصيني التقليدي.
+                    <br><br>
+                    <strong>12 Meridian رئيسي:</strong>
+                    <ul>
+                        <li>Lung (LU) — Large Intestine (LI) — Stomach (ST) — Spleen (SP)</li>
+                        <li>Heart (HT) — Small Intestine (SI) — Bladder (BL) — Kidney (KI)</li>
+                        <li>Pericardium (PC) — Triple Warmer (TW) — Gallbladder (GB) — Liver (LV)</li>
+                    </ul>
+                    <strong>+ 2 Extraordinary Meridians:</strong> Governing Vessel (GV) و Conception Vessel (CV)
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">60.</span> أي جانب من Acupressure Points مسؤول عن العمود الفقري؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Governing Vessel (GV) — Du Mai:</strong>
+                    <ul>
+                        <li>يسير على امتداد <strong>خط الوسط الخلفي</strong> للجسم</li>
+                        <li>يمر فوق العمود الفقري من العصعص حتى الرأس</li>
+                        <li>مسؤول عن صحة العمود الفقري والجهاز العصبي</li>
+                    </ul>
+                    <strong>Bladder Meridian (BL):</strong>
+                    <ul>
+                        <li>يسير على <strong>جانبي العمود الفقري</strong></li>
+                        <li>يحتوي على نقاط Back-Shu المرتبطة بكل الأعضاء</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reflexology -->
+        <div class="category">
+            <h2>🦶 Reflexology</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">61.</span> ما هو Reflexology؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Reflexology</strong> هو تقنية علاجية تعتمد على الضغط على نقاط محددة في القدمين واليدين والأذنين، تسمى <strong>Reflex Zones</strong>، وكل منطقة تقابل عضواً أو جزءاً من الجسم.
+                    <br><br>
+                    <strong>الأساس النظري:</strong> الجسم مقسم إلى 10 مناطق طولية (5 في كل جانب) وخطوط عرضية، وكل منطقة في القدم تعكس منطقة مقابلة في الجسم.
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">62.</span> اشرح 5 مناطق من Reflex Zones</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>1. أصابع القدم:</strong> تقابل الرأس والرقبة والجيوب الأنفية والعيون والأذنين</li>
+                        <li><strong>2. كرة القدم (Ball of Foot):</strong> تقابل الصدر والرئتين والقلب</li>
+                        <li><strong>3. قوس القدم (Arch):</strong>
+                            <ul>
+                                <li>الجزء العلوي: المعدة، الكبد، البنكرياس، الكلى</li>
+                                <li>الجزء السفلي: الأمعاء الدقيقة والغليظة</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. الكعب (Heel):</strong> تقابل الحوض والعجز والعصعص والمثانة</li>
+                        <li><strong>5. الجانب الداخلي للقدم:</strong> تقابل العمود الفقري (من العنق للعصعص)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">63.</span> كيف تعالج الكبد (Liver) باستخدام Reflexology؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>موقع منطقة الكبد في Reflexology:</strong>
+                    <ul>
+                        <li>في <strong>القدم اليمنى فقط</strong> (الكبد في الجانب الأيمن)</li>
+                        <li>في منطقة قوس القدم العلوي (Upper Arch)</li>
+                        <li>تحت كرة القدم، في الجانب الخارجي</li>
+                    </ul>
+                    <strong>التقنية:</strong>
+                    <ul>
+                        <li>استخدم الإبهام بحركة Caterpillar (دودة)</li>
+                        <li>اضغط وتقدم بشكل تدريجي</li>
+                        <li>اعمل على المنطقة لمدة 2-3 دقائق</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">64.</span> ما هي التقنيات المتقدمة (Advanced Techniques) في Reflexology؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Thumb Walking (Caterpillar):</strong> حركة الإبهام كالدودة على المنطقة</li>
+                        <li><strong>Finger Walking:</strong> نفس الحركة بالأصابع</li>
+                        <li><strong>Hook and Back-up:</strong> ضغط عميق ثم سحب للخلف — للنقاط الصغيرة</li>
+                        <li><strong>Rotation on a Point:</strong> دوران على نقطة محددة</li>
+                        <li><strong>Pivot on a Point:</strong> ضغط ثابت مع دوران القدم</li>
+                        <li><strong>Knuckle Technique:</strong> باستخدام مفاصل الأصابع للمناطق الكبيرة</li>
+                        <li><strong>Lymphatic Drainage Technique:</strong> لتحفيز الجهاز الليمفاوي</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clinical Cases -->
+        <div class="category">
+            <h2>🏥 Clinical Cases</h2>
+
+            <h3 style="color: #ffd700; margin: 20px 0 15px 0;">Carpal Tunnel Syndrome (CTS)</h3>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">65.</span> ما هو Carpal Tunnel Syndrome؟ وأي عصب يتأثر؟ وأي أصابع تتأثر؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> ضغط على العصب الأوسط (Median Nerve) داخل النفق الرسغي (Carpal Tunnel) في المعصم.
+                    <br><br>
+                    <strong>العصب المتأثر:</strong> <strong>Median Nerve</strong>
+                    <br><br>
+                    <strong>الأصابع المتأثرة:</strong>
+                    <ul>
+                        <li>الإبهام (Thumb)</li>
+                        <li>السبابة (Index)</li>
+                        <li>الوسطى (Middle)</li>
+                        <li>نصف البنصر (Ring — الجانب الجانبي)</li>
+                    </ul>
+                    <strong>الأعراض:</strong> تنميل، وخز، ألم، ضعف في القبضة
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">66.</span> كيف تعالج Carpal Tunnel Syndrome باستخدام Manual Therapy؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>1. Kinesiotaping:</strong>
+                    <ul>
+                        <li>I-shape على مسار Median Nerve</li>
+                        <li>من الأصابع باتجاه الساعد</li>
+                        <li>شد 15-25%</li>
+                    </ul>
+                    <strong>2. Acupressure — PC6 (Pericardium 6):</strong>
+                    <ul>
+                        <li>3 أصابع فوق خط المعصم، بين الأوتار</li>
+                        <li>ضغط لمدة 1-2 دقيقة</li>
+                        <li>يخفف الألم والتنميل</li>
+                    </ul>
+                    <strong>3. MFR (Myofascial Release):</strong>
+                    <ul>
+                        <li>تحرير Flexor Retinaculum</li>
+                        <li>Cross-fiber technique على المعصم</li>
+                        <li>تمديد الأنسجة حول النفق</li>
+                    </ul>
+                    <strong>4. Nerve Gliding Exercises:</strong>
+                    <ul>
+                        <li>تمارين تحريك العصب</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: #ffd700; margin: 20px 0 15px 0;">Tarsal Tunnel Syndrome</h3>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">67.</span> كيف تعالج Tarsal Tunnel Syndrome باستخدام Manual Therapy؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف أولاً:</strong> ضغط على <strong>Tibial Nerve</strong> خلف الـ Medial Malleolus.
+                    <br><br>
+                    <strong>العلاج:</strong>
+                    <ul>
+                        <li><strong>1. Kinesiotaping:</strong>
+                            <ul>
+                                <li>I-shape أو Y-shape</li>
+                                <li>من الكعب خلف Medial Malleolus للأعلى</li>
+                                <li>شد 15-25%</li>
+                                <li>القدم في Dorsiflexion أثناء التطبيق</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. MFR:</strong>
+                            <ul>
+                                <li>تحرير Flexor Retinaculum</li>
+                                <li>Cross-fiber على منطقة الكعب الداخلي</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Deep Friction:</strong>
+                            <ul>
+                                <li>على Tibial Nerve pathway</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Acupressure — SP6:</strong>
+                            <ul>
+                                <li>4 أصابع فوق Medial Malleolus</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: #ffd700; margin: 20px 0 15px 0;">Frozen Shoulder</h3>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">68.</span> كيف تستخدم Manual Therapy لعلاج Frozen Shoulder؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التقنيات:</strong>
+                    <ul>
+                        <li><strong>1. MFR:</strong>
+                            <ul>
+                                <li>Cross hand على منطقة الكتف</li>
+                                <li>تحرير Capsular restrictions</li>
+                                <li>J stroke على العضلات المحيطة</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Deep Friction:</strong>
+                            <ul>
+                                <li>على Rotator Cuff tendons</li>
+                                <li>Biceps tendon</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Massage:</strong>
+                            <ul>
+                                <li>Effleurage وKneading على Deltoid وTrapezius</li>
+                                <li>تقليل Muscle Spasm</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Kinesiotaping:</strong>
+                            <ul>
+                                <li>Y-shape على Deltoid</li>
+                                <li>لتحسين ROM وتقليل الألم</li>
+                            </ul>
+                        </li>
+                        <li><strong>5. Trigger Point Release:</strong>
+                            <ul>
+                                <li>على Infraspinatus, Subscapularis, Teres Minor</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: #ffd700; margin: 20px 0 15px 0;">Rounded Shoulder</h3>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">69.</span> كيف تتعامل مع مريض لديه Rounded Shoulder؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التقنيات:</strong>
+                    <ul>
+                        <li><strong>1. MFR على Pectoralis Major/Minor:</strong>
+                            <ul>
+                                <li>تحرير العضلات المشدودة في الأمام</li>
+                                <li>Cross hand technique</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Trigger Point Release:</strong>
+                            <ul>
+                                <li>على Pectoralis Minor, Upper Trapezius</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Kinesiotaping:</strong>
+                            <ul>
+                                <li>Y-shape على Rhomboids وMiddle Trapezius</li>
+                                <li>لتنشيط العضلات الضعيفة في الخلف</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Massage:</strong>
+                            <ul>
+                                <li>Effleurage وKneading على Upper Back</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: #ffd700; margin: 20px 0 15px 0;">Edema Cases</h3>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">70.</span> امرأة 34 سنة لديها Edema في الكاحل الأيمن - كيف تعالجها؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>خطة العلاج:</strong>
+                    <ul>
+                        <li><strong>1. Elevation:</strong> رفع القدم فوق مستوى القلب</li>
+                        <li><strong>2. Manual Lymphatic Drainage:</strong>
+                            <ul>
+                                <li>ابدأ بتحفيز Inguinal Nodes (الفخذ)</li>
+                                <li>ثم Popliteal Nodes (خلف الركبة)</li>
+                                <li>ثم من الكاحل للأعلى</li>
+                                <li>ضغط خفيف جداً</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Kinesiotaping:</strong>
+                            <ul>
+                                <li>Fan shape (Lymphatic technique)</li>
+                                <li>من الكاحل باتجاه Popliteal Nodes</li>
+                                <li>شد 0-15%</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Compression Bandaging</strong></li>
+                        <li><strong>5. Exercise:</strong> تمارين Ankle Pumping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skin -->
+        <div class="category">
+            <h2>🧴 Skin</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">71.</span> ما هي وظائف الجلد (Functions of Skin)؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <ul>
+                        <li><strong>Protection:</strong> حماية الجسم من الميكروبات والأشعة فوق البنفسجية والصدمات</li>
+                        <li><strong>Thermoregulation:</strong> تنظيم درجة حرارة الجسم (عن طريق التعرق والأوعية الدموية)</li>
+                        <li><strong>Sensation:</strong> الإحساس باللمس، الألم، الحرارة، الضغط</li>
+                        <li><strong>Vitamin D Synthesis:</strong> تصنيع فيتامين D بالأشعة الشمسية</li>
+                        <li><strong>Excretion:</strong> إخراج الفضلات عبر التعرق</li>
+                        <li><strong>Absorption:</strong> امتصاص بعض المواد (الأدوية الموضعية)</li>
+                        <li><strong>Immune Function:</strong> خط دفاع أول ضد العدوى</li>
+                        <li><strong>Water Barrier:</strong> منع فقدان الماء من الجسم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">72.</span> كيف تقيّم الجلد (Skin Assessment)؟</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>عناصر التقييم:</strong>
+                    <ul>
+                        <li><strong>Color:</strong> لون الجلد (احمرار، شحوب، زرقة)</li>
+                        <li><strong>Temperature:</strong> درجة الحرارة (دافئ، بارد)</li>
+                        <li><strong>Texture:</strong> الملمس (ناعم، خشن، جاف)</li>
+                        <li><strong>Moisture:</strong> الرطوبة (جاف، رطب، متعرق)</li>
+                        <li><strong>Turgor:</strong> مرونة الجلد (اختبار القرصة)</li>
+                        <li><strong>Mobility:</strong> حرية تحرك الجلد على الأنسجة تحته</li>
+                        <li><strong>Scars / Adhesions:</strong> وجود ندوب أو التصاقات</li>
+                        <li><strong>Edema:</strong> وجود تورم</li>
+                        <li><strong>Skin Rolling Test:</strong> تقييم مرونة الجلد والفاشيا</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Summary -->
+        <div class="summary">
+            <h2>📊 ملخص أكثر المواضيع تكراراً</h2>
+            <div class="summary-item">
+                <span>Trigger Points (أنواع، مقارنة، علاج)</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Kinesiotaping (تطبيقات مختلفة)</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Skin Rolling على الظهر</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Physiological Effects of Massage</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Carpal Tunnel Syndrome</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Effleurage (أنواع وتطبيقات)</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Tarsal Tunnel Syndrome</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Fascia (خصائص ووظائف)</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Myofascial Release (MFR)</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Medical Massage Definition</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Acupressure & Acupoints</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Manual Lymphatic Drainage</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Scar Release & Deep Friction</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Reflexology</span>
+                <span class="stars">★★</span>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 30px; color: #666; font-size: 0.9em;">
+            تم حذف الأسئلة المتعلقة بـ Soft Tissue Mobilization و Theories of Kinesiotaping<br>
+            وتم إزالة الأسئلة المتشابهة والمكررة
+        </p>
+    </div>
+</body>
+</html>

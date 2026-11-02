@@ -1,0 +1,2380 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physio-HUD // Exercise Physiology Revision</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07080d;
+      --panel-bg: rgba(16, 20, 38, 0.7);
+      --panel-hover: rgba(22, 28, 51, 0.9);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(255, 255, 255, 0.2);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      
+      /* Semantic Theme Colors */
+      --c-red: #f43f5e;
+      --c-purple: #a855f7;
+      --c-orange: #ff781e;
+      --c-blue: #3b82f6;
+      --c-green: #10b981;
+      
+      --glow-red: 0 0 20px rgba(244, 63, 94, 0.25);
+      --glow-purple: 0 0 20px rgba(168, 85, 247, 0.25);
+      --glow-orange: 0 0 20px rgba(255, 120, 30, 0.25);
+      --glow-blue: 0 0 20px rgba(59, 130, 246, 0.25);
+      --glow-green: 0 0 20px rgba(16, 185, 129, 0.25);
+
+      --font-ar: 'Noto Kufi Arabic', system-ui, sans-serif;
+      --font-en: 'Plus Jakarta Sans', system-ui, sans-serif;
+      
+      --radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-en), var(--font-ar), sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient background glows */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0.12;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+    body::before {
+      background: var(--c-purple);
+      top: -10%;
+      right: -10%;
+    }
+    body::after {
+      background: var(--c-orange);
+      bottom: -10%;
+      left: -10%;
+    }
+
+    /* Selection */
+    ::selection {
+      background: rgba(255, 120, 30, 0.3);
+      color: #fff;
+    }
+
+    /* Header & Dashboard Styling */
+    .dashboard-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 6rem;
+    }
+
+    header {
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--c-orange), var(--c-purple), var(--c-blue), var(--c-red));
+    }
+
+    .header-main {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 120, 30, 0.1);
+      border: 1px solid rgba(255, 120, 30, 0.2);
+      color: var(--c-orange);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-family: var(--font-en);
+      font-size: 2.25rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 40%, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    /* Dashboard Stats & Controls */
+    .dashboard-widgets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .stat-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: var(--font-en);
+      color: #fff;
+    }
+
+    .progress-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50px;
+      height: 8px;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg, var(--c-orange), var(--c-green));
+      height: 100%;
+      width: 0%;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+    }
+
+    .timer-controls {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 4px;
+    }
+
+    .timer-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      font-family: var(--font-en);
+      transition: var(--transition);
+    }
+
+    .timer-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--text-muted);
+    }
+
+    /* Active Recall Mode Switch */
+    .switch-panel {
+      background: rgba(255, 120, 30, 0.03);
+      border: 1px solid rgba(255, 120, 30, 0.1);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: var(--transition);
+    }
+
+    body.active-recall-on .switch-panel {
+      border-color: var(--c-orange);
+      box-shadow: var(--glow-orange);
+      background: rgba(255, 120, 30, 0.06);
+    }
+
+    .switch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .switch-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--c-orange);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .switch-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Toggle switch design */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: .3s;
+      border-radius: 34px;
+      border: 1px solid var(--border);
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    input:checked + .toggle-slider {
+      background-color: var(--c-orange);
+      border-color: var(--c-orange);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+
+    /* Filter Tabs & Search Row */
+    .filter-row {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.8rem 1rem 0.8rem 2.8rem;
+      color: #fff;
+      font-family: var(--font-en);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--c-orange);
+      box-shadow: 0 0 0 3px rgba(255, 120, 30, 0.15);
+      background: var(--panel-hover);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      width: 18px;
+      height: 18px;
+    }
+
+    .tabs-container {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+
+    .tabs-container::-webkit-scrollbar {
+      height: 4px;
+    }
+    .tabs-container::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+    }
+
+    .tab-btn {
+      background: var(--panel-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tab-btn:hover {
+      background: var(--panel-hover);
+      color: #fff;
+      border-color: var(--border-focus);
+    }
+
+    .tab-btn.active {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: #fff;
+      box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+    }
+
+    /* Cards Grid Layout */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .widget {
+      background: var(--panel-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    .widget:hover {
+      transform: translateY(-4px);
+      border-color: var(--theme-color-op);
+      box-shadow: var(--theme-glow);
+      background: var(--panel-hover);
+    }
+
+    /* Color Categories Styles */
+    .widget.cat-cardio {
+      --theme-color: var(--c-red);
+      --theme-color-op: rgba(244, 63, 94, 0.4);
+      --theme-glow: var(--glow-red);
+    }
+
+    .widget.cat-muscles {
+      --theme-color: var(--c-purple);
+      --theme-color-op: rgba(168, 85, 247, 0.4);
+      --theme-glow: var(--glow-purple);
+    }
+
+    .widget.cat-energy {
+      --theme-color: var(--c-orange);
+      --theme-color-op: rgba(255, 120, 30, 0.4);
+      --theme-glow: var(--glow-orange);
+    }
+
+    .widget.cat-principles {
+      --theme-color: var(--c-blue);
+      --theme-color-op: rgba(59, 130, 246, 0.4);
+      --theme-glow: var(--glow-blue);
+    }
+
+    .widget-header {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .widget-num {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--theme-color);
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-en);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .widget-title {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: var(--font-en);
+    }
+
+    .cat-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: var(--theme-color-op);
+      color: #fff;
+      border: 1px solid var(--theme-color);
+    }
+
+    .widget-body {
+      padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .widget-footer {
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Study Status Checkbox */
+    .reviewed-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .reviewed-container input {
+      display: none;
+    }
+
+    .checkbox-custom {
+      width: 18px;
+      height: 18px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .reviewed-container input:checked + .checkbox-custom {
+      background: var(--c-green);
+      border-color: var(--c-green);
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+    }
+
+    .reviewed-container input:checked + .checkbox-custom::after {
+      content: '✓';
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+
+    .reviewed-container:hover .checkbox-custom {
+      border-color: var(--text-muted);
+    }
+
+    .reviewed-container input:checked ~ span {
+      color: var(--c-green);
+      font-weight: 500;
+    }
+
+    /* Content Styling Rules */
+    .section-label {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: var(--font-en);
+    }
+
+    .value {
+      color: #fff;
+      font-size: 0.85rem;
+      text-align: right;
+      font-weight: 500;
+    }
+
+    .value.eg-ar {
+      font-family: var(--font-ar);
+      direction: rtl;
+    }
+
+    /* Active Recall Mode Hide & Blur */
+    .recall-val {
+      transition: var(--transition);
+    }
+
+    body.active-recall-on .recall-val {
+      filter: blur(5px) grayscale(100%);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      padding: 0 6px;
+      cursor: pointer;
+      user-select: none;
+      pointer-events: auto;
+      border: 1px dashed rgba(255,255,255,0.1);
+    }
+
+    body.active-recall-on .recall-val:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--theme-color, var(--c-orange));
+    }
+
+    body.active-recall-on .recall-val.revealed {
+      filter: none;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid var(--c-green);
+      color: #fff;
+      user-select: auto;
+    }
+
+    /* Custom Badges */
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      font-family: var(--font-en);
+      gap: 0.3rem;
+    }
+
+    .tag-orange { background: rgba(255, 120, 30, 0.1); color: var(--c-orange); border-color: rgba(255, 120, 30, 0.2); }
+    .tag-red { background: rgba(244, 63, 94, 0.1); color: var(--c-red); border-color: rgba(244, 63, 94, 0.2); }
+    .tag-green { background: rgba(16, 185, 129, 0.1); color: var(--c-green); border-color: rgba(16, 185, 129, 0.2); }
+    .tag-blue { background: rgba(59, 130, 246, 0.1); color: var(--c-blue); border-color: rgba(59, 130, 246, 0.2); }
+    .tag-purple { background: rgba(168, 85, 247, 0.1); color: var(--c-purple); border-color: rgba(168, 85, 247, 0.2); }
+    .tag-gray { background: rgba(255,255,255,0.03); color: var(--text-muted); }
+
+    /* Box Styles */
+    .tip-box {
+      background: rgba(255, 120, 30, 0.05);
+      border-left: 4px solid var(--c-orange);
+      border-radius: 4px 8px 8px 4px;
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      color: #ffaa66;
+    }
+
+    .tip-box.tip-red {
+      background: rgba(244, 63, 94, 0.05);
+      border-left-color: var(--c-red);
+      color: #ff8899;
+    }
+
+    .formula-box {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .formula-box::before {
+      content: 'FORMULA';
+      position: absolute;
+      top: 2px;
+      right: 6px;
+      font-size: 0.6rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .formula {
+      font-family: var(--font-en);
+      color: var(--c-orange);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* 6. Muscle Contraction Stepper Component */
+    .stepper-container {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--c-purple);
+    }
+
+    .step-content {
+      min-height: 80px;
+      transition: var(--transition);
+    }
+
+    .step-title {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-ar);
+      direction: rtl;
+    }
+
+    .step-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .step-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      transition: var(--transition);
+    }
+
+    .step-btn:hover:not(:disabled) {
+      background: rgba(168, 85, 247, 0.15);
+      border-color: var(--c-purple);
+    }
+
+    .step-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .step-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .step-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      cursor: pointer;
+    }
+
+    .step-dot.active {
+      background: var(--c-purple);
+      box-shadow: var(--glow-purple);
+      width: 14px;
+      border-radius: 4px;
+    }
+
+    /* 8. Cardiovascular Drift Flowchart */
+    .drift-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin: 0.5rem 0;
+    }
+
+    .drift-node {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .drift-node:hover {
+      background: rgba(244, 63, 94, 0.05);
+      border-color: rgba(244, 63, 94, 0.3);
+    }
+
+    .drift-node-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .drift-node-icon {
+      font-size: 1rem;
+    }
+
+    .drift-node-name {
+      color: #fff;
+      font-weight: 600;
+      font-family: var(--font-en);
+    }
+
+    .drift-node-status {
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--font-en);
+    }
+
+    .drift-node.active-step {
+      border-color: var(--c-red);
+      background: rgba(244, 63, 94, 0.1);
+      box-shadow: 0 0 10px rgba(244, 63, 94, 0.1);
+    }
+
+    .drift-explain-card {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      font-family: var(--font-ar);
+      direction: rtl;
+    }
+
+    /* 10. Training Zones Calculator */
+    .calc-container {
+      background: rgba(0,0,0,0.25);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .calc-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .calc-input-wrapper {
+      position: relative;
+      width: 80px;
+    }
+
+    .calc-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 8px;
+      color: #fff;
+      text-align: center;
+      font-family: var(--font-en);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .calc-input:focus {
+      outline: none;
+      border-color: var(--c-green);
+    }
+
+    .zone-bar-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .zone-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      padding: 2px 0;
+    }
+
+    .zone-label {
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .zone-color-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .zone-val {
+      font-family: var(--font-en);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* 12. Interactive Flashcards Quiz Deck (Full Grid Card) */
+    .full-grid {
+      grid-column: 1 / -1;
+    }
+
+    .quiz-card {
+      background: linear-gradient(135deg, rgba(22, 28, 51, 0.8), rgba(16, 20, 38, 0.8));
+      border: 1.5px solid var(--border);
+      position: relative;
+    }
+
+    .quiz-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .quiz-deck {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .flashcard-outer {
+      perspective: 1000px;
+      width: 100%;
+      height: 180px;
+      cursor: pointer;
+    }
+
+    .flashcard-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flashcard-outer.flipped .flashcard-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-front, .flashcard-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .flashcard-front {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      color: #fff;
+    }
+
+    .flashcard-back {
+      background: rgba(255, 120, 30, 0.1);
+      border: 1.5px solid var(--c-orange);
+      color: #fff;
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .flashcard-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: var(--font-en);
+    }
+
+    .flashcard-tip {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+    }
+
+    .quiz-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.5rem;
+      gap: 1rem;
+    }
+
+    .quiz-btn {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-family: var(--font-en);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .quiz-btn.btn-know {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    .quiz-btn.btn-know:hover {
+      background: var(--c-green);
+      color: #fff;
+      box-shadow: var(--glow-green);
+    }
+
+    .quiz-btn.btn-retry {
+      background: rgba(244, 63, 94, 0.1);
+      border-color: rgba(244, 63, 94, 0.3);
+      color: #f87171;
+    }
+
+    .quiz-btn.btn-retry:hover {
+      background: var(--c-red);
+      color: #fff;
+      box-shadow: var(--glow-red);
+    }
+
+    .quiz-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+      align-content: start;
+    }
+
+    .quiz-list-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .quiz-list-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .quiz-list-item.active {
+      border-color: var(--c-orange);
+      background: rgba(255, 120, 30, 0.04);
+    }
+
+    .quiz-list-item.known {
+      border-color: var(--c-green);
+      background: rgba(16, 185, 129, 0.04);
+    }
+
+    .quiz-list-item.retry {
+      border-color: var(--c-red);
+      background: rgba(244, 63, 94, 0.04);
+    }
+
+    .qli-num {
+      font-family: var(--font-en);
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: var(--text-muted);
+    }
+
+    .qli-q {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      margin-left: 0.5rem;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+    }
+
+    .qli-status {
+      font-size: 0.8rem;
+    }
+
+    /* Back to top & Study Tips Bar */
+    .bottom-bar {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 12, 22, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .bottom-info {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .top-scroll-btn {
+      background: rgba(255,255,255,0.08);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .top-scroll-btn:hover {
+      background: var(--c-orange);
+      box-shadow: var(--glow-orange);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .quiz-layout {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+      .quiz-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .dashboard-container {
+        padding: 1rem 1rem 5rem;
+      }
+      header {
+        padding: 1.25rem;
+      }
+      .hero-title {
+        font-size: 1.75rem;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .tabs-container {
+        padding-bottom: 4px;
+      }
+      .bottom-bar {
+        width: calc(100% - 2rem);
+        justify-content: space-between;
+        bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dashboard-container">
+    
+    <!-- Header Dashboard -->
+    <header>
+      <div class="header-main">
+        <div class="hero-badge">
+          <span>Final Exam Hub</span>
+          <span>⚡</span>
+        </div>
+        <h1 class="hero-title">Exercise Physiology</h1>
+        <p class="hero-sub">Smart interactive revision deck with simple, colloquial Egyptian Arabic explanations</p>
+      </div>
+
+      <div class="dashboard-widgets">
+        
+        <!-- Progress Box -->
+        <div class="stat-box">
+          <div class="stat-header">
+            <span>Study Progress</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="stat-value" id="progress-text">0 / 12 cards</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Timer Box -->
+        <div class="stat-box">
+          <div class="stat-header">
+            <span>Current Study Timer</span>
+            <span id="timer-status" style="color: var(--c-green)">Stopped</span>
+          </div>
+          <div class="stat-value" id="timer-display" style="font-family: var(--font-en)">00:00:00</div>
+          <div class="timer-controls">
+            <button class="timer-btn" id="btn-timer-toggle">Start Timer</button>
+            <button class="timer-btn" id="btn-timer-reset">Reset</button>
+          </div>
+        </div>
+
+        <!-- Active Recall Toggle -->
+        <div class="switch-panel">
+          <div class="switch-info">
+            <div class="switch-title">
+              <span>Active Recall Mode</span>
+              <span>🧠</span>
+            </div>
+            <div class="switch-desc">Hides answers & details. Click cards to reveal.</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="recall-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Filters Row -->
+    <div class="filter-row">
+      <div class="search-wrapper">
+        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input type="text" class="search-input" id="search-bar" placeholder="Search for terms, formulas, hormones, keywords...">
+      </div>
+
+      <div class="tabs-container">
+        <button class="tab-btn active" data-filter="all">📂 All</button>
+        <button class="tab-btn" data-filter="principles">⚙️ Principles</button>
+        <button class="tab-btn" data-filter="energy">⚡ Energy Systems</button>
+        <button class="tab-btn" data-filter="muscles">🦾 Muscles & Bones</button>
+        <button class="tab-btn" data-filter="cardio">🫀 Cardio & Blood</button>
+        <button class="tab-btn" data-filter="questions">🎯 Doctor's Qs</button>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid" id="cards-grid">
+
+      <!-- Card 1 -->
+      <div class="widget cat-principles" data-categories="principles">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">01</span>
+            <h3 class="widget-title">Response vs Adaptation</h3>
+          </div>
+          <span class="cat-tag">Principles</span>
+        </div>
+        <div class="widget-body">
+          <div class="section-label">Acute Response (During Exercise / لحظي)</div>
+          <div class="badge-row">
+            <span class="tag tag-red">HR ↑ <span class="recall-val eg-ar">ضربات القلب بتزيد</span></span>
+            <span class="tag tag-red">BP ↑ <span class="recall-val eg-ar">الضغط بيزيد</span></span>
+            <span class="tag tag-red">SV ↑ <span class="recall-val eg-ar">حجم الضربة بيزيد</span></span>
+            <span class="tag tag-red">Sweating ↑ <span class="recall-val eg-ar">العرق بيزيد</span></span>
+          </div>
+          
+          <div class="section-label" style="margin-top:0.5rem">Chronic Adaptation (Long-term / مستمر)</div>
+          <div class="badge-row">
+            <span class="tag tag-green">Resting HR ↓ <span class="recall-val eg-ar">ضربات القلب وقت الراحة بتقل</span></span>
+            <span class="tag tag-green">VO₂ Max ↑ <span class="recall-val eg-ar">استهلاك الأكسجين بيزيد</span></span>
+            <span class="tag tag-green">Blood Volume ↑ <span class="recall-val eg-ar">كمية الدم الكلية بتزيد</span></span>
+            <span class="tag tag-green">SV ↑ <span class="recall-val eg-ar">حجم ضربة القلب بيزيد</span></span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="widget cat-principles" data-categories="principles">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">02</span>
+            <h3 class="widget-title">Training Principles</h3>
+          </div>
+          <span class="cat-tag">Principles</span>
+        </div>
+        <div class="widget-body">
+          <div class="row">
+            <span class="label">Overload</span>
+            <span class="value eg-ar recall-val">لازم تزود الحمل والجهد عشان جسمك يتكيف ويتحسن.</span>
+          </div>
+          <div class="row">
+            <span class="label">Progression</span>
+            <span class="value eg-ar recall-val">بتزود الحمل والشدة بالتدريج عشان تتجنب الإصابات.</span>
+          </div>
+          <div class="row">
+            <span class="label">Specificity</span>
+            <span class="value eg-ar recall-val">التمرين لازم يكون مخصص لنوع الرياضة ونظام الطاقة اللي بتشغلها.</span>
+          </div>
+          <div class="row">
+            <span class="label">Individuality</span>
+            <span class="value eg-ar recall-val">استجابة كل جسم للتمرين بتختلف حسب جيناته وسنه وجنسه.</span>
+          </div>
+          <div class="row">
+            <span class="label">Recovery</span>
+            <span class="value eg-ar recall-val">الراحة والنوم مهمين جداً عشان الجسم يعمل ريكفري ويبني التكيفات.</span>
+          </div>
+          <div class="row">
+            <span class="label">Detraining</span>
+            <span class="value eg-ar recall-val">لو بطلت تمرين مستوى أداؤك هيقل بالتدريج (اللي مابتستخدموش بتخسره).</span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="widget cat-energy" data-categories="energy">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">03</span>
+            <h3 class="widget-title">Energy Systems</h3>
+          </div>
+          <span class="cat-tag">Energy</span>
+        </div>
+        <div class="widget-body">
+          <div class="section-label">1. ATP-PCr System (الفوسفاجيني)</div>
+          <div class="badge-row">
+            <span class="tag tag-orange">0–15 sec</span>
+            <span class="tag tag-gray">Anaerobic (من غير أكسجين)</span>
+            <span class="tag tag-gray">Fuel: PCr (فوسفوكرياتين)</span>
+            <span class="tag tag-gray">Example: 100m sprint</span>
+          </div>
+          
+          <div class="section-label" style="margin-top:0.5rem">2. Glycolytic System (حامض اللاكتيك)</div>
+          <div class="badge-row">
+            <span class="tag tag-orange">15s – 2min</span>
+            <span class="tag tag-gray">Anaerobic (من غير أكسجين)</span>
+            <span class="tag tag-red">Produces Lactate (بيطلع لاكتيك أسيد)</span>
+            <span class="tag tag-gray">Example: 400m sprint</span>
+          </div>
+          
+          <div class="section-label" style="margin-top:0.5rem">3. Aerobic System (الأكسجيني)</div>
+          <div class="badge-row">
+            <span class="tag tag-green">> 2 min</span>
+            <span class="tag tag-green">Aerobic (بيحتاج أكسجين)</span>
+            <span class="tag tag-green">Highest ATP yield (إنتاج ضخم للطاقة)</span>
+            <span class="tag tag-green">Example: Marathon</span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="widget cat-energy" data-categories="energy">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">04</span>
+            <h3 class="widget-title">Lactate Threshold & Crossover</h3>
+          </div>
+          <span class="cat-tag">Energy</span>
+        </div>
+        <div class="widget-body">
+          <div class="tip-box">
+            <strong>Lactate Threshold:</strong><br>
+            <span class="recall-val eg-ar">هي النقطة اللي إنتاج اللاكتيك فيها بيبقى أسرع من قدرة الجسم إنه يتخلص منه (الإنتاج > التخلص).</span>
+          </div>
+          
+          <div class="section-label" style="margin-top:0.5rem">Crossover Concept (الوقود والشدة)</div>
+          <div class="row">
+            <span class="label">Low Intensity</span>
+            <span class="value"><span class="tag tag-orange">Fat is main fuel (بيحرق دهون أكتر)</span></span>
+          </div>
+          <div class="row">
+            <span class="label">Crossover Point</span>
+            <span class="value"><span class="tag tag-gray">50% Fat + 50% CHO (الحرق متساوي)</span></span>
+          </div>
+          <div class="row">
+            <span class="label">High Intensity</span>
+            <span class="value"><span class="tag tag-red">CHO is main fuel (بيحرق كارب أكتر)</span></span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="widget cat-muscles" data-categories="muscles">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">05</span>
+            <h3 class="widget-title">Muscle Fibers & Motor Unit</h3>
+          </div>
+          <span class="cat-tag">Muscles</span>
+        </div>
+        <div class="widget-body">
+          <div class="row">
+            <span class="label">Type I (Slow Twitch)</span>
+            <span class="value eg-ar recall-val">هوائي (Aerobic) · مابتتعبش بسرعة · فيها ميتوكوندريا وأوعية دم كتير · ممتازة للماراثون والتحمل.</span>
+          </div>
+          <div class="row">
+            <span class="label">Type IIa (Fast Twitch - FOG)</span>
+            <span class="value eg-ar recall-val">انقباض سريع · بتشتغل هوائي ولاهوائي مع بعض · مفيدة في مجهود ماتش الكورة.</span>
+          </div>
+          <div class="row">
+            <span class="label">Type IIb (Fastest Twitch - FG)</span>
+            <span class="value eg-ar recall-val">أسرع انقباض · لاهوائي بحت · قوة عالية جداً بس بتتعب بسرعة جداً · لرفع الأثقال وسبرينت 100م.</span>
+          </div>
+          
+          <div class="section-label" style="margin-top:0.5rem">All-Or-None Law (قانون الكل أو لا شيء)</div>
+          <div class="tip-box" style="border-left-color: var(--c-purple); background: rgba(168,85,247,0.03);">
+            <span class="recall-val eg-ar">الـ Motor Unit (العصب وكل الألياف اللي بيغذيها) يا تنقبض كلها مع بعض بأقصى قوة يا إما مابتنقبضش خالص.</span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 6: Interactive Muscle Contraction -->
+      <div class="widget cat-muscles" data-categories="muscles">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">06</span>
+            <h3 class="widget-title">Muscle Contraction Steps</h3>
+          </div>
+          <span class="cat-tag">Muscles</span>
+        </div>
+        <div class="widget-body">
+          <div class="section-label">Interactive Contraction steps</div>
+          
+          <div class="stepper-container">
+            <div class="step-header">
+              <span id="step-index-display">Step 1 of 6</span>
+              <span style="font-size: 0.75rem; background: rgba(168, 85, 247, 0.2); padding: 2px 6px; border-radius: 4px;" id="step-badge">Acetylcholine</span>
+            </div>
+            <div class="step-content">
+              <div class="step-title" id="step-title-display">ACh Release</div>
+              <div class="step-desc" id="step-desc-display">الـ Acetylcholine (ACh) بيطلع من نهاية العصب ويعدي الفراغ العصبي ويمسك في مستقبلات غشاء العضلة.</div>
+            </div>
+            <div class="step-controls">
+              <button class="step-btn" id="step-prev-btn" disabled>Prev</button>
+              <div class="step-dots" id="step-dots-container">
+                <span class="step-dot active" data-step="0"></span>
+                <span class="step-dot" data-step="1"></span>
+                <span class="step-dot" data-step="2"></span>
+                <span class="step-dot" data-step="3"></span>
+                <span class="step-dot" data-step="4"></span>
+                <span class="step-dot" data-step="5"></span>
+              </div>
+              <button class="step-btn" id="step-next-btn">Next</button>
+            </div>
+          </div>
+
+          <div class="tip-box" style="border-left-color: var(--c-purple); background: rgba(168,85,247,0.03); font-size: 0.75rem;">
+            <strong>Quick Summary:</strong><br>
+            <span class="recall-val eg-ar">ACh ← Calcium (الشرارة) ← Troponin ← Tropomyosin يتحرك ويفتح السكة ← Actin + Myosin يمسكوا (Cross Bridge) ← Contraction!</span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="widget cat-cardio" data-categories="cardio">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">07</span>
+            <h3 class="widget-title">Cardiovascular System</h3>
+          </div>
+          <span class="cat-tag">Cardio</span>
+        </div>
+        <div class="widget-body">
+          <div class="row">
+            <span class="label">SA Node</span>
+            <span class="value"><span class="tag tag-orange">Pacemaker (بيحدد ريتم ضربات القلب)</span></span>
+          </div>
+          <div class="row">
+            <span class="label">AV Node</span>
+            <span class="value eg-ar recall-val">بتأخر الإشارة الكهربائية شوية عشان تدي فرصة للـ ventricles تتملي دم.</span>
+          </div>
+          <div class="row">
+            <span class="label">Stroke Volume (SV)</span>
+            <span class="value eg-ar recall-val">كمية الدم اللي بتطلع من الـ Left Ventricle في النبضة الواحدة.</span>
+          </div>
+          
+          <div class="formula-box">
+            <div class="formula">CO = HR × SV</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Cardiac Output (نتاج القلب) = Heart Rate × Stroke Volume</div>
+          </div>
+          
+          <div class="row">
+            <span class="label">Hemoglobin</span>
+            <span class="value eg-ar recall-val">البروتين اللي في خلايا الدم الحمراء اللي بيشيل الأكسجين، وكل جزيء بيشيل 4 O₂.</span>
+          </div>
+          <div class="row">
+            <span class="label">Hematocrit</span>
+            <span class="value eg-ar recall-val">نسبة خلايا الدم الحمراء (RBCs) مقارنة بحجم الدم الكلي.</span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 8: Cardiovascular Drift Interactive -->
+      <div class="widget cat-cardio" data-categories="cardio">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">08</span>
+            <h3 class="widget-title">Cardiovascular Drift</h3>
+          </div>
+          <span class="cat-tag">Cardio</span>
+        </div>
+        <div class="widget-body">
+          <div class="tip-box tip-red">
+            <strong>CV Drift (سؤال امتحان مضمون):</strong><br>
+            لو بتتمرن تمرين ثابت الشدة لفترة طويلة في الحر، الـ Heart Rate بيزيد (HR ↑) عشان يعوض النقص في الـ Stroke Volume (SV ↓) ويحافظ على الـ CO ثابت.
+          </div>
+          
+          <div class="section-label">Click each step to understand the chain:</div>
+          
+          <div class="drift-flow">
+            <div class="drift-node active-step" data-drift="0">
+              <div class="drift-node-info">
+                <span class="drift-node-icon">🌡️</span>
+                <span class="drift-node-name">Heat</span>
+              </div>
+              <span class="drift-node-status" style="color: var(--c-red)">Start</span>
+            </div>
+            
+            <div class="drift-node" data-drift="1">
+              <div class="drift-node-info">
+                <span class="drift-node-icon">💦</span>
+                <span class="drift-node-name">Dehydration</span>
+              </div>
+              <span class="drift-node-status" style="color: var(--c-orange)">Step 2</span>
+            </div>
+
+            <div class="drift-node" data-drift="2">
+              <div class="drift-node-info">
+                <span class="drift-node-icon">📉</span>
+                <span class="drift-node-name">Plasma Volume ↓</span>
+              </div>
+              <span class="drift-node-status" style="color: var(--c-purple)">Step 3</span>
+            </div>
+
+            <div class="drift-node" data-drift="3">
+              <div class="drift-node-info">
+                <span class="drift-node-icon">💔</span>
+                <span class="drift-node-name">Stroke Volume ↓</span>
+              </div>
+              <span class="drift-node-status" style="color: var(--c-blue)">Step 4</span>
+            </div>
+
+            <div class="drift-node" data-drift="4">
+              <div class="drift-node-info">
+                <span class="drift-node-icon">⚡</span>
+                <span class="drift-node-name">Heart Rate ↑</span>
+              </div>
+              <span class="drift-node-status" style="color: var(--c-green)">Final Result</span>
+            </div>
+          </div>
+
+          <div class="drift-explain-card" id="drift-explanation">
+            الجسم بيوجه دم أكتر للجلد عشان يبرد ويتخلص من الحرارة الزائدة عن طريق الاشعاع وتوسيع الأوعية.
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="widget cat-cardio" data-categories="cardio">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">09</span>
+            <h3 class="widget-title">Blood Pressure Responses</h3>
+          </div>
+          <span class="cat-tag">Cardio</span>
+        </div>
+        <div class="widget-body">
+          <div class="section-label">1. Dynamic Exercise (جيري، مشي، عجل)</div>
+          <div class="badge-row">
+            <span class="tag tag-red">Systolic (الانقباضي) ↑ <span class="recall-val eg-ar">بيزيد عشان يضخ دم أكتر</span></span>
+            <span class="tag tag-green">Diastolic (الانبساطي) ثابت <span class="recall-val eg-ar">بيفضل ثابت أو يقل شوية لتوسع الأوعية</span></span>
+          </div>
+          
+          <div class="section-label" style="margin-top:0.8rem">2. Static Exercise (شيل حديد، تمارين ثبات)</div>
+          <div class="badge-row">
+            <span class="tag tag-red">Systolic (الانقباضي) ↑↑ <span class="recall-val eg-ar">بيزيد جداً بسبب ضغط العضلات على الشرايين</span></span>
+            <span class="tag tag-red">Diastolic (الانبساطي) ↑ <span class="recall-val eg-ar">بيزيد برضه عشان مفيش ريلاكسيشن للعضلات</span></span>
+          </div>
+
+          <div class="tip-box tip-red" style="font-size: 0.75rem; margin-top: 0.5rem;">
+            <strong>ليه الـ Diastolic بيزيد في الـ Static بس؟</strong><br>
+            <span class="recall-val eg-ar">عشان انقباض العضلات القوي المستمر بيقفل الشرايين الطرفية وبيزود المقاومة الطرفية الكلية (TPR)، عكس الديناميكي اللي فيه انقباض وارتخاء متبادل.</span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 10: Endurance Adaptations & Calculator -->
+      <div class="widget cat-cardio" data-categories="cardio">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">10</span>
+            <h3 class="widget-title">Endurance Adaptations</h3>
+          </div>
+          <span class="cat-tag">Cardio</span>
+        </div>
+        <div class="widget-body">
+          <div class="section-label">Endurance Adaptations (تكيّفات التحمل الهوائي)</div>
+          <div class="badge-row">
+            <span class="tag tag-green">Resting HR ↓</span>
+            <span class="tag tag-green">SV ↑</span>
+            <span class="tag tag-green">Blood Volume ↑</span>
+            <span class="tag tag-green">VO₂ Max ↑</span>
+            <span class="tag tag-green">Mitochondria ↑</span>
+            <span class="tag tag-green">Capillaries ↑</span>
+          </div>
+          
+          <div class="row">
+            <span class="label">Haemodilution</span>
+            <span class="value eg-ar recall-val">حجم البلازما بيزيد بمعدل أسرع بكتير من زيادة خلايا الدم الحمراء، فيبان إن تركيز الهيماتوكريت قل (Hematocrit ↓) بس ده تكيف ممتاز بيسهل حركة وجريان الدم.</span>
+          </div>
+
+          <div class="section-label" style="margin-top:0.5rem">Training Zones Calculator</div>
+          <div class="calc-container">
+            <div class="calc-row">
+              <label for="user-age" style="font-size: 0.8rem; color: var(--text-muted);">Enter age to calculate zones:</label>
+              <div class="calc-input-wrapper">
+                <input type="number" id="user-age" class="calc-input" value="20" min="1" max="120">
+              </div>
+            </div>
+            <div style="font-size: 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 4px; display: flex; justify-content: space-between;">
+              <span>Max Heart Rate (MHR = 220 - age):</span>
+              <strong id="mhr-display" style="color: var(--c-orange); font-family: var(--font-en);">200 bpm</strong>
+            </div>
+            <div class="zone-bar-container">
+              <div class="zone-row">
+                <span class="zone-label"><span class="zone-color-dot" style="background: var(--c-green)"></span>Fat Burn (60-70%)</span>
+                <span class="zone-val" id="zone-fat-burn">120 - 140 bpm</span>
+              </div>
+              <div class="zone-row">
+                <span class="zone-label"><span class="zone-color-dot" style="background: var(--c-blue)"></span>Aerobic (70-80%)</span>
+                <span class="zone-val" id="zone-aerobic">140 - 160 bpm</span>
+              </div>
+              <div class="zone-row">
+                <span class="zone-label"><span class="zone-color-dot" style="background: var(--c-red)"></span>Anaerobic (80-90%)</span>
+                <span class="zone-val" id="zone-anaerobic">160 - 180 bpm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="widget cat-principles" data-categories="principles">
+        <div class="widget-header">
+          <div class="header-left">
+            <span class="widget-num">11</span>
+            <h3 class="widget-title">Hormones, Heat & Bone</h3>
+          </div>
+          <span class="cat-tag">Principles</span>
+        </div>
+        <div class="widget-body">
+          <div class="section-label">Hormone Response (during exercise)</div>
+          <div class="row">
+            <span class="label">Increases (↑)</span>
+            <span class="value"><span class="tag tag-orange">Epinephrine</span> · <span class="tag tag-orange">Norepinephrine</span> · <span class="tag tag-orange">Growth Hormone</span></span>
+          </div>
+          <div class="row">
+            <span class="label">Decreases (↓)</span>
+            <span class="value"><span class="tag tag-blue">Insulin (الخلايا بتحرق سكر من غيره)</span></span>
+          </div>
+          <div class="row">
+            <span class="label">Cortisol</span>
+            <span class="value eg-ar recall-val">بيزيد مع الاسترس والمجهود الشديد عشان يزود حرق الكارب والدهون وإنتاج الطاقة.</span>
+          </div>
+
+          <div class="section-label" style="margin-top:0.5rem">Heat Illnesses (from mild to severe)</div>
+          <div class="row">
+            <span class="label">1. Heat Syncope</span>
+            <span class="value eg-ar recall-val">دوار أو إغماء خفيف عشان الدم بيتجمع في الرجلين والمخ بيقله الدم.</span>
+          </div>
+          <div class="row">
+            <span class="label">2. Heat Exhaustion</span>
+            <span class="value eg-ar recall-val">تعب جامد وعرق غزير ودوخة بسبب نقص الماية والملح في الجسم.</span>
+          </div>
+          <div class="row">
+            <span class="label" style="color: var(--c-red); font-weight: 700;">3. Heat Stroke</span>
+            <span class="value"><span class="tag tag-red">Core Temp > 40°C · التعرق بيوقف · حالة طارئة جداً</span></span>
+          </div>
+
+          <div class="section-label" style="margin-top:0.5rem">Bone Cells response</div>
+          <div class="row">
+            <span class="label">Osteoblast</span>
+            <span class="value eg-ar recall-val">خلايا بناء العظم وترسيب الكالسيوم، بتنشط مع تمارين المقاومة وشيل الحديد.</span>
+          </div>
+          <div class="row">
+            <span class="label">Osteoclast</span>
+            <span class="value eg-ar recall-val">خلايا هدم وتكسير العظم عشان تسحب منه الكالسيوم لإعادة استخدامه.</span>
+          </div>
+        </div>
+        <div class="widget-footer">
+          <label class="reviewed-container">
+            <input type="checkbox" class="reviewed-check">
+            <span class="checkbox-custom"></span>
+            <span>Mastered</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Card 12: Interactive Quiz Component (Doctor's Key Questions) -->
+      <div class="widget full-grid quiz-card" data-categories="questions" id="doctor-quiz-section">
+        <div class="widget-header" style="border-bottom-color: rgba(255,120,30,0.3)">
+          <div class="header-left">
+            <span class="widget-num" style="color: var(--c-orange); border-color: rgba(255,120,30,0.3)">12</span>
+            <h3 class="widget-title">Interactive Revision Quiz // Top 10 Doctor's Qs</h3>
+          </div>
+          <span class="cat-tag" style="background: rgba(255,120,30,0.15); border-color: var(--c-orange);">Flashcard Quiz</span>
+        </div>
+        <div class="widget-body">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+            دول أهم 10 أسئلة بيتكرروا في امتحانات الدكتور السابقة. اختبر نفسك بيهم دلوقتي:
+          </p>
+          
+          <div class="quiz-layout">
+            
+            <!-- Active Flashcard -->
+            <div class="quiz-deck">
+              <div class="flashcard-outer" id="quiz-flashcard">
+                <div class="flashcard-inner">
+                  
+                  <div class="flashcard-front">
+                    <span class="flashcard-label" id="card-q-index">Question 1 of 10</span>
+                    <span class="flashcard-text" id="card-q-text">SA Node</span>
+                    <span class="flashcard-tip">🔍 Click card to reveal answer</span>
+                  </div>
+                  
+                  <div class="flashcard-back">
+                    <span class="flashcard-label">Correct Answer</span>
+                    <span class="flashcard-text" id="card-a-text">Pacemaker (منظم ضربات القلب)</span>
+                    <span class="flashcard-tip">Did you know it? Rate yourself:</span>
+                  </div>
+
+                </div>
+              </div>
+              
+              <div class="quiz-action-bar">
+                <button class="quiz-btn btn-retry" id="quiz-btn-fail">❌ Didn't know</button>
+                <button class="quiz-btn btn-know" id="quiz-btn-pass">✅ Got it right</button>
+              </div>
+            </div>
+
+            <!-- Questions Checklist -->
+            <div class="quiz-list" id="quiz-items-list">
+              <!-- Dynamically populated -->
+            </div>
+
+          </div>
+
+          <div class="tip-box" style="margin-top: 1rem; border-left-color: var(--c-orange); background: rgba(255,120,30,0.02); font-size: 0.8rem; font-family: var(--font-en);">
+            <strong>Quick Review Guide:</strong><br>
+            High Intensity → CHO | Low Intensity → Fat | During Exercise → Acute Response (لحظي) | After Training → Chronic Adaptation (مستمر) | Heat + Dehydration → CV Drift | Endurance Athlete → Resting HR ↓, SV ↑, VO2 Max ↑.
+          </div>
+        </div>
+        <div class="widget-footer">
+          <div style="font-size: 0.8rem; color: var(--text-muted)">
+            Quiz Score: <strong id="quiz-score" style="color: var(--c-orange); font-family: var(--font-en)">0 / 10</strong>
+          </div>
+          <button class="timer-btn" id="btn-reset-quiz">Reset Quiz</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom Navigation & Sticky Info Bar -->
+  <div class="bottom-bar">
+    <div class="bottom-info">
+      <span>Exercise Physiology Revision Hub © 2026</span>
+    </div>
+    
+    <div style="display: flex; gap: 0.5rem; align-items: center;">
+      <span class="tag tag-gray" style="font-size: 0.7rem; font-family: var(--font-en);" id="bottom-status-tag">Ready to Study</span>
+      <button class="top-scroll-btn" id="btn-back-to-top" title="Back to top">↑</button>
+    </div>
+  </div>
+
+  <!-- Interactive Scripts -->
+  <script>
+    // -------------------------------------------------------------
+    // DATA DEFINITIONS
+    // -------------------------------------------------------------
+    const muscleSteps = [
+      {
+        badge: "Acetylcholine",
+        title: "ACh Release (خروج الأسيتيل كولين)",
+        desc: "الـ Acetylcholine (ACh) بيطلع من نهاية العصب ويعدي الفراغ العصبي ويمسك في مستقبلات غشاء العضلة."
+      },
+      {
+        badge: "Calcium Release",
+        title: "Calcium Release (خروج الكالسيوم)",
+        desc: "جهد الفعل بيمشي في الـ T-tubules، ويخلي الـ Sarcoplasmic Reticulum تطلع كالسيوم كتير جوة السيتوبلازم."
+      },
+      {
+        badge: "Troponin binding",
+        title: "Troponin binding (الارتباط بالتروبونين)",
+        desc: "الكالسيوم بيمسك في الـ Troponin اللي موجود على خيوط الأكتين الرقيقة."
+      },
+      {
+        badge: "Tropomyosin moves",
+        title: "Tropomyosin moves (إزاحة التروبوميوسين)",
+        desc: "لما الكالسيوم يمسك في الـ Troponin، بيشد الـ Tropomyosin ويبعده عن مواقع الارتباط النشطة اللي على الأكتين."
+      },
+      {
+        badge: "Cross Bridge",
+        title: "Cross Bridge Formation (تكوين الجسر)",
+        desc: "رؤوس الميوسين المشحونة بالـ ATP بتمسك في الأكتين وتعمل جسر عرضي (Cross Bridge)."
+      },
+      {
+        badge: "Contraction",
+        title: "Power Stroke & Contraction (الانقباض)",
+        desc: "رؤوس الميوسين بتشد الأكتين لجوة (Power Stroke) فتقصر العضلة ويحصل الانقباض الفعلي بمساعدة الـ ATP."
+      }
+    ];
+
+    const driftDetails = [
+      "<strong>Heat (الحرارة):</strong> المجهود المستمر في الحر بيخلي الجسم يوجه دم أكتر للجلد عشان يبرد ويتخلص من الحرارة عن طريق الاشعاع وتوسيع الأوعية.",
+      "<strong>Dehydration (الجفاف):</strong> الجسم بيفقد سوائل كتير في العرق عشان يرطب الجلد.",
+      "<strong>Plasma Volume ↓ (نقص حجم البلازما):</strong> فقد السوائل بيقلل حجم البلازما، فالدم بيبقى ألزج وحجمه الكلي بيقل.",
+      "<strong>Stroke Volume ↓ (نقص حجم الضربة):</strong> لما حجم الدم اللي راجع للقلب يقل (Venous Return)، الـ Stroke Volume (حجم ضربة القلب) بيقل بالتبعية.",
+      "<strong>Heart Rate ↑ (زيادة ضربات القلب):</strong> عشان نحافظ على نتاج قلب ثابت (CO = HR × SV)، القلب بيزود ضرباته (HR) عشان يعوض النقص اللي حصل في الـ SV."
+    ];
+
+    const quizQuestions = [
+      { q: "SA Node", a: "Pacemaker (منظم ضربات القلب الطبيعي)" },
+      { q: "ATP-PCr Duration", a: "0 – 15 sec (طاقة سريعة جداً لاهوائية)" },
+      { q: "Glycolytic Duration", a: "15 sec – 2 min (بتطلع لاكتيك أسيد)" },
+      { q: "Aerobic System Duration", a: "أطول من دقيقتين (بتعتمد على الأكسجين)" },
+      { q: "Preferred Fuel (High Intensity)", a: "CHO (الكربوهيدرات لإنتاج ATP سريع)" },
+      { q: "Preferred Fuel (Low Intensity)", a: "Fat (الدهون لإنتاج طاقة مستمرة)" },
+      { q: "Lactate Threshold", a: "اللاكتيك بيتراكم أسرع من التخلص منه (Production > Removal)" },
+      { q: "Cardiac Output Formula", a: "CO = HR × SV (نتاج القلب = النبض × حجم الضربة)" },
+      { q: "Cardiovascular Drift Cause", a: "زيادة ضربات القلب (HR ↑) لتعويض نقص حجم الضربة (SV ↓)" },
+      { q: "Osteoblast Function", a: "بناء وتكلس العظام (Bone Formation) مع التمارين والحديد" }
+    ];
+
+    // State Variables
+    let activeRecall = false;
+    let reviewedCount = 0;
+    const totalWidgets = 12;
+    
+    // Stopwatch variables
+    let timerInterval = null;
+    let totalSeconds = 0;
+    
+    // Stepper state
+    let currentStep = 0;
+    
+    // Quiz state
+    let currentQuizIndex = 0;
+    let quizStates = Array(quizQuestions.length).fill(null); // 'pass' or 'fail'
+
+    // Load saved review state from localStorage if available
+    document.addEventListener("DOMContentLoaded", () => {
+      initProgress();
+      initMuscleStepper();
+      initDriftFlow();
+      initQuiz();
+      updateZones();
+      
+      // Event listener for age input in calculator
+      document.getElementById("user-age").addEventListener("input", updateZones);
+      
+      // Event listener for search bar
+      document.getElementById("search-bar").addEventListener("input", handleSearch);
+      
+      // Event listeners for tabs
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          filterCards(btn.getAttribute("data-filter"));
+        });
+      });
+
+      // Recall mode toggle
+      const recallToggle = document.getElementById("recall-toggle");
+      recallToggle.addEventListener("change", (e) => {
+        activeRecall = e.target.checked;
+        if (activeRecall) {
+          document.body.classList.add("active-recall-on");
+          document.getElementById("bottom-status-tag").innerText = "Active Recall Active 🧠";
+          document.getElementById("bottom-status-tag").className = "tag tag-orange";
+        } else {
+          document.body.classList.remove("active-recall-on");
+          // Remove revealed class from all when toggle is off
+          document.querySelectorAll(".recall-val").forEach(el => el.classList.remove("revealed"));
+          document.getElementById("bottom-status-tag").innerText = "Ready to Study";
+          document.getElementById("bottom-status-tag").className = "tag tag-gray";
+        }
+      });
+
+      // Individual recall values click handler
+      document.addEventListener("click", (e) => {
+        if (activeRecall && e.target.classList.contains("recall-val")) {
+          e.target.classList.toggle("revealed");
+        }
+      });
+
+      // Timer triggers
+      document.getElementById("btn-timer-toggle").addEventListener("click", toggleTimer);
+      document.getElementById("btn-timer-reset").addEventListener("click", resetTimer);
+
+      // Back to top scroll
+      document.getElementById("btn-back-to-top").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // -------------------------------------------------------------
+    // STUDY PROGRESS PROGRESS-BAR LOGIC
+    // -------------------------------------------------------------
+    function initProgress() {
+      const checkboxes = document.querySelectorAll(".reviewed-check");
+      
+      // Load saved preferences if any
+      const savedState = JSON.parse(localStorage.getItem("physio_revision_reviewed") || "[]");
+      checkboxes.forEach((cb, idx) => {
+        if (savedState.includes(idx)) {
+          cb.checked = true;
+        }
+        cb.addEventListener("change", () => {
+          saveProgressState();
+          updateProgressBar();
+        });
+      });
+      
+      updateProgressBar();
+    }
+
+    function saveProgressState() {
+      const indexes = [];
+      document.querySelectorAll(".reviewed-check").forEach((cb, idx) => {
+        if (cb.checked) indexes.push(idx);
+      });
+      localStorage.setItem("physio_revision_reviewed", JSON.stringify(indexes));
+    }
+
+    function updateProgressBar() {
+      let checkedCount = 0;
+      const checkboxes = document.querySelectorAll(".reviewed-check");
+      checkboxes.forEach(cb => {
+        if (cb.checked) checkedCount++;
+      });
+
+      // Check if quiz section is completed (all 10 questions answered)
+      const answeredQuizCount = quizStates.filter(s => s !== null).length;
+      let quizScoreWeight = 0;
+      if (answeredQuizCount === quizQuestions.length) {
+        quizScoreWeight = 1; // Count quiz card as completed
+        document.querySelector("#doctor-quiz-section .reviewed-check")?.setAttribute('checked', 'true');
+      }
+
+      reviewedCount = checkedCount + quizScoreWeight;
+      const percentage = Math.round((reviewedCount / totalWidgets) * 100);
+      
+      document.getElementById("progress-percent").innerText = `${percentage}%`;
+      document.getElementById("progress-text").innerText = `${reviewedCount} / ${totalWidgets} cards`;
+      document.getElementById("progress-bar").style.width = `${percentage}%`;
+    }
+
+    // -------------------------------------------------------------
+    // SEARCH & FILTER FUNCTIONALITY
+    // -------------------------------------------------------------
+    function handleSearch(e) {
+      const term = e.target.value.toLowerCase().trim();
+      const widgets = document.querySelectorAll(".widget");
+      
+      widgets.forEach(widget => {
+        const text = widget.innerText.toLowerCase();
+        if (text.includes(term)) {
+          widget.style.display = "";
+        } else {
+          widget.style.display = "none";
+        }
+      });
+    }
+
+    function filterCards(category) {
+      const widgets = document.querySelectorAll(".widget");
+      document.getElementById("search-bar").value = ""; // Clear search on filter change
+      
+      widgets.forEach(widget => {
+        if (category === "all") {
+          widget.style.display = "";
+          return;
+        }
+        
+        const cardCategories = widget.getAttribute("data-categories");
+        if (cardCategories && cardCategories.includes(category)) {
+          widget.style.display = "";
+        } else {
+          widget.style.display = "none";
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // STUDY SESSION TIMER
+    // -------------------------------------------------------------
+    function toggleTimer() {
+      const btn = document.getElementById("btn-timer-toggle");
+      const status = document.getElementById("timer-status");
+      
+      if (timerInterval) {
+        // Pause timer
+        clearInterval(timerInterval);
+        timerInterval = null;
+        btn.innerText = "Resume Timer";
+        status.innerText = "Paused";
+        status.style.color = "var(--c-orange)";
+      } else {
+        // Start timer
+        timerInterval = setInterval(() => {
+          totalSeconds++;
+          const hrs = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+          const mins = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+          const secs = (totalSeconds % 60).toString().padStart(2, '0');
+          document.getElementById("timer-display").innerText = `${hrs}:${mins}:${secs}`;
+        }, 1000);
+        
+        btn.innerText = "Pause";
+        status.innerText = "Active ⏱️";
+        status.style.color = "var(--c-green)";
+      }
+    }
+
+    // -------------------------------------------------------------
+    // TIMER RESET
+    // -------------------------------------------------------------
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      totalSeconds = 0;
+      document.getElementById("timer-display").innerText = "00:00:00";
+      document.getElementById("btn-timer-toggle").innerText = "Start Timer";
+      const status = document.getElementById("timer-status");
+      status.innerText = "Stopped";
+      status.style.color = "var(--text-muted)";
+    }
+
+    // -------------------------------------------------------------
+    // WIDGET 6: INTERACTIVE MUSCLE STEPPER
+    // -------------------------------------------------------------
+    function initMuscleStepper() {
+      const prevBtn = document.getElementById("step-prev-btn");
+      const nextBtn = document.getElementById("step-next-btn");
+      
+      prevBtn.addEventListener("click", () => navigateMuscleStep(-1));
+      nextBtn.addEventListener("click", () => navigateMuscleStep(1));
+      
+      // Dot buttons
+      document.querySelectorAll(".step-dot").forEach(dot => {
+        dot.addEventListener("click", () => {
+          const target = parseInt(dot.getAttribute("data-step"));
+          goToMuscleStep(target);
+        });
+      });
+      
+      goToMuscleStep(0);
+    }
+
+    function navigateMuscleStep(direction) {
+      let target = currentStep + direction;
+      if (target >= 0 && target < muscleSteps.length) {
+        goToMuscleStep(target);
+      }
+    }
+
+    function goToMuscleStep(idx) {
+      currentStep = idx;
+      const step = muscleSteps[idx];
+      
+      document.getElementById("step-index-display").innerText = `Step ${idx + 1} of ${muscleSteps.length}`;
+      document.getElementById("step-badge").innerText = step.badge;
+      document.getElementById("step-title-display").innerText = step.title;
+      document.getElementById("step-desc-display").innerText = step.desc;
+      
+      // Update disabled status of controls
+      document.getElementById("step-prev-btn").disabled = (idx === 0);
+      document.getElementById("step-next-btn").disabled = (idx === muscleSteps.length - 1);
+      
+      // Update dots UI
+      const dots = document.querySelectorAll(".step-dot");
+      dots.forEach((dot, dIdx) => {
+        if (dIdx === idx) {
+          dot.classList.add("active");
+        } else {
+          dot.classList.remove("active");
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // WIDGET 8: INTERACTIVE CARDIOVASCULAR DRIFT
+    // -------------------------------------------------------------
+    function initDriftFlow() {
+      const nodes = document.querySelectorAll(".drift-node");
+      nodes.forEach(node => {
+        node.addEventListener("click", () => {
+          nodes.forEach(n => n.classList.remove("active-step"));
+          node.classList.add("active-step");
+          const idx = parseInt(node.getAttribute("data-drift"));
+          document.getElementById("drift-explanation").innerHTML = driftDetails[idx];
+        });
+      });
+    }
+
+    // -------------------------------------------------------------
+    // WIDGET 10: ENDURANCE TRAINING ZONES CALCULATOR
+    // -------------------------------------------------------------
+    function updateZones() {
+      const ageVal = parseInt(document.getElementById("user-age").value) || 20;
+      const mhr = 220 - ageVal;
+      
+      document.getElementById("mhr-display").innerText = `${mhr} bpm`;
+      
+      const fatMin = Math.round(mhr * 0.60);
+      const fatMax = Math.round(mhr * 0.70);
+      const aeroMin = Math.round(mhr * 0.70);
+      const aeroMax = Math.round(mhr * 0.80);
+      const anaeroMin = Math.round(mhr * 0.80);
+      const anaeroMax = Math.round(mhr * 0.90);
+      
+      document.getElementById("zone-fat-burn").innerText = `${fatMin} - ${fatMax} bpm`;
+      document.getElementById("zone-aerobic").innerText = `${aeroMin} - ${aeroMax} bpm`;
+      document.getElementById("zone-anaerobic").innerText = `${anaeroMin} - ${aeroMax} bpm`;
+    }
+
+    // -------------------------------------------------------------
+    // WIDGET 12: INTERACTIVE QUESTIONS QUIZ DECK
+    // -------------------------------------------------------------
+    function initQuiz() {
+      const itemsList = document.getElementById("quiz-items-list");
+      itemsList.innerHTML = "";
+      
+      // Generate quiz question list items on the right side
+      quizQuestions.forEach((item, idx) => {
+        const div = document.createElement("div");
+        div.className = `quiz-list-item ${idx === 0 ? 'active' : ''}`;
+        div.setAttribute("data-index", idx);
+        div.innerHTML = `
+          <span class="qli-num">${(idx + 1).toString().padStart(2, '0')}</span>
+          <span class="qli-q">${item.q}</span>
+          <span class="qli-status" id="qli-status-${idx}">⚪</span>
+        `;
+        div.addEventListener("click", () => selectQuizCard(idx));
+        itemsList.appendChild(div);
+      });
+      
+      // Flip flashcard event
+      const flashcard = document.getElementById("quiz-flashcard");
+      flashcard.addEventListener("click", () => {
+        flashcard.classList.toggle("flipped");
+      });
+      
+      // Pass / Fail events
+      document.getElementById("quiz-btn-pass").addEventListener("click", () => markQuizCard('pass'));
+      document.getElementById("quiz-btn-fail").addEventListener("click", () => markQuizCard('fail'));
+      document.getElementById("btn-reset-quiz").addEventListener("click", resetQuiz);
+      
+      loadQuizCard(0);
+    }
+
+    function selectQuizCard(idx) {
+      // Unflip card first to prevent showing answer of new card immediately
+      const flashcard = document.getElementById("quiz-flashcard");
+      flashcard.classList.remove("flipped");
+      
+      // Set active indicator in list
+      document.querySelectorAll(".quiz-list-item").forEach(item => item.classList.remove("active"));
+      document.querySelector(`.quiz-list-item[data-index="${idx}"]`).classList.add("active");
+      
+      currentQuizIndex = idx;
+      loadQuizCard(idx);
+    }
+
+    function loadQuizCard(idx) {
+      const item = quizQuestions[idx];
+      document.getElementById("card-q-index").innerText = `Question ${idx + 1} of ${quizQuestions.length}`;
+      document.getElementById("card-q-text").innerText = item.q;
+      document.getElementById("card-a-text").innerText = item.a;
+    }
+
+    function markQuizCard(status) {
+      quizStates[currentQuizIndex] = status;
+      
+      // Update UI elements in the sidebar checklist
+      const itemEl = document.querySelector(`.quiz-list-item[data-index="${currentQuizIndex}"]`);
+      const statusIcon = document.getElementById(`qli-status-${currentQuizIndex}`);
+      
+      itemEl.classList.remove("known", "retry");
+      
+      if (status === 'pass') {
+        itemEl.classList.add("known");
+        statusIcon.innerText = "✅";
+      } else {
+        itemEl.classList.add("retry");
+        statusIcon.innerText = "❌";
+      }
+      
+      // Automatically advance to the next unanswered card if exists
+      let nextIdx = (currentQuizIndex + 1) % quizQuestions.length;
+      
+      // Update Quiz Score Text
+      const passes = quizStates.filter(s => s === 'pass').length;
+      document.getElementById("quiz-score").innerText = `${passes} / ${quizQuestions.length}`;
+      
+      // Update study progress bar
+      updateProgressBar();
+      
+      // Delay transition slightly for flipping effect
+      setTimeout(() => {
+        selectQuizCard(nextIdx);
+      }, 300);
+    }
+
+    function resetQuiz() {
+      quizStates = Array(quizQuestions.length).fill(null);
+      document.getElementById("quiz-score").innerText = `0 / ${quizQuestions.length}`;
+      
+      document.querySelectorAll(".quiz-list-item").forEach((item, idx) => {
+        item.classList.remove("known", "retry", "active");
+        if (idx === 0) item.classList.add("active");
+        document.getElementById(`qli-status-${idx}`).innerText = "⚪";
+      });
+      
+      selectQuizCard(0);
+      updateProgressBar();
+    }
+  </script>
+</body>
+
+</html>

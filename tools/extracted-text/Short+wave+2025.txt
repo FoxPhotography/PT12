@@ -1,0 +1,452 @@
+=== PAGE 1 ===
+SHORT WAVE
+Prof DR. Mahmoud Mohamed Ewidea
+Dean faculty of physical therapy
+
+
+=== PAGE 2 ===
+DEFINITION OF SHORT WAVE  
+• Shortwave means the application of 
+high frequency electrical energy to the 
+body tissues in order to bring 
+physiological and therapeutic effects, 
+these effects can be achieved by 
+thermal or non thermal effect.
+
+
+=== PAGE 3 ===
+• There Are Two Circuits Here:
+1. Machine circuit : composed of a high 
+frequency generator, amplifier, oscillator 
+coil.
+2. Patient circuit: composed of a resonator 
+coil, variable capacitor, electrodes and the 
+treated tissue. 
+
+=== PAGE 4 ===
+
+
+=== PAGE 5 ===
+SHORTWA VE PRODUCES BOTH 
+ELECTRIC AND MAGNETIC 
+FIELDS.
+
+=== PAGE 6 ===
+THE AMOUNT 
+OF ELECTRIC 
+FIELD TO 
+MAGNETIC 
+FIELD IS 
+DEPENDENT 
+ON:
+1. The characteristic of the machine itself 
+(dependent on the manufacturer).
+2. The type of electrodes that we use.
+3. Shortwave Can Be Used in Two Modes:
+• Continuous (energy is emitted all the time).
+• Pulsed (energy is emitted part of the time).
+
+=== PAGE 7 ===
+PULSED 
+SHORT 
+WAVE
+When using 
+the pulsed 
+shortwave, 
+there are 
+certain 
+parameters 
+that we 
+need to 
+know:
+Pulse width: measured 
+by micro seconds.
+Pulse frequency: how 
+many pulses we have 
+per second measured 
+by Hz or pulses per 
+second (PPS) 
+
+=== PAGE 8 ===
+HOW COULD WE PRODUCE ENERGY 
+INTO THE BODY WITHOUT CAUSING 
+HEAT PRODUCTION
+
+=== PAGE 9 ===
+PULSED SHORT 
+WAVE
+The off time with pulsed shortwave is longer 
+than the on time which allows the 
+dissipation of heat.
+The interpulse period gives time for the heat 
+to dissipate.
+If the interpulse is short, heat will develop, 
+because there is no time for the effect to 
+dissipate within the body.
+Pulsed shortwave can only be non thermal 
+if short pulses, low pulse repetition rate and 
+short treatment duration is being used.
+
+=== PAGE 10 ===
+
+
+=== PAGE 11 ===
+ADVANTAGES 
+OF 
+SHORTWAVE:
+The deep penetration, it goes deep to 5cm.
+You can use it while attending to another 
+patient, which allows you to manage your time 
+in the clinic.
+It covers large areas.
+It can heat the deeper tissue without heating 
+the superficial tissue
+It can be used with sensitive tissues because it 
+doesn’t need to be in contact with the treated 
+tissue.
+
+=== PAGE 12 ===
+
+
+=== PAGE 13 ===
+Effects on 
+Tissue
+• Skin & Subcutaneous Tissue: Mild warming; increased 
+capillary permeability
+• Muscle: Relaxation of spasm; ↑ extensibility; reduced 
+muscle viscosity
+• Connective Tissue: Elastic collagen fibers become 
+more pliable; improved range of motion
+• Bone & Cartilage: Limited direct heating; however, 
+surrounding tissue warming can aid joint mobility
+• Cellular Level: PSWD promotes ATP synthesis, protein 
+synthesis, and mitotic activity—key for tissue repair
+
+=== PAGE 14 ===
+
+
+=== PAGE 15 ===
+
+
+=== PAGE 16 ===
+TYPES OF 
+ELECTRODES:
+1) Flexible plates
+2) Space electrode
+3) Monode 
+4) Minod 
+5) Diplode 
+6) Coil
+
+=== PAGE 17 ===
+Flexible pad Space plate Minod -monode  diplode coil 
+  
+ 
+ 
+ 
+ 
+
+
+=== PAGE 18 ===
+METHODS OF 
+SHORTWAVE 
+APPLICATION
+*Capacitive method.                                                   
+* Inductive method
+
+
+=== PAGE 19 ===
+*CAPACITIVE METHOD.
+Air space 
+plates
+Pad 
+electrodes.
+
+=== PAGE 20 ===
+CAPACITANCE 
+SWD
+Places the patient within the actual 
+circuit of the machine’s energy.
+Creates a stronger electrical field.
+Produces more heating in the 
+superficial tissues (adipose tissue) and 
+bone/muscle interface.
+As the current flows through the tissue, 
+it causes oscillation of charged particle 
+and thus increases tissue temperature.
+
+
+=== PAGE 21 ===
+CAPACITANCE 
+SWD
+
+
+=== PAGE 22 ===
+AIR SPACE 
+PLATES:
+They come in different sizes.
+Can be used in almost every part of the body, but 
+because they are rigid they will not fit every contour.
+It can be put on either side of the limb, or can be used in 
+the same side.
+If the electrodes are placed on the same side there should 
+be a distance between the electrodes, because if there is 
+no distance there would be a shock, so we need to put a 
+distance equal the diameter of the electrode.
+
+=== PAGE 23 ===
+Skin-electrode distance: is the distance 
+between the electrode and the skin.
+If we place to electrodes at the same distance 
+there will be even heating.
+If we placed one electrode closer to the skin 
+than the other, the heating won’t be even, it will 
+be more near the closer electrode (superficial 
+heat).
+If we used a large electrode and a small one 
+the heating will be more near the small (deep 
+heat).
+
+=== PAGE 24 ===
+
+
+=== PAGE 25 ===
+PAD ELECTRODES:
+They are malleable metal 
+covered with a thin layer of 
+rubber
+They must have uniform 
+contact pressure on the 
+body
+Towels are used  to prevent 
+burns
+When using them you 
+should insure it is in full 
+contact.
+We have to rap it in towel 
+that is 2 cm thick, less than 
+that could cause a burn, 
+more than that will affect 
+the amount of heating 
+created in the body.
+Distance between the 
+electrodes should be equal 
+the diameter of the 
+electrode, if it is less than 
+that there will be a shock.
+
+=== PAGE 26 ===
+PAD ELECTRODES
+
+
+=== PAGE 27 ===
+INDUCTIVE 
+METHOD:
+A coil is housed within a drum
+It is known to heat the deeper tissue without heating 
+the superficial tissue.
+Penetration to 3 - 5cm.
+Make sure that the fat layer of the patient is not more 
+than 2cm, because the penetration will be limited 
+and the absorption of heat will accumulate in the fat 
+layer which might cause a burn.
+
+=== PAGE 28 ===
+The tissues that are heated are 
+blood vessels, muscles and sweat.
+Current flowing within the coil 
+produces a rotating magnetic field
+Magnetic field produces eddy 
+currents in the tissues
+Eddy currents cause friction that 
+produce heat
+
+=== PAGE 29 ===
+• Usually used for limbs
+• Used in two ways: 
+• wrapped around the 
+part being treated.
+• Pancake (usually used 
+on the back).
+
+
+=== PAGE 30 ===
+A PANCAKE APPLICATION OF 
+INDUCTIVE SW
+
+
+=== PAGE 31 ===
+• When wrapping, the space between one turn and 
+the other should be 5 to 10cm and it is insure by felt 
+spacers (comes from the manufacturer).
+• It is known to heat the deeper tissue without heating 
+the superficial tissue.
+• The tissues are placed in the electromagnetic field 
+by the use of an insulated cable or coil electrode 
+which is available in two forms Cable Electrodes and 
+Drum Electrodes. 
+
+=== PAGE 32 ===
+CAPACITANCE VS. INDUCTION
+induction
+capactiance
+
+=== PAGE 33 ===
+*Capacitive application produces more heating 
+in the superficial tissues (adipose tissue) and 
+bone/muscle interface while Induction 
+application produces more heating in muscular 
+tissue. Why?
+
+=== PAGE 34 ===
+• SWD applicators differ in how they deliver energy—and thus where that 
+energy concentrates—based on tissue conductivity (σ) and impedance 
+(Z).
+1.Capacitive (Plate‐to‐Plate) Application
+1.Mechanism: Two opposing metal plates create an oscillating electric 
+field. Current flows from one plate, through the patient’s tissues, to 
+the other plate.
+2.Heat Generation:
+• P = I²·R (Joule’s law). Low-conductivity tissues (i.e., adipose, high R) 
+force higher voltage drops → greater local heating.
+• At interfaces (e.g., bone/muscle), abrupt changes in σ cause 
+concentration of the electric field → “hot spots.”
+3.Depth Profile:
+• Most energy is absorbed in the first few centimeters, especially in 
+fat layers and at tissue boundaries.
+
+=== PAGE 35 ===
+• Induction (Drum or Coil) Application
+• Mechanism: A coil produces a time‐varying magnetic field that penetrates 
+tissues unimpeded. This induces circular eddy currents in conductive tissues.
+• Heat Generation:
+• Eddy currents preferentially flow where σ is highest—namely muscle (high 
+water/ion content).
+• Lower resistance means more current but less voltage drop; because of the 
+large current loops, total heating remains greatest in muscle.
+• Depth Profile:
+• Magnetic fields are not shunted by superficial fat; they penetrate more 
+uniformly, focusing heating in deeper, well-perfused musculature.
+
+=== PAGE 36 ===
+TAKE A MESSAGE
+• Choose capacitive SWD for superficial heating 
+(e.g., adipose-rich regions, bone/muscle 
+interfaces) and inductive SWD when you want 
+to target deep, high-conductivity muscle 
+tissue.
+
+=== PAGE 37 ===
+ANSWER IN 
+ANOTHER 
+MEAN
+The strength of magnetic field is affected by 
+the distance of tissue from the applicator 
+according to inverse square law.
+The strength of the induced eddy currents is 
+determined by: 
+- Strength of the magnetic field in the area 
+- Electrical conductivity of the tissue in the 
+area.
+
+=== PAGE 38 ===
+• The electrical conductivity  of tissue depends 
+primarily on 
+•    1- Tissue type.                                       2- Frequency of the 
+signal being applied.
+• Metals and tissues with a high water and electrolyte 
+content, such as muscle or synovial fluid, have high 
+electrical conductivity, whereas tissues with low water 
+content, such as fat, bone, and collagen, have low 
+electrical conductivity.
+• Thus, inductive coils can heat both deep and superficial 
+tissues, but they produce the most heat in tissues with the 
+highest electrical conductivity.
+
+=== PAGE 39 ===
+• the dielectric characteristics of tissues can also 
+cause different temperature variations in them, since 
+they offer variable resistance to the current passage. 
+Thus, tissues like the adipose offer a high resistance 
+to the current passage, and present a superior 
+heating when compared to the muscular tissue, 
+which due to its greater amount of electrolytes, 
+presents a lower resistance to the radiofrequency 
+currents.
+
+=== PAGE 40 ===
+METHODS 
+OF 
+APPLYING 
+THE 
+ELECTRODES:
+Contraplanar electrodes are placed on 
+opposite sides of the part, to treat 
+deeply placed structures.
+Coplanar: electrodes are placed on the 
+same side of the part to treat more 
+superficial structures.
+Cross-fire: half the treatment is given with the 
+electrodes in a diagonal way, the other half of 
+the treatment is put on the opposite way. This 
+method is usually used for sinuses and body 
+cavities such as the uterus. 
+Longitudinal: one flexible 
+electrode is used with a space 
+electrode. 
+
+=== PAGE 41 ===
+ 
+Photo (1 ) contraplaner technique 
+ 
+Photo (2 ) longitudinal technique 
+  
+Photo (3 ) contraplanner technique 
+ 
+
+
+=== PAGE 42 ===
+Co planer technique
+
+=== PAGE 43 ===
+FACTORS INFLUENCING THE FIELD:
+• 1-spacing of electrode: 
+• -Normal spacing of electrodes                  (2-4cm) uniform 
+field. 
+• -Closely spaced electrodes                    superficial heating 
+• -Far spaced electrode                                 deep heating 
+• -Unequal spacing of electrode                        more heat             
+concentrated under closer electrode. 
+
+=== PAGE 44 ===
+Short distance superficial 
+heat will be. 
+Long distance    deep 
+heat will be.
+
+
+=== PAGE 45 ===
+FACTORS INFLUENCING THE FIELD:
+2-Size of electrode: 
+-Uniform field                 electrode is little larger than the part 
+-Too small                 superficial heat 
+-Too big              heat loss 
+-Unequal size                  more heat concentrated under smaller electrode
+
+=== PAGE 46 ===
+FACTORS INFLUENCING THE FIELD:
+• 3-Position of electrode relative to tissues 
+• -Electrode parallel to the skin            Uniform field 
+• -Metal inside the tissue                  concentration of field at 
+metal as has least impedance and leads to burn 
+• -Air in cavities (uterus and sinuses)                 field deviated to 
+avoid it as air offers a high resistance, so the surface of 
+cavity is only heated.
+
+=== PAGE 47 ===
+SINUS
+
+
+=== PAGE 48 ===
+
+

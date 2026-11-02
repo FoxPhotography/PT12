@@ -1,0 +1,3980 @@
+<!DOCTYPE html>
+
+<html dir="ltr" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>أسئلة الامتحان — Physiology Motor CNS</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --bg: #0a0c10;
+      --bg2: #0f1218;
+      --bg3: #141820;
+      --card: #13171f;
+      --card2: #1a1f2a;
+      --border: #1e2535;
+      --border2: #2a3248;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --dim: #4a5568;
+      --blue: #3b82f6;
+      --blue2: #1d4ed8;
+      --cyan: #06b6d4;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --orange: #f97316;
+      --glow-blue: 0 0 20px rgba(59, 130, 246, 0.25);
+      --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 50px 0 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.06) 0%, transparent 100%);
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--blue);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .header-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      animation: fadeDown 0.6s 0.1s ease both;
+      background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 14px;
+      animation: fadeDown 0.6s 0.2s ease both;
+      direction: ltr;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      animation: fadeDown 0.6s 0.3s ease both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--blue);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 12, 16, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 14px 18px;
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      color: var(--text);
+    }
+
+    .nav-btn.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .topic-group {
+      margin-bottom: 32px;
+    }
+
+    .topic-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topic-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .topic-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .topic-count {
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .q-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .q-card:hover {
+      border-color: var(--border2);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .q-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      cursor: pointer;
+    }
+
+    .q-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .q-text {
+      font-size: 14.5px;
+      font-weight: 600;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .q-toggle {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 12px;
+      transition: all 0.2s;
+      margin-top: 1px;
+    }
+
+    .q-card.open .q-toggle {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: var(--blue);
+      transform: rotate(180deg);
+    }
+
+    .q-body {
+      display: none;
+      padding: 0 20px 18px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .q-card.open .q-body {
+      display: block;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      font-size: 13.5px;
+      line-height: 1.5;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      border-color: var(--border2);
+      background: var(--card);
+    }
+
+    .q-card.answered .option,
+    .show-all-mode .option {
+      pointer-events: none;
+    }
+
+    .q-card.answered .option.correct,
+    .show-all-mode .option.correct {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.07);
+      color: #6ee7b7;
+      opacity: 1;
+    }
+
+    .q-card.answered .option:not(.correct):not(.wrong-selected),
+    .show-all-mode .option:not(.correct) {
+      opacity: 0.45;
+    }
+
+    .opt-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .q-card.answered .option.correct .opt-letter,
+    .show-all-mode .option.correct .opt-letter {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--green);
+    }
+
+    .q-card.answered .option.correct .opt-letter::after,
+    .show-all-mode .option.correct .opt-letter::after {
+      content: '✓';
+    }
+
+    .option.wrong-selected {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.07);
+      color: #fca5a5;
+      opacity: 1 !important;
+    }
+
+    .option.wrong-selected .opt-letter {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: var(--red);
+    }
+
+    .option.wrong-selected .opt-letter::after {
+      content: '✗';
+    }
+
+    @keyframes popCorrect {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+        background: rgba(16, 185, 129, 0.15);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .pop-animation {
+      animation: popCorrect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .note-box {
+      margin-top: 12px;
+      background: rgba(245, 158, 11, 0.07);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-right: 3px solid var(--yellow);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #fcd34d;
+      line-height: 1.7;
+      direction: ltr;
+    }
+
+    .note-box.blue {
+      background: rgba(59, 130, 246, 0.07);
+      border-color: rgba(59, 130, 246, 0.2);
+      border-right-color: var(--blue);
+      color: #93c5fd;
+    }
+
+    .note-box.red {
+      background: rgba(239, 68, 68, 0.07);
+      border-color: rgba(239, 68, 68, 0.2);
+      border-right-color: var(--red);
+      color: #fca5a5;
+    }
+
+    .search-wrap {
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      padding: 14px 20px 14px 48px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input::placeholder {
+      color: var(--dim);
+    }
+
+    .search-input:focus {
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dim);
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .ic-blue {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--blue);
+    }
+
+    .ic-green {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--green);
+    }
+
+    .ic-yellow {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--yellow);
+    }
+
+    .ic-red {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--red);
+    }
+
+    .ic-purple {
+      background: rgba(139, 92, 246, 0.12);
+      color: var(--purple);
+    }
+
+    .ic-cyan {
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--cyan);
+    }
+
+    .ic-orange {
+      background: rgba(249, 115, 22, 0.12);
+      color: var(--orange);
+    }
+
+    .ic-pink {
+      background: rgba(236, 72, 153, 0.12);
+      color: var(--pink);
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 10px;
+    }
+
+    .summary-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .sum-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .sum-row:hover {
+      border-color: var(--border2);
+    }
+
+    .sum-key {
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      flex: 1;
+      border-left: 1px solid var(--border);
+    }
+
+    .sum-val {
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      width: 220px;
+      background: var(--bg2);
+      flex-shrink: 0;
+    }
+
+    @media (max-width:640px) {
+      .stats-bar {
+        gap: 24px;
+      }
+
+      .sum-val {
+        width: 150px;
+        font-size: 11px;
+      }
+
+      .nav-btn {
+        padding: 12px 12px;
+        font-size: 12px;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+    }
+
+    .metabolism-badge {
+      display: inline-block;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: var(--red);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-right: 8px;
+      vertical-align: middle;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .q-card.excluded {
+      opacity: 0.7;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+  </style>
+</head>
+<body>
+<header>
+<div class="header-badge">Physiology CNS Exam</div>
+<h1>أسئلة الامتحان المجمّعة</h1>
+<p class="subtitle">Physiology · Motor CNS · Reflexes · Metabolism · Exercise</p>
+<div class="stats-bar">
+<div class="stat">
+<div class="stat-num">179</div>
+<div class="stat-label">سؤال MCQ</div>
+</div>
+<div class="stat">
+<div class="stat-num">25</div>
+<div class="stat-label">موضوع</div>
+</div>
+<div class="stat" id="score-stat">
+<div class="stat-num">0/179</div>
+        <div class="stat-label">الإجابات الصحيحة</div>
+</div>
+</div>
+</header>
+<nav class="nav">
+<button class="nav-btn active" onclick="showSection('mcq')">📋 MCQ</button>
+<button class="nav-btn" onclick="showSection('summary')">⚡ ملخص سريع</button>
+<button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار كل الإجابات</button>
+<button class="nav-btn" onclick="retest()">🔄 إعادة الاختبار</button>
+</nav>
+<main>
+<div class="section active" id="mcq">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" placeholder="... ابحث عن سؤال" oninput="searchQ(this.value)">
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-blue">🧬</div>
+      <div class="topic-title">Muscle Spindle & Intrafusal Fibers</div>
+      <div class="topic-count">15 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q1</div>
+        <div class="q-text">Muscle spindle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is encapsulated mechanoreceptor that detects muscle tension.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Contains extrafusal fibers sensitive to stretch.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Attached to tendon of origin only and not to tendon of insertion.</div>
+          <div class="option correct"><div class="opt-letter"></div>Contains 2 types of intrafusal fibers which are sensitive to stretch.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q2</div>
+        <div class="q-text">Muscle spindles:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Are found in all skeletal muscles.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Are found only in large skeletal muscles.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Consist of small numbers of extrafusal muscle fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Consist of a large number of extrafusal muscle fibers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q3</div>
+        <div class="q-text">The nuclear-bag fibers of muscle spindles are innervated by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Aγ nerve fibers</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Aβ nerve fibers</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Aδ nerve fibers</div>
+          <div class="option correct"><div class="opt-letter"></div>Ia nerve fibers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q4</div>
+        <div class="q-text">The nuclear-chain fibers of spindles are innervated by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Aα and Aδ nerve fibers</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Aδ and C nerve fibers</div>
+          <div class="option correct"><div class="opt-letter"></div>Ia and II nerve fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Only type II nerve fibers</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q5</div>
+        <div class="q-text">Nuclear bag fibers in muscle spindle are:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Slowly responding.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Slowly adapting.</div>
+          <div class="option correct"><div class="opt-letter"></div>Rapidly responding.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Connected to secondary ending.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Responsible for static stretch reflex.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q6</div>
+        <div class="q-text">Intrafusal fibers, all are true EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter">A</div>Nuclear bag fibers respond to degree of stretch.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Nuclear chain fibers are tonic receptors.</div>
+          <div class="option wrong"><div class="opt-letter"></div>Nuclear bag fibers are phasic receptors.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q7</div>
+        <div class="q-text">Intrafusal fibers:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Are innervated by alpha motor neurons.</div>
+          <div class="option correct"><div class="opt-letter"></div>Are innervated by 2 types of afferents.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Primary afferents innervate nuclear bag fibers only.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Secondary afferents innervate both types of intrafusal fibers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q8</div>
+        <div class="q-text">The muscle spindle is not innervated by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Aα fibers.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Aγ fibers</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Ia fibers</div>
+          <div class="option wrong"><div class="opt-letter">D</div>II fibers</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q9</div>
+        <div class="q-text">Gamma-motor innervation of muscle spindles produces:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Contraction of the central region of the spindle fibers.</div>
+          <div class="option correct"><div class="opt-letter"></div>Increased sensory discharge from the central region of the spindle fibers.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Decreased sensory discharge from the central region of the spindle fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Relaxation of the peripheral regions of the spindle fibers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q10</div>
+        <div class="q-text">Discharge from muscle spindles could be increased by all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Increased α-motor neuron discharge.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Increased γ-motor neuron discharge.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Stretch of the intrafusal muscle fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Stretch of the extrafusal muscle fibers.</div>
+        </div>
+        <div class="note-box red">α-motor neuron discharge shortens extrafusal fibers → unloads spindle → DECREASES discharge</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q11</div>
+        <div class="q-text">Increased γ-motor neuron discharge stimulates muscle spindles, because:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>It produces stretch of the extrafusal muscle fibers.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>It causes stretch of the peripheral regions of the intrafusal fibers.</div>
+          <div class="option correct"><div class="opt-letter"></div>It causes stretch of the central region of the intrafusal fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>It stimulates directly the sensory fibers innervating muscle spindles.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q12</div>
+        <div class="q-text">The central ends of afferents from muscle spindles synapse with all the following types of neurons, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>α-motor neurons of the same muscle.</div>
+          <div class="option correct"><div class="opt-letter"></div>γ-motor neurons of the same muscle.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Local interneurons.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>2nd order neurons of ascending sensory pathways.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q13</div>
+        <div class="q-text">In the stretch reflex, relaxation of antagonist muscles is due to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Reciprocal innervation.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Presynaptic inhibition.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Ia fiber stimulation.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Antidromic conduction.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q14</div>
+        <div class="q-text">Muscle contraction in response to maintained stretch is initiated by sensory inputs from:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Nuclear bag fibers.</div>
+          <div class="option correct"><div class="opt-letter"></div>Nuclear chain fibers.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Golgi tendon organ.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>γ-motor neurons.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q15</div>
+        <div class="q-text">In the stretch reflex, the afferents are:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Ia fibers.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Ib fibers.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>A alpha fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>A delta fibers.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-cyan">⚡</div>
+      <div class="topic-title">Stretch Reflex</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q16</div>
+        <div class="q-text">Stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is a polysynaptic reflex that has a long central delay.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Its afferents are alpha and gamma motor neurons.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is a muscle to muscle reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Its receptors are mechanoreceptors present in series with extrafusal fibers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q17</div>
+        <div class="q-text">Concerning stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is reflex relaxation of intact muscle in response to its stretch.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is preserved in lower motor neuron lesion.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is a negative feedback reflex that maintains muscle length.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is efferent is gamma motor neuron.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q18</div>
+        <div class="q-text">Stretch reflex is characterized by the following EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Disynaptic reflex.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>High localization.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Shows reciprocal innervations.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>It is of graded response.</div>
+        </div>
+        <div class="note-box red">Stretch reflex is MONOsynaptic</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q19</div>
+        <div class="q-text">When a skeletal muscle is suddenly stretched:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>It relaxes suddenly.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>It develops a static stretch reflex.</div>
+          <div class="option correct"><div class="opt-letter"></div>It develops a dynamic stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>It develops clonic contractions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q20</div>
+        <div class="q-text">The receptor for the stretch reflex is the:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Muscle spindle.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Golgi tendon organ.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Meissner's corpuscle.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Free nerve endings.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q21</div>
+        <div class="q-text">A typical example of a monosynaptic reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Superficial abdominal reflex.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Withdrawal reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Light reflex.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q22</div>
+        <div class="q-text">The stretch reflex in skeletal muscles:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Depends on muscle spindles sensitive to muscle tension.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Involves a slowly conducting sensory afferent.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is exaggerated in individuals suffering from cerebellar ataxia.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is promoted by stimulation of gamma motor neurons.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q23</div>
+        <div class="q-text">The shortest reflex time is recorded with:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>A flexor withdrawal reflex.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>An inverse stretch reflex.</div>
+          <div class="option correct"><div class="opt-letter"></div>A stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>A scratch reflex.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q24</div>
+        <div class="q-text">Primary ending from muscle spindle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Discharge when muscle stretch is maintained.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Explain alpha–gamma co-activation.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is the afferent for dynamic stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is the afferent for static stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Is the afferent for muscle tone.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q25</div>
+        <div class="q-text">Stretch reflex, all are true EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is responsible for muscle tone.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is responsible for servo assist (force regulation) of voluntary movements.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is exaggerated in lower motor neuron lesion.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is a semiquantitative reflex.</div>
+        </div>
+        <div class="note-box red">LMN lesion abolishes stretch reflex</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-yellow">💡</div>
+      <div class="topic-title">Static & Dynamic Stretch Reflex</div>
+      <div class="topic-count">6 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q26</div>
+        <div class="q-text">Static stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Occurs in response to maintained stretch.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is mediated by stimulation of nuclear bag fibers.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Impulses are carried only in primary afferents.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>It is manifested in tendon jerks.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q27</div>
+        <div class="q-text">Static stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Responsible for tendon jerk.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Transmitted through primary ending only.</div>
+          <div class="option correct"><div class="opt-letter"></div>Initiated at nuclear chain intrafusal fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Initiated at nuclear bag intrafusal fibers.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Initiated by neocerebellum.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q28</div>
+        <div class="q-text">Static stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>The base of tendon jerk.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Stimulated by red nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>A polysynaptic reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Inhibited by vestibular nucleus.</div>
+          <div class="option correct"><div class="opt-letter"></div>The base of muscle tone.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q29</div>
+        <div class="q-text">Dynamic stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Occurs in response to maintained stretch.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is mediated by stimulation of nuclear chain fibers.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Impulses are carried in secondary afferents.</div>
+          <div class="option correct"><div class="opt-letter"></div>It is manifested in tendon jerks.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q30</div>
+        <div class="q-text">Dynamic stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Slower than withdrawal reflex.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>The mechanism of muscle tone.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Polysynaptic reflex.</div>
+          <div class="option correct"><div class="opt-letter"></div>Increased in UMNL.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q31</div>
+        <div class="q-text">The dynamic stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is the basis of muscle tone.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Its receptor is nuclear chain.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is mediated through stimulation of the secondary nerve endings.</div>
+          <div class="option correct"><div class="opt-letter"></div>Shows rapid contraction of the muscle followed by rapid relaxation.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Is maintained as long as the stretching of the muscle is maintained.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-purple">🎯</div>
+      <div class="topic-title">Tendon Jerk</div>
+      <div class="topic-count">5 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q32</div>
+        <div class="q-text">A tendon jerk:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Is a dynamic stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is a static stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is evoked by gradually stretching the muscle.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is evoked by stimulation of tendon receptors.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q33</div>
+        <div class="q-text">The tendon jerk which has its center in the 5th and 6th cervical segments of the spinal cord is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>The jaw jerk.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>The deltoid jerk.</div>
+          <div class="option correct"><div class="opt-letter"></div>The biceps jerk.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>The triceps jerk.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q34</div>
+        <div class="q-text">Absence of a tendon jerk could result from any of the following conditions EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>lesion of supraspinal inhibitory.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Lesions of the efferent neurons.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Lesions of the afferent neurons.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Lesions of the spinal nerve centers.</div>
+        </div>
+        <div class="note-box red">These exaggerate, not abolish the reflex</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q35</div>
+        <div class="q-text">Exaggeration of tendon jerks could result from any of the following conditions, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Lesions of supraspinal facilitatory centers.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Lesions of supraspinal inhibitory centers.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Increased γ-motor neuron discharge.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Anxiety.</div>
+        </div>
+        <div class="note-box red">This would decrease/abolish jerks</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q36</div>
+        <div class="q-text">Clonus:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is a sign of decreased supraspinal facilitation.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Initiated by briefly stretching the tendon of the muscle.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is manifested as oscillating mechanical vibrations following tendon jerks.</div>
+          <div class="option correct"><div class="opt-letter"></div>Associates exaggeration of tendon jerks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-green">🌿</div>
+      <div class="topic-title">Inverse Stretch Reflex (Golgi Tendon Organ)</div>
+      <div class="topic-count">4 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q37</div>
+        <div class="q-text">Inverse stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is reflex contraction of a muscle in response to severe increase in tension.</div>
+          <div class="option correct"><div class="opt-letter"></div>Its polysynaptic reflex involving inhibitory interneuron releasing glycine.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Its receptor is a network of nerve ending in parallel with extrafusal fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Its receptor monitors muscle length.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q38</div>
+        <div class="q-text">The receptor for the inverse stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Muscle spindle.</div>
+          <div class="option correct"><div class="opt-letter"></div>Golgi tendon organ.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>C fiber.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Delta fibers.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q39</div>
+        <div class="q-text">Inverse stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Increases the possibility of avulsion of the excessively stretched muscle from its bony attachments.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Has no reciprocal innervation circuits.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is clinically manifested by lengthening reaction.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is clinically tested by examining the tendon jerks.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q40</div>
+        <div class="q-text">The discharge from Golgi tendon organs initiated by excessive stretch of a skeletal muscle produces:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Inhibition of α-motor neurons of antagonistic muscles.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Inhibition of γ-motor neurons of antagonistic muscles.</div>
+          <div class="option correct"><div class="opt-letter"></div>Inhibition of α-motor neurons of the same muscle.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Stimulation of γ-motor neurons of the same muscle.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-orange">🧠</div>
+      <div class="topic-title">Muscle Tone</div>
+      <div class="topic-count">6 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q41</div>
+        <div class="q-text">Skeletal muscle tone:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is a dynamic stretch reflex.</div>
+          <div class="option correct"><div class="opt-letter"></div>Has a dynamic state.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is increased during rest.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is decreased during standing upright.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q42</div>
+        <div class="q-text">Skeletal muscle tone:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is a voluntary act.</div>
+          <div class="option correct"><div class="opt-letter"></div>Keeps posture against gravity.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Increases if the muscle shortens.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>All of the above are correct.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q43</div>
+        <div class="q-text">Muscle tone:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is less in antigravity muscles.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Decreases venous return.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is based on the static stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is characterized by fatigue.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Is based on the dynamic stretch reflex.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q44</div>
+        <div class="q-text">All the following about muscle tone is true, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Assessed as a resistance offered by a muscle on a passive stretch.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Reduced during sleep.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Altered during stress.</div>
+          <div class="option correct"><div class="opt-letter"></div>Increased after loss of function of motor area 4.</div>
+        </div>
+        <div class="note-box red">Area 4 lesion → flaccid paralysis initially</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q45</div>
+        <div class="q-text">γ-motor neurons control muscle tone by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Adjusting the supraspinal facilitatory discharge.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Adjusting the α-motor neuron discharge.</div>
+          <div class="option correct"><div class="opt-letter"></div>Adjusting the muscle spindle discharge.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Adjusting the activity of interneurons in the reflex arc of muscle tone.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q46</div>
+        <div class="q-text">The role of γ-motor neurons in regulation of equilibrium is achieved by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Initiating contraction of spindle fibers which directly antagonize postural deviation.</div>
+          <div class="option correct"><div class="opt-letter"></div>Increasing spindle sensitivity to stretch.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Directly stimulating extrafusal muscle fibers to antagonize postural deviation.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Directly adjusting the discharge of α-motor neurons innervating the extrafusal muscle fibers to antagonize postural deviation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-red">🏋️</div>
+      <div class="topic-title">Flexor Withdrawal Reflex</div>
+      <div class="topic-count">3 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q47</div>
+        <div class="q-text">Flexor withdrawal reflex, all are true EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>It has a prolonged after discharge due to reverberation circuits.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is a monosynaptic reflex initiated by painful stimuli.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is associated with reciprocal inhibition of antagonist muscle.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Characterized by irradiation of impulses to several spinal segments.</div>
+        </div>
+        <div class="note-box red">It is POLYsynaptic</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q48</div>
+        <div class="q-text">A flexor withdrawal reflex shows all the following properties, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Recruitment.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Prepotent.</div>
+          <div class="option correct"><div class="opt-letter"></div>Non-fatigable.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Irradiation.</div>
+        </div>
+        <div class="note-box red">Flexor withdrawal reflex IS fatigable</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q49</div>
+        <div class="q-text">In flexor withdrawal reflexes, contraction of flexor muscles is associated with reciprocal inhibition of:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Synergistic flexor muscles.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Contralateral extensor muscles.</div>
+          <div class="option correct"><div class="opt-letter"></div>Ipsilateral extensor muscles.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Both 'a' and 'b' are correct.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-pink">🩺</div>
+      <div class="topic-title">Higher Motor Centers & Supraspinal Control</div>
+      <div class="topic-count">3 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q50</div>
+        <div class="q-text">Higher motor commands originate in all the following centers, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Cerebral cortex.</div>
+          <div class="option correct"><div class="opt-letter"></div>Thalamus.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Caudate nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Cerebellum.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q51</div>
+        <div class="q-text">The following are facilitatory supraspinal centers to stretch reflex EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Primary motor cortex (area 4).</div>
+          <div class="option correct"><div class="opt-letter"></div>Medullary reticular formation.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Neocerebellum.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Vestibular nucleus.</div>
+        </div>
+        <div class="note-box red">Medullary reticular formation is INHIBITORY</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q52</div>
+        <div class="q-text">The following are inhibitory supraspinal centers to stretch reflex EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Premotor cortex (area 6).</div>
+          <div class="option correct"><div class="opt-letter"></div>Pontine reticular formation.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Paleocerebellum.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Red nucleus.</div>
+        </div>
+        <div class="note-box red">Pontine reticular formation is FACILITATORY</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-blue">🧬</div>
+      <div class="topic-title">Synaptic Physiology</div>
+      <div class="topic-count">12 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q53</div>
+        <div class="q-text">Chemical synapses in the nervous system:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Allow diffusion of chemical substances from the presynaptic neuron into the postsynaptic neuron.</div>
+          <div class="option correct"><div class="opt-letter"></div>Allow transmission of potential changes in one direction only; from the presynaptic to the postsynaptic neurons.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Have potential-gated ionic channels.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Are more numerous in the peripheral nervous system than the central nervous system.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q54</div>
+        <div class="q-text">Synaptic knobs:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Synthesize different types of neurotransmitters.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Release neurotransmitters by diffusion across their membranes.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Have ligand-gated Ca++.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Are located at the terminal end of dendrites.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q55</div>
+        <div class="q-text">Opening of ligand-gated Cl- channels causes:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Inhibition of the postsynaptic neuron.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Depolarization of the postsynaptic neuron.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Initiation of an action potential.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Block of ligand-gated cation channels.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q56</div>
+        <div class="q-text">IPSP differs from EPSP in:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Being of shorter duration.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Being unable to summate spatially.</div>
+          <div class="option correct"><div class="opt-letter"></div>Moving the membrane potential away from threshold.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Depending upon opening of voltage K+ channels.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q57</div>
+        <div class="q-text">When EPSP and IPSP occur simultaneously the postsynaptic membrane:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Becomes depolarized.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Becomes hyperpolarized.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Initiates an action potential.</div>
+          <div class="option correct"><div class="opt-letter"></div>Shows potential changes that depend upon the summation of their effects.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q58</div>
+        <div class="q-text">IPSP could result from:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Opening of K+ channels.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Opening of ligand-gated cation channels.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Closure of Cl- channels.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Closure of potential-gated Ca++ channels.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q59</div>
+        <div class="q-text">Synaptic transmission is terminated by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Block of presynaptic receptors.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Elevation of Ca++ concentration in synaptic cleft.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Reuptake of neurotransmitters by postsynaptic neurons.</div>
+          <div class="option correct"><div class="opt-letter"></div>Degradation of neurotransmitters by specific enzymes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q60</div>
+        <div class="q-text">Presynaptic inhibition depends upon:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Augmented release of chemical transmitter from presynaptic terminals.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Continued depolarization of presynaptic terminals.</div>
+          <div class="option correct"><div class="opt-letter"></div>GABA receptors in presynaptic terminals.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Opening of voltage-gated Ca++ channels in presynaptic terminals.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q61</div>
+        <div class="q-text">Synaptic delay:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is the time needed for release of neurotransmitter from synaptic vesicles.</div>
+          <div class="option correct"><div class="opt-letter"></div>The minimal delay time in the central nervous system is about 0.5 millisecond.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is determined by the type of the neurotransmitter.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is determined by the number of postsynaptic receptors.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q62</div>
+        <div class="q-text">In presynaptic inhibition:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>The release of the excitatory neurotransmitter from the presynaptic knob is inhibited.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>The postsynaptic membrane is hyperpolarized.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>The presynaptic knobs release glycine.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>The presynaptic knobs release GABA.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q63</div>
+        <div class="q-text">Synaptic transmission:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is inhibited by alkalosis.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is stimulated by hypocalcemia.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is inhibited by thyroxin.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Shows delay about 1 m.sec.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>None of the above.</div>
+        </div>
+        <div class="note-box red">Hypocalcemia stimulates; alkalosis inhibits</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q64</div>
+        <div class="q-text">Which of the following is an inhibitory neurotransmitter?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Histamine.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Glutamate.</div>
+          <div class="option correct"><div class="opt-letter"></div>GABA.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Acetylcholine.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Noradrenaline.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-cyan">⚡</div>
+      <div class="topic-title">Neural Pool & Reflex Properties</div>
+      <div class="topic-count">9 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q65</div>
+        <div class="q-text">Events of reflex actions include all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Stimulation of sensory receptors.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Stimulation of central synapses.</div>
+          <div class="option correct"><div class="opt-letter"></div>Inhibition of sensory receptors.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Inhibition of central synapses.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q66</div>
+        <div class="q-text">The central terminals of afferent neurons mediating spinal reflexes are distributed within the spinal cord, so that:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>All of them terminate in the same spinal segment of their entry to the cord.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>All of them terminate on interneurons.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>All of them subserve spinal reflexes.</div>
+          <div class="option correct"><div class="opt-letter"></div>They provide pathways for divergence of the incoming sensory impulses.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q67</div>
+        <div class="q-text">The divergence function of interneurons is involved in:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Temporal summation.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Spatial summation.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Reverberation.</div>
+          <div class="option correct"><div class="opt-letter"></div>Irradiation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q68</div>
+        <div class="q-text">Interneuron after-discharge circuits prolong the duration of:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Sensory input to the spinal motor centers.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Synaptic delay in central synapses.</div>
+          <div class="option correct"><div class="opt-letter"></div>Discharge of efferent neurons.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Conscious perception of the evoked sensation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q69</div>
+        <div class="q-text">After-discharge of reflex responses:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Increase the magnitude of the reflex responses.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Delays the onset of fatigue of reflex responses.</div>
+          <div class="option correct"><div class="opt-letter"></div>Involves interneuron circuits.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Depends upon spatial summation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q70</div>
+        <div class="q-text">The ability of stronger stimuli to produce wider range of reflex responses depends upon:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Presence of reverberating circuits in reflex pathway.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Presence of parallel-chain circuits in reflex pathway.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Convergence of interneurons.</div>
+          <div class="option correct"><div class="opt-letter"></div>Divergence of interneurons.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q71</div>
+        <div class="q-text">Convergence in the neural pool leads to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Spread of stimulus.</div>
+          <div class="option correct"><div class="opt-letter"></div>Spatial summation.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Temporal summation.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>After discharge.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Reverberating circuit.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q72</div>
+        <div class="q-text">Parallel circuit is a mechanism for:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Pain inhibition.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Hyperalgesia.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Referred pain.</div>
+          <div class="option correct"><div class="opt-letter"></div>After discharge.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Temporal summation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q73</div>
+        <div class="q-text">Divergence in the neural pool explains:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Temporal summation.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Spatial summation.</div>
+          <div class="option correct"><div class="opt-letter"></div>Spread of stimulus.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Lateral inhibition.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Feedback inhibition.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-yellow">💡</div>
+      <div class="topic-title">Motor Cortex & Voluntary Movements</div>
+      <div class="topic-count">5 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q74</div>
+        <div class="q-text">The primary motor area receives inputs arising from all the following centers, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Basal ganglia.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Cerebellum.</div>
+          <div class="option correct"><div class="opt-letter"></div>Hypothalamus.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Thalamus.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q75</div>
+        <div class="q-text">The primary motor area projects efferent fibers to all the following centers, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>1ry somatic sensory area.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Premotor area.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Supplemental motor area.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Brainstem motor nuclei.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q76</div>
+        <div class="q-text">Representation of the body in the primary motor area:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is ipsilateral.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is upright.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is disproportionate to the actual anatomical size of the represented region.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>All the above are correct.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q77</div>
+        <div class="q-text">The premotor area includes all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Broca's area.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Head rotation area.</div>
+          <div class="option correct"><div class="opt-letter"></div>Supplemental motor area.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Hand skills area.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q78</div>
+        <div class="q-text">Supplemental motor area is involved in all the following functions, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Adjusting posture.</div>
+          <div class="option correct"><div class="opt-letter"></div>Orienting responses.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Motor programming.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Coordinating bilateral movements.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-purple">🎯</div>
+      <div class="topic-title">Basal Ganglia</div>
+      <div class="topic-count">5 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q79</div>
+        <div class="q-text">Basal ganglia include all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Caudate nucleus.</div>
+          <div class="option correct"><div class="opt-letter"></div>Dentate nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Subthalamic nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Substantia nigra reticulate.</div>
+        </div>
+        <div class="note-box red">Dentate nucleus is cerebellar, not basal ganglia</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q80</div>
+        <div class="q-text">Functions of basal ganglia include all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Planning and programming of voluntary movements.</div>
+          <div class="option correct"><div class="opt-letter"></div>Initiation of reflex movement.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Postural regulation.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Executing learned pattern of movement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q81</div>
+        <div class="q-text">Basal ganglia send direct projections to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Primary motor area.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Premotor area.</div>
+          <div class="option correct"><div class="opt-letter"></div>VA and VL thalamic nuclei.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Lower motor neurons in spinal cord.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q82</div>
+        <div class="q-text">Parkinson's disease results from damage of:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Caudate nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Subthalamic nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Globus pallidus.</div>
+          <div class="option correct"><div class="opt-letter"></div>Substantia nigra.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q83</div>
+        <div class="q-text">Manifestations of Parkinsonism include all the following EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Kinetic tremors.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Rigidity.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Bradykinesia.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Disturbance of speech.</div>
+        </div>
+        <div class="note-box red">Parkinson's tremor is RESTING/static, not kinetic</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-green">🌿</div>
+      <div class="topic-title">Upper & Lower Motor Neuron Lesions</div>
+      <div class="topic-count">3 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q84</div>
+        <div class="q-text">Upper motor neuron lesion, all are true EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Its picture is the same immediately after the lesion and few weeks thereafter.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is lesion in the pathway from the cortex to the anterior horn cells or cranial nerve nuclei.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Produces widespread paralysis of half of body muscles.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Thoracic, abdominal, upper face muscles and sphincters are not affected.</div>
+        </div>
+        <div class="note-box red">Acute: spinal shock/flaccid; Chronic: spasticity/hyperreflexia</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q85</div>
+        <div class="q-text">Lower motor neuron lesion:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is lesion in the descending tract from cortex to cranial nerve nuclei.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Characterized by hyperreflexia and clonus.</div>
+          <div class="option correct"><div class="opt-letter"></div>Results in severe muscle wasting.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Can never regenerate.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q86</div>
+        <div class="q-text">Lower motor neuron lesions cause all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Decreased number of transmitter receptors in the denervated muscle.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Atrophy of the denervated muscle.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Flaccid paralysis of the denervated muscle.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Loss of flexion withdrawal reflex.</div>
+        </div>
+        <div class="note-box red">LMN lesion → INCREASED/upregulated receptors = denervation hypersensitivity</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-orange">🧠</div>
+      <div class="topic-title">Corticospinal & Pyramidal Tracts</div>
+      <div class="topic-count">3 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q87</div>
+        <div class="q-text">Corticospinal tract originates from all the following areas, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Premotor area in the frontal lobe.</div>
+          <div class="option correct"><div class="opt-letter"></div>Prefrontal area in the frontal lobe.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Supplemental motor area in the frontal lobe.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Somatic sensory area in the parietal lobe.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q88</div>
+        <div class="q-text">Axons of the lateral corticospinal tract synapse mainly with:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Lateral motor neurons.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Medial motor neurons.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Intermediolateral neurons.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Interneurons.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q89</div>
+        <div class="q-text">All of the following are descending motor tracts, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Rubrospinal tract.</div>
+          <div class="option correct"><div class="opt-letter"></div>Spinotectal tract.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Reticulospinal tract.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Corticobulbar tract.</div>
+        </div>
+        <div class="note-box red">Spinotectal is ASCENDING</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-red">🏋️</div>
+      <div class="topic-title">Synaptic Physiology (Continued)</div>
+      <div class="topic-count">6 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q90</div>
+        <div class="q-text">After discharge is caused by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Projection mechanism.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Fasciculation along the pathway.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Lateral inhibition.</div>
+          <div class="option correct"><div class="opt-letter"></div>Reverberating circuits.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q91</div>
+        <div class="q-text">After discharge:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Can be caused by lateral inhibition.</div>
+          <div class="option correct"><div class="opt-letter"></div>Can be caused by parallel circuits.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is due to presence of Renshaw cells.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Leads to spread of the stimulus.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>None of the above.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q92</div>
+        <div class="q-text">Synaptic after discharge can be explained by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Long duration of EPSP.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Parallel circuit.</div>
+          <div class="option correct"><div class="opt-letter"></div>Reverberating circuit.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Recurrent inhibition.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Facilitation along the pathway.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q93</div>
+        <div class="q-text">Parallel circuit is a mechanism for:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Pain inhibition.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Hyperalgesia.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Referred pain.</div>
+          <div class="option correct"><div class="opt-letter"></div>After discharge.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Temporal summation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q94</div>
+        <div class="q-text">Skeletal muscle tone:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is a voluntary act.</div>
+          <div class="option correct"><div class="opt-letter"></div>Keeps posture against gravity.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Increases if the muscle shortens.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>All of the above are correct.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Only a and b are correct.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q95</div>
+        <div class="q-text">Dynamic stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Slower than withdrawal reflex.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>The mechanism of muscle tone.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Polysynaptic reflex.</div>
+          <div class="option correct"><div class="opt-letter"></div>Increased in UMNL.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Increased in neocerebellar lesion.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-pink">🩺</div>
+      <div class="topic-title">Muscle Spindle & Stretch Reflex (Continued)</div>
+      <div class="topic-count">6 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q96</div>
+        <div class="q-text">Primary ending from muscle spindle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Discharge when muscle stretch is maintained.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Explain alpha–gamma co-activation.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is the afferent for dynamic stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is the afferent for static stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Is the afferent for muscle tone.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q97</div>
+        <div class="q-text">Static stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>The base of tendon jerk.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Stimulated by red nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>A polysynaptic reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Inhibited by vestibular nucleus.</div>
+          <div class="option correct"><div class="opt-letter"></div>The base of muscle tone.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q98</div>
+        <div class="q-text">Static stretch reflex is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Responsible for tendon jerk.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Transmitted through primary ending only.</div>
+          <div class="option correct"><div class="opt-letter"></div>Initiated at nuclear chain intrafusal fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Initiated at nuclear bag intrafusal fibers.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Initiated by neocerebellum.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q99</div>
+        <div class="q-text">Dynamic stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Has secondary ending as an afferent.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Has alpha motor neuron as an afferent.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is the mechanism of muscle tone.</div>
+          <div class="option correct"><div class="opt-letter"></div>Has gamma motor neuron as an efferent.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>A & C are correct.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q100</div>
+        <div class="q-text">The dynamic stretch reflex:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is the basis of muscle tone.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Its receptor is nuclear chain.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is mediated through stimulation of the secondary nerve endings.</div>
+          <div class="option correct"><div class="opt-letter"></div>Shows rapid contraction of the muscle followed by rapid relaxation.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Is maintained as long as the stretching of the muscle is maintained.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q101</div>
+        <div class="q-text">Gamma motor neuron to muscle spindle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Supplies the central receptor areas of intrafusal muscle fibers.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Supplies the extrafusal muscle fibers.</div>
+          <div class="option correct"><div class="opt-letter"></div>Constitutes the pathway through which higher centers can affect the stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Constitutes the efferent for stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Constitutes the afferent for stretch reflex.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-blue">🧬</div>
+      <div class="topic-title">Muscle Tone (Continued)</div>
+      <div class="topic-count">4 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q102</div>
+        <div class="q-text">Muscle tone:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is less in antigravity muscles.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Decreases venous return.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is based on the static stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is characterized by fatigue.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Is based on the dynamic stretch reflex.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q103</div>
+        <div class="q-text">Muscle tone:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is the dynamic stretch reflex.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is due to discharge in the primary ending of muscle spindle.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is less prominent in antigravity muscles.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is increased in LMNL.</div>
+          <div class="option correct"><div class="opt-letter"></div>None of the above.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q104</div>
+        <div class="q-text">Muscle spindle:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is present in muscle tendon.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Has afferent A-delta fibers.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Has afferent C fibers.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Has afferent A-alpha fibers.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is facilitated by motor area 4.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q105</div>
+        <div class="q-text">Nuclear bag fibers in muscle spindle are:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Slowly responding.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Slowly adapting.</div>
+          <div class="option correct"><div class="opt-letter"></div>Rapidly responding.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Connected to secondary ending.</div>
+          <div class="option wrong"><div class="opt-letter">E</div>Responsible for static stretch reflex.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-cyan">⚡</div>
+      <div class="topic-title">Motor Cortex Areas</div>
+      <div class="topic-count">5 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q106</div>
+        <div class="q-text">Representation of the body in the primary motor area:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is ipsilateral.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is upright.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is disproportionate to the actual anatomical size of the represented region.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>All the above are correct.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q107</div>
+        <div class="q-text">The primary motor area receives inputs arising from all the following centers, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Basal ganglia.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Cerebellum.</div>
+          <div class="option correct"><div class="opt-letter"></div>Hypothalamus.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Thalamus.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q108</div>
+        <div class="q-text">The primary motor area projects efferent fibers to all the following centers, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>1ry somatic sensory area.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Premotor area.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Supplemental motor area.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Brainstem motor nuclei.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q109</div>
+        <div class="q-text">The premotor area includes all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Broca's area.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Head rotation area.</div>
+          <div class="option correct"><div class="opt-letter"></div>Supplemental motor area.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Hand skills area.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q110</div>
+        <div class="q-text">Supplemental motor area is involved in all the following functions, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Adjusting posture.</div>
+          <div class="option correct"><div class="opt-letter"></div>Orienting responses.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Motor programming.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Coordinating bilateral movements.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-yellow">💡</div>
+      <div class="topic-title">Basal Ganglia (Continued)</div>
+      <div class="topic-count">5 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q111</div>
+        <div class="q-text">Basal ganglia include all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Caudate nucleus.</div>
+          <div class="option correct"><div class="opt-letter"></div>Dentate nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Subthalamic nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Substantia nigra reticulate.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q112</div>
+        <div class="q-text">Functions of basal ganglia include all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Planning and programming of voluntary movements.</div>
+          <div class="option correct"><div class="opt-letter"></div>Initiation of reflex movement.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Postural regulation.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Executing learned pattern of movement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q113</div>
+        <div class="q-text">Basal ganglia send direct projections to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Primary motor area.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Premotor area.</div>
+          <div class="option correct"><div class="opt-letter"></div>VA and VL thalamic nuclei.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Lower motor neurons in spinal cord.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q114</div>
+        <div class="q-text">Parkinson's disease results from damage of:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Caudate nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Subthalamic nucleus.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Globus pallidus.</div>
+          <div class="option correct"><div class="opt-letter"></div>Substantia nigra.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q115</div>
+        <div class="q-text">Manifestations of Parkinsonism include all the following EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Kinetic tremors.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Rigidity.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Bradykinesia.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Disturbance of speech.</div>
+        </div>
+        <div class="note-box red">Parkinson's tremor is resting/static, NOT kinetic</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-purple">🎯</div>
+      <div class="topic-title">Cerebellum</div>
+      <div class="topic-count">1 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q116</div>
+        <div class="q-text">Coordination of complex movements by the cerebellum involves all the following mechanisms, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Sequencing of movements.</div>
+          <div class="option correct"><div class="opt-letter"></div>Decomposition of movements.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Damping of movements.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Timing of movements.</div>
+        </div>
+        <div class="note-box red">Decomposition is a sign of cerebellar DISEASE, not a normal mechanism</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-green">🌿</div>
+      <div class="topic-title">Descending Motor Tracts</div>
+      <div class="topic-count">10 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q117</div>
+        <div class="q-text">All of the following are descending motor tracts, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Rubrospinal tract.</div>
+          <div class="option correct"><div class="opt-letter"></div>Spinotectal tract.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Reticulospinal tract.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Corticobulbar tract.</div>
+        </div>
+        <div class="note-box red">Spinotectal is an ASCENDING tract</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q118</div>
+        <div class="q-text">Corticospinal tract originates from all the following areas, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Premotor area in the frontal lobe.</div>
+          <div class="option correct"><div class="opt-letter"></div>Prefrontal area in the frontal lobe.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Supplemental motor area in the frontal lobe.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Somatic sensory area in the parietal lobe.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q119</div>
+        <div class="q-text">The cranial motor nuclei which receive innervation only from the contralateral corticobulbar tract are:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Nuclei of the trigeminal and vagus nerves.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Nuclei of the vagus and glossopharyngeal nerves.</div>
+          <div class="option correct"><div class="opt-letter"></div>Nuclei of the facial and hypoglossal nerves.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Nuclei of the facial and glossopharyngeal nerves.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q120</div>
+        <div class="q-text">Axons of the lateral corticospinal tract synapse mainly with:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Lateral motor neurons.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Medial motor neurons.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Intermediolateral neurons.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Interneurons.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q121</div>
+        <div class="q-text">The corticobulbospinal tract is involved in all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Voluntary movements.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Postural adjustment.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Automatic movements.</div>
+          <div class="option correct"><div class="opt-letter"></div>Initiation of tendon jerks.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q122</div>
+        <div class="q-text">The Rubrospinal tract:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Originates from the pontine reticular formation.</div>
+          <div class="option correct"><div class="opt-letter"></div>Descends contralaterally.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Controls activity of axial muscles.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Is a component of the medial motor system.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q123</div>
+        <div class="q-text">The reticulospinal tracts:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Are inhibitory to muscle tone.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Are excitatory to muscle tone.</div>
+          <div class="option correct"><div class="opt-letter"></div>Are either excitatory or inhibitory to muscle tone.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Have no effect on muscle tone.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q124</div>
+        <div class="q-text">Vestibulospinal tracts:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Adjust the discharge of vestibular receptors.</div>
+          <div class="option correct"><div class="opt-letter"></div>Adjust muscle tone.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Antagonize the effects of rubrospinal tract.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Terminate on the lateral motor neurons in the spinal cord.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q125</div>
+        <div class="q-text">Tectospinal tract:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Originates mainly from the inferior colliculus.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Originates mainly from the medial geniculate body.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Mediates responses initiated by sudden changes of head position.</div>
+          <div class="option correct"><div class="opt-letter"></div>Terminates in the cervical segments of the cord.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q126</div>
+        <div class="q-text">Representation of the body in the primary motor area:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is ipsilateral.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is upright.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is disproportionate to the actual anatomical size of the represented region.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>All the above are correct.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-orange">🧠</div>
+      <div class="topic-title">Voluntary Movements & Speech (from INDeed file)</div>
+      <div class="topic-count">34 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q127</div>
+        <div class="q-text">Broca's area is a specialized portion of motor cortex. Which condition best describes the deficit resulting from damage to Broca's area?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Spastic paralysis of the contralateral hand.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Paralysis of the muscles of the larynx and pharynx.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Inability to use two hands to grasp an object.</div>
+          <div class="option correct"><div class="opt-letter"></div>Inability to speak whole words correctly.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q128</div>
+        <div class="q-text">Damage of the general interpretative area causes all the following, EXCEPT:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Failure of articulate speech.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Failure to understand written words.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Failure to understand spoken words.</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Sensory aphasia.</div>
+        </div>
+        <div class="note-box red">This is Broca's area function, not the interpretative area</div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q129</div>
+        <div class="q-text">Lesions of the speech center in frontal lobe results in:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Paralysis of speech muscles.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Inability to select appropriate words for use in speech.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Inability to understand spoken language.</div>
+          <div class="option correct"><div class="opt-letter"></div>Failure of coordination of speech muscles.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q130</div>
+        <div class="q-text">Motor apraxia:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is due to lesion in primary motor area 4.</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is due to lesion in sensory area.</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Is accompanied with muscle paralysis.</div>
+          <div class="option correct"><div class="opt-letter"></div>Is characterized by loss of coordination of hand movement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q131</div>
+        <div class="q-text">Which type of pain pathway is associated with poorly localized pain sensation?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Spinocerebellar tract</div>
+          <div class="option correct"><div class="opt-letter"></div>Paleospinothalamic tract</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Olivospinal tract</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Neospinothalamic tract</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q132</div>
+        <div class="q-text">Referred pain is frequently seen with:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Deep pain</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Superficial pain</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Both visceral and deep pain</div>
+          <div class="option correct"><div class="opt-letter"></div>Visceral pain</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q133</div>
+        <div class="q-text">Which type of interneuron in this region utilizes encephalin to inhibit pain transmission?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Type C sensory fiber</div>
+          <div class="option correct"><div class="opt-letter"></div>Pain inhibitory complex</div>
+          <div class="option wrong"><div class="opt-letter">C</div>RM Nucleus</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Postcentral gyrus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q134</div>
+        <div class="q-text">Stimulation of which brain area can modulate the sensation of pain?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Superior olivary complex</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Amygdala</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Locus ceruleus</div>
+          <div class="option correct"><div class="opt-letter"></div>Peri-Aquaductal Gray</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q135</div>
+        <div class="q-text">Which of the following is describing the pain receptors (nociceptors)?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Do not adapt at all</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Have a low threshold level</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Respond only to mechanical stimuli</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Adapt very easily</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q136</div>
+        <div class="q-text">The neurotransmitter that is released by Aδ fibers in fast pain sensation:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Arginine</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Substance P</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Glycine</div>
+          <div class="option correct"><div class="opt-letter"></div>Glutamate</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q137</div>
+        <div class="q-text">Which of the following substances enhances the sensitivity of pain receptors but does not directly excite them?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Potassium ions</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Bradykinin</div>
+          <div class="option correct"><div class="opt-letter"></div>Prostaglandins</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Serotonin</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q138</div>
+        <div class="q-text">Fracture of the femur bone is associated with which type of pain?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Visceral pain</div>
+          <div class="option correct"><div class="opt-letter"></div>Deep pain with poor localization</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Deep pain with localization</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Superficial pain with poor localization</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q139</div>
+        <div class="q-text">The pain sensation can be produced by which type of stimuli?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>All types of stimuli</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Chemical + Thermal</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Mechanical + Chemical</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Mechanical + Thermal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q140</div>
+        <div class="q-text">The neurotransmitter that is released by C fibers in slow pain sensation:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Glutamate</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Glycine</div>
+          <div class="option correct"><div class="opt-letter"></div>Substance P</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Arginine</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q141</div>
+        <div class="q-text">Synaptic transmission is depressed by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Strychnine</div>
+          <div class="option correct"><div class="opt-letter"></div>Hypoxia</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Hypertension</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Alkalosis</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q142</div>
+        <div class="q-text">One of the following features is important in terminating epileptic seizures:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Reverberating circuits</div>
+          <div class="option correct"><div class="opt-letter"></div>Fatigue of synaptic transmission</div>
+          <div class="option wrong"><div class="opt-letter">C</div>After discharge</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Synaptic delay (Central delay)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q143</div>
+        <div class="q-text">Convergence in the neural pool leads to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Temporal summation</div>
+          <div class="option correct"><div class="opt-letter"></div>Spatial summation</div>
+          <div class="option wrong"><div class="opt-letter">C</div>After discharge</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Spread of stimulus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q144</div>
+        <div class="q-text">When many synaptic knobs discharge at the same time, each causes EPSP that summates leading to action potential:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Spatial summation</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Divergence</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Convergence</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Temporal summation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q145</div>
+        <div class="q-text">The excitatory postsynaptic potential (EPSP):</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Is produced by K⁺ efflux</div>
+          <div class="option wrong"><div class="opt-letter">B</div>It is propagated through the nerve fiber</div>
+          <div class="option wrong"><div class="opt-letter">C</div>A single EPSP in one neuron can produce an AP</div>
+          <div class="option correct"><div class="opt-letter"></div>It is a local response on the cell membrane</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q146</div>
+        <div class="q-text">What's the fate of neurotransmitters:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Reuptake to synaptic knob</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Absorbed through postsynaptic membrane</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Activated by enzymes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q147</div>
+        <div class="q-text">The objective of Convergence is to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Provide enough spatial summation to bring the neuron to the threshold required for discharge</div>
+          <div class="option wrong"><div class="opt-letter">B</div>None of the above</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Spread a single stimulus to a wide area of the spinal cord</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Protective mechanism against extra neuronal activity</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q148</div>
+        <div class="q-text">If a neurotransmitter resulted in formation of new proteins after excitation of a postsynaptic terminal, what type of receptor does the postsynaptic terminal possess:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Metabotropic receptor</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Ionotropic receptor</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Ligand-gated ion channel</div>
+          <div class="option wrong"><div class="opt-letter">D</div>No receptor needed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q149</div>
+        <div class="q-text">Post-tetanic facilitation is thought to be the result of:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Opening transmitter gated potassium channels</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Electrotonic conduction</div>
+          <div class="option correct"><div class="opt-letter"></div>A buildup of calcium in the presynaptic terminal</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Opening voltage-gated sodium channels</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q150</div>
+        <div class="q-text">GABA:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Deficiency results in muscle paralysis</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Is one of the major excitatory neurotransmitters</div>
+          <div class="option correct"><div class="opt-letter"></div>Acts by opening chloride channels</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Mediates synaptic facilitation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q151</div>
+        <div class="q-text">When a pain stimulus targets the inward side of the arm causes contraction of flexor muscles AND abductor muscles to pull the arm outward. This is termed:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Localization</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Recruitment</div>
+          <div class="option correct"><div class="opt-letter"></div>Irradiation</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Crossed extensor reflex</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q152</div>
+        <div class="q-text">The reflex arc contains a:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Sensory reception</div>
+          <div class="option correct"><div class="opt-letter"></div>All are correct</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Motor neuron</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Sensory neuron</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q153</div>
+        <div class="q-text">Axons of pre-synaptic neurons divide into many branches called:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Convergence</div>
+          <div class="option correct"><div class="opt-letter"></div>Divergence</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Both</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q154</div>
+        <div class="q-text">What is true about fatigue of synaptic transmission:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Lowers the stimulation of the next neuron below its threshold level</div>
+          <div class="option wrong"><div class="opt-letter">B</div>It's not affected by neurotransmitter reservoirs</div>
+          <div class="option correct"><div class="opt-letter"></div>The number of discharges by the postsynaptic neuron are great at first but the firing rate becomes progressively less</div>
+          <div class="option wrong"><div class="opt-letter">D</div>None of the above</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q155</div>
+        <div class="q-text">Reciprocal inhibition means:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Slight stimulus to the sole causes extension of the other limb</div>
+          <div class="option wrong"><div class="opt-letter">B</div>A strong stimulus in an afferent irradiates to many segments of spinal cord</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Gradual activation of motor neurons by maintained stimulation</div>
+          <div class="option correct"><div class="opt-letter"></div>Contraction of agonist and relaxation of antagonist muscle</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q156</div>
+        <div class="q-text">A prolonged maintained output discharge of AHCs called:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Irradiation</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Local sign</div>
+          <div class="option correct"><div class="opt-letter"></div>After discharge</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Reverberatory circuit</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q157</div>
+        <div class="q-text">When an excitatory neurotransmitter is released it may lead to:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Calcium entry</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Hyperpolarization</div>
+          <div class="option correct"><div class="opt-letter"></div>EPSP</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Potassium entry</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q158</div>
+        <div class="q-text">If the central delay = 0.6, what are the number of synapses:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>1.2 so roughly = 1</div>
+          <div class="option wrong"><div class="opt-letter">B</div>5</div>
+          <div class="option wrong"><div class="opt-letter">C</div>2</div>
+          <div class="option wrong"><div class="opt-letter">D</div>None of the above</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q159</div>
+        <div class="q-text">In presynaptic inhibition:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>The release of the excitatory neurotransmitter from the presynaptic knob is inhibited</div>
+          <div class="option wrong"><div class="opt-letter">B</div>The postsynaptic membrane is hyperpolarized</div>
+          <div class="option wrong"><div class="opt-letter">C</div>The presynaptic knobs release GABA</div>
+          <div class="option wrong"><div class="opt-letter">D</div>The presynaptic knobs release glycine</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q160</div>
+        <div class="q-text">Which neurotransmitter could be released from inhibitory interneuron:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Aspartate</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Dopamine</div>
+          <div class="option correct"><div class="opt-letter"></div>GABA and Glycine</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Adrenaline and noradrenaline</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-red">🔥</div>
+      <div class="topic-title">Pain Sensation — الكويز بتاع بشري </div>
+      <div class="topic-count">19 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q161</div>
+        <div class="q-text">Fast pain differs from slow pain in:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>being transmitted in the dorsal column pathway</div>
+          <div class="option wrong"><div class="opt-letter">B</div>evoking a depressor autonomic reaction</div>
+          <div class="option correct"><div class="opt-letter"></div>having a sharp quality</div>
+          <div class="option wrong"><div class="opt-letter">D</div>arising from encapsulated pain receptors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q162</div>
+        <div class="q-text">Pain produced by muscle spasm results from:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>mechanical stimulation of pain receptor by muscle spasm</div>
+          <div class="option wrong"><div class="opt-letter">B</div>decreased release of lactic acid from the spastic muscle fibers</div>
+          <div class="option wrong"><div class="opt-letter">C</div>release of compounds from the spastic muscle which increase the threshold for stimulation of pain receptors</div>
+          <div class="option correct"><div class="opt-letter"></div>decreased oxygen supply to the muscle</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q163</div>
+        <div class="q-text">Visceral pain:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>is more common than the other types of pain</div>
+          <div class="option wrong"><div class="opt-letter">B</div>arises only from wall of the visceral organs</div>
+          <div class="option wrong"><div class="opt-letter">C</div>is often well localized</div>
+          <div class="option correct"><div class="opt-letter"></div>evokes depressor autonomic reactions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q164</div>
+        <div class="q-text">Stimuli which evoke true visceral pain include all the following, except:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>sharp cutting</div>
+          <div class="option wrong"><div class="opt-letter">B</div>stretching</div>
+          <div class="option wrong"><div class="opt-letter">C</div>spasm</div>
+          <div class="option wrong"><div class="opt-letter">D</div>chemical irritation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q165</div>
+        <div class="q-text">Visceral pain is usually felt:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>deeply in the diseased viscera</div>
+          <div class="option wrong"><div class="opt-letter">B</div>in deep tissues close to the diseased viscera</div>
+          <div class="option wrong"><div class="opt-letter">C</div>in skin areas that just overlie the diseased viscera</div>
+          <div class="option correct"><div class="opt-letter"></div>in skin areas remote from the diseased viscera</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q166</div>
+        <div class="q-text">Intracranial headache could result from painful stimuli applied on:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>the dura lining the inner surface of the bones of cranial vault</div>
+          <div class="option wrong"><div class="opt-letter">B</div>the brain tissue</div>
+          <div class="option correct"><div class="opt-letter"></div>venous sinuses</div>
+          <div class="option wrong"><div class="opt-letter">D</div>arachnoid mater</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q167</div>
+        <div class="q-text">Intracranial headache may result from all the following clinical causes, except:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>decreased CSF pressure</div>
+          <div class="option correct"><div class="opt-letter"></div>spasm of scalp muscles</div>
+          <div class="option wrong"><div class="opt-letter">C</div>distension of big venous sinuses</div>
+          <div class="option wrong"><div class="opt-letter">D</div>pressure upon tentorium cerebelli</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q168</div>
+        <div class="q-text">Transmitters in pain control system include all the following, except:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>serotonin</div>
+          <div class="option correct"><div class="opt-letter"></div>acetylcholine</div>
+          <div class="option wrong"><div class="opt-letter">C</div>encephalin</div>
+          <div class="option wrong"><div class="opt-letter">D</div>norepinephrine</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q169</div>
+        <div class="q-text">Enkephalin binds best with:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>delta (δ) opiate receptors</div>
+          <div class="option wrong"><div class="opt-letter">B</div>mu (μ) opiate receptors</div>
+          <div class="option wrong"><div class="opt-letter">C</div>kappa (κ) opiate receptors</div>
+          <div class="option wrong"><div class="opt-letter">D</div>all opiate receptors with equal affinity</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q170</div>
+        <div class="q-text">Pain control system:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>is activated whenever a painful stimulus is applied to body tissues</div>
+          <div class="option wrong"><div class="opt-letter">B</div>is never activated naturally</div>
+          <div class="option wrong"><div class="opt-letter">C</div>is activated only by administration of opiate drugs</div>
+          <div class="option correct"><div class="opt-letter"></div>is activated naturally under conditions associated with strong emotional excitement</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q171</div>
+        <div class="q-text">Enkephalin blocks pain transmission by:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>blocking the response of pain receptors to painful stimuli</div>
+          <div class="option wrong"><div class="opt-letter">B</div>slowing down transmission of pain impulses through synapses in the pain pathway</div>
+          <div class="option wrong"><div class="opt-letter">C</div>inhibiting the response of the cerebral cortical sensory area to pain signals</div>
+          <div class="option correct"><div class="opt-letter"></div>blocking Ca++ channels in the central terminals of pain sensory fibers</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q172</div>
+        <div class="q-text">The spinal pain gate is:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>ligand controlled</div>
+          <div class="option wrong"><div class="opt-letter">B</div>voltage controlled</div>
+          <div class="option wrong"><div class="opt-letter">C</div>opened by enkephalin</div>
+          <div class="option wrong"><div class="opt-letter">D</div>closed by substance P</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q173</div>
+        <div class="q-text">Which type of pain pathway is associated with poorly localized pain sensation?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Neospinothalamic tract</div>
+          <div class="option correct"><div class="opt-letter"></div>Paleospinothalamic tract</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Spinocerebellar tract</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Olivospinal tract</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q174</div>
+        <div class="q-text">Referred pain is frequently seen with:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option correct"><div class="opt-letter"></div>Visceral pain</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Deep pain</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Superficial pain</div>
+          <div class="option wrong"><div class="opt-letter">D</div>a + b</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q175</div>
+        <div class="q-text">Neurons releasing serotonin as neurotransmitter are located in:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>PAG area</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Interneurons of spinal cord</div>
+          <div class="option wrong"><div class="opt-letter">C</div>Periventricular area</div>
+          <div class="option correct"><div class="opt-letter"></div>RM nucleus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q176</div>
+        <div class="q-text">Interneuron in this region utilizing enkephalin to inhibit pain:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>RM nucleus</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Postcentral gyrus</div>
+          <div class="option correct"><div class="opt-letter"></div>Dorsal horn of spinal cord</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Type C sensory fiber</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q177</div>
+        <div class="q-text">Stimulation of which brain area modulates pain sensation?</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>Superior olivary complex</div>
+          <div class="option wrong"><div class="opt-letter">B</div>Locus ceruleus</div>
+          <div class="option correct"><div class="opt-letter"></div>Periaqueductal gray</div>
+          <div class="option wrong"><div class="opt-letter">D</div>Amygdala</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q178</div>
+        <div class="q-text">Pain sensation:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>is evoked by strong stimulation of specific receptors</div>
+          <div class="option wrong"><div class="opt-letter">B</div>produces reactions that block transmission of pain impulses</div>
+          <div class="option wrong"><div class="opt-letter">C</div>arises from small encapsulated receptors</div>
+          <div class="option correct"><div class="opt-letter"></div>occurs when stimulus causes damage of sensory receptors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header">
+        <div class="q-num">Q179</div>
+        <div class="q-text">Reaction to pain includes all the following, except:</div>
+        <div class="q-toggle">▼</div>
+      </div>
+      <div class="q-body">
+        <div class="options">
+          <div class="option wrong"><div class="opt-letter">A</div>increased heart rate</div>
+          <div class="option wrong"><div class="opt-letter">B</div>depression</div>
+          <div class="option wrong"><div class="opt-letter">C</div>withdrawal reflexes</div>
+          <div class="option correct"><div class="opt-letter"></div>stoppage of impulse discharge from nociceptors in chronic painful conditions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="summary">
+<div class="topic-group">
+<div class="topic-header">
+<div class="topic-icon ic-cyan">⚡</div>
+<div class="topic-title">ملخص سريع — أهم النقاط</div>
+</div>
+<div class="summary-grid">
+<div class="sum-row">
+<div class="sum-key">Muscle spindle innervation</div>
+<div class="sum-val">Ia &amp; II fibers (afferent), γ motor neurons (efferent)</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Nuclear bag fibers</div>
+<div class="sum-val">Rapidly responding (phasic)</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Nuclear chain fibers</div>
+<div class="sum-val">Slowly adapting (tonic)</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Stretch reflex type</div>
+<div class="sum-val">Monosynaptic</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Static stretch reflex</div>
+<div class="sum-val">Base of muscle tone</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Dynamic stretch reflex</div>
+<div class="sum-val">Base of tendon jerk</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Inverse stretch reflex receptor</div>
+<div class="sum-val">Golgi tendon organ</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">γ-motor neuron role</div>
+<div class="sum-val">Adjusts muscle spindle discharge</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Reciprocal innervation</div>
+<div class="sum-val">Relaxation of antagonists in stretch reflex</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Spindle NOT innervated by</div>
+<div class="sum-val">Aα fibers</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Flexor withdrawal reflex</div>
+<div class="sum-val">Polysynaptic, fatigable</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Parkinson's disease</div>
+<div class="sum-val">Substantia nigra damage</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Parkinson's tremor</div>
+<div class="sum-val">Resting/static (NOT kinetic)</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Basal ganglia project to</div>
+<div class="sum-val">VA &amp; VL thalamic nuclei</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Dentate nucleus belongs to</div>
+<div class="sum-val">Cerebellum (NOT basal ganglia)</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Corticospinal NOT from</div>
+<div class="sum-val">Prefrontal area</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Spinotectal tract</div>
+<div class="sum-val">Ascending (NOT descending)</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">UMNL acute vs chronic</div>
+<div class="sum-val">Acute: flaccid → Chronic: spastic</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">LMNL features</div>
+<div class="sum-val">Severe wasting, flaccid, hyporeflexia</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Biceps jerk center</div>
+<div class="sum-val">C5–C6</div>
+</div>
+<div class="sum-row">
+<div class="sum-key">Broca's area damage</div>
+<div class="sum-val">Cannot speak whole words correctly</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+    let correctScore = 0;
+    let totalQuestions = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const qCards = document.querySelectorAll('.q-card');
+      totalQuestions = qCards.length;
+
+      const scoreNum = document.querySelector('#score-stat .stat-num');
+      if (scoreNum) scoreNum.innerText = `0/${totalQuestions}`;
+
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+      document.querySelectorAll('.options').forEach(opts => {
+        opts.querySelectorAll('.opt-letter').forEach((letterEl, index) => {
+          letterEl.innerText = letters[index] || '';
+        });
+      });
+
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          const card = opt.closest('.q-card');
+          if (card.classList.contains('answered') || document.body.classList.contains('show-all-mode')) return;
+
+          card.classList.add('answered');
+
+          if (opt.classList.contains('correct')) {
+            opt.classList.add('pop-animation');
+            correctScore++;
+          } else {
+            opt.classList.add('wrong-selected');
+          }
+
+          updateScore();
+        });
+      });
+    });
+
+    function updateScore() {
+      const scoreNum = document.querySelector('#score-stat .stat-num');
+      if (scoreNum) scoreNum.innerText = `${correctScore}/${totalQuestions}`;
+    }
+
+    function showAllAnswers() {
+      document.body.classList.add('show-all-mode');
+    }
+
+    function retest() {
+      document.body.classList.remove('show-all-mode');
+      correctScore = 0;
+      updateScore();
+
+      document.querySelectorAll('.q-card').forEach(card => {
+        card.classList.remove('answered');
+      });
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('wrong-selected', 'pop-animation');
+      });
+    }
+
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => {
+        if (b.getAttribute('onclick') && b.getAttribute('onclick').includes('showSection')) {
+          b.classList.remove('active');
+        }
+      });
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+    function toggleQ(card) { card.classList.toggle('open'); }
+    function searchQ(val) {
+      const q = val.trim().toLowerCase();
+      document.querySelectorAll('.q-card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = (!q || text.includes(q)) ? '' : 'none';
+      });
+      document.querySelectorAll('.topic-group').forEach(group => {
+        const visible = [...group.querySelectorAll('.q-card')].some(c => c.style.display !== 'none');
+        group.style.display = visible ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

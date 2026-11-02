@@ -1,0 +1,4808 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ar">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>أسئلة الامتحان — Biomechanics 2</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0c10;
+      --bg2: #0f1218;
+      --bg3: #141820;
+      --card: #13171f;
+      --card2: #1a1f2a;
+      --border: #1e2535;
+      --border2: #2a3248;
+      --text: #e2e8f0;
+      --muted: #8892a4;
+      --dim: #4a5568;
+      --blue: #3b82f6;
+      --blue2: #1d4ed8;
+      --cyan: #06b6d4;
+      --green: #10b981;
+      --yellow: #f59e0b;
+      --red: #ef4444;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --orange: #f97316;
+      --glow-blue: 0 0 20px rgba(59, 130, 246, 0.25);
+      --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(59, 130, 246, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      padding: 50px 0 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.06) 0%, transparent 100%);
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--blue);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .header-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--blue);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+      }
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      animation: fadeDown 0.6s 0.1s ease both;
+      background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 10px;
+      font-size: 14px;
+      animation: fadeDown 0.6s 0.2s ease both;
+      direction: ltr;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 1px;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      animation: fadeDown 0.6s 0.3s ease both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--blue);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 12, 16, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      display: flex;
+      gap: 4px;
+      justify-content: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: 'Cairo', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 14px 18px;
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .nav-btn:hover {
+      color: var(--text);
+    }
+
+    .nav-btn.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .topic-group {
+      margin-bottom: 32px;
+    }
+
+    .topic-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topic-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .topic-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .topic-count {
+      margin-right: auto;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .q-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .q-card:hover {
+      border-color: var(--border2);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .q-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      cursor: pointer;
+    }
+
+    .q-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .q-text {
+      font-size: 14.5px;
+      font-weight: 600;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .q-toggle {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--muted);
+      font-size: 12px;
+      transition: all 0.2s;
+      margin-top: 1px;
+    }
+
+    .q-card.open .q-toggle {
+      background: rgba(59, 130, 246, 0.1);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: var(--blue);
+      transform: rotate(180deg);
+    }
+
+    .q-body {
+      display: none;
+      padding: 0 20px 18px 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .q-card.open .q-body {
+      display: block;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      font-size: 13.5px;
+      line-height: 1.5;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      border-color: var(--border2);
+      background: var(--card);
+    }
+
+    .q-card.answered .option,
+    .show-all-mode .option {
+      pointer-events: none;
+    }
+
+    .q-card.answered .option.correct,
+    .show-all-mode .option.correct {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.07);
+      color: #6ee7b7;
+      opacity: 1;
+    }
+
+    .q-card.answered .option:not(.correct):not(.wrong-selected),
+    .show-all-mode .option:not(.correct) {
+      opacity: 0.45;
+    }
+
+    .opt-letter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .q-card.answered .option.correct .opt-letter,
+    .show-all-mode .option.correct .opt-letter {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: var(--green);
+    }
+
+    .q-card.answered .option.correct .opt-letter::after,
+    .show-all-mode .option.correct .opt-letter::after {
+      content: '✓';
+    }
+
+    .option.wrong-selected {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.07);
+      color: #fca5a5;
+      opacity: 1 !important;
+    }
+
+    .option.wrong-selected .opt-letter {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: rgba(239, 68, 68, 0.5);
+      color: var(--red);
+    }
+
+    .option.wrong-selected .opt-letter::after {
+      content: '✗';
+    }
+
+    @keyframes popCorrect {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+        background: rgba(16, 185, 129, 0.15);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .pop-animation {
+      animation: popCorrect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .note-box {
+      margin-top: 12px;
+      background: rgba(245, 158, 11, 0.07);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-right: 3px solid var(--yellow);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #fcd34d;
+      line-height: 1.7;
+      direction: ltr;
+    }
+
+    .search-wrap {
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      font-size: 14px;
+      padding: 14px 20px 14px 48px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .search-input::placeholder {
+      color: var(--dim);
+    }
+
+    .search-input:focus {
+      border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.08);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dim);
+      font-size: 16px;
+      pointer-events: none;
+    }
+
+    .ic-blue {
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--blue);
+    }
+
+    .ic-green {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--green);
+    }
+
+    .ic-yellow {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--yellow);
+    }
+
+    .ic-red {
+      background: rgba(239, 68, 68, 0.12);
+      color: var(--red);
+    }
+
+    .ic-purple {
+      background: rgba(139, 92, 246, 0.12);
+      color: var(--purple);
+    }
+
+    .ic-cyan {
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--cyan);
+    }
+
+    .ic-orange {
+      background: rgba(249, 115, 22, 0.12);
+      color: var(--orange);
+    }
+
+    .ic-pink {
+      background: rgba(236, 72, 153, 0.12);
+      color: var(--pink);
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border2);
+      border-radius: 10px;
+    }
+
+    .summary-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .sum-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .sum-row:hover {
+      border-color: var(--border2);
+    }
+
+    .sum-key {
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      flex: 1;
+      border-left: 1px solid var(--border);
+    }
+
+    .sum-val {
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      width: 220px;
+      background: var(--bg2);
+      flex-shrink: 0;
+    }
+
+    @media (max-width:640px) {
+      .stats-bar {
+        gap: 24px;
+      }
+
+      .sum-val {
+        width: 150px;
+        font-size: 11px;
+      }
+
+      .nav-btn {
+        padding: 12px 12px;
+        font-size: 12px;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+    }
+
+    /* Written Answers Styling */
+    .written-answer {
+      margin-top: 14px;
+      line-height: 1.8;
+      font-size: 14.5px;
+      color: var(--text);
+      direction: ltr;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .written-answer ul,
+    .written-answer ol {
+      margin-left: 20px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
+
+    .written-answer li {
+      margin-bottom: 6px;
+    }
+
+    .written-answer strong {
+      color: var(--cyan);
+    }
+
+    .written-part {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border2);
+    }
+
+    .written-part:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .written-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .badge-function {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--blue);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .badge-weakness {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .badge-compensation {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--yellow);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .badge-longterm {
+      background: rgba(139, 92, 246, 0.15);
+      color: var(--purple);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .badge-causes {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-badge">Biomechanics 2 Exam</div>
+    <h1>أسئلة الامتحان المجمّعة</h1>
+    <p class="subtitle">Biomechanics · Gait Analysis · Kinematics & Kinetics · Pathological Gaits</p>
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-num">100</div>
+        <div class="stat-label">سؤال MCQ</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">74</div>
+        <div class="stat-label">سؤال True/False</div>
+      </div>
+      <div class="stat" id="score-stat">
+        <div class="stat-num">0/174</div>
+        <div class="stat-label">الإجابات الصحيحة</div>
+      </div>
+    </div>
+  </header>
+  <nav class="nav">
+    <button class="nav-btn active" onclick="showSection('mcq')">📋 MCQ</button>
+    <button class="nav-btn" onclick="showSection('tf')">☑️ True or False</button>
+    <button class="nav-btn" onclick="showSection('written')">✍️ Written</button>
+    <button class="nav-btn" onclick="showSection('summary')">⚡ ملخص سريع</button>
+    <button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار كل الإجابات</button>
+    <button class="nav-btn" onclick="retest()">🔄 إعادة الاختبار</button>
+  </nav>
+  <main>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" placeholder="... ابحث عن سؤال في القسم المفتوح" oninput="searchQ(this.value)">
+    </div>
+
+    <!-- MCQ Section -->
+    <div class="section active" id="mcq">
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-blue">📊</div>
+          <div class="topic-title">Percentage of Phases (أسئلة النسب المئوية)</div>
+          <div class="topic-count">10 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q1</div>
+            <div class="q-text">The percent of heel strike:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>0%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q2</div>
+            <div class="q-text">The percent of loading response:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>0%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q3</div>
+            <div class="q-text">The percent of mid stance:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>0%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q4</div>
+            <div class="q-text">The percent of heel off:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>0%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q5</div>
+            <div class="q-text">The percent of pre swing:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>0%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q6</div>
+            <div class="q-text">The percent of acceleration (Initial swing):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>0%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q7</div>
+            <div class="q-text">The percent of mid swing:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>14%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q8</div>
+            <div class="q-text">The percent of deceleration (Terminal swing):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>14%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q9</div>
+            <div class="q-text">The percent of DLS (Double Limb Stance):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>0%
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q10</div>
+            <div class="q-text">The percent of SLS (Single Limb Support):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>10%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>20%
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>13%
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>40%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-green">⚙️</div>
+          <div class="topic-title">1. المتغيرات والتعاريف الأساسية (Variables & Definitions)</div>
+          <div class="topic-count">11 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q11</div>
+            <div class="q-text">Walking velocity has direct relationship with ... and inverse relationship with ...
+            </div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Gait periods, gait subdivisions
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Gait subdivisions, gait periods
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stance period, swing period
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Swing period, stance period
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q12</div>
+            <div class="q-text">The velocity increases if the ...... time increases and the ...... time decreases:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stance, Swing
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Swing, Stance
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q13</div>
+            <div class="q-text">All of the following are considered events in gait cycles, except:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Foot flat
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Terminal stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Toe off
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Deceleration
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q14</div>
+            <div class="q-text">All of the following are temporal variables of gait, except:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step rate
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Foot angle
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stance time
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Double support time
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q15</div>
+            <div class="q-text">All of the following are spatial variables of gait, except:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Stance time
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stride length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Foot angle
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step width
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q16</div>
+            <div class="q-text">Walking speed is regarded as:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Temporal variable
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Spatial variable
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Spatio-temporal variable
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>None of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q17</div>
+            <div class="q-text">Number of steps per minute (or per unit of time) is:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step time
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Step rate / Cadence
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Walking velocity
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q18</div>
+            <div class="q-text">The linear distance between two successive heel contacts of the same extremity during
+              gait is:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Stride length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stride
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q19</div>
+            <div class="q-text">The sequence of events taking place between two successive heel contacts of the opposite
+              extremity is:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Step
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stride
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stride length
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q20</div>
+            <div class="q-text">The sequence of events taking place between two successive heel contacts of the same
+              extremity is:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stride length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Step
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Stride
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q21</div>
+            <div class="q-text">Functional interval in which the tibia is vertical is:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Mid stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Mid swing
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-yellow">⚡</div>
+          <div class="topic-title">2. ميكانيكا الطاقة والـ COG (Energy Mechanics & Center of Mass)</div>
+          <div class="topic-count">7 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q22</div>
+            <div class="q-text">Potential energy during gait is represented/maximized during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Swing period / Single support
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Double limb support
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Loading response
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Floating period
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q23</div>
+            <div class="q-text">Minimum potential energy presents at:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Single limb support
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Double limb support
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Terminal stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Push off phase
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q24</div>
+            <div class="q-text">Maximum Kinetic energy presents at:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Double limb support (during weight transfer)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Single limb support
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q25</div>
+            <div class="q-text">Minimum height of the center of mass (CoM) during gait cycle occurs at:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>**a- 5% and 55% of gait cycle** *(During Double Limb Stance)*
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>30% and 80% of gait cycle
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>5% and 30% of gait cycle
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>55% and 80% of gait cycle
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q26</div>
+            <div class="q-text">Lowest point of Center of Mass (CoM) occurs when:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>One limb is planted on the ground, while another one just leaving the
+                ground
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>One limb is in mid stance, while another one is in mid swing phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>One limb just strikes the ground, while another one is in terminal stance
+                phase
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both limbs are planted on the ground
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q27</div>
+            <div class="q-text">Upward tilting of the pelvis increases thigh flexion in:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Terminal swing phase
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Initial swing phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Mid stance phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Loading response
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q28</div>
+            <div class="q-text">Main factor to control side-to-side displacement is ... movement which is controlled by
+              hip movement:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Subtalar joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Knee joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Trunk
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Pelvis
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-red">⚖️</div>
+          <div class="topic-title">3. أسئلة الـ GRFV والـ Moments والجداول</div>
+          <div class="topic-count">14 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q29</div>
+            <div class="q-text">GRFV lies medial to the subtalar joint creating:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Dorsi flexion moment
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Plantar flexors moment
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Inversion moment
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q30</div>
+            <div class="q-text">GRFV lies to lateral to subtalar joint creating:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Flexion moment
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Eversion moment
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Inversion moment
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q31</div>
+            <div class="q-text">GRFV lies anterior to the hip joint during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Initial contact & Loading response
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Initial swing
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Mid swing
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q32</div>
+            <div class="q-text">GRFV lies anterior to hip joint creating:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Flexion moment
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Extension moment
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Abduction moment
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q33</div>
+            <div class="q-text">GRFV lies anterior to hip joint compensated by action of:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Gluteus Maximus of supporting leg
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Gluteus Maximus of unsupporting leg
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>None of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q34</div>
+            <div class="q-text">During mid stance, GRFV lies:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Medial to the hip joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Lateral to the hip joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Anterior to the hip joint
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q35</div>
+            <div class="q-text">During mid stance, GRFV creates:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Abduction moment
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Adduction moment
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q36</div>
+            <div class="q-text">GRFV passing directly through the hip joint:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Creating flexion moment
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>No moment created
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Creating adduction moment
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q37</div>
+            <div class="q-text">GRFV lies posterior to ankle joint during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Initial contact & Loading response
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Mid swing
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Terminal swing
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q38</div>
+            <div class="q-text">GRFV lies posterior to ankle joint creating:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Plantar flexion moment
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Dorsi flexion moment
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q39</div>
+            <div class="q-text">GRFV lies anterior to the ankle joint during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Mid-stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Terminal stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Pre-swing
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q40</div>
+            <div class="q-text">GRFV lies anterior to the ankle joint creating:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Dorsi flexion moment
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Plantar flexors moment
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q41</div>
+            <div class="q-text">During loading responses, GRFV lies:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Posterior to the knee joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Anterior to the knee joint
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q42</div>
+            <div class="q-text">Which of the following statements is true?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>GRFv lies anterior to the hip joint at mid stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>**b- GRFv lies posterior to hip joint at foot flat (Loading Response)**
+                *(Correction: lies Anterior to hip, text notes specify Anterior, check slide reference)*
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>GRFv lies anterior to knee at heel off (Terminal Stance)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-purple">💪</div>
+          <div class="topic-title">4. النشاط العضلي والمراحل العضلية (Muscle Activity & Subphases)</div>
+          <div class="topic-count">10 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q43</div>
+            <div class="q-text">No muscular activity is needed at the knee joint during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Mid stance (Passive interval / locked knee)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Loading response
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Initial swing
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q44</div>
+            <div class="q-text">Passive gait interval occurs during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Initial contact
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Loading response
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Mid stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Terminal stance
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q45</div>
+            <div class="q-text">Quadriceps during standing activates in ... direction:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Concentric
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Eccentric
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Isometric
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>No action
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q46</div>
+            <div class="q-text">No need for ... contraction of pretibial muscle during ...:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Concentric, terminal stance phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Eccentric, loading response phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Concentric, initial swing phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Eccentric, terminal stance phase
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q47</div>
+            <div class="q-text">The action of tibialis anterior is concentric during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Initial contact / Swing phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Loading response
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Neither a nor b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q48</div>
+            <div class="q-text">The action of tibialis anterior is eccentric during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Initial contact
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Loading response (to prevent foot slap)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Neither a nor b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q49</div>
+            <div class="q-text">Calf muscles contract to control tibial advance by:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Eccentric contraction
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Concentric contraction
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Isometric contraction
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q50</div>
+            <div class="q-text">Calf muscles contract concentrically in:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Early part of stance phase
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Late part of stance phase (Push off / Pre-swing)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q51</div>
+            <div class="q-text">Maximum external rotation of the hip is needed during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Weight acceptance
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Limb advancement (Swing phase)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Single limb support
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>The end of swing phase
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q52</div>
+            <div class="q-text">Maximum knee flexion in stance phase occurs at:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Heel strike
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Foot flat (Loading response ~ 15-20°)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Heel off
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Push off
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-cyan">🚨</div>
+          <div class="topic-title">5. حالات ضعف العضلات والتعويض (Muscle Weakness & Compensations)</div>
+          <div class="topic-count">24 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q53</div>
+            <div class="q-text">Weakness of tibialis anterior leads to:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Foot slap
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Foot drop
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Neither a nor b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q54</div>
+            <div class="q-text">Weakness of (Tibialis anterior) is compensated by:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Hip hiking of the affected side
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Hip hiking of the non-affected side
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Circumduction of the leg
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and c are correct compensatory strategies
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q55</div>
+            <div class="q-text">Weakness of (Tibialis anterior) is compensated by:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Leaning trunk forward with posterior pelvis tilting
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Leaning trunk forward with anterior pelvis tilting
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q56</div>
+            <div class="q-text">Weakness of (Tibialis anterior) is compensated by:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Shorter step length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Longer step length
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q57</div>
+            <div class="q-text">Weakness of (Tibialis anterior) is compensated by:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Patient contacting the ground with foot flat
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Patient contacting the ground with heel strike
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q58</div>
+            <div class="q-text">Long term effects of compensation due to weakness of (Tibialis anterior):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Genu recurvatum
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Genu varum
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Genu valgum
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q59</div>
+            <div class="q-text">Long term effects of compensation due to weakness of (Tibialis anterior):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>LBP due to leaning trunk backward
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>LBP due to leaning trunk forward
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q60</div>
+            <div class="q-text">Long term effects of compensation due to weakness of (Tibialis anterior):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Increased energy expenditure
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Easy fatigue
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q61</div>
+            <div class="q-text">Long term effects of compensation due to weakness of (Tibialis posterior):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Shorter steps
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Slower speed
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q62</div>
+            <div class="q-text">Long term effects of compensation due to weakness of (Tibialis posterior):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Delayed heel rise
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Prolonged heel contact
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q63</div>
+            <div class="q-text">Long term effects of compensation due to weakness of (Tibialis posterior):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Increased demand on quadriceps
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Decreased demand on quadriceps
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q64</div>
+            <div class="q-text">If the weakness of gluteus medius is unilateral, the patient will lean the trunk
+              laterally toward:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Strong limb
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Weak limb (Gluteus medius gait)
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q65</div>
+            <div class="q-text">If the weakness of gluteus medius is bilateral, this gait is termed:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Waddling gait
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Duck gait
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q66</div>
+            <div class="q-text">Lateral leaning of the trunk shifts GRFV to pass:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Through the hip joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Lateral to the hip joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Creating abduction moment
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q67</div>
+            <div class="q-text">Lateral leaning of the trunk is compensated by:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>The hip adductors
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>The hip abductors
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>The hip extensors
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q68</div>
+            <div class="q-text">Long term effects of compensation due to weakness of gluteus medius leads to:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Lateral spinal curve
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Structural/Functional scoliosis
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q69</div>
+            <div class="q-text">Possible compensation due to weakness of hip extensors (Gluteus Maximus):</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>The patient will lean the trunk forward
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>The patient will lean the trunk backward (Gluteus maximus gait)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>No leaning of the trunk
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q70</div>
+            <div class="q-text">Effect of weakness of hip extensors on gait:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Tendency for excessive hip flexion & anterior pelvic tilt
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Tendency for excessive posterior pelvic tilt
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q71</div>
+            <div class="q-text">Long term effects of compensation due to weakness of hip extensors leads to:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Excessive lumbar lordosis / Hyperlordosis & mechanical LBP
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Scoliosis
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q72</div>
+            <div class="q-text">Weakness of (Quadriceps) leads to:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Tendency for excessive knee flexion and instability at heel strike /
+                loading response
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Genu recurvatum
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q73</div>
+            <div class="q-text">If quadriceps are paralyzed, the patient compensates by:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Pushing the femur posteriorly with his hand at mid stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Leaning the trunk backward
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q74</div>
+            <div class="q-text">Long term effects of compensation due to weak quadriceps leads to:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Knock knee deformity
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Disabling fatigue
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q75</div>
+            <div class="q-text">To rehabilitate a patient with weak quadriceps/knee extensors, we should strengthen:
+            </div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Hip flexor
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Hip Extensor & Ankle Plantarflexors (Soleus to pull femur/tibia back)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Ankle Dorsiflexors
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q76</div>
+            <div class="q-text">To rehabilitate a patient with weak pretibial muscles/ankle dorsiflexors, we should
+              strengthen:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Hip flexors & Knee flexors (to clear ground via High Steppage)
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Hip extensors
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-orange">🩺</div>
+          <div class="topic-title">6. انقباضات المفاصل والاعتلالات (Contractures & Pathological Gaits)</div>
+          <div class="topic-count">9 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q77</div>
+            <div class="q-text">Plantar flexion contracture:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Blocks progression of the limb in the swing phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Inhibits floor clearance in the stance phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>None of the above
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q78</div>
+            <div class="q-text">Knee flexion contracture:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Blocks progression during swing phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Increases activity of quadriceps to stabilize the knee
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>None of the above
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q79</div>
+            <div class="q-text">Hip flexion contracture:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Introduces strain on the back muscles
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Introduces strain on the hip extensors
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>None of the above
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q80</div>
+            <div class="q-text">Hip flexion contracture:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Places the body's COG over the supporting foot
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>The trunk must lean forward
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>None of the above
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q81</div>
+            <div class="q-text">Hip flexor spasticity:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Restricts progression in mid stance
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Restricts progression in terminal stance
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>None of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q82</div>
+            <div class="q-text">Impaired motor control (spasticity) or sustained hamstring action:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Inhibits pre-swing preparation for limb advancement
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Promotes hyperextension
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q83</div>
+            <div class="q-text">Increased hip and knee flexion in the swing phase is called:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>High steppage gait
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Functional shortening of the affected extremity
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Both a and b
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Neither a nor b
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q84</div>
+            <div class="q-text">Toe drag occurs during which phase due to pretibial weakness?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Swing phase
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Stance phase
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q85</div>
+            <div class="q-text">Lurching gait is a pathological gait seen during:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Loading response interval
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Terminal stance interval
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-pink">🔬</div>
+          <div class="topic-title">7. أسئلة عامة وأجهزة التحليل (Gait Analysis & General)</div>
+          <div class="topic-count">12 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q86</div>
+            <div class="q-text">For optimum motion gait analysis, we need:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Dark room, visible risen force platform and $\ge3$ cameras
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Light room, embedded force platform and $\ge3$ cameras
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Dark room, embedded force platform and $\ge3$ cameras
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q87</div>
+            <div class="q-text">Number of cameras for motion capture by silhouette method must be at least:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>4 cameras
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>6 cameras
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>8 cameras
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q88</div>
+            <div class="q-text">To convert pressure signals into electrical signals for recording kinetic changes, we
+              need:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Pressure sensors / Transducers
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q89</div>
+            <div class="q-text">Ideal mechanism of weight distribution during gait is done through:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Medio-lateral direction mechanism
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>Tripod mechanism
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Antero-posterior direction mechanism
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q90</div>
+            <div class="q-text">Causes of pathological Gait:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Deformity
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Impaired motor control or spasticity
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Sensory loss
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q91</div>
+            <div class="q-text">Sensory loss prevents the patient from knowing the position of:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Hip joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Knee joint
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Ankle and foot joint
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q92</div>
+            <div class="q-text">Moderate sensory loss causes:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Slow walking
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Fast walking
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q93</div>
+            <div class="q-text">Major causes of musculoskeletal pain are:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Excessive tissue tension
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Joint distension related to trauma
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Joint distension related to arthritis
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q94</div>
+            <div class="q-text">Pain in the limbs can be classified under four headings:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Joint pain
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Soft tissue pain
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Neurogenic pain
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q95</div>
+            <div class="q-text">When a patient's muscle strength is insufficient to meet the demands of walking, this
+              can be caused by:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Disuse muscular atrophy
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Neurological impairment
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q96</div>
+            <div class="q-text">Influences on Gait:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Base of Support
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Leg-length
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Gender
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q97</div>
+            <div class="q-text">Gait is defined as:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>Pattern of movement
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Form of bipedal locomotion
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>Complex high level motor function
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>All of the above
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topic-group" data-topic>
+        <div class="topic-header">
+          <div class="topic-icon ic-blue">🔄</div>
+          <div class="topic-title">8. أسئلة تبادل الرجلين (Contralateral Relationships)</div>
+          <div class="topic-count">3 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q98</div>
+            <div class="q-text">When the left leg is in Terminal Stance, the right leg is in:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Pre-swing
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q99</div>
+            <div class="q-text">When the left leg is releasing weight and transferring weight (Loading Response), the
+              right leg is in:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Pre-swing
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q100</div>
+            <div class="q-text">Initial double stance corresponds to:</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>Ipsilateral initial contact & loading response and contralateral terminal
+                stance & preswing
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- True or False Section -->
+    <div class="section" id="tf">
+      <div class="topic-group">
+        <div class="topic-header">
+          <div class="topic-icon ic-cyan">☑️</div>
+          <div class="topic-title">True or False (أسئلة الصح والغلط)</div>
+          <div class="topic-count">74 أسئلة</div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF1</div>
+            <div class="q-text">The lower limbs are adapted for mobility rather than stability.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Adapted for stability and weight bearing</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF2</div>
+            <div class="q-text">Stability is achieved in joints of the lower limb through the use of strong ligaments
+              and tight-fitting bony surfaces.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF3</div>
+            <div class="q-text">Bi-pedalism is the process by which humans and animals are able to stand upright and
+              move on two limbs.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Only humans are true obligate bipeds</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF4</div>
+            <div class="q-text">Animal gait forms quadrupedal locomotion.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF5</div>
+            <div class="q-text">Gait is a very efficient biomechanical process, requiring relatively much use of energy.
+            </div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Requires small/minimal energy</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF6</div>
+            <div class="q-text">Gait is a complex, high-level motor function.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF7</div>
+            <div class="q-text">Normal contact of the heel is on the posterior outside (lateral side) of the heel.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF8</div>
+            <div class="q-text">Every individual has a unique gait pattern.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF9</div>
+            <div class="q-text">Equilibrium is the ability to assume a sitting posture and maintain balance.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Standing upright</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF10</div>
+            <div class="q-text">The ability to initiate and maintain rhythmic stepping is called locomotion.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF11</div>
+            <div class="q-text">Normal bone, joint, and muscle function is not necessary for a smooth gait pattern.
+            </div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">It is absolutely necessary</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF12</div>
+            <div class="q-text">Ability to initiate and maintain rhythmic stepping IS necessary for a smooth gait
+              pattern.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF13</div>
+            <div class="q-text">Neurological Control plays a vital role in the gait pattern.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF14</div>
+            <div class="q-text">Visual, vestibular, auditory, and sensory-motor input play an important role during
+              walking.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF15</div>
+            <div class="q-text">Forces of momentum are necessary for heel strike.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF16</div>
+            <div class="q-text">Gait Cycle (GC) is the activity that occurs from the point of initial contact of one
+              foot to the point at which the contralateral foot contacts the ground again.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">To the point where the ipsilateral/same foot contacts again</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF17</div>
+            <div class="q-text">A stride consists of two steps by the same foot.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF18</div>
+            <div class="q-text">The head, arms, and trunk (HAT) constitute $4/6$ (or $67\%$) of total body weight.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF19</div>
+            <div class="q-text">Sensory input provides the CNS with information needed to maintain balance.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF20</div>
+            <div class="q-text">For normal gait we need safe ground clearance and forced heel strike.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Controlled heel strike, not forced</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF21</div>
+            <div class="q-text">There are two periods of double limb stance, each of them 10%, at these times the body's
+              center of gravity is at its highest.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">It is at its lowest during double limb stance; highest during mid-stance</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF22</div>
+            <div class="q-text">Stance phase represents about 6% of the gait cycle.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Represents 60%</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF23</div>
+            <div class="q-text">Stance phase is necessary for an accurate swing phase to take place.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF24</div>
+            <div class="q-text">Stance phase provides instability for the gait.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Provides stability</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF25</div>
+            <div class="q-text">Weight Acceptance is the period when weight is rapidly loaded on the outstretched limb.
+            </div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF26</div>
+            <div class="q-text">Weight is transferred onto the metatarsal heads and the heel comes off the ground during
+              Mid Swing and Terminal Swing.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Occurs during Terminal Stance</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF27</div>
+            <div class="q-text">Swing Limb Advancement is the time when the limb is loaded and the foot comes off the
+              ground.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">When it is unloaded</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF28</div>
+            <div class="q-text">In initial swing, the hip is in flexion and external rotation.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF29</div>
+            <div class="q-text">During loading response, the knee flexes 15 degrees while the ankle plantar flexes 15
+              degrees, which is an energy-conserving mechanism.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF30</div>
+            <div class="q-text">Quadriceps and gluteal muscles act throughout late mid stance to maintain hip and knee
+              stability.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">They act during early/mid stance, not late mid stance</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF31</div>
+            <div class="q-text">Terminal stance is the second half of single support from 30 to 50% of the gait cycle.
+            </div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF32</div>
+            <div class="q-text">In terminal stance, the hip is in hyperextension, internal rotation, and abduction, and
+              the knee is extended.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Hip is in hyperextension, extension, and adduction</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF33</div>
+            <div class="q-text">The triceps surae acts to control tibial advancement (preventing the tendency for the
+              ankle to dorsiflex due to body weight and inertia).</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF34</div>
+            <div class="q-text">Swing phase is called the "non-weight bearing" phase and represents 60% of the gait
+              cycle.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Represents 40%</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF35</div>
+            <div class="q-text">In initial swing, extension of the knee is necessary for the swinging limb to clear the
+              ground as it moves forward.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Knee flexion is necessary for clearance</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF36</div>
+            <div class="q-text">In mid swing, it is the middle third of the swing phase from 73% to 87% of the gait
+              cycle.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF37</div>
+            <div class="q-text">In terminal swing, the knee is extending, the hip becomes more flexed, and the foot is
+              in plantar flexion.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Foot is in dorsiflexion/neutral to prepare for heel strike</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF38</div>
+            <div class="q-text">Forward momentum is provided by the ground reaction to the push-off action.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF39</div>
+            <div class="q-text">As the heel touches the ground, the foot moves into plantar flexion controlled by the
+              eccentric action of the dorsiflexors.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF40</div>
+            <div class="q-text">Running requires a greater ROM of the hip, knee, and ankle joints.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF41</div>
+            <div class="q-text">Running involves a greater excursion of the center of mass and less ground reaction
+              forces.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Involves higher ground reaction forces</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF42</div>
+            <div class="q-text">During running, float periods (both feet airborne) represent less than 40% of the swing
+              phase.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Represent more than 70% of swing phase</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF43</div>
+            <div class="q-text">During running, a person requires greater balance and less strength.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Requires more strength</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF44</div>
+            <div class="q-text">Iliopsoas is active during a portion of the swing phase eccentrically.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Concentrically to flex the hip</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF45</div>
+            <div class="q-text">Plantar flexors are active during the mid and latter part of the stance phase.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF46</div>
+            <div class="q-text">With normal aging, there are shorter step and stride lengths.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF47</div>
+            <div class="q-text">With normal aging, there is an increase in pelvic girdle and hip rotation.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">There is a decrease</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF48</div>
+            <div class="q-text">Increasing the speed of walking decreases the foot angle (degree of toe-out).</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF49</div>
+            <div class="q-text">Cadence is the number of steps taken by a person per minute, with an average of 13
+              steps/minute.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Average is 113 steps/minute</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF50</div>
+            <div class="q-text">Delayed heel rise results from weakness of calf muscles while premature heel rise
+              results from pretibial weakness.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF51</div>
+            <div class="q-text">The main advantage of the pressure insole system in relation to the pressure platform
+              system is that the insole allows analysis of several steps of the gait cycle.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF52</div>
+            <div class="q-text">Neck extensors are antigravity muscles because of the passage of the LOG anterior to the
+              atlanto-occipital joint during standing.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF53</div>
+            <div class="q-text">Bilateral gluteus maximus weakness results in gluteus medius gait while bilateral
+              gluteus medius weakness causes waddling gait.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Bilateral gluteus maximus leads to bilateral gluteus maximus gait / backward lean
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF54</div>
+            <div class="q-text">If the cadence increases while the velocity remains the same, the step length should
+              increase.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Step length must decrease</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF55</div>
+            <div class="q-text">The normal pathway of the COP during gait must lie medial to the midline of the foot.
+            </div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Stays lateral until forefoot push-off</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF56</div>
+            <div class="q-text">Postural sway during standing may shift the LOG posterior to the hip joint but produces
+              no changes around the ankle.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Produces compensatory torque changes at the ankle</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF57</div>
+            <div class="q-text">Pelvic drop in the frontal plane during gait is controlled by ipsilateral eccentric
+              contraction of the hip abductors.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Contralateral/Stance limb abductors contract eccentrically/isometrically</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF58</div>
+            <div class="q-text">Genu recurvatum may result from weakness of quadriceps, dorsiflexors, or plantar
+              flexors.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF59</div>
+            <div class="q-text">If the stride time in running is 0.6 seconds and each floating period is 0.12 seconds,
+              then each single limb stance must equal 0.36 seconds.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF60</div>
+            <div class="q-text">The main compensation for quadriceps weakness is the activity of the hip extensors and
+              soleus muscle to pull the femur and tibia posteriorly.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF61</div>
+            <div class="q-text">Knee extension stability during terminal stance is provided by ankle plantar flexors and
+              momentum of the swing limb.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF62</div>
+            <div class="q-text">Normal physiological knee valgus is about 5 degrees with the vertical line while the
+              normal toe-out angle is about 7 degrees.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF63</div>
+            <div class="q-text">Inability to counteract forward GRFV moment results from the weakness of hip extensors
+              and ankle plantar flexors.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF64</div>
+            <div class="q-text">Terminal stance is characterized by three arcs: hip extension arc, knee extension arc,
+              and ankle plantar flexion arc.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF65</div>
+            <div class="q-text">The center of pressure is located between both feet during unilateral stance.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Must be within the supporting foot</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF66</div>
+            <div class="q-text">Forward trunk lean is a compensation for weak hip abductors, knee extensors, and ankle
+              dorsiflexors.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Mainly knee extensors/quadriceps</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF67</div>
+            <div class="q-text">Ipsilateral arc of shoulder flexion is 24° and is reached at contralateral initial
+              contact.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF68</div>
+            <div class="q-text">Midswing is a subphase from 60° knee flexion till 0-degree knee extension.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF69</div>
+            <div class="q-text">Prolonged gluteus maximus gait may result in increased scoliosis while gluteus medius
+              gait results in increased lordosis.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Gluteus maximus gait increases lordosis</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF70</div>
+            <div class="q-text">Maximum arcs of hip and knee flexion are reached in mid-swing during normal gait.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF71</div>
+            <div class="q-text">To obtain accurate data from a force plate, the subject must be aware of the plate
+              position.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option wrong">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option correct">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+            <div class="note-box">Should not be aware to avoid targeting/altering gait</div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF72</div>
+            <div class="q-text">Torque generated by gastrosoleus muscles in terminal stance is bigger than torque in
+              midstance due to higher GRFV magnitude in terminal stance.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF73</div>
+            <div class="q-text">In normal gait, the pelvis drops 5° in the swing limb and rotates 4° in the stance limb.
+            </div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">TF74</div>
+            <div class="q-text">The Ground Reaction Force (GRF) is an example of an External Force.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="options">
+              <div class="option correct">
+                <div class="opt-letter"></div>True
+              </div>
+              <div class="option wrong">
+                <div class="opt-letter"></div>False
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Written Section -->
+    <div class="section" id="written">
+      <!-- 1. Important Questions Group -->
+      <div class="topic-group">
+        <div class="topic-header">
+          <div class="topic-icon ic-purple">📝</div>
+          <div class="topic-title">Pathological Gait (الأسئلة الهامة المتوقعة)</div>
+          <div class="topic-count">6 أسئلة</div>
+        </div>
+
+        <!-- Question 1 -->
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q1</div>
+            <div class="q-text">Enumerate the Pathological Gait deviations caused by Weakness of Hip Extensors (Gluteus
+              Maximus Gait).</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="written-answer">
+              <div class="written-part">
+                <span class="written-badge badge-function">Normal Function</span>
+                <p>During initial contact to loading response, GRFV passes anterior to the hip, creating a flexion
+                  moment compensated by Gluteus Maximus.</p>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-weakness">Effect of Weakness</span>
+                <p>Inability to counteract the flexion moment, leading to a tendency for excessive hip flexion and
+                  anterior pelvic tilt.</p>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-compensation">Compensation (The Gait)</span>
+                <p>The patient will <strong>lean the trunk backward</strong> to shift the GRFV behind the axis of the
+                  hip joint to prevent the trunk from falling forward.</p>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-longterm">Long-term Effects</span>
+                <ul>
+                  <li>Excessive lumbar lordosis (Hyperlordosis).</li>
+                  <li>Mechanical Low Back Pain (LBP).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q2</div>
+            <div class="q-text">Enumerate the Pathological Gait deviations and compensations caused by Weakness of Hip
+              Abductors (Gluteus Medius / Trendelenburg Gait).</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="written-answer">
+              <div class="written-part">
+                <span class="written-badge badge-function">Normal Function</span>
+                <p>During single limb support, GRFV lies medial to the hip, creating an adduction moment.</p>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-weakness">Effect of Weakness (Trendelenburg Sign)</span>
+                <p>Pelvis drops laterally toward the opposite side (the swing limb).</p>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-compensation">Possible Compensations</span>
+                <ol>
+                  <li><strong>Unilateral Weakness:</strong> The patient will <strong>lean the trunk laterally toward the
+                      weak/affected limb</strong> during its stance phase to shift GRFV through or lateral to the hip
+                    joint.</li>
+                  <li><strong>Bilateral Weakness:</strong> Known as <strong>Waddling Gait</strong> or Duck Gait (leaning
+                    side-to-side).</li>
+                </ol>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-longterm">Long-term Effects</span>
+                <p>Lateral spinal curve and functional scoliosis.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q3</div>
+            <div class="q-text">Write short notes on the Gait deviations caused by Weakness of Quadriceps (Knee
+              Extensors).</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="written-answer">
+              <div class="written-part">
+                <span class="written-badge badge-weakness">Effect of Weakness</span>
+                <p>Tendency for excessive knee flexion and knee instability at heel strike / loading response.</p>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-compensation">Possible Compensations</span>
+                <ol>
+                  <li>Forward trunk lean to keep GRFV anterior to the knee joint line to lock it in extension passively.
+                  </li>
+                  <li>The patient compensates by <strong>pushing the femur posteriorly with his hand</strong> at mid
+                    stance to force knee extension.</li>
+                  <li>Increased activity of hip extensors and soleus muscle to pull the femur and tibia posteriorly.
+                  </li>
+                </ol>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-longterm">Long-term Effects</span>
+                <p>Knock knee deformity and disabling fatigue.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q4</div>
+            <div class="q-text">Enumerate the Compensations for Weakness of Ankle Dorsiflexors (Tibialis Anterior /
+              Pretibial Weakness).</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="written-answer">
+              <div class="written-part">
+                <span class="written-badge badge-weakness">Effect of Weakness</span>
+                <p>Causes <strong>Foot Slap</strong> at loading response (loss of eccentric control) and <strong>Foot
+                    Drop</strong> or <strong>Toe Drag</strong> during the swing phase.</p>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-compensation">Possible Compensations (To clear the ground)</span>
+                <ol>
+                  <li><strong>High Steppage Gait:</strong> Increased/excessive hip and knee flexion during the swing
+                    phase (functional shortening of the affected limb).</li>
+                  <li><strong>Hip Hiking</strong> on the affected side.</li>
+                  <li><strong>Circumduction</strong> of the leg during swing.</li>
+                  <li>Shorter step length and flat-foot contact instead of heel strike.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q5</div>
+            <div class="q-text">Enumerate the effects of joint Contractures on Gait (Plantarflexion, Knee flexion, and
+              Hip flexion contractures).</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="written-answer">
+              <div class="written-part">
+                <span class="written-badge badge-function">1. Plantar Flexion Contracture</span>
+                <ul>
+                  <li>Blocks progression of the limb in the swing phase.</li>
+                  <li>Inhibits floor/ground clearance.</li>
+                </ul>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-weakness">2. Knee Flexion Contracture</span>
+                <ul>
+                  <li>Blocks progression during the stance phase.</li>
+                  <li>Increases the activity/demand on the quadriceps to stabilize the knee.</li>
+                </ul>
+              </div>
+              <div class="written-part">
+                <span class="written-badge badge-compensation">3. Hip Flexion Contracture</span>
+                <ul>
+                  <li>Places the body's COG over the supporting foot, forcing the trunk to lean forward.</li>
+                  <li>Introduces strain on the back muscles and hip extensors.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q6</div>
+            <div class="q-text">What are the Major Causes of Pathological Gait?</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="written-answer">
+              <div class="written-part">
+                <span class="written-badge badge-causes">Major Causes</span>
+                <ol>
+                  <li><strong>Deformity:</strong> (e.g., joint contractures, bony abnormalities).</li>
+                  <li><strong>Impaired Motor Control or Spasticity:</strong> (Inhibits pre-swing preparation, causes
+                    sustained muscle action).</li>
+                  <li><strong>Sensory Loss:</strong> Prevents the patient from knowing joint position (proprioceptive
+                    loss), causing slow walking.</li>
+                  <li><strong>Pain (Antalgic Gait):</strong> Caused by excessive tissue tension or joint distension
+                    related to arthritis or trauma.</li>
+                  <li><strong>Muscle Weakness:</strong> Insufficient muscle strength to meet the demands of walking (due
+                    to disuse atrophy or neurological impairment).</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Extra General Questions Group -->
+      <div class="topic-group">
+        <div class="topic-header">
+          <div class="topic-icon ic-blue">📚</div>
+          <div class="topic-title">أسئلة عامة إضافية (زيادة)</div>
+          <div class="topic-count">2 أسئلة</div>
+        </div>
+
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q7</div>
+            <div class="q-text">Enumerate Major and Minor Determinants of Gait.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="written-answer">
+              <ul>
+                <li><strong>Major Determinants (The 6 Determinants of Gait):</strong>
+                  <ol>
+                    <li>Pelvic rotation (Frontal plane / horizontal rotation)</li>
+                    <li>Pelvic tilt (Lateral pelvic drop)</li>
+                    <li>Knee flexion in stance phase</li>
+                    <li>Foot and ankle mechanisms (Heel rocker)</li>
+                    <li>Knee mechanisms (Knee rocker)</li>
+                    <li>Lateral displacement of the pelvis (Side-to-side shift)</li>
+                  </ol>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-card" onclick="toggleQ(this)">
+          <div class="q-header">
+            <div class="q-num">Q8</div>
+            <div class="q-text">Enumerate Temporal and Spatial Variables of Gait.</div>
+            <div class="q-toggle">▼</div>
+          </div>
+          <div class="q-body">
+            <div class="written-answer">
+              <ul>
+                <li><strong>Temporal Variables (Time-related):</strong>
+                  <ol>
+                    <li>Cadence (Step rate)</li>
+                    <li>Step time</li>
+                    <li>Stride time</li>
+                    <li>Stance time</li>
+                    <li>Swing time</li>
+                    <li>Single/Double support time</li>
+                  </ol>
+                </li>
+                <li style="margin-top: 10px;"><strong>Spatial Variables (Distance/Space-related):</strong>
+                  <ol>
+                    <li>Step length</li>
+                    <li>Stride length</li>
+                    <li>Step width (Base of support)</li>
+                    <li>Foot angle (Degree of toe-out)</li>
+                  </ol>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Summary Section -->
+    <div class="section" id="summary">
+      <div class="topic-group">
+        <div class="topic-header">
+          <div class="topic-icon ic-cyan">⚡</div>
+          <div class="topic-title">ملخص سريع — أهم نقاط الميكانيكا الحيوية (Biomechanics 2)</div>
+        </div>
+        <div class="summary-grid">
+          <!-- 1. Phases & Percentages -->
+          <div class="sum-row">
+            <div class="sum-key">Heel strike (Initial Contact) percent</div>
+            <div class="sum-val">0%</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Loading response percent</div>
+            <div class="sum-val">10%</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Mid stance / Heel off (Terminal Stance) percent</div>
+            <div class="sum-val">20% each</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Pre-swing (Toe off) percent</div>
+            <div class="sum-val">10%</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Initial swing (Acceleration) / Terminal swing (Deceleration) percent</div>
+            <div class="sum-val">13% each</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Mid swing percent</div>
+            <div class="sum-val">14%</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Total Stance Phase / Swing Phase percent</div>
+            <div class="sum-val">60% / 40%</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Single Limb Support (SLS) / Double Limb Stance (DLS)</div>
+            <div class="sum-val">40% / 20% (10% x 2)</div>
+          </div>
+
+          <!-- 2. Variables & Definitions -->
+          <div class="sum-row">
+            <div class="sum-key">Temporal Variables (زمانية)</div>
+            <div class="sum-val">Cadence, Step/Stride/Stance/Swing/Double support time</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Spatial Variables (مكانية)</div>
+            <div class="sum-val">Step/Stride length, Step width, Foot angle</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Spatio-temporal Variable (زمكاني)</div>
+            <div class="sum-val">Walking velocity / speed</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Stride / Step definitions</div>
+            <div class="sum-val">Same foot heel contact / Opposite foot heel contact</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Average Cadence (Step rate)</div>
+            <div class="sum-val">113 steps/min</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Mid Stance characteristic</div>
+            <div class="sum-val">Tibia is completely vertical</div>
+          </div>
+
+          <!-- 3. Energy Mechanics -->
+          <div class="sum-row">
+            <div class="sum-key">CoM Height lowest points</div>
+            <div class="sum-val">5% &amp; 55% (Double Limb Stance)</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">CoM Height highest points</div>
+            <div class="sum-val">30% &amp; 80% (Mid stance / Mid swing)</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Potential Energy maximized / minimized</div>
+            <div class="sum-val">Swing / Double Limb Stance</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Kinetic Energy maximized</div>
+            <div class="sum-val">Double Limb Stance (weight acceptance)</div>
+          </div>
+
+          <!-- 4. GRFV & Moments -->
+          <div class="sum-row">
+            <div class="sum-key">Subtalar Joint Moments (GRFV medial / lateral)</div>
+            <div class="sum-val">Inversion / Eversion moment</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Ankle Joint Moments (GRFV posterior / anterior)</div>
+            <div class="sum-val">Plantar flexion / Dorsiflexion moment</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Hip Joint Moments (GRFV anterior / medial)</div>
+            <div class="sum-val">Flexion / Adduction moment</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Knee Joint Moment (GRFV posterior in Loading Response)</div>
+            <div class="sum-val">Flexion moment</div>
+          </div>
+
+          <!-- 5. Muscle Activity -->
+          <div class="sum-row">
+            <div class="sum-key">Passive/Locked Knee interval</div>
+            <div class="sum-val">Mid stance (No muscle action at knee)</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Tibialis Anterior contraction types</div>
+            <div class="sum-val">Concentric: IC &amp; Swing | Eccentric: Loading Response</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Calf Muscles (Gastrosoleus) contraction types</div>
+            <div class="sum-val">Eccentric: Early/Mid stance | Concentric: Late stance</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Pelvic drop in frontal plane control</div>
+            <div class="sum-val">Contralateral eccentric hip abductors</div>
+          </div>
+
+          <!-- 6. Muscle Weakness & Compensations -->
+          <div class="sum-row">
+            <div class="sum-key">Tibialis Anterior weakness</div>
+            <div class="sum-val">Foot slap &amp; drop | Compensated by Hip hiking / Circumduction</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Tibialis Posterior weakness</div>
+            <div class="sum-val">Delayed heel rise, slower speed, increased quadriceps demand</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Gluteus Medius weakness</div>
+            <div class="sum-val">Trendelenburg/Lateral lean (unilateral) | Waddling/Duck (bilateral)</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Gluteus Maximus weakness</div>
+            <div class="sum-val">Backward trunk lean (G-Max gait) | Hyperlordosis</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Quadriceps weakness/paralysis</div>
+            <div class="sum-val">Knee instability | Femur pushed back by hand or soleus pull</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Quadriceps / Pretibial rehab focus</div>
+            <div class="sum-val">Strengthen Soleus/Hip ext. | Strengthen Hip/Knee flexors</div>
+          </div>
+
+          <!-- 7. Pathological Contractures & Analysis -->
+          <div class="sum-row">
+            <div class="sum-key">Plantar flexion contracture</div>
+            <div class="sum-val">Blocks swing progression &amp; stance clearance</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Knee flexion contracture</div>
+            <div class="sum-val">Blocks swing progression &amp; increases stance quadriceps demand</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Hip flexion contracture</div>
+            <div class="sum-val">Forward trunk lean &amp; back/hip extensor strain</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Motion Analysis requirements</div>
+            <div class="sum-val">Light room, embedded force platform, &ge;3 cameras</div>
+          </div>
+          <div class="sum-row">
+            <div class="sum-key">Silhouette method cameras</div>
+            <div class="sum-val">At least 8 cameras</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    let correctScore = 0;
+    let totalQuestions = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      totalQuestions = document.querySelectorAll('.options').length;
+
+      const scoreNum = document.querySelector('#score-stat .stat-num');
+      if (scoreNum) scoreNum.innerText = `0/${totalQuestions}`;
+
+      const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+      document.querySelectorAll('.options').forEach(opts => {
+        opts.querySelectorAll('.opt-letter').forEach((letterEl, index) => {
+          letterEl.innerText = letters[index] || '';
+        });
+      });
+
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          const card = opt.closest('.q-card');
+          if (card.classList.contains('answered') || document.body.classList.contains('show-all-mode')) return;
+
+          card.classList.add('answered');
+
+          if (opt.classList.contains('correct')) {
+            opt.classList.add('pop-animation');
+            correctScore++;
+          } else {
+            opt.classList.add('wrong-selected');
+          }
+
+          updateScore();
+        });
+      });
+    });
+
+    function updateScore() {
+      const scoreNum = document.querySelector('#score-stat .stat-num');
+      if (scoreNum) scoreNum.innerText = `${correctScore}/${totalQuestions}`;
+    }
+
+    function showAllAnswers() {
+      document.body.classList.add('show-all-mode');
+    }
+
+    function retest() {
+      document.body.classList.remove('show-all-mode');
+      correctScore = 0;
+      updateScore();
+
+      document.querySelectorAll('.q-card').forEach(card => {
+        card.classList.remove('answered');
+      });
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.classList.remove('wrong-selected', 'pop-animation');
+      });
+    }
+
+    function showSection(id) {
+      const searchInput = document.querySelector('.search-input');
+      if (searchInput) {
+        searchInput.value = '';
+      }
+
+      document.querySelectorAll('.section').forEach(s => {
+        s.classList.remove('active');
+        s.querySelectorAll('.q-card').forEach(c => c.style.display = '');
+        s.querySelectorAll('.topic-group').forEach(g => g.style.display = '');
+        s.querySelectorAll('.sum-row').forEach(r => r.style.display = '');
+      });
+
+      document.querySelectorAll('.nav-btn').forEach(b => {
+        b.classList.remove('active');
+      });
+
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function toggleQ(card) { card.classList.toggle('open'); }
+
+    function searchQ(val) {
+      const q = val.trim().toLowerCase();
+      const activeSection = document.querySelector('.section.active');
+      if (!activeSection) return;
+
+      if (activeSection.id === 'summary') {
+        activeSection.querySelectorAll('.sum-row').forEach(row => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = (!q || text.includes(q)) ? '' : 'none';
+        });
+        return;
+      }
+
+      activeSection.querySelectorAll('.q-card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = (!q || text.includes(q)) ? '' : 'none';
+      });
+
+      activeSection.querySelectorAll('.topic-group').forEach(group => {
+        const visible = [...group.querySelectorAll('.q-card')].some(c => c.style.display !== 'none');
+        group.style.display = visible ? '' : 'none';
+      });
+    }
+  </script>
+</body>
+
+</html>

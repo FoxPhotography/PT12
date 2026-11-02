@@ -1,0 +1,2795 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapeutic Exercises — Exam Guide</title>
+    <meta name="description" content="دليل شامل لامتحان التمارين العلاجية - أسئلة عملية وشفوية مع إجابات كاملة">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #111827;
+            --bg-card: rgba(17, 24, 39, 0.7);
+            --bg-glass: rgba(255,255,255,0.03);
+            --accent: #6366f1;
+            --accent2: #818cf8;
+            --accent-glow: rgba(99,102,241,0.35);
+            --cyan: #22d3ee;
+            --emerald: #34d399;
+            --amber: #fbbf24;
+            --rose: #fb7185;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --border: rgba(255,255,255,0.06);
+            --radius: 16px;
+        }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            line-height: 1.75;
+            padding: 0 12px 100px;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(34,211,238,0.08), transparent);
+        }
+        .container { max-width: 860px; margin: 0 auto; }
+
+        /* === TOP BAR === */
+        .top-bar {
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            background: rgba(10,14,26,0.75);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+            margin: 0 -12px; 
+        }
+        .top-bar .logo { font-weight: 800; font-size: .95em; color: var(--accent2); letter-spacing: -.3px; }
+        .progress-wrap { flex: 1; max-width: 220px; display: flex; align-items: center; gap: 8px; }
+        .progress-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 3px; transition: width .4s ease; }
+        .progress-text { font-size: .75em; color: var(--text-dim); font-variant-numeric: tabular-nums; min-width: 36px; text-align: left; }
+        .timer-badge {
+            display: flex; align-items: center; gap: 5px;
+            background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.2);
+            padding: 4px 12px; border-radius: 20px; font-size: .8em; font-weight: 600;
+            color: var(--accent2); cursor: pointer; user-select: none; transition: all .2s;
+        }
+        .timer-badge:hover { background: rgba(99,102,241,0.2); }
+        .timer-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); animation: pulse-dot 1.5s infinite; }
+        .timer-badge.paused .dot { background: var(--amber); animation: none; }
+        @keyframes pulse-dot { 0%,100%{ opacity:1 } 50%{ opacity:.3 } }
+
+        /* === HERO === */
+        .hero {
+            text-align: center; padding: 48px 20px 36px;
+            position: relative;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 340px; height: 340px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(99,102,241,0.12), transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);
+            padding: 5px 14px; border-radius: 20px; font-size: .78em; font-weight: 500;
+            color: var(--accent2); margin-bottom: 16px;
+        }
+        .hero h1 {
+            font-size: clamp(1.6em, 5vw, 2.4em); font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, var(--accent2) 50%, var(--cyan) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; line-height: 1.3; margin-bottom: 10px;
+            letter-spacing: -.5px;
+        }
+        .hero .subtitle { color: var(--text-dim); font-size: .95em; font-weight: 400; }
+        .hero-stats {
+            display: flex; justify-content: center; gap: 24px; margin-top: 24px; flex-wrap: wrap;
+        }
+        .hero-stat {
+            background: var(--bg-glass); border: 1px solid var(--border);
+            padding: 10px 20px; border-radius: 12px; text-align: center; min-width: 100px;
+        }
+        .hero-stat .num { font-size: 1.5em; font-weight: 800; color: var(--cyan); }
+        .hero-stat .lbl { font-size: .72em; color: var(--text-dim); text-transform: uppercase; letter-spacing: .5px; }
+
+        /* === NAVIGATION PILLS === */
+        .nav-pills {
+            display: flex; gap: 8px; padding: 16px 0; overflow-x: auto;
+            scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .nav-pills::-webkit-scrollbar { display: none; }
+        .nav-pill {
+            flex-shrink: 0; padding: 7px 16px; border-radius: 20px; font-size: .78em; font-weight: 600;
+            background: var(--bg-glass); border: 1px solid var(--border);
+            color: var(--text-dim); cursor: pointer; transition: all .25s; white-space: nowrap;
+            text-decoration: none;
+        }
+        .nav-pill:hover, .nav-pill.active { background: rgba(99,102,241,0.15); border-color: rgba(99,102,241,0.3); color: var(--accent2); }
+
+        /* === SECTIONS === */
+        .section {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            margin-bottom: 20px;
+            transition: border-color .3s;
+        }
+        .section:hover { border-color: rgba(99,102,241,0.15); }
+        .section-title {
+            font-size: 1.25em; font-weight: 700; margin-bottom: 18px;
+            padding-bottom: 12px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 10px;
+            color: #fff;
+        }
+        .icon { font-size: 1.15em; }
+
+        /* === QUESTIONS === */
+        .question {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 16px 18px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all .25s ease;
+            position: relative;
+        }
+        .question::before {
+            content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 3px;
+            background: linear-gradient(180deg, var(--accent), var(--cyan));
+            border-radius: 0 12px 12px 0; opacity: 0; transition: opacity .25s;
+        }
+        .question:hover { background: rgba(99,102,241,0.05); border-color: rgba(99,102,241,0.15); }
+        .question:hover::before { opacity: 1; }
+        .question.revealed { border-color: rgba(34,211,238,0.2); }
+        .question.revealed::before { opacity: 1; background: linear-gradient(180deg, var(--emerald), var(--cyan)); }
+        .question-text {
+            color: #fff; font-weight: 600; font-size: .95em;
+            display: flex; align-items: flex-start; gap: 8px;
+        }
+        .question-text::after {
+            content: '▾'; margin-right: auto; margin-left: 0; font-size: .8em;
+            color: var(--text-dim); transition: transform .3s;
+        }
+        .question.revealed .question-text::after { transform: rotate(180deg); color: var(--cyan); }
+
+        /* === ANSWERS === */
+        .answer {
+            color: var(--text);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease, padding .3s ease, opacity .3s ease;
+            opacity: 0;
+            border-radius: 10px;
+            margin-top: 0;
+        }
+        .answer.show {
+            display: block !important;
+            max-height: 5000px;
+            padding: 16px;
+            opacity: 1;
+            margin-top: 12px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .highlight { color: var(--emerald); font-weight: 600; }
+        .term { color: var(--cyan); font-weight: 600; }
+        .important {
+            background: rgba(251,113,133,0.12); padding: 2px 8px; border-radius: 4px;
+            color: var(--rose); font-weight: 600; font-size: .92em;
+        }
+        ul, ol { margin-right: 20px; margin-top: 8px; }
+        li { margin-bottom: 6px; padding-right: 5px; line-height: 1.7; }
+
+        .note {
+            background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.15);
+            border-right: 3px solid var(--amber);
+            padding: 12px 14px; border-radius: 10px; margin: 12px 0;
+            color: var(--amber); font-size: .9em;
+        }
+        table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: .9em; }
+        th { padding: 10px; border: 1px solid rgba(99,102,241,0.2); background: rgba(99,102,241,0.1); color: var(--accent2); font-weight: 600; }
+        td { padding: 10px; border: 1px solid var(--border); }
+
+        /* === STEPS === */
+        .steps { counter-reset: step-counter; }
+        .step {
+            counter-increment: step-counter;
+            margin-bottom: 8px; padding-right: 34px; position: relative; line-height: 1.7;
+        }
+        .step::before {
+            content: counter(step-counter);
+            position: absolute; right: 0; top: 2px;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            color: #fff; width: 22px; height: 22px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: .75em;
+        }
+
+        /* === BOTTOM CONTROLS === */
+        .bottom-controls {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            background: rgba(10,14,26,0.8);
+            border-top: 1px solid var(--border);
+            padding: 10px 16px;
+            display: flex; justify-content: center; gap: 10px;
+        }
+        .ctrl-btn {
+            padding: 9px 22px; border-radius: 10px; font-size: .82em; font-weight: 600;
+            border: 1px solid var(--border); cursor: pointer; transition: all .2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .ctrl-btn.primary { background: linear-gradient(135deg, var(--accent), #4f46e5); color: #fff; border: none; }
+        .ctrl-btn.primary:hover { box-shadow: 0 4px 20px var(--accent-glow); transform: translateY(-1px); }
+        .ctrl-btn.secondary { background: var(--bg-glass); color: var(--text-dim); }
+        .ctrl-btn.secondary:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+        /* === SEARCH === */
+        .search-box {
+            position: relative; margin-bottom: 20px;
+        }
+        .search-box input {
+            width: 100%; padding: 12px 18px 12px 42px; border-radius: 12px;
+            background: var(--bg-glass); border: 1px solid var(--border);
+            color: var(--text); font-family: 'Inter', sans-serif; font-size: .9em;
+            outline: none; transition: border-color .2s;
+        }
+        .search-box input::placeholder { color: var(--text-dim); }
+        .search-box input:focus { border-color: rgba(99,102,241,0.4); }
+        .search-box .search-icon {
+            position: absolute; left: auto; right: 14px; top: 50%; transform: translateY(-50%);
+            color: var(--text-dim); font-size: .9em; pointer-events: none;
+        }
+
+        /* === SCROLL TO TOP === */
+        .scroll-top {
+            position: fixed; bottom: 70px; left: 20px; z-index: 99;
+            width: 40px; height: 40px; border-radius: 10px;
+            background: var(--bg-secondary); border: 1px solid var(--border);
+            color: var(--text-dim); cursor: pointer; font-size: 1.1em;
+            display: none; align-items: center; justify-content: center;
+            transition: all .2s;
+        }
+        .scroll-top.visible { display: flex; }
+        .scroll-top:hover { border-color: rgba(99,102,241,0.3); color: var(--accent2); }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeUp { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
+        .section { animation: fadeUp .5s ease both; }
+        .section:nth-child(2) { animation-delay: .05s; }
+        .section:nth-child(3) { animation-delay: .1s; }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 600px) {
+            body { padding: 0 8px 90px; }
+            .hero { padding: 32px 12px 24px; }
+            .hero h1 { font-size: 1.5em; }
+            .section { padding: 16px 14px; }
+            .question { padding: 14px; }
+            .hero-stats { gap: 12px; }
+            .hero-stat { padding: 8px 14px; min-width: 80px; }
+            .nav-pills { padding: 12px 0; }
+            .top-bar { padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="logo">⚕ Thera Guide</div>
+        <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+            <span class="progress-text" id="progressText">0%</span>
+        </div>
+        <div class="timer-badge" id="timerBadge" onclick="toggleTimer()">
+            <span class="dot"></span>
+            <span id="timerDisplay">00:00</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-badge">📋 Oral & Practical Exam 2026</div>
+            <h1>Therapeutic Exercises<br>Exam Guide</h1>
+            <p class="subtitle">أهم الأسئلة العملية والشفوية مع الإجابات الكاملة</p>
+            <div class="hero-stats">
+                <div class="hero-stat"><div class="num" id="totalQ">0</div><div class="lbl">سؤال</div></div>
+                <div class="hero-stat"><div class="num" id="totalSec">9</div><div class="lbl">أقسام</div></div>
+                <div class="hero-stat"><div class="num" id="revealedCount">0</div><div class="lbl">تمت مراجعته</div></div>
+            </div>
+        </div>
+
+        <!-- NAV PILLS -->
+        <nav class="nav-pills" id="navPills">
+            <a class="nav-pill" href="#sec-rom">🔄 ROM</a>
+            <a class="nav-pill" href="#sec-resistance">💪 Resistance</a>
+            <a class="nav-pill" href="#sec-stretching">🤸 Stretching</a>
+            <a class="nav-pill" href="#sec-neural">🧠 Neural</a>
+            <a class="nav-pill" href="#sec-mobilization">🦴 Mobilization</a>
+            <a class="nav-pill" href="#sec-met">⚡ MET</a>
+            <a class="nav-pill" href="#sec-ckc">🏃 CKC</a>
+            <a class="nav-pill" href="#sec-pilates">🧘 Pilates</a>
+            <a class="nav-pill" href="#sec-balance">⚖️ Balance</a>
+            <a class="nav-pill" href="#sec-terms">📖 مصطلحات</a>
+        </nav>
+
+        <!-- SEARCH -->
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="ابحث عن سؤال أو موضوع..." oninput="handleSearch(this.value)">
+        </div>
+
+        <!-- Section 1: ROM Exercises -->
+        <div class="section" id="sec-rom">
+            <h2 class="section-title"><span class="icon">🔄</span>Range of Motion (ROM) Exercises</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ اشرح أنواع الـ ROM وطبق Passive shoulder abduction</div>
+                <div class="answer">
+                    <p><strong class="highlight">أنواع الـ ROM:</strong></p>
+                    <ol>
+                        <li><span class="term">Passive ROM (PROM):</span> المعالج بيحرك المفصل والمريض مش بيعمل أي مجهود</li>
+                        <li><span class="term">Active Assisted ROM (AAROM):</span> المريض بيساعد في الحركة والمعالج بيساعده</li>
+                        <li><span class="term">Active ROM (AROM):</span> المريض بيحرك المفصل لوحده بدون مساعدة</li>
+                        <li><span class="term">Active Resisted ROM (ARROM):</span> المريض بيحرك المفصل ضد مقاومة</li>
+                    </ol>
+                    
+                    <p><strong class="highlight">تطبيق Passive Shoulder Abduction:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine أو sitting</div>
+                        <div class="step">Stabilization: ثبت الـ scapula بإيد واحدة</div>
+                        <div class="step">Movement: امسك الـ arm من الـ elbow والـ wrist</div>
+                        <div class="step">حرك الـ arm في اتجاه الـ abduction ببطء وسلاسة</div>
+                        <div class="step">Range: من 0° لـ 180° (أو حسب الـ available ROM)</div>
+                        <div class="step">كرر الحركة 5-10 مرات</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>ملحوظة:</strong> لازم تتأكد إن الحركة smooth وما فيش pain أو jerky movements
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Indications & Limitations of Passive ROM</div>
+                <div class="answer">
+                    <p><strong class="highlight">Indications (دواعي الاستعمال):</strong></p>
+                    <ul>
+                        <li>Acute inflammation في المفصل</li>
+                        <li>Muscle paralysis أو weakness شديدة</li>
+                        <li>بعد الـ surgery مباشرة</li>
+                        <li>Comatose patients</li>
+                        <li>للحفاظ على الـ joint mobility</li>
+                        <li>لمنع الـ contractures</li>
+                        <li>للحفاظ على الـ elasticity of muscles</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">Limitations (المحدودات):</strong></p>
+                    <ul>
+                        <li>ما بتقوي الـ muscles</li>
+                        <li>ما بتحسن الـ circulation بشكل كبير</li>
+                        <li>ما بتمنع الـ muscle atrophy</li>
+                        <li>ما بتحسن الـ endurance</li>
+                        <li>ما بتساعد في الـ motor learning</li>
+                    </ul>
+                    
+                    <p><strong class="important">Contraindications:</strong></p>
+                    <ul>
+                        <li>Recent fracture (قبل الـ healing)</li>
+                        <li>Acute infection في المفصل</li>
+                        <li>Severe pain مع الحركة</li>
+                        <li>Hypermobile joints</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Active Assisted Knee Flexion</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine أو sitting على الـ bed</div>
+                        <div class="step">اطلب من المريض يثني الـ knee قدر ما يقدر</div>
+                        <div class="step">ساعده بإيدك تحت الـ thigh أو الـ leg</div>
+                        <div class="step">وجه الحركة بلطف لحد ما توصل لـ end range</div>
+                        <div class="step">Hold لمدة 2-3 ثواني</div>
+                        <div class="step">ارجع ببطء للـ starting position</div>
+                        <div class="step">كرر 10-15 مرة</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Important:</strong> المريض لازم يعمل معظم الشغل، وأنت بس بتساعد في الجزء الصعب من الـ range
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Principles of Active ROM</div>
+                <div class="answer">
+                    <p><strong class="highlight">المبادئ الأساسية:</strong></p>
+                    <ol>
+                        <li><span class="term">Patient must be able to contract muscles voluntarily</span></li>
+                        <li>الحركة لازم تكون <span class="highlight">pain-free</span></li>
+                        <li>Movement should be <span class="term">smooth and controlled</span></li>
+                        <li>استخدم الـ <span class="highlight">full available ROM</span></li>
+                        <li>عدد التكرارات: <span class="term">5-10 repetitions</span></li>
+                        <li>Frequency: <span class="term">3-4 times daily</span></li>
+                        <li>راقب الـ <span class="important">fatigue</span> - لو المريض تعب، وقف</li>
+                        <li>استخدم <span class="term">proper breathing</span> - ما يحبسش نفسه</li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>ملاحظة:</strong> Active ROM مهم جداً للـ motor learning والـ muscle pump action
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Active Resisted Knee Extension</div>
+                <div class="answer">
+                    <p><strong class="highlight">التطبيق العملي:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض sitting على edge of bed</div>
+                        <div class="step">الـ knee في وضع 90° flexion</div>
+                        <div class="step">حط إيدك على الـ anterior aspect of leg (فوق الـ ankle)</div>
+                        <div class="step">اطلب من المريض يمد الـ knee</div>
+                        <div class="step">اعمل resistance مناسبة ضد الحركة</div>
+                        <div class="step">المريض يكمل الحركة لحد full extension</div>
+                        <div class="step">Hold 2-3 seconds في الـ end position</div>
+                        <div class="step">Return ببطء مع eccentric control</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Muscles Working:</strong></p>
+                    <ul>
+                        <li><span class="term">Quadriceps femoris:</span> Rectus femoris, Vastus lateralis, Vastus medialis, Vastus intermedius</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Advantages of CPM over Passive Exercise</div>
+                <div class="answer">
+                    <p><strong class="highlight">مميزات الـ CPM (Continuous Passive Motion):</strong></p>
+                    <ul>
+                        <li><span class="term">Controlled and consistent:</span> الحركة منتظمة ومضبوطة</li>
+                        <li><span class="term">Prolonged duration:</span> ممكن يستمر لساعات طويلة</li>
+                        <li><span class="term">No therapist fatigue:</span> المعالج مش بيتعب</li>
+                        <li><span class="term">Better cartilage nutrition:</span> بيحسن تغذية الـ cartilage</li>
+                        <li><span class="term">Reduces edema:</span> بيقلل الـ swelling</li>
+                        <li><span class="term">Prevents adhesions:</span> بيمنع الالتصاقات</li>
+                        <li><span class="term">Adjustable parameters:</span> ممكن تظبط الـ speed, range, duration</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>استخدامات شائعة:</strong> بعد knee surgery (ACL reconstruction, Total knee replacement)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Resistance Exercise -->
+        <div class="section" id="sec-resistance">
+            <h2 class="section-title"><span class="icon">💪</span>Resistance Exercise</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Define Strength & Endurance - الفرق بينهم</div>
+                <div class="answer">
+                    <p><strong class="highlight">Strength (القوة):</strong></p>
+                    <p><span class="term">Definition:</span> قدرة العضلة إنها تعمل maximum force في single contraction واحدة</p>
+                    <ul>
+                        <li>High resistance, Low repetitions (1-6 reps)</li>
+                        <li>Long rest periods (2-3 minutes)</li>
+                        <li>Heavy weights (80-100% of 1RM)</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">Endurance (التحمل):</strong></p>
+                    <p><span class="term">Definition:</span> قدرة العضلة إنها تعمل repeated contractions لفترة طويلة بدون تعب</p>
+                    <ul>
+                        <li>Low resistance, High repetitions (15-25+ reps)</li>
+                        <li>Short rest periods (30-60 seconds)</li>
+                        <li>Light weights (40-60% of 1RM)</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>الفرق الأساسي:</strong> Strength = قوة قصوى، Endurance = استمرارية وتحمل
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Types of Muscle Contraction</div>
+                <div class="answer">
+                    <p><strong class="highlight">أنواع الانقباض العضلي:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Isometric (Static):</span>
+                            <ul>
+                                <li>العضلة بتنقبض بدون تغيير في الطول</li>
+                                <li>No joint movement</li>
+                                <li>مثال: Holding a weight في وضع ثابت</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Isotonic (Dynamic):</span>
+                            <ul>
+                                <li>العضلة بتنقبض مع تغيير في الطول</li>
+                                <li>نوعين:
+                                    <ul>
+                                        <li><span class="highlight">Concentric:</span> العضلة بتقصر (muscle shortening)</li>
+                                        <li><span class="highlight">Eccentric:</span> العضلة بتطول (muscle lengthening)</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Isokinetic:</span>
+                            <ul>
+                                <li>Constant speed throughout the movement</li>
+                                <li>بيحتاج جهاز خاص (Isokinetic machine)</li>
+                                <li>Variable resistance</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Principles (Determinants) of Active Resisted Exercise</div>
+                <div class="answer">
+                    <p><strong class="highlight">المبادئ الأساسية:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Intensity:</span>
+                            <ul>
+                                <li>Amount of resistance applied</li>
+                                <li>يتحدد حسب الهدف (strength vs endurance)</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Repetitions:</span>
+                            <ul>
+                                <li>عدد المرات اللي بتتكرر فيها الحركة</li>
+                                <li>Strength: 1-6 reps</li>
+                                <li>Hypertrophy: 8-12 reps</li>
+                                <li>Endurance: 15-25+ reps</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Sets:</span>
+                            <ul>
+                                <li>عدد المجموعات</li>
+                                <li>عادة 2-4 sets</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Rest Intervals:</span>
+                            <ul>
+                                <li>Strength: 2-3 minutes</li>
+                                <li>Hypertrophy: 1-2 minutes</li>
+                                <li>Endurance: 30-60 seconds</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Frequency:</span>
+                            <ul>
+                                <li>عدد المرات في الأسبوع</li>
+                                <li>عادة 2-3 times per week</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Duration:</span>
+                            <ul>
+                                <li>مدة البرنامج الكلية</li>
+                                <li>على الأقل 6-8 weeks لنتائج ملحوظة</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Mode:</span>
+                            <ul>
+                                <li>نوع التمرين (manual, mechanical, weights)</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Velocity:</span>
+                            <ul>
+                                <li>سرعة الحركة</li>
+                                <li>Slow for strength, moderate for hypertrophy</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>مهم جداً:</strong> لازم تراعي الـ overload principle - زيادة تدريجية في الـ resistance
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Types of Muscle Hypertrophy</div>
+                <div class="answer">
+                    <p><strong class="highlight">أنواع الـ Hypertrophy:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Myofibrillar Hypertrophy:</span>
+                            <ul>
+                                <li>زيادة في عدد وحجم الـ myofibrils</li>
+                                <li>بيزود الـ <span class="highlight">strength</span> بشكل أساسي</li>
+                                <li>High intensity, low reps (1-6 reps)</li>
+                                <li>الألياف العضلية بتبقى أقوى وأكثر كثافة</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Sarcoplasmic Hypertrophy:</span>
+                            <ul>
+                                <li>زيادة في حجم الـ sarcoplasm (السائل حول الألياف)</li>
+                                <li>بيزود الـ <span class="highlight">size</span> أكتر من الـ strength</li>
+                                <li>Moderate intensity, moderate reps (8-12 reps)</li>
+                                <li>زيادة في الـ glycogen storage والـ fluid</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Pseudo-hypertrophy:</span>
+                            <ul>
+                                <li>زيادة <span class="important">غير حقيقية</span> في حجم العضلة</li>
+                                <li>بسبب <span class="term">fat infiltration</span> أو <span class="term">connective tissue</span></li>
+                                <li>مش بيزود القوة</li>
+                                <li>مثال: في بعض الـ muscular dystrophies</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>للامتحان:</strong> الفرق الأساسي بين Myofibrillar (strength) و Sarcoplasmic (size)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Length-Tension Relationship وتأثيره على الـ Resistance</div>
+                <div class="answer">
+                    <p><strong class="highlight">العلاقة بين طول العضلة والقوة:</strong></p>
+                    
+                    <p><span class="term">Definition:</span> العلاقة بين طول العضلة وقدرتها على إنتاج القوة</p>
+                    
+                    <ul>
+                        <li>
+                            <span class="highlight">Optimal Length (Resting Length):</span>
+                            <ul>
+                                <li>العضلة بتنتج <span class="important">أقصى قوة</span></li>
+                                <li>Maximum overlap بين actin و myosin filaments</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Shortened Position:</span>
+                            <ul>
+                                <li>القوة بتقل</li>
+                                <li>الـ filaments متداخلة أكتر من اللازم</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Lengthened Position:</span>
+                            <ul>
+                                <li>القوة بتقل</li>
+                                <li>الـ overlap قليل جداً</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <p><strong class="highlight">التأثير على الـ Resistance Training:</strong></p>
+                    <ul>
+                        <li>لازم تطبق الـ resistance في الـ <span class="highlight">optimal range</span></li>
+                        <li>تجنب الـ resistance في الـ weak positions</li>
+                        <li>استخدم <span class="term">variable resistance</span> عشان تتكيف مع الـ strength curve</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Compare between DeLorme and Oxford Techniques</div>
+                <div class="answer">
+                    <p><strong class="highlight">مقارنة بين الطريقتين:</strong></p>
+                    
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                            <tr style="background: rgba(0, 212, 255, 0.2);">
+                                <th style="padding: 10px; border: 1px solid #00d4ff;">العنصر</th>
+                                <th style="padding: 10px; border: 1px solid #00d4ff;">DeLorme</th>
+                                <th style="padding: 10px; border: 1px solid #00d4ff;">Oxford</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);"><strong>الترتيب</strong></td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Progressive (من الخفيف للثقيل)</td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Regressive (من الثقيل للخفيف)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);"><strong>Set 1</strong></td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">50% of 10RM × 10 reps</td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">100% of 10RM × 10 reps</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);"><strong>Set 2</strong></td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">75% of 10RM × 10 reps</td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">75% of 10RM × 10 reps</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);"><strong>Set 3</strong></td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">100% of 10RM × 10 reps</td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">50% of 10RM × 10 reps</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);"><strong>الميزة</strong></td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Warm-up تدريجي، أقل إصابات</td>
+                                <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Maximum effort في البداية</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>10RM =</strong> الوزن اللي المريض يقدر يرفعه 10 مرات بس (10 Repetition Maximum)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Precautions & Contraindications of Resistance Exercise</div>
+                <div class="answer">
+                    <p><strong class="highlight">Precautions (احتياطات):</strong></p>
+                    <ul>
+                        <li>تجنب <span class="term">Valsalva maneuver</span> (حبس النفس)</li>
+                        <li>راقب الـ <span class="important">fatigue</span> - لو المريض تعب، وقف</li>
+                        <li>تجنب الـ <span class="term">substitution movements</span></li>
+                        <li>استخدم <span class="highlight">proper form</span> دائماً</li>
+                        <li>Warm-up قبل البداية</li>
+                        <li>Cool-down بعد الانتهاء</li>
+                        <li>راقب الـ <span class="term">cardiovascular response</span> (BP, HR)</li>
+                    </ul>
+                    
+                    <p><strong class="important">Contraindications (موانع الاستعمال):</strong></p>
+                    <ul>
+                        <li>Acute inflammation أو infection</li>
+                        <li>Severe pain</li>
+                        <li>Recent fracture (قبل الـ healing)</li>
+                        <li>Unstable cardiovascular condition</li>
+                        <li>Severe osteoporosis</li>
+                        <li>Acute muscle strain أو tear</li>
+                        <li>Joint effusion (swelling)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Implements (أدوات) الـ Resistance Exercise</div>
+                <div class="answer">
+                    <p><strong class="highlight">الأدوات المستخدمة:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Manual Resistance:</span>
+                            <ul>
+                                <li>المعالج بيستخدم إيده</li>
+                                <li>Advantages: controlled, adaptable, feedback</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Free Weights:</span>
+                            <ul>
+                                <li>Dumbbells, Barbells</li>
+                                <li>Gravity-dependent</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Elastic Resistance:</span>
+                            <ul>
+                                <li>Resistance bands, Therabands</li>
+                                <li>Variable resistance</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Weight Machines:</span>
+                            <ul>
+                                <li>Cable machines, Leg press</li>
+                                <li>Guided movement</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Body Weight:</span>
+                            <ul>
+                                <li>Push-ups, Squats</li>
+                                <li>Functional training</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Isokinetic Machines:</span>
+                            <ul>
+                                <li>Cybex, Biodex</li>
+                                <li>Constant speed</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Stretching -->
+        <div class="section" id="sec-stretching">
+            <h2 class="section-title"><span class="icon">🤸</span>Stretching Exercises</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Define Contracture وأنواعها</div>
+                <div class="answer">
+                    <p><strong class="highlight">Definition of Contracture:</strong></p>
+                    <p><span class="term">Contracture:</span> هو تقصير أو تيبس في العضلات، الأوتار، الأربطة، أو الجلد اللي بيمنع الحركة الطبيعية للمفصل</p>
+                    
+                    <p><strong class="highlight">أنواع الـ Contracture:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Myostatic (Myogenic) Contracture:</span>
+                            <ul>
+                                <li>بسبب <span class="highlight">prolonged immobilization</span></li>
+                                <li>العضلة في وضع قصير لفترة طويلة</li>
+                                <li><span class="important">Reversible</span> بالـ stretching</li>
+                                <li>مثال: بعد الجبس</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Pseudomyostatic Contracture:</span>
+                            <ul>
+                                <li>بسبب <span class="highlight">hypertonicity</span> أو <span class="highlight">spasticity</span></li>
+                                <li>مش تقصير حقيقي في العضلة</li>
+                                <li>بسبب neurological problem</li>
+                                <li>مثال: في الـ stroke patients</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Arthrogenic (Periarticular) Contracture:</span>
+                            <ul>
+                                <li>بسبب مشاكل في الـ <span class="highlight">joint structures</span></li>
+                                <li>Capsule, ligaments تيبس</li>
+                                <li>مثال: Adhesive capsulitis (Frozen shoulder)</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Fibrotic Contracture:</span>
+                            <ul>
+                                <li>بسبب <span class="highlight">scar tissue formation</span></li>
+                                <li>بعد الـ injury أو surgery</li>
+                                <li>Irreversible غالباً</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Irreversible Contracture:</span>
+                            <ul>
+                                <li>بسبب <span class="important">bony changes</span></li>
+                                <li>Ankylosis (التحام المفصل)</li>
+                                <li>ما ينفعش stretching</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>للامتحان:</strong> أهم نوعين Myostatic (قابل للعلاج) و Pseudomyostatic (بسبب spasticity)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Indications, Contraindications & Determinants of Stretching</div>
+                <div class="answer">
+                    <p><strong class="highlight">Indications (دواعي الاستعمال):</strong></p>
+                    <ul>
+                        <li>Muscle tightness أو shortness</li>
+                        <li>Contractures</li>
+                        <li>Limited ROM</li>
+                        <li>قبل وبعد الـ exercise (warm-up & cool-down)</li>
+                        <li>Adhesions</li>
+                        <li>Scar tissue</li>
+                    </ul>
+                    
+                    <p><strong class="important">Contraindications (موانع الاستعمال):</strong></p>
+                    <ul>
+                        <li>Recent fracture (قبل الـ healing)</li>
+                        <li>Acute inflammation</li>
+                        <li>Sharp pain مع الـ stretch</li>
+                        <li>Hematoma في المنطقة</li>
+                        <li>Hypermobility</li>
+                        <li>Bony block</li>
+                        <li>Recent surgery على الـ soft tissue</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">Determinants (محددات) الـ Stretching:</strong></p>
+                    <ol>
+                        <li><span class="term">Intensity:</span> Force applied (mild, moderate, strong)</li>
+                        <li><span class="term">Duration:</span> 15-30 seconds للـ static stretch</li>
+                        <li><span class="term">Frequency:</span> 3-5 times per session</li>
+                        <li><span class="term">Speed:</span> Slow and controlled</li>
+                        <li><span class="term">Temperature:</span> Warm tissue stretches better</li>
+                        <li><span class="term">Position:</span> Comfortable and stable</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Types of Stretching</div>
+                <div class="answer">
+                    <p><strong class="highlight">أنواع الـ Stretching:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Static Stretching:</span>
+                            <ul>
+                                <li>Slow, sustained stretch</li>
+                                <li>Hold 15-30 seconds</li>
+                                <li>الأكثر أماناً</li>
+                                <li>مثال: Hamstring stretch في وضع ثابت</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Dynamic Stretching:</span>
+                            <ul>
+                                <li>Controlled movement through ROM</li>
+                                <li>Active muscle contraction</li>
+                                <li>مثال: Leg swings</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Ballistic Stretching:</span>
+                            <ul>
+                                <li>Bouncing movements</li>
+                                <li><span class="important">خطر</span> - ممكن يسبب injury</li>
+                                <li>مش مفضل استخدامه</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">PNF Stretching:</span>
+                            <ul>
+                                <li>Proprioceptive Neuromuscular Facilitation</li>
+                                <li>Contract-Relax technique</li>
+                                <li>الأكثر فعالية</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Passive Stretching:</span>
+                            <ul>
+                                <li>External force (therapist, gravity)</li>
+                                <li>المريض relaxed تماماً</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Active Stretching:</span>
+                            <ul>
+                                <li>المريض بيعمل الـ stretch بنفسه</li>
+                                <li>Using agonist muscle contraction</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Hamstring</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine على الـ bed</div>
+                        <div class="step">الـ hip في neutral position</div>
+                        <div class="step">امسك الـ leg من تحت الـ knee وعند الـ ankle</div>
+                        <div class="step">اثني الـ hip مع keeping الـ knee extended</div>
+                        <div class="step">ارفع الـ leg ببطء لحد ما تحس بـ <span class="term">mild tension</span></div>
+                        <div class="step">Hold الوضع لمدة <span class="highlight">15-30 seconds</span></div>
+                        <div class="step">ارجع ببطء للـ starting position</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Important Points:</strong></p>
+                    <ul>
+                        <li>الـ <span class="term">opposite leg</span> لازم تكون flat على الـ bed</li>
+                        <li>تجنب الـ <span class="important">bouncing</span></li>
+                        <li>الـ stretch لازم يكون <span class="highlight">pain-free</span></li>
+                        <li>المريض لازم يكون <span class="term">relaxed</span></li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Muscles Stretched:</strong> Hamstrings (Biceps femoris, Semitendinosus, Semimembranosus)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Pectoralis Major</div>
+                <div class="answer">
+                    <p><strong class="highlight">Passive Stretch:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine على edge of bed</div>
+                        <div class="step">الـ shoulder في 90° abduction</div>
+                        <div class="step">الـ elbow في 90° flexion</div>
+                        <div class="step">امسك الـ arm من الـ elbow والـ wrist</div>
+                        <div class="step">اعمل horizontal extension ببطء</div>
+                        <div class="step">الـ arm ينزل تحت مستوى الـ bed</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Self-Stretch للـ Pectoralis Major:</strong></p>
+                    <div class="steps">
+                        <div class="step">المريض واقف في corner أو عند door frame</div>
+                        <div class="step">حط الـ forearms على الحائط (90/90 position)</div>
+                        <div class="step">خطوة للأمام بإحدى الرجلين</div>
+                        <div class="step">اضغط الصدر للأمام</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Muscles Stretched:</strong> Pectoralis major (Clavicular & Sternal heads)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Piriformis</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">اثني الـ hip والـ knee للجانب المراد stretching</div>
+                        <div class="step">حط الـ ankle على الـ opposite knee (Figure-4 position)</div>
+                        <div class="step">امسك الـ thigh من الجانب الآخر</div>
+                        <div class="step">اسحب الـ thigh باتجاه الصدر</div>
+                        <div class="step">في نفس الوقت، اضغط على الـ knee للجانب الخارجي</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Alternative Method:</strong></p>
+                    <ul>
+                        <li>المريض supine</li>
+                        <li>Hip flexion + Adduction + Internal rotation</li>
+                        <li>هذا الوضع بيعمل stretch للـ piriformis</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Function:</strong> Piriformis muscle بيعمل external rotation للـ hip، فعشان نعمله stretch لازم نعمل internal rotation
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Upper Trapezius</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض sitting أو supine</div>
+                        <div class="step">ثبت الـ shoulder من الجانب المراد stretching</div>
+                        <div class="step">امسك الـ head من الجانب الآخر</div>
+                        <div class="step">اعمل lateral flexion للـ neck للجانب المقابل</div>
+                        <div class="step">أضف slight rotation للجانب المقابل</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Important Points:</strong></p>
+                    <ul>
+                        <li>لازم تثبت الـ <span class="term">shoulder</span> عشان ما يرتفعش</li>
+                        <li>الحركة لازم تكون <span class="highlight">gentle</span></li>
+                        <li>تجنب الـ <span class="important">excessive rotation</span></li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Muscle Stretched:</strong> Upper trapezius (من الـ occiput للـ shoulder)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Calf Muscle (Gastrocnemius & Soleus)</div>
+                <div class="answer">
+                    <p><strong class="highlight">Gastrocnemius Stretch:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine أو long sitting</div>
+                        <div class="step">الـ knee في <span class="highlight">full extension</span></div>
+                        <div class="step">امسك الـ foot من الـ plantar surface</div>
+                        <div class="step">اعمل dorsiflexion للـ ankle</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Soleus Stretch:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine أو sitting</div>
+                        <div class="step">الـ knee في <span class="highlight">flexion</span> (حوالي 30-45°)</div>
+                        <div class="step">امسك الـ foot من الـ plantar surface</div>
+                        <div class="step">اعمل dorsiflexion للـ ankle</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>الفرق:</strong> Gastrocnemius بيتمدد مع الـ knee extended، Soleus بيتمدد مع الـ knee flexed (لأن الـ Gastrocnemius crosses two joints)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Psoas Major (Hip Flexors)</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق (Thomas Test Position):</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine على edge of bed</div>
+                        <div class="step">الـ opposite leg في full hip & knee flexion (محضونة على الصدر)</div>
+                        <div class="step">الـ leg المراد stretching تنزل من على الـ bed</div>
+                        <div class="step">اعمل hip extension بالضغط على الـ thigh للأسفل</div>
+                        <div class="step">تأكد إن الـ lumbar spine flat على الـ bed</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Alternative Method (Prone):</strong></p>
+                    <ul>
+                        <li>المريض prone</li>
+                        <li>اثني الـ knee</li>
+                        <li>ارفع الـ thigh من على الـ bed (hip extension)</li>
+                        <li>Hold 15-30 seconds</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Muscles Stretched:</strong> Iliopsoas (Psoas major + Iliacus), Rectus femoris
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Neural Mobilization -->
+        <div class="section" id="sec-neural">
+            <h2 class="section-title"><span class="icon">🧠</span>Neural Mobilization (Neurodynamics)</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch & Quick Test للـ Median Nerve</div>
+                <div class="answer">
+                    <p><strong class="highlight">Median Nerve Passive Stretch:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">Shoulder: Abduction 90° + External rotation</div>
+                        <div class="step">Elbow: Full extension</div>
+                        <div class="step">Forearm: Supination</div>
+                        <div class="step">Wrist & Fingers: Extension</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Active Quick Test للـ Median Nerve:</strong></p>
+                    <div class="steps">
+                        <div class="step">المريض يعمل الحركات دي بنفسه:</div>
+                        <div class="step">Shoulder depression</div>
+                        <div class="step">Shoulder abduction</div>
+                        <div class="step">Shoulder external rotation</div>
+                        <div class="step">Elbow extension</div>
+                        <div class="step">Forearm supination</div>
+                        <div class="step">Wrist & finger extension</div>
+                        <div class="step">Cervical lateral flexion للجانب المقابل</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Positive Test:</strong> لو المريض حس بـ tingling, numbness, أو pain على مسار الـ nerve
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Ulnar Nerve</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">Shoulder: Abduction 90° + External rotation</div>
+                        <div class="step">Elbow: Full flexion</div>
+                        <div class="step">Forearm: Supination</div>
+                        <div class="step">Wrist & Fingers: Extension</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Quick Test:</strong></p>
+                    <ul>
+                        <li>نفس الوضع بس المريض يعمله بنفسه</li>
+                        <li>أضف <span class="term">cervical lateral flexion</span> للجانب المقابل</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>الفرق عن Median:</strong> Ulnar nerve test بيكون فيه <span class="highlight">elbow flexion</span> (مش extension)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Radial Nerve</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">Shoulder: Abduction 90° + Internal rotation</div>
+                        <div class="step">Elbow: Full extension</div>
+                        <div class="step">Forearm: Pronation</div>
+                        <div class="step">Wrist & Fingers: Flexion</div>
+                        <div class="step">Thumb: Flexion & adduction</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Quick Test:</strong></p>
+                    <ul>
+                        <li>المريض يعمل نفس الحركات بنفسه</li>
+                        <li>أضف <span class="term">shoulder depression</span></li>
+                        <li>أضف <span class="term">cervical lateral flexion</span> للجانب المقابل</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Key Point:</strong> Radial nerve test بيكون فيه <span class="highlight">internal rotation & pronation</span> (عكس Median & Ulnar)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Sciatic Nerve (SLR - Straight Leg Raise)</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">Hip: في neutral position (no rotation)</div>
+                        <div class="step">Knee: Full extension</div>
+                        <div class="step">ارفع الـ leg ببطء (hip flexion)</div>
+                        <div class="step">Ankle: Dorsiflexion (لزيادة الـ tension)</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Slump Test:</strong></p>
+                    <div class="steps">
+                        <div class="step">المريض sitting على edge of bed</div>
+                        <div class="step">Thoracic & lumbar flexion (slump forward)</div>
+                        <div class="step">Cervical flexion (chin to chest)</div>
+                        <div class="step">Knee extension</div>
+                        <div class="step">Ankle dorsiflexion</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Positive Test:</strong> Pain, tingling على مسار الـ sciatic nerve (posterior thigh & leg)
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Femoral Nerve</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق (Prone Position):</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض prone</div>
+                        <div class="step">Knee: Full flexion</div>
+                        <div class="step">Hip: Extension (ارفع الـ thigh من على الـ bed)</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Alternative (Side-lying):</strong></p>
+                    <ul>
+                        <li>المريض side-lying</li>
+                        <li>الـ leg المراد testing في الأعلى</li>
+                        <li>Hip extension + Knee flexion</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Positive Test:</strong> Pain في anterior thigh أو tingling على مسار الـ femoral nerve
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Common Peroneal Nerve</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">Hip: Flexion + Adduction + Internal rotation</div>
+                        <div class="step">Knee: Extension</div>
+                        <div class="step">Ankle: Plantarflexion + Inversion</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Key Point:</strong> Common peroneal nerve بيتأثر بالـ <span class="highlight">plantarflexion & inversion</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Passive Stretch للـ Tibial Nerve</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">Hip: Flexion</div>
+                        <div class="step">Knee: Extension</div>
+                        <div class="step">Ankle: Dorsiflexion + Eversion</div>
+                        <div class="step">Toes: Extension</div>
+                        <div class="step">Hold لمدة 15-30 seconds</div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Key Point:</strong> Tibial nerve بيتأثر بالـ <span class="highlight">dorsiflexion & eversion</span> (عكس Common peroneal)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Joint Mobilization -->
+        <div class="section" id="sec-mobilization">
+            <h2 class="section-title"><span class="icon">🦴</span>Joint Mobilization</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Define Mobilization & Grades & Contraindications</div>
+                <div class="answer">
+                    <p><strong class="highlight">Definition of Mobilization:</strong></p>
+                    <p><span class="term">Mobilization:</span> هي passive movement techniques بتستخدم لتحسين الـ joint mobility والـ ROM عن طريق تطبيق oscillatory movements أو sustained stretches على المفصل</p>
+                    
+                    <p><strong class="highlight">Grades of Mobilization (Maitland):</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Grade I:</span>
+                            <ul>
+                                <li>Small amplitude movement</li>
+                                <li>في بداية الـ range</li>
+                                <li><span class="highlight">Pain relief</span></li>
+                                <li>Oscillations: 2-3 per second</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Grade II:</span>
+                            <ul>
+                                <li>Large amplitude movement</li>
+                                <li>في منتصف الـ range</li>
+                                <li><span class="highlight">Pain relief</span></li>
+                                <li>ما بيوصلش للـ resistance</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Grade III:</span>
+                            <ul>
+                                <li>Large amplitude movement</li>
+                                <li>لحد نهاية الـ range</li>
+                                <li><span class="highlight">Increase ROM</span></li>
+                                <li>بيوصل للـ resistance</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Grade IV:</span>
+                            <ul>
+                                <li>Small amplitude movement</li>
+                                <li>في نهاية الـ range</li>
+                                <li><span class="highlight">Increase ROM</span></li>
+                                <li>عند الـ resistance</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Grade V:</span>
+                            <ul>
+                                <li>High velocity, low amplitude thrust</li>
+                                <li><span class="important">Manipulation</span> (مش mobilization)</li>
+                                <li>بيحتاج تدريب خاص</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong class="important">Contraindications:</strong></p>
+                    <ul>
+                        <li>Hypermobility</li>
+                        <li>Joint effusion (swelling)</li>
+                        <li>Acute inflammation</li>
+                        <li>Fracture</li>
+                        <li>Malignancy في المنطقة</li>
+                        <li>Infection</li>
+                        <li>Osteoporosis شديدة</li>
+                        <li>Vascular disease</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>للامتحان:</strong> Grade I & II للـ pain relief، Grade III & IV للـ increase ROM
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ How Grade I & II Decrease Pain؟</div>
+                <div class="answer">
+                    <p><strong class="highlight">آليات تقليل الألم:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Gate Control Theory:</span>
+                            <ul>
+                                <li>الحركة بتحفز الـ <span class="highlight">mechanoreceptors</span></li>
+                                <li>بتمنع إشارات الألم من الوصول للـ brain</li>
+                                <li>بتقفل الـ "gate" في الـ spinal cord</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Neurophysiological Effects:</span>
+                            <ul>
+                                <li>بتحفز إفراز <span class="highlight">endorphins</span> (natural painkillers)</li>
+                                <li>بتقلل الـ muscle guarding</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Mechanical Effects:</span>
+                            <ul>
+                                <li>بتحسن الـ <span class="highlight">synovial fluid circulation</span></li>
+                                <li>بتقلل الـ joint stiffness</li>
+                                <li>بتحسن الـ nutrition للـ cartilage</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Psychological Effects:</span>
+                            <ul>
+                                <li>بتقلل الـ anxiety</li>
+                                <li>بتحسن الـ patient confidence</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>Important:</strong> Grade I & II بيكونوا gentle movements ما بيوصلوش للـ resistance، عشان كده مناسبين للـ pain relief
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Concave-Convex Rule</div>
+                <div class="answer">
+                    <p><strong class="highlight">القاعدة الأساسية:</strong></p>
+                    
+                    <p><span class="term">Concave-Convex Rule:</span> بتحدد اتجاه الـ glide اللي لازم نعمله أثناء الـ mobilization</p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Concave Surface Moving on Convex:</span>
+                            <ul>
+                                <li>الـ glide في <span class="highlight">نفس اتجاه</span> حركة العظمة</li>
+                                <li>مثال: <span class="highlight">Tibia on Femur</span> (knee flexion)</li>
+                                <li>لو عايز knee flexion → Posterior glide للـ tibia</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Convex Surface Moving on Concave:</span>
+                            <ul>
+                                <li>الـ glide في <span class="highlight">عكس اتجاه</span> حركة العظمة</li>
+                                <li>مثال: <span class="highlight">Humerus on Glenoid</span> (shoulder flexion)</li>
+                                <li>لو عايز shoulder flexion → Posterior/Caudal glide للـ humerus</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong class="highlight">أمثلة عملية:</strong></p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                        <tr style="background: rgba(0, 212, 255, 0.2);">
+                            <th style="padding: 10px; border: 1px solid #00d4ff;">المفصل</th>
+                            <th style="padding: 10px; border: 1px solid #00d4ff;">الحركة المطلوبة</th>
+                            <th style="padding: 10px; border: 1px solid #00d4ff;">اتجاه الـ Glide</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Shoulder Flexion</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Humerus flexion</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Posterior/Caudal glide</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Knee Flexion</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Tibia flexion</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Posterior glide</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Hip Extension</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Femur extension</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Anterior glide</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="note">
+                        <strong>للامتحان:</strong> لازم تعرف إذا السطح concave ولا convex عشان تحدد اتجاه الـ glide
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Grade 2 Mobilization لـ Knee Flexion</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">الـ knee في slight flexion (حوالي 20-30°)</div>
+                        <div class="step">ثبت الـ femur بإيد واحدة</div>
+                        <div class="step">امسك الـ proximal tibia بالإيد التانية</div>
+                        <div class="step">اعمل <span class="highlight">posterior glide</span> للـ tibia</div>
+                        <div class="step">Large amplitude oscillations</div>
+                        <div class="step">في منتصف الـ range (ما توصلش للـ resistance)</div>
+                        <div class="step">2-3 oscillations per second</div>
+                        <div class="step">استمر لمدة 1-2 minutes</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Important Points:</strong></p>
+                    <ul>
+                        <li>الحركة لازم تكون <span class="term">smooth and rhythmic</span></li>
+                        <li>Grade 2 للـ <span class="highlight">pain relief</span></li>
+                        <li>ما تضغطش لحد الـ resistance</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Concave-Convex:</strong> Tibia (concave) على Femur (convex) → Posterior glide لـ knee flexion
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Grade 3 Mobilization لـ Knee Flexion</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine أو prone</div>
+                        <div class="step">الـ knee في flexion (حوالي 60-90°)</div>
+                        <div class="step">ثبت الـ femur بإيد واحدة</div>
+                        <div class="step">امسك الـ proximal tibia بالإيد التانية</div>
+                        <div class="step">اعمل <span class="highlight">posterior glide</span> للـ tibia</div>
+                        <div class="step">Large amplitude oscillations</div>
+                        <div class="step">لحد <span class="important">نهاية الـ range</span> (عند الـ resistance)</div>
+                        <div class="step">2-3 oscillations per second</div>
+                        <div class="step">استمر لمدة 1-2 minutes</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Important Points:</strong></p>
+                    <ul>
+                        <li>Grade 3 للـ <span class="highlight">increase ROM</span></li>
+                        <li>لازم توصل للـ <span class="term">tissue resistance</span></li>
+                        <li>ممكن يكون في <span class="term">mild discomfort</span> (مش severe pain)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Grade 4 Mobilization لـ Shoulder Abduction</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine أو sitting</div>
+                        <div class="step">الـ shoulder في abduction (حوالي 80-90°)</div>
+                        <div class="step">ثبت الـ scapula بإيد واحدة</div>
+                        <div class="step">امسك الـ proximal humerus بالإيد التانية</div>
+                        <div class="step">اعمل <span class="highlight">inferior/caudal glide</span> للـ humerus</div>
+                        <div class="step">Small amplitude oscillations</div>
+                        <div class="step">في <span class="important">نهاية الـ range</span> (عند الـ resistance)</div>
+                        <div class="step">2-3 oscillations per second</div>
+                        <div class="step">استمر لمدة 1-2 minutes</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Important Points:</strong></p>
+                    <ul>
+                        <li>Grade 4 للـ <span class="highlight">increase ROM</span></li>
+                        <li>Small amplitude بس في end range</li>
+                        <li>Very specific movement</li>
+                    </ul>
+                    
+                    <div class="note">
+                        <strong>Concave-Convex:</strong> Humerus (convex) على Glenoid (concave) → Inferior glide لـ shoulder abduction
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق Grade 2 Mobilization لـ Wrist Extension</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض sitting</div>
+                        <div class="step">الـ forearm على الطاولة (pronated)</div>
+                        <div class="step">الـ wrist في slight extension</div>
+                        <div class="step">ثبت الـ distal radius & ulna بإيد واحدة</div>
+                        <div class="step">امسك الـ proximal carpal row بالإيد التانية</div>
+                        <div class="step">اعمل <span class="highlight">volar/palmar glide</span></div>
+                        <div class="step">Large amplitude oscillations</div>
+                        <div class="step">في منتصف الـ range</div>
+                        <div class="step">2-3 oscillations per second</div>
+                        <div class="step">استمر لمدة 1-2 minutes</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Concave-Convex:</strong> Carpals (concave) على Radius (convex) → Volar glide لـ wrist extension
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Physiological Effects of Mobilization & How it Increases ROM</div>
+                <div class="answer">
+                    <p><strong class="highlight">التأثيرات الفسيولوجية:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Mechanical Effects:</span>
+                            <ul>
+                                <li><span class="highlight">Break adhesions:</span> بيكسر الالتصاقات</li>
+                                <li><span class="highlight">Stretch capsule:</span> بيمط الـ joint capsule</li>
+                                <li><span class="highlight">Realign collagen fibers:</span> بينظم ألياف الكولاجين</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Neurophysiological Effects:</span>
+                            <ul>
+                                <li><span class="highlight">Pain relief:</span> Gate control theory</li>
+                                <li><span class="highlight">Muscle relaxation:</span> بيقلل الـ muscle guarding</li>
+                                <li><span class="highlight">Proprioceptive input:</span> بيحسن الإحساس بالمفصل</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Fluid Dynamics:</span>
+                            <ul>
+                                <li><span class="highlight">Synovial fluid circulation:</span> بيحسن دوران السائل الزلالي</li>
+                                <li><span class="highlight">Cartilage nutrition:</span> بيحسن تغذية الغضروف</li>
+                                <li><span class="highlight">Reduce edema:</span> بيقلل التورم</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Tissue Extensibility:</span>
+                            <ul>
+                                <li><span class="highlight">Increase tissue length:</span> بيزود طول الأنسجة</li>
+                                <li><span class="highlight">Improve elasticity:</span> بيحسن المرونة</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong class="highlight">كيف بيزود الـ ROM:</strong></p>
+                    <ul>
+                        <li>بيكسر الـ <span class="term">adhesions</span> اللي بتمنع الحركة</li>
+                        <li>بيمط الـ <span class="term">joint capsule</span> تدريجياً</li>
+                        <li>بيقلل الـ <span class="term">pain</span> اللي بيمنع الحركة</li>
+                        <li>بيحسن الـ <span class="term">tissue extensibility</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: MET -->
+        <div class="section" id="sec-met">
+            <h2 class="section-title"><span class="icon">⚡</span>Muscle Energy Technique (MET)</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Basic Elements (Principles) of MET</div>
+                <div class="answer">
+                    <p><strong class="highlight">العناصر الأساسية للـ MET:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Barrier:</span>
+                            <ul>
+                                <li>هو الـ <span class="highlight">end point</span> اللي بنوصل له في الحركة</li>
+                                <li>نوعين:
+                                    <ul>
+                                        <li><span class="term">Anatomical Barrier:</span> نهاية الـ ROM الطبيعي</li>
+                                        <li><span class="term">Restrictive Barrier:</span> نهاية الـ ROM بسبب tightness</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Patient Effort:</span>
+                            <ul>
+                                <li>المريض بيعمل <span class="highlight">isometric contraction</span></li>
+                                <li>Intensity: 20-30% of maximum effort</li>
+                                <li>Duration: 5-10 seconds</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Therapist Resistance:</span>
+                            <ul>
+                                <li>المعالج بيعمل <span class="highlight">equal and opposite force</span></li>
+                                <li>No movement should occur</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Relaxation Phase:</span>
+                            <ul>
+                                <li>بعد الانقباض، المريض يرتاح لمدة <span class="highlight">2-3 seconds</span></li>
+                                <li>Deep breath and relax</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">New Barrier:</span>
+                            <ul>
+                                <li>بعد الاسترخاء، المعالج بيحرك المفصل لـ <span class="highlight">new barrier</span></li>
+                                <li>Passive stretch to new range</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Repetitions:</span>
+                            <ul>
+                                <li>كرر الدورة <span class="highlight">3-5 مرات</span></li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>الفكرة الأساسية:</strong> Contract → Relax → Stretch to new barrier
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Indications & Contraindications of MET</div>
+                <div class="answer">
+                    <p><strong class="highlight">Indications (دواعي الاستعمال):</strong></p>
+                    <ul>
+                        <li>Muscle tightness أو spasm</li>
+                        <li>Limited ROM</li>
+                        <li>Joint restrictions</li>
+                        <li>Myofascial pain</li>
+                        <li>Postural imbalances</li>
+                        <li>Chronic pain conditions</li>
+                    </ul>
+                    
+                    <p><strong class="important">Contraindications (موانع الاستعمال):</strong></p>
+                    <ul>
+                        <li>Acute injury أو inflammation</li>
+                        <li>Fracture</li>
+                        <li>Severe osteoporosis</li>
+                        <li>Malignancy</li>
+                        <li>Infection</li>
+                        <li>Patient unable to cooperate</li>
+                        <li>Severe pain</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق MET لـ Knee Flexion (Hamstring Tightness)</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">ارفع الـ leg (hip flexion) مع الـ knee extended</div>
+                        <div class="step">وصل للـ <span class="highlight">restrictive barrier</span> (لحد ما تحس بـ tightness)</div>
+                        <div class="step">اطلب من المريض يضغط الـ leg للأسفل (hip extension)</div>
+                        <div class="step">اعمل <span class="term">resistance</span> مساوية (isometric contraction)</div>
+                        <div class="step">Duration: 5-10 seconds</div>
+                        <div class="step">اطلب من المريض يرتاح ويتنفس عميق</div>
+                        <div class="step">ارفع الـ leg لـ <span class="highlight">new barrier</span></div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Mechanism:</strong> Post-isometric relaxation - العضلة بترتاح بعد الانقباض الـ isometric
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق MET لـ Elbow Flexion (Triceps Tightness)</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine أو sitting</div>
+                        <div class="step">اثني الـ elbow لحد الـ <span class="highlight">restrictive barrier</span></div>
+                        <div class="step">اطلب من المريض يمد الـ elbow (elbow extension)</div>
+                        <div class="step">اعمل <span class="term">resistance</span> مساوية</div>
+                        <div class="step">Duration: 5-10 seconds</div>
+                        <div class="step">المريض يرتاح</div>
+                        <div class="step">اثني الـ elbow أكتر لـ <span class="highlight">new barrier</span></div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ طبق MET لـ Scalene Muscle</div>
+                <div class="answer">
+                    <p><strong class="highlight">خطوات التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض supine</div>
+                        <div class="step">اعمل cervical lateral flexion للجانب المقابل</div>
+                        <div class="step">وصل للـ <span class="highlight">restrictive barrier</span></div>
+                        <div class="step">اطلب من المريض يضغط الـ head للجانب المصاب</div>
+                        <div class="step">اعمل <span class="term">resistance</span> على الـ head</div>
+                        <div class="step">Duration: 5-10 seconds</div>
+                        <div class="step">المريض يرتاح</div>
+                        <div class="step">زود الـ lateral flexion لـ <span class="highlight">new barrier</span></div>
+                        <div class="step">كرر 3-5 مرات</div>
+                    </div>
+                    
+                    <div class="note">
+                        <strong>Scalene Function:</strong> Cervical lateral flexion & elevation of ribs
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Errors of Patient & Therapist in MET</div>
+                <div class="answer">
+                    <p><strong class="highlight">Patient Errors:</strong></p>
+                    <ul>
+                        <li><span class="important">Too much effort:</span> أكتر من 30% - بيمنع الاسترخاء</li>
+                        <li><span class="important">Holding breath:</span> لازم يتنفس طبيعي</li>
+                        <li><span class="important">Not relaxing:</span> بعد الانقباض لازم يرتاح تماماً</li>
+                        <li><span class="important">Moving during contraction:</span> لازم يكون isometric</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">Therapist Errors:</strong></p>
+                    <ul>
+                        <li><span class="important">Too much resistance:</span> لازم تكون مساوية لجهد المريض</li>
+                        <li><span class="important">Not waiting for relaxation:</span> لازم تدي وقت للاسترخاء</li>
+                        <li><span class="important">Forcing the stretch:</span> الحركة لازم تكون gentle</li>
+                        <li><span class="important">Wrong barrier:</span> لازم توصل للـ restrictive barrier مش أقل</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: CKC & Plyometrics -->
+        <div class="section" id="sec-ckc">
+            <h2 class="section-title"><span class="icon">🏃</span>Closed Kinetic Chain (CKC) & Plyometrics</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Define CKC & Biomechanical & Neurophysiological Effects</div>
+                <div class="answer">
+                    <p><strong class="highlight">Definition of CKC:</strong></p>
+                    <p><span class="term">Closed Kinetic Chain (CKC):</span> تمارين بيكون فيها الـ distal segment (اليد أو القدم) ثابت على سطح ثابت، والحركة بتحصل في الـ proximal segments</p>
+                    
+                    <p><strong class="highlight">مقارنة CKC vs OKC:</strong></p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                        <tr style="background: rgba(0, 212, 255, 0.2);">
+                            <th style="padding: 10px; border: 1px solid #00d4ff;">العنصر</th>
+                            <th style="padding: 10px; border: 1px solid #00d4ff;">CKC</th>
+                            <th style="padding: 10px; border: 1px solid #00d4ff;">OKC</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);"><strong>Distal Segment</strong></td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Fixed (ثابت)</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Free (حر)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);"><strong>مثال - Lower</strong></td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Squat, Leg press</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Knee extension machine</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);"><strong>مثال - Upper</strong></td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Push-up, Wall push</td>
+                            <td style="padding: 10px; border: 1px solid rgba(0, 212, 255, 0.3);">Bicep curl</td>
+                        </tr>
+                    </table>
+                    
+                    <p><strong class="highlight">Biomechanical Effects:</strong></p>
+                    <ol>
+                        <li>
+                            <span class="term">Joint Compression:</span>
+                            <ul>
+                                <li>بيزود الـ <span class="highlight">joint stability</span></li>
+                                <li>بيحفز الـ mechanoreceptors</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Co-contraction:</span>
+                            <ul>
+                                <li>Agonist & Antagonist بيشتغلوا مع بعض</li>
+                                <li>بيزود الـ <span class="highlight">joint stability</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Multiple Joint Movement:</span>
+                            <ul>
+                                <li>أكتر من مفصل بيتحرك في نفس الوقت</li>
+                                <li>More <span class="highlight">functional</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Decreased Shear Forces:</span>
+                            <ul>
+                                <li>أقل ضغط على الـ ligaments</li>
+                                <li>More <span class="highlight">safe</span> للمفاصل</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong class="highlight">Neurophysiological Effects:</strong></p>
+                    <ol>
+                        <li>
+                            <span class="term">Enhanced Proprioception:</span>
+                            <ul>
+                                <li>بيحسن الإحساس بالمفصل</li>
+                                <li>Weight-bearing بيحفز الـ receptors</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Improved Balance:</span>
+                            <ul>
+                                <li>بيحسن الـ postural control</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Functional Movement Patterns:</span>
+                            <ul>
+                                <li>بيحاكي الحركات اليومية</li>
+                                <li>Better <span class="highlight">motor learning</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Muscle Synergy:</span>
+                            <ul>
+                                <li>العضلات بتشتغل كـ <span class="highlight">coordinated unit</span></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Advantages of CKC</div>
+                <div class="answer">
+                    <p><strong class="highlight">مميزات الـ CKC:</strong></p>
+                    
+                    <ol>
+                        <li><span class="term">More Functional:</span> بيحاكي الأنشطة اليومية</li>
+                        <li><span class="term">Increased Joint Stability:</span> بسبب الـ co-contraction</li>
+                        <li><span class="term">Decreased Shear Forces:</span> أقل ضغط على الأربطة</li>
+                        <li><span class="term">Enhanced Proprioception:</span> بيحسن الإحساس بالمفصل</li>
+                        <li><span class="term">Multiple Muscle Groups:</span> بيشغل عضلات كتير في نفس الوقت</li>
+                        <li><span class="term">Improved Balance:</span> بيحسن التوازن</li>
+                        <li><span class="term">Safe for Ligaments:</span> أقل خطورة على الأربطة (مثل ACL)</li>
+                        <li><span class="term">Sport-Specific:</span> مناسب للرياضيين</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ أمثلة على CKC Exercises</div>
+                <div class="answer">
+                    <p><strong class="highlight">Lower Extremity CKC:</strong></p>
+                    <ul>
+                        <li><span class="term">Squats:</span> القدمين ثابتة على الأرض</li>
+                        <li><span class="term">Lunges:</span> خطوة للأمام والقدم ثابتة</li>
+                        <li><span class="term">Leg Press:</span> القدمين على الـ platform</li>
+                        <li><span class="term">Step-ups:</span> الصعود على درجة</li>
+                        <li><span class="term">Wall Slides:</span> الظهر على الحائط والنزول</li>
+                        <li><span class="term">Calf Raises:</span> الوقوف على أطراف الأصابع</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">Upper Extremity CKC:</strong></p>
+                    <ul>
+                        <li><span class="term">Push-ups:</span> اليدين ثابتة على الأرض</li>
+                        <li><span class="term">Wall Push:</span> اليدين على الحائط</li>
+                        <li><span class="term">Plank:</span> اليدين والقدمين ثابتة</li>
+                        <li><span class="term">Dips:</span> اليدين على الكرسي</li>
+                        <li><span class="term">Quadruped Exercises:</span> اليدين والركبتين على الأرض</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Define Plyometrics & Phases & Levels</div>
+                <div class="answer">
+                    <p><strong class="highlight">Definition of Plyometrics:</strong></p>
+                    <p><span class="term">Plyometrics:</span> تمارين بتستخدم الـ stretch-shortening cycle عشان تزود الـ power والـ explosive strength</p>
+                    
+                    <p><strong class="highlight">Phases of Plyometrics:</strong></p>
+                    <ol>
+                        <li>
+                            <span class="term">Eccentric Phase (Loading/Cocking):</span>
+                            <ul>
+                                <li>العضلة بتتمدد (lengthening)</li>
+                                <li>بيتخزن <span class="highlight">elastic energy</span></li>
+                                <li>مثال: النزول في الـ jump</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Amortization Phase (Transition):</span>
+                            <ul>
+                                <li>فترة قصيرة جداً بين الـ eccentric والـ concentric</li>
+                                <li>لازم تكون <span class="important">أقل من 0.2 second</span></li>
+                                <li>لو طالت، الـ energy بتضيع</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Concentric Phase (Unloading):</span>
+                            <ul>
+                                <li>العضلة بتقصر (shortening)</li>
+                                <li>الـ <span class="highlight">stored energy</span> بتتحرر</li>
+                                <li>مثال: الطيران في الـ jump</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong class="highlight">Levels of Plyometrics:</strong></p>
+                    <ol>
+                        <li>
+                            <span class="term">Low Intensity:</span>
+                            <ul>
+                                <li>Jumps in place</li>
+                                <li>Two-foot jumps</li>
+                                <li>مثال: Squat jumps</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Medium Intensity:</span>
+                            <ul>
+                                <li>Multiple jumps</li>
+                                <li>Box jumps (low height)</li>
+                                <li>مثال: Lateral jumps</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">High Intensity:</span>
+                            <ul>
+                                <li>Single-leg jumps</li>
+                                <li>Depth jumps (high height)</li>
+                                <li>مثال: Bounding</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>Important:</strong> لازم تبدأ بـ low intensity وتتدرج للـ high intensity
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Mechanical & Neurophysiological Models of Plyometrics</div>
+                <div class="answer">
+                    <p><strong class="highlight">Mechanical Model:</strong></p>
+                    <ol>
+                        <li>
+                            <span class="term">Elastic Energy Storage:</span>
+                            <ul>
+                                <li>أثناء الـ <span class="highlight">eccentric phase</span>، الـ elastic components (tendons, connective tissue) بتتمدد</li>
+                                <li>بيتخزن <span class="highlight">potential energy</span></li>
+                                <li>زي الـ spring لما تضغط عليه</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Energy Release:</span>
+                            <ul>
+                                <li>أثناء الـ <span class="highlight">concentric phase</span>، الـ stored energy بتتحرر</li>
+                                <li>بيزود الـ <span class="highlight">force production</span></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Series Elastic Component (SEC):</span>
+                            <ul>
+                                <li>Tendons & connective tissue</li>
+                                <li>بيخزنوا ويحرروا الـ energy</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong class="highlight">Neurophysiological Model:</strong></p>
+                    <ol>
+                        <li>
+                            <span class="term">Stretch Reflex:</span>
+                            <ul>
+                                <li>أثناء الـ <span class="highlight">eccentric phase</span>، الـ muscle spindles بتتحفز</li>
+                                <li>بتبعت إشارة للـ spinal cord</li>
+                                <li>بترجع إشارة للعضلة تنقبض بقوة أكبر</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Increased Motor Unit Recruitment:</span>
+                            <ul>
+                                <li>بيتم تنشيط <span class="highlight">more motor units</span></li>
+                                <li>بيزود الـ force production</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Rate Coding:</span>
+                            <ul>
+                                <li>بيزود الـ <span class="highlight">firing rate</span> للـ motor neurons</li>
+                                <li>بيزود الـ speed of contraction</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>الخلاصة:</strong> Mechanical model = elastic energy، Neurophysiological model = stretch reflex
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ أمثلة على Plyometric Exercises</div>
+                <div class="answer">
+                    <p><strong class="highlight">Lower Extremity Plyometrics:</strong></p>
+                    <ol>
+                        <li><span class="term">Squat Jumps:</span> نزول squat وطيران لفوق</li>
+                        <li><span class="term">Box Jumps:</span> الطيران على صندوق</li>
+                        <li><span class="term">Depth Jumps:</span> النزول من صندوق والطيران فوراً</li>
+                        <li><span class="term">Lateral Jumps:</span> الطيران للجانب</li>
+                        <li><span class="term">Single-leg Hops:</span> الطيران على رجل واحدة</li>
+                        <li><span class="term">Bounding:</span> خطوات طويلة مع طيران</li>
+                    </ol>
+                    
+                    <p><strong class="highlight">Upper Extremity Plyometrics:</strong></p>
+                    <ol>
+                        <li><span class="term">Plyometric Push-ups:</span> push-up مع رفع اليدين من الأرض</li>
+                        <li><span class="term">Medicine Ball Throws:</span> رمي الكرة الطبية</li>
+                        <li><span class="term">Chest Pass:</span> تمرير الكرة من الصدر بقوة</li>
+                        <li><span class="term">Overhead Throws:</span> رمي الكرة من فوق الرأس</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Pilates -->
+        <div class="section" id="sec-pilates">
+            <h2 class="section-title"><span class="icon">🧘</span>Pilates</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Define Pilates & Principles & Explain 2 of them</div>
+                <div class="answer">
+                    <p><strong class="highlight">Definition of Pilates:</strong></p>
+                    <p><span class="term">Pilates:</span> هو نظام تمارين بيركز على تقوية الـ core muscles، تحسين المرونة، والتوازن من خلال controlled movements والـ proper breathing</p>
+                    
+                    <p><strong class="highlight">Principles (Fundamentals) of Pilates:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Concentration:</span>
+                            <ul>
+                                <li>التركيز الكامل على كل حركة</li>
+                                <li>Mind-body connection</li>
+                                <li>الوعي بكل جزء من الجسم</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Control:</span>
+                            <ul>
+                                <li>كل حركة لازم تكون <span class="highlight">controlled</span></li>
+                                <li>No jerky or rushed movements</li>
+                                <li>Quality over quantity</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Centering (Powerhouse):</span>
+                            <ul>
+                                <li>كل الحركات بتبدأ من الـ <span class="highlight">core</span></li>
+                                <li>الـ powerhouse = Abdominals, Lower back, Hips, Buttocks</li>
+                                <li>Strong center = stable body</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Precision:</span>
+                            <ul>
+                                <li>كل حركة لازم تكون <span class="highlight">precise</span></li>
+                                <li>Proper alignment</li>
+                                <li>Attention to detail</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Breathing:</span>
+                            <ul>
+                                <li><span class="highlight">Lateral breathing</span> (التنفس الجانبي)</li>
+                                <li>Inhale through nose, exhale through mouth</li>
+                                <li>Coordinate breathing with movement</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Flow (Fluidity):</span>
+                            <ul>
+                                <li>الحركات لازم تكون <span class="highlight">smooth and flowing</span></li>
+                                <li>No pauses between movements</li>
+                                <li>Grace and elegance</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>للامتحان - شرح مبدأين:</strong>
+                        <br><br>
+                        <strong>1. Centering (Powerhouse):</strong>
+                        <br>
+                        كل الحركات في الـ Pilates بتبدأ من الـ core اللي بنسميه الـ powerhouse. الـ powerhouse بيشمل عضلات البطن، أسفل الظهر، الـ hips، والـ buttocks. لما الـ core يكون قوي، الجسم كله بيكون stable ومتوازن، وده بيساعد في تحسين الـ posture وتقليل الإصابات.
+                        <br><br>
+                        <strong>2. Breathing:</strong>
+                        <br>
+                        الـ Pilates بيستخدم نوع خاص من التنفس اسمه lateral breathing (التنفس الجانبي). بنشهق من الأنف ونزفر من الفم، مع توسيع الـ rib cage للجانبين (مش للأمام). التنفس الصحيح بيساعد في تنشيط الـ core muscles وبيزود الـ oxygen supply للعضلات، وبيساعد في الاسترخاء والتركيز.
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Benefits (Functions) of Pilates</div>
+                <div class="answer">
+                    <p><strong class="highlight">فوائد الـ Pilates:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Core Strengthening:</span>
+                            <ul>
+                                <li>بيقوي عضلات الـ <span class="highlight">core</span> (البطن والظهر)</li>
+                                <li>بيحسن الـ stability</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Improved Flexibility:</span>
+                            <ul>
+                                <li>بيزود الـ <span class="highlight">flexibility</span> والـ ROM</li>
+                                <li>بيقلل الـ muscle tightness</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Better Posture:</span>
+                            <ul>
+                                <li>بيحسن الـ <span class="highlight">posture</span> والـ alignment</li>
+                                <li>بيقلل آلام الظهر</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Enhanced Balance:</span>
+                            <ul>
+                                <li>بيحسن الـ <span class="highlight">balance</span> والـ coordination</li>
+                                <li>بيقلل خطر السقوط</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Increased Body Awareness:</span>
+                            <ul>
+                                <li>بيحسن الـ <span class="highlight">proprioception</span></li>
+                                <li>Mind-body connection</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Injury Prevention:</span>
+                            <ul>
+                                <li>بيقلل خطر الإصابات</li>
+                                <li>بيقوي العضلات الضعيفة</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Stress Relief:</span>
+                            <ul>
+                                <li>بيقلل الـ <span class="highlight">stress</span> والـ tension</li>
+                                <li>بيحسن الـ mental health</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Improved Breathing:</span>
+                            <ul>
+                                <li>بيحسن الـ <span class="highlight">breathing patterns</span></li>
+                                <li>بيزود الـ lung capacity</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Muscle Tone:</span>
+                            <ul>
+                                <li>بيحسن الـ <span class="highlight">muscle tone</span> بدون bulk</li>
+                                <li>Long, lean muscles</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Rehabilitation:</span>
+                            <ul>
+                                <li>مفيد في الـ <span class="highlight">rehabilitation</span> بعد الإصابات</li>
+                                <li>Low-impact exercise</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Levels of Pilates</div>
+                <div class="answer">
+                    <p><strong class="highlight">مستويات الـ Pilates:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Beginner Level:</span>
+                            <ul>
+                                <li>Basic exercises</li>
+                                <li>Focus on learning proper form</li>
+                                <li>Building core strength</li>
+                                <li>مثال: Pelvic tilts, Hundreds (modified)</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Intermediate Level:</span>
+                            <ul>
+                                <li>More challenging exercises</li>
+                                <li>Increased repetitions</li>
+                                <li>Better control and precision</li>
+                                <li>مثال: Roll-ups, Single leg circles</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Advanced Level:</span>
+                            <ul>
+                                <li>Complex movements</li>
+                                <li>Full body integration</li>
+                                <li>High level of control</li>
+                                <li>مثال: Teaser, Control balance</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Balance -->
+        <div class="section" id="sec-balance">
+            <h2 class="section-title"><span class="icon">⚖️</span>Balance Training</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Define Balance & Classification</div>
+                <div class="answer">
+                    <p><strong class="highlight">Definition of Balance:</strong></p>
+                    <p><span class="term">Balance:</span> هو القدرة على الحفاظ على الـ center of gravity فوق الـ base of support</p>
+                    
+                    <p><strong class="highlight">Classification of Balance:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Static Balance:</span>
+                            <ul>
+                                <li>الحفاظ على التوازن في وضع <span class="highlight">ثابت</span></li>
+                                <li>مثال: الوقوف على رجل واحدة</li>
+                                <li>Tests: Romberg test, Single leg stance</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Dynamic Balance:</span>
+                            <ul>
+                                <li>الحفاظ على التوازن أثناء <span class="highlight">الحركة</span></li>
+                                <li>مثال: المشي على خط مستقيم</li>
+                                <li>Tests: Functional reach test, Timed up and go</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <p><strong class="highlight">Components of Balance:</strong></p>
+                    <ul>
+                        <li><span class="term">Visual System:</span> العين بتساعد في التوازن</li>
+                        <li><span class="term">Vestibular System:</span> الأذن الداخلية</li>
+                        <li><span class="term">Somatosensory System:</span> الإحساس بالجسم (proprioception)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Static Balance Tests</div>
+                <div class="answer">
+                    <p><strong class="highlight">اختبارات الـ Static Balance:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Romberg Test:</span>
+                            <ul>
+                                <li>المريض واقف feet together</li>
+                                <li>Arms at sides أو crossed</li>
+                                <li>Eyes open لمدة 30 seconds</li>
+                                <li>ثم Eyes closed لمدة 30 seconds</li>
+                                <li><span class="important">Positive:</span> لو المريض يترنح أو يقع</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Single Leg Stance:</span>
+                            <ul>
+                                <li>المريض يقف على رجل واحدة</li>
+                                <li>Eyes open ثم eyes closed</li>
+                                <li>قيس المدة اللي يقدر يحافظ فيها على التوازن</li>
+                                <li>Normal: أكتر من 30 seconds</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Tandem Stance:</span>
+                            <ul>
+                                <li>المريض يقف heel-to-toe</li>
+                                <li>رجل قدام التانية في خط مستقيم</li>
+                                <li>Eyes open ثم eyes closed</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Dynamic Balance Tests</div>
+                <div class="answer">
+                    <p><strong class="highlight">اختبارات الـ Dynamic Balance:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Functional Reach Test:</span>
+                            <ul>
+                                <li>المريض واقف جنب الحائط</li>
+                                <li>يمد إيده للأمام قدر ما يقدر</li>
+                                <li>قيس المسافة</li>
+                                <li>Normal: أكتر من 25 cm</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Timed Up and Go (TUG):</span>
+                            <ul>
+                                <li>المريض قاعد على كرسي</li>
+                                <li>يقوم، يمشي 3 meters، يرجع، يقعد</li>
+                                <li>قيس الوقت</li>
+                                <li>Normal: أقل من 10 seconds</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Berg Balance Scale:</span>
+                            <ul>
+                                <li>14 tasks مختلفة</li>
+                                <li>كل task من 0-4 points</li>
+                                <li>Total: 56 points</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Balance Strategies (Ankle & Hip Strategy)</div>
+                <div class="answer">
+                    <p><strong class="highlight">استراتيجيات التوازن:</strong></p>
+                    
+                    <ol>
+                        <li>
+                            <span class="term">Ankle Strategy:</span>
+                            <ul>
+                                <li>بتستخدم في <span class="highlight">small perturbations</span></li>
+                                <li>الحركة بتكون من الـ <span class="highlight">ankle</span></li>
+                                <li>الجسم بيتحرك كـ single unit</li>
+                                <li>مثال: ترنح بسيط للأمام أو الخلف</li>
+                                <li>Muscles: Ankle dorsiflexors & plantarflexors</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Hip Strategy:</span>
+                            <ul>
+                                <li>بتستخدم في <span class="highlight">large perturbations</span></li>
+                                <li>الحركة بتكون من الـ <span class="highlight">hip</span></li>
+                                <li>الجسم بينثني من الـ hip</li>
+                                <li>مثال: ترنح كبير أو سطح غير ثابت</li>
+                                <li>Muscles: Hip flexors, extensors, abductors</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <span class="term">Stepping Strategy:</span>
+                            <ul>
+                                <li>بتستخدم لما الـ ankle & hip strategies مش كافية</li>
+                                <li>المريض بياخد خطوة عشان يمنع السقوط</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="note">
+                        <strong>للامتحان:</strong> Ankle strategy للترنح البسيط، Hip strategy للترنح الكبير
+                    </div>
+                </div>
+            </div>
+
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ Co-contraction Technique for Stability</div>
+                <div class="answer">
+                    <p><strong class="highlight">Co-contraction Technique:</strong></p>
+                    
+                    <p><span class="term">Definition:</span> انقباض متزامن للـ agonist والـ antagonist muscles عشان يزود الـ joint stability</p>
+                    
+                    <p><strong class="highlight">كيفية التطبيق:</strong></p>
+                    <div class="steps">
+                        <div class="step">Position: المريض في وضع weight-bearing</div>
+                        <div class="step">اطلب من المريض يشد العضلات حول المفصل</div>
+                        <div class="step">Both agonist & antagonist بينقبضوا مع بعض</div>
+                        <div class="step">Hold لمدة 5-10 seconds</div>
+                        <div class="step">كرر عدة مرات</div>
+                    </div>
+                    
+                    <p><strong class="highlight">Benefits:</strong></p>
+                    <ul>
+                        <li>بيزود الـ <span class="highlight">joint stability</span></li>
+                        <li>بيحمي المفصل من الإصابات</li>
+                        <li>بيحسن الـ <span class="highlight">proprioception</span></li>
+                        <li>مفيد في الـ rehabilitation</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">مثال:</strong></p>
+                    <ul>
+                        <li>في الـ knee: Quadriceps & Hamstrings بينقبضوا مع بعض</li>
+                        <li>في الـ shoulder: Rotator cuff muscles بتنقبض مع بعض</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Section: Important Terms -->
+        <div class="section" id="sec-terms">
+            <h2 class="section-title"><span class="icon">📖</span>أهم المصطلحات</h2>
+            
+            <div class="question" onclick="toggleAnswer(this)">
+                <div class="question-text">⭐ أهم المصطلحات اللي لازم تعرفها</div>
+                <div class="answer">
+                    <p><strong class="highlight">ROM Terms:</strong></p>
+                    <ul>
+                        <li><span class="term">PROM:</span> Passive Range of Motion</li>
+                        <li><span class="term">AAROM:</span> Active Assisted ROM</li>
+                        <li><span class="term">AROM:</span> Active ROM</li>
+                        <li><span class="term">ARROM:</span> Active Resisted ROM</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">Resistance Terms:</strong></p>
+                    <ul>
+                        <li><span class="term">1RM:</span> One Repetition Maximum</li>
+                        <li><span class="term">10RM:</span> Ten Repetition Maximum</li>
+                        <li><span class="term">Concentric:</span> Muscle shortening</li>
+                        <li><span class="term">Eccentric:</span> Muscle lengthening</li>
+                        <li><span class="term">Isometric:</span> No change in length</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">Stretching Terms:</strong></p>
+                    <ul>
+                        <li><span class="term">Contracture:</span> Shortening of soft tissue</li>
+                        <li><span class="term">Myostatic:</span> Due to immobilization</li>
+                        <li><span class="term">Pseudomyostatic:</span> Due to spasticity</li>
+                    </ul>
+                    
+                    <p><strong class="highlight">Mobilization Terms:</strong></p>
+                    <ul>
+                        <li><span class="term">Grade I & II:</span> Pain relief</li>
+                        <li><span class="term">Grade III & IV:</span> Increase ROM</li>
+                        <li><span class="term">Concave-Convex Rule:</span> Direction of glide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM CONTROLS -->
+    <div class="bottom-controls">
+        <button class="ctrl-btn primary" onclick="toggleAll()">📖 إظهار/إخفاء الكل</button>
+        <button class="ctrl-btn secondary" onclick="resetAll()">🔄 إعادة تعيين</button>
+        <button class="ctrl-btn secondary" onclick="scrollToTop()">⬆ أعلى</button>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">⬆</button>
+
+    <script>
+        // === STATE ===
+        let allAnswersVisible = false;
+        let timerRunning = true;
+        let timerSeconds = 0;
+        let timerInterval = null;
+        const revealedSet = new Set();
+
+        // === INIT ===
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalQ = document.querySelectorAll('.question').length;
+            document.getElementById('totalQ').textContent = totalQ;
+            startTimer();
+            updateProgress();
+        });
+
+        // === TOGGLE ANSWER ===
+        function toggleAnswer(element) {
+            const answer = element.querySelector('.answer');
+            if (!answer) return;
+            const isShowing = answer.classList.toggle('show');
+            element.classList.toggle('revealed', isShowing);
+            if (isShowing) {
+                revealedSet.add(element);
+            } else {
+                revealedSet.delete(element);
+            }
+            updateProgress();
+        }
+
+        // === TOGGLE ALL ===
+        function toggleAll() {
+            const questions = document.querySelectorAll('.question');
+            const answers = document.querySelectorAll('.answer');
+            allAnswersVisible = !allAnswersVisible;
+            answers.forEach(a => {
+                if (allAnswersVisible) a.classList.add('show');
+                else a.classList.remove('show');
+            });
+            questions.forEach(q => {
+                q.classList.toggle('revealed', allAnswersVisible);
+                if (allAnswersVisible) revealedSet.add(q);
+                else revealedSet.delete(q);
+            });
+            updateProgress();
+        }
+
+        // === RESET ===
+        function resetAll() {
+            document.querySelectorAll('.answer.show').forEach(a => a.classList.remove('show'));
+            document.querySelectorAll('.question.revealed').forEach(q => q.classList.remove('revealed'));
+            revealedSet.clear();
+            allAnswersVisible = false;
+            timerSeconds = 0;
+            updateProgress();
+        }
+
+        // === PROGRESS ===
+        function updateProgress() {
+            const total = document.querySelectorAll('.question').length;
+            const revealed = revealedSet.size;
+            const pct = total > 0 ? Math.round((revealed / total) * 100) : 0;
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = pct + '%';
+            document.getElementById('revealedCount').textContent = revealed;
+        }
+
+        // === TIMER ===
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (timerRunning) {
+                    timerSeconds++;
+                    const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+                    const s = String(timerSeconds % 60).padStart(2, '0');
+                    document.getElementById('timerDisplay').textContent = m + ':' + s;
+                }
+            }, 1000);
+        }
+        function toggleTimer() {
+            timerRunning = !timerRunning;
+            document.getElementById('timerBadge').classList.toggle('paused', !timerRunning);
+        }
+
+        // === SEARCH ===
+        function handleSearch(query) {
+            const q = query.toLowerCase().trim();
+            document.querySelectorAll('.question').forEach(el => {
+                const text = el.textContent.toLowerCase();
+                el.style.display = (!q || text.includes(q)) ? '' : 'none';
+            });
+            document.querySelectorAll('.section').forEach(sec => {
+                const visible = sec.querySelectorAll('.question[style=""], .question:not([style])');
+                const hasVisible = Array.from(sec.querySelectorAll('.question')).some(
+                    q => q.style.display !== 'none'
+                );
+                sec.style.display = (!q || hasVisible) ? '' : 'none';
+            });
+        }
+
+        // === SCROLL ===
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('scrollTopBtn');
+            btn.classList.toggle('visible', window.scrollY > 600);
+        });
+
+        // === KEYBOARD SHORTCUTS ===
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.answer.show').forEach(a => a.classList.remove('show'));
+                document.querySelectorAll('.question.revealed').forEach(q => q.classList.remove('revealed'));
+                revealedSet.clear();
+                allAnswersVisible = false;
+                updateProgress();
+            }
+            if (e.key === '/' && !e.ctrlKey && document.activeElement.tagName !== 'INPUT') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+        });
+
+        // === NAV PILL ACTIVE STATE ===
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.id) {
+                    document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+                    const pill = document.querySelector(`.nav-pill[href="#${entry.target.id}"]`);
+                    if (pill) pill.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '-80px 0px -60% 0px' });
+        document.querySelectorAll('.section[id]').forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>

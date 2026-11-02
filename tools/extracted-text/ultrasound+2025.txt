@@ -1,0 +1,695 @@
+=== PAGE 1 ===
+Prof. Dr. Mahmoud 
+Ewidea
+Electrotherapy
+Dean of Faculty of Physical Therapy
+KFS University
+Therapeutic 
+Ultrasound
+
+
+=== PAGE 2 ===
+Introduction
+Therapeutic
+Ultrasound
+Ultrasound (US) is a form of
+mechanical energy (not electrical),
+and therefore, strictly speaking, not
+really electrotherapy at all, but does
+fall into the Electro Physical Agents
+grouping. Mechanical vibration at
+increasing frequencies is known as
+Sound Energy.
+Fig.1 Ultrasound
+
+=== PAGE 3 ===
+Introduction
+Therapeutic
+Ultrasound
+Sound waves: Are longitudinal waves
+consisting, of a series of
+compression and rarefaction of the
+particles in the medium of
+transmission.
+Sound waves from 20 Hz to 20,000
+Hz are within the audible range.
+Beyond this upper limit, the
+mechanical vibration is known as
+Ultrasound.
+Fig.2 Ultrasound
+
+=== PAGE 4 ===
+Theory
+Therapeutic
+Ultrasound
+Ultrasonic energy: Is a mechanical vibration
+identical to that of sound but of higher
+frequency. It is produced from electrical energy
+that is transformed into mechanical energy
+Production of Ultrasound
+The production of US is based on a phenomenon
+known as piezoelectricity
+Fig.3 Example of an 
+ultrasound beam plot
+
+
+=== PAGE 5 ===
+
+
+=== PAGE 6 ===
+Theory
+Therapeutic
+Ultrasound
+is a natural phenomenon found in certain mineral
+crystals such as, germanium and quartz, but also
+be synthesized commercially. If this crystal
+compressed or deformed by mechanical means, it
+transforms the mechanical energy into electrical
+energy and vise versa.
+Fig.4 Example of an 
+ultrasound DEVICE
+piezoelectricity
+
+
+=== PAGE 7 ===
+(1) High frequency 
+alternating current (H.F .A.C) 
+converted by coaxial cable to 
+transducer (treatment head).
+(2) H.F .A.C. inside 
+transducer applied to 
+piezoelectric Crystal by link 
+electrode. The crystal being 
+fused to metal front plate.
+(3) The crystal will 
+contract and expand under 
+the influence of an electrical 
+current (deform).
+(4) This change in the 
+shape of crystal causes a 
+movement of the metal front 
+plate which produces an 
+ultrasonic wave with specific 
+frequency.
+Ultrasound production
+
+=== PAGE 8 ===
+Theory
+Therapeutic
+Ultrasound
+Fig.2 Example of an 
+ultrasound beam plot
+
+
+=== PAGE 9 ===
+Theory
+Therapeutic
+Ultrasound
+
+
+=== PAGE 10 ===
+The Physical Phenomena of Ultrasound
+All materials (tissues) will present 
+acoustic impedance to the passage 
+of sound waves. The specific 
+impedance of a tissue will be 
+determined by its density and 
+elasticity. 
+for the maximal transmission of 
+energy from one medium to another, 
+the impedance of the two media 
+needs to be the same. 
+Clearly in the case of US passing from 
+the generator to the tissues and then 
+through the different tissue types, this 
+can not actually be achieved
+
+=== PAGE 11 ===
+why
+
+
+=== PAGE 12 ===
+Because of;
+1. Reflection
+2. Coupling media 
+3. Refraction
+4. Absorption
+5. Frequency of US
+6. Attenuation
+
+
+=== PAGE 13 ===
+Because of;
+Reflection Coupling 
+media Refraction
+Absorption Frequency 
+of US Attenuation
+
+=== PAGE 14 ===
+Reflection
+• Reflection means the
+redirection of an
+incident beam away
+from a reflecting
+surface at an angle
+equal and opposite
+to the angle of
+incidence.
+
+
+=== PAGE 15 ===
+Reflection
+• If there is an acoustic mismatch between 
+the two media, reflection occurs. 
+• The amount of reflection depends on the 
+difference in the acoustic impedance of 
+the two media. The greater the difference 
+in impedance at a boundary or interface, 
+the greater the reflection that will occurs, 
+and If there is an acoustic mismatch 
+between the two media, reflection occurs. 
+therefore, the smaller the amount of 
+energy that will be transferred.
+
+=== PAGE 16 ===
+
+
+=== PAGE 17 ===
+• The difference in impedance is greatest for the steel/air interface which is the first one which 
+the US has to overcome in order to reach to body.
+• In order to minimize this difference, a suitable coupling medium has to be utilized. If even a 
+small air gap exists between the transducer and the skin the proportion of US which will be 
+reflected approaches 99.998% which in effect means that there will be no transmission.
+
+=== PAGE 18 ===
+Acoustic impedance of different material
+Material Velocity Density Impedance
+Air 340 0.625 213
+Fatty tissue 1450 940 1.4 x 106
+Water 1500 1000 1.5 x 106
+Muscle 1550 1100 1.7 x 106
+Bone 2800 1800 5.1 x 106
+Steel 5850 8000 47 x 106
+
+=== PAGE 19 ===
+Percent reflection 
+of ultrasound at 
+different interface
+INTERFACE ENERGY 
+REFLECTED (%)
+Water-Soft tissue 0.2%
+Soft tissue-Fat 1%
+Soft tissue-Bone 15-40%
+Soft tissue-Air 99.9%
+
+=== PAGE 20 ===
+Coupling media 
+The coupling media used in US transmission 
+include water, various creams and gels. Ideally, the 
+coupling medium should be 
+1- Fluid so as to fill all available spaces.
+2- Relatively viscous so that it stays in place.
+3- Have an impedance appropriate to the 
+media it connects.
+4- Allow transmission of US with minimal 
+absorption, attenuation or disturbance.
+
+
+=== PAGE 21 ===
+Using water as 
+coupling media
+
+
+=== PAGE 22 ===
+Refraction
+• Refraction is the redirection of a wave at an interface surface. 
+When refraction occurs, the ultrasound wave enters the tissues at 
+one angle and continues through the tissue at different angle.
+• If the US wave does not strike the boundary surface at 90°. 
+Essentially, the direction of the US beam through the second 
+medium will not be the same as its path through the original 
+medium, its pathway is angled. 
+
+=== PAGE 23 ===
+Refraction of ultrasound wave
+
+
+=== PAGE 24 ===
+Absorption
+• Absorption of US depends on nature of 
+tissue and the frequency of the US. 
+Some tissues are capable of greater 
+absorption of US than others. Generally, 
+the tissues with the higher protein 
+content will absorb US to a greater 
+extent.
+• Tissues with high water content and low 
+protein content will absorb little of the 
+US energy (e.g. blood and fat) than 
+tissues with a lower water content and a 
+higher protein content will absorb US far 
+more efficiently.
+
+
+=== PAGE 25 ===
+Absorption of US 
+through different 
+tissue
+
+
+=== PAGE 26 ===
+Frequency of US
+The number of compression-
+rarefaction cycles per unit of 
+time, usually expressed in 
+cycles per second (Hertz, Hz). 
+Increasing the frequency of 
+ultrasound causes a decrease 
+in its depth of penetration and 
+concentration of the 
+ultrasound energy in the 
+superficial tissues
+
+=== PAGE 27 ===
+Ultrasonic 
+frequency: 1 
+and 3 MHz
+
+
+=== PAGE 28 ===
+Attenuation
+• Attenuation means loss of energy from 
+the ultrasound beam in the tissue, and 
+it depends on absorption and 
+scattering. Scattering is caused by 
+reflection and refraction. 
+
+=== PAGE 29 ===
+• There is an inverse relationship between 
+the amount of energy that penetrate a 
+material and the amount that is absorbed. 
+Clearly, as the US beam penetrates into 
+the tissues, a greater proportion of the 
+energy will have been absorbed and 
+therefore there is less energy penetrate
+
+=== PAGE 30 ===
+Physiological 
+Effects of 
+Ultrasound
+• The physiological effects of US are 
+generally divided into two main categories: 
+Thermal and Non- Thermal.
+• As the energy within the sound waves is 
+passed and absorbed by the tissues, it will 
+cause oscillation of the molecules of that 
+tissues about their mean position, clearly 
+any increase in the molecular vibration will 
+result in heat generation.  
+
+=== PAGE 31 ===
+Thermal 
+effect of US
+• The desirable effects of therapeutic heat 
+can be produced by US can be used to 
+selectively raise the temperature of 
+particular tissues.
+• Among the more effectively heated 
+tissues are periosteum, superficial 
+cortical bone, collagenous tissues 
+(ligament, tendon and fascia) and fibrotic 
+muscle. The greatest advantage is that 
+deeply located area can be effectively 
+heated as there is no loss of energy in the 
+skin and subcutaneous fascia.
+
+=== PAGE 32 ===
+
+
+=== PAGE 33 ===
+Non-
+Thermal 
+Effects of 
+Ultrasound
+• The non-thermal effects of US fall into 3 
+main categories; Cavitation, Acoustic 
+Streaming and Micro-Massage.
+• 1- Cavitation is the formation of gas 
+bubble within the tissues and body fluids 
+during the phase of relaxation or 
+rarefaction of an ultrasound wave. There 
+are 2 types of cavitation - Stable and 
+Unstable which have very different 
+effects. 
+
+=== PAGE 34 ===
+
+
+=== PAGE 35 ===
+Cavitation
+With stable cavitation, the 
+bubbles oscillate in size 
+throughout many cycles but 
+do not burst. With unstable 
+cavitation, the bubbles grow 
+over a number of cycles and 
+then suddenly implode.
+This implosion produces 
+large, brief, local pressure and 
+temperature increases and 
+causes free radical formation.
+
+=== PAGE 36 ===
+Cavitation • Stable 
+cavitation
+Is not dangerous 
+to the tissues as 
+bubbles remain 
+intact and 
+oscillate 
+harmlessly in the 
+U.S field
+• Transient 
+cavitation
+Is dangerous to 
+the tissues as the 
+bubbles ground 
+collapses rapidly 
+in U.S causing 
+increase in 
+temperature.
+
+=== PAGE 37 ===
+The danger 
+of cavitation 
+can be 
+minimized 
+by:
+1. Using space averaged intensities 
+below 4 watts/cm.
+2. Using a pulsed U.S.
+3. Moving the TREATMENT head 
+during treatment.
+
+=== PAGE 38 ===
+Acoustic 
+Streaming
+• is described as a small scale eddying 
+of fluids near a vibrating structure 
+such as cell membranes and the 
+surface of stable cavitation gas 
+bubble. 
+• This phenomenon is known to affect;
+• Diffusion rates and membrane 
+permeability, with a result that 
+protein synthesis is enhanced. 
+
+
+=== PAGE 39 ===
+Acoustic 
+Streaming
+• Sodium ion permeability is altered 
+resulting in changes in the cell membrane 
+potential. 
+• Calcium ion transport is modified which in 
+turn leads to an alteration in the enzyme 
+control mechanisms of various metabolic 
+processes, especially concerning protein 
+synthesis and cellular secretions.
+
+=== PAGE 40 ===
+stable 
+cavitation 
+and 
+acoustic 
+streaming
+The result of the combined effects of stable 
+cavitation and acoustic streaming is that 
+the permeability of the cell membrane 
+altered which increase the activity levels of 
+the whole cell. 
+The US energy acts as a trigger for this 
+process, but it is the increased cellular 
+activity which is in effect responsible for the 
+therapeutic benefits of the modality.
+
+=== PAGE 41 ===
+Micromassage
+• Micromassage; is a mechanical effect in 
+which the sound wave traveling through 
+the medium will cause the molecules to 
+vibrate. Possibly it is enhancing tissue 
+fluid interchange and affecting tissue 
+mobility which is used to reduce 
+edema. 
+
+=== PAGE 42 ===
+Does U.S may cause pain if 
+it performed on bone?
+YES NO
+
+=== PAGE 43 ===
+Shearing effect
+• Shearing effect; is the transformation 
+of the longitudinal wave form into 
+transverse wave form at the 
+periosteum. 
+• As periosteum and bone tissue have 
+different acoustic impedance, about 
+40% of the US energy is reflected along 
+the periosteal surface (bone 
+periosteum interface). This result is 
+marked heating of the periosteum
+causing periosteal pain. 
+
+=== PAGE 44 ===
+Therapeutic Effects of Ultrasound
+Effect on blood flow
+Continuous US can increase blood flow up to 45 minutes after 
+treatment because of 
+1- Thermal effect. 
+2- Alteration of cell permeability
+3- Histamine release 
+
+=== PAGE 45 ===
+Therapeutic 
+Effects of 
+Ultrasound
+• Pain control
+Ultrasound can produce pain relief through 
+direct and indirect mechanism
+• Direct effect: US directly influence the cell 
+membrane permeability of the nervous 
+tissue resulting in; 
+• 1- Increase pain threshold
+• 2- Decrease transmission of pain 
+impulse along nerve fibers
+• 3- produce counterirritant effect (gate 
+theory for pain inhibition) 
+
+=== PAGE 46 ===
+Therapeutic 
+Effects of 
+Ultrasound
+• Indirect effect: result from the other 
+effect of US which could lead to removing 
+the source of pain as, increase capillary 
+permeability and removing waste 
+products and edema reduction, improving 
+tissues healing, decrease muscle spasm 
+and breaking down adhesion.
+
+=== PAGE 47 ===
+Therapeutic 
+Effects of 
+Ultrasound
+• Effect on Adhesion and scar tissues
+• Collagen has high absorption ability and is 
+better heated with US. The thermal effect 
+of US lead to increasing extensibility of 
+collagen rich tissues, thus US could be 
+used prior to range of motion exercises 
+and stretching exercises.
+• Also US are used to help improving the 
+quality of the scar, resulting in a slightly 
+strong and more elastic scar. 
+
+=== PAGE 48 ===
+Why?
+
+=== PAGE 49 ===
+• Ultrasonic helps in breakdown adhesions 
+by depolymersation of 
+mucopolysaccharides, mucoproteins or 
+glycoprotens or by reducing the viscosity 
+of hyaluronice acid in joints.
+• Adhesion and intercellular substances 
+converted from the Gel to the Solid state 
+responding to U.S. So resorption of 
+adhesion occurs by both heating effect 
+and micro massage effect of US.
+
+=== PAGE 50 ===
+Effect on 
+wound 
+healing
+• Pulsed ultrasound at low intensities (0.8 
+W.cm2) was effectively used to enhance 
+healing of wound by:
+1. stimulating collagen production by 
+fibroblasts,
+2. increases the intracellular calcium ion 
+levels, 
+3. improve the local blood supply and 
+encourage the growth of new capillaries,
+4. in addition it  stimulates the 
+myofiboblasts to contract, giving rapid 
+initial wound strength. 
+
+=== PAGE 51 ===
+
+
+=== PAGE 52 ===
+Fracture 
+healing
+• The use of ultrasound could accelerate 
+the rate of fracture repair by a factor of 1:6.  
+The US delivered a low intensity (0.03 W 
+cm-2) at 1.5 MHz pulsed at a ratio of 1:4. 
+for 20 minutes. Using higher ultrasound 
+doses (1- 2 W cm-2) could have an adverse 
+effect on the fracture healing process. 
+
+=== PAGE 53 ===
+Phonophoresis
+• It is the introduction of the molecules of 
+drugs through the intact skin by the 
+mechanical effect of ultrasound.
+• It depends on the molecular weight of the 
+drug, skin pores, frequency, intensity of 
+insonation.
+• Examples (Hydrocortisone, Nonsteriodal
+anti inflammatory drugs, Lidcocain, 
+Salicylate)
+
+=== PAGE 54 ===
+phonophoresis
+
+
+=== PAGE 55 ===
+Modes of 
+ultrasound
+• Continuous Ultrasound
+Continuous  US causes primary thermal 
+effects and capable of heating tissues 
+located at up to 6 cm deep, according to the 
+frequency used. Usually used in treatment 
+of chronic lesions
+• Pulsed Ultrasound
+Pulsing the ultrasound beam decrease the 
+average intensity of the output and reducing 
+the thermal effects and allowing for the 
+non-thermal effects.
+
+=== PAGE 56 ===
+Duty Cycle
+
+
+=== PAGE 57 ===
+Phonophoresis
+
+=== PAGE 58 ===
+Phonophoresis
+• Phonophoresis treatment is widely used in 
+the field of physiotherapy, where the topically 
+applied gel or cream-based medicines are 
+being used along with ultrasonic therapy to 
+accelerate the effects of ultrasound . 
+• Phonophoresis, also known as sonophoresis, 
+has been claimed to intensify the 
+percutaneous absorption of certain 
+pharmacological agents such as anti-
+inflammatory steroids and local anesthetics 
+from intact skin into the underlying 
+subcutaneous structures by ultrasound, 
+thereby improving their effectiveness. 
+
+=== PAGE 59 ===
+Phonophoresis
+• This procedure is commonly used in physical 
+therapy practices. The procedure generally utilizes 
+an ultrasound apparatus that produces frequencies 
+of 0.7 to 1.1 MHz. 
+• The ultrasound intensities that are being employed 
+usually range from 0.0 to 3.0 Watts per cm2. Both 
+continuous-mode as well as pulse mode 
+applications are utilized, and most treatments last 
+from 5 to 8 mins, with the exception of treatments of 
+larger areas (greater than 36 cm2) requiring more 
+than 8 mins
+
+
+=== PAGE 60 ===
+The therapeutic benefits 
+of phonophoresis
+• the therapeutic benefits of phonophoresis 
+(such as pain relief and improved range of 
+motion) when it was used to treat lateral 
+epicondylitis, temporomandibular joint pain, 
+and osteoarthritic conditions.
+• Recent studies have shown that, when 
+compared with placebo treatments or 
+ultrasound alone, phonophoresis provides 
+clinical improvement by decreasing pain and 
+increasing function .Phonophoresis has been 
+suggested by early studies to enhance the 
+absorption of analgesics and anti-
+inflammatory agents. 
+
+
+=== PAGE 61 ===
+Mechanism of action in phonophoresis
+• Continuous ultrasound has thermal effects, and pulsed
+ultrasound has mechanical effects such as cavitation, acoustic
+streaming, microstreaming, increased skin pore size, and
+increased pore numbers and intercellular space.
+• Therefore, the tissues undergo several changes via their
+interaction with therapeutic ultrasound waves. The general result
+is that skin permeability is enhanced by the augmented
+mechanical stress and/or by creation of permanent or temporary
+cavities through corneocytes and keratinocytes
+
+=== PAGE 62 ===
+
+
+=== PAGE 63 ===
+• there are various medicinal gels that are used 
+for the trans dermal drug delivery by the 
+phonophoresis. The effectiveness and 
+penetrating power vary according to the 
+properties of the gel. Cardero et al. indicated 
+that diclofenac has the highest transdermal 
+penetration among NSAIDs such as 
+indomethacin, piroxicam, tenoxicam, 
+ketorolac and aceclofenac. 
+• Rosim et al., also recommended that 
+therapeutic ultrasound administration 
+increases the percutaneous absorption of the 
+topical diclofenac gel. According to this, 
+diclofenac is considered to be a good agent 
+for phonophoresis administration
+
+=== PAGE 64 ===
+Gene therapy
+• Another future application for ultrasound as a topical enhancer that seems to show 
+promise lies in the field of topical gene therapy. There is considerable interest in 
+facilitating the transfer of genes into diseased tissues and organs.
+• The main aim is to increase the delivery efficiency of exogenous nucleic acid to the 
+intended target. The ideal system would enhance gene expression in the target while 
+having no effect in non-target tissues.
+• Ultrasound might be able to provide this localization. Ultrasound has been shown to 
+enhance gene transfer into cells in vitro and in vivo.
+• Significantly better transfection is achieved in the presence of cavitation. Enhanced 
+gene transfer is found either when the exposed bubbles are in the vicinity of the 
+genetic material or when genes are encapsulated within or bound to the bubbles.
+

@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أسئلة Exercise Physiology - PT11</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+            padding: 10px;
+            line-height: 1.7;
+            font-size: 15px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #1a1f3a;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            padding: 16px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00d4ff;
+            margin-bottom: 8px;
+            font-size: 1.6em;
+            text-shadow: 0 0 20px rgba(0,212,255,0.5);
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #a0aec0;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            padding: 0 4px;
+        }
+
+        .category {
+            margin-bottom: 20px;
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 14px 12px;
+            background: #252b4a;
+        }
+
+        .category h2 {
+            color: #00d4ff;
+            margin-bottom: 14px;
+            font-size: 1.15em;
+            border-bottom: 2px solid #00d4ff;
+            padding-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .question {
+            background: #2d3454;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+            border-right: 4px solid #00d4ff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        @media (hover: hover) {
+            .question:hover {
+                transform: translateX(-4px);
+                box-shadow: 0 4px 10px rgba(0,212,255,0.3);
+            }
+        }
+
+        .question-text {
+            color: #e2e8f0;
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .question-number {
+            color: #00d4ff;
+            font-weight: bold;
+            margin-left: 6px;
+            white-space: nowrap;
+        }
+
+        .answer {
+            background: #1e2338;
+            padding: 12px;
+            border-radius: 6px;
+            border-right: 3px solid #4ade80;
+            color: #cbd5e0;
+            line-height: 1.8;
+            margin-top: 10px;
+            font-size: 0.93em;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .answer-title {
+            color: #4ade80;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95em;
+        }
+
+        .answer ul {
+            margin: 8px 0;
+            padding-right: 18px;
+            padding-left: 0;
+        }
+
+        .answer ul ul {
+            padding-right: 16px;
+            margin-top: 4px;
+        }
+
+        .answer li {
+            margin-bottom: 6px;
+            color: #cbd5e0;
+            line-height: 1.6;
+        }
+
+        .answer strong {
+            color: #ffd700;
+        }
+
+        .answer br {
+            line-height: 2;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            color: white;
+            padding: 16px 14px;
+            border-radius: 10px;
+            margin-top: 24px;
+            border: 2px solid #00d4ff;
+        }
+
+        .summary h2 {
+            margin-bottom: 14px;
+            font-size: 1.2em;
+            color: #00d4ff;
+        }
+
+        .summary-item {
+            background: rgba(0,212,255,0.1);
+            padding: 9px 12px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            border-right: 3px solid rgba(255,215,0,0.3);
+            font-size: 0.9em;
+            flex-wrap: wrap;
+        }
+
+        .summary-item span:first-child {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1em;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Tablet */
+        @media (min-width: 600px) {
+            body { padding: 16px; font-size: 16px; }
+            .container { padding: 24px; border-radius: 14px; }
+            h1 { font-size: 2em; }
+            .category { padding: 20px; }
+            .category h2 { font-size: 1.4em; }
+            .question { padding: 14px 18px; }
+            .question-text { font-size: 1.05em; }
+            .answer { font-size: 0.97em; padding: 14px; }
+        }
+
+        /* Desktop */
+        @media (min-width: 900px) {
+            body { padding: 20px; }
+            .container { padding: 40px; }
+            h1 { font-size: 2.5em; }
+            .category { padding: 25px; }
+            .category h2 { font-size: 1.8em; }
+            .question { padding: 15px 20px; }
+            .question-text { font-size: 1.1em; }
+            .answer { font-size: 1em; padding: 15px; }
+            .summary { padding: 30px; }
+            .summary h2 { font-size: 1.8em; }
+        }
+
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; background: white; padding: 20px; }
+            .question, .answer, .category { background: white; color: black; border-color: #333; }
+            .question-text, .answer li, .answer { color: black; }
+            .answer strong { color: #333; }
+            .question-number, .answer-title { color: #000; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 أسئلة Exercise Physiology</h1>
+        <p class="subtitle">مجمّعة من استطلاع طلاب PT11 (بعد حذف المكرر)</p>
+
+        <!-- DEFINITIONS & BASIC CONCEPTS -->
+        <div class="category">
+            <h2>📌 Definitions & Basic Concepts</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">1.</span> Definition of Clinical Exercise Physiology</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Clinical Exercise Physiology</strong> هو فرع من علم وظائف الأعضاء يدرس كيفية استجابة وتكيف الجسم للتمارين الرياضية، ويطبق هذه المعرفة في الوقاية والعلاج وإعادة التأهيل للأمراض المزمنة والحالات الطبية.
+                    <br><br>
+                    <strong>يشمل:</strong>
+                    <ul>
+                        <li>تصميم برامج تمارين علاجية للمرضى</li>
+                        <li>تقييم اللياقة البدنية</li>
+                        <li>إدارة الأمراض المزمنة (قلب، سكري، رئة)</li>
+                        <li>تحسين الأداء الوظيفي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">2.</span> Difference between response and adaptation</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Response (الاستجابة):</strong>
+                    <ul>
+                        <li><strong>تغيرات فورية ومؤقتة</strong> تحدث أثناء أو مباشرة بعد التمرين</li>
+                        <li>تعود للطبيعي بعد فترة راحة قصيرة</li>
+                        <li><strong>مثال:</strong> زيادة معدل ضربات القلب، زيادة التنفس، التعرق</li>
+                        <li><strong>Acute changes</strong></li>
+                    </ul>
+                    <strong>Adaptation (التكيف):</strong>
+                    <ul>
+                        <li><strong>تغيرات طويلة المدى ودائمة</strong> تحدث نتيجة التدريب المنتظم</li>
+                        <li>تحسينات هيكلية ووظيفية في الجسم</li>
+                        <li><strong>مثال:</strong> زيادة حجم القلب، زيادة الشعيرات الدموية، زيادة الميتوكوندريا</li>
+                        <li><strong>Chronic changes</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">3.</span> Definition of aerobic exercise</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Aerobic Exercise</strong> هو نشاط بدني يعتمد على استخدام الأكسجين لإنتاج الطاقة (ATP) من خلال الأيض الهوائي.
+                    <br><br>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>شدة منخفضة إلى متوسطة</strong> (50-85% من أقصى معدل ضربات القلب)</li>
+                        <li><strong>مدة طويلة</strong> (أكثر من 2-3 دقائق)</li>
+                        <li>يستخدم <strong>العضلات الكبيرة</strong> بشكل إيقاعي ومستمر</li>
+                        <li>يحسن <strong>الجهاز القلبي التنفسي</strong></li>
+                    </ul>
+                    <strong>أمثلة:</strong> المشي، الجري، السباحة، ركوب الدراجة، الرقص
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">4.</span> Difference between training and conditioning</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Training (التدريب):</strong>
+                    <ul>
+                        <li>برنامج منظم ومخطط لتحسين <strong>مهارة أو أداء محدد</strong></li>
+                        <li>له <strong>هدف واضح</strong> (مثل: الاستعداد لمسابقة)</li>
+                        <li>أكثر <strong>تخصصاً</strong></li>
+                        <li><strong>مثال:</strong> تدريب عداء الماراثون</li>
+                    </ul>
+                    <strong>Conditioning (التكييف):</strong>
+                    <ul>
+                        <li>برنامج عام لتحسين <strong>اللياقة البدنية الشاملة</strong></li>
+                        <li>يركز على <strong>الصحة العامة</strong> والقدرة الوظيفية</li>
+                        <li>أكثر <strong>شمولية</strong></li>
+                        <li><strong>مثال:</strong> برنامج لياقة عام لتحسين القوة والتحمل والمرونة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">5.</span> Definition of minute ventilation (pulmonary ventilation)</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Minute Ventilation (VE)</strong> هو إجمالي حجم الهواء الذي يدخل أو يخرج من الرئتين في الدقيقة الواحدة.
+                    <br><br>
+                    <strong>المعادلة:</strong>
+                    <br>
+                    <strong>VE = Tidal Volume (TV) × Respiratory Rate (RR)</strong>
+                    <br><br>
+                    <strong>القيم الطبيعية:</strong>
+                    <ul>
+                        <li><strong>في الراحة:</strong> 5-6 لتر/دقيقة</li>
+                        <li><strong>أثناء التمرين:</strong> يمكن أن تصل إلى 100-200 لتر/دقيقة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">6.</span> Definition of tidal volume</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Tidal Volume (TV)</strong> هو حجم الهواء الذي يدخل أو يخرج من الرئتين في <strong>نفس واحد عادي</strong>.
+                    <br><br>
+                    <strong>القيمة الطبيعية:</strong>
+                    <ul>
+                        <li><strong>في الراحة:</strong> حوالي 500 مل (0.5 لتر)</li>
+                        <li><strong>أثناء التمرين:</strong> يزيد إلى 2-3 لتر</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">7.</span> Definition of ejection fraction</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Ejection Fraction (EF)</strong> هو النسبة المئوية لحجم الدم الذي يضخه البطين الأيسر مع كل انقباضة من إجمالي حجم الدم الموجود فيه.
+                    <br><br>
+                    <strong>المعادلة:</strong>
+                    <br>
+                    <strong>EF = (Stroke Volume / End-Diastolic Volume) × 100</strong>
+                    <br><br>
+                    <strong>القيم الطبيعية:</strong>
+                    <ul>
+                        <li><strong>طبيعي:</strong> 55-70%</li>
+                        <li><strong>أقل من 40%:</strong> يشير إلى ضعف القلب</li>
+                    </ul>
+                    <strong>الأهمية:</strong> مؤشر على كفاءة عمل القلب
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">8.</span> Definition of VO2 max and factors affecting it</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>VO2 max</strong> هو الحد الأقصى لكمية الأكسجين التي يمكن للجسم استهلاكها واستخدامها أثناء التمرين الشديد.
+                    <br><br>
+                    <strong>يُقاس بـ:</strong> مل/كجم/دقيقة (ml/kg/min)
+                    <br><br>
+                    <strong>العوامل المؤثرة (Physiological Factors):</strong>
+                    <ul>
+                        <li><strong>Cardiac Output:</strong> كمية الدم التي يضخها القلب</li>
+                        <li><strong>Oxygen Carrying Capacity:</strong> قدرة الدم على حمل الأكسجين (الهيموجلوبين)</li>
+                        <li><strong>Muscle Oxidative Capacity:</strong> قدرة العضلات على استخدام الأكسجين (الميتوكوندريا)</li>
+                        <li><strong>Capillary Density:</strong> كثافة الشعيرات الدموية في العضلات</li>
+                        <li><strong>Lung Function:</strong> كفاءة الرئتين</li>
+                        <li><strong>Age:</strong> يقل مع التقدم في العمر</li>
+                        <li><strong>Gender:</strong> الرجال أعلى من النساء</li>
+                        <li><strong>Genetics:</strong> العوامل الوراثية</li>
+                        <li><strong>Training Status:</strong> مستوى التدريب</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">9.</span> Benefits of cardiorespiratory (aerobic) fitness</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الفوائد القلبية التنفسية:</strong>
+                    <ul>
+                        <li><strong>القلب:</strong> زيادة حجم القلب، انخفاض معدل ضربات القلب في الراحة، زيادة Stroke Volume</li>
+                        <li><strong>الأوعية الدموية:</strong> زيادة الشعيرات الدموية، تحسين تدفق الدم، خفض ضغط الدم</li>
+                        <li><strong>الرئتين:</strong> تحسين كفاءة التنفس، زيادة Tidal Volume</li>
+                        <li><strong>الدم:</strong> زيادة حجم الدم، زيادة الهيموجلوبين</li>
+                        <li><strong>العضلات:</strong> زيادة الميتوكوندريا، تحسين استخدام الأكسجين</li>
+                        <li><strong>الأيض:</strong> تحسين حرق الدهون، تحسين حساسية الأنسولين</li>
+                        <li><strong>الصحة العامة:</strong> تقليل خطر الأمراض المزمنة، تحسين المزاج، زيادة العمر</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">10.</span> Cardiovascular adaptation to exercise (long-term)</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التكيفات طويلة المدى:</strong>
+                    <ul>
+                        <li><strong>Cardiac Hypertrophy:</strong> زيادة حجم وسمك عضلة القلب (خاصة البطين الأيسر)</li>
+                        <li><strong>Increased Stroke Volume:</strong> زيادة كمية الدم المضخوخة في كل نبضة</li>
+                        <li><strong>Decreased Resting HR:</strong> انخفاض معدل ضربات القلب في الراحة (Bradycardia)</li>
+                        <li><strong>Increased Cardiac Output:</strong> زيادة كمية الدم المضخوخة في الدقيقة</li>
+                        <li><strong>Increased Blood Volume:</strong> زيادة حجم الدم الكلي</li>
+                        <li><strong>Increased Capillary Density:</strong> زيادة عدد الشعيرات الدموية في العضلات</li>
+                        <li><strong>Improved Blood Flow Distribution:</strong> تحسين توزيع الدم للعضلات العاملة</li>
+                        <li><strong>Decreased Blood Pressure:</strong> انخفاض ضغط الدم في الراحة</li>
+                        <li><strong>Increased VO2 max:</strong> زيادة القدرة على استهلاك الأكسجين</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">11.</span> Function of CVS during exercise</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>وظائف الجهاز القلبي الوعائي أثناء التمرين:</strong>
+                    <ul>
+                        <li><strong>توصيل الأكسجين:</strong> نقل O2 من الرئتين إلى العضلات العاملة</li>
+                        <li><strong>إزالة CO2:</strong> نقل ثاني أكسيد الكربون من العضلات إلى الرئتين</li>
+                        <li><strong>توصيل المغذيات:</strong> نقل الجلوكوز والأحماض الدهنية للعضلات</li>
+                        <li><strong>إزالة الفضلات:</strong> نقل حمض اللاكتيك والفضلات الأيضية</li>
+                        <li><strong>تنظيم الحرارة:</strong> نقل الحرارة من العضلات إلى الجلد للتبريد</li>
+                        <li><strong>توزيع الدم:</strong> إعادة توزيع الدم من الأعضاء غير العاملة إلى العضلات</li>
+                        <li><strong>تنظيم ضغط الدم:</strong> الحفاظ على ضغط دم مناسب</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ENERGY SYSTEMS -->
+        <div class="category">
+            <h2>⚡ Energy Systems</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">12.</span> Enumerate energy systems and discuss one of them</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>أنظمة الطاقة الثلاثة:</strong>
+                    <ul>
+                        <li><strong>1. ATP-Creatine Phosphate System (Phosphagen System)</strong> — لاهوائي فوري</li>
+                        <li><strong>2. Anaerobic Glycolysis (Lactic Acid System)</strong> — لاهوائي سريع</li>
+                        <li><strong>3. Aerobic System (Oxidative System)</strong> — هوائي بطيء</li>
+                    </ul>
+                    <br>
+                    <strong>مثال - ATP-CP System:</strong>
+                    <ul>
+                        <li><strong>المدة:</strong> 0-10 ثواني</li>
+                        <li><strong>الشدة:</strong> عالية جداً (100%)</li>
+                        <li><strong>الآلية:</strong> CP + ADP → ATP + Creatine (بواسطة إنزيم Creatine Kinase)</li>
+                        <li><strong>لا يحتاج أكسجين</strong></li>
+                        <li><strong>لا ينتج حمض لاكتيك</strong></li>
+                        <li><strong>سريع جداً</strong> لكن محدود</li>
+                        <li><strong>الاستخدام:</strong> Sprint قصير، رفع أثقال، قفز</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">13.</span> Explain the ATP-Creatine Kinase (CP) system</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>ATP-Creatine Phosphate System (Phosphagen System):</strong>
+                    <br><br>
+                    <strong>الآلية:</strong>
+                    <ul>
+                        <li>Creatine Phosphate (CP) يتبرع بمجموعة الفوسفات لـ ADP</li>
+                        <li><strong>CP + ADP → ATP + Creatine</strong></li>
+                        <li>التفاعل يحفزه إنزيم <strong>Creatine Kinase</strong></li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>المدة:</strong> 5-10 ثواني فقط</li>
+                        <li><strong>الشدة:</strong> أقصى شدة (100%)</li>
+                        <li><strong>لاهوائي:</strong> لا يحتاج أكسجين</li>
+                        <li><strong>سريع جداً:</strong> أسرع نظام لإنتاج ATP</li>
+                        <li><strong>محدود:</strong> مخزون CP قليل في العضلات</li>
+                        <li><strong>لا ينتج فضلات:</strong> لا حمض لاكتيك</li>
+                    </ul>
+                    <strong>الاستخدام:</strong> Sprint 100م، رفع أثقال، قفز عالي، رمي
+                    <br><br>
+                    <strong>الاستشفاء:</strong> يحتاج 3-5 دقائق راحة لإعادة تكوين CP
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">14.</span> Explain aerobic glycolysis (aerobic system)</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Aerobic System (Oxidative System):</strong>
+                    <br><br>
+                    <strong>الآلية:</strong>
+                    <ul>
+                        <li><strong>1. Glycolysis:</strong> تحليل الجلوكوز إلى Pyruvate</li>
+                        <li><strong>2. Krebs Cycle (Citric Acid Cycle):</strong> في الميتوكوندريا</li>
+                        <li><strong>3. Electron Transport Chain (ETC):</strong> إنتاج ATP</li>
+                        <li>يستخدم <strong>الأكسجين</strong> في المرحلة النهائية</li>
+                    </ul>
+                    <strong>الوقود:</strong>
+                    <ul>
+                        <li><strong>Carbohydrates</strong> (الجلوكوز والجليكوجين)</li>
+                        <li><strong>Fats</strong> (الأحماض الدهنية) — في التمارين الطويلة</li>
+                        <li><strong>Proteins</strong> (نادراً — في حالات الجوع)</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>المدة:</strong> أكثر من 2-3 دقائق</li>
+                        <li><strong>الشدة:</strong> منخفضة إلى متوسطة (50-85%)</li>
+                        <li><strong>إنتاج ATP:</strong> كبير جداً (36-38 ATP من جزيء جلوكوز واحد)</li>
+                        <li><strong>بطيء:</strong> يحتاج وقت لبدء الإنتاج</li>
+                        <li><strong>مستدام:</strong> يمكن الاستمرار لساعات</li>
+                        <li><strong>الفضلات:</strong> CO2 + H2O (سهلة التخلص)</li>
+                    </ul>
+                    <strong>الاستخدام:</strong> الماراثون، السباحة الطويلة، ركوب الدراجات
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">15.</span> Explain anaerobic glycolysis</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Anaerobic Glycolysis (Lactic Acid System):</strong>
+                    <br><br>
+                    <strong>الآلية:</strong>
+                    <ul>
+                        <li>تحليل الجلوكوز إلى <strong>Pyruvate</strong></li>
+                        <li>في غياب الأكسجين الكافي، يتحول Pyruvate إلى <strong>Lactate (حمض اللاكتيك)</strong></li>
+                        <li>ينتج <strong>2 ATP</strong> فقط من جزيء جلوكوز واحد</li>
+                    </ul>
+                    <strong>الخصائص:</strong>
+                    <ul>
+                        <li><strong>المدة:</strong> 30 ثانية - 2 دقيقة</li>
+                        <li><strong>الشدة:</strong> عالية (85-95%)</li>
+                        <li><strong>لاهوائي:</strong> لا يحتاج أكسجين</li>
+                        <li><strong>سريع:</strong> أسرع من Aerobic لكن أبطأ من ATP-CP</li>
+                        <li><strong>محدود:</strong> تراكم اللاكتيك يسبب التعب</li>
+                    </ul>
+                    <strong>الفضلات:</strong>
+                    <ul>
+                        <li><strong>Lactate (Lactic Acid):</strong> يسبب حرقان في العضلات</li>
+                        <li>يخفض pH العضلة (Acidosis)</li>
+                        <li>يثبط الإنزيمات ويسبب التعب</li>
+                    </ul>
+                    <strong>الاستخدام:</strong> Sprint 400-800م، سباحة 100-200م
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">16.</span> Cross-over concept</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Cross-over Concept:</strong> هو النقطة التي يتحول فيها الجسم من الاعتماد الأساسي على <strong>حرق الدهون</strong> إلى الاعتماد على <strong>حرق الكربوهيدرات</strong> كمصدر رئيسي للطاقة أثناء التمرين.
+                    <br><br>
+                    <strong>الآلية:</strong>
+                    <ul>
+                        <li><strong>شدة منخفضة (أقل من 50-60%):</strong> الدهون هي المصدر الرئيسي</li>
+                        <li><strong>شدة متوسطة (60-75%):</strong> نقطة التقاطع (Cross-over point)</li>
+                        <li><strong>شدة عالية (أكثر من 75%):</strong> الكربوهيدرات هي المصدر الرئيسي</li>
+                    </ul>
+                    <strong>السبب:</strong>
+                    <ul>
+                        <li>الدهون تحتاج <strong>أكسجين أكثر</strong> ووقت أطول للأيض</li>
+                        <li>الكربوهيدرات <strong>أسرع</strong> في إنتاج ATP</li>
+                        <li>في الشدة العالية، الجسم يحتاج طاقة سريعة</li>
+                    </ul>
+                    <strong>العوامل المؤثرة:</strong>
+                    <ul>
+                        <li><strong>شدة التمرين:</strong> أهم عامل</li>
+                        <li><strong>مستوى التدريب:</strong> الرياضيون المدربون يحرقون دهون أكثر</li>
+                        <li><strong>النظام الغذائي:</strong> توفر الكربوهيدرات</li>
+                        <li><strong>مدة التمرين:</strong> كلما طالت المدة، زاد حرق الدهون</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRAINING PRINCIPLES -->
+        <div class="category">
+            <h2>🏋️ Training Principles</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">17.</span> Key principles of training and explain two of them</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>المبادئ الأساسية للتدريب:</strong>
+                    <ul>
+                        <li><strong>1. Overload:</strong> زيادة الحمل التدريبي تدريجياً</li>
+                        <li><strong>2. Progression:</strong> التقدم التدريجي</li>
+                        <li><strong>3. Specificity:</strong> التخصص</li>
+                        <li><strong>4. Reversibility:</strong> العكسية (Use it or lose it)</li>
+                        <li><strong>5. Individuality:</strong> الفروق الفردية</li>
+                        <li><strong>6. Recovery:</strong> الاستشفاء</li>
+                        <li><strong>7. Variation:</strong> التنويع</li>
+                    </ul>
+                    <br>
+                    <strong>شرح مبدأين:</strong>
+                    <br><br>
+                    <strong>1. Overload Principle:</strong>
+                    <ul>
+                        <li>لتحقيق تكيف، يجب تحميل الجسم <strong>فوق مستواه المعتاد</strong></li>
+                        <li>يمكن زيادة: <strong>الشدة، المدة، التكرار، أو التردد</strong></li>
+                        <li><strong>مثال:</strong> زيادة الوزن في تمارين القوة، زيادة المسافة في الجري</li>
+                        <li>يجب أن يكون <strong>تدريجياً</strong> لتجنب الإصابة</li>
+                    </ul>
+                    <strong>2. Specificity Principle (SAID):</strong>
+                    <ul>
+                        <li><strong>Specific Adaptation to Imposed Demands</strong></li>
+                        <li>التكيف يكون <strong>محدداً</strong> لنوع التمرين</li>
+                        <li><strong>مثال:</strong> تدريب الجري يحسن التحمل لكن لا يحسن القوة</li>
+                        <li>يجب تدريب <strong>نفس العضلات</strong> و<strong>نفس نظام الطاقة</strong> المستخدم في النشاط المستهدف</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">18.</span> Training zones (enumerate zones)</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>مناطق التدريب (Training Zones) حسب معدل ضربات القلب:</strong>
+                    <ul>
+                        <li><strong>Zone 1 — Recovery (50-60% HRmax):</strong> استشفاء نشط، سهل جداً</li>
+                        <li><strong>Zone 2 — Aerobic/Endurance (60-70%):</strong> بناء القاعدة الهوائية، حرق دهون</li>
+                        <li><strong>Zone 3 — Tempo (70-80%):</strong> تحسين الكفاءة الهوائية</li>
+                        <li><strong>Zone 4 — Threshold (80-90%):</strong> عند عتبة اللاكتيك، تحسين القدرة اللاهوائية</li>
+                        <li><strong>Zone 5 — VO2 Max (90-100%):</strong> أقصى شدة، تحسين VO2 max</li>
+                    </ul>
+                    <br>
+                    <strong>حساب HRmax:</strong>
+                    <br>
+                    <strong>HRmax = 220 - Age</strong>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">19.</span> Effect of detraining and inactivity</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Detraining:</strong> فقدان التكيفات التدريبية عند <strong>تقليل أو إيقاف التدريب</strong>
+                    <br><br>
+                    <strong>التأثيرات:</strong>
+                    <ul>
+                        <li><strong>VO2 max:</strong> ينخفض 4-14% في أول 2-4 أسابيع</li>
+                        <li><strong>Cardiac Output:</strong> ينخفض</li>
+                        <li><strong>Stroke Volume:</strong> ينخفض</li>
+                        <li><strong>Blood Volume:</strong> ينخفض (خاصة حجم البلازما)</li>
+                        <li><strong>Capillary Density:</strong> تقل</li>
+                        <li><strong>Mitochondria:</strong> تقل في العدد والحجم</li>
+                        <li><strong>Muscle Strength:</strong> تنخفض (لكن أبطأ من التحمل)</li>
+                        <li><strong>Resting HR:</strong> يزيد</li>
+                        <li><strong>Body Fat:</strong> يزيد</li>
+                    </ul>
+                    <strong>الجدول الزمني:</strong>
+                    <ul>
+                        <li><strong>أول أسبوعين:</strong> فقدان سريع للتكيفات القلبية التنفسية</li>
+                        <li><strong>2-4 أسابيع:</strong> فقدان ملحوظ في VO2 max</li>
+                        <li><strong>بعد شهرين:</strong> العودة لمستوى ما قبل التدريب تقريباً</li>
+                    </ul>
+                    <strong>ملاحظة:</strong> التكيفات العصبية العضلية (القوة) تُفقد <strong>أبطأ</strong> من التكيفات الهوائية
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">20.</span> Difference between detraining and inactivity</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Detraining:</strong>
+                    <ul>
+                        <li>فقدان التكيفات عند <strong>تقليل أو إيقاف التدريب</strong> لفترة قصيرة</li>
+                        <li>يحدث في <strong>الرياضيين المدربين</strong></li>
+                        <li>فقدان <strong>جزئي</strong> للتكيفات</li>
+                        <li><strong>قابل للعكس</strong> بسرعة عند العودة للتدريب</li>
+                        <li><strong>مثال:</strong> رياضي يتوقف عن التدريب لمدة شهر</li>
+                    </ul>
+                    <strong>Inactivity (Sedentary Lifestyle):</strong>
+                    <ul>
+                        <li><strong>عدم النشاط البدني</strong> لفترة طويلة</li>
+                        <li>يحدث في <strong>الأشخاص غير المدربين</strong></li>
+                        <li>فقدان <strong>كامل</strong> للياقة البدنية</li>
+                        <li>يؤدي إلى <strong>أمراض مزمنة</strong> (سمنة، سكري، قلب)</li>
+                        <li><strong>مثال:</strong> شخص لا يمارس أي نشاط بدني لسنوات</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- MUSCLE -->
+        <div class="category">
+            <h2>💪 Muscle</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">21.</span> Types of muscle fibers</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>أنواع الألياف العضلية:</strong>
+                    <br><br>
+                    <strong>Type I (Slow-Twitch / Red Fibers):</strong>
+                    <ul>
+                        <li><strong>الانقباض:</strong> بطيء</li>
+                        <li><strong>القوة:</strong> منخفضة</li>
+                        <li><strong>التحمل:</strong> عالي جداً (مقاومة للتعب)</li>
+                        <li><strong>الأيض:</strong> هوائي (Aerobic)</li>
+                        <li><strong>الميتوكوندريا:</strong> كثيرة</li>
+                        <li><strong>الشعيرات الدموية:</strong> كثيفة</li>
+                        <li><strong>الميوجلوبين:</strong> عالي (لذلك حمراء)</li>
+                        <li><strong>الاستخدام:</strong> الماراثون، الوقوف، الوضعية</li>
+                    </ul>
+                    <strong>Type IIa (Fast-Twitch Oxidative / Intermediate):</strong>
+                    <ul>
+                        <li><strong>الانقباض:</strong> سريع</li>
+                        <li><strong>القوة:</strong> متوسطة إلى عالية</li>
+                        <li><strong>التحمل:</strong> متوسط</li>
+                        <li><strong>الأيض:</strong> هوائي ولاهوائي (مختلط)</li>
+                        <li><strong>قابلة للتكيف:</strong> يمكن تدريبها لتصبح أكثر هوائية</li>
+                        <li><strong>الاستخدام:</strong> 400-800م، سباحة متوسطة</li>
+                    </ul>
+                    <strong>Type IIx/IIb (Fast-Twitch Glycolytic / White Fibers):</strong>
+                    <ul>
+                        <li><strong>الانقباض:</strong> سريع جداً</li>
+                        <li><strong>القوة:</strong> عالية جداً</li>
+                        <li><strong>التحمل:</strong> منخفض (تتعب بسرعة)</li>
+                        <li><strong>الأيض:</strong> لاهوائي (Anaerobic)</li>
+                        <li><strong>الميتوكوندريا:</strong> قليلة</li>
+                        <li><strong>الميوجلوبين:</strong> منخفض (لذلك بيضاء)</li>
+                        <li><strong>الاستخدام:</strong> Sprint، رفع أثقال، قفز</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">22.</span> Skeletal muscle characteristics</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>خصائص العضلات الهيكلية:</strong>
+                    <ul>
+                        <li><strong>Voluntary:</strong> تحت السيطرة الإرادية</li>
+                        <li><strong>Striated:</strong> مخططة (بسبب ترتيب Actin و Myosin)</li>
+                        <li><strong>Multinucleated:</strong> متعددة الأنوية</li>
+                        <li><strong>Contractile:</strong> قابلة للانقباض</li>
+                        <li><strong>Excitable:</strong> تستجيب للمحفزات العصبية</li>
+                        <li><strong>Elastic:</strong> تعود لطولها الأصلي بعد التمدد</li>
+                        <li><strong>Adaptable:</strong> قابلة للتكيف مع التدريب</li>
+                        <li><strong>Attached to bones:</strong> متصلة بالعظام عبر الأوتار</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">23.</span> Causes of muscle fatigue</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>أسباب تعب العضلات:</strong>
+                    <ul>
+                        <li><strong>1. Depletion of Energy Substrates:</strong>
+                            <ul>
+                                <li>نفاد ATP و Creatine Phosphate</li>
+                                <li>نفاد الجليكوجين العضلي</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Accumulation of Metabolic By-products:</strong>
+                            <ul>
+                                <li>تراكم <strong>Lactate</strong> (حمض اللاكتيك)</li>
+                                <li>تراكم <strong>H+ ions</strong> (انخفاض pH — Acidosis)</li>
+                                <li>تراكم <strong>Inorganic Phosphate (Pi)</strong></li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Neuromuscular Factors:</strong>
+                            <ul>
+                                <li>فشل في نقل الإشارة العصبية</li>
+                                <li>انخفاض إطلاق Acetylcholine</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Electrolyte Imbalance:</strong>
+                            <ul>
+                                <li>اختلال توازن K+, Na+, Ca++</li>
+                            </ul>
+                        </li>
+                        <li><strong>5. Central Fatigue:</strong>
+                            <ul>
+                                <li>تعب الجهاز العصبي المركزي</li>
+                                <li>انخفاض الدافع النفسي</li>
+                            </ul>
+                        </li>
+                        <li><strong>6. Dehydration:</strong> فقدان السوائل</li>
+                        <li><strong>7. Hyperthermia:</strong> ارتفاع درجة حرارة الجسم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">24.</span> Muscle cramp: definition, causes, risk factors, and treatment</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> انقباض عضلي <strong>لا إرادي ومؤلم ومفاجئ</strong> يستمر لفترة قصيرة.
+                    <br><br>
+                    <strong>الأسباب:</strong>
+                    <ul>
+                        <li><strong>Dehydration:</strong> فقدان السوائل</li>
+                        <li><strong>Electrolyte Imbalance:</strong> نقص Na+, K+, Ca++, Mg++</li>
+                        <li><strong>Muscle Fatigue:</strong> إرهاق العضلة</li>
+                        <li><strong>Poor Conditioning:</strong> ضعف اللياقة</li>
+                        <li><strong>Overuse:</strong> الاستخدام المفرط</li>
+                        <li><strong>Inadequate Blood Flow:</strong> ضعف تدفق الدم</li>
+                    </ul>
+                    <strong>عوامل الخطر (Risk Factors):</strong>
+                    <ul>
+                        <li>التمرين في <strong>الحر الشديد</strong></li>
+                        <li><strong>التعرق الشديد</strong></li>
+                        <li><strong>كبار السن</strong></li>
+                        <li><strong>الحمل</strong></li>
+                        <li>بعض <strong>الأدوية</strong> (مدرات البول)</li>
+                        <li><strong>الأمراض المزمنة</strong> (سكري، كلى)</li>
+                    </ul>
+                    <strong>العلاج:</strong>
+                    <ul>
+                        <li><strong>Stop Activity:</strong> إيقاف النشاط فوراً</li>
+                        <li><strong>Stretch:</strong> إطالة العضلة المتشنجة بلطف</li>
+                        <li><strong>Massage:</strong> تدليك العضلة</li>
+                        <li><strong>Ice/Heat:</strong> كمادات باردة أو دافئة</li>
+                        <li><strong>Hydration:</strong> شرب السوائل والأملاح</li>
+                        <li><strong>Rest:</strong> راحة</li>
+                    </ul>
+                    <strong>الوقاية:</strong> ترطيب جيد، إحماء، تمدد، تغذية متوازنة
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">25.</span> EPOC (Excess Post-Exercise Oxygen Consumption)</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>EPOC</strong> هو كمية الأكسجين الزائدة التي يستهلكها الجسم <strong>بعد التمرين</strong> لإعادة الجسم إلى حالة الراحة.
+                    <br><br>
+                    <strong>يُعرف أيضاً بـ:</strong> Oxygen Debt (دين الأكسجين)
+                    <br><br>
+                    <strong>الأسباب (ما يحدث أثناء EPOC):</strong>
+                    <ul>
+                        <li><strong>1. Resynthesis of ATP & CP:</strong> إعادة تكوين ATP و Creatine Phosphate</li>
+                        <li><strong>2. Lactate Removal:</strong> إزالة حمض اللاكتيك وتحويله لجلوكوز</li>
+                        <li><strong>3. Replenish Oxygen Stores:</strong> إعادة ملء مخازن الأكسجين (Myoglobin, Hemoglobin)</li>
+                        <li><strong>4. Elevated HR & Breathing:</strong> استمرار ارتفاع معدل القلب والتنفس</li>
+                        <li><strong>5. Elevated Body Temperature:</strong> تبريد الجسم</li>
+                        <li><strong>6. Hormone Effects:</strong> تأثيرات الهرمونات (Epinephrine, Cortisol)</li>
+                        <li><strong>7. Tissue Repair:</strong> إصلاح الأنسجة</li>
+                    </ul>
+                    <strong>المدة:</strong>
+                    <ul>
+                        <li><strong>تمرين خفيف:</strong> دقائق قليلة</li>
+                        <li><strong>تمرين شديد:</strong> عدة ساعات (حتى 24-48 ساعة)</li>
+                    </ul>
+                    <strong>الفائدة:</strong> حرق سعرات حرارية إضافية بعد التمرين (Afterburn Effect)
+                </div>
+            </div>
+        </div>
+
+        <!-- CARDIOVASCULAR SYSTEM -->
+        <div class="category">
+            <h2>❤️ Cardiovascular System</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">26.</span> Heart rate response and adaptation to exercise</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Response (الاستجابة الفورية):</strong>
+                    <ul>
+                        <li><strong>زيادة HR:</strong> يزيد معدل ضربات القلب بشكل خطي مع شدة التمرين</li>
+                        <li><strong>من الراحة (60-80 bpm) إلى الأقصى (180-220 bpm)</strong></li>
+                        <li>يبدأ الارتفاع <strong>قبل التمرين</strong> (Anticipatory Response)</li>
+                        <li>يستمر مرتفعاً <strong>بعد التمرين</strong> (EPOC)</li>
+                        <li><strong>العوامل المؤثرة:</strong> الشدة، الحرارة، الرطوبة، الارتفاع، الجفاف</li>
+                    </ul>
+                    <strong>Adaptation (التكيف طويل المدى):</strong>
+                    <ul>
+                        <li><strong>Resting HR ينخفض:</strong> Bradycardia (40-60 bpm في الرياضيين)</li>
+                        <li><strong>Submaximal HR ينخفض:</strong> نفس الشدة تحتاج HR أقل</li>
+                        <li><strong>HRmax يبقى ثابت:</strong> لا يتغير مع التدريب</li>
+                        <li><strong>HR Recovery يتحسن:</strong> يعود للطبيعي أسرع</li>
+                        <li><strong>Cardiac Hypertrophy:</strong> زيادة حجم القلب</li>
+                        <li><strong>Increased Stroke Volume:</strong> يعوض انخفاض HR</li>
+                    </ul>
+                    <strong>السبب:</strong> زيادة كفاءة القلب — يضخ دم أكثر في كل نبضة
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">27.</span> Response and adaptation of blood pressure to exercise</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Response (الاستجابة الفورية):</strong>
+                    <ul>
+                        <li><strong>Systolic BP (الانقباضي):</strong>
+                            <ul>
+                                <li><strong>يزيد</strong> بشكل خطي مع شدة التمرين</li>
+                                <li>من 120 mmHg (راحة) إلى 180-220 mmHg (أقصى)</li>
+                                <li>زيادة طبيعية ومتوقعة</li>
+                            </ul>
+                        </li>
+                        <li><strong>Diastolic BP (الانبساطي):</strong>
+                            <ul>
+                                <li><strong>يبقى ثابت</strong> أو ينخفض قليلاً (5-10 mmHg)</li>
+                                <li>بسبب توسع الأوعية الدموية في العضلات</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>Adaptation (التكيف طويل المدى):</strong>
+                    <ul>
+                        <li><strong>Resting BP ينخفض:</strong>
+                            <ul>
+                                <li>Systolic: ينخفض 5-10 mmHg</li>
+                                <li>Diastolic: ينخفض 3-5 mmHg</li>
+                            </ul>
+                        </li>
+                        <li><strong>Submaximal BP ينخفض:</strong> نفس الشدة تحتاج ضغط أقل</li>
+                        <li><strong>Maximal BP:</strong> قد يزيد قليلاً (بسبب زيادة Cardiac Output)</li>
+                    </ul>
+                    <strong>الآلية:</strong>
+                    <ul>
+                        <li>تحسين وظيفة الأوعية الدموية</li>
+                        <li>زيادة Capillary Density</li>
+                        <li>انخفاض المقاومة الطرفية</li>
+                        <li>تحسين تنظيم الجهاز العصبي اللاإرادي</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">28.</span> Why does plasma volume increase after aerobic exercise?</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>أسباب زيادة حجم البلازما بعد التدريب الهوائي:</strong>
+                    <ul>
+                        <li><strong>1. Increased Plasma Proteins (Albumin):</strong>
+                            <ul>
+                                <li>التدريب يحفز الكبد على إنتاج <strong>Albumin</strong> أكثر</li>
+                                <li>Albumin يزيد <strong>Oncotic Pressure</strong></li>
+                                <li>يسحب الماء من الأنسجة إلى الدم</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Hormonal Changes:</strong>
+                            <ul>
+                                <li>زيادة <strong>Aldosterone:</strong> يحتفظ بالصوديوم والماء</li>
+                                <li>زيادة <strong>ADH (Antidiuretic Hormone):</strong> يقلل إخراج البول</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Increased Sodium Retention:</strong>
+                            <ul>
+                                <li>الصوديوم يسحب الماء معه</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Adaptation to Training Stress:</strong>
+                            <ul>
+                                <li>الجسم يتكيف لتحسين توصيل الأكسجين</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>الفائدة:</strong>
+                    <ul>
+                        <li>زيادة <strong>Blood Volume</strong> الكلي</li>
+                        <li>تحسين <strong>Stroke Volume</strong></li>
+                        <li>تحسين <strong>Cardiac Output</strong></li>
+                        <li>تحسين <strong>Thermoregulation</strong> (التبريد)</li>
+                        <li>تحسين <strong>VO2 max</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">29.</span> Ejection fraction — definition</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    (نفس السؤال 7 — راجع الإجابة السابقة)
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">30.</span> Effect of exercise on epinephrine and norepinephrine</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التأثير:</strong> التمرين يسبب <strong>زيادة كبيرة</strong> في إفراز Epinephrine (Adrenaline) و Norepinephrine (Noradrenaline) من الغدة الكظرية.
+                    <br><br>
+                    <strong>الزيادة تعتمد على:</strong>
+                    <ul>
+                        <li><strong>شدة التمرين:</strong> كلما زادت الشدة، زاد الإفراز</li>
+                        <li><strong>مدة التمرين:</strong> التمارين الطويلة تزيد الإفراز</li>
+                        <li><strong>نوع التمرين:</strong> التمارين اللاهوائية تزيد الإفراز أكثر</li>
+                    </ul>
+                    <strong>وظائف Epinephrine & Norepinephrine أثناء التمرين:</strong>
+                    <ul>
+                        <li><strong>زيادة HR:</strong> تسريع ضربات القلب</li>
+                        <li><strong>زيادة Contractility:</strong> قوة انقباض القلب</li>
+                        <li><strong>زيادة BP:</strong> رفع ضغط الدم</li>
+                        <li><strong>Bronchodilation:</strong> توسيع الشعب الهوائية</li>
+                        <li><strong>Glycogenolysis:</strong> تحليل الجليكوجين لجلوكوز</li>
+                        <li><strong>Lipolysis:</strong> تحليل الدهون لأحماض دهنية</li>
+                        <li><strong>Vasoconstriction:</strong> تضييق الأوعية في الأعضاء غير العاملة</li>
+                        <li><strong>Vasodilation:</strong> توسيع الأوعية في العضلات العاملة</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">31.</span> Role of epinephrine during exercise</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    (نفس السؤال 30 — راجع الإجابة السابقة)
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">32.</span> Cardiovascular drift: definition and causes</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> Cardiovascular Drift هو <strong>زيادة تدريجية في معدل ضربات القلب</strong> و<strong>انخفاض في Stroke Volume</strong> أثناء التمرين المستمر بنفس الشدة.
+                    <br><br>
+                    <strong>الأسباب:</strong>
+                    <ul>
+                        <li><strong>1. Dehydration:</strong>
+                            <ul>
+                                <li>فقدان السوائل عن طريق التعرق</li>
+                                <li>انخفاض حجم البلازما</li>
+                                <li>انخفاض Venous Return</li>
+                                <li>انخفاض Stroke Volume</li>
+                                <li>القلب يعوض بزيادة HR</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Increased Skin Blood Flow:</strong>
+                            <ul>
+                                <li>لتبريد الجسم، يزيد تدفق الدم للجلد</li>
+                                <li>يقل الدم العائد للقلب</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Increased Core Temperature:</strong>
+                            <ul>
+                                <li>ارتفاع درجة حرارة الجسم</li>
+                                <li>يزيد HR</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>متى يحدث:</strong>
+                    <ul>
+                        <li>في التمارين الطويلة (أكثر من 30 دقيقة)</li>
+                        <li>في الحر والرطوبة العالية</li>
+                        <li>عند عدم شرب سوائل كافية</li>
+                    </ul>
+                    <strong>الوقاية:</strong> شرب سوائل كافية، التمرين في بيئة باردة
+                </div>
+            </div>
+        </div>
+
+        <!-- RESPIRATORY SYSTEM -->
+        <div class="category">
+            <h2>🫁 Respiratory System</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">33.</span> Acute response of respiratory system to exercise</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الاستجابات الفورية:</strong>
+                    <ul>
+                        <li><strong>Increased Ventilation (VE):</strong>
+                            <ul>
+                                <li>زيادة كبيرة في التهوية الرئوية</li>
+                                <li>من 5-6 L/min (راحة) إلى 100-200 L/min (أقصى)</li>
+                            </ul>
+                        </li>
+                        <li><strong>Increased Tidal Volume (TV):</strong>
+                            <ul>
+                                <li>من 500 ml إلى 2-3 L</li>
+                            </ul>
+                        </li>
+                        <li><strong>Increased Respiratory Rate (RR):</strong>
+                            <ul>
+                                <li>من 12-15 نفس/دقيقة إلى 40-50 نفس/دقيقة</li>
+                            </ul>
+                        </li>
+                        <li><strong>Increased O2 Consumption:</strong> زيادة استهلاك الأكسجين</li>
+                        <li><strong>Increased CO2 Production:</strong> زيادة إنتاج ثاني أكسيد الكربون</li>
+                        <li><strong>Bronchodilation:</strong> توسيع الشعب الهوائية</li>
+                        <li><strong>Increased Diffusion:</strong> تحسين انتشار الغازات</li>
+                    </ul>
+                    <strong>التنظيم:</strong>
+                    <ul>
+                        <li>مراكز التنفس في الدماغ</li>
+                        <li>Chemoreceptors (تستشعر CO2, O2, pH)</li>
+                        <li>Mechanoreceptors في العضلات والمفاصل</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">34.</span> Long-term adaptation of respiratory system to exercise</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التكيفات طويلة المدى:</strong>
+                    <ul>
+                        <li><strong>Increased Respiratory Muscle Strength:</strong>
+                            <ul>
+                                <li>تقوية عضلات التنفس (Diaphragm, Intercostals)</li>
+                                <li>تقليل التعب التنفسي</li>
+                            </ul>
+                        </li>
+                        <li><strong>Increased Lung Volumes:</strong>
+                            <ul>
+                                <li>زيادة طفيفة في Vital Capacity</li>
+                                <li>زيادة Tidal Volume أثناء التمرين</li>
+                            </ul>
+                        </li>
+                        <li><strong>Improved Ventilatory Efficiency:</strong>
+                            <ul>
+                                <li>نفس كمية O2 بتهوية أقل</li>
+                                <li>انخفاض VE عند نفس الشدة</li>
+                            </ul>
+                        </li>
+                        <li><strong>Increased Capillary Density in Lungs:</strong> تحسين تبادل الغازات</li>
+                        <li><strong>Improved Diffusion Capacity:</strong> تحسين انتشار O2 و CO2</li>
+                        <li><strong>Delayed Ventilatory Threshold:</strong> تأخر نقطة زيادة التنفس السريع</li>
+                    </ul>
+                    <strong>ملاحظة:</strong> التكيفات التنفسية <strong>أقل</strong> من التكيفات القلبية والعضلية
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">35.</span> Dangers of exercise at high altitude</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>المخاطر:</strong>
+                    <ul>
+                        <li><strong>1. Acute Mountain Sickness (AMS):</strong>
+                            <ul>
+                                <li>صداع، غثيان، دوخة، تعب</li>
+                                <li>يحدث في أول 6-12 ساعة</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. High Altitude Pulmonary Edema (HAPE):</strong>
+                            <ul>
+                                <li>تجمع سوائل في الرئتين</li>
+                                <li>ضيق تنفس شديد، سعال، زرقة</li>
+                                <li><strong>خطير جداً</strong> — يحتاج نزول فوري</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. High Altitude Cerebral Edema (HACE):</strong>
+                            <ul>
+                                <li>تورم الدماغ</li>
+                                <li>ارتباك، فقدان توازن، غيبوبة</li>
+                                <li><strong>مهدد للحياة</strong></li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Hypoxia:</strong> نقص الأكسجين في الأنسجة</li>
+                        <li><strong>5. Dehydration:</strong> فقدان سوائل أسرع</li>
+                        <li><strong>6. Decreased Performance:</strong> انخفاض الأداء الرياضي</li>
+                        <li><strong>7. Increased HR & BP:</strong> إجهاد القلب</li>
+                    </ul>
+                    <strong>الوقاية:</strong>
+                    <ul>
+                        <li><strong>Acclimatization:</strong> التأقلم التدريجي (أيام-أسابيع)</li>
+                        <li><strong>Gradual Ascent:</strong> الصعود التدريجي</li>
+                        <li><strong>Hydration:</strong> شرب سوائل كافية</li>
+                        <li><strong>Avoid Overexertion:</strong> تجنب الإجهاد الشديد</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">36.</span> Effects of exercise at high altitude</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    (نفس السؤال 35 — راجع الإجابة السابقة)
+                </div>
+            </div>
+        </div>
+
+        <!-- THERMOREGULATION & HEAT ILLNESS -->
+        <div class="category">
+            <h2>🌡️ Thermoregulation & Heat Illness</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">37.</span> Heat syncope: definition, causes, and treatment</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> Heat Syncope هو <strong>إغماء مؤقت</strong> يحدث بسبب الحرارة.
+                    <br><br>
+                    <strong>الأسباب:</strong>
+                    <ul>
+                        <li><strong>Peripheral Vasodilation:</strong> توسع الأوعية الدموية الطرفية للتبريد</li>
+                        <li><strong>Blood Pooling:</strong> تجمع الدم في الأطراف السفلية</li>
+                        <li><strong>Decreased Venous Return:</strong> انخفاض الدم العائد للقلب</li>
+                        <li><strong>Decreased Cerebral Blood Flow:</strong> نقص تدفق الدم للدماغ</li>
+                        <li><strong>Orthostatic Hypotension:</strong> انخفاض ضغط الدم عند الوقوف</li>
+                    </ul>
+                    <strong>متى يحدث:</strong>
+                    <ul>
+                        <li>عند <strong>الوقوف لفترة طويلة</strong> في الحر</li>
+                        <li>عند <strong>الوقوف المفاجئ</strong> بعد التمرين</li>
+                        <li>في الأشخاص <strong>غير المتأقلمين</strong> مع الحرارة</li>
+                    </ul>
+                    <strong>الأعراض:</strong> دوخة، ضعف، شحوب، إغماء
+                    <br><br>
+                    <strong>العلاج:</strong>
+                    <ul>
+                        <li><strong>Lie Down:</strong> استلقاء مع رفع الأرجل</li>
+                        <li><strong>Move to Cool Area:</strong> نقل لمكان بارد</li>
+                        <li><strong>Hydration:</strong> شرب سوائل</li>
+                        <li><strong>Rest:</strong> راحة</li>
+                    </ul>
+                    <strong>الوقاية:</strong> تجنب الوقوف الطويل، التأقلم مع الحرارة، ترطيب جيد
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">38.</span> Heat exhaustion: definition and types</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> Heat Exhaustion هو حالة <strong>إنهاك حراري</strong> تحدث عندما يفقد الجسم كميات كبيرة من الماء والأملاح.
+                    <br><br>
+                    <strong>الأنواع:</strong>
+                    <ul>
+                        <li><strong>1. Water Depletion Heat Exhaustion:</strong>
+                            <ul>
+                                <li>نقص الماء بشكل أساسي</li>
+                                <li><strong>الأعراض:</strong> عطش شديد، ضعف، صداع، جفاف</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Salt Depletion Heat Exhaustion:</strong>
+                            <ul>
+                                <li>نقص الأملاح (Sodium) بشكل أساسي</li>
+                                <li><strong>الأعراض:</strong> غثيان، قيء، تشنجات عضلية، دوخة</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>الأعراض العامة:</strong>
+                    <ul>
+                        <li>تعب شديد وضعف</li>
+                        <li>صداع ودوخة</li>
+                        <li>غثيان وقيء</li>
+                        <li>تعرق غزير</li>
+                        <li>جلد بارد ورطب وشاحب</li>
+                        <li>نبض سريع وضعيف</li>
+                        <li>درجة حرارة الجسم طبيعية أو مرتفعة قليلاً (أقل من 40°C)</li>
+                    </ul>
+                    <strong>العلاج:</strong>
+                    <ul>
+                        <li>إيقاف النشاط فوراً</li>
+                        <li>نقل لمكان بارد</li>
+                        <li>شرب سوائل وأملاح</li>
+                        <li>تبريد الجسم (كمادات، مروحة)</li>
+                        <li>استلقاء مع رفع الأرجل</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">39.</span> Heat cramps: definition, causes, risk factors, and treatment</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> Heat Cramps هي <strong>تشنجات عضلية مؤلمة</strong> تحدث أثناء أو بعد التمرين في الحر.
+                    <br><br>
+                    <strong>الأسباب:</strong>
+                    <ul>
+                        <li><strong>Electrolyte Imbalance:</strong> نقص الأملاح (خاصة Sodium)</li>
+                        <li><strong>Dehydration:</strong> فقدان السوائل</li>
+                        <li><strong>Heavy Sweating:</strong> التعرق الشديد</li>
+                        <li><strong>Inadequate Salt Intake:</strong> عدم تعويض الأملاح</li>
+                    </ul>
+                    <strong>عوامل الخطر:</strong>
+                    <ul>
+                        <li>التمرين في <strong>الحر والرطوبة العالية</strong></li>
+                        <li><strong>عدم التأقلم</strong> مع الحرارة</li>
+                        <li><strong>التعرق الغزير</strong></li>
+                        <li><strong>عدم شرب سوائل كافية</strong></li>
+                        <li>التمارين <strong>الشديدة والطويلة</strong></li>
+                    </ul>
+                    <strong>الأعراض:</strong>
+                    <ul>
+                        <li>تشنجات مؤلمة في العضلات (خاصة الساقين، البطن)</li>
+                        <li>تعرق غزير</li>
+                        <li>درجة حرارة طبيعية</li>
+                    </ul>
+                    <strong>العلاج:</strong>
+                    <ul>
+                        <li><strong>Stop Activity:</strong> إيقاف التمرين</li>
+                        <li><strong>Move to Cool Area:</strong> مكان بارد</li>
+                        <li><strong>Hydration + Electrolytes:</strong> شرب سوائل مع أملاح</li>
+                        <li><strong>Gentle Stretching:</strong> تمديد العضلة بلطف</li>
+                        <li><strong>Massage:</strong> تدليك</li>
+                        <li><strong>Rest:</strong> راحة</li>
+                    </ul>
+                    <strong>الوقاية:</strong> ترطيب جيد، تعويض الأملاح، التأقلم مع الحرارة
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">40.</span> Hyperthermia: definition and causes</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> Hyperthermia هو <strong>ارتفاع درجة حرارة الجسم</strong> فوق المعدل الطبيعي (أكثر من 37.5-38°C).
+                    <br><br>
+                    <strong>الأسباب:</strong>
+                    <ul>
+                        <li><strong>1. Exercise-Induced:</strong>
+                            <ul>
+                                <li>إنتاج حرارة كبير من العضلات</li>
+                                <li>عدم قدرة الجسم على التبريد بكفاءة</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Environmental:</strong>
+                            <ul>
+                                <li>حرارة ورطوبة عالية</li>
+                                <li>تعيق التبخر (التعرق)</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Dehydration:</strong> نقص السوائل يقلل التعرق</li>
+                        <li><strong>4. Clothing:</strong> ملابس ثقيلة تمنع التبريد</li>
+                        <li><strong>5. Poor Acclimatization:</strong> عدم التأقلم مع الحرارة</li>
+                        <li><strong>6. Medical Conditions:</strong> أمراض تؤثر على التنظيم الحراري</li>
+                        <li><strong>7. Medications:</strong> بعض الأدوية تقلل التعرق</li>
+                    </ul>
+                    <strong>الأنواع:</strong>
+                    <ul>
+                        <li><strong>Mild:</strong> 38-39°C</li>
+                        <li><strong>Moderate:</strong> 39-40°C</li>
+                        <li><strong>Severe:</strong> أكثر من 40°C (Heat Stroke)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">41.</span> Heat stroke: definition, signs, and treatment</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> Heat Stroke هو <strong>حالة طوارئ طبية</strong> تحدث عندما تفشل آليات تنظيم الحرارة في الجسم، وترتفع درجة الحرارة لأكثر من <strong>40°C</strong>.
+                    <br><br>
+                    <strong>الأنواع:</strong>
+                    <ul>
+                        <li><strong>Classic Heat Stroke:</strong> في كبار السن، بيئة حارة</li>
+                        <li><strong>Exertional Heat Stroke:</strong> أثناء التمرين الشديد</li>
+                    </ul>
+                    <strong>العلامات والأعراض:</strong>
+                    <ul>
+                        <li><strong>درجة حرارة عالية جداً:</strong> أكثر من 40°C</li>
+                        <li><strong>جلد ساخن وجاف:</strong> توقف التعرق (في Classic)</li>
+                        <li><strong>أو جلد رطب:</strong> في Exertional</li>
+                        <li><strong>تغير في الوعي:</strong> ارتباك، هذيان، غيبوبة</li>
+                        <li><strong>تشنجات:</strong> Seizures</li>
+                        <li><strong>نبض سريع وقوي</strong></li>
+                        <li><strong>صداع شديد</strong></li>
+                        <li><strong>غثيان وقيء</strong></li>
+                        <li><strong>تنفس سريع</strong></li>
+                    </ul>
+                    <strong>العلاج (طوارئ):</strong>
+                    <ul>
+                        <li><strong>Call 911:</strong> اتصل بالإسعاف فوراً</li>
+                        <li><strong>Cool Immediately:</strong> تبريد سريع
+                            <ul>
+                                <li>نقل لمكان بارد</li>
+                                <li>خلع الملابس الزائدة</li>
+                                <li>غمر في ماء بارد (أفضل طريقة)</li>
+                                <li>كمادات ثلج على الرقبة، الإبطين، الفخذ</li>
+                                <li>رش ماء + مروحة</li>
+                            </ul>
+                        </li>
+                        <li><strong>Monitor:</strong> مراقبة العلامات الحيوية</li>
+                        <li><strong>لا تعطي سوائل بالفم</strong> إذا كان فاقد الوعي</li>
+                    </ul>
+                    <strong>⚠️ مهدد للحياة — يحتاج علاج فوري</strong>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">42.</span> How to limit / avoid heat-related illness</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>الوقاية من الأمراض الحرارية:</strong>
+                    <ul>
+                        <li><strong>1. Acclimatization:</strong>
+                            <ul>
+                                <li>التأقلم التدريجي مع الحرارة (7-14 يوم)</li>
+                                <li>زيادة شدة ومدة التمرين تدريجياً</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Hydration:</strong>
+                            <ul>
+                                <li>شرب سوائل كافية قبل وأثناء وبعد التمرين</li>
+                                <li>شرب كل 15-20 دقيقة أثناء التمرين</li>
+                                <li>تعويض الأملاح (Sports drinks)</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Timing:</strong>
+                            <ul>
+                                <li>التمرين في الأوقات الباردة (صباح باكر، مساء)</li>
+                                <li>تجنب منتصف النهار</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Clothing:</strong>
+                            <ul>
+                                <li>ملابس خفيفة وفاتحة اللون</li>
+                                <li>أقمشة تسمح بالتهوية</li>
+                            </ul>
+                        </li>
+                        <li><strong>5. Modify Intensity:</strong>
+                            <ul>
+                                <li>تقليل الشدة والمدة في الحر</li>
+                                <li>أخذ فترات راحة متكررة</li>
+                            </ul>
+                        </li>
+                        <li><strong>6. Monitor:</strong>
+                            <ul>
+                                <li>مراقبة الأعراض</li>
+                                <li>التوقف عند الشعور بالدوخة أو الغثيان</li>
+                            </ul>
+                        </li>
+                        <li><strong>7. Shade:</strong> البقاء في الظل قدر الإمكان</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">43.</span> Erythemia (Erythema) and its causes</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>التعريف:</strong> Erythema هو <strong>احمرار الجلد</strong> بسبب زيادة تدفق الدم للشعيرات الدموية السطحية.
+                    <br><br>
+                    <strong>الأسباب المرتبطة بالتمرين:</strong>
+                    <ul>
+                        <li><strong>1. Vasodilation:</strong>
+                            <ul>
+                                <li>توسع الأوعية الدموية في الجلد</li>
+                                <li>لتبريد الجسم أثناء التمرين</li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Increased Blood Flow:</strong> زيادة تدفق الدم للجلد</li>
+                        <li><strong>3. Heat:</strong> الحرارة الناتجة من التمرين</li>
+                        <li><strong>4. Friction:</strong> احتكاك الملابس أو المعدات</li>
+                        <li><strong>5. Sun Exposure:</strong> التعرض للشمس</li>
+                    </ul>
+                    <strong>أسباب أخرى:</strong>
+                    <ul>
+                        <li>الحساسية</li>
+                        <li>الالتهابات</li>
+                        <li>الحروق</li>
+                    </ul>
+                    <strong>ملاحظة:</strong> Erythema أثناء التمرين <strong>طبيعي</strong> ويزول بعد التمرين
+                </div>
+            </div>
+        </div>
+
+        <!-- COLD ENVIRONMENT -->
+        <div class="category">
+            <h2>🥶 Cold Environment</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">44.</span> Dangers of training in cold environments</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>المخاطر:</strong>
+                    <ul>
+                        <li><strong>1. Hypothermia:</strong>
+                            <ul>
+                                <li>انخفاض درجة حرارة الجسم لأقل من 35°C</li>
+                                <li><strong>الأعراض:</strong> رعشة، ارتباك، بطء حركة، فقدان وعي</li>
+                                <li><strong>خطير جداً</strong></li>
+                            </ul>
+                        </li>
+                        <li><strong>2. Frostbite:</strong>
+                            <ul>
+                                <li>تجمد الأنسجة (خاصة الأطراف، الأنف، الأذنين)</li>
+                                <li>تلف دائم للأنسجة</li>
+                            </ul>
+                        </li>
+                        <li><strong>3. Cold-Induced Bronchospasm:</strong>
+                            <ul>
+                                <li>تضيق الشعب الهوائية</li>
+                                <li>صعوبة تنفس (خاصة في الربو)</li>
+                            </ul>
+                        </li>
+                        <li><strong>4. Increased Cardiovascular Stress:</strong>
+                            <ul>
+                                <li>البرد يزيد عمل القلب</li>
+                                <li>خطر على مرضى القلب</li>
+                            </ul>
+                        </li>
+                        <li><strong>5. Dehydration:</strong>
+                            <ul>
+                                <li>فقدان سوائل عن طريق التنفس</li>
+                                <li>قلة الشعور بالعطش</li>
+                            </ul>
+                        </li>
+                        <li><strong>6. Decreased Performance:</strong> انخفاض الأداء العضلي</li>
+                        <li><strong>7. Increased Injury Risk:</strong> العضلات الباردة أكثر عرضة للإصابة</li>
+                    </ul>
+                    <strong>الوقاية:</strong>
+                    <ul>
+                        <li><strong>Layered Clothing:</strong> ملابس متعددة الطبقات</li>
+                        <li><strong>Cover Extremities:</strong> تغطية الأطراف (قفازات، قبعة، جوارب)</li>
+                        <li><strong>Warm-up:</strong> إحماء جيد</li>
+                        <li><strong>Stay Dry:</strong> البقاء جافاً</li>
+                        <li><strong>Hydration:</strong> شرب سوائل دافئة</li>
+                        <li><strong>Monitor Conditions:</strong> مراقبة الطقس</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- HORMONES & EXERCISE -->
+        <div class="category">
+            <h2>🧪 Hormones & Exercise</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">45.</span> Effect of exercise on thyroxine</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Thyroxine (T4) & Triiodothyronine (T3):</strong> هرمونات الغدة الدرقية
+                    <br><br>
+                    <strong>التأثير الحاد (أثناء التمرين):</strong>
+                    <ul>
+                        <li><strong>زيادة طفيفة</strong> في T3 و T4</li>
+                        <li>تعتمد على شدة ومدة التمرين</li>
+                    </ul>
+                    <strong>التأثير المزمن (التدريب طويل المدى):</strong>
+                    <ul>
+                        <li><strong>في الراحة:</strong> مستويات طبيعية أو منخفضة قليلاً</li>
+                        <li><strong>أثناء التمرين:</strong> استجابة أفضل</li>
+                    </ul>
+                    <strong>الوظائف أثناء التمرين:</strong>
+                    <ul>
+                        <li><strong>زيادة Metabolic Rate:</strong> رفع معدل الأيض</li>
+                        <li><strong>زيادة استهلاك O2:</strong> تحسين استخدام الأكسجين</li>
+                        <li><strong>زيادة حرق الدهون والكربوهيدرات</strong></li>
+                        <li><strong>زيادة Protein Synthesis:</strong> بناء البروتين</li>
+                        <li><strong>تنظيم درجة الحرارة</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">46.</span> Effect of exercise on cortisol</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Cortisol:</strong> هرمون التوتر (Stress Hormone) من الغدة الكظرية
+                    <br><br>
+                    <strong>التأثير:</strong> التمرين يسبب <strong>زيادة</strong> في إفراز Cortisol
+                    <br><br>
+                    <strong>الزيادة تعتمد على:</strong>
+                    <ul>
+                        <li><strong>الشدة:</strong> كلما زادت الشدة، زاد Cortisol</li>
+                        <li><strong>المدة:</strong> التمارين الطويلة (أكثر من 60 دقيقة) تزيد Cortisol أكثر</li>
+                        <li><strong>مستوى التدريب:</strong> الرياضيون المدربون لديهم استجابة أقل</li>
+                    </ul>
+                    <strong>الوظائف أثناء التمرين:</strong>
+                    <ul>
+                        <li><strong>Gluconeogenesis:</strong> تكوين جلوكوز جديد من البروتين</li>
+                        <li><strong>Lipolysis:</strong> تحليل الدهون لطاقة</li>
+                        <li><strong>Protein Breakdown:</strong> تحليل البروتين (Catabolic)</li>
+                        <li><strong>Anti-inflammatory:</strong> تقليل الالتهاب</li>
+                        <li><strong>Maintain Blood Glucose:</strong> الحفاظ على مستوى السكر</li>
+                    </ul>
+                    <strong>ملاحظة:</strong>
+                    <ul>
+                        <li><strong>ارتفاع مزمن</strong> في Cortisol (Overtraining) يسبب:
+                            <ul>
+                                <li>فقدان عضلات</li>
+                                <li>ضعف المناعة</li>
+                                <li>تعب مزمن</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">47.</span> Effect of exercise on growth hormone (GH)</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Growth Hormone (GH):</strong> هرمون النمو من الغدة النخامية
+                    <br><br>
+                    <strong>التأثير:</strong> التمرين يسبب <strong>زيادة كبيرة</strong> في إفراز GH
+                    <br><br>
+                    <strong>الزيادة تعتمد على:</strong>
+                    <ul>
+                        <li><strong>الشدة:</strong> الشدة العالية تزيد GH أكثر</li>
+                        <li><strong>المدة:</strong> التمارين المتوسطة إلى الطويلة</li>
+                        <li><strong>نوع التمرين:</strong> تمارين المقاومة والـ HIIT تزيد GH أكثر</li>
+                        <li><strong>الراحة بين المجموعات:</strong> راحة قصيرة تزيد GH</li>
+                    </ul>
+                    <strong>الوظائف أثناء التمرين:</strong>
+                    <ul>
+                        <li><strong>Lipolysis:</strong> تحليل الدهون لطاقة</li>
+                        <li><strong>Protein Synthesis:</strong> بناء البروتين والعضلات (Anabolic)</li>
+                        <li><strong>Gluconeogenesis:</strong> تكوين جلوكوز</li>
+                        <li><strong>Bone Growth:</strong> تقوية العظام</li>
+                        <li><strong>Tissue Repair:</strong> إصلاح الأنسجة</li>
+                        <li><strong>Immune Function:</strong> تقوية المناعة</li>
+                    </ul>
+                    <strong>التكيف المزمن:</strong>
+                    <ul>
+                        <li>التدريب المنتظم يحسن استجابة GH</li>
+                        <li>يزيد إفراز GH أثناء النوم</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">48.</span> Effect of exercise on testosterone</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Testosterone:</strong> هرمون الذكورة (موجود في الرجال والنساء)
+                    <br><br>
+                    <strong>التأثير:</strong> التمرين يسبب <strong>زيادة</strong> في Testosterone
+                    <br><br>
+                    <strong>الزيادة تعتمد على:</strong>
+                    <ul>
+                        <li><strong>نوع التمرين:</strong>
+                            <ul>
+                                <li><strong>تمارين المقاومة:</strong> تزيد Testosterone أكثر</li>
+                                <li><strong>تمارين العضلات الكبيرة:</strong> (Squats, Deadlifts)</li>
+                                <li><strong>HIIT:</strong> فعال أيضاً</li>
+                            </ul>
+                        </li>
+                        <li><strong>الشدة:</strong> الشدة العالية تزيد Testosterone</li>
+                        <li><strong>الحجم:</strong> عدد المجموعات والتكرارات</li>
+                        <li><strong>الراحة:</strong> راحة قصيرة (30-60 ثانية) أفضل</li>
+                    </ul>
+                    <strong>الوظائف:</strong>
+                    <ul>
+                        <li><strong>Protein Synthesis:</strong> بناء العضلات (Anabolic)</li>
+                        <li><strong>Muscle Hypertrophy:</strong> زيادة حجم العضلات</li>
+                        <li><strong>Bone Density:</strong> تقوية العظام</li>
+                        <li><strong>Fat Loss:</strong> تقليل الدهون</li>
+                        <li><strong>Strength:</strong> زيادة القوة</li>
+                        <li><strong>Recovery:</strong> تحسين الاستشفاء</li>
+                    </ul>
+                    <strong>ملاحظة:</strong>
+                    <ul>
+                        <li><strong>Overtraining:</strong> يخفض Testosterone</li>
+                        <li><strong>التمارين الهوائية الطويلة جداً:</strong> قد تخفض Testosterone</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">49.</span> Effect of exercise on insulin</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Insulin:</strong> هرمون من البنكرياس ينظم مستوى السكر في الدم
+                    <br><br>
+                    <strong>التأثير الحاد (أثناء التمرين):</strong>
+                    <ul>
+                        <li><strong>انخفاض</strong> في مستوى Insulin</li>
+                        <li>السبب: الجسم لا يحتاج Insulin لإدخال الجلوكوز للعضلات أثناء التمرين</li>
+                        <li>العضلات تأخذ الجلوكوز <strong>بدون Insulin</strong> (عن طريق Muscle Contraction)</li>
+                    </ul>
+                    <strong>التأثير المزمن (التدريب طويل المدى):</strong>
+                    <ul>
+                        <li><strong>زيادة Insulin Sensitivity:</strong>
+                            <ul>
+                                <li>الخلايا تستجيب للإنسولين بشكل أفضل</li>
+                                <li>يحتاج Insulin أقل لنفس التأثير</li>
+                            </ul>
+                        </li>
+                        <li><strong>انخفاض Insulin في الراحة:</strong> مستويات أقل في الراحة</li>
+                        <li><strong>تحسين Glucose Tolerance:</strong> تحسين تحمل الجلوكوز</li>
+                    </ul>
+                    <strong>الفوائد:</strong>
+                    <ul>
+                        <li><strong>الوقاية من السكري النوع 2</strong></li>
+                        <li><strong>تحسين التحكم في السكر</strong></li>
+                        <li><strong>تقليل خطر Metabolic Syndrome</strong></li>
+                        <li><strong>تحسين تكوين الجسم</strong> (تقليل دهون)</li>
+                    </ul>
+                    <strong>الآلية:</strong>
+                    <ul>
+                        <li>زيادة <strong>GLUT4 Transporters</strong> في العضلات</li>
+                        <li>تحسين <strong>Insulin Signaling</strong></li>
+                        <li>زيادة <strong>Mitochondria</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRACTICAL / LAB -->
+        <div class="category">
+            <h2>🔬 Practical / Lab</h2>
+
+            <div class="question">
+                <div class="question-text"><span class="question-number">50.</span> Respirometer (how it works / its use)</div>
+                <div class="answer">
+                    <span class="answer-title">✓ الإجابة:</span>
+                    <strong>Respirometer (Spirometer):</strong> جهاز لقياس حجم وسعة الرئتين
+                    <br><br>
+                    <strong>كيف يعمل:</strong>
+                    <ul>
+                        <li>المريض يتنفس في أنبوب متصل بالجهاز</li>
+                        <li>الجهاز يقيس حجم الهواء الداخل والخارج</li>
+                        <li>يسجل القياسات على رسم بياني (Spirogram)</li>
+                    </ul>
+                    <strong>الاستخدامات:</strong>
+                    <ul>
+                        <li><strong>قياس Lung Volumes:</strong>
+                            <ul>
+                                <li><strong>Tidal Volume (TV):</strong> حجم النفس العادي</li>
+                                <li><strong>Inspiratory Reserve Volume (IRV):</strong> حجم الشهيق الاحتياطي</li>
+                                <li><strong>Expiratory Reserve Volume (ERV):</strong> حجم الزفير الاحتياطي</li>
+                                <li><strong>Vital Capacity (VC):</strong> أقصى حجم يمكن زفره بعد شهيق عميق</li>
+                            </ul>
+                        </li>
+                        <li><strong>قياس Lung Capacities:</strong>
+                            <ul>
+                                <li><strong>Total Lung Capacity (TLC)</strong></li>
+                                <li><strong>Functional Residual Capacity (FRC)</strong></li>
+                            </ul>
+                        </li>
+                        <li><strong>قياس Flow Rates:</strong>
+                            <ul>
+                                <li><strong>FEV1:</strong> حجم الزفير القسري في ثانية واحدة</li>
+                                <li><strong>Peak Expiratory Flow (PEF)</strong></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <strong>الأهمية السريرية:</strong>
+                    <ul>
+                        <li>تشخيص أمراض الرئة (Asthma, COPD)</li>
+                        <li>تقييم وظيفة الرئة</li>
+                        <li>متابعة تطور المرض</li>
+                        <li>تقييم فعالية العلاج</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="summary">
+            <h2>📊 ملخص أكثر المواضيع تكراراً</h2>
+            <div class="summary-item">
+                <span>Effect of detraining & inactivity</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>ATP-Creatine Kinase system</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Energy systems (enumerate & discuss)</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Cross-over concept</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>HR response & adaptation</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Heat cramps / heat illness</span>
+                <span class="stars">★★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Cardiovascular adaptation</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Response of respiratory system</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Key principles of training</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>VO2 max</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Effect of exercise on cortisol</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Blood pressure response & adaptation</span>
+                <span class="stars">★★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Effect of exercise on GH</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Ejection fraction</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Types of muscle fibers</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Effect of epinephrine/norepinephrine</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Aerobic exercise definition</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Dangers at high altitude</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Effect of thyroxine</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Muscle fatigue causes</span>
+                <span class="stars">★★★</span>
+            </div>
+            <div class="summary-item">
+                <span>EPOC</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Training zones</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Effect of testosterone</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Effect of insulin</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Cardiovascular drift</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Plasma volume increase</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Heat stroke</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Heat exhaustion</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Hyperthermia</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Cold environment dangers</span>
+                <span class="stars">★★</span>
+            </div>
+            <div class="summary-item">
+                <span>Respirometer</span>
+                <span class="stars">★</span>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
