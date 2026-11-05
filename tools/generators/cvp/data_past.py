@@ -136,3 +136,18 @@ PT12 = [
  ("According to the GOLD classification, which FEV1 range corresponds to GOLD 3 (severe)?", ["30% ≤ FEV1 < 50%", "50% ≤ FEV1 < 80%", "< 30% predicted", "≥ 80% predicted"], 0, "GOLD 1 ≥ 80%، GOLD 2 من 50 لـ 79، GOLD 3 من 30 لـ 49، GOLD 4 أقل من 30."),
  ("Which breathing technique reduces air trapping and eases dyspnea in COPD patients?", ["Pursed-lip breathing", "Breath holding", "Rapid shallow breathing", "Hyperventilation"], 0, "الـ pursed-lip بيعمل back pressure يمنع الـ airway collapse."),
 ]
+
+# PT9 mid-term — rebuilt from the points the batch remembered (PT 9 Mid-Term - INDeed Team)
+PT9 = [
+ ("The diaphragm increases the …… diameter of the thorax:", ["Vertical", "Anteroposterior", "Transverse", "None of the above"], 0, "الـ diaphragm بينزل لتحت فيزود الـ vertical diameter."),
+ ("Total lung capacity (TLC) equals:", ["RV + IRV + ERV + TV", "TV + IRV + ERV", "ERV + RV", "TV + IRV"], 0, "الـ TLC = VC + RV."),
+ ("During tracheal suction, the patient may develop:", ["Bradycardia + hypotension", "Tachycardia + hypertension", "Bradycardia + hypertension", "No changes"], 0, "الـ suction بينبه الـ vagus فيحصل bradycardia و hypotension (الإجابة اللي متعلّم عليها في ورقة PT9)."),
+ ("With mechanical ventilation, the airway used is the:", ["Endotracheal type", "Nasopharyngeal type", "Oropharyngeal type", "Face mask only"], 0, ""),
+ ("For an unconscious patient, the airway used is the:", ["Oropharyngeal type", "Nasopharyngeal type", "Endotracheal type", "No airway"], 0, "الـ semiconscious بيستحمل الـ nasopharyngeal."),
+ ("For a semiconscious patient, the airway used is the:", ["Nasopharyngeal type", "Oropharyngeal type", "Endotracheal type", "Tracheostomy"], 0, ""),
+ ("Orthopnea is:", ["Dyspnea in the flat (lying) position", "Dyspnea on exertion", "Dyspnea at night waking the patient", "Rapid breathing"], 0, ""),
+ ("Yellow sputum indicates:", ["Infection", "Pneumonia only", "Heart failure", "Asthma"], 0, ""),
+ ("Rusty sputum is characteristic of:", ["Pneumonia", "Lung abscess", "Pulmonary edema", "Bronchiectasis"], 0, ""),
+ ("Haemoptysis is:", ["Expectoration of blood from below the vocal cords", "Vomiting of blood", "Bleeding from the nose", "Blood from the gums"], 0, ""),
+ ("The first step of coughing is:", ["Deep inspiration", "Closure of glottis", "Forced expiration", "Opening of glottis"], 0, ""),
+]
