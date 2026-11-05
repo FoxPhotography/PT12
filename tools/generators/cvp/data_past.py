@@ -1,0 +1,114 @@
+# Past mid-term exams of CVP PT (Dr. Mahmoud Labib) — answers checked against the lectures/book.
+# Question tuple: (text, options, correct_index, explanation)  — options kept in the original exam order.
+
+DOUBLE_TF = ["الجملتين صح", "الأولى صح والتانية غلط", "الأولى غلط والتانية صح", "الجملتين غلط"]
+TF = ["True ✓", "False ✗"]
+
+PT7 = [
+ ("Process at which the air is inhaled through nose and reaches alveoli:", ["Perfusion", "Ventilation", "Gas exchange", "None of the above"], 1,
+  "Ventilation = دخول الهوا من الأنف لحد الـ alveoli. الـ Perfusion هو الدم (وظيفة القلب)."),
+ ("Muscles of quiet expiration are ……", ["Abdominal", "Passive", "Internal intercostal muscle", "None of the above"], 1,
+  "الزفير الهادي passive بالكامل وبيعتمد على elastic recoil of lung. العضلات بتشتغل في الـ forced expiration بس."),
+ ("During inspiration, sternum moves ……", ["Backward", "Forward", "A+B", "Laterally"], 1,
+  "الـ sternum بيتحرك لقدام فيزود الـ anteroposterior diameter."),
+ ("Cilia may be paralyzed due to ……", ["Dust", "Anesthesia", "Sleeping", "None of the above"], 1,
+  "التخدير بيعمل complete temporary paralysis للـ cilia، والتدخين التقيل بيعمل paralysis مؤقت."),
+ ("Postural drainage transports secretions from ……", ["Distal to proximal", "Proximal to distal", "A+B", "None of the above"], 0,
+  "الـ postural drainage بيستغل الجاذبية عشان ينقل البلغم من الشعيبات الطرفية للشعب الكبيرة (Transportation)."),
+ ("FEV1 is considered ……", ["Static lung volume", "Dynamic lung", "A+B", "None of the above"], 1,
+  "FEV1 = Forced Expiratory Volume in 1st second، يعني بيتقاس مع الزمن فهو dynamic."),
+ ("Emphysema means destruction of the ……", ["Bronchi", "Alveoli", "Trachea", "Nose"], 1,
+  "Emphysema = destruction / loss of elasticity of alveolar walls."),
+ ("Orthopnea ……… may indicate:", ["Respiratory failure", "Lt side heart failure", "Rt side heart failure", "All of the above"], 1,
+  "الـ Orthopnea والـ PND من أعراض الـ Left side heart failure (pulmonary congestion)."),
+ ("Diaphragm ↑ ……… diameter of chest expansion:", ["Transverse", "Vertical", "A-P", "All of the above"], 1,
+  "الـ diaphragm بينزل لتحت فيزود الـ vertical diameter. الـ external intercostal هي اللي بتزود الـ transverse."),
+ ("Total lung capacity ……… in C.O.P.D:", ["Decrease", "Increase", "Constant", "None of the above"], 1,
+  "TLC بتزيد في الـ COPD لأن الـ residual volume بيزيد زيادة رهيبة (air trapping)."),
+ ("Residual volume ……… in C.O.P.D:", ["Decrease", "Increase", "Constant", "None of the above"], 1,
+  "RV بيزيد tremendously بسبب احتباس الهوا."),
+ ("Ciliary action to clean lung secretion moves from:", ["Up to down", "Down to up", "Up and laterally", "None of the above"], 1,
+  "الـ cilia بتتحرك من تحت لفوق وبتطلع البلغم والدم والأجسام الغريبة لبرا."),
+ ("During sleeping flat the venous return ……", ["Decrease", "Increase", "Constant", "None of the above"], 1,
+  "في الوضع الـ flat الجاذبية بتتلغي فالـ venous return بيزيد، وده سبب الـ orthopnea."),
+ ("Vital capacity ……… with restrictive lung disease:", ["Increase", "Decrease", "Constant", "None of the above"], 1,
+  "VC بتقل مع الـ restrictive والـ obstructive ومع السن."),
+ ("Angina pain is considered ……… pain:", ["Localized", "Dull aching", "Stitching", "None of the above"], 1,
+  "ألم الذبحة dull aching / compression، منتشر وخلف القص (hand sign)، مش localized."),
+]
+
+PT7_CASE_INTRO = "A 33 years old ♂ C/O recurrent attacks of cough / dyspnea, wheeze which increase at night, non productive cough with viscid sputum."
+PT7_CASE = [
+ ("Barrel shape chest may happen with repeated attacks of asthma.", TF, 0,
+  "ممكن يحصل بشكل مؤقت أثناء النوبات المتكررة وبيختفي بعدها، أما في الـ COPD فهو دائم."),
+ ("The possible diagnosis is emphysema.", TF, 1,
+  "نوبات متكررة + wheeze بالليل + بلغم لزج = Bronchial Asthma."),
+ ("FEV1 increases during attacks of asthma.", TF, 1, "FEV1 بيقل أثناء النوبة لأن فيه obstruction."),
+ ("Dullness occurs during attack of asthma.", TF, 1, "في النوبة بيبقى فيه wheezing، ومفيش dullness."),
+ ("Asthma is considered restrictive lung disease.", TF, 1, "الربو obstructive و reversible."),
+]
+
+PREV_DOUBLE = [
+ ("Median sternotomy occurs with open heart surgery …… Yellow sputum indicates lung infections.", DOUBLE_TF, 0,
+  "الجملتين صح: الـ median sternotomy هو شق القص في جراحات القلب المفتوح، والبلغم الأصفر = infection."),
+ ("Barrel chest shape occurs with pleural effusion …… Residual volume increases in C.O.P.D patients.", DOUBLE_TF, 2,
+  "الـ barrel chest في الـ emphysema/COPD مش الـ pleural effusion، والـ RV بيزيد في الـ COPD."),
+ ("Anesthesia ↑ mucociliary action …… Postural drainage is indicated post surgery.", DOUBLE_TF, 2,
+  "التخدير بيشل الـ cilia (مش بيزود)، والـ postural drainage مطلوب بعد العمليات عشان البلغم المحبوس."),
+ ("Orthopnea means dyspnea during sitting …… Cardiac edema is decreased by elevation and compression with ice packs.", DOUBLE_TF, 3,
+  "الـ Orthopnea = ضيق نفس وهو نايم flat ويتحسن بالقعدة. والـ ice packs والضغط مش علاج للـ cardiac edema."),
+ ("During inspiration the diaphragm descends downward …… Pulmonary edema occurs in left side heart failure.", DOUBLE_TF, 0,
+  "الجملتين صح: الـ diaphragm بينزل في الشهيق، والـ LSHF بتعمل pulmonary congestion/edema."),
+]
+PREV_MCQ = [
+ ("…… cough occurs in pleural effusion.", ["Dry (non productive)", "Productive", "A+B", "None of the above"], 0,
+  "الـ pleural effusion مرض في الغشاء البلوري والرئة نفسها سليمة، فالكحة بتبقى ناشفة."),
+ ("Purulent sputum with pus occurs in ……", ["C.O.P.D", "Lung abscess", "Pleural effusion", "Emphysema"], 1,
+  "البلغم الصديدي الغزير بيكون في الـ suppurative diseases: lung abscess و bronchiectasis."),
+ ("Vomiting of blood is considered ……", ["Hemoptysis", "Hematemesis", "Dyspnea", "Coughing"], 1,
+  "Hematemesis = ترجيع دم من الـ GIT. أما Hemoptysis فهو كحة بدم من الجهاز التنفسي."),
+ ("Total lung capacity ……… in C.O.P.D.", ["Increase", "Decrease", "Not changed", "None of the above"], 0,
+  "بسبب الزيادة الرهيبة في الـ RV."),
+ ("Filtration of inspired air occurs at ……", ["Gas exchange zone", "Conducting zone", "A+B", "None of the above"], 1,
+  "الـ conducting zone (nose, trachea, main bronchi) هي اللي بتعمل filtration و warming و humidification."),
+]
+PREV_TF = [
+ ("Anginal pain is well localized.", TF, 1, "ألم الذبحة diffuse وخلف القص، والمريض بيحط إيده كلها (hand sign)."),
+ ("Pursed lip breathing is used with pleural effusion patients.", TF, 1, "الـ Pursed lip breathing لمرضى الـ obstructive (COPD/asthma) عشان يمنع collapse الشعيبات."),
+ ("Diaphragm contraction mainly increases the transverse diameter of the chest.", TF, 1, "بيزود الـ vertical diameter."),
+ ("Therapeutic percussion is used to mobilize secretions with inspiration and expiration.", TF, 0, "الـ percussion من methods of mobilization of secretions."),
+ ("Epiglottic closure is the first step of coughing.", TF, 1, "أول خطوة deep inspiration، وبعدها close epiglottis، وبعدها ↑ abdominal pressure، وبعدها open epiglottis، وآخرها forced expiration."),
+ ("Postural drainage is gravity assisted positions.", TF, 0, "بيستخدم الجاذبية لتصريف البلغم من الفص المصاب."),
+ ("Unstable angina occurs during rest.", TF, 0, "الـ unstable angina ممكن تحصل في الراحة ومن غير مجهود."),
+ ("S-T segment depression occurs in angina.", TF, 0, "الـ ischemia بتظهر في الـ ECG كـ ST depression."),
+ ("Postural deformities can cause restrictive lung disease.", TF, 0, "الـ Scoliosis والـ kyphosis بيقيدوا تمدد الصدر."),
+ ("C.O.P.D is classified as reversible airflow limitation.", TF, 1, "الـ COPD irreversible، أما الربو فهو reversible."),
+]
+
+PT10 = [
+ ("Bare area of the heart is at:", ["3–4th intercostal space", "4th, 5th intercostal space", "10–12th intercostal space"], 1, "الـ bare area of the heart عند المسافة الضلعية الرابعة والخامسة على الشمال."),
+ ("Hemoptysis occurs in:", ["Bronchitis", "Lung cancer", "T.B", "All of the above"], 3, "كل دول من الأسباب التنفسية للـ hemoptysis، ومعاهم كمان pneumonia و bronchiectasis و pulmonary edema."),
+ ("Epistaxis — bleeding from:", ["Nose", "GIT", "Lung"], 0, "Epistaxis = نزيف من الأنف."),
+ ("Quiet expiration occurs by:", ["Diaphragm", "Abdominal muscle", "Lung recoil"], 2, "الزفير الهادي passive ومعتمد على elastic recoil."),
+ ("Gas exchange area in lung:", ["Alveoli", "Bronchi", "Trachea", "All of the above"], 0, "الـ alveoli هي وحدة تبادل الغازات. الـ Bronchi والـ trachea من الـ conducting zone."),
+ ("Psychological chest pain is ……", ["Seconds pain", "Minutes pain", "↑ with exercise", "↑ with heavy meal"], 0, "الألم النفسي بيقعد ثواني وبيتحدد بصباع واحد (finger sign)."),
+ ("Abnormal chest shape in C.O.P.D:", ["Barrel", "Flat", "Funnel"], 0, "Barrel chest: الـ AP بيبقى = الـ Transverse."),
+ ("In C.O.P.D, FEV1 is:", ["Equal 80%", "Decreased", "Increased"], 1, "FEV1 < 80%، ولو < 50% يبقى severe، ولو < 30% يبقى very severe."),
+ ("Percussion in C.O.P.D:", ["Resonance", "Dullness", "Hyper-resonance"], 2, "الهوا المحبوس بيدي hyper-resonance."),
+ ("T.V.F ↑ in:", ["C.O.P.D", "Pleural effusion", "Bronchitis", "None of the above"], 3, "الـ TVF بيزيد في الـ 3 Cs بس: Consolidation و Cavity و solid mass. وبيقل في الـ COPD والـ effusion."),
+ ("Normal percussion of liver:", ["Dullness", "Resonance", "Hyper-resonance"], 0, "الأعضاء المصمتة زي الكبد والقلب بتدي dullness."),
+ ("Vital capacity ↓ in:", ["C.O.P.D", "Restrictive lung disease", "A + B"], 2, "VC بتقل في الـ obstructive والـ restrictive."),
+ ("Abnormal breathing sound in asthma:", ["Wheeze", "Rales", "Rub"], 0, "الـ Wheeze صوت صفير من ضيق الشعب في الـ asthma والـ COPD."),
+ ("Normal breathing sounds:", ["Bronchial + vesicular", "Rales + bronchi", "Bronchi + rub"], 0, "الأصوات الطبيعية: vesicular على الرئة، و bronchial على القصبة."),
+ ("Tricuspid valve is located in:", ["Left side heart", "Right side heart"], 1, "بين الـ RA والـ RV. أما الـ Mitral فهو على الشمال."),
+ ("Pulmonary edema symptoms:", ["Dyspnea – cough – hemoptysis", "Cardiac edema", "Liver congestion", "Pitting edema"], 0, "دي أعراض الـ pulmonary congestion من الـ LSHF."),
+ ("Anginal pain:", ["Seconds pain", "More localized", "Hand syndrome, dull aching pain", "Not referred pain"], 2, "Hand sign: ألم dull، خلف القص، بيقعد دقايق، وبينتشر للدراع الشمال والفك."),
+ ("Cardiac edema:", ["Pitting – gravitational – bilateral", "Unilateral – pitting – gravitational", "Bilateral – non pitting – gravitational", "Unilateral – non pitting – gravitational"], 0, "الـ cardiac edema: Bilateral و Pitting و Dependent/gravitational."),
+ ("In cardiac cycle, venous return is in:", ["Left side heart", "Right side heart", "Left atrium", "Aorta"], 1, "الدم الوريدي بيرجع بالـ SVC والـ IVC للـ right atrium."),
+ ("Muscle of quiet inspiration:", ["Abdominal", "Diaphragm", "Scalenus"], 1, "الـ Diaphragm هو الأساسي، وبيعمل حوالي 75–80% من الشهيق."),
+ ("Green sputum indicates:", ["Infection", "Normal", "Lung cancer", "Fibrosis"], 0, "الأخضر والأصفر والصدئي = infection."),
+ ("Valves in the heart act as:", ["One way direction", "Two way direction", "Three way direction", "Four way direction"], 0, "الصمامات بتمنع رجوع الدم، فهي اتجاه واحد."),
+ ("Orthopnea means:", ["Dyspnea during flat, improved by sitting", "Dyspnea during sitting, improved by flat", "Dyspnea during exercise", "Dyspnea during stress"], 0, "Orthopnea = dyspnea وهو نايم flat وبتتحسن بالقعدة."),
+ ("In acute D.V.T, we can apply:", ["Passive ex", "Active ex", "Active assisted ex", "None of the above"], 3, "ممنوع تحريك الكاحل أو أي تمرين قبل الـ Doppler، لأن الجلطة ممكن تتفصل وتعمل pulmonary embolism."),
+ ("…… supplies cardiac muscle with blood:", ["Coronary", "Sural", "Carotid", "Basilar"], 0, "الـ Coronary arteries طالعة من الـ arch of aorta وبتغذي عضلة القلب."),
+]

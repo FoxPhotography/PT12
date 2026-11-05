@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CVP Midterm — Cardiopulmonary PT</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:linear-gradient(160deg, #6b6d62 0%, #5a5c52 45%, #45473e 100%); --bg2:linear-gradient(135deg, #4e4e46 0%, #2d2d28 100%); --bg3:linear-gradient(135deg, #44443c 0%, #252520 100%);
+    --card:linear-gradient(135deg, #44443d 0%, #252520 100%); --card2:#2e2f28;
+    --border:rgba(232,210,181,0.121); --border2:rgba(232,210,181,0.152);
+    --text:#ecbda6; --muted:#c4bdad; --dim:#8b8d82;
+    --red:#f0937f; --red2:#7a140e;
+    --orange:#7a3510; --orange2:#7a3510;
+    --emerald:#c2d09f; --emerald2:#4d5a34;
+    --blue:#590907; --blue2:#590907;
+    --purple:#590907; --cyan:#4a5649;
+    --yellow:#7a3510; --pink:#74203a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
+
+  /* background grid */
+  body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(240,147,127,0.056) 1px,transparent 1px),linear-gradient(90deg,rgba(240,147,127,0.056) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+  body::after { content:''; position:fixed; top:-200px; left:50%; transform:translateX(-50%); width:900px; height:450px; background:radial-gradient(ellipse,rgba(240,147,127,0.098) 0%,transparent 70%); pointer-events:none; z-index:0; }
+
+  /* HEADER */
+  header { position:relative; z-index:10; padding:50px 0 36px; text-align:center; border-bottom:1px solid var(--border); background:linear-gradient(180deg,rgba(240,147,127,0.098) 0%,transparent 100%); }
+  .header-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(240,147,127,0.14); border:1px solid rgba(240,147,127,0.3); color:#f0937f; padding:6px 18px; border-radius:100px; font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; animation:fadeDown 0.6s ease both; }
+  .header-badge::before { content:''; width:6px; height:6px; background:linear-gradient(135deg, #872a24 0%, #5b110c 100%); border-radius:50%; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(0.8);} }
+  h1 { font-size:clamp(26px,5vw,46px); font-weight:900; letter-spacing:-1px; line-height:1.2; animation:fadeDown 0.6s 0.1s ease both; background:linear-gradient(170deg,#fbf3e7 0%,#e8d2b5 55%,#c9a87e 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .subtitle { color:var(--muted); margin-top:8px; font-size:13px; animation:fadeDown 0.6s 0.2s ease both; direction:ltr; font-family:'JetBrains Mono',monospace; letter-spacing:1px; }
+  .stats-bar { display:flex; justify-content:center; gap:40px; margin-top:28px; flex-wrap:wrap; animation:fadeDown 0.6s 0.3s ease both; }
+  .stat { text-align:center; }
+  .stat-num { font-size:26px; font-weight:900; color:#f0937f; font-family:'JetBrains Mono',monospace; }
+  .stat-label { font-size:11px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-top:2px; }
+
+  /* NAV */
+  .nav { position:sticky; top:0; z-index:100; background:linear-gradient(135deg, rgba(91,93,83,0.97) 0%, rgba(71,72,64,0.97) 100%); backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:0 16px; display:flex; gap:4px; justify-content:center; overflow-x:auto; scrollbar-width:none; }
+  .nav::-webkit-scrollbar { display:none; }
+  .nav-btn { background:none; border:none; color:var(--muted); font-family:'Cairo',sans-serif; font-size:12.5px; font-weight:600; padding:14px 16px; cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent; transition:all 0.2s; text-decoration:none; display:flex; align-items:center; }
+  .nav-btn:hover { color:var(--text); }
+  .nav-btn.active { color:#f0937f; border-bottom-color:rgba(240,147,127,0.55); }
+
+  /* MAIN */
+  main { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:36px 20px 80px; }
+  .section { display:none; animation:fadeIn 0.4s ease; }
+  .section.active { display:block; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-15px);} to{opacity:1;transform:translateY(0);} }
+
+  /* TOPIC GROUP */
+  .topic-group { margin-bottom:32px; }
+  .topic-header { display:flex; align-items:center; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .topic-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+  .topic-title { font-size:17px; font-weight:700; color:var(--text); }
+  .topic-count { margin-right:auto; background:rgba(232,210,181,0.096); border:1px solid var(--border); color:var(--muted); font-size:11px; font-family:'JetBrains Mono',monospace; padding:3px 10px; border-radius:100px; }
+
+  /* Q CARDS */
+  .q-card { background:var(--card); border:1px solid var(--border); border-radius:12px; margin-bottom:10px; overflow:hidden; transition:border-color 0.2s,box-shadow 0.2s; }
+  .q-card:hover { border-color:var(--border2); box-shadow:0 4px 24px rgba(20,20,16,0.3); }
+  .q-header { display:flex; align-items:flex-start; gap:14px; padding:16px 18px; cursor:pointer; }
+  .q-num { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--muted); background:var(--bg3); border:1px solid var(--border); border-radius:6px; padding:4px 10px; flex-shrink:0; margin-top:1px; }
+  .q-text { font-size:14px; font-weight:600; line-height:1.6; flex:1; }
+  .q-toggle { width:24px; height:24px; border-radius:6px; background:var(--bg3); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--muted); font-size:12px; transition:all 0.2s; margin-top:1px; }
+  .q-card.open .q-toggle { background:rgba(240,147,127,0.14); border-color:rgba(240,147,127,0.3); color:#f0937f; transform:rotate(180deg); }
+  .q-body { display:none; padding:0 18px 16px 18px; border-top:1px solid var(--border); }
+  .q-card.open .q-body { display:block; }
+
+  /* OPTIONS */
+  .options { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+  .option { display:flex; align-items:flex-start; gap:12px; padding:11px 13px; border-radius:8px; border:1px solid var(--border); background:var(--bg2); font-size:13.5px; line-height:1.5; transition:all 0.2s; cursor:pointer; }
+  .option:hover { border-color:var(--border2); background:var(--card); }
+  .opt-letter { font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; width:22px; height:22px; min-width:22px; border-radius:5px; display:flex; align-items:center; justify-content:center; background:var(--bg3); border:1px solid var(--border); color:var(--muted); transition:all 0.2s; }
+
+  /* answered states */
+  .q-card.answered .option, .show-all-mode .option { pointer-events:none; }
+  .q-card.answered .option.correct, .show-all-mode .option.correct { border-color:rgba(194,208,159,0.4); background:rgba(194,208,159,0.098); color:#c2d09f; }
+  .q-card.answered .option:not(.correct):not(.wrong-selected), .show-all-mode .option:not(.correct) { opacity:0.4; }
+  .q-card.answered .option.correct .opt-letter, .show-all-mode .option.correct .opt-letter { background:rgba(194,208,159,0.22); border-color:rgba(194,208,159,0.5); color:var(--emerald); }
+  .q-card.answered .option.correct .opt-letter::after, .show-all-mode .option.correct .opt-letter::after { content:'✓'; }
+  .option.wrong-selected { border-color:rgba(240,147,127,0.4); background:rgba(240,147,127,0.098); color:#f0937f; opacity:1!important; }
+  .option.wrong-selected .opt-letter { background:rgba(240,147,127,0.22); border-color:rgba(240,147,127,0.5); color:var(--red); }
+  .option.wrong-selected .opt-letter::after { content:'✗'; }
+  @keyframes popCorrect { 0%{transform:scale(1);} 50%{transform:scale(1.02);background:rgba(194,208,159,0.21);} 100%{transform:scale(1);} }
+  .pop-animation { animation:popCorrect 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+  /* SEARCH */
+  .search-wrap { margin-bottom:24px; position:relative; }
+  .search-input { width:100%; background:var(--card); border:1px solid var(--border); border-radius:10px; color:var(--text); font-family:'Cairo',sans-serif; font-size:14px; padding:13px 18px 13px 46px; outline:none; transition:border-color 0.2s; direction:rtl; }
+  .search-input::placeholder { color:var(--dim); }
+  .search-input:focus { border-color:rgba(240,147,127,0.4); box-shadow:0 0 0 3px rgba(122,20,14,0.064); }
+  .search-icon { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--dim); font-size:16px; pointer-events:none; }
+
+  /* GUIDE CARDS (non-MCQ sections) */
+  .guide-section { margin-bottom:28px; }
+  .guide-title { display:flex; align-items:center; gap:12px; margin-bottom:16px; padding:16px 20px; background:var(--card); border:1px solid var(--border); border-radius:12px; }
+  .guide-emoji { font-size:22px; }
+  .guide-heading { font-size:17px; font-weight:800; flex:1; }
+  .guide-badge { font-family:'JetBrains Mono',monospace; font-size:11px; background:rgba(240,147,127,0.168); border:1px solid rgba(240,147,127,0.25); color:#f0937f; padding:3px 10px; border-radius:100px; }
+
+  .info-card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px 20px; margin-bottom:12px; }
+  .info-card.danger { border-color:rgba(240,147,127,0.3); background:rgba(240,147,127,0.056); }
+  .info-card.success { border-color:rgba(194,208,159,0.3); background:rgba(194,208,159,0.056); }
+  .info-card.warn { border-color:rgba(230,171,124,0.3); background:rgba(230,171,124,0.056); }
+  .info-card.info { border-color:rgba(236,189,166,0.3); background:rgba(236,189,166,0.056); }
+  .info-card.purple { border-color:rgba(236,189,166,0.3); background:rgba(236,189,166,0.056); }
+  .card-tag { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+  .danger .card-tag { color:#f0937f; }
+  .success .card-tag { color:#c2d09f; }
+  .warn .card-tag { color:#e6ab7c; }
+  .info .card-tag { color:#ecbda6; }
+  .purple .card-tag { color:#ecbda6; }
+  .card-tag::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; display:inline-block; }
+  .card-body { font-size:13.5px; line-height:1.85; color:var(--text); }
+  .card-body strong { color:#ecbda6; font-weight:700; }
+  .card-body code { font-family:'JetBrains Mono',monospace; font-size:12px; background:rgba(232,210,181,0.112); border:1px solid var(--border); border-radius:4px; padding:1px 6px; color:#bcc8b6; }
+
+  /* TABLE */
+  .data-table { width:100%; border-collapse:collapse; margin-top:12px; margin-bottom:20px; font-size:13px; }
+  .data-table th { background:var(--bg3); color:var(--muted); font-weight:700; padding:10px 14px; text-align:right; border-bottom:1px solid var(--border); letter-spacing:0.5px; font-size:11px; text-transform:uppercase; }
+  .data-table td { padding:11px 14px; border-bottom:1px solid var(--border); vertical-align:top; line-height:1.6; }
+  .data-table tr:last-child td { border-bottom:none; }
+  .data-table tr:hover td { background:rgba(232,210,181,0.032); }
+  .data-table .hl { color:#bcc8b6; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; }
+  .data-table .ok { color:#c2d09f; font-weight:700; }
+  .data-table .bad { color:#f0937f; font-weight:700; }
+
+  /* Step list */
+  .step-list { list-style:none; display:flex; flex-direction:column; gap:10px; margin-top:12px; }
+  .step-list li { display:flex; align-items:flex-start; gap:12px; font-size:13.5px; line-height:1.75; }
+  .step-num { width:26px; height:26px; min-width:26px; border-radius:50%; background:rgba(240,147,127,0.21); border:1px solid rgba(240,147,127,0.3); color:#f0937f; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+
+  /* Pill tags */
+  .pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .pill { font-size:12px; font-weight:600; padding:4px 12px; border-radius:100px; border:1px solid; white-space:nowrap; }
+  .pill-red { color:#f0937f; border-color:rgba(240,147,127,0.3); background:rgba(240,147,127,0.112); }
+  .pill-green { color:#c2d09f; border-color:rgba(194,208,159,0.3); background:rgba(194,208,159,0.098); }
+  .pill-blue { color:#ecbda6; border-color:rgba(236,189,166,0.3); background:rgba(236,189,166,0.112); }
+  .pill-orange { color:#e6ab7c; border-color:rgba(230,171,124,0.3); background:rgba(230,171,124,0.112); }
+  .pill-purple { color:#ecbda6; border-color:rgba(236,189,166,0.3); background:rgba(236,189,166,0.112); }
+
+  /* Color helpers */
+  .ic-red { background:rgba(240,147,127,0.168); color:#f0937f; }
+  .ic-orange { background:rgba(230,171,124,0.168); color:#e6ab7c; }
+  .ic-green { background:rgba(194,208,159,0.168); color:#c2d09f; }
+  .ic-blue { background:rgba(236,189,166,0.168); color:#ecbda6; }
+  .ic-purple { background:rgba(236,189,166,0.168); color:#ecbda6; }
+  .ic-cyan { background:rgba(188,200,182,0.168); color:#bcc8b6; }
+  .ic-yellow { background:rgba(230,171,124,0.168); color:#e6ab7c; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width:5px; height:5px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border2); border-radius:10px; }
+  @media(max-width:640px) {
+    .stats-bar{gap:20px;} .nav-btn{padding:12px 10px;font-size:11px;}
+    h1{font-size:24px;} .data-table{font-size:12px;}
+  }
+</style>
+<meta name="theme-color" content="#5c5e54">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../../assets/theme.css">
+<script src="../../assets/theme.js" defer></script>
+</head>
+<body>
+<div class="fx-band" aria-hidden="true"></div>
+<a class="fx-home" href="../../index.html" aria-label="PT Hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>PT Hub</a>
+
+<header>
+  <div class="header-badge">🏥 Hospital Day 1</div>
+  <h1>Cardiopulmonary PT — CVP Sections</h1>
+  <p class="subtitle">Vital Signs · Respiration · History Taking · Chest Inspection</p>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">سكاشن</div></div>
+    <div class="stat"><div class="stat-num">30</div><div class="stat-label">سؤال MCQ</div></div>
+    <div class="stat" id="score-stat"><div class="stat-num" id="score-display">0/30</div><div class="stat-label">إجابات صحيحة</div></div>
+  </div>
+</header>
+
+<nav class="nav">
+  <a href="../../index.html" class="nav-btn">🔙 الرئيسية</a>
+  <a href="midterm.html" class="nav-btn">📚 النظري والملخصات</a>
+  <button class="nav-btn active" onclick="showSection('hospital')" id="btn-hospital">🏥 دليل المستشفى</button>
+  <button class="nav-btn" onclick="showSection('sec1')" id="btn-sec1">🌡️ Sec 1 — Vital Signs</button>
+  <button class="nav-btn" onclick="showSection('sec2')" id="btn-sec2">🫁 Sec 2 — RR & Patterns</button>
+  <button class="nav-btn" onclick="showSection('sec3')" id="btn-sec3">📋 Sec 3 — History</button>
+  <button class="nav-btn" onclick="showSection('sec4')" id="btn-sec4">👁️ Sec 4 — Inspection</button>
+  <button class="nav-btn" onclick="showSection('quiz')" id="btn-quiz">📝 Quiz (MCQ)</button>
+  <button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار الإجابات</button>
+  <button class="nav-btn" onclick="retest()">🔄 إعادة</button>
+</nav>
+
+<main>
+
+<!-- ===================== HOSPITAL GUIDE ===================== -->
+<div class="section active" id="hospital">
+
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">🚪</div>
+      <div class="guide-heading">قبل ما تدخل على العيان — Checklist</div>
+      <div class="guide-badge">Pre-Contact</div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">بروتوكول الدخول</div>
+      <div class="card-body">
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div>المظهر والأدوات: بالطو، سماعة (Stethoscope)، شريط قياس (Tape measure)، الشيت مطبوع، ساعة بعقارب أو تايمر صامت لعد الـ Pulse والـ RR.</div></li>
+          <li><div class="step-num">2</div><div>اقف على <strong>يمين العيان</strong> دايماً — الثابت في الفحص الطبي.</div></li>
+          <li><div class="step-num">3</div><div>عرّف نفسك بوضوح: <em>"صباح الخير يا حاج، أنا دكتور علاج طبيعي، جايين نطمن على حضرتك ونعمل تقييم بسيط للصدر والتنفس، دقيقتين لو تسمحلي."</em></div></li>
+          <li><div class="step-num">4</div><div>تأكد من هوية المريض من الـ <code>ID Band</code> أو الفايل قبل أي حاجة.</div></li>
+          <li><div class="step-num">5</div><div>طلب الموافقة (Consent) وريّح العيان — اطلب منه يقعد مريح أو ينام لو محتاج.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">📋</div>
+      <div class="guide-heading">ملء شيت الـ History — خطوة بخطوة</div>
+      <div class="guide-badge">History Sheet</div>
+    </div>
+
+    <div class="info-card warn">
+      <div class="card-tag">⚡ Chief Complaint — القاعدة الصارمة</div>
+      <div class="card-body">
+        اكتب <strong>كلام العيان نفسه + المدة</strong> — ممنوع نهائياً كتابة تشخيص!<br><br>
+        <span style="color:#f0937f">❌ غلط:</span> <code>COPD</code> أو <code>Heart Failure</code><br>
+        <span style="color:#c2d09f">✔️ صح:</span> <code>"Shortness of breath for 5 days"</code> أو <code>"Productive cough for 2 weeks"</code>
+      </div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">Personal History — نقاط مهمة</div>
+      <div class="card-body">
+        <strong>Occupation:</strong> ركز على التعرض للغبار والمواد الكيميائية (مزارع، أسمنت، غزل ونسيج، نقاش).<br><br>
+        <strong>🚬 Smoking — معادلة Pack-Years:</strong><br>
+        &nbsp;&nbsp;&nbsp;<code>Pack-Years = (Cigarettes/day ÷ 20) × Years of smoking</code><br><br>
+        <strong>Smoking Index (SI):</strong> <code>SI = Cigarettes/day × Years</code><br>
+        &nbsp;&nbsp;&nbsp;Mild: &lt;200 | Moderate: 200–400 | Heavy: &gt;400<br><br>
+        <strong>Home:</strong> بالدور الكام؟ فيه أسانسير؟ (عشان تعرف الـ Functional Baseline).
+      </div>
+    </div>
+
+    <div class="info-card purple">
+      <div class="card-tag">HPI — تفاصيل المرض الحالي (بالترتيب)</div>
+      <div class="card-body">
+        <ol style="margin-right:16px;line-height:2;">
+          <li><strong>Onset:</strong> فجأة (Sudden) ولا بالتدريج (Gradual)؟</li>
+          <li><strong>Duration & Course:</strong> بقاله قد إيه؟ بيزيد/بيقل/ثابت؟</li>
+          <li><strong>Aggravating & Relieving:</strong> إيه بيزوده؟ وإيه بيريحه؟</li>
+          <li><strong>Associated symptoms:</strong> سخونية؟ بلغم؟ نبض سريع؟</li>
+          <li><strong>Treatment received:</strong> أخد إيه لحد دلوقتي؟</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">🔎</div>
+      <div class="guide-heading">Symptom Checklist — الأعراض الكارديوبولمونرية</div>
+      <div class="guide-badge">Sheet Page 5</div>
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>العرض</th>
+          <th>اسأله بالبلدي إزاي؟</th>
+          <th>تكتبه إزاي؟</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Dyspnea</strong><br><span style="color:var(--muted);font-size:12px">نهجان / ضيق تنفس</span></td>
+          <td>مع المجهود ولا وأنت مرتاح؟ بتنام على كام مخدة؟ بتصحى مخنوق بالليل؟</td>
+          <td>درجة mMRC (0–4) + ذكر Orthopnea ولا PND لو موجودة</td>
+        </tr>
+        <tr>
+          <td><strong>Cough</strong><br><span style="color:var(--muted);font-size:12px">كحة</span></td>
+          <td>ناشفة ولا ببلغم؟ بالليل أكتر ولا الصبح؟</td>
+          <td>Dry vs Productive، Acute &lt;3 أسابيع | Chronic &gt;8 أسابيع</td>
+        </tr>
+        <tr>
+          <td><strong>Sputum</strong><br><span style="color:var(--muted);font-size:12px">بلغم</span></td>
+          <td>لونه إيه؟ الكمية قد إيه (ملعقة/فنجان)؟</td>
+          <td>أبيض=Mucoid | أصفر/أخضر=Purulent | صدأ=Pneumonia | وردي رغوي=Pulmonary Edema</td>
+        </tr>
+        <tr>
+          <td><strong>Hemoptysis</strong><br><span style="color:var(--muted);font-size:12px">بصق دم</span></td>
+          <td>نزل دم مع الكحة؟ نقط ولا خيوط ولا دم صافي؟</td>
+          <td>فرق عن Hematemesis (قيء دم). لو كتير → <span class="bad">Red Flag فوراً!</span></td>
+        </tr>
+        <tr>
+          <td><strong>Chest Pain</strong><br><span style="color:var(--muted);font-size:12px">وجع صدر</span></td>
+          <td>فين بالظبط؟ بيسمع في كتفك أو فكك؟ مع النفس العميق؟</td>
+          <td>مقياس 0–10. ضغط في المنتصف + يسمع لليسار = Angina/MI 🚨</td>
+        </tr>
+        <tr>
+          <td><strong>Wheeze</strong></td>
+          <td>صدرك بيصفر وأنت بتاخد نفس؟</td>
+          <td>Expiratory (مع الزفير)، بيستجيب للبخاخة ولا لأ</td>
+        </tr>
+        <tr>
+          <td><strong>Edema</strong><br><span style="color:var(--muted);font-size:12px">تورم</span></td>
+          <td>رجليك مورمين؟ الجزمة بتضيق بالليل؟</td>
+          <td>Pitting vs Non-pitting | رجل واحدة=DVT | الاتنين=قلب/كلى</td>
+        </tr>
+        <tr>
+          <td><strong>Palpitations</strong><br><span style="color:var(--muted);font-size:12px">خفقان</span></td>
+          <td>قلبك بيدق بسرعة ولا بشكل غير منتظم؟ بيبدأ فجأة؟</td>
+          <td>Regular/Irregular، Onset/offset مفاجئ ولا تدريجي</td>
+        </tr>
+        <tr>
+          <td><strong>Syncope</strong><br><span style="color:var(--muted);font-size:12px">إغماء</span></td>
+          <td>وقعت فجأة؟ قبله شعرت بدوخة؟</td>
+          <td>Circumstances (واقف/مجهود)، مدة، تكرار</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- BEDSIDE CLINICAL MASTERCLASS -->
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">💬</div>
+      <div class="guide-heading">سيناريو الحوار العملي مع المريض في العنبر (Word-by-Word Bedside Script)</div>
+      <div class="guide-badge">Clinical Script</div>
+    </div>
+
+    <div class="info-card success">
+      <div class="card-tag">1️⃣ كسر الجليد والتعريف بالنفس (Opening Rapport)</div>
+      <div class="card-body">
+        <strong>أنت:</strong> <em>"السلام عليكم يا حاج، ألف سلامة عليك. أنا دكتور علاج طبيعي، جاي أطمن على حضرتك وأفحص الصدر والتنفس عشان نساعد حضرتك ترتاح ونتعافى بسرعة بإذن الله. تسمحلي بدقايق؟"</em><br>
+        <strong>المريض:</strong> <em>"اتفضل يا دكتور الله يسلمك."</em><br>
+        <strong>📌 تنبيه ذهبي:</strong> بص فوراً على إسورة اليد (ID Band) أو تذكرة السرير، واطلب من المريض يؤكد اسمه وسنه بهدوء للتأكد من هويته ومطابقة الملف.
+      </div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">2️⃣ الشكوى الرئيسية (Chief Complaint Script)</div>
+      <div class="card-body">
+        <strong>أنت:</strong> <em>"خير يا والدي، إيه أكتر حاجة تعباك ومضايقاك وجابتك المستشفى هنا؟"</em><br>
+        <strong>المريض:</strong> <em>"صدري كابس عليا ومش قادر أتنفس من 4 أيام، وبكح بلغم أصفر كتير."</em><br>
+        <strong>✔️ كيف تدونها بالشيت:</strong> <code style="color:#c2d09f">"Shortness of breath and productive cough for 4 days"</code><br>
+        <span style="color:#f0937f">❌ أوعى تكتب تشخيص</span> مثل: "COPD Exacerbation" في خانة الشكوى الرئيسية! الشكوى بكلمات المريض نفسه + المدة فقط.
+      </div>
+    </div>
+
+    <div class="info-card purple">
+      <div class="card-tag">3️⃣ تفكيك أعراض النهجان والكحة والألم (Detailed Probing)</div>
+      <div class="card-body">
+        <ul class="step-list">
+          <li><div class="step-num">A</div><div><strong>فحص النهجان والـ Orthopnea:</strong> <em>"النهجان ده بيجيلك وأنت نايم مستريح ولا لما تقوم تمشي وتروح الحمام؟ بتنام على كام مخدة؟ لو شيلنا المخدات ونمت مسطح تحس إنك هتتخنق؟ بتصحى بالليل مفزوع تجري تفتح الشباك تاخد هوا؟"</em> (PND & Orthopnea = Heart Failure).</div></li>
+          <li><div class="step-num">B</div><div><strong>فحص البلغم (Sputum):</strong> <em>"البلغم لونه إيه؟ أبيض شفاف ولا أصفر ولا مخضر؟ كميته قد فنجان قهوة ولا ملعقة؟ نزل معاه أي خيوط دم أو نقط حمرة؟"</em></div></li>
+          <li><div class="step-num">C</div><div><strong>فحص ألم الصدر (Chest Pain):</strong> <em>"الوجع اللي حاسس بيه في صدرك طبيعته إيه؟ تقل وحجر على صدرك بيسمع في كتفك الشمال ورقبتك؟ ولا نغزة زي الدبوس بتزيد لما تاخد نفس عميق أو تكح؟"</em> (Pleuritic vs Ischemic).</div></li>
+          <li><div class="step-num">D</div><div><strong>فحص التدخين (Smoking History):</strong> <em>"بتدخن يا حاج؟ بتشرب سجاير ولا معسل وشيشة؟ كام سيجارة أو علبة في اليوم تقريباً؟ وبقالك كام سنة بتدخن؟"</em> → احسب الـ <code>Pack-Years</code> والـ <code>Smoking Index</code> فوراً.</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAPID PHYSICAL SIGNS & BEDSIDE DIFFERENTIATION -->
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">🩺</div>
+      <div class="guide-heading">فحص الأطراف والرقبة السريع (Bedside Physical Signs)</div>
+      <div class="guide-badge">Must-Know Signs</div>
+    </div>
+
+    <div class="info-card warn">
+      <div class="card-tag">تعجر الأصابع — Digital Clubbing (شامروث وفخ الشفوي)</div>
+      <div class="card-body">
+        <strong>1. اختبار شامروث (Schamroth's Window Test):</strong> خلّي العيان يقرّب ضفرين السبابتين لبعض بظهرهم. في الوضع الطبيعي فيه فراغ معين صغير بين الضوافر (Diamond-shaped window). في الـ Clubbing <strong>يختفي هذا الفراغ تماماً</strong>.<br>
+        <strong>2. زاوية لوفيبوند (Lovibond angle):</strong> زاوية اتصال الظفر بجلد الإصبع تتخطى <strong>&gt; 180°</strong>.<br>
+        <strong>3. أشهر الأسباب:</strong>
+        <div class="pills" style="margin-top:6px">
+          <span class="pill pill-red">Suppurative lung (Bronchiectasis / Lung Abscess / Empyema)</span>
+          <span class="pill pill-red">Bronchogenic Carcinoma (ورم الرئة الخبيث)</span>
+          <span class="pill pill-orange">Idiopathic Pulmonary Fibrosis</span>
+          <span class="pill pill-blue">Cyanotic Congenital Heart Disease / Infective Endocarditis</span>
+        </div>
+        <br>
+        <div style="background:rgba(240,147,127,0.14);border-right:3px solid rgba(240,147,127,0.55);padding:8px 12px;border-radius:4px;margin-top:8px;">
+          <strong>⚠️ فخ الشفوي القاتل:</strong> <em>"هل مريض الـ COPD بيجيله Clubbing؟"</em><br>
+          <strong>الإجابة النموذجية:</strong> <span style="color:#f0937f"><strong>لا! الـ COPD البسيط لا يسبب Clubbing مطلقاً.</strong> لو شفت مريض COPD وعنده Clubbing لازم تبحث فوراً عن <strong>Bronchogenic Carcinoma</strong> (سرطان رئة مضاعف للتدخين) أو <strong>Bronchiectasis</strong>!</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">الزرقة — Central vs. Peripheral Cyanosis</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>وجه المقارنة</th><th>Central Cyanosis (زرقة مركزية)</th><th>Peripheral Cyanosis (زرقة طرفية)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>الأماكن</strong></td><td>الشفتين، اللسان، الغشاء المخاطي الداخلي للفم</td><td>الأصابع، الأظافر، شحمة الأذن، الأنف</td></tr>
+            <tr><td><strong>حرارة الأطراف</strong></td><td class="ok">الأطراف دافئة (Warm)</td><td class="bad">الأطراف باردة ومثلجة (Cold)</td></tr>
+            <tr><td><strong>التأثر بالتدفئة/المساج</strong></td><td>لا تتحسن بالتدفئة</td><td>تتحسن وتختفي بالتدفئة والمساج</td></tr>
+            <tr><td><strong>السبب الرئيسي</strong></td><td>نقص أكسجين الدم الشرياني الشديد (PaO₂ &lt; 85%) نتيجة أمراض رئة متقدمة أو Right-to-Left Shunt</td><td>بطء سريان الدم وركوده في الأطراف، انخفاض حرارة الجو، Shock، Heart Failure</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card purple">
+      <div class="card-tag">مقارنة كحة الدم (Hemoptysis) وترجيع الدم (Hematemesis)</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>المعيار</th><th>Hemoptysis (كحة دم)</th><th>Hematemesis (ترجيع دم)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>المصدر</strong></td><td>الجهاز التنفسي (Respiratory tract)</td><td>الجهاز الهضمي (GI tract)</td></tr>
+            <tr><td><strong>الشكل واللون</strong></td><td class="hl">أحمر فاتح (Bright red)، رغوي (Frothy) وفيه فقاعات هواء</td><td class="bad">أحمر داكن / بني زي تفل القهوة (Coffee-ground) ممزوج بطعام</td></tr>
+            <tr><td><strong>الحموضة (pH)</strong></td><td class="ok">قلوي (Alkaline pH)</td><td>حمضي (Acidic pH بفعل حمض المعدة)</td></tr>
+            <tr><td><strong>الأعراض السابقة</strong></td><td>دغدغة في الحلق، كحة شديدة، ضيق تنفس</td><td>غثيان، ألم بالمعدة، قيء</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card success">
+      <div class="card-tag">مقارنة ألم القلب (Cardiac) وألم الغشاء البلوري (Pleuritic)</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>المعيار</th><th>Cardiac Pain (Angina / MI)</th><th>Pleuritic Chest Pain</th></tr></thead>
+          <tbody>
+            <tr><td><strong>الموقع</strong></td><td>خلف عظمة القص في المنتصف (Retrosternal) غير محدد بإصبع</td><td>جانبي محدد وموضعي (Localized) العيان يشير عليه بصباعه</td></tr>
+            <tr><td><strong>طبيعة الألم</strong></td><td>ثقل ضاغط كالحجر، عصر، حرقان (Crushing / Heaviness)</td><td>نغزات حادة زي السكاكين أو الدبابيس (Sharp / Stabbing)</td></tr>
+            <tr><td><strong>التسميع (Radiation)</strong></td><td>يسمع للكتف والذراع الأيسر، الفك السفلي، والرقبة</td><td>لا يسمع، أو يسمع لقمة الكتف فقط لو الحجاب الحاجز ملتهب</td></tr>
+            <tr><td><strong>ما يزيده وما يريحه</strong></td><td>يزيد بالمجهود والضغط العصبي؛ يقل بالراحة وأقراص تحت اللسان Nitroglycerin</td><td><strong>يزيد جداً مع الكحة والشهيق العميق</strong>؛ يقل بالنوم على الجنب المصاب أو كتم النفس</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-card danger">
+    <div class="card-tag">🚨 Red Flags — بلغ النايب فوراً لو لقيت أي منها</div>
+    <div class="card-body">
+      <div class="pills">
+        <span class="pill pill-red">وجع صدر ضاغط + عرق + يسمع للذراع أو الفك</span>
+        <span class="pill pill-red">نهجان شديد مفاجئ + زرقان</span>
+        <span class="pill pill-red">Hemoptysis كتير (كحة دم صافي)</span>
+        <span class="pill pill-red">إغماء مفاجئ أو انخفاض في الوعي</span>
+        <span class="pill pill-red">SpO2 &lt; 90% فجأة</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 1 ===================== -->
+<div class="section" id="sec1">
+
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">🌡️</div>
+      <div class="guide-heading">Section 1 — Vital Signs & Temperature</div>
+      <div class="guide-badge">Dr. Fatma — Sec 1</div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">تعريف Vital Signs</div>
+      <div class="card-body">
+        مؤشرات أساسية تعكس حالة وظائف الجسم الحيوية: <code>T</code> <code>HR</code> <code>BP</code> <code>RR</code> <code>SpO₂</code>
+      </div>
+    </div>
+
+    <div class="info-card purple">
+      <div class="card-tag">توازن الحرارة — Heat Balance</div>
+      <div class="card-body">
+        <strong>Heat Production (يولّد حرارة):</strong>
+        <div class="pills" style="margin-top:6px">
+          <span class="pill pill-orange">Activity of muscles</span>
+          <span class="pill pill-orange">Conversion of food to energy</span>
+          <span class="pill pill-orange">Chemical reactions in cells</span>
+        </div><br>
+        <strong>Heat Loss (بيفقد حرارة) — The 4 mechanisms:</strong>
+        <table class="data-table" style="margin-top:8px">
+          <thead><tr><th>الميكانيزم</th><th>التعريف</th><th>مثال</th></tr></thead>
+          <tbody>
+            <tr><td class="hl">Radiation</td><td>انتقال بدون تلامس مباشر</td><td>الجسم يشع حرارة في الغرفة</td></tr>
+            <tr><td class="hl">Conduction</td><td>انتقال بالتلامس المباشر لسطح أبرد</td><td>النوم على أرض باردة</td></tr>
+            <tr><td class="hl">Convection</td><td>انتقال عبر تيارات هواء متحركة</td><td>المروحة</td></tr>
+            <tr><td class="hl">Evaporation / Sweating</td><td>تبخر الماء من سطح الجلد</td><td>العرق</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card success">
+      <div class="card-tag">أماكن قياس الحرارة + المقارنة (مهم جداً للكويز)</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead>
+            <tr><th>المكان</th><th>القراءة</th><th>الدقة</th><th>Contraindications</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Oral (الفم)</strong></td>
+              <td class="hl">36.5 – 37.5°C</td>
+              <td class="ok">متوسط دقة</td>
+              <td>فاقد الوعي، أطفال، كحة شديدة، عمليات الفم</td>
+            </tr>
+            <tr>
+              <td><strong>Axillary (الإبط)</strong></td>
+              <td class="hl">قراءة الفم − 0.5°C</td>
+              <td class="bad">أقل دقة</td>
+              <td>شبه لا توجد، لكن نتيجتها بتحتاج تعديل</td>
+            </tr>
+            <tr>
+              <td><strong>Rectal (الشرج)</strong></td>
+              <td class="hl">قراءة الفم + 0.5°C</td>
+              <td class="ok">الأدق (Core temp)</td>
+              <td style="color:#f0937f"><strong>⚠️ مريض القلب (Vagal stimulation → Bradycardia) | جراحات الشرج | إسهال شديد</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card warn">
+      <div class="card-tag">تأثير الحمى (Fever) على باقي الـ Vital Signs</div>
+      <div class="card-body">
+        كل ارتفاع <strong>1°C</strong> في الحرارة بيزود:
+        <div class="pills" style="margin-top:8px">
+          <span class="pill pill-red">HR بـ ~10 bpm</span>
+          <span class="pill pill-orange">RR بزيادة ملحوظة</span>
+          <span class="pill pill-orange">Metabolic rate (حرق الطاقة)</span>
+        </div>
+        <br>الحرارة فوق <strong>40°C</strong> ممكن تسبب: تسارع شديد في التنفس، خلط (Confusion)، وأضرار الجهاز العصبي (Coma).
+      </div>
+    </div>
+  
+    <div class="info-card info">
+      <div class="card-tag">💓 Pulse & Heart Rate — تقييم النبض الإكلينيكي</div>
+      <div class="card-body">
+        <strong>Normal Range:</strong> <code>60 – 100 bpm</code> عند البالغين في وضع الراحة.<br>
+        <strong>Tachycardia (&gt; 100 bpm):</strong> سخونية (كل 1°C ترفع ~10 bpm)، قلق، نقص أكسجين، هبوط قلب، نشاط غدة درقية.<br>
+        <strong>Bradycardia (&lt; 60 bpm):</strong> رياضيين، أدوية Beta-blockers، إثارة العصب الحائر Vagus stimulation، انخفاض حرارة الجسم.<br><br>
+        <strong>⚠️ علامة الـ Pulse Deficit (سؤال امتحان):</strong><br>
+        هو الفرق بين ضربات القلب المسموعة بالسماعة (Apical rate) والنبض المحسوس باليد (Radial pulse).<br>
+        إذا كان <code>Apical Rate > Radial Pulse Rate</code> → يدل قطعياً على وجود عدم انتظام في ضربات القلب أشهرها <strong>Atrial Fibrillation (AF)</strong>.
+      </div>
+    </div>
+
+    <div class="info-card purple">
+      <div class="card-tag">🩸 Blood Pressure (BP) — ضغط الدم وطريقة القياس الصحيحة</div>
+      <div class="card-body">
+        <strong>المستويات المعتمدة (AHA Guidelines):</strong>
+        <table class="data-table" style="margin-top:8px">
+          <thead><tr><th>التصنيف</th><th>الانقباضي (Systolic)</th><th>الانبساطي (Diastolic)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>طبيعي (Normal)</strong></td><td class="hl">&lt; 120 mmHg</td><td class="hl">و &lt; 80 mmHg</td></tr>
+            <tr><td>مرتفع (Elevated)</td><td class="hl">120 – 129 mmHg</td><td class="hl">و &lt; 80 mmHg</td></tr>
+            <tr><td>ضغط دم مرحلة 1 (HTN Stage 1)</td><td class="hl">130 – 139 mmHg</td><td class="hl">أو 80 – 89 mmHg</td></tr>
+            <tr><td>ضغط دم مرحلة 2 (HTN Stage 2)</td><td class="hl">≥ 140 mmHg</td><td class="hl">أو ≥ 90 mmHg</td></tr>
+            <tr><td>أزمة ضغط (Hypertensive Crisis)</td><td class="bad">&gt; 180 mmHg</td><td class="bad">أو &gt; 120 mmHg (طوارئ!)</td></tr>
+          </tbody>
+        </table>
+        <strong>شروط القياس الدقيق:</strong>
+        <ul style="margin-right:16px;margin-top:6px;line-height:2;font-size:13px">
+          <li>المريض جالس مستريح 5 دقائق، الذراع مسنود في مستوى القلب.</li>
+          <li>حجم الكفة (Cuff Size): العرض يغطي 40% من محيط الذراع، والطول يغطي 80%. (الكفة الضيقة تعطي قراءة عالية كاذبة!).</li>
+          <li>حافة الكفة السفلية توضع على بعد <strong>2.5 سم (1 inch)</strong> فوق ثنية الكوع.</li>
+          <li>أصوات كورتكوف: <strong>Phase 1</strong> (أول صوت نبض واضح) = Systolic BP | <strong>Phase 5</strong> (اختفاء الصوت تماماً) = Diastolic BP.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== SECTION 2 ===================== -->
+<div class="section" id="sec2">
+
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">🫁</div>
+      <div class="guide-heading">Section 2 — Respiratory Rate & Breathing Patterns</div>
+      <div class="guide-badge">CVP PT — Sec 2</div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">تعريف الـ RR وطريقة القياس</div>
+      <div class="card-body">
+        <strong>التعريف:</strong> عدد دورات التنفس في الدقيقة (1 Inspiration + 1 Expiration = دورة واحدة).<br><br>
+        <strong>⚠️ التريكة العملية:</strong> <span style="color:#e6ab7c">إياك تقول للمريض "هقيس تنفسك"</span> — تنفسه هيتغير إرادياً!<br>
+        <span style="color:#c2d09f">✔️ الصح:</span> أمسك إيده كأنك بتقيس الـ Pulse، وعينك بتعد حركة صدره وبطنه — لمدة <strong>دقيقة كاملة</strong>.
+      </div>
+    </div>
+
+    <div class="info-card success">
+      <div class="card-tag">المعدلات الطبيعية (Normal RR)</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>الفئة</th><th>RR (breaths/min)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Adults (البالغين)</strong></td><td class="hl">12 – 20</td></tr>
+            <tr><td>Children (الأطفال)</td><td class="hl">20 – 30</td></tr>
+            <tr><td>Infants (الرضع)</td><td class="hl">30 – 60</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card purple">
+      <div class="card-tag">مصطلحات RR — حفظ صم للكويز</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>المصطلح</th><th>المعنى</th><th>أسباب شائعة</th></tr></thead>
+          <tbody>
+            <tr><td class="hl">Tachypnea</td><td>RR &gt; 20</td><td>سخونية، مجهود، نقص O₂، وجع، قلق</td></tr>
+            <tr><td class="hl">Bradypnea</td><td>RR &lt; 12</td><td>أدوية مخدرة، غيبوبة، CNS depression</td></tr>
+            <tr><td class="hl">Hyperpnea</td><td>زيادة في العمق فقط (Deep)</td><td>مجهود، حمل جسدي</td></tr>
+            <tr><td class="hl">Oligopnea / Hypopnea</td><td>تنفس سطحي ضعيف (Shallow)</td><td>Sedation، ألم شديد</td></tr>
+            <tr><td class="hl">Hyperventilation</td><td>زيادة في المعدل + العمق معاً</td><td>Anxiety، Hypoxia، DKA</td></tr>
+            <tr><td class="hl">Hypoventilation</td><td>نقص في المعدل + العمق</td><td>CNS depression، عضلات ضعيفة</td></tr>
+            <tr><td class="hl">Apnea</td><td>توقف كامل للتنفس</td><td>طوارئ!</td></tr>
+            <tr><td class="hl">Dyspnea</td><td>إحساس ذاتي بصعوبة التنفس</td><td>COPD، Asthma، Heart failure</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card warn">
+      <div class="card-tag">نوع التنفس حسب الجنس</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>الجنس</th><th>نوع التنفس</th><th>السبب</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>الرجال</strong></td>
+              <td class="hl">Abdomino-thoracic</td>
+              <td>معتمدين أساساً على عضلة الحجاب الحاجز (Diaphragm)</td>
+            </tr>
+            <tr>
+              <td><strong>السيدات</strong></td>
+              <td class="hl">Thoraco-abdominal</td>
+              <td>معتمدين على القفص الصدري أساساً (Costal) — حماية فسيولوجية للجنين</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card danger">
+      <div class="card-tag">أصوات الانسداد (Stridor vs Wheeze)</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>الصوت</th><th>مصدره</th><th>في امتى</th><th>مثال</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="hl">Stridor</td>
+              <td>Upper airway (الحنجرة والقصبة)</td>
+              <td>أثناء الشهيق (Inspiratory)</td>
+              <td>انسداد جسم غريب، Croup</td>
+            </tr>
+            <tr>
+              <td class="hl">Wheeze</td>
+              <td>Lower airway (الشعيبات)</td>
+              <td>أثناء الزفير (Expiratory)</td>
+              <td>Asthma، COPD</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="info-card purple">
+      <div class="card-tag">🌊 أنماط التنفس غير الطبيعية الشهيرة (Abnormal Breathing Patterns)</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>النمط</th><th>الوصف والشكل</th><th>الأسباب والارتباط</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="hl">Cheyne-Stokes Breathing</td>
+              <td>دورات متكررة: تنفس يبدأ سطحي ثم يعمق تدريجياً (Crescendo) ثم يقل تدريجياً (Decrescendo) يليه انقطاع تنفس (Apnea) لعدة ثوانٍ</td>
+              <td>هبوط القلب الاحتقاني الشديد (Severe CHF)، جلطات جذع المخ، اليوريميا (Uremia)</td>
+            </tr>
+            <tr>
+              <td class="hl">Kussmaul Breathing</td>
+              <td>تنفس عميق جداً وسريع ومجهد ومنتظم بدون أي انقطاع (Air Hunger)</td>
+              <td>الحماض الكيتوني السكري <strong>Diabetic Ketoacidosis (DKA)</strong>، الفشل الكلوي الحاد (Metabolic Acidosis لغسيل CO₂)</td>
+            </tr>
+            <tr>
+              <td class="hl">Biot's (Ataxic) Breathing</td>
+              <td>أنفاس سريعة وعميقة غير منتظمة عشوائياً تتخللها فترات Apnea مفاجئة</td>
+              <td>التهاب السحايا (Meningitis)، تلف المخ وارتفاع ضغط الجمجمة الشديد (ICP)</td>
+            </tr>
+            <tr>
+              <td class="hl">Paradoxical Breathing</td>
+              <td>حركة متناقضة: جدار الصدر يدخل للداخل مع الشهيق ويبرز للخارج مع الزفير (عكس الطبيعي)</td>
+              <td>الصدر السائب <strong>Flail Chest</strong> (كسور متعددة بالضلوع)، شلل الحجاب الحاجز أو إجهاده الشديد</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== SECTION 3 ===================== -->
+<div class="section" id="sec3">
+
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">📋</div>
+      <div class="guide-heading">Section 3 — Cardiopulmonary History Taking</div>
+      <div class="guide-badge">3rd CVP Section</div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">مقياس الـ mMRC — حفظ صم</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>الدرجة</th><th>المعنى</th></tr></thead>
+          <tbody>
+            <tr><td class="hl">Grade 0</td><td>نهجان فقط مع المجهود الشديد والعنيف جداً</td></tr>
+            <tr><td class="hl">Grade 1</td><td>نهجان لما يمشي بسرعة أو يطلع مطلع خفيف</td></tr>
+            <tr><td class="hl">Grade 2</td><td>بيمشي أبطأ من أقرانه، أو بيقف يرتاح وهو ماشي على مهله</td></tr>
+            <tr><td class="hl">Grade 3</td><td>بيقف عشان ياخد نفسه بعد ما يمشي ~100 متر</td></tr>
+            <tr><td class="hl">Grade 4</td><td>نهجان يمنعه يخرج من البيت، أو بينهج وهو بيلبس هدومه!</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card purple">
+      <div class="card-tag">أمراض الرئة المهنية (Occupational Lung Diseases)</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>المرض</th><th>السبب</th><th>الوظيفة</th></tr></thead>
+          <tbody>
+            <tr><td class="hl">Silicosis</td><td>غبار السيليكا</td><td>عمال محاجر، زجاج، جرانيت</td></tr>
+            <tr><td class="hl">Coal Worker's Pneumoconiosis</td><td>غبار الفحم</td><td>عمال مناجم الفحم (Black Lung)</td></tr>
+            <tr><td class="hl">Asbestosis</td><td>ألياف الأسبستوس</td><td>عزل، بناء، سيراميك — خطر Mesothelioma</td></tr>
+            <tr><td class="hl">Byssinosis</td><td>غبار القطن</td><td>عمال غزل ونسيج</td></tr>
+            <tr><td class="hl">Pneumoconiosis</td><td>أي غبار صناعي</td><td>مصطلح عام للمجموعة</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card warn">
+      <div class="card-tag">أشهر أمراض الرئة — Key Diagnoses</div>
+      <div class="card-body">
+        <div class="pills">
+          <span class="pill pill-red">COPD — Chronic Obstructive</span>
+          <span class="pill pill-red">Emphysema — ضمن COPD</span>
+          <span class="pill pill-orange">Bronchial Asthma — تشنج انعكاسي</span>
+          <span class="pill pill-orange">Cystic Fibrosis — وراثي</span>
+          <span class="pill pill-blue">Pneumonia / Bronchitis</span>
+          <span class="pill pill-blue">Tuberculosis (TB) — بكتيريا Koch</span>
+          <span class="pill pill-purple">Lung Fibrosis — تليف رئوي</span>
+          <span class="pill pill-purple">Pleural Effusion — سائل بلوري</span>
+        </div>
+        <br>
+        <strong>COPD Exacerbation triggers:</strong> عدوى (Infection)، التدخين، تلوث الهواء، ترك الأدوية.
+      </div>
+    </div>
+
+    <div class="info-card success">
+      <div class="card-tag">معادلة Smoking Index — ربط أمراض الرئة بالتدخين</div>
+      <div class="card-body">
+        <code>Smoking Index = Cigarettes/day × Years of smoking</code><br><br>
+        <strong>SI &lt; 200</strong> → Mild Smoker<br>
+        <strong>SI 200–400</strong> → Moderate Smoker<br>
+        <strong>SI &gt; 400</strong> → Heavy Smoker (خطر عالي COPD، Cancer)<br><br>
+        ملاحظة: تطبيق استخدام الـ Inhaler Therapy يبدأ عادةً لما البيشنت Heavy Smoker مع أعراض Dyspnea.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SECTION 4 ===================== -->
+<div class="section" id="sec4">
+
+  <div class="guide-section">
+    <div class="guide-title">
+      <div class="guide-emoji">👁️</div>
+      <div class="guide-heading">Section 4 — Chest Examination: Inspection</div>
+      <div class="guide-badge">Dr. Fatma — Sec 4</div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">ترتيب فحص الصدر (حفظ الترتيب)</div>
+      <div class="card-body">
+        <div class="pills">
+          <span class="pill pill-blue">1️⃣ Inspection (نظر)</span>
+          <span class="pill pill-orange">2️⃣ Palpation (جس)</span>
+          <span class="pill pill-purple">3️⃣ Percussion (دق)</span>
+          <span class="pill pill-green">4️⃣ Auscultation (استماع)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card success">
+      <div class="card-tag">شكل القفص الصدري الطبيعي (Normal Chest)</div>
+      <div class="card-body">
+        <ul style="margin-right:16px;line-height:2.2;font-size:13.5px">
+          <li><strong>الشكل:</strong> بيضاوي (Elliptical)، متماثل (Symmetrical)</li>
+          <li><strong>نسبة الأقطار:</strong> Transverse : AP = <code>2 : 1</code> (أو 7:5)</li>
+          <li><strong>الضلوع:</strong> مائلة لأسفل (oblique)</li>
+          <li><strong>Subcostal angle:</strong> حادة <strong>&lt; 90°</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-card danger">
+      <div class="card-tag">Barrel Chest — النقطة الأكثر تسميعاً</div>
+      <div class="card-body">
+        <strong>التعريف:</strong> تضخم القفص الصدري بشكل برميل، نتيجة احتباس الهواء Chronic Hyperinflation.<br><br>
+        <table class="data-table">
+          <thead><tr><th>المعيار</th><th>Barrel Chest</th><th>Normal</th></tr></thead>
+          <tbody>
+            <tr><td>Transverse : AP ratio</td><td class="bad">1 : 1 (متساويين)</td><td class="ok">2 : 1</td></tr>
+            <tr><td>الضلوع</td><td class="bad">أفقية</td><td class="ok">مائلة لأسفل</td></tr>
+            <tr><td>Intercostal spaces</td><td class="bad">متسعة</td><td class="ok">طبيعية</td></tr>
+            <tr><td>Subcostal angle</td><td class="bad">&gt; 90° (منفرجة)</td><td class="ok">&lt; 90° (حادة)</td></tr>
+            <tr><td>السبب</td><td colspan="2"><strong>COPD / Emphysema</strong> (الأشهر)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card purple">
+      <div class="card-tag">تشوهات القفص الصدري الأخرى</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>التشوه</th><th>الشكل</th><th>السبب / الارتباط</th></tr></thead>
+          <tbody>
+            <tr><td class="hl">Pectus Excavatum (Funnel chest)</td><td>انخساف ودخول الجزء السفلي من القص</td><td>خلقي / مارفان</td></tr>
+            <tr><td class="hl">Pectus Carinatum (Pigeon chest)</td><td>بروز القص للأمام زي صدر الحمامة</td><td>خلقي / Rickets عند الأطفال</td></tr>
+            <tr><td class="hl">Harrison's Sulcus</td><td>خط انخفاض أفقي على جانبي القفص السفلي</td><td>Rickets / Chronic childhood asthma</td></tr>
+            <tr><td class="hl">Kyphoscoliosis</td><td>تشوه العمود الفقري جانبياً + انحناء</td><td>يضيق حجم الرئتين</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card warn">
+      <div class="card-tag">التماثل الجانبي (Symmetry) — إيه اللي بيبان في الصدر</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>الإيجاد</th><th>يدل على</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Unilateral Bulge (بروز من ناحية)</strong></td><td>Pneumothorax، Pleural Effusion ضخمة، ورم كبير</td></tr>
+            <tr><td><strong>Unilateral Retraction (انكماش من ناحية)</strong></td><td>Lung Fibrosis / Atelectasis (Lung Collapse)</td></tr>
+            <tr><td><strong>Bilateral Bulge (برميل الاتنين)</strong></td><td>Barrel Chest في COPD/Emphysema</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card success">
+      <div class="card-tag">ندبات الجراحة في الصدر (Surgical Scars)</div>
+      <div class="card-body">
+        <table class="data-table">
+          <thead><tr><th>نوع الندبة</th><th>مكانها</th><th>عملية إيه؟</th></tr></thead>
+          <tbody>
+            <tr><td class="hl">Midline Sternotomy</td><td>شق طولي في منتصف عظمة القص</td><td>CABG (بايباس القلب) أو تغيير الصمامات</td></tr>
+            <tr><td class="hl">Posterolateral Thoracotomy</td><td>جرح مقوس تحت الإبط من الخلف</td><td>Lobectomy أو Pneumonectomy</td></tr>
+            <tr><td class="hl">Chest Tube Scar</td><td>ندبة دائرية صغيرة أسفل الإبط</td><td>درنقة صدر سابقة (Pleural Effusion/Pneumothorax)</td></tr>
+            <tr><td class="hl">Pacemaker Scar</td><td>تحت الترقوة اليسرى عادة</td><td>تركيب Pacemaker</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card danger">
+      <div class="card-tag">علامات الـ Respiratory Distress</div>
+      <div class="card-body">
+        <div class="pills">
+          <span class="pill pill-red">Nasal Flaring (رفرفة الأنف)</span>
+          <span class="pill pill-red">Accessory muscles: SCM + Scalenes</span>
+          <span class="pill pill-red">Intercostal Retraction (سحب بين الضلوع)</span>
+          <span class="pill pill-red">Suprasternal Retraction (سحب فوق القص)</span>
+          <span class="pill pill-orange">Pursed-lip breathing (تنفس بضم الشفاه) — COPD</span>
+          <span class="pill pill-orange">Tripod position (قاعد مستند لليدين)</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="info-card warn">
+      <div class="card-tag">📌 وضع القصبة الهوائية (Tracheal Position & Shift)</div>
+      <div class="card-body">
+        في الوضع الطبيعي: القصبة الهوائية <strong>Central</strong> في المنتصف تماماً في الـ Suprasternal notch.<br><br>
+        <table class="data-table">
+          <thead><tr><th>اتجاه الانحراف (Shift)</th><th>الميكانيزم</th><th>الأسباب الإكلينيكية</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="bad"><strong>منحرفة لنفس الناحية المصابة (Pulled toward)</strong></td>
+              <td>سحب نتيجة انكماش ونقص حجم الرئة وشد الأنسجة</td>
+              <td><strong>Lung Fibrosis (تليف الرئة)</strong> أو <strong>Atelectasis (انهيار الرئة / Collapse)</strong></td>
+            </tr>
+            <tr>
+              <td class="bad"><strong>مندفعة للناحية السليمة العكسية (Pushed away)</strong></td>
+              <td>دفع نتيجة تراكم ضغط أو سوائل أو هواء هائل</td>
+              <td><strong>Tension Pneumothorax</strong>، <strong>Massive Pleural Effusion</strong>، أورام ضخمة</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="info-card info">
+      <div class="card-tag">👐 علامة هوفر (Hoover's Sign)</div>
+      <div class="card-body">
+        <strong>التعريف:</strong> حركة الحواف السفلية للقفص الصدري (Lower costal margins) إلى <strong>الداخل</strong> بدلاً من التوسع للخارج أثناء الشهيق.<br>
+        <strong>السبب:</strong> تسطح عضلة الحجاب الحاجز (Flattened Diaphragm) نتيجة احتباس الهواء المزمن (Hyperinflation) في مرضى <strong>COPD الشديد</strong>، فتسحب الحواف للداخل عند انقباضها بدلاً من النزول لأسفل.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== QUIZ ===================== -->
+<div class="section" id="quiz">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" placeholder="ابحث في الأسئلة..." oninput="searchQ(this.value)" id="search-input">
+  </div>
+
+  <!-- SEC 1: Temperature -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-orange">🌡️</div>
+      <div class="topic-title">Section 1 — Vital Signs & Temperature</div>
+      <div class="topic-count">8 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q1</div><div class="q-text">The most accurate method of temperature measurement is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Oral</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Axillary</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Rectal</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Tympanic</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q2</div><div class="q-text">Rectal temperature measurement is contraindicated in cardiac patients because it causes:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Tachycardia</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Vagal stimulation leading to severe Bradycardia</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Hypertension</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Hyperventilation</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q3</div><div class="q-text">Axillary temperature reads 36.5°C. What is the actual core body temperature?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>36.0°C</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>36.5°C</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>37.0°C</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>37.5°C</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q4</div><div class="q-text">Transfer of heat through air currents is called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Radiation</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Conduction</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Convection</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Evaporation</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q5</div><div class="q-text">A patient with fever of 39°C is expected to have an approximate HR of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>70 bpm (normal)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>80 bpm</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>90 bpm (↑ by 10 per 1°C)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>110 bpm</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q6</div><div class="q-text">The least accurate site for temperature measurement is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Axillary</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Oral</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Rectal</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Tympanic</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q7</div><div class="q-text">Which of the following is a contraindication for oral temperature measurement?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Diarrhea</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Rectal surgery</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Unconscious patient</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Cardiac patient</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q8</div><div class="q-text">Heat loss through direct skin contact with a cooler surface is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Radiation</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Conduction</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Convection</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Evaporation</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- SEC 2: RR & Patterns -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-blue">🫁</div>
+      <div class="topic-title">Section 2 — RR & Breathing Patterns</div>
+      <div class="topic-count">8 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q9</div><div class="q-text">Normal respiratory rate in adults is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>8–12 breaths/min</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>12–20 breaths/min</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>20–30 breaths/min</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>30–60 breaths/min</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q10</div><div class="q-text">Why should you NOT tell the patient you are counting their breathing rate?</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>It wastes time</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>It is considered rude</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Voluntary control will alter the breathing pattern</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>There is no specific reason</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q11</div><div class="q-text">RR = 28 breaths/min in an adult patient. This is called:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Tachypnea</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Bradypnea</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Apnea</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Hyperpnea</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q12</div><div class="q-text">Predominant breathing pattern in males is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Thoraco-abdominal</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Abdomino-thoracic</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Purely diaphragmatic</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Apical</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q13</div><div class="q-text">Stridor is a sign of obstruction in the:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Upper airway (larynx/trachea)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Lower airway bronchioles</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Alveoli</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Pleural space</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q14</div><div class="q-text">Wheeze is typically heard during:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Inspiration only</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Expiration (and sometimes inspiration in severe asthma)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>At rest only</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>During percussion</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q15</div><div class="q-text">Shallow breathing with reduced depth is termed:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Hyperpnea</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Tachypnea</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Oligopnea / Hypopnea</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Apnea</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q16</div><div class="q-text">Normal RR in infants is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>12–20 breaths/min</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>20–30 breaths/min</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>30–60 breaths/min</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>60–80 breaths/min</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- SEC 3 & 4: History + Inspection -->
+  <div class="topic-group" data-topic>
+    <div class="topic-header">
+      <div class="topic-icon ic-purple">📋</div>
+      <div class="topic-title">Section 3 & 4 — History + Chest Inspection</div>
+      <div class="topic-count">14 أسئلة</div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q17</div><div class="q-text">mMRC Grade 4 dyspnea means the patient is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Breathless only with strenuous exercise</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Stops after 100m on level ground</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Walks slower than peers</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Too breathless to leave the house or to dress</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q18</div><div class="q-text">Chief complaint should be written as:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>The medical diagnosis (e.g., COPD)</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Patient's own words + duration (e.g., "SOB for 5 days")</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>The doctor's clinical impression</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>The lab results</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q19</div><div class="q-text">A patient worked 20 years in asbestos manufacturing. The most feared complication is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Silicosis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Byssinosis</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Asbestosis with risk of Mesothelioma</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Coal worker's pneumoconiosis</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q20</div><div class="q-text">Pack-years for a patient who smokes 30 cigarettes/day for 20 years:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>20 pack-years</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>25 pack-years</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>30 pack-years</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>60 pack-years</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q21</div><div class="q-text">Pink frothy sputum is a classic sign of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Bronchial asthma</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Tuberculosis</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Acute Pulmonary Edema</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Pneumonia</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q22</div><div class="q-text">Normal Transverse to Anteroposterior (AP) chest diameter ratio is:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>1:1</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>2:1</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>3:1</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>1:2</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q23</div><div class="q-text">Barrel chest is most commonly caused by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Tuberculosis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Pleural effusion</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>COPD / Emphysema</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Pneumothorax</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q24</div><div class="q-text">A midline sternotomy scar indicates a previous:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Lobectomy</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Chest tube insertion</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Open heart surgery (CABG or valve replacement)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Pacemaker insertion</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q25</div><div class="q-text">Unilateral chest retraction (flattening) is most likely caused by:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Pleural effusion</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Pneumothorax</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Lung fibrosis / Atelectasis</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Barrel chest (COPD)</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q26</div><div class="q-text">Harrison's Sulcus is associated with:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>COPD</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Pleural effusion</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Rickets and chronic childhood asthma</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Pneumothorax</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q27</div><div class="q-text">Pursed-lip breathing is characteristically seen in patients with:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Pneumonia</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Pleural effusion</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>COPD / Emphysema</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Lung fibrosis</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q28</div><div class="q-text">Rust-colored sputum (rusty) is characteristic of:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Asthma</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Lung abscess</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Lobar Pneumonia</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Bronchitis</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q29</div><div class="q-text">Pectus excavatum is also known as:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>Pigeon chest</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>Barrel chest</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>Funnel chest</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>Flail chest</div>
+      </div></div>
+    </div>
+
+    <div class="q-card" onclick="toggleQ(this)">
+      <div class="q-header"><div class="q-num">Q30</div><div class="q-text">In barrel chest, the Transverse to AP diameter ratio becomes:</div><div class="q-toggle">▼</div></div>
+      <div class="q-body"><div class="options">
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">A</div>2:1 (wider than taller)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">B</div>3:1</div>
+        <div class="option correct" onclick="selectOpt(event,this)"><div class="opt-letter">C</div>1:1 (equal diameters)</div>
+        <div class="option" onclick="selectOpt(event,this)"><div class="opt-letter">D</div>1:2 (AP wider than transverse)</div>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<script>
+  // State
+  let score = 0;
+  let answered = 0;
+  const TOTAL = 30;
+  let showAllMode = false;
+
+  // Section toggle
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('btn-' + id)?.classList.add('active');
+  }
+
+  // Q card toggle (accordion)
+  function toggleQ(card) {
+    if (card.classList.contains('answered')) return;
+    card.classList.toggle('open');
+  }
+
+  // Option select
+  function selectOpt(e, opt) {
+    e.stopPropagation();
+    const card = opt.closest('.q-card');
+    if (card.classList.contains('answered') || showAllMode) return;
+
+    const isCorrect = opt.classList.contains('correct');
+    if (isCorrect) {
+      score++;
+      answered++;
+      card.classList.add('answered', 'open');
+      opt.classList.add('pop-animation');
+    } else {
+      opt.classList.add('wrong-selected');
+      answered++;
+      card.classList.add('answered', 'open');
+    }
+    updateScore();
+  }
+
+  function updateScore() {
+    document.getElementById('score-display').textContent = score + '/' + TOTAL;
+  }
+
+  // Show all answers
+  function showAllAnswers() {
+    showAllMode = true;
+    document.querySelectorAll('.q-card').forEach(c => c.classList.add('open'));
+    document.body.classList.add('show-all-mode');
+  }
+
+  // Retest
+  function retest() {
+    score = 0; answered = 0; showAllMode = false;
+    document.body.classList.remove('show-all-mode');
+    document.querySelectorAll('.q-card').forEach(c => {
+      c.classList.remove('answered', 'open', 'pop-animation');
+      c.querySelectorAll('.option').forEach(o => o.classList.remove('wrong-selected', 'pop-animation'));
+    });
+    updateScore();
+    showSection('quiz');
+  }
+
+  // Search
+  function searchQ(val) {
+    const v = val.trim().toLowerCase();
+    document.querySelectorAll('.q-card').forEach(card => {
+      const txt = card.querySelector('.q-text')?.textContent.toLowerCase() || '';
+      card.style.display = (!v || txt.includes(v)) ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

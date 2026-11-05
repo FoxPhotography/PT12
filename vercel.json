@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/Midterm/cvp_midterm", "destination": "/year-3/cvp/midterm", "permanent": true },
+    { "source": "/Midterm/cvp_midterm", "destination": "/year-3/cvp/sections", "permanent": true },
     { "source": "/Midterm/immunology_midterm", "destination": "/year-3/immunology/midterm", "permanent": true },
     { "source": "/Midterm/cns_midterm", "destination": "/year-2/physiology-cns/midterm", "permanent": true },
     { "source": "/Midterm/electro1_midterm", "destination": "/year-2/electrotherapy/midterm", "permanent": true },
