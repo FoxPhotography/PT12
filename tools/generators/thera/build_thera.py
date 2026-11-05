@@ -3,6 +3,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from data_l1 import LECTURES
 import data_l2
+import data_sec
+MODE = sys.argv[2] if len(sys.argv) > 2 else 'mid'
+SEC = [x for x in LECTURES if x['id'] == 'sec'][0]
+LECTURES[:] = [x for x in LECTURES if x['id'] != 'sec']
 from data_exam import QUIZ_WRITTEN, EXPECTED_WRITTEN, CASES, CASES_WRITTEN, TF_DRILL
 
 esc = lambda s: html.escape(s, quote=False)
@@ -56,53 +60,77 @@ def written(n, q, src, ans):
     return (f'<details class="w-card"><summary><span class="q-num">W{n}</span><span class="w-q">{esc(q)}</span>'
             f'<span class="w-src">{esc(src)}</span></summary><div class="w-ans"><div class="w-lbl">✍️ الإجابة النموذجية</div>{ans}</div></details>')
 
-# ---- tab: exam & quizzes
-ex = ['<div class="section active" id="exam">',
-      '<div class="info-banner"><b>شكل الميدتيرم (د. ياسمين):</b> امتحان ورقي يوم الاتنين الساعة 9 قبل المحاضرة في المدرج، مدته <b>نص ساعة</b>، وفيه <b>10 أسئلة MCQ</b> و<b>10 أسئلة على cases</b> (جزء MCQ وجزء written). المنهج لحد آخر حاجة وقفنا عندها في الأسبوع اللي قبل الميد. الكويزات اللي فاتت عليها 3 درجات، واللي جاية 3، والميد حوالي 7.<br>'
-      'التقسيم هنا: <b>Posture</b> (محاضرة 1 و 2)، <b>Maitland</b> (2 و 3)، <b>Thoracic &amp; Ribs</b> (3 و 4)، <b>Mulligan</b> (4 و 5)، <b>Manipulation</b> (5)، <b>Kyphosis</b> (11/2، لحد سلايد 27). الـ Scoliosis لسه مخدناهوش.</div>',
-      '<h3 class="quiz-title">أسئلة كويزات الدكتورة (written)</h3>',
-      '<p class="hint">دي الأسئلة اللي الدكتورة سألتها في الكويزات بالنص. اكتب إجابتك الأول وبعدين افتح الإجابة النموذجية.</p>']
-for i, (q, src, a) in enumerate(QUIZ_WRITTEN, 1):
-    ex.append(written(i, q, src, a))
-ex.append('<h3 class="quiz-title" style="margin-top:28px">أسئلة written متوقعة</h3>')
-for i, (q, src, a) in enumerate(EXPECTED_WRITTEN, len(QUIZ_WRITTEN) + 1):
-    ex.append(written(i, q, src, a))
-ex.append('</div>')
-sections.append(''.join(ex)); nav.append(('exam', '🎯 الامتحان والكويزات'))
 
-# ---- lecture tabs
-for L in LECTURES:
-    n = sum(len(q) for _, q in L['groups'])
-    s_ = [f'<div class="section" id="{L["id"]}">',
-         f'<div class="lec-banner"><div class="lec-icon">{L["icon"]}</div><div><div class="lec-title">{esc(L["title"])}</div><div class="lec-sub">المصدر: {esc(L["source"])} · {n} سؤال</div></div></div>',
-         '<details class="summary-box" open><summary>📖 الملخص</summary><div class="summary">' + L['summary'] + '</div></details>',
-         '<h3 class="quiz-title">اختبر نفسك</h3>', search(L['id'])]
-    for i, (gt, qs) in enumerate(L['groups'], 1):
+def lec_tab(tid, title, short, icon, source, summary, groups, active=False):
+    n = sum(len(q) for _, q in groups)
+    s_ = [f'<div class="section{" active" if active else ""}" id="{tid}">',
+         f'<div class="lec-banner"><div class="lec-icon">{icon}</div><div><div class="lec-title">{esc(title)}</div><div class="lec-sub">المصدر: {esc(source)} · {n} سؤال</div></div></div>',
+         '<details class="summary-box" open><summary>📖 الملخص</summary><div class="summary">' + summary + '</div></details>',
+         '<h3 class="quiz-title">اختبر نفسك</h3>', search(tid)]
+    for i, (gt, qs) in enumerate(groups, 1):
         s_.append(group(gt, qs, i))
     s_.append('</div>')
-    sections.append(''.join(s_)); nav.append((L['id'], f'{L["icon"]} {L["short"]}'))
+    sections.append(''.join(s_)); nav.append((tid, f'{icon} {short}'))
 
-# ---- cases
-cs = ['<div class="section" id="cases"><div class="info-banner">نص الامتحان أسئلة على <b>cases</b>. هنا cases MCQ بنفس الفكرة، وتحتها cases written بإجابات نموذجية.</div>', search('cases')]
-for i, (txt, qs) in enumerate(CASES, 1):
-    cs.append(f'<div class="case-intro">🩺 <b>Case {i}:</b> {esc(txt)}</div>')
-    cs.append(group(f'أسئلة Case {i}', [(q, o, '', e) for q, o, e in qs], i))
-cs.append('<h3 class="quiz-title" style="margin-top:28px">Cases — written</h3>')
-for i, (txt, q, a) in enumerate(CASES_WRITTEN, 1):
-    cs.append(written(f'C{i}', f'{txt} — {q}', 'case', a))
-cs.append('</div>')
-sections.append(''.join(cs)); nav.append(('cases', '🩺 Cases'))
+if MODE == 'sec':
+    cards = ['<div class="card">' + c for c in SEC['summary'].split('<div class="card">')[1:]]
+    G = SEC['groups']
+    SRC = SEC['source']
+    TABS = [('basics', 'Basics & Landmarks — أساسيات السكشن', 'Landmarks', '📍', [0, 1], [0, 1]),
+            ('mait', 'Maitland — Cervical, Thoracic & Lumbar', 'Maitland', '🖐️', [2, 3, 4], [2, 3]),
+            ('ribs', 'Ribs — Assessment & Mobilization', 'Ribs', '🫁', [5, 6], [4]),
+            ('mull', 'Mulligan — Cervical, Thoracic & Lumbar', 'Mulligan', '🤝', [7, 8], [5]),
+            ('nerve', 'Nerve Entrapment & Traction', 'Nerve & Traction', '🧵', [9], [6])]
+    for k, (tid, title, short, icon, ci, gi) in enumerate(TABS):
+        lec_tab(tid, title, short, icon, SRC, ''.join(cards[i] for i in ci), [G[i] for i in gi], active=(k == 0))
+else:
+    # ---- tab: exam & quizzes
+    ex = ['<div class="section active" id="exam">',
+          '<div class="info-banner"><b>شكل الميدتيرم (د. ياسمين):</b> امتحان ورقي يوم الاتنين الساعة 9 قبل المحاضرة في المدرج، مدته <b>نص ساعة</b>، وفيه <b>10 أسئلة MCQ</b> و<b>10 أسئلة على cases</b> (جزء MCQ وجزء written). المنهج لحد آخر حاجة وقفنا عندها في الأسبوع اللي قبل الميد. الكويزات اللي فاتت عليها 3 درجات، واللي جاية 3، والميد حوالي 7.<br>'
+          'التقسيم هنا: <b>Posture</b> (محاضرة 1 و 2)، <b>Maitland</b> (2 و 3)، <b>Thoracic &amp; Ribs</b> (3 و 4)، <b>Mulligan</b> (4 و 5)، <b>Manipulation</b> (5)، <b>Kyphosis</b> (11/2، لحد سلايد 27). الـ Scoliosis لسه مخدناهوش. والعملي في صفحة لوحده: <b>العملي والسكاشن</b>.</div>',
+          '<h3 class="quiz-title">أسئلة كويزات الدكتورة (written)</h3>',
+          '<p class="hint">دي الأسئلة اللي الدكتورة سألتها في الكويزات بالنص. اكتب إجابتك الأول وبعدين افتح الإجابة النموذجية.</p>']
+    for i, (q, src, a) in enumerate(QUIZ_WRITTEN, 1):
+        ex.append(written(i, q, src, a))
+    ex.append('<h3 class="quiz-title" style="margin-top:28px">أسئلة written متوقعة</h3>')
+    for i, (q, src, a) in enumerate(EXPECTED_WRITTEN, len(QUIZ_WRITTEN) + 1):
+        ex.append(written(i, q, src, a))
+    ex.append('</div>')
+    sections.append(''.join(ex)); nav.append(('exam', '🎯 الامتحان والكويزات'))
 
-# ---- T/F drill
-tf = ["True ✓", "False ✗"]
-sections.append('<div class="section" id="tf"><div class="info-banner">تدريب سريع على الجمل اللي ممكن تتقلب في الـ MCQ.</div>' + search('tf') +
-                group('True or False', [(t, tf, c, e) for t, c, e in TF_DRILL], 1, fixed=True) + '</div>')
-nav.append(('tf', '✅ صح وغلط'))
+    # ---- lecture tabs
+    for L in LECTURES:
+        n = sum(len(q) for _, q in L['groups'])
+        s_ = [f'<div class="section" id="{L["id"]}">',
+             f'<div class="lec-banner"><div class="lec-icon">{L["icon"]}</div><div><div class="lec-title">{esc(L["title"])}</div><div class="lec-sub">المصدر: {esc(L["source"])} · {n} سؤال</div></div></div>',
+             '<details class="summary-box" open><summary>📖 الملخص</summary><div class="summary">' + L['summary'] + '</div></details>',
+             '<h3 class="quiz-title">اختبر نفسك</h3>', search(L['id'])]
+        for i, (gt, qs) in enumerate(L['groups'], 1):
+            s_.append(group(gt, qs, i))
+        s_.append('</div>')
+        sections.append(''.join(s_)); nav.append((L['id'], f'{L["icon"]} {L["short"]}'))
+
+    # ---- cases
+    cs = ['<div class="section" id="cases"><div class="info-banner">نص الامتحان أسئلة على <b>cases</b>. هنا cases MCQ بنفس الفكرة، وتحتها cases written بإجابات نموذجية.</div>', search('cases')]
+    for i, (txt, qs) in enumerate(CASES, 1):
+        cs.append(f'<div class="case-intro">🩺 <b>Case {i}:</b> {esc(txt)}</div>')
+        cs.append(group(f'أسئلة Case {i}', [(q, o, '', e) for q, o, e in qs], i))
+    cs.append('<h3 class="quiz-title" style="margin-top:28px">Cases — written</h3>')
+    for i, (txt, q, a) in enumerate(CASES_WRITTEN, 1):
+        cs.append(written(f'C{i}', f'{txt} — {q}', 'case', a))
+    cs.append('</div>')
+    sections.append(''.join(cs)); nav.append(('cases', '🩺 Cases'))
+
+    # ---- T/F drill
+    tf = ["True ✓", "False ✗"]
+    sections.append('<div class="section" id="tf"><div class="info-banner">تدريب سريع على الجمل اللي ممكن تتقلب في الـ MCQ.</div>' + search('tf') +
+                    group('True or False', [(t, tf, c, e) for t, c, e in TF_DRILL], 1, fixed=True) + '</div>')
+    nav.append(('tf', '✅ صح وغلط'))
 WN = WCOUNT['w']
 TOTAL = COUNT['q']
 nav_html = '<a href="../../index.html" class="nav-btn">🔙 الرئيسية</a>' + ''.join(
     f'<button class="nav-btn{" active" if i==0 else ""}" onclick="showSection(\'{sid}\')" id="btn-{sid}">{esc(lbl)}</button>' for i, (sid, lbl) in enumerate(nav)) + \
-    '<button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار الإجابات</button><button class="nav-btn" onclick="retest()">🔄 إعادة</button>'
+    ('<a href="midterm.html" class="nav-btn">📘 الميدتيرم النظري</a>' if MODE == 'sec' else '<a href="sections.html" class="nav-btn">👐 العملي والسكاشن</a>') + '<button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار الإجابات</button><button class="nav-btn" onclick="retest()">🔄 إعادة</button>'
 
 EXTRA_CSS = """
   .info-banner { background:linear-gradient(135deg,rgba(89,9,7,.55),rgba(43,44,38,.9)); border:1px solid var(--border2); border-right:4px solid #8c1a12; border-radius:12px; padding:14px 18px; font-size:14px; line-height:1.9; margin-bottom:22px; direction:rtl; }
@@ -165,19 +193,19 @@ TPL = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Therapeutic Exercises II — Midterm</title>
+<title>Therapeutic Exercises II — {'Practical & Sections' if MODE == 'sec' else 'Midterm'}</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>{BASE_CSS}{EXTRA_CSS}</style>
 </head>
 <body>
 <header>
-  <div class="header-badge">🧍 Therapeutic Exercises II · الميدتيرم</div>
+  <div class="header-badge">🧍 Therapeutic Exercises II · {"العملي والسكاشن" if MODE == "sec" else "الميدتيرم"}</div>
   <h1>Therapeutic Exercises II</h1>
-  <p class="subtitle">Posture · Maitland · Ribs · Mulligan · Manipulation · Kyphosis</p>
+  <p class="subtitle">{"Landmarks · Maitland · Ribs · Mulligan · Nerve entrapment · Traction" if MODE == "sec" else "Posture · Maitland · Ribs · Mulligan · Manipulation · Kyphosis"}</p>
   <div class="stats-bar">
-    <div class="stat"><div class="stat-num">{len(LECTURES)}</div><div class="stat-label">ملخصات</div></div>
+    <div class="stat"><div class="stat-num">{5 if MODE == "sec" else len(LECTURES)}</div><div class="stat-label">ملخصات</div></div>
     <div class="stat"><div class="stat-num">{TOTAL}</div><div class="stat-label">سؤال</div></div>
-    <div class="stat"><div class="stat-num">{WN}</div><div class="stat-label">سؤال written</div></div>
+{"" if MODE == "sec" else f'    <div class="stat"><div class="stat-num">{WN}</div><div class="stat-label">سؤال written</div></div>'}
     <div class="stat"><div class="stat-num" id="score-display">0/{TOTAL}</div><div class="stat-label">إجابات صحيحة</div></div>
   </div>
 </header>
