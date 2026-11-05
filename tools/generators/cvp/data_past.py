@@ -112,3 +112,27 @@ PT10 = [
  ("In acute D.V.T, we can apply:", ["Passive ex", "Active ex", "Active assisted ex", "None of the above"], 3, "ممنوع تحريك الكاحل أو أي تمرين قبل الـ Doppler، لأن الجلطة ممكن تتفصل وتعمل pulmonary embolism."),
  ("…… supplies cardiac muscle with blood:", ["Coronary", "Sural", "Carotid", "Basilar"], 0, "الـ Coronary arteries طالعة من الـ arch of aorta وبتغذي عضلة القلب."),
 ]
+
+# PT12 mid-term (our batch) — answers as provided by the batch
+PT12 = [
+ ("How many lobes does the right lung have?", ["Two", "Three", "Five", "Four"], 1, "الرئة اليمين 3 lobes (upper, middle, lower)، والشمال 2 + lingula."),
+ ("Which feature is found only in the left lung?", ["Cardiac notch and lingula", "Middle lobe", "Horizontal fissure", "Azygos vein groove"], 0, "الـ middle lobe والـ horizontal fissure والـ azygos groove كلهم في اليمين."),
+ ("Why is the right main bronchus the more common site for aspirated foreign bodies?", ["It is longer and more horizontal", "It is surrounded by the heart", "It is narrower and longer", "It is wider, shorter, and more vertical"], 3, "الـ right main bronchus أعرض وأقصر وأكتر vertical فالجسم الغريب بينزل فيه بسهولة."),
+ ("What is the principal muscle of inspiration?", ["Diaphragm", "Rectus abdominis", "External oblique", "Internal intercostals"], 0, "الـ diaphragm بيعمل حوالي 75–80% من الشهيق."),
+ ("Which of the following is an accessory muscle of inspiration?", ["Internal intercostals", "Transversus abdominis", "Sternocleidomastoid", "Rectus abdominis"], 2, "الـ SCM والـ scalene والـ upper trapezius accessory بـ reversed action."),
+ ("Quiet expiration at rest is mainly:", ["Dependent on the scalene muscles", "An active process using the internal intercostals", "Passive, driven by elastic recoil of the lungs and chest wall", "An active process using the abdominal muscles"], 2, "الزفير الهادي passive، والعضلات بتشتغل في الـ forced بس."),
+ ("The 'pump-handle' movement of the upper ribs mainly increases which thoracic dimension?", ["Transverse", "Circumferential", "Anteroposterior", "Vertical"], 2, "Pump-handle بيزود الـ AP، والـ bucket-handle بيزود الـ transverse."),
+ ("Surfactant is produced by which cells, and what is its main function?", ["Alveolar macrophages; clears debris", "Type I pneumocytes; increases alveolar surface tension", "Goblet cells; thins mucus", "Type II pneumocytes; reduces alveolar surface tension"], 3, ""),
+ ("Which feature best describes asthma compared with COPD?", ["It never causes wheeze", "Airflow obstruction is always irreversible", "Airflow obstruction is characteristically reversible", "It is caused only by smoking"], 2, "الـ asthma reversible obstruction، والـ COPD مش fully reversible."),
+ ("Clubbing of the fingers is best described as:", ["Bulbous enlargement of the fingertips", "Spoon-shaped, thin nails", "Bluish discoloration of the skin", "Swelling of the wrist joints"], 0, "الـ spoon-shaped nails اسمها koilonychia."),
+ ("Which lung volume cannot be measured by simple spirometry?", ["Inspiratory reserve volume", "Tidal volume", "Residual volume", "Expiratory reserve volume"], 2, "الـ RV مش بيخرج أبدًا، فمش بيتقاس بالـ spirometer (وبالتالي FRC و TLC كمان)."),
+ ("Vital capacity (VC) is equal to:", ["ERV + RV", "TV + IRV + ERV + RV", "TV + IRV + ERV", "TV + IRV"], 2, "VC من غير RV. والـ TLC = VC + RV."),
+ ("Which spirometry finding is typical of an obstructive pattern?", ["Increased FEV1/FVC ratio", "Increased FVC with normal FEV1", "Reduced FEV1/FVC ratio (< 0.70)", "Normal FEV1 and FVC"], 2, "في الـ restrictive النسبة طبيعية أو عالية."),
+ ("What is the normal range of arterial blood pH?", ["7.50–7.60", "7.35–7.45", "7.20–7.30", "7.00–7.20"], 1, ""),
+ ("Respiratory acidosis is characterized by:", ["Low pH with low HCO3⁻", "High pH with low PaCO2", "High pH with high HCO3⁻", "Low pH with elevated PaCO2"], 3, "Low pH + low HCO3 = metabolic acidosis."),
+ ("Type II (hypercapnic) respiratory failure is defined by:", ["PaO2 < 60 mmHg with low PaCO2", "PaO2 > 80 mmHg with PaCO2 > 50 mmHg", "PaO2 < 60 mmHg with PaCO2 > 50 mmHg", "Normal PaO2 with low PaCO2"], 2, "Type I: PaO2 أقل من 60 مع PaCO2 طبيعي أو واطي."),
+ ("What is the leading risk factor for COPD?", ["Outdoor air pollution", "Cigarette smoking", "Premature birth", "Alpha-1 antitrypsin deficiency"], 1, ""),
+ ("COPD is confirmed spirometrically by a post-bronchodilator FEV1/FVC ratio of:", ["Above 0.90", "Exactly 1.00", "Above 0.80", "Below 0.70"], 3, ""),
+ ("According to the GOLD classification, which FEV1 range corresponds to GOLD 3 (severe)?", ["30% ≤ FEV1 < 50%", "50% ≤ FEV1 < 80%", "< 30% predicted", "≥ 80% predicted"], 0, "GOLD 1 ≥ 80%، GOLD 2 من 50 لـ 79، GOLD 3 من 30 لـ 49، GOLD 4 أقل من 30."),
+ ("Which breathing technique reduces air trapping and eases dyspnea in COPD patients?", ["Pursed-lip breathing", "Breath holding", "Rapid shallow breathing", "Hyperventilation"], 0, "الـ pursed-lip بيعمل back pressure يمنع الـ airway collapse."),
+]

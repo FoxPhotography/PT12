@@ -1,7 +1,7 @@
 import random, html, re, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from data_past import PT7, PT7_CASE, PT7_CASE_INTRO, PREV_DOUBLE, PREV_MCQ, PREV_TF, PT10
+from data_past import PT12, PT7, PT7_CASE, PT7_CASE_INTRO, PREV_DOUBLE, PREV_MCQ, PREV_TF, PT10
 from data_lectures import LECTURES
 from data_topics import TOPICS, TOPICS_SUMMARY, TOPIC_QUESTIONS, TF_DRILL
 
@@ -50,22 +50,23 @@ sections, nav = [], []
 # ---- tab: past exams
 tf = ["True ✓", "False ✗"]
 past = ['<div class="section active" id="past">',
-        '<div class="info-banner"><b>شكل امتحان الميدتيرم (د. محمود لبيب):</b> 30 دقيقة، وفيه MCQ و True/False و Double True/False و Case study. المصدر الكتاب والمحاضرات، والمنهج هو الـ 18 موضوع اللي في تاب "مواضيع الميدتيرم".<br>الأسئلة دي من امتحانات PT7 و PT10 وامتحان سابق تاني، بنفس ترتيب الاختيارات، والإجابات متراجعة على الكتاب والمحاضرات.</div>',
+        '<div class="info-banner"><b>شكل امتحان الميدتيرم (د. محمود لبيب):</b> 30 دقيقة، وفيه MCQ و True/False و Double True/False و Case study. المصدر الكتاب والمحاضرات، والمنهج هو الـ 18 موضوع اللي في تاب "مواضيع الميدتيرم".<br>أول جروب هو <b>امتحان ميدتيرم PT12 (دفعتنا)</b> بالإجابات الصحيحة. وبعده امتحانات PT7 و PT10 وامتحان سابق تاني، بنفس ترتيب الاختيارات، والإجابات متراجعة على الكتاب والمحاضرات.</div>',
         search('past') if False else '',
         ]
 def search(sec):
     return f'<div class="search-wrap"><span class="search-icon">🔍</span><input class="search-input" placeholder="ابحث في الأسئلة..." oninput="searchQ(this.value,\'{sec}\')"></div>'
 past[2] = search('past')
-past.append(group('PT7 Mid-Term (Form D) — MCQ', PT7, 1, fixed=True))
+past.append(group('PT12 Mid-Term — امتحان دفعتنا', PT12, 1, fixed=True).replace('★ امتحان سابق', '★ PT12'))
+past.append(group('PT7 Mid-Term (Form D) — MCQ', PT7, 2, fixed=True))
 past.append(f'<div class="case-intro">🩺 <b>Case study (PT7):</b> {esc(PT7_CASE_INTRO)}</div>')
-past.append(group('PT7 — Case (True / False)', PT7_CASE, 2, fixed=True))
-past.append(group('امتحان سابق — Double True / False', PREV_DOUBLE, 3, fixed=True))
-past.append(group('امتحان سابق — Choose', PREV_MCQ, 4, fixed=True))
-past.append(group('امتحان سابق — True / False', PREV_TF, 5, fixed=True))
-past.append(group('PT10 Mid-Term — MCQ', PT10, 6, fixed=True))
+past.append(group('PT7 — Case (True / False)', PT7_CASE, 3, fixed=True))
+past.append(group('امتحان سابق — Double True / False', PREV_DOUBLE, 4, fixed=True))
+past.append(group('امتحان سابق — Choose', PREV_MCQ, 5, fixed=True))
+past.append(group('امتحان سابق — True / False', PREV_TF, 6, fixed=True))
+past.append(group('PT10 Mid-Term — MCQ', PT10, 7, fixed=True))
 past.append('</div>')
 sections.append(''.join(past)); nav.append(('past', '🎯 امتحانات سابقة'))
-PAST_N = sum(len(x) for x in (PT7, PT7_CASE, PREV_DOUBLE, PREV_MCQ, PREV_TF, PT10))
+PAST_N = sum(len(x) for x in (PT12, PT7, PT7_CASE, PREV_DOUBLE, PREV_MCQ, PREV_TF, PT10))
 
 # ---- tab: 18 topics
 lec_short = {L['id']: L['short'] for L in LECTURES}
