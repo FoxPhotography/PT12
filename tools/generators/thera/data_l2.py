@@ -16,7 +16,7 @@ L("l3", "Thoracic Spine, Ribs & Fryette's Laws", "Thoracic & Ribs", "🦴",
 <table class="ltr"><tr><th>Level</th><th>Landmark</th></tr>
 <tr><td>C2</td><td>First palpable SP below the occipital bone</td></tr>
 <tr><td>C7 / T1</td><td>Most prominent SP at base of neck</td></tr>
-<tr><td>T4</td><td>Root of the spine of scapula</td></tr>
+<tr><td>T4</td><td>Root of the spine of scapula (السكشن: T3)</td></tr>
 <tr><td>T7–T8</td><td>Inferior angle of scapula</td></tr>
 <tr><td>T12</td><td>Head of the 12th rib (last two ribs)</td></tr>
 <tr><td>L4</td><td>Superior border of the iliac crest</td></tr>
@@ -79,7 +79,7 @@ L("l3", "Thoracic Spine, Ribs & Fryette's Laws", "Thoracic & Ribs", "🦴",
   ("In the lumbar region, the superior facets face:", ["Medially", "Laterally", "Anteriorly", "Posteriorly and up"], "", "والـ inferior facets بتبص laterally."),
   ("In the thoracic region, the superior facets face:", ["Posterior, a little up and laterally", "Medially", "Anteriorly and down", "Directly superior"], "", ""),
   ("The first palpable spinous process below the occipital bone is:", ["C2", "C1", "C7", "T1"], "", "الـ atlas مالوش SP."),
-  ("The level of the root of the spine of the scapula corresponds to:", ["T4", "T7", "T12", "C7"], "imp", ""),
+  ("According to the lecture slides, the root of the spine of the scapula corresponds to:", ["T4", "T7", "T12", "C7"], "imp", "السكشن قال T3، فخلي بالك من الاتنين."),
   ("The inferior angle of the scapula corresponds to:", ["T7–T8", "T4", "T12", "L1"], "imp", ""),
   ("The superior border of the iliac crest corresponds to:", ["L4", "L1", "S2", "T12"], "imp", ""),
   ("The PSIS is at the level of:", ["S2", "L4", "S4", "L5"], "imp", ""),
