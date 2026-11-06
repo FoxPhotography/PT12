@@ -3,9 +3,27 @@ TABS = []
 def T(*a): TABS.append(a)
 
 # ============================================================ Intro: settings & team
-T("r1", "Rehab Settings & The Rehabilitation Team", "مقدمة: Settings & Team", "🏥",
-  "صور سلايدات (rehab lec2) — Inpatient rehab والـ team",
+T("r1", "Lec 1 — Introduction: Definition, Principles, Settings & Team", "Lec 1 مقدمة", "🏥",
+  "صور سلايدات (rehab lec2) + تكملة محاضرة 1 من المراجع",
 """
+<div class="card"><h4>0. Introduction to rehabilitation <span class="tag-x">مكمّل</span></h4>
+<p class="hint">سلايدات محاضرة 1 (Definition و Principles) مش موجودة، فالجزء ده مكمّل من تعريفات الـ WHO والمراجع الأساسية حسب خطة المادة.</p>
+<ul><li><b>Rehabilitation (WHO)</b>: a set of interventions designed to <b>optimize functioning and reduce disability</b> in individuals with health conditions <b>in interaction with their environment</b>.</li>
+<li>يعني الهدف إن الشخص يرجع لـ <b>أعلى مستوى ممكن</b> من الـ independence (جسديًا ونفسيًا واجتماعيًا ومهنيًا)، مش بس يخف من المرض.</li>
+<li><b>Habilitation</b>: لو المهارة مكانتش موجودة أصلًا (زي الأطفال المولودين بإعاقة). أما الـ <b>re</b>habilitation فبيرجّع مهارة كانت موجودة واتفقدت.</li></ul>
+<p><b>Goals:</b> prevent loss of function · slow the rate of loss · restore أو improve function · compensate for lost function (assistive devices) · maintain current function · تحسين الـ quality of life والرجوع للمجتمع والشغل.</p>
+<p><b>Principles of rehabilitation:</b></p>
+<ol><li><b>Early start</b>: يبدأ بدري على قد ما يقدر (من الـ acute stage) عشان يمنع الـ complications.</li>
+<li><b>Team approach</b>: interdisciplinary/transdisciplinary team.</li>
+<li><b>Patient &amp; family centered</b>: المريض والأسرة بيشاركوا في تحديد الأهداف.</li>
+<li><b>Goal-oriented</b>: أهداف واضحة (SMART)، short و long term.</li>
+<li><b>Holistic (whole person)</b>: جسدي ونفسي واجتماعي ومهني.</li>
+<li><b>Function-based</b>: التركيز على الـ function والـ independence مش على المرض بس.</li>
+<li><b>Continuity of care</b>: من المستشفى للبيت للمجتمع، مع reassessment مستمر.</li>
+<li><b>Prevention of secondary complications</b>: contractures، bed sores، DVT.</li></ol>
+<p><b>Classification of rehabilitation</b> (هتيجي بالتفصيل في week 10): <b>Medical</b> · <b>Psychological</b> · <b>Social</b> · <b>Vocational</b>.</p>
+<p><b>Rehab settings:</b> acute hospital · inpatient rehab · subacute / skilled nursing · outpatient · home health · community-based rehabilitation (CBR).</p></div>
+
 <div class="card"><h4>1. Inpatient rehabilitation</h4>
 <ul><li>المريض <b>بيقعد جوه مستشفى أو مركز</b> وبياخد rehab متواصل. ليه 3 أشكال:
 <ol><li>Rehabilitation unit جوه <b>community hospital</b>.</li><li>Rehabilitation hospital منفصلة (<b>freestanding</b>).</li><li>Rehabilitation unit جوه <b>medical academic center</b>.</li></ol></li>
@@ -35,6 +53,15 @@ T("r1", "Rehab Settings & The Rehabilitation Team", "مقدمة: Settings & Team
 <tr><td>3rd — Consultants</td><td>Consultants و resource persons، والـ <b>core members</b> هم اللي بيقرروا يدخلوهم</td><td>ممكن يبعتوا الـ evaluation والـ recommendations بس</td></tr></table></div>
 """,
 [
+ ("Definition & principles (مكمّل)", [
+  ("According to WHO, rehabilitation aims to:", ["Optimize functioning and reduce disability in interaction with the environment", "Cure all diseases", "Replace medical treatment", "Provide surgery"], "imp", ""),
+  ("Developing skills that were never present (e.g., congenital disability) is called:", ["Habilitation", "Rehabilitation", "Prevention", "Compensation"], "imp", ""),
+  ("Rehabilitation should start:", ["As early as possible", "Only after full recovery", "After discharge only", "After one year"], "imp", ""),
+  ("Which is NOT a principle of rehabilitation?", ["Treating the disease only, ignoring function", "Team approach", "Holistic care", "Patient and family involvement"], "", ""),
+  ("Using assistive devices to replace lost function is a goal of:", ["Compensation", "Prevention", "Diagnosis", "Habilitation only"], "", ""),
+  ("Classification of rehabilitation includes all EXCEPT:", ["Surgical rehabilitation", "Medical", "Vocational", "Social"], "", ""),
+  ("A holistic approach in rehabilitation means treating the patient:", ["Physically, psychologically, socially and vocationally", "Physically only", "Only with medications", "Only in hospital"], "", ""),
+ ]),
  ("Settings", [
   ("Inpatient rehabilitation means the patient:", ["Stays inside a hospital or center to receive continuous rehabilitation", "Receives therapy at home only", "Visits a clinic weekly", "Is discharged immediately"], "imp", ""),
   ("Which is NOT a form of inpatient rehabilitation?", ["Home health rehabilitation", "A unit inside a community hospital", "A freestanding rehabilitation hospital", "A unit inside a medical academic center"], "imp", ""),

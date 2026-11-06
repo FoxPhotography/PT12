@@ -81,6 +81,7 @@ nav_html = '<a href="../../index.html" class="nav-btn">🔙 الرئيسية</a>
 '<button class="nav-btn" onclick="showAllAnswers()">👁️ إظهار الإجابات</button><button class="nav-btn" onclick="retest()">🔄 إعادة</button>'
 
 EXTRA_CSS = """
+  .tag-x { font-size:11px; font-weight:700; padding:2px 8px; border-radius:100px; border:1px dashed rgba(232,210,181,.4); color:#c9a87e; margin-inline-start:6px; vertical-align:middle; }
   .vit { border:1px solid var(--border); border-radius:10px; padding:10px 14px; margin:10px 0; background:rgba(232,210,181,.03); }
   .vit-h { font-weight:800; color:var(--beige); margin-bottom:4px; }
   .vit ul { margin:0; }
