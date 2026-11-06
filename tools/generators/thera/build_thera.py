@@ -84,19 +84,27 @@ if MODE == 'sec':
     for k, (tid, title, short, icon, ci, gi) in enumerate(TABS):
         lec_tab(tid, title, short, icon, SRC, ''.join(cards[i] for i in ci), [G[i] for i in gi], active=(k == 0))
 else:
-    # ---- tab: exam & quizzes
-    ex = ['<div class="section active" id="exam">',
-          '<div class="info-banner"><b>شكل الميدتيرم (د. ياسمين):</b> امتحان ورقي يوم الاتنين الساعة 9 قبل المحاضرة في المدرج، مدته <b>نص ساعة</b>، وفيه <b>10 أسئلة MCQ</b> و<b>10 أسئلة على cases</b> (جزء MCQ وجزء written). المنهج لحد آخر حاجة وقفنا عندها في الأسبوع اللي قبل الميد. الكويزات اللي فاتت عليها 3 درجات، واللي جاية 3، والميد حوالي 7.<br>'
-          'التقسيم هنا: <b>Posture</b> (محاضرة 1 و 2)، <b>Maitland</b> (2 و 3)، <b>Thoracic &amp; Ribs</b> (3 و 4)، <b>Mulligan</b> (4 و 5)، <b>Manipulation</b> (5)، <b>Kyphosis</b> (11/2، لحد سلايد 27). الـ Scoliosis لسه مخدناهوش. والعملي في صفحة لوحده: <b>العملي والسكاشن</b>.</div>',
-          '<h3 class="quiz-title">أسئلة كويزات الدكتورة (written)</h3>',
-          '<p class="hint">دي الأسئلة اللي الدكتورة سألتها في الكويزات بالنص. اكتب إجابتك الأول وبعدين افتح الإجابة النموذجية.</p>']
-    for i, (q, src, a) in enumerate(QUIZ_WRITTEN, 1):
-        ex.append(written(i, q, src, a))
-    ex.append('<h3 class="quiz-title" style="margin-top:28px">أسئلة written متوقعة</h3>')
-    for i, (q, src, a) in enumerate(EXPECTED_WRITTEN, len(QUIZ_WRITTEN) + 1):
-        ex.append(written(i, q, src, a))
-    ex.append('</div>')
-    sections.append(''.join(ex)); nav.append(('exam', '🎯 الامتحان والكويزات'))
+    # ---- tab: cases (MOCK EXAMS — CASE + 20 MCQ)
+    case_titles = [
+        "Case 1: Postural Kyphosis & Upper Crossed Syndrome (20 MCQ)",
+        "Case 2: Barrel Chest & COPD / Emphysema (20 MCQ)",
+        "Case 3: Cervical Dysfunction — Maitland vs Mulligan (20 MCQ)",
+        "Case 4: Adolescent Kyphosis & Lower Crossed Syndrome (20 MCQ)",
+        "Case 5: Thoracic Facet Lock & Manipulation (HVLAT) (20 MCQ)",
+    ]
+    cs = ['<div class="section active" id="cases">',
+          '<div class="info-banner"><b>📍 نظام ميدتيرم الثيرا الرسمي (د. ياسمين):</b><br>'
+          '• <b>الموعد والمكان:</b> يوم <b>الاثنين القادم الساعة 9:00 صباحاً</b> في المدرج (امتحان ورقي)، وبعده المحاضرة مباشرة.<br>'
+          '• <b>نظام الامتحان:</b> الامتحان عبارة عن <b>Case وعليها 20 سؤال MCQ</b>.<br>'
+          '• <b>ميد العملي:</b> الأسبوع اللي بعد القادم.<br>'
+          '🔥 <b>امتحانات المحاكاة المتوقعة:</b> جمعنا هنا <b>5 امتحانات محاكاة كاملة (كل حالة عليها 20 سؤال MCQ بالإجابات النموذجية والشرح الطبي الدقيق)</b> بتغطي كل أجزاء المنهج بالتفصيل بحيث الامتحان ميخرجش عن أفكارها بإذن الله.</div>',
+          search('cases')]
+    for i, (txt, qs) in enumerate(CASES, 1):
+        ctitle = case_titles[i - 1] if i - 1 < len(case_titles) else f"Case {i} (20 MCQ)"
+        cs.append(f'<div class="case-intro">🩺 <b>{ctitle}</b><br><br>{esc(txt)}</div>')
+        cs.append(group(ctitle, [(q, o, '', e) for q, o, e in qs], i))
+    cs.append('</div>')
+    sections.append(''.join(cs)); nav.append(('cases', '🎯 امتحانات الحالات (20 MCQ)'))
 
     # ---- lecture tabs
     for L in LECTURES:
@@ -110,16 +118,21 @@ else:
         s_.append('</div>')
         sections.append(''.join(s_)); nav.append((L['id'], f'{L["icon"]} {L["short"]}'))
 
-    # ---- cases
-    cs = ['<div class="section" id="cases"><div class="info-banner">نص الامتحان أسئلة على <b>cases</b>. هنا cases MCQ بنفس الفكرة، وتحتها cases written بإجابات نموذجية.</div>', search('cases')]
-    for i, (txt, qs) in enumerate(CASES, 1):
-        cs.append(f'<div class="case-intro">🩺 <b>Case {i}:</b> {esc(txt)}</div>')
-        cs.append(group(f'أسئلة Case {i}', [(q, o, '', e) for q, o, e in qs], i))
-    cs.append('<h3 class="quiz-title" style="margin-top:28px">Cases — written</h3>')
+    # ---- tab: previous quizzes & written questions (Reference)
+    ex = ['<div class="section" id="exam">',
+          '<div class="info-banner">دي الأسئلة اللي الدكتورة سألتها في الكويزات السابقة بالنص مع إجاباتها النموذجية، لمراجعة مفاهيم المنهج قبل الامتحان.</div>',
+          '<h3 class="quiz-title">أسئلة كويزات الدكتورة (written)</h3>',
+          '<p class="hint">اكتب إجابتك الأول وبعدين افتح الإجابة النموذجية.</p>']
+    for i, (q, src, a) in enumerate(QUIZ_WRITTEN, 1):
+        ex.append(written(i, q, src, a))
+    ex.append('<h3 class="quiz-title" style="margin-top:28px">أسئلة written متوقعة</h3>')
+    for i, (q, src, a) in enumerate(EXPECTED_WRITTEN, len(QUIZ_WRITTEN) + 1):
+        ex.append(written(i, q, src, a))
+    ex.append('<h3 class="quiz-title" style="margin-top:28px">حالات written سابقة</h3>')
     for i, (txt, q, a) in enumerate(CASES_WRITTEN, 1):
-        cs.append(written(f'C{i}', f'{txt} — {q}', 'case', a))
-    cs.append('</div>')
-    sections.append(''.join(cs)); nav.append(('cases', '🩺 Cases'))
+        ex.append(written(f'C{i}', f'{txt} — {q}', 'case', a))
+    ex.append('</div>')
+    sections.append(''.join(ex)); nav.append(('exam', '📝 كويزات ومراجعة'))
 
     # ---- T/F drill
     tf = ["True ✓", "False ✗"]
