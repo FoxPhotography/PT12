@@ -1,7 +1,7 @@
 import random, html, re, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from data_quality import TABS, PT12, TF_DRILL
+from data_book import TABS, PT12, TF_DRILL
 MODE = 'sec'
 
 esc = lambda s: html.escape(s, quote=False)
@@ -152,7 +152,7 @@ TPL = f"""<!DOCTYPE html>
 <header>
   <div class="header-badge">✅ Quality Principles · الميدتيرم</div>
   <h1>Quality Principles</h1>
-  <p class="subtitle">Healthcare quality · IOM domains · Teamwork · ISO standards</p>
+  <p class="subtitle">Healthcare quality · ISO · Donabedian & PDCA · Teamwork</p>
   <div class="stats-bar">
     <div class="stat"><div class="stat-num">{len(TABS)}</div><div class="stat-label">ملخصات</div></div>
     <div class="stat"><div class="stat-num">{TOTAL}</div><div class="stat-label">سؤال</div></div>

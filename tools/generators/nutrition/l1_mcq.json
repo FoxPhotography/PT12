@@ -1,0 +1,852 @@
+[
+{
+"q": "Nutrition is vital for all of the following EXCEPT:",
+"o": [
+"Growth",
+"Reproduction",
+"Building tissues",
+"Destroying body structure"
+],
+"c": 3
+},
+{
+"q": "Malnutrition may allow body structure but results in:",
+"o": [
+"Good health",
+"Diseases",
+"Better reproduction",
+"Increased energy"
+],
+"c": 1
+},
+{
+"q": "Wellness means:",
+"o": [
+"Just absence of disease",
+"Efficiency in performing activities daily",
+"High fat intake",
+"Absence of reproduction"
+],
+"c": 1
+},
+{
+"q": "Nutrition is related to all EXCEPT:",
+"o": [
+"Preventing disease",
+"Energy reserves",
+"Feeling fresh",
+"Increasing cholesterol"
+],
+"c": 3
+},
+{
+"q": "High fat and cholesterol intake mainly lead to:",
+"o": [
+"Diabetes",
+"Atherosclerosis",
+"Constipation",
+"Weight loss"
+],
+"c": 1
+},
+{
+"q": "Blockage of the coronary artery causes:",
+"o": [
+"Brain damage",
+"Ischemic heart disease",
+"Leg paralysis",
+"Constipation"
+],
+"c": 1
+},
+{
+"q": "Before atherosclerosis, blood changes mainly affect:",
+"o": [
+"Digestion",
+"Absorption",
+"Composition of blood",
+"Brain cells"
+],
+"c": 2
+},
+{
+"q": "Triglycerides in blood can block:",
+"o": [
+"Glucose receptors",
+"Oxygen transporters",
+"Insulin receptors",
+"Calcium channels"
+],
+"c": 2
+},
+{
+"q": "Macronutrients are required in amounts:",
+"o": [
+"Less than 1 g",
+"More than 1 g",
+"Exactly 1 g",
+"Not measurable"
+],
+"c": 1
+},
+{
+"q": "Vitamins and minerals are classified as:",
+"o": [
+"Macronutrients",
+"Micronutrients",
+"Hormones",
+"Fibers"
+],
+"c": 1
+},
+{
+"q": "RDA is the amount of nutrient:",
+"o": [
+"Above which growth stops",
+"Below which deficiency symptoms appear",
+"That guarantees obesity",
+"Not related to health"
+],
+"c": 1
+},
+{
+"q": "A nutrient is defined as:",
+"o": [
+"A toxin",
+"A chemical component needed by the body",
+"A hormone",
+"A waste product"
+],
+"c": 1
+},
+{
+"q": "Protein digestion produces:",
+"o": [
+"Glucose",
+"Fatty acids",
+"Amino acids",
+"ATP"
+],
+"c": 2
+},
+{
+"q": "Digestion is the process of:",
+"o": [
+"Absorbing nutrients",
+"Breaking down large molecules into smaller ones",
+"Removing toxins",
+"Storing glucose"
+],
+"c": 1
+},
+{
+"q": "One gram of carbohydrates produces:",
+"o": [
+"2 calories",
+"4 calories",
+"9 calories",
+"7 calories"
+],
+"c": 1
+},
+{
+"q": "The most efficient energy source for the body is:",
+"o": [
+"Proteins",
+"Fats",
+"Glucose",
+"Water"
+],
+"c": 2
+},
+{
+"q": "One gram of fat requires ______ oxygen to release 4 calories:",
+"o": [
+"0.7 L",
+"0.9 L",
+"1.2 L",
+"0.5 L"
+],
+"c": 2
+},
+{
+"q": "Energy in food is measured in:",
+"o": [
+"Joules",
+"Volts",
+"Calories",
+"Grams"
+],
+"c": 2
+},
+{
+"q": "A diet containing only carbohydrates, proteins, and fats is:",
+"o": [
+"Balanced",
+"Unbalanced",
+"Optimum",
+"Healthy"
+],
+"c": 1
+},
+{
+"q": "All of the following are essential nutrients EXCEPT:",
+"o": [
+"Carbohydrates",
+"Vitamins",
+"Minerals",
+"Hormones"
+],
+"c": 3
+},
+{
+"q": "Recommended carbohydrate intake in diet is:",
+"o": [
+"5–10%",
+"40–65%",
+"20–30%",
+"10–15%"
+],
+"c": 1
+},
+{
+"q": "High protein diets (like keto) are considered:",
+"o": [
+"Balanced",
+"Unbalanced",
+"Optimum",
+"Preventive"
+],
+"c": 1
+},
+{
+"q": "In starvation, the smell of acetone in the mouth is due to:",
+"o": [
+"Glucose oxidation",
+"Ketone body production",
+"Protein synthesis",
+"Fat storage"
+],
+"c": 1
+},
+{
+"q": "Fats provide:",
+"o": [
+"4 calories per gram",
+"9 calories per gram",
+"2 calories per gram",
+"No energy"
+],
+"c": 1
+},
+{
+"q": "Protein breakdown for energy results in:",
+"o": [
+"Muscle building",
+"Muscle wasting",
+"Fat storage",
+"Increased glycogen"
+],
+"c": 1
+},
+{
+"q": "Exercise protects the body by:",
+"o": [
+"Increasing protein breakdown",
+"Preserving muscle protein",
+"Preventing fat oxidation",
+"Reducing glycogen stores"
+],
+"c": 1
+},
+{
+"q": "The main nutrient for tissue building is:",
+"o": [
+"Fats",
+"Carbohydrates",
+"Proteins",
+"Fibers"
+],
+"c": 2
+},
+{
+"q": "Iron is essential for the formation of:",
+"o": [
+"Bones",
+"Hemoglobin",
+"Muscles",
+"Skin"
+],
+"c": 1
+},
+{
+"q": "Vitamin D, calcium, and phosphorus are essential for:",
+"o": [
+"Bone formation",
+"Eye health",
+"Skin repair",
+"Muscle contraction"
+],
+"c": 0
+},
+{
+"q": "ATP provides energy in all forms EXCEPT:",
+"o": [
+"Mechanical",
+"Electrical",
+"Chemical",
+"Hormonal"
+],
+"c": 3
+},
+{
+"q": "The main nutrients for regulating metabolism are:",
+"o": [
+"Carbohydrates and proteins",
+"Vitamins, minerals, water, fibers",
+"Fats and proteins",
+"Glucose and glycogen"
+],
+"c": 1
+},
+{
+"q": "Fibers regulate peristalsis by:",
+"o": [
+"Being digested quickly",
+"Forming bulk in GIT",
+"Producing ATP",
+"Breaking into glucose"
+],
+"c": 1
+},
+{
+"q": "Constipation can be prevented by:",
+"o": [
+"Proteins",
+"Water",
+"Fibers",
+"Cholesterol"
+],
+"c": 2
+},
+{
+"q": "Fibers regulate metabolism by:",
+"o": [
+"Reducing oxygen use",
+"Absorbing glucose and fats",
+"Blocking insulin receptors",
+"Storing glycogen"
+],
+"c": 1
+},
+{
+"q": "Signs of good nutrition include:",
+"o": [
+"Obesity",
+"Weak muscles",
+"Bright eyes and healthy hair",
+"Poor skin"
+],
+"c": 2
+},
+{
+"q": "Overnutrition usually results in:",
+"o": [
+"Weakness",
+"Obesity",
+"Anemia",
+"Bone fractures"
+],
+"c": 1
+},
+{
+"q": "Optimum nutrition requires:",
+"o": [
+"Balanced diet only",
+"Balanced and varied diet",
+"Proteins only",
+"Carbohydrates mainly"
+],
+"c": 1
+},
+{
+"q": "Variety in diet is important to:",
+"o": [
+"Avoid obesity",
+"Obtain all micronutrients",
+"Increase glycogen stores",
+"Prevent exercise fatigue"
+],
+"c": 1
+},
+{
+"q": "People who avoid vegetables are at risk of:",
+"o": [
+"Obesity",
+"Vitamin and mineral deficiencies",
+"Diabetes",
+"Heart disease"
+],
+"c": 1
+},
+{
+"q": "Undernutrition is common in all EXCEPT:",
+"o": [
+"Hospitalized patients",
+"Small children",
+"Athletes",
+"Elderly people"
+],
+"c": 2
+},
+{
+"q": "Overnutrition is the opposite of undernutrition and leads mainly to:",
+"o": [
+"Growth retardation",
+"Weight gain and obesity",
+"Eye diseases",
+"Muscle wasting"
+],
+"c": 1
+},
+{
+"q": "Nutrition mainly provides the body with:",
+"o": [
+"Toxins",
+"Wastes",
+"Energy, structure, and regulation",
+"Drugs"
+],
+"c": 2
+},
+{
+"q": "Food is required to:",
+"o": [
+"Maintain tissues",
+"Build tissues",
+"Reproduce",
+"All of the above"
+],
+"c": 3
+},
+{
+"q": "Nutrition is essential for:",
+"o": [
+"Good health",
+"Growth",
+"Reproduction",
+"All of the above"
+],
+"c": 3
+},
+{
+"q": "Malnutrition may result in:",
+"o": [
+"Strong immunity",
+"Diseases",
+"Optimum nutrition",
+"High energy"
+],
+"c": 1
+},
+{
+"q": "Malnutrition occurs when:",
+"o": [
+"RDA is met",
+"Diet is balanced",
+"Diet lacks proper nutrients",
+"Energy intake is adequate"
+],
+"c": 2
+},
+{
+"q": "A body with structure but poor health is a result of:",
+"o": [
+"Optimum nutrition",
+"Malnutrition",
+"Balanced diet",
+"Overnutrition"
+],
+"c": 1
+},
+{
+"q": "The term “wellness” means:",
+"o": [
+"Absence of growth",
+"Lack of fat",
+"Efficiency in daily activities",
+"Weakness"
+],
+"c": 2
+},
+{
+"q": "Nutrition helps in:",
+"o": [
+"Preventing disease",
+"Keeping energy reserves",
+"Feeling fresh",
+"All of the above"
+],
+"c": 3
+},
+{
+"q": "Good nutrition is NOT related to:",
+"o": [
+"Energy reserves",
+"Good health",
+"Disease prevention",
+"Excess cholesterol"
+],
+"c": 3
+},
+{
+"q": "Continuous intake of high fat and cholesterol leads to:",
+"o": [
+"Constipation",
+"Atherosclerosis",
+"Strong immunity",
+"Protein synthesis"
+],
+"c": 1
+},
+{
+"q": "Atherosclerosis involves:",
+"o": [
+"Blockage of veins",
+"Blockage of coronary arteries",
+"Blockage of nerves",
+"Blockage of lymph"
+],
+"c": 1
+},
+{
+"q": "Ischemic heart disease is caused by:",
+"o": [
+"Blocked veins",
+"Blocked coronary arteries",
+"Low protein intake",
+"Vitamin deficiency"
+],
+"c": 1
+},
+{
+"q": "Before atherosclerosis, the main change occurs in:",
+"o": [
+"Brain",
+"GIT",
+"Blood composition",
+"Kidneys"
+],
+"c": 2
+},
+{
+"q": "Triglycerides mainly affect:",
+"o": [
+"Glucose oxidation",
+"Calcium absorption",
+"Insulin receptor activity",
+"Nerve conduction"
+],
+"c": 2
+},
+{
+"q": "Macronutrients include:",
+"o": [
+"Proteins, fats, carbohydrates",
+"Vitamins, minerals, water",
+"Proteins, fats, carbohydrates",
+"Hormones"
+],
+"c": 2
+},
+{
+"q": "Micronutrients include:",
+"o": [
+"Fats and proteins",
+"Vitamins and minerals",
+"Carbohydrates",
+"ATP"
+],
+"c": 1
+},
+{
+"q": "Micronutrients are required in:",
+"o": [
+"Grams",
+"Kilograms",
+"Small amounts (less than 1 g)",
+"Liters"
+],
+"c": 2
+},
+{
+"q": "RDA indicates:",
+"o": [
+"Amount above which toxicity occurs",
+"Minimum amount below which deficiency appears",
+"Exact amount for obesity",
+"Irrelevant to nutrition"
+],
+"c": 1
+},
+{
+"q": "Nutrients are:",
+"o": [
+"Hormones",
+"Drugs",
+"Chemical components required by the body",
+"Wastes"
+],
+"c": 2
+},
+{
+"q": "Proteins are broken down into:",
+"o": [
+"Glucose",
+"Amino acids",
+"Fatty acids",
+"ATP"
+],
+"c": 1
+},
+{
+"q": "Fats are broken down into:",
+"o": [
+"Fatty acids and glycerol",
+"Amino acids",
+"ATP only",
+"Glucose"
+],
+"c": 0
+},
+{
+"q": "Digestion is defined as:",
+"o": [
+"Storage of glucose",
+"Removal of toxins",
+"Breaking down large molecules into smaller ones",
+"Blood circulation"
+],
+"c": 2
+},
+{
+"q": "1 g carbohydrate provides:",
+"o": [
+"2 calories",
+"4 calories",
+"7 calories",
+"9 calories"
+],
+"c": 1
+},
+{
+"q": "1 g protein provides:",
+"o": [
+"2 calories",
+"4 calories",
+"7 calories",
+"9 calories"
+],
+"c": 1
+},
+{
+"q": "1 g fat provides:",
+"o": [
+"4 calories",
+"7 calories",
+"9 calories",
+"2 calories"
+],
+"c": 2
+},
+{
+"q": "The body’s most efficient energy comes from:",
+"o": [
+"Glucose",
+"Protein",
+"Fat",
+"Minerals"
+],
+"c": 0
+},
+{
+"q": "The oxygen required to oxidize 1 g fat is:",
+"o": [
+"0.5 L",
+"0.7 L",
+"1.2 L",
+"2 L"
+],
+"c": 2
+},
+{
+"q": "The unit used to measure food energy is:",
+"o": [
+"Joule",
+"Calorie",
+"Gram",
+"Volt"
+],
+"c": 1
+},
+{
+"q": "A balanced diet must contain:",
+"o": [
+"Only carbohydrates",
+"Only proteins and fats",
+"All macronutrients and micronutrients",
+"Water only"
+],
+"c": 2
+},
+{
+"q": "A diet without vitamins is:",
+"o": [
+"Balanced",
+"Unbalanced",
+"Optimum",
+"Adequate"
+],
+"c": 1
+},
+{
+"q": "Recommended carbohydrate intake is:",
+"o": [
+"5–10%",
+"40–65%",
+"10–20%",
+"70–90%"
+],
+"c": 1
+},
+{
+"q": "High protein diets are considered:",
+"o": [
+"Balanced",
+"Unbalanced",
+"Optimum",
+"Protective"
+],
+"c": 1
+},
+{
+"q": "In starvation, ketone bodies are formed from:",
+"o": [
+"Protein",
+"Fat",
+"Fat metabolism",
+"Carbohydrates"
+],
+"c": 2
+},
+{
+"q": "The smell of acetone indicates:",
+"o": [
+"Protein breakdown",
+"Ketone body production",
+"Carbohydrate storage",
+"Vitamin deficiency"
+],
+"c": 1
+},
+{
+"q": "Protein used as energy leads to:",
+"o": [
+"Muscle wasting",
+"Fat gain",
+"Energy preservation",
+"Glucose storage"
+],
+"c": 0
+},
+{
+"q": "Exercise protects muscle by:",
+"o": [
+"Increasing fat storage",
+"Decreasing protein breakdown",
+"Blocking glucose absorption",
+"Increasing ketone bodies"
+],
+"c": 1
+},
+{
+"q": "The main nutrient for tissue building is:",
+"o": [
+"Fat",
+"Protein",
+"Water",
+"Carbohydrate"
+],
+"c": 1
+},
+{
+"q": "Hemoglobin formation requires:",
+"o": [
+"Vitamin C",
+"Iron",
+"Calcium",
+"Phosphorus"
+],
+"c": 1
+},
+{
+"q": "Bone formation requires:",
+"o": [
+"Iron",
+"Vitamin D, calcium, phosphorus",
+"Zinc",
+"Vitamin C"
+],
+"c": 1
+},
+{
+"q": "ATP provides energy in the following forms:",
+"o": [
+"Mechanical",
+"Electrical",
+"Chemical",
+"All of the above"
+],
+"c": 3
+},
+{
+"q": "Nutrients important for regulation include:",
+"o": [
+"Carbs and proteins",
+"Vitamins, minerals, water, fibers",
+"Fats only",
+"Glucose and glycogen"
+],
+"c": 1
+},
+{
+"q": "Fibers are mainly composed of:",
+"o": [
+"Starch",
+"Cellulose",
+"Proteins",
+"Lipids"
+],
+"c": 1
+},
+{
+"q": "Cellulose is:",
+"o": [
+"Soluble fiber",
+"Insoluble fiber",
+"Protein derivative",
+"Micronutrient"
+],
+"c": 1
+},
+{
+"q": "The main role of fibers in GIT is:",
+"o": [
+"Producing ATP",
+"Forming bulk and maintaining peristalsis",
+"Being digested quickly",
+"Storing glucose"
+],
+"c": 1
+}
+]

@@ -386,7 +386,7 @@ L("l5", "Spinal Manipulation (HVLAT)", "Manipulation", "⚡",
 
 # ================================================================ Kyphosis
 L("l6", "Kyphosis — Types, Measurement & Management", "Kyphosis", "🐢",
-  "سلايدات Kyphosis and Scoliosis (لحد سلايد 27) + كتاب المادة",
+  "سلايدات Kyphosis and Scoliosis (لحد سلايد 27) + كتاب المادة + تفريغ المحاضرة",
 """
 <div class="card"><h4>Definitions</h4>
 <ul><li>الانحناءات بتتسمى باتجاه الـ convexity (الـ apex) والمنطقة.</li>
@@ -446,6 +446,28 @@ L("l6", "Kyphosis — Types, Measurement & Management", "Kyphosis", "🐢",
 <li>من الكتاب: stretch للـ pectorals، تقوية الـ upper back و deep erector spinae و scapular adductors، تمارين breathing (خصوصًا inhalation)، hamstring flexibility، و awareness.</li></ul>
 <p><b>Prevention:</b> seated posture على الكمبيوتر، standing posture، مسك الموبايل قدام العين، Calcium + Vitamin D + Magnesium، exercise، وتجنب التدخين والصوديوم والبروتين الزيادة والكافيين.</p>
 <p class="key">مراجعة: الـ kyphosis = <b>flexion lesion + expiration lesion</b>، والـ first line هو extension mobilization للـ thoracic وبعدين inhalation mobilization للضلوع (تاب Thoracic &amp; Ribs).</p></div>
+
+<div class="card"><h4>📝 من تفريغ المحاضرة (Lec 6 — نوتس زميلتنا)</h4>
+<ul><li>Kyphosis = <b>posterior displacement of vertebrae</b>، وبيعمل <b>bilateral hump</b>. لو الـ hump في ناحية واحدة يبقى <b>scoliosis</b>.</li>
+<li><b>Postural</b>: الأشهر <b>والأسهل في العلاج</b>. <b>Congenital</b>: ممكن يوصل للوفاة بسبب cyanosis (مشكلة تنفس)، و<b>الـ PT مش بيفيد فيه</b>.</li>
+<li>المريض بيشتكي من <b>interscapular pain</b> بسبب الـ stretch والالتهاب في الـ <b>rhomboids و middle trapezius</b>.</li>
+<li>فوق <b>40°</b> displacement يبقى <b>pathological</b>.</li></ul>
+<p><b>Diagnosis:</b></p>
+<ul><li><b>Subjective — Adam's forward bending test</b>: المريض بيعمل full flexion (ركوع) وتشوف فيه hump ولا لأ. أساسًا للـ scoliosis، بس لو الـ hump <b>bilateral</b> يبقى kyphosis.</li>
+<li><b>Objective</b>: X-ray و CT و MRI و nerve tests، والزاوية بالـ modified Cobb's angle والـ Debrunner kyphometer (C7–T12) والـ flexicurve index.</li>
+<li><b>Cobb's angle</b>: خط على الـ <b>superior end plate لأول فقرة</b> وخط على الـ <b>inferior end plate لآخر فقرة</b>، والزاوية بينهم.</li></ul>
+<p><b>Assessment — problem list:</b></p>
+<ul><li>Deep neck flexors <b>weak</b> و neck extensors <b>tight</b>.</li>
+<li>Pectoralis و serratus <b>tight</b>، والـ rhomboids و middle و lower trapezius <b>weak</b>.</li>
+<li>Forward head و rounded shoulders، وزيادة الـ thoracocervical curve.</li>
+<li><b>Expiratory lesion</b> في الضلوع (صعوبة في الـ inspiration).</li>
+<li>ممكن يتعوض بـ <b>hyperlordosis</b> في الـ lumbar، أو يجي مع sway back.</li></ul>
+<p><b>Treatment</b> (أساسًا للـ postural kyphosis):</p>
+<ol><li><b>Medications</b>: مسكنات عشان تجهز المريض للـ PT.</li>
+<li><b>Physiotherapy</b>: لو الألم مشكلة ابدأ بـ <b>MET</b> عشان تعمل inhibition للعضلة · stretch للـ tight و strengthening للـ weak · curve correction بالـ positioning و <b>Mulligan SNAGs extension</b> و Maitland و <b>McKenzie extension programme</b> · <b>rib inspiration mobilization</b> · electrotherapy · breathing exercises (اشتغل على الـ sternum، ولو الـ diaphragm ضعيف اشتغل عليه) · manipulation · scapular mobilization · balance و postural correction و core.</li>
+<li><b>Surgery</b>: congenital أو cancerous growth أو sharp pain أو neurological أو deformity شديد، و<b>آخر حل</b> لو الـ PT والـ bracing فشلوا.</li>
+<li><b>Bracing</b>: لما مبقاش reversible والتمارين فشلت. الـ passive bracing من غير PT مالوش تأثير، و<b>بالعكس بيعمل muscle weakness</b>. بيتلبس بانتظام ويتقلع <b>ساعة في اليوم</b> لو الزاوية كبيرة، ولو مش كبيرة بيتلبس في الأنشطة اللي فيها malposture بس. وبياخد وقت طويل عشان يجيب نتيجة.</li></ol>
+<p><b>Tips:</b> في الـ <b>kypholordosis</b> عالج الـ lumbar كمان (abs strengthening) · <b>تجنب الـ bridging</b> مع الـ hyperlordosis وبدّله بالـ abs · لو فيه radiation استخدم <b>neurodynamics</b> · الـ <b>hanging</b> أحسن طريقة لعلاج الـ deformity والـ muscle imbalance.</p></div>
 """,
 [
  ("Definitions & types", [
@@ -475,6 +497,24 @@ L("l6", "Kyphosis — Types, Measurement & Management", "Kyphosis", "🐢",
   ("The flexicurve is placed between:", ["C7 and the lumbosacral joint space", "C2 and T12", "T1 and T12", "Occiput and sacrum"], "imp", ""),
   ("Tools to measure thoracic kyphosis include all EXCEPT:", ["Plumb line", "Modified Cobb angle", "Pantograph", "Debrunner kyphometer"], "", ""),
   ("After removing the flexicurve, it is drawn on:", ["10×10 paper to measure TW and LW lines", "X-ray film", "A goniometer", "A spirometer chart"], "", ""),
+ ]),
+ ("From the lecture notes (Lec 6)", [
+  ("A unilateral hump on forward bending indicates:", ["Scoliosis", "Kyphosis", "Lordosis", "Flat back"], "imp", "Bilateral hump = kyphosis."),
+  ("Adam's forward bending test is mainly used for scoliosis, but a bilateral hump indicates:", ["Kyphosis", "Lordosis", "Sway back", "Normal spine"], "imp", ""),
+  ("The easiest type of kyphosis to treat is:", ["Postural kyphosis", "Congenital kyphosis", "Scheuermann's kyphosis", "Traumatic kyphosis"], "", ""),
+  ("Physical therapy does not help in:", ["Congenital kyphosis", "Postural kyphosis", "Mild Scheuermann's", "Upper crossed syndrome"], "", ""),
+  ("Interscapular pain in kyphosis is due to stretch and inflammation of the:", ["Rhomboids and middle trapezius", "Pectorals", "Upper trapezius only", "Latissimus dorsi"], "imp", ""),
+  ("Cobb's angle is measured between the:", ["Superior end plate of the first vertebra and inferior end plate of the last vertebra", "Spinous processes of C7 and T12", "Transverse processes", "Pedicles"], "imp", ""),
+  ("In the kyphosis problem list, the deep neck flexors are:", ["Weak", "Tight", "Normal", "Hypertrophied"], "", "والـ extensors tight."),
+  ("In kyphosis, the rhomboids and middle/lower trapezius are:", ["Weak", "Tight", "Shortened", "Spastic"], "", ""),
+  ("In the kyphosis problem list, the ribs show:", ["Expiratory lesion (difficulty in inspiration)", "Inspiratory lesion", "No lesion", "Fracture"], "imp", ""),
+  ("Thoracic kyphosis may be compensated by:", ["Lumbar hyperlordosis", "Lumbar kyphosis", "Cervical kyphosis", "Scoliosis always"], "", ""),
+  ("If pain is the main problem in kyphosis, treatment starts with:", ["MET to inhibit the muscle", "Manipulation", "Bracing", "Surgery"], "", ""),
+  ("Mulligan technique used for curve correction in kyphosis is:", ["SNAGs extension", "SNAGs flexion", "NAGs rotation", "MWM of the shoulder"], "", ""),
+  ("Passive bracing without PT may actually:", ["Cause muscle weakness", "Strengthen muscles", "Correct the curve fully", "Improve breathing"], "", ""),
+  ("In a kypholordosis patient, bridging should be:", ["Avoided and replaced with abdominal strengthening", "Done daily", "Done with weights", "Combined with lumbar extension"], "", ""),
+  ("If radiation is present with kyphosis, consider:", ["Neurodynamics", "Bracing only", "Surgery immediately", "Ignoring it"], "", ""),
+  ("Surgery for kyphosis is:", ["The last option if PT and bracing failed", "The first line for postural kyphosis", "Always required above 30°", "Contraindicated in congenital cases"], "", ""),
  ]),
  ("Bracing & treatment", [
   ("Bracing in hyperkyphosis is recommended only when:", ["The hyperkyphosis is no longer reversible through exercises", "The curve is less than 20°", "The patient is over 80", "Exercises are effective"], "imp", ""),
