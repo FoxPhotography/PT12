@@ -1,7 +1,10 @@
 import random, html, re, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from data_nutri import TABS, TF_DRILL
+from data_nutri import TABS, TF_DRILL, MID
+MIDONLY = '--mid' in sys.argv
+if MIDONLY:
+    sys.argv.remove('--mid'); TABS = [MID]
 MODE = 'sec'
 
 esc = lambda s: html.escape(s, quote=False)
@@ -71,9 +74,9 @@ for k, (tid, title, short, icon, src, summary, groups) in enumerate(TABS):
     summary = re.sub(r'(\d+(?:\.\d+)?\s?:\s?\d+(?:\.\d+)?)', r'<span dir="ltr">\1</span>', summary)
     lec_tab(tid, title, short, icon, src, summary, groups, active=(k == 0))
 tfo = ["True ✓", "False ✗"]
-sections.append('<div class="section" id="tf"><div class="info-banner">جمل صح وغلط من الـ 6 محاضرات، على الحاجات اللي ممكن تتقلب في الامتحان.</div>' + search('tf') +
+if not MIDONLY: sections.append('<div class="section" id="tf"><div class="info-banner">جمل صح وغلط من الـ 6 محاضرات، على الحاجات اللي ممكن تتقلب في الامتحان.</div>' + search('tf') +
     group('True or False', [(t, tfo, c_, e) for t, c_, e in TF_DRILL], 1, fixed=True) + '</div>')
-nav.append(('tf', '✅ صح وغلط'))
+if not MIDONLY: nav.append(('tf', '✅ صح وغلط'))
 WN = WCOUNT['w']
 TOTAL = COUNT['q']
 nav_html = '<a href="../../index.html" class="nav-btn">🔙 الرئيسية</a>' + ''.join(
@@ -144,17 +147,17 @@ TPL = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nutrition — Summaries & MCQ</title>
+<title>{"Nutrition — تجميعة الميد" if MIDONLY else "Nutrition — Summaries & MCQ"}</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>{BASE_CSS}{EXTRA_CSS}</style>
 </head>
 <body>
 <header>
   <div class="header-badge">🍎 Nutrition · د. سيد حنورة</div>
-  <h1>Nutrition</h1>
-  <p class="subtitle">Macronutrients · Vitamins · Minerals · Water · Healthy diet</p>
+  <h1>{"تجميعة الميد" if MIDONLY else "Nutrition"}</h1>
+  <p class="subtitle">{"Water · Beverage levels · Healthy eating · Eat smart" if MIDONLY else "Macronutrients · Vitamins · Minerals · Water · Healthy diet"}</p>
   <div class="stats-bar">
-    <div class="stat"><div class="stat-num">{len(TABS)}</div><div class="stat-label">ملخصات</div></div>
+    <div class="stat"><div class="stat-num">{len(TABS)}</div><div class="stat-label">{"ورقة أرقام" if MIDONLY else "ملخصات"}</div></div>
     <div class="stat"><div class="stat-num">{TOTAL}</div><div class="stat-label">سؤال</div></div>
 {"" if MODE == "sec" else f'    <div class="stat"><div class="stat-num">{WN}</div><div class="stat-label">سؤال written</div></div>'}
     <div class="stat"><div class="stat-num" id="score-display">0/{TOTAL}</div><div class="stat-label">إجابات صحيحة</div></div>

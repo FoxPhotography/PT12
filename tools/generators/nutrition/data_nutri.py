@@ -5,6 +5,24 @@ _L1 = json.load(open(os.path.join(HERE, 'l1_mcq.json'), encoding='utf8'))
 L1_BATCH = [(q['q'], q['o'], q['c'], '') for q in _L1]
 
 TABS = []
+
+# Beverage levels (Lec 5) — from the lecture table + batch polls
+BEV = [
+  ("Level 1 of the beverage levels is:", ["Water", "Unsweetened tea and coffee", "Low-fat milk", "Diet drinks"], "imp", ""),
+  ("At least …… of daily fluid should come from water:", ["Half (≥50%)", "One-quarter", "One-tenth", "All of it"], "imp", ""),
+  ("Level 2 of the beverage levels is:", ["Unsweetened tea and coffee", "Water", "Fruit juices", "Sports drinks"], "imp", ""),
+  ("Unsweetened tea and coffee can provide up to …… of daily fluids:", ["One-third (3–4 cups)", "Two-thirds", "All", "None"], "imp", "مش two-thirds."),
+  ("Tea/coffee intake should be ≤40 oz, with caffeine not exceeding:", ["400 mg/day", "40 mg/day", "1000 mg/day", "4 g/day"], "imp", ""),
+  ("Level 3 of the beverage levels is:", ["Low-fat and skim milk and soy beverages", "Diet drinks", "Water", "Sugar-sweetened drinks"], "imp", ""),
+  ("Low-fat milk should be limited to:", ["≤16 oz/day", "≤4 oz/day", "≤40 oz/day", "Unlimited"], "", ""),
+  ("Level 4 of the beverage levels is:", ["Noncalorically sweetened beverages (diet drinks)", "Low-fat milk", "Fruit juices", "Water"], "imp", ""),
+  ("Diet (noncalorically sweetened) drinks should be limited to:", ["≤16 oz/day (1–2 glasses)", "3–4 glasses/day", "≤4 oz/day", "Unlimited"], "imp", ""),
+  ("Caloric beverages with some nutrients (Level 5) include:", ["Fruit juices", "Coffee", "Low-fat milk", "Water"], "imp", "Level 5: 100% fruit juice، whole milk، sports drinks، alcohol."),
+  ("100% fruit juice should be limited to:", ["≤4 oz/day", "≤16 oz/day", "≤40 oz/day", "≤8 oz/day"], "imp", ""),
+  ("Level 6 (calorically sweetened beverages) should be limited to:", ["≤8 oz/day", "≤16 oz/day", "≤40 oz/day", "≥50%"], "imp", ""),
+  ("Fluids amount needed per day is about:", ["12–15 cups", "10–15 cups", "5–10 cups", "2–4 cups"], "imp", "إجابة كويز الدفعة: 12:15 cups. المثال حوالي 12 كوباية، والرجالة حوالي 15."),
+  ("The daily beverage breakdown example is based on:", ["2200 kcal diet with 10% of calories from drinks", "1200 kcal diet with 50% from drinks", "3000 kcal diet with no calories from drinks", "2200 kcal diet with 40% from drinks"], "", ""),
+]
 def T(*a): TABS.append(a)
 
 # ============================================================ Lec 1
@@ -342,6 +360,7 @@ T("l4", "Lec 4 — Fat-Soluble Vitamins (A, D, E, K) & Macrominerals", "Lec 4 AD
   ("Vitamin K is a cofactor in the formation of:", ["Prothrombin", "Rhodopsin", "Collagen", "Hemoglobin"], "imp", ""),
   ("Vitamin K deficiency in newborns causes:", ["Hemorrhagic disease of the newborn", "Rickets", "Kwashiorkor", "Beriberi"], "imp", ""),
   ("Newborns are given vitamin K as:", ["1 mg IM", "60,000 IU orally", "10 mg IV BD", "400 µg"], "", ""),
+  ("Which vitamin protects cells from damage caused by heavy metals (lead and mercury)?", ["Vitamin E", "Vitamin C", "Vitamin A", "Vitamin K"], "imp", "من سلايدات Lec 4، في وظايف الـ Vit E."),
  ]),
  ("Macrominerals", [
   ("Total mineral content of the body is about:", ["4% of body weight", "40%", "0.04%", "15%"], "", ""),
@@ -359,7 +378,7 @@ T("l4", "Lec 4 — Fat-Soluble Vitamins (A, D, E, K) & Macrominerals", "Lec 4 AD
 
 # ============================================================ Lec 5
 T("l5", "Lec 5 — Water", "Lec 5 Water", "💧",
-  "شرح المحاضرة الخامسة (مفيش سلايدات للمحاضرة دي في الملفات)",
+  "شرح المحاضرة الخامسة + جدول الـ beverage levels (مفيش سلايدات للمحاضرة دي في الملفات)",
 """
 <div class="card"><h4>1. Water = elixir of life</h4>
 <ul><li>من غير مية الإنسان <b>مش بيعيش أكتر من حوالي 4 أيام</b>.</li>
@@ -419,6 +438,16 @@ T("l5", "Lec 5 — Water", "Lec 5 Water", "💧",
 <li>الـ caffeine diuretic بس تأثيره قصير، فالقهوة والشاي بيتحسبوا.</li>
 <li><b>بيزود الاحتياج</b>: exercise، جو ناشف، low-calorie diet (ketones)، high-protein (urea)، high-salt، high-fiber.</li>
 <li>Life stages: <b>infants</b> (6 شهور حوالي 0.7 L)، <b>pregnancy</b>، <b>lactation</b> (+0.7 L).</li></ul></div>
+
+<div class="card"><h4>9. Beverage levels (المستويات الـ 6)</h4>
+<table><tr><th>Level</th><th>المشروب</th><th>الحد اليومي</th></tr>
+<tr><td>Level 1</td><td><b>Water</b></td><td><b>≥50%</b> من السوائل (على الأقل النص)</td></tr>
+<tr><td>Level 2</td><td><b>Unsweetened tea &amp; coffee</b></td><td><b>≤40 oz</b>، حوالي <b>⅓</b> السوائل (3–4 أكواب). الـ caffeine <b>≤400 mg/day</b></td></tr>
+<tr><td>Level 3</td><td><b>Low-fat &amp; skim milk</b> و soy beverages</td><td><b>≤16 oz</b> (كوبايتين 8 oz، حوالي 20%)</td></tr>
+<tr><td>Level 4</td><td><b>Noncalorically sweetened beverages</b> (diet / zero drinks)</td><td><b>≤16 oz</b> (1–2 كوباية)</td></tr>
+<tr><td>Level 5</td><td><b>Caloric beverages with some nutrients</b>: 100% fruit juice، whole milk، sports drinks، alcohol</td><td>Fruit juice <b>≤4 oz</b></td></tr>
+<tr><td>Level 6</td><td><b>Calorically sweetened beverages</b> (sugar-sweetened: sodas، fruit drinks)</td><td><b>≤8 oz</b></td></tr></table>
+<p class="key">المثال ده على <b>2200 kcal diet</b> و<b>10%</b> من السعرات جاية من المشروبات. إجمالي السوائل في اليوم حوالي <b>12–15 كوباية</b>.</p></div>
 """,
 [
  ("Water basics & distribution", [
@@ -462,6 +491,7 @@ T("l5", "Lec 5 — Water", "Lec 5 Water", "💧",
   ("About 80% of fluid intake comes from:", ["Beverages", "Food", "Metabolism", "Fruits only"], "", ""),
   ("Which diet INCREASES water needs?", ["High-protein diet", "Normal diet", "Low-salt diet", "Low-fiber diet"], "", "عشان الـ urea."),
  ]),
+ ("Beverage levels (المستويات)", BEV),
 ])
 
 # ============================================================ Lec 6
@@ -554,4 +584,136 @@ TF_DRILL = [
  ("Drinking only plain water after heavy sweating may cause hyponatremia.", 0, ""),
  ("Sports drinks are needed for exercise lasting less than 60 minutes.", 1, "مية سادة كفاية."),
  ("Simple sugars should be less than 10% of intake.", 0, ""),
+ ("Two-thirds of fluids come from unsweetened coffee and tea.", 1, "One-third بس (3–4 أكواب)."),
+ ("Level 4 is low-fat milk.", 1, "Low-fat milk هو Level 3. والـ Level 4 هو الـ diet drinks."),
+ ("Level 4 (diet drinks) can be 3 to 4 glasses a day.", 1, "1–2 كوباية (≤16 oz). الـ 3–4 أكواب دول بتوع الشاي والقهوة."),
+ ("Vitamin E protects cells from damage caused by heavy metals.", 0, ""),
 ]
+
+# ============================================================ تجميعة الميد (Water + Healthy eating)
+_TF = ["True ✓", "False ✗"]
+def _tf(t, c, e=""): return (t, _TF, c, e)
+MID = ("mid", "تجميعة الميد — Water & Healthy Eating", "تجميعة الميد", "⭐",
+  "Lec 5 (Water + beverage levels) و Lec 6 (Healthy diet & Eat smart)",
+"""
+<div class="card"><h4>📌 اقرا دي الأول</h4>
+<ul><li>الامتحان الإلكتروني على <b>Water</b> و<b>Healthy eating</b> بس، والأسئلة هنا كلها من المحاضرتين دول.</li>
+<li>دي أسئلة البصمجة: احفظ الأرقام اللي في الجدولين اللي تحت، وحل الأسئلة لحد ما تجيبها كلها صح.</li></ul></div>
+
+<div class="card"><h4>💧 أرقام الـ Water</h4>
+<table><tr><th>الحاجة</th><th>الرقم</th></tr>
+<tr><td>تعيش من غير مية</td><td>حوالي <b>4 أيام</b></td></tr>
+<tr><td>الجسم / الدم / العضلات / العظم</td><td><b>60% / 90% / 75% / 25%</b> مية</td></tr>
+<tr><td>Extracellular</td><td><b>⅓</b> مية الجسم، و<b>¾</b> منه interstitial</td></tr>
+<tr><td>Urine / Feces / Insensible</td><td><b>1–2 L</b> / <b>100–200 ml</b> / حوالي <b>1 L</b> في اليوم</td></tr>
+<tr><td>Sweat (exercise في الحر)</td><td><b>2–4 L في الساعة</b></td></tr>
+<tr><td>Dehydration</td><td><b>2–3%</b> الأداء يقل · <b>≥3%</b> heat exhaustion/stroke · <b>10–20%</b> death</td></tr>
+<tr><td>ORS</td><td>فعال <b>90–95%</b> · WHO سنة <b>1978</b> · الإسهال بيموّت حوالي <b>2 مليون</b> طفل/سنة</td></tr>
+<tr><td>Exercise</td><td>0.5 L قبلها بـ <b>4 ساعات</b> · 0.2–0.4 L كل <b>15–20 دقيقة</b> · أقل من 60 دقيقة <b>مية سادة</b></td></tr>
+<tr><td>الاحتياج اليومي</td><td>ستات <b>2.7 L</b> · رجالة <b>3.7 L</b> · <b>80%</b> مشروبات و20% أكل</td></tr>
+<tr><td>Boston Marathon 2002</td><td><b>13%</b> عندهم hyponatremia</td></tr></table>
+<p class="key">ADH ← solute <b>عالي</b> · RAAS ← BP أو Na <b>واطي</b> · الـ <b>Sodium</b> هو اللي بيحدد حجم الـ ECF.</p></div>
+
+<div class="card"><h4>🥤 الـ Beverage levels</h4>
+<table><tr><th>Level</th><th>المشروب</th><th>الحد</th></tr>
+<tr><td>1</td><td>Water</td><td><b>≥50%</b></td></tr>
+<tr><td>2</td><td>Unsweetened tea &amp; coffee</td><td><b>≤40 oz</b> (⅓، 3–4 أكواب) · caffeine <b>≤400 mg</b></td></tr>
+<tr><td>3</td><td>Low-fat &amp; skim milk، soy</td><td><b>≤16 oz</b></td></tr>
+<tr><td>4</td><td>Noncalorically sweetened (diet)</td><td><b>≤16 oz</b> (1–2 كوباية)</td></tr>
+<tr><td>5</td><td>Caloric with some nutrients (fruit juice، whole milk، sports drinks)</td><td>juice <b>≤4 oz</b></td></tr>
+<tr><td>6</td><td>Calorically sweetened (sugar drinks)</td><td><b>≤8 oz</b></td></tr></table>
+<p class="key">المثال: <b>2200 kcal</b> و<b>10%</b> من السعرات من المشروبات · إجمالي السوائل حوالي <b>12–15 كوباية</b>.</p></div>
+
+<div class="card"><h4>🥗 أرقام الـ Healthy eating</h4>
+<ul><li>WHO: <b>2.7 مليون</b> وفاة/سنة من قلة الفاكهة والخضار.</li>
+<li><b>19%</b> GIT cancer · <b>31%</b> ischaemic heart disease · <b>11%</b> strokes.</li>
+<li>Simple sugars <b>أقل من 10%</b> · الملح قليل و<b>iodized</b> · Sports drinks لو بتتمرن <b>أكتر من ساعة</b>.</li>
+<li>Heavy metals = <b>poisonous</b> · Benzene = <b>carcinogenic</b> · E. coli و tapeworm eggs = <b>pathogens</b>.</li>
+<li>Fruits ← vitamins و <b>potassium</b> · Grains ← <b>B1، C، manganese، folate</b> · Seafood ← <b>Omega-3</b>.</li>
+<li>Eat smart (4): chew slowly · avoid stress · listen to your body · eat early, eat often.</li></ul></div>
+""",
+[
+ ("Water — basics & functions", [
+  ("Without water, a person cannot survive more than about:", ["4 days", "4 weeks", "4 months", "4 hours"], "imp", ""),
+  ("Deficiency of which nutrient produces symptoms fastest?", ["Water", "Protein", "Vitamin C", "Iron"], "imp", ""),
+  ("The human body is about …… water:", ["60%", "90%", "25%", "10%"], "imp", ""),
+  ("Blood is about …… water:", ["90%", "60%", "75%", "25%"], "imp", ""),
+  ("Muscle is about …… water while bone is about ……", ["75%; 25%", "25%; 75%", "90%; 60%", "50%; 50%"], "imp", ""),
+  ("Extracellular fluid forms about …… of body water:", ["One-third", "Two-thirds", "One-half", "Three-fourths"], "imp", ""),
+  ("About three-fourths of extracellular fluid is:", ["Interstitial fluid", "Plasma", "Lymph", "Intracellular fluid"], "", ""),
+  ("Which ion is found mainly inside the cells?", ["Potassium", "Sodium", "Chloride", "Calcium"], "imp", "الـ Na و Cl برا."),
+  ("In osmosis, water moves from:", ["Low solute concentration to high solute concentration", "High to low solute concentration", "Cells to bone", "Blood to air"], "imp", ""),
+  ("Adding water to break a large molecule into two smaller ones is called:", ["Hydrolysis", "Condensation", "Osmosis", "Oxidation"], "imp", ""),
+  ("In a hot environment, skin blood vessels:", ["Dilate to release heat", "Constrict to conserve heat", "Do not change", "Close completely"], "", ""),
+ ]),
+ ("Water — intake, losses & regulation", [
+  ("Average daily urine output is:", ["1–2 L", "100–200 ml", "5–6 L", "10 L"], "imp", ""),
+  ("Daily water loss in feces is about:", ["100–200 ml", "1–2 L", "5 L", "Zero"], "", ""),
+  ("Water lost through skin and lungs without being noticed is:", ["Insensible loss (~1 L/day)", "Sweat loss", "Urine loss", "Fecal loss"], "imp", ""),
+  ("Strenuous exercise in heat can cause sweat losses of:", ["2–4 L per hour", "100 ml per day", "10 L per minute", "1 L per day"], "imp", ""),
+  ("The best treatment for dehydration due to childhood diarrhea is:", ["ORS", "Plain water only", "Antibiotics", "Fasting"], "imp", ""),
+  ("ORS is effective in about …… of cases:", ["90–95%", "10–20%", "50%", "100%"], "", ""),
+  ("Water intake is regulated by …… while water output is regulated precisely by ……", ["Thirst; kidneys", "Kidneys; thirst", "Liver; skin", "Lungs; heart"], "imp", ""),
+  ("ADH is released when blood solute concentration is:", ["High", "Low", "Normal", "Zero"], "imp", ""),
+  ("The renin-angiotensin-aldosterone system is activated by:", ["Low blood pressure or low sodium", "High blood pressure", "High solute concentration", "Eating"], "imp", ""),
+  ("Aldosterone causes the kidneys to reabsorb:", ["Sodium (water follows)", "Potassium", "Urea", "Glucose"], "", ""),
+  ("The primary determinant of extracellular fluid volume is:", ["Sodium", "Potassium", "Calcium", "Glucose"], "imp", ""),
+ ]),
+ ("Water — dehydration, hyponatremia & needs", [
+  ("Physical and mental performance decrease with water loss of:", ["2–3% of body weight", "10–20%", "0.1%", "50%"], "imp", ""),
+  ("Water loss of …… of body weight can cause death:", ["10–20%", "2–3%", "1%", "0.5%"], "imp", ""),
+  ("All are at high risk of dehydration EXCEPT:", ["Young sedentary adults in cool weather", "Infants", "Elderly", "Athletes"], "imp", ""),
+  ("Dark yellow / amber urine indicates:", ["Severe dehydration", "Good hydration", "Overhydration", "Mild dehydration"], "", ""),
+  ("Hyponatremia in athletes is usually caused by:", ["Drinking plain water only after losing sodium in sweat", "Eating salty food", "Drinking sports drinks", "Not drinking"], "imp", ""),
+  ("For exercise lasting 60 minutes or less, the adequate fluid is:", ["Plain water", "Sports drink with carbs", "Coffee", "Milk"], "imp", ""),
+  ("During exercise, fluid should be taken every:", ["15–20 minutes", "2 hours", "5 hours", "Only after exercise"], "", ""),
+  ("Recommended total water intake for women and men is about:", ["2.7 L and 3.7 L", "3.7 L and 2.7 L", "1 L and 2 L", "5 L and 6 L"], "imp", ""),
+  ("About 80% of daily water comes from:", ["Beverages", "Food", "Metabolism", "Fruits only"], "", ""),
+  ("Which diet increases water needs?", ["High-protein diet", "Low-salt diet", "Low-fiber diet", "Normal diet"], "", "عشان الـ urea."),
+ ]),
+ ("Beverage levels", BEV),
+ ("Healthy diet", [
+  ("A diet low in fruits and vegetables causes about …… deaths/year (WHO):", ["2.7 million", "27 thousand", "270 million", "2.7 billion"], "imp", ""),
+  ("Unhealthy diet causes about …… of gastrointestinal cancer:", ["19%", "31%", "11%", "50%"], "imp", ""),
+  ("Unhealthy diet causes about …… of ischaemic heart disease:", ["31%", "19%", "11%", "90%"], "imp", ""),
+  ("Unhealthy diet causes about …… of strokes:", ["11%", "19%", "31%", "60%"], "imp", ""),
+  ("Simple sugars should be less than:", ["10% of intake", "30%", "50%", "75%"], "imp", ""),
+  ("Salt in a healthy diet should be:", ["Limited and iodized", "Unlimited", "Completely avoided", "Non-iodized"], "imp", ""),
+  ("A healthy weight is a balance between:", ["Energy consumed and energy burnt", "Protein and fat", "Water and salt", "Sugar and fiber"], "", ""),
+  ("Benzene is an example of …… substances to avoid:", ["Carcinogenic", "Heavy metal", "Pathogenic", "Nutrient"], "", "Heavy metals = poisonous، و E. coli = pathogens."),
+  ("Which is a good carbohydrate choice?", ["Whole grains", "White bread", "White rice", "Sugared sodas"], "", ""),
+  ("In the healthy protein package, try to avoid:", ["Red meat", "Fish", "Beans", "Nuts"], "imp", ""),
+  ("Regarding calcium:", ["It is important, but milk is not its best or only source", "Milk is its only source", "It is not important", "Only supplements provide it"], "imp", ""),
+  ("The best source of liquid is:", ["Water", "Juice", "Milk", "Sports drinks"], "imp", ""),
+  ("Sports drinks are recommended only for people who exercise:", ["More than an hour at a stretch", "10 minutes", "Once a week", "Never"], "imp", ""),
+  ("Fruits are mainly a source of:", ["Vitamins and potassium", "Omega-3", "Trans fats", "Sodium"], "", ""),
+  ("Grains are important for getting:", ["Vitamin B1, C, manganese and folate", "Omega-3 only", "Vitamin B12", "Cholesterol"], "", ""),
+  ("Seafood is essential mainly for:", ["Omega-3", "Trans fat", "Fiber", "Vitamin C"], "imp", ""),
+ ]),
+ ("Eat smart", [
+  ("'Eat smart' means:", ["Not just what you eat, but how you eat", "Eating fast", "Skipping breakfast", "Eating while watching TV"], "imp", ""),
+  ("All are eat-smart strategies EXCEPT:", ["Eating while driving or arguing", "Chewing slowly", "Stopping before you feel full", "Starting the day with breakfast"], "imp", ""),
+  ("'Avoid stress while eating' includes:", ["Taking deep breaths and playing soothing music", "Eating while working", "Eating while watching TV", "Eating quickly"], "", ""),
+  ("'Listen to your body' includes:", ["Stopping eating before you feel full", "Eating until very full", "Ignoring thirst", "Eating large portions"], "imp", "وكمان: ممكن تكون عطشان مش جعان."),
+  ("'Eat early, eat often' means:", ["Start your day with a healthy breakfast", "Eat only at night", "One big meal daily", "Skip meals"], "", ""),
+  ("Which is NOT one of the 8 strategies for healthy eating?", ["Avoid all fats completely", "Variety of foods", "Moderate portions", "Get moving"], "", ""),
+ ]),
+ ("True or False", [
+  _tf("Water can be stored in the body.", 1, "مش بتتخزن."),
+  _tf("Thirst lags behind the body's actual water need.", 0, ""),
+  _tf("ADH is secreted when blood solute concentration is low.", 1, "High."),
+  _tf("Plain water is the best treatment for childhood diarrhea.", 1, "ORS."),
+  _tf("Drinking only plain water after heavy sweating may cause hyponatremia.", 0, ""),
+  _tf("Sports drinks are needed for exercise lasting less than 60 minutes.", 1, "مية سادة كفاية."),
+  _tf("Caffeine's diuretic effect is short, so coffee and tea count toward fluid intake.", 0, ""),
+  _tf("At least half of daily fluids should come from water.", 0, ""),
+  _tf("Two-thirds of fluids come from unsweetened coffee and tea.", 1, "One-third بس."),
+  _tf("Level 4 is low-fat milk.", 1, "Low-fat milk هو Level 3."),
+  _tf("Level 4 (diet drinks) can be 3 to 4 glasses a day.", 1, "1–2 كوباية (≤16 oz)."),
+  _tf("Zero diet drinks are noncalorically unsweetened beverages.", 1, "اسمهم noncalorically sweetened (متحلّيين بمحليات من غير سعرات). لو الجملة جت sweetened تبقى True."),
+  _tf("100% fruit juice should be limited to about 4 oz per day.", 0, ""),
+  _tf("Simple sugars should be less than 10% of intake.", 0, ""),
+  _tf("Milk is the best and only source of calcium.", 1, ""),
+  _tf("You should eat until you feel full.", 1, "وقف قبل ما تشبع."),
+ ], "fixed"),
+])
