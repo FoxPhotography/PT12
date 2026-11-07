@@ -48,6 +48,13 @@ SERV = [
   ("Fruit group requires …… servings while vegetable group requires …… servings:", ["2–4 / 3–5", "2–3 / 3–5", "2–4 / 2–3", "3–5 / 2–4"], "imp", ""),
 ]
 
+# Extra (USDA summary, not in the book page) — marked as زيادة
+SERV_EXTRA = [
+  ("One serving of the milk group is:", ["1 cup milk, 8 oz yogurt or 1.5 oz cheese", "2 cups milk", "1/4 cup milk", "4 oz cheese"], "", "⚠️ زيادة من ملخص USDA، مش من الكتاب."),
+  ("One serving of the meat group is:", ["1 oz meat, 1 egg, 1/2 cup beans or 2 tbsp peanut butter", "8 oz meat", "3 eggs", "1 cup peanut butter"], "", "⚠️ زيادة من ملخص USDA، مش من الكتاب."),
+  ("Fats, oils and sweets (top of the pyramid) should be:", ["Used sparingly", "6–11 servings", "2–3 servings", "Avoided completely"], "", "⚠️ زيادة من ملخص USDA، مش من الكتاب."),
+]
+
 # ============================================================ Lec 1
 T("l1", "Lec 1 — Introduction & Basic Definitions", "Lec 1 مقدمة", "🍎",
   "سلايدات Lec 1 + تفريغ المحاضرة",
@@ -560,8 +567,10 @@ T("l6", "Lec 6 — Healthy Diet & Eat Smart", "Lec 6 Healthy diet", "🥗",
 <tr><td>Bread, cereal, rice &amp; pasta (القاعدة)</td><td><b>6–11</b></td><td><b>1 slice</b> bread · 1 small roll/biscuit · <b>5–6 small</b> أو <b>3–4 large</b> crackers · <b>½ cup</b> cooked cereal/rice/pasta</td></tr>
 <tr><td>Vegetable</td><td><b>3–5</b></td><td><b>½ cup</b> cooked أو chopped raw · <b>1 cup leafy raw</b> (spinach) · <b>½ cup</b> cooked beans/peas/legumes · <b>¾ cup</b> vegetable juice</td></tr>
 <tr><td>Fruit</td><td><b>2–4</b></td><td><b>1 whole fruit</b> (apple، banana، orange) · ½ grapefruit · melon wedge · <b>¾ cup</b> fruit juice · <b>½ cup</b> berries أو chopped/cooked/canned · <b>¼ cup</b> dried fruit</td></tr>
-<tr><td>Milk, yogurt &amp; cheese</td><td><b>2–3</b></td><td></td></tr>
-<tr><td>Meat, poultry, fish, dry beans, eggs &amp; nuts</td><td><b>2–3</b></td><td></td></tr></table>
+<tr><td>Milk, yogurt &amp; cheese</td><td><b>2–3</b></td><td>⚠️ <b>1 cup</b> milk · <b>8 oz</b> yogurt · <b>1.5 oz</b> cheese</td></tr>
+<tr><td>Meat, poultry, fish, dry beans, eggs &amp; nuts</td><td><b>2–3</b></td><td>⚠️ <b>1 oz</b> meat · <b>1 egg</b> · <b>½ cup</b> beans · <b>2 tbsp</b> peanut butter</td></tr>
+<tr><td>Fats, oils &amp; sweets (القمة)</td><td>⚠️ <b>Use sparingly</b></td><td>—</td></tr></table>
+<p>⚠️ <b>زيادة</b>: أحجام الـ serving بتاعة اللبن واللحمة وصف الـ fats مش موجودين في صفحة الكتاب. أخدناهم من ملخص USDA، فاحفظهم على الهامش.</p>
 <p class="key">العصير (فاكهة أو خضار) <b>¾ cup</b> · الفاكهة المجففة <b>¼ cup</b> · الورقيات النيّة <b>1 cup</b> · وأغلب الباقي <b>½ cup</b>.</p></div>
 """,
 [
@@ -579,6 +588,7 @@ T("l6", "Lec 6 — Healthy Diet & Eat Smart", "Lec 6 Healthy diet", "🥗",
   ("Seafood is essential mainly for:", ["Omega-3", "Trans fats", "Vitamin C", "Fiber"], "", ""),
  ]),
  ("Food guide pyramid & servings", SERV),
+ ("⚠️ زيادة (مش في الكتاب) — Milk, meat & fats", SERV_EXTRA),
  ("Eat smart", [
   ("'Eat smart' means:", ["Not just what you eat, but how you eat", "Eating fast", "Skipping breakfast", "Eating while watching TV"], "imp", ""),
   ("Eat-smart strategies include all EXCEPT:", ["Eating while driving or arguing", "Chewing slowly", "Stopping before feeling full", "Starting the day with breakfast"], "imp", ""),
@@ -668,8 +678,10 @@ MID = ("mid", "تجميعة الميد — Water & Healthy Eating", "تجميع�
 <tr><td>Bread, cereal, rice &amp; pasta (القاعدة)</td><td><b>6–11</b></td><td><b>1 slice</b> bread · 1 small roll/biscuit · <b>5–6 small</b> أو <b>3–4 large</b> crackers · <b>½ cup</b> cooked cereal/rice/pasta</td></tr>
 <tr><td>Vegetable</td><td><b>3–5</b></td><td><b>½ cup</b> cooked أو chopped raw · <b>1 cup leafy raw</b> (spinach) · <b>½ cup</b> cooked beans/peas/legumes · <b>¾ cup</b> vegetable juice</td></tr>
 <tr><td>Fruit</td><td><b>2–4</b></td><td><b>1 whole fruit</b> (apple، banana، orange) · ½ grapefruit · melon wedge · <b>¾ cup</b> fruit juice · <b>½ cup</b> berries أو chopped/cooked/canned · <b>¼ cup</b> dried fruit</td></tr>
-<tr><td>Milk, yogurt &amp; cheese</td><td><b>2–3</b></td><td></td></tr>
-<tr><td>Meat, poultry, fish, dry beans, eggs &amp; nuts</td><td><b>2–3</b></td><td></td></tr></table>
+<tr><td>Milk, yogurt &amp; cheese</td><td><b>2–3</b></td><td>⚠️ <b>1 cup</b> milk · <b>8 oz</b> yogurt · <b>1.5 oz</b> cheese</td></tr>
+<tr><td>Meat, poultry, fish, dry beans, eggs &amp; nuts</td><td><b>2–3</b></td><td>⚠️ <b>1 oz</b> meat · <b>1 egg</b> · <b>½ cup</b> beans · <b>2 tbsp</b> peanut butter</td></tr>
+<tr><td>Fats, oils &amp; sweets (القمة)</td><td>⚠️ <b>Use sparingly</b></td><td>—</td></tr></table>
+<p>⚠️ <b>زيادة</b>: أحجام الـ serving بتاعة اللبن واللحمة وصف الـ fats مش موجودين في صفحة الكتاب. أخدناهم من ملخص USDA، فاحفظهم على الهامش.</p>
 <p class="key">العصير (فاكهة أو خضار) <b>¾ cup</b> · الفاكهة المجففة <b>¼ cup</b> · الورقيات النيّة <b>1 cup</b> · وأغلب الباقي <b>½ cup</b>.</p></div>
 
 <div class="card"><h4>🥗 أرقام الـ Healthy eating</h4>
@@ -739,6 +751,7 @@ MID = ("mid", "تجميعة الميد — Water & Healthy Eating", "تجميع�
   ("Seafood is essential mainly for:", ["Omega-3", "Trans fat", "Fiber", "Vitamin C"], "imp", ""),
  ]),
  ("Food guide pyramid & servings", SERV),
+ ("⚠️ زيادة (مش في الكتاب) — Milk, meat & fats", SERV_EXTRA),
  ("Eat smart", [
   ("'Eat smart' means:", ["Not just what you eat, but how you eat", "Eating fast", "Skipping breakfast", "Eating while watching TV"], "imp", ""),
   ("All are eat-smart strategies EXCEPT:", ["Eating while driving or arguing", "Chewing slowly", "Stopping before you feel full", "Starting the day with breakfast"], "imp", ""),
