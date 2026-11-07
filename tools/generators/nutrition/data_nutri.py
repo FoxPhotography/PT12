@@ -25,6 +25,29 @@ BEV = [
 ]
 def T(*a): TABS.append(a)
 
+# Food guide pyramid servings (Lec 6 — book p.133)
+SERV = [
+  ("The base of the food guide pyramid (largest number of servings) is:", ["Bread, cereal, rice & pasta group", "Fruit group", "Milk group", "Meat group"], "imp", "6–11 servings."),
+  ("Bread, cereal, rice & pasta group requires:", ["6–11 servings", "2–3 servings", "2–4 servings", "3–5 servings"], "imp", ""),
+  ("Vegetable group requires:", ["3–5 servings", "6–11 servings", "2–3 servings", "1 serving"], "imp", ""),
+  ("Fruit group requires:", ["2–4 servings", "6–11 servings", "3–5 servings", "5–7 servings"], "imp", ""),
+  ("Milk, yogurt & cheese group requires:", ["2–3 servings", "6–11 servings", "3–5 servings", "2–4 servings"], "imp", "ونفس الرقم للـ Meat group."),
+  ("Meat, poultry, fish, dry beans, eggs & nuts group requires:", ["2–3 servings", "6–11 servings", "2–4 servings", "3–5 servings"], "imp", ""),
+  ("One serving of bread, cereal, rice and pasta is:", ["1 slice of bread", "2 slices of bread", "1 cup cooked rice", "10 large crackers"], "imp", ""),
+  ("One serving of cooked cereal, rice or pasta is:", ["1/2 cup", "1 cup", "3/4 cup", "1/4 cup"], "imp", ""),
+  ("One serving of crackers is:", ["5–6 small or 3–4 large crackers", "1 small cracker", "10 large crackers", "1/4 cup crackers"], "", ""),
+  ("One serving of fruit juice is:", ["3/4 cup", "1/2 cup", "1/4 cup", "1 cup"], "imp", ""),
+  ("One serving of dried fruit is:", ["1/4 cup", "1/2 cup", "3/4 cup", "1 cup"], "imp", ""),
+  ("One serving of chopped fresh, cooked or canned fruit (or berries) is:", ["1/2 cup", "1/4 cup", "3/4 cup", "1 cup"], "", ""),
+  ("One serving of fruit is all EXCEPT:", ["Two whole medium apples", "One medium banana", "Half a grapefruit", "A melon wedge"], "", "One whole fruit بس."),
+  ("One serving of cooked vegetables is:", ["1/2 cup", "1 cup", "3/4 cup", "1/4 cup"], "imp", ""),
+  ("One serving of leafy raw vegetables (e.g., spinach) is:", ["1 cup", "1/2 cup", "3/4 cup", "1/4 cup"], "imp", "الورقيات النيّة كوباية كاملة، والباقي نص كوباية."),
+  ("One serving of vegetable juice is:", ["3/4 cup", "1/2 cup", "1 cup", "1/4 cup"], "imp", "زي الـ fruit juice."),
+  ("One serving of cooked beans, peas or other legumes (vegetable group) is:", ["1/2 cup", "1 cup", "3/4 cup", "1/4 cup"], "", ""),
+  ("Which is considered as one serving?", ["3/4 cup of vegetable juice", "1/4 cup chopped fruit", "1/2 cup dried fruit", "2 slices of bread"], "imp", "الـ chopped fruit نص كوباية، والـ dried fruit ربع كوباية."),
+  ("Fruit group requires …… servings while vegetable group requires …… servings:", ["2–4 / 3–5", "2–3 / 3–5", "2–4 / 2–3", "3–5 / 2–4"], "imp", ""),
+]
+
 # ============================================================ Lec 1
 T("l1", "Lec 1 — Introduction & Basic Definitions", "Lec 1 مقدمة", "🍎",
   "سلايدات Lec 1 + تفريغ المحاضرة",
@@ -531,6 +554,15 @@ T("l6", "Lec 6 — Healthy Diet & Eat Smart", "Lec 6 Healthy diet", "🥗",
 <li><b>Listen to your body</b>: ممكن تكون عطشان مش جعان، <b>وقف قبل ما تشبع</b>، وكُل ببطء وكميات صغيرة.</li>
 <li><b>Eat early, eat often</b>: ابدأ يومك بـ <b>breakfast</b> صحي.</li></ol>
 <p class="key">Health is wealth.</p></div>
+
+<div class="card"><h4>🔺 Food guide pyramid &amp; servings (كتاب ص 133)</h4>
+<table><tr><th>Group</th><th>عدد الـ servings</th><th>الـ serving الواحد</th></tr>
+<tr><td>Bread, cereal, rice &amp; pasta (القاعدة)</td><td><b>6–11</b></td><td><b>1 slice</b> bread · 1 small roll/biscuit · <b>5–6 small</b> أو <b>3–4 large</b> crackers · <b>½ cup</b> cooked cereal/rice/pasta</td></tr>
+<tr><td>Vegetable</td><td><b>3–5</b></td><td><b>½ cup</b> cooked أو chopped raw · <b>1 cup leafy raw</b> (spinach) · <b>½ cup</b> cooked beans/peas/legumes · <b>¾ cup</b> vegetable juice</td></tr>
+<tr><td>Fruit</td><td><b>2–4</b></td><td><b>1 whole fruit</b> (apple، banana، orange) · ½ grapefruit · melon wedge · <b>¾ cup</b> fruit juice · <b>½ cup</b> berries أو chopped/cooked/canned · <b>¼ cup</b> dried fruit</td></tr>
+<tr><td>Milk, yogurt &amp; cheese</td><td><b>2–3</b></td><td></td></tr>
+<tr><td>Meat, poultry, fish, dry beans, eggs &amp; nuts</td><td><b>2–3</b></td><td></td></tr></table>
+<p class="key">العصير (فاكهة أو خضار) <b>¾ cup</b> · الفاكهة المجففة <b>¼ cup</b> · الورقيات النيّة <b>1 cup</b> · وأغلب الباقي <b>½ cup</b>.</p></div>
 """,
 [
  ("Healthy diet", [
@@ -546,6 +578,7 @@ T("l6", "Lec 6 — Healthy Diet & Eat Smart", "Lec 6 Healthy diet", "🥗",
   ("Regarding calcium sources:", ["Milk is not the best or only source", "Milk is the only source", "Calcium is unimportant", "Only supplements provide calcium"], "", ""),
   ("Seafood is essential mainly for:", ["Omega-3", "Trans fats", "Vitamin C", "Fiber"], "", ""),
  ]),
+ ("Food guide pyramid & servings", SERV),
  ("Eat smart", [
   ("'Eat smart' means:", ["Not just what you eat, but how you eat", "Eating fast", "Skipping breakfast", "Eating while watching TV"], "imp", ""),
   ("Eat-smart strategies include all EXCEPT:", ["Eating while driving or arguing", "Chewing slowly", "Stopping before feeling full", "Starting the day with breakfast"], "imp", ""),
@@ -588,6 +621,12 @@ TF_DRILL = [
  ("Level 4 is low-fat milk.", 1, "Low-fat milk هو Level 3. والـ Level 4 هو الـ diet drinks."),
  ("Level 4 (diet drinks) can be 3 to 4 glasses a day.", 1, "1–2 كوباية (≤16 oz). الـ 3–4 أكواب دول بتوع الشاي والقهوة."),
  ("Vitamin E protects cells from damage caused by heavy metals.", 0, ""),
+ ("WHO prefers saturated fat to unsaturated fat.", 1, "العكس."),
+ ("Harvard school recommended increasing red meat intake.", 1, "Avoid red meat."),
+ ("Milk is the best source of calcium.", 1, "Not its best or only source."),
+ ("Processed foods contain more salt than fresh foods.", 0, ""),
+ ("The carbs group must be 15 servings per day.", 1, "6–11 servings."),
+ ("One cup of cooked rice is considered one serving.", 1, "½ cup."),
 ]
 
 # ============================================================ تجميعة الميد (Water + Healthy eating)
@@ -623,6 +662,15 @@ MID = ("mid", "تجميعة الميد — Water & Healthy Eating", "تجميع�
 <tr><td>5</td><td>Caloric with some nutrients (fruit juice، whole milk، sports drinks)</td><td>juice <b>≤4 oz</b></td></tr>
 <tr><td>6</td><td>Calorically sweetened (sugar drinks)</td><td><b>≤8 oz</b></td></tr></table>
 <p class="key">المثال: <b>2200 kcal</b> و<b>10%</b> من السعرات من المشروبات · إجمالي السوائل حوالي <b>12–15 كوباية</b>.</p></div>
+
+<div class="card"><h4>🔺 Food guide pyramid &amp; servings (كتاب ص 133)</h4>
+<table><tr><th>Group</th><th>عدد الـ servings</th><th>الـ serving الواحد</th></tr>
+<tr><td>Bread, cereal, rice &amp; pasta (القاعدة)</td><td><b>6–11</b></td><td><b>1 slice</b> bread · 1 small roll/biscuit · <b>5–6 small</b> أو <b>3–4 large</b> crackers · <b>½ cup</b> cooked cereal/rice/pasta</td></tr>
+<tr><td>Vegetable</td><td><b>3–5</b></td><td><b>½ cup</b> cooked أو chopped raw · <b>1 cup leafy raw</b> (spinach) · <b>½ cup</b> cooked beans/peas/legumes · <b>¾ cup</b> vegetable juice</td></tr>
+<tr><td>Fruit</td><td><b>2–4</b></td><td><b>1 whole fruit</b> (apple، banana، orange) · ½ grapefruit · melon wedge · <b>¾ cup</b> fruit juice · <b>½ cup</b> berries أو chopped/cooked/canned · <b>¼ cup</b> dried fruit</td></tr>
+<tr><td>Milk, yogurt &amp; cheese</td><td><b>2–3</b></td><td></td></tr>
+<tr><td>Meat, poultry, fish, dry beans, eggs &amp; nuts</td><td><b>2–3</b></td><td></td></tr></table>
+<p class="key">العصير (فاكهة أو خضار) <b>¾ cup</b> · الفاكهة المجففة <b>¼ cup</b> · الورقيات النيّة <b>1 cup</b> · وأغلب الباقي <b>½ cup</b>.</p></div>
 
 <div class="card"><h4>🥗 أرقام الـ Healthy eating</h4>
 <ul><li>WHO: <b>2.7 مليون</b> وفاة/سنة من قلة الفاكهة والخضار.</li>
@@ -690,6 +738,7 @@ MID = ("mid", "تجميعة الميد — Water & Healthy Eating", "تجميع�
   ("Grains are important for getting:", ["Vitamin B1, C, manganese and folate", "Omega-3 only", "Vitamin B12", "Cholesterol"], "", ""),
   ("Seafood is essential mainly for:", ["Omega-3", "Trans fat", "Fiber", "Vitamin C"], "imp", ""),
  ]),
+ ("Food guide pyramid & servings", SERV),
  ("Eat smart", [
   ("'Eat smart' means:", ["Not just what you eat, but how you eat", "Eating fast", "Skipping breakfast", "Eating while watching TV"], "imp", ""),
   ("All are eat-smart strategies EXCEPT:", ["Eating while driving or arguing", "Chewing slowly", "Stopping before you feel full", "Starting the day with breakfast"], "imp", ""),
@@ -715,5 +764,14 @@ MID = ("mid", "تجميعة الميد — Water & Healthy Eating", "تجميع�
   _tf("Simple sugars should be less than 10% of intake.", 0, ""),
   _tf("Milk is the best and only source of calcium.", 1, ""),
   _tf("You should eat until you feel full.", 1, "وقف قبل ما تشبع."),
+  _tf("One serving of fruit juice is 1/2 cup.", 1, "3/4 cup."),
+  _tf("One serving of leafy raw vegetables is 1 cup.", 0, ""),
+  _tf("The bread, cereal, rice and pasta group needs 6–11 servings.", 0, ""),
+  _tf("WHO prefers saturated fat to unsaturated fat.", 1, "العكس: prefer unsaturated على الـ saturated والـ trans."),
+  _tf("Harvard school recommended increasing red meat intake.", 1, "Try to avoid red meat."),
+  _tf("Milk is the best source of calcium, as Harvard school said.", 1, "Milk is not its best or only source."),
+  _tf("Processed foods contain more salt than fresh foods.", 0, "Limit salt: choose more fresh foods instead of processed."),
+  _tf("The carbs (bread, cereal, rice & pasta) group must be 15 servings per day.", 1, "6–11 servings."),
+  _tf("One cup of cooked rice is considered one serving.", 1, "½ cup بس."),
  ], "fixed"),
 ])

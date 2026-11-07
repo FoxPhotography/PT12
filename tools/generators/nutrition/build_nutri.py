@@ -70,8 +70,13 @@ def lec_tab(tid, title, short, icon, source, summary, groups, active=False):
     s_.append('</div>')
     sections.append(''.join(s_)); nav.append((tid, f'{icon} {short}'))
 
+
+NUM_RE = re.compile(r'[≤≥<>]?\s?(?:\d+(?:\.\d+)?|[½¾¼⅓])(?:\s?[–:\-/]\s?(?:\d+(?:\.\d+)?|[½¾¼⅓]))?(?:\s?(?:%|oz|mg|ml|kcal|cups?|L\\b|g\\b))?')
+def ltr_nums(h):
+    parts = re.split(r'(<[^>]+>)', h)
+    return ''.join(x if x.startswith('<') else NUM_RE.sub(lambda m: f'<span dir="ltr">{m.group(0)}</span>' if any(c.isdigit() or c in '½¾¼⅓' for c in m.group(0)) else m.group(0), x) for x in parts)
 for k, (tid, title, short, icon, src, summary, groups) in enumerate(TABS):
-    summary = re.sub(r'(\d+(?:\.\d+)?\s?:\s?\d+(?:\.\d+)?)', r'<span dir="ltr">\1</span>', summary)
+    summary = ltr_nums(summary)
     lec_tab(tid, title, short, icon, src, summary, groups, active=(k == 0))
 tfo = ["True ✓", "False ✗"]
 if not MIDONLY: sections.append('<div class="section" id="tf"><div class="info-banner">جمل صح وغلط من الـ 6 محاضرات، على الحاجات اللي ممكن تتقلب في الامتحان.</div>' + search('tf') +
