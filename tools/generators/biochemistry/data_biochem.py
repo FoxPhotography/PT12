@@ -91,7 +91,7 @@ SHEET = """
 """
 
 T("mid", "تجميعة الميد — Lec 1 to 7", "تجميعة الميد", "⭐",
-  "ملخصات المحاضرات 1–7 بتحديداتها + أسئلة الدفعة",
+  "المحاضرات 1–7",
   SHEET,
 [
  ("Lec 1 — Bioenergetics & ATP", [
@@ -131,7 +131,7 @@ T("mid", "تجميعة الميد — Lec 1 to 7", "تجميعة الميد", "�
   ("Which statement is NOT true about glycolysis?", ["It requires O₂ and the final product is CO₂", "Glucose is transformed into pyruvate", "It can take place by anaerobic metabolism", "It takes place mainly in the cytoplasm"], "qz", ""),
   ("The first step of glycolysis (glucose → glucose-6-P) is catalyzed by:", ["Hexokinase or glucokinase", "Isomerase", "Aldolase", "Enolase"], "imp", "أول خطوة بتستهلك ATP، وكمان بتحبس الـ glucose جوه الخلية."),
   ("Conversion of glucose-6-P to fructose-6-P is catalyzed by:", ["Isomerase", "Mutase", "Kinase", "Dehydrogenase"], "", ""),
-  ("What is the rate-limiting step in glycolysis?", ["Formation of fructose 1,6-bisphosphate (PFK-1)", "Phosphorylation of glucose", "Formation of phosphoenolpyruvate", "Cleavage of fructose 1,6-bisphosphate"], "qz", "⚠️ Step 3 (PFK-1) هي أهم خطوة. الإجابة اللي كانت متحطوطة (Cleavage) غلط، الـ cleavage ده شغل الـ aldolase."),
+  ("What is the rate-limiting step in glycolysis?", ["Formation of fructose 1,6-bisphosphate (PFK-1)", "Phosphorylation of glucose", "Formation of phosphoenolpyruvate", "Cleavage of fructose 1,6-bisphosphate"], "qz", "Step 3 (PFK-1) هي أهم خطوة. والـ cleavage ده شغل الـ aldolase."),
   ("ATP-consuming steps of glycolysis are catalyzed by:", ["Hexokinase and PFK-1", "Pyruvate kinase and PGK", "Aldolase and enolase", "Isomerase and mutase"], "imp", "Steps 1 و 3."),
   ("Cleavage of fructose 1,6-bisphosphate into G3P and DHAP is by:", ["Aldolase", "PFK-1", "Enolase", "Isomerase"], "imp", ""),
   ("Conversion of 2 G3P into 2 1,3-bisphosphoglycerate produces:", ["2 NADH", "2 ATP", "2 FADH₂", "2 CO₂"], "imp", ""),
@@ -145,7 +145,7 @@ T("mid", "تجميعة الميد — Lec 1 to 7", "تجميعة الميد", "�
   ("Which increases glycolysis in muscle?", ["AMP", "ATP", "Citrate", "Glucose-6-phosphate"], "qz", ""),
   ("Pyruvate kinase is active when it is:", ["Dephosphorylated", "Phosphorylated", "Bound to ATP", "Bound to citrate"], "imp", ""),
   ("Glycolysis is stimulated by …… and inhibited by ……", ["Insulin; glucagon", "Glucagon; insulin", "Epinephrine; AMP", "ATP; AMP"], "imp", ""),
-  ("Net ATP produced per glucose in aerobic glycolysis is:", ["8", "2", "4", "12"], "qz", "⚠️ 2 ATP net + 2 NADH × 3 = 8 (بحساب المحاضرات NADH = 3). مفتاح الدفعة كان 7، وده بحساب NADH = 2.5."),
+  ("Net ATP produced per glucose in aerobic glycolysis is:", ["8", "2", "4", "12"], "qz", "2 ATP net + 2 NADH × 3 = 8."),
   ("In glycolysis, ATP consumed is …… and ATP gained is ……", ["2; 4", "4; 2", "2; 2", "1; 4"], "imp", "Net 2."),
   ("Glycolysis is most needed in RBCs and contracting skeletal muscle because:", ["They have no alternative source for energy", "They have many mitochondria", "They store fat", "They lack glucose transporters"], "", ""),
  ]),
@@ -158,7 +158,7 @@ T("mid", "تجميعة الميد — Lec 1 to 7", "تجميعة الميد", "�
   ("During one turn of Krebs' cycle, the following are produced:", ["2 CO₂, 3 NADH, 1 FADH₂, 1 ATP", "3 CO₂, 2 NADH, 2 FADH₂", "1 CO₂, 1 NADH, 3 ATP", "2 CO₂, 2 NADH, 2 ATP"], "imp", ""),
   ("How many NADH + H⁺ are produced via the citric acid cycle per one glucose molecule?", ["6", "3", "4", "5"], "qz", "3 لكل acetyl-CoA × 2."),
   ("One mole of acetyl-CoA oxidized through Krebs' cycle gives:", ["12 ATP", "15 ATP", "8 ATP", "2 ATP"], "imp", ""),
-  ("How many ATPs are produced from the (complete) oxidation of pyruvate?", ["15", "12", "18", "21"], "qz", "⚠️ 3 (PDH) + 12 (Krebs) = 15 بحساب المحاضرات. مفتاح الدفعة كان 12، وده بتاع الـ acetyl-CoA بس."),
+  ("How many ATPs are produced from the (complete) oxidation of pyruvate?", ["15", "12", "18", "21"], "qz", "3 (PDH) + 12 (Krebs) = 15. والـ 12 دول بتوع الـ acetyl-CoA بس."),
   ("The only substrate-level phosphorylation in Krebs' cycle is catalyzed by:", ["Succinyl-CoA synthetase", "Isocitrate dehydrogenase", "Citrate synthase", "Malate dehydrogenase"], "imp", "Succinyl-CoA → succinate. والـ 11 ATP الباقيين oxidative."),
   ("The FADH₂-producing dehydrogenase of Krebs' cycle is:", ["Succinate dehydrogenase", "Malate dehydrogenase", "Isocitrate dehydrogenase", "α-Ketoglutarate dehydrogenase"], "", ""),
   ("Which enzyme produces CO₂ in the TCA cycle?", ["Isocitrate dehydrogenase", "Succinate dehydrogenase", "Malate dehydrogenase", "Citrate synthase"], "qz", "والـ α-KG dehydrogenase كمان."),
@@ -222,42 +222,5 @@ T("mid", "تجميعة الميد — Lec 1 to 7", "تجميعة الميد", "�
   tf("Muscle glycogen can maintain blood glucose.", 1, "Never."),
   tf("G6PD is the rate-limiting enzyme of HMP.", 0, ""),
   tf("Favism is an acquired condition.", 1, "Genetic."),
- ], "fixed"),
-])
-
-# ============================================================ بنك المنهج كله
-T("bank", "بنك المنهج كله — أسئلة الدفعة برا محاضرات الميد", "بنك المنهج كله", "📚",
-  "أسئلة الدفعة اللي على مواضيع مش في المحاضرات 1–7",
-"""<div class="card"><h4>📌 ملحوظة</h4>
-<ul><li>الأسئلة دي على Gluconeogenesis و Fructose و GLUTs و PFK-2، ودي مواضيع <b>مش موجودة في المحاضرات 1–7</b>. يعني دي أسئلة على المنهج كله (الفاينال).</li>
-<li>الأسئلة من 31 لـ 78 مكانتش موجودة في اللي اتبعت.</li>
-<li>شيلت سؤال 94 لأنه غلط علميًا: الـ fructose-1-phosphate بينشط الـ glucokinase مش بيثبطه.</li></ul></div>""",
-[
- ("Glucose transport & glycolysis regulation", [
-  ("Which glucose transporter is insulin-dependent?", ["GLUT 4", "GLUT 1", "GLUT 2", "GLUT 3"], "qz", ""),
-  ("GLUT2 is found mainly in:", ["Liver", "RBCs", "Brain", "Muscle"], "qz", ""),
-  ("Main function of PFK-2:", ["Makes fructose 2,6-bisphosphate", "Makes fructose 1,6-bisphosphate", "Makes glucose 6-phosphate", "Makes pyruvate"], "qz", ""),
-  ("Insulin activates PFK-2, which:", ["Activates glycolysis", "Inhibits glycolysis", "Activates gluconeogenesis", "Activates TCA"], "qz", ""),
-  ("Which enzyme regenerates NAD⁺ in anaerobic glycolysis?", ["LDH", "PFK", "PDH", "GAPDH"], "qz", ""),
-  ("Pyruvate kinase deficiency causes:", ["Hemolytic anemia", "Lactic acidosis", "Hypoglycemia", "Hyperglycemia"], "qz", ""),
- ]),
- ("Gluconeogenesis", [
-  ("Which enzyme is involved in gluconeogenesis?", ["Pyruvate carboxylase", "Hexokinase", "Phosphofructokinase", "Pyruvate kinase"], "qz", ""),
-  ("Rate-limiting enzyme of gluconeogenesis:", ["Fructose 1,6-bisphosphatase", "Pyruvate carboxylase", "PEP carboxykinase", "Glucose 6-phosphatase"], "qz", ""),
-  ("Enzyme requiring biotin:", ["Pyruvate carboxylase", "PFK", "Pyruvate kinase", "LDH"], "qz", ""),
-  ("Which enzyme forms phosphoenolpyruvate in gluconeogenesis?", ["PEP carboxykinase", "Pyruvate kinase", "LDH", "Hexokinase"], "qz", ""),
-  ("Which is NOT used to synthesize glucose?", ["Acetyl CoA", "Oxaloacetate", "Lactate", "Pyruvate"], "qz", ""),
-  ("Which amino acid is purely ketogenic (NOT glucogenic)?", ["Leucine", "Isoleucine", "Valine", "Alanine"], "qz", ""),
- ]),
- ("Glycogen & fructose (extra)", [
-  ("The glycogen branching enzyme forms which bond?", ["α-1,6", "α-1,4", "β-1,4", "β-1,6"], "qz", ""),
-  ("Allosteric inhibitor of muscle glycogen phosphorylase:", ["ATP", "AMP", "Ca²⁺", "cAMP"], "qz", "⚠️ نص السؤال كان ناقص، فكملته من الاختيارات والإجابة."),
-  ("Which inhibits glycogen synthase?", ["Glucagon", "Insulin", "Glucose", "Glucose 6-phosphate"], "qz", ""),
-  ("Main fate of fructose in the liver:", ["Enters glycolysis", "Enters PPP", "Converted to galactose", "Turns into ribose"], "qz", ""),
-  ("Rate-limiting enzyme of fructose metabolism:", ["Aldolase B", "Aldolase A", "Hexokinase", "Glucokinase"], "qz", ""),
- ]),
- ("True or False", [
-  tf("Fructose 2,6-bisphosphate activates glycolysis.", 0, ""),
-  tf("All enzymes required for gluconeogenesis are present in the cytosol.", 1, "الـ Pyruvate carboxylase في الـ mitochondria."),
  ], "fixed"),
 ])
