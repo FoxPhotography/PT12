@@ -87,7 +87,7 @@ else:
     # ---- tab: predicted exam
     pe = ['<div class="section active" id="pred">',
           '<div class="info-banner"><b>شكل الميدتيرم الجديد (د. ياسمين):</b> <b>Case واحدة وعليها 20 سؤال MCQ</b>، ورقي في المدرج، يوم <b>الاتنين الساعة 9</b>، وبعده الدكتورة هتشرح المحاضرة. وميد <b>العملي</b> الأسبوع اللي بعد الجاي (د. ياسمين هتحدد).<br>'
-          'هنا <b>نموذجين متوقعين</b> بنفس الشكل بالظبط (case + 20 MCQ)، ومغطيين كل المحاضرات بأقل عدد أسئلة: الأول على الـ <b>Kyphosis</b> والـ thoracic والـ ribs (الأرجح)، والتاني على الـ safety tests والـ Maitland والـ Mulligan والـ Manipulation والـ Fryette والـ posture. حلهم في <b>نص ساعة</b> كأنك في الامتحان.</div>', search('pred')]
+          'هنا <b>3 نماذج متوقعة</b> بنفس الشكل بالظبط (case + 20 MCQ)، ومغطيين كل المحاضرات: الأول على الـ <b>Kyphosis</b> والـ thoracic والـ ribs (الأرجح)، والتاني على الـ safety tests والـ Maitland والـ Mulligan والـ Manipulation والـ Fryette، والتالت على الـ <b>barrel chest</b> والـ posture والـ Fryette 1st law وباقي الأساسيات. حل كل نموذج في <b>نص ساعة</b> كأنك في الامتحان.</div>', search('pred')]
     for i, (title, txt, qs) in enumerate(PREDICTED, 1):
         pe.append(f'<h3 class="quiz-title" style="margin-top:{18 if i>1 else 0}px">{esc(title)}</h3>')
         pe.append(f'<div class="case-intro">🩺 <b>Case:</b> {esc(txt)}</div>')
@@ -257,4 +257,11 @@ TPL = f"""<!DOCTYPE html>
 """
 out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, 'midterm.html')
 open(out, 'w', encoding='utf8').write(TPL)
+# theme_post: same as tools/theme/post.py (theme.css/js → فهرس المذاكرة + PT Hub pill)
+_T = open(out, encoding='utf8').read()
+if 'assets/theme.css' not in _T:
+    _T = _T.replace('</head>', '<meta name="theme-color" content="#5c5e54">\n<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="../../assets/theme.css?v=3">\n<script src="../../assets/theme.js?v=3" defer></script>\n</head>', 1)
+if 'fx-home' not in _T:
+    _T = re.sub(r'(<body[^>]*>)', r'\1\n<div class="fx-band" aria-hidden="true"></div>\n<a class="fx-home" href="../../index.html" aria-label="PT Hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>PT Hub</a>', _T, count=1)
+open(out, 'w', encoding='utf8').write(_T)
 print('mcq', TOTAL, 'written', WN, 'lectures', len(LECTURES), '->', out)

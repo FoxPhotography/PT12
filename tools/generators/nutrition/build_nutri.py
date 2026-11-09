@@ -205,4 +205,11 @@ TPL = f"""<!DOCTYPE html>
 """
 out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, 'midterm.html')
 open(out, 'w', encoding='utf8').write(TPL)
+# theme_post: same as tools/theme/post.py (theme.css/js → فهرس المذاكرة + PT Hub pill)
+_T = open(out, encoding='utf8').read()
+if 'assets/theme.css' not in _T:
+    _T = _T.replace('</head>', '<meta name="theme-color" content="#5c5e54">\n<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="../../assets/theme.css?v=3">\n<script src="../../assets/theme.js?v=3" defer></script>\n</head>', 1)
+if 'fx-home' not in _T:
+    _T = re.sub(r'(<body[^>]*>)', r'\1\n<div class="fx-band" aria-hidden="true"></div>\n<a class="fx-home" href="../../index.html" aria-label="PT Hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>PT Hub</a>', _T, count=1)
+open(out, 'w', encoding='utf8').write(_T)
 print('mcq', TOTAL, '->', out)
