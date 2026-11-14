@@ -122,7 +122,9 @@ SUMMARY = """
 <p class="key">Swing-to = الرجل السليمة توصل <b>جنب</b> المصابة. Swing-through = تعدّي <b>قدامها</b>.</p></div>
 """
 
-T("mid", "تجميعة الميد — Lec 1 to 7", "تجميعة الميد", "⭐", "سلايدات الدكتور الرسمية (7 محاضرات)", SUMMARY,
+T("sum", "الشرح — ملخص الـ 7 محاضرات", "الشرح", "📖", "سلايدات الدكتور الرسمية (7 محاضرات)", SUMMARY, [])
+QUIZ_NOTE = """<div class="card"><h4>📌 الأسئلة</h4><ul><li>100 سؤال MCQ سهل من سلايدات الدكتور، مترتبين على المحاضرات. دوس على السؤال واختار، وهيتصحح.</li></ul></div>"""
+T("mid", "أسئلة الميد — 100 MCQ", "أسئلة الميد", "⭐", "سلايدات الدكتور الرسمية (7 محاضرات)", QUIZ_NOTE,
 [
  ("Lec 1–2 — Rehabilitation, settings & team", [
   ("Rehabilitation is the process of:", ["Making the person with a disability maximally able again", "Curing all diseases with drugs", "Keeping the patient in bed", "Performing surgery for the disabled"], "imp", ""),

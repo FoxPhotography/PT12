@@ -66,8 +66,9 @@ def written(n, q, src, ans):
 
 def lec_tab(tid, title, short, icon, source, summary, groups, active=False):
     n = sum(len(g[1]) for g in groups)
+    NQ = (' · %d سؤال' % n) if n else ''
     s_ = [f'<div class="section{" active" if active else ""}" id="{tid}">',
-         f'<div class="lec-banner"><div class="lec-icon">{icon}</div><div><div class="lec-title">{esc(title)}</div><div class="lec-sub">المصدر: {esc(source)} · {n} سؤال</div></div></div>',
+         f'<div class="lec-banner"><div class="lec-icon">{icon}</div><div><div class="lec-title">{esc(title)}</div><div class="lec-sub">المصدر: {esc(source)}{NQ}</div></div></div>',
          '<details class="summary-box" open><summary>📖 الملخص</summary><div class="summary">' + summary + '</div></details>',
          '<h3 class="quiz-title">اختبر نفسك</h3>', search(tid)]
     for i, g in enumerate(groups, 1):
